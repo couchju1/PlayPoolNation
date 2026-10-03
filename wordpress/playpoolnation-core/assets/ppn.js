@@ -91,6 +91,44 @@
 		}
 	} );
 
+	/* My Pool: fill the area from the browser's location, then save. */
+	document.querySelectorAll( '[data-ppn-area-form]' ).forEach( function ( form ) {
+		var btn = form.querySelector( '[data-ppn-locate]' );
+		if ( ! btn ) {
+			return;
+		}
+		var msg = form.querySelector( '.ppn-near-me-msg' );
+		var say = function ( t ) { if ( msg ) { msg.textContent = t; } };
+		btn.addEventListener( 'click', function () {
+			if ( ! navigator.geolocation ) {
+				say( 'Your browser cannot share a location. Type a city or ZIP instead.' );
+				return;
+			}
+			btn.setAttribute( 'aria-busy', 'true' );
+			say( 'Finding your location…' );
+			navigator.geolocation.getCurrentPosition( function ( pos ) {
+				form.querySelector( '[data-ppn-lat]' ).value = pos.coords.latitude.toFixed( 4 );
+				form.querySelector( '[data-ppn-lng]' ).value = pos.coords.longitude.toFixed( 4 );
+				var area = form.querySelector( 'input[name="area"]' );
+				if ( area && ! area.value ) {
+					area.value = 'My location';
+				}
+				form.submit();
+			}, function ( err ) {
+				btn.removeAttribute( 'aria-busy' );
+				say( err && err.code === 1 ? 'Location sharing is off. Type a city or ZIP instead.' : 'We could not get your location. Type a city or ZIP instead.' );
+			}, { enableHighAccuracy: false, timeout: 10000, maximumAge: 300000 } );
+		} );
+		// Typing a new area clears any earlier browser location.
+		var typed = form.querySelector( 'input[name="area"]' );
+		if ( typed ) {
+			typed.addEventListener( 'input', function () {
+				form.querySelector( '[data-ppn-lat]' ).value = '';
+				form.querySelector( '[data-ppn-lng]' ).value = '';
+			} );
+		}
+	} );
+
 	/* Open the suggest-an-edit panel when linked to directly. */
 	if ( location.hash === '#suggest-edit' ) {
 		var panel = document.getElementById( 'suggest-edit' );

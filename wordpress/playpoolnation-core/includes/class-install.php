@@ -48,6 +48,7 @@ final class Install {
 			'2026_10_13_more_terms'       => [ __CLASS__, 'm_terms' ],
 			'2026_10_14_events_instructors' => [ __CLASS__, 'm_events_instructors' ],
 			'2026_10_15_type_permalinks'  => [ __CLASS__, 'm_rewrites' ],
+			'2026_10_16_my_pool'          => [ __CLASS__, 'm_my_pool' ],
 		];
 	}
 
@@ -446,5 +447,32 @@ final class Install {
 		Stats::flush();
 		$log[] = 'pages ' . wp_json_encode( $pages + [ 'post_event' => $post_event_id, 'teach' => $teach_id ] );
 		return implode( '; ', $log );
+	}
+
+	/** The signed-in player page, kept out of search, and linked from the account menu. */
+	public static function m_my_pool(): string {
+		$page = get_page_by_path( My_Pool::PAGE );
+		$id = $page ? (int) $page->ID : (int) wp_insert_post( [ 'post_type' => 'page', 'post_status' => 'publish', 'post_title' => 'My Pool', 'post_name' => My_Pool::PAGE ] );
+		Pages::write_my_pool( $id );
+		$noindex = array_map( 'intval', (array) get_option( 'ppn_noindex_pages', [] ) );
+		if ( ! in_array( $id, $noindex, true ) ) {
+			$noindex[] = $id;
+			update_option( 'ppn_noindex_pages', $noindex );
+		}
+		// The header's account dropdown is a WordPress menu (it holds "Saved Places"); put My Pool first.
+		$added = 0;
+		foreach ( wp_get_nav_menus() as $menu ) {
+			$items = (array) wp_get_nav_menu_items( $menu->term_id );
+			$titles = array_map( static fn( $i ) => trim( preg_replace( '/\[[^\]]*\]/', '', $i->title ) ), $items );
+			if ( ! in_array( 'Saved Places', $titles, true ) || in_array( 'My Pool', $titles, true ) ) {
+				continue;
+			}
+			foreach ( $items as $item ) {
+				wp_update_post( [ 'ID' => (int) $item->ID, 'menu_order' => (int) $item->menu_order + 1 ] );
+			}
+			wp_update_nav_menu_item( $menu->term_id, 0, [ 'menu-item-title' => 'My Pool', 'menu-item-object' => 'page', 'menu-item-object-id' => $id, 'menu-item-type' => 'post_type', 'menu-item-status' => 'publish', 'menu-item-position' => 1 ] );
+			$added++;
+		}
+		return "page {$id}; account menus updated: {$added}";
 	}
 }

@@ -150,6 +150,7 @@ final class Seo_Meta {
 			'leagues'         => 'Pool Leagues Near You',
 			'instructors'     => 'Pool Instructors & Lessons Near You',
 			'post-an-event'   => 'Post a Pool Tournament or Event',
+			'my-pool'         => 'My Pool',
 			Instructors::SIGNUP_PAGE => 'Create Your Pool Instructor Profile',
 			'add-a-venue'     => 'Add a Place to Play Pool',
 			'list-your-venue' => 'List Your Pool Hall or Bar',

@@ -12,6 +12,7 @@
 use PlayPoolNation\Core\Display;
 use PlayPoolNation\Core\Events;
 use PlayPoolNation\Core\Instructors;
+use PlayPoolNation\Core\My_Pool;
 use PlayPoolNation\Core\Forms;
 use PlayPoolNation\Core\Importer;
 use PlayPoolNation\Core\Moderation;
@@ -277,6 +278,33 @@ return ( static function (): array {
 		$check( 'no instructors section before link', Display::EMPTY === Instructors::at_venue( [ 'id' => $v ] ) );
 		$wpdb->insert( $wpdb->prefix . 'mylisting_relations', [ 'parent_listing_id' => $v, 'child_listing_id' => $ins, 'field_key' => Pool_Schema::INSTRUCTOR_VENUE_FIELD, 'item_order' => 0 ] );
 		$check( 'venue lists instructor who teaches there', str_contains( Instructors::at_venue( [ 'id' => $v ] ), 'PPN Test Coach' ) );
+
+		/* ---------- my pool ---------- */
+		$uid = (int) $owner_id;
+		$check( 'area at 0,0 rejected', ! My_Pool::set_home( $uid, 'Nowhere', 0.0, 0.0, 25 ) );
+		$check( 'area saved with allowed radius', My_Pool::set_home( $uid, 'Testville, SD', 44.01, -97.0, 37 ) && 25 === My_Pool::home( $uid )['radius'] );
+		$near = My_Pool::nearby( 44.01, -97.0, 10, Pool_Schema::VENUE_TYPE, 50 );
+		$check( 'nearby finds venue with distance', isset( $near[ $v ] ) && $near[ $v ] > 0.5 && $near[ $v ] < 1.0, wp_json_encode( $near[ $v ] ?? null ) );
+		$check( 'nearby respects radius', ! isset( My_Pool::nearby( 46.0, -97.0, 10, Pool_Schema::VENUE_TYPE, 50 )[ $v ] ) );
+		$check( 'nearby events use copied location', isset( My_Pool::nearby( 44.01, -97.0, 10, Pool_Schema::TOURNAMENT_TYPE, 50 )[ $clinic ] ) );
+		update_user_meta( $uid, '_case27_user_bookmarks', [ $v, $clinic, 999999999 ] );
+		$check( 'saved venues only', [ $v ] === My_Pool::saved( $uid, Pool_Schema::VENUE_TYPE ) );
+		$check( 'events at saved places', in_array( $clinic, wp_list_pluck( My_Pool::saved_events( $uid ), 'id' ), true ) );
+		$check( 'pending events stay off My Pool', ! in_array( $pending_event, wp_list_pluck( My_Pool::saved_events( $uid ), 'id' ), true ) );
+		$account = function_exists( 'wc_get_page_permalink' ) ? wc_get_page_permalink( 'myaccount' ) : '';
+		$check( 'players land on My Pool after sign-in', My_Pool::page_url() === My_Pool::after_login( $account, get_userdata( $uid ) ) );
+		$check( 'explicit redirect kept', home_url( '/events/' ) === My_Pool::after_login( home_url( '/events/' ), get_userdata( $uid ) ) );
+		$check( 'staff keep account dashboard', $account === My_Pool::after_login( $account, get_userdata( (int) $admin ) ) );
+		wp_set_current_user( $uid );
+		$page = My_Pool::render();
+		wp_set_current_user( $admin );
+		$check( 'my pool shows saved place', str_contains( $page, 'Your saved places' ) && str_contains( $page, 'PPN Test Hall' ) && str_contains( $page, 'ppn_unsave' ) );
+		$check( 'my pool shows events at saved places', str_contains( $page, 'PPN Test Break Clinic' ) );
+		$check( 'my pool shows area', str_contains( $page, 'Testville, SD' ) && str_contains( $page, 'Places near you' ) );
+		wp_set_current_user( 0 );
+		$out = My_Pool::render();
+		wp_set_current_user( $admin );
+		$check( 'signed-out view invites sign in', str_contains( $out, 'Your pool, in one place' ) && ! str_contains( $out, 'PPN Test Hall' ) );
 
 		/* ---------- venue-only counts ---------- */
 		Locations::sync( $v );

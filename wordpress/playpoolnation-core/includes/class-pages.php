@@ -298,4 +298,14 @@ final class Pages {
 			\Elementor\Plugin::$instance->files_manager->clear_cache();
 		}
 	}
+
+	public static function write_my_pool( int $id ): void {
+		self::save( $id, [
+			self::hero( 'My Pool', 'Places near you, your saved places, and the tournaments and events coming up.' ),
+			self::container( [
+				'content_width' => 'boxed', 'background_background' => 'classic', 'background_color' => '#F2F4F1',
+				'padding' => self::pad( 32, 24, 64, 24 ), 'padding_mobile' => self::pad( 24, 16, 48, 16 ),
+			], [ self::shortcode( '[ppn_my_pool]' ) ] ),
+		] );
+	}
 }

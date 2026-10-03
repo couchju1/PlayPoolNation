@@ -113,6 +113,38 @@ div:has(> .element.content-block .ppn-empty) { display: none !important; }
 .ppn-creds li { margin: 0 0 4px; }
 .ppn-details .ppn-fineprint { display: block; }
 
+/* My Pool */
+.ppn-pool { font-family: Figtree, sans-serif; color: var(--ppn-ink); }
+.ppn-pool-head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 8px 24px; margin: 0 0 18px; }
+.ppn-pool-hello { margin: 0; font: 800 26px/1.2 Archivo, sans-serif; }
+.ppn-pool-account { display: flex; gap: 18px; }
+.ppn-pool-account a, .ppn-pool-sechead a, .ppn-link { color: var(--ppn-accent); font-weight: 600; text-decoration: none; }
+.ppn-pool-account a:hover, .ppn-pool-sechead a:hover { text-decoration: underline; }
+.ppn-pool-section { background: #fff; border: 1px solid var(--ppn-line); border-radius: var(--ppn-radius); padding: 22px 24px; margin: 0 0 20px; }
+.ppn-pool-sechead { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 6px 16px; }
+.ppn-pool-h { font: 800 22px/1.2 Archivo, sans-serif; margin: 0 0 12px; color: var(--ppn-ink); }
+.ppn-area-edit summary { cursor: pointer; list-style: none; display: flex; flex-wrap: wrap; gap: 6px 14px; font-weight: 600; min-height: 44px; align-items: center; }
+.ppn-area-edit summary::-webkit-details-marker { display: none; }
+.ppn-area-edit[open] summary { margin-bottom: 12px; }
+.ppn-area-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
+.ppn-area-actions .ppn-near-me-msg { color: var(--ppn-muted); font-size: 14px; }
+.ppn-places { list-style: none; margin: 0; padding: 0; }
+.ppn-place { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 14px; padding: 12px 0; border-bottom: 1px solid var(--ppn-line); }
+.ppn-place:last-child { border-bottom: 0; }
+.ppn-place-main { flex: 1 1 260px; display: flex; flex-direction: column; gap: 2px; }
+.ppn-saved { display: inline-block; margin-left: 6px; padding: 1px 8px; border-radius: 999px; background: var(--ppn-brass-soft); color: var(--ppn-brass); font-size: 12px; font-weight: 700; }
+.ppn-unsave { margin: 0; }
+.ppn-link-button { min-height: 44px; padding: 0 6px; border: 0; background: none; color: var(--ppn-muted); font: 600 14px/1 Figtree, sans-serif; text-decoration: underline; cursor: pointer; }
+.ppn-link-button:hover { color: #8A2A1C; }
+.ppn-pool--out { display: grid; grid-template-columns: minmax(0, 1fr); gap: 28px; }
+.ppn-pool-intro h2 { font: 800 28px/1.15 Archivo, sans-serif; margin: 0 0 12px; }
+.ppn-pool-benefits { margin: 0 0 12px; padding-left: 20px; line-height: 1.6; }
+.ppn-pool-benefits li { margin: 0 0 6px; }
+.ppn-pool-login { background: #fff; border: 1px solid var(--ppn-line); border-radius: var(--ppn-radius); padding: 22px 24px; }
+@media (max-width: 767px) {
+	.ppn-pool-section, .ppn-pool-login { padding: 18px 16px; }
+}
+
 /* Add a venue aside */
 .ppn-aside { padding: 24px; border: 1px solid var(--ppn-line); border-radius: var(--ppn-radius); background: #fff; font-family: Figtree, sans-serif; }
 .ppn-aside h2 { font: 800 22px/1.15 Archivo, sans-serif; margin: 0 0 10px; color: var(--ppn-ink); }
