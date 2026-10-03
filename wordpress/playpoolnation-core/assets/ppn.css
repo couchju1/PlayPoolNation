@@ -87,12 +87,12 @@ div:has(> .element.content-block .ppn-empty) { display: none !important; }
 .ppn-form p { margin: 0 0 14px; }
 .ppn-form label { display: block; font-weight: 600; font-size: 15px; margin-bottom: 6px; }
 .ppn-optional { font-weight: 400; color: var(--ppn-muted); }
-.ppn-form input[type="text"], .ppn-form input[type="email"], .ppn-form input[type="tel"], .ppn-form input[type="url"], .ppn-form input[type="number"], .ppn-form select, .ppn-form textarea {
+.ppn-form input[type="text"], .ppn-form input[type="email"], .ppn-form input[type="tel"], .ppn-form input[type="url"], .ppn-form input[type="number"], .ppn-form input[type="date"], .ppn-form input[type="time"], .ppn-form select, .ppn-form textarea {
 	width: 100%; min-height: 44px; padding: 10px 12px; border: 1px solid #B9C4BE; border-radius: 6px; background: #fff; color: var(--ppn-ink); font: 400 16px/1.4 Figtree, sans-serif; box-sizing: border-box;
 }
 .ppn-form textarea { min-height: 96px; resize: vertical; }
 .ppn-form input:focus, .ppn-form select:focus, .ppn-form textarea:focus { outline: 3px solid rgba(47, 111, 228, .35); outline-offset: 0; border-color: var(--ppn-accent); }
-.ppn-form-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 0 14px; }
+.ppn-form-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 0 14px; }
 .ppn-fineprint { color: var(--ppn-muted); font-size: 14px; }
 .ppn-hp { position: absolute !important; left: -10000px; width: 1px; height: 1px; overflow: hidden; }
 .ppn-notice { padding: 12px 14px; border-radius: 8px; margin: 0 0 16px; font-weight: 600; }

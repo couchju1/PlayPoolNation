@@ -44,6 +44,9 @@ final class Seo {
 		if ( is_page() && in_array( (int) get_queried_object_id(), self::noindex_page_ids(), true ) ) {
 			return true;
 		}
+		if ( is_page( 'instructors' ) && ! get_query_var( 'explore_tab' ) && empty( Stats::stats()['instructors'] ) ) {
+			return true; // An empty directory is a thin page; it becomes indexable with the first profile.
+		}
 		if ( is_singular( 'product' ) || is_post_type_archive( 'product' ) || is_tax( [ 'product_cat', 'product_tag' ] ) ) {
 			return true;
 		}
