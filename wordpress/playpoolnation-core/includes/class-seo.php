@@ -50,6 +50,14 @@ final class Seo {
 		if ( is_tax( self::FILTER_TAXONOMIES ) ) {
 			return true;
 		}
+		// My Listing renders filter and location pages through the explore page.
+		if ( Seo_Meta::is_filter_page() ) {
+			return true;
+		}
+		$region = Seo_Meta::region_term();
+		if ( $region ) {
+			return (int) $region->count < self::MIN_REGION_VENUES;
+		}
 		if ( is_tax( Pool_Schema::TAX_REGION ) ) {
 			$term = get_queried_object();
 			return $term instanceof \WP_Term && (int) $term->count < self::MIN_REGION_VENUES;

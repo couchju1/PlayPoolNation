@@ -42,6 +42,7 @@ final class Install {
 			'2026_10_07_seo'              => [ __CLASS__, 'm_seo' ],
 			'2026_10_08_pages_nav'        => [ __CLASS__, 'm_pages_nav' ],
 			'2026_10_09_retire_legacy'    => [ __CLASS__, 'm_retire_legacy' ],
+			'2026_10_10_rewrites'         => [ __CLASS__, 'm_rewrites' ],
 		];
 	}
 
@@ -362,5 +363,13 @@ final class Install {
 		}
 		update_option( 'ppn_setup_complete', true );
 		return implode( '; ', $log );
+	}
+
+	/** My Listing caches listing-type URL bases; drop the cache so /tournament/ and /league/ resolve, then rebuild rules. */
+	public static function m_rewrites(): string {
+		delete_option( 'mylisting_permalinks_types_cache' );
+		Seo_Meta::rewrite();
+		flush_rewrite_rules( false );
+		return 'listing type permalinks refreshed';
 	}
 }
