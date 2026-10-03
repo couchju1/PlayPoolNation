@@ -375,6 +375,12 @@ final class Promotions {
 		}
 		$user = get_current_user_id();
 		$ids = self::promotable( $user );
+		// Staff can open any venue or event here (/promote/?listing=ID), e.g. to test checkout
+		// or to buy on a venue's behalf, without claiming it (which would show Owner Verified).
+		$picked = isset( $_GET['listing'] ) ? absint( $_GET['listing'] ) : 0;
+		if ( $picked && user_can( $user, 'edit_others_posts' ) && self::can_promote( $user, $picked ) && ! in_array( $picked, $ids, true ) ) {
+			array_unshift( $ids, $picked );
+		}
 		Venue::prime( $ids );
 		$h = '<div class="ppn-pool">' . self::message();
 		if ( ! $ids ) {
