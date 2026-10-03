@@ -19,7 +19,7 @@ final class Seo {
 	public const MIN_REGION_VENUES = 2;
 
 	/** Taxonomies used for filtering; their archives are thin and stay out of search. */
-	public const FILTER_TAXONOMIES = [ 'table-size', 'table-brand', 'pool-pricing', 'league-org', 'pool-play', 'game-type', Pool_Schema::TAX_AMENITY ];
+	public const FILTER_TAXONOMIES = [ 'table-size', 'table-brand', 'pool-pricing', 'league-org', 'pool-play', 'game-type', 'event-type', 'instructor-credential', 'lesson-focus', 'lesson-format', Pool_Schema::TAX_AMENITY ];
 
 	public static function boot(): void {
 		// ThinkRank's sitemap (/sitemap.xml) is the one listed in robots.txt; avoid a second, divergent one.
@@ -60,14 +60,17 @@ final class Seo {
 		}
 		if ( 'regions' === get_query_var( 'explore_tab' ) ) {
 			$region = Seo_Meta::region_term();
-			return ! $region || (int) $region->count < self::MIN_REGION_VENUES;
+			return ! $region || Locations::venue_count( (int) $region->term_id ) < self::MIN_REGION_VENUES;
 		}
 		if ( is_tax( Pool_Schema::TAX_REGION ) ) {
 			$term = get_queried_object();
-			return $term instanceof \WP_Term && (int) $term->count < self::MIN_REGION_VENUES;
+			return $term instanceof \WP_Term && Locations::venue_count( (int) $term->term_id ) < self::MIN_REGION_VENUES;
 		}
 		if ( is_singular( Pool_Schema::POST_TYPE ) && 'publish' !== get_post_status() ) {
 			return true;
+		}
+		if ( is_singular( Pool_Schema::POST_TYPE ) && Pool_Schema::TOURNAMENT_TYPE === Venue::listing_type( (int) get_queried_object_id() ) && Events::is_ended( (int) get_queried_object_id() ) ) {
+			return true; // Past events stay reachable for links but leave search results.
 		}
 		return false;
 	}
@@ -109,7 +112,7 @@ final class Seo {
 			$args['post_type'] = $types ?: [ 'page' ];
 		}
 		// get_posts() replaces post__not_in with 'exclude' whenever that is set, so extend both.
-		$skip = self::noindex_page_ids();
+		$skip = array_merge( self::noindex_page_ids(), Events::ended_ids() );
 		$args['exclude'] = array_values( array_unique( array_merge( wp_parse_id_list( $args['exclude'] ?? [] ), $skip ) ) );
 		$args['post__not_in'] = array_values( array_unique( array_merge( (array) ( $args['post__not_in'] ?? [] ), $skip ) ) );
 		if ( ! empty( $args['post__in'] ) ) {
@@ -139,6 +142,9 @@ final class Seo {
 				$terms = get_terms( [ 'taxonomy' => $tax, 'hide_empty' => false ] );
 				if ( ! is_wp_error( $terms ) ) {
 					$counts = wp_list_pluck( $terms, 'count', 'term_id' );
+					if ( Pool_Schema::TAX_REGION === $tax ) {
+						$counts = array_map( static fn( $id ) => Locations::venue_count( (int) $id ), array_combine( array_keys( $counts ), array_keys( $counts ) ) );
+					}
 					$thin = array_merge( $thin, array_keys( array_filter( $counts, static fn( $c ) => (int) $c < self::MIN_REGION_VENUES ) ) );
 				}
 			}

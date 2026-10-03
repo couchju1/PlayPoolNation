@@ -78,19 +78,41 @@ final class Pages {
 		}
 	}
 
-	private static function hero( string $heading, string $intro ): array {
+	/** @param array<string,string> $actions label => URL, shown as links under the intro */
+	private static function hero( string $heading, string $intro, array $actions = [] ): array {
+		$elements = [
+			self::heading( $heading, 'h1', 48, '#F2F4F1' ),
+			self::text( '<p style="max-width:62ch;margin:0">' . esc_html( $intro ) . '</p>', '#C9D6CF', 18 ),
+		];
+		if ( $actions ) {
+			$links = '';
+			foreach ( $actions as $label => $url ) {
+				$links .= '<a class="ppn-quick" href="' . esc_url( $url ) . '">' . esc_html( $label ) . '</a>';
+			}
+			$elements[] = [ 'id' => self::uid(), 'elType' => 'widget', 'widgetType' => 'html', 'elements' => [], 'settings' => [ 'html' => '<nav class="ppn-quick-links" aria-label="Page actions">' . $links . '</nav>' ] ];
+		}
 		return self::container( [
 			'content_width' => 'boxed', 'flex_gap' => [ 'size' => 12, 'unit' => 'px', 'column' => '12', 'row' => '12' ],
 			'background_background' => 'classic', 'background_color' => '#0E3B2D',
 			'padding' => self::pad( 52, 24, 40, 24 ), 'padding_mobile' => self::pad( 36, 20, 28, 20 ),
+		], $elements );
+	}
+
+	/** Two columns on a light background: main content and an aside. */
+	private static function two_columns( array $main, string $aside_html ): array {
+		return self::container( [
+			'content_width' => 'boxed', 'flex_direction' => 'row', 'flex_direction_mobile' => 'column', 'flex_align_items' => 'flex-start',
+			'flex_gap' => [ 'size' => 48, 'unit' => 'px', 'column' => '48', 'row' => '32' ],
+			'background_background' => 'classic', 'background_color' => '#F2F4F1',
+			'padding' => self::pad( 48, 24, 72, 24 ), 'padding_mobile' => self::pad( 32, 20, 48, 20 ),
 		], [
-			self::heading( $heading, 'h1', 48, '#F2F4F1' ),
-			self::text( '<p style="max-width:62ch;margin:0">' . esc_html( $intro ) . '</p>', '#C9D6CF', 18 ),
+			self::container( [ 'content_width' => 'full', 'width' => [ 'unit' => '%', 'size' => 60 ], 'width_mobile' => [ 'unit' => '%', 'size' => 100 ], 'padding' => self::pad( 0, 0, 0, 0 ) ], $main, true ),
+			self::container( [ 'content_width' => 'full', 'width' => [ 'unit' => '%', 'size' => 36 ], 'width_mobile' => [ 'unit' => '%', 'size' => 100 ], 'padding' => self::pad( 0, 0, 0, 0 ) ], [ [ 'id' => self::uid(), 'elType' => 'widget', 'widgetType' => 'html', 'elements' => [], 'settings' => [ 'html' => $aside_html ] ] ], true ),
 		] );
 	}
 
-	/** Explore page for one listing type (tournaments or leagues). */
-	public static function write_explore( int $id, string $type, string $heading, string $intro ): void {
+	/** Explore page for one listing type (events, leagues or instructors). */
+	public static function write_explore( int $id, string $type, string $heading, string $intro, array $actions = [] ): void {
 		$explore = [ 'id' => self::uid(), 'elType' => 'widget', 'widgetType' => 'case27-explore-widget', 'elements' => [], 'settings' => [
 			'27_title' => $heading, '27_template' => 'explore-1', '27_mobile_view' => 'results', '27_finder_columns' => 'finder-one-columns',
 			'27_explore_pagination' => 'load-more', '27_disable_isotope' => 'yes', '27_drag_search' => 'yes',
@@ -99,8 +121,38 @@ final class Pages {
 			'cts_map_min_zoom' => 3, 'cts_map_max_zoom' => 18,
 		] ];
 		self::save( $id, [
-			self::hero( $heading, $intro ),
+			self::hero( $heading, $intro, $actions ),
 			self::container( [ 'content_width' => 'full', 'padding' => self::pad( 0, 0, 0, 0 ), 'css_classes' => 'ppn-explore' ], [ $explore ] ),
+		] );
+	}
+
+	public static function write_post_event( int $id ): void {
+		$aside = '<div class="ppn-aside"><h2>Good to know</h2>'
+			. '<p><strong>Own or manage the venue?</strong> Claim your venue listing and your events go live the moment you post them. Find your venue and choose <strong>Claim this venue</strong>.</p>'
+			. '<p><strong>Weekly tournament?</strong> Post it once and choose how often it repeats. It shows the next date automatically.</p>'
+			. '<p><strong>Where it appears:</strong> on the Events page, on the venue\'s page, and in search near the venue.</p>'
+			. '<p>Need to change or cancel it later? Owners can edit events from their account under My Listings. Anyone else can use <strong>Suggest an edit</strong> on the venue page.</p></div>';
+		self::save( $id, [
+			self::hero( 'Post an event', 'Tournaments, league sign-ups, clinics, free pool nights and more. Tell players what is happening and where.' ),
+			self::two_columns( [ self::shortcode( '[ppn_post_event]' ) ], $aside ),
+		] );
+	}
+
+	/** Instructor sign-up: the theme's add-listing form, set to the instructor type. */
+	public static function write_instructor_signup( int $id ): void {
+		$form = [ 'id' => self::uid(), 'elType' => 'widget', 'widgetType' => 'case27-add-listing-widget', 'elements' => [], 'settings' => [
+			'listing_types' => [ [ '_id' => self::uid(), 'listing_type' => Pool_Schema::INSTRUCTOR_TYPE, 'color' => '#2F6FE4' ] ],
+			'size' => 'medium', 'packages_layout' => 'regular',
+		] ];
+		$aside = '<div class="ppn-aside"><h2>How it works</h2>'
+			. '<p><strong>Free.</strong> Create an account, fill in your profile, and we check it before it goes live (usually within a few days).</p>'
+			. '<p><strong>Your privacy.</strong> Players see your city, not your address. Add the venues where you teach so you also appear on their pages.</p>'
+			. '<p><strong>Certifications.</strong> List any you hold. We contact the issuing body (such as the PBIA) and add a Verified badge once confirmed.</p>'
+			. '<p><strong>Reviews.</strong> Students can leave reviews on your profile.</p>'
+			. '<p>Already have a profile? Update it any time from your account under My Listings.</p></div>';
+		self::save( $id, [
+			self::hero( 'Teach pool? Create your instructor profile', 'Help players near you find lessons. Share what you teach, your certifications, lesson formats and rates.' ),
+			self::two_columns( [ $form ], $aside ),
 		] );
 	}
 
@@ -130,8 +182,9 @@ final class Pages {
 		$explore = (int) get_option( 'options_general_explore_listings_page' );
 		$items = array_filter( [
 			'Find Places' => $explore,
-			'Tournaments' => $pages['tournaments'] ?? 0,
+			'Events'      => $pages['events'] ?? 0,
 			'Leagues'     => $pages['leagues'] ?? 0,
+			'Instructors' => $pages['instructors'] ?? 0,
 			'Add a Venue' => $pages['add'] ?? 0,
 		] );
 		if ( $menu ) {
@@ -149,7 +202,7 @@ final class Pages {
 		}
 
 		// Account menu (My Listing user menu): rename and drop paid-only items.
-		$labels = [ 'Bookmarks' => 'Saved Places', 'Account details' => 'Profile', 'My Listings' => 'My Venues' ];
+		$labels = [ 'Bookmarks' => 'Saved Places', 'Account details' => 'Profile', 'My Venues' => 'My Listings' ];
 		foreach ( wp_get_nav_menus() as $m ) {
 			foreach ( (array) wp_get_nav_menu_items( $m->term_id ) as $item ) {
 				$plain = trim( preg_replace( '/\[[^\]]*\]/', '', $item->title ) );
@@ -193,7 +246,7 @@ final class Pages {
 			. '<div><dt>Table brands</dt><dd>Diamond, Valley, Brunswick and more, where we know them. Unknown stays unknown.</dd></div>'
 			. '<div><dt>Pricing</dt><dd>Coin-op, by the hour, per game or free pool nights.</dd></div>'
 			. '<div><dt>Leagues</dt><dd>APA, BCA, USAPL and local leagues, with the night they play.</dd></div>'
-			. '<div><dt>Tournaments</dt><dd>Upcoming events with game, entry fee and added money.</dd></div>'
+			. '<div><dt>Events</dt><dd>Tournaments, league sign-ups and clinics, with game, entry fee and added money.</dd></div>'
 			. '<div><dt>Amenities</dt><dd>Food, full bar, age policy, parking and the rest.</dd></div></dl>';
 		$community = '<p style="margin:0;max-width:56ch">Add it in a minute and we will check it. Spot something out of date? Use <strong>Suggest an edit</strong> on any venue page. Own or manage a venue? Claim it to keep it accurate'
 			. ( $owner ? ', or <a href="' . esc_url( get_permalink( $owner ) ) . '" style="color:#245BC2;font-weight:600;text-decoration:underline">list your venue</a> with full details' : '' ) . '.</p>';

@@ -39,7 +39,7 @@ final class Display {
 
 	/** Account area: favorites are "Saved Places"; purchase-only tabs are hidden (listings are free). */
 	public static function account_menu( array $items ): array {
-		$labels = [ 'my-bookmarks' => 'Saved Places', 'my-listings' => 'My Venues', 'edit-account' => 'Profile' ];
+		$labels = [ 'my-bookmarks' => 'Saved Places', 'my-listings' => 'My Listings', 'edit-account' => 'Profile' ];
 		foreach ( $labels as $key => $label ) {
 			if ( isset( $items[ $key ] ) ) {
 				$items[ $key ] = $label;
@@ -65,6 +65,7 @@ final class Display {
 		wp_localize_script( 'ppn-core', 'ppnCore', [
 			'exploreUrl' => self::explore_url(),
 			'tokenUrl'   => esc_url_raw( rest_url( 'ppn/v1/form-token' ) ),
+			'venuesUrl'  => esc_url_raw( rest_url( 'ppn/v1/venues' ) ),
 		] );
 	}
 
@@ -264,6 +265,7 @@ final class Display {
 		$rows = '';
 		foreach ( Play::upcoming_tournaments( $v->id() ) as $t ) {
 			$meta = array_filter( [
+				'Tournament' !== $t['type'] ? $t['type'] : '',
 				Format::join_list( $t['games'] ),
 				Format::money( $t['entry_fee'] ) ? Format::money( $t['entry_fee'] ) . ' entry' : '',
 				Format::money( $t['added_money'] ) ? Format::money( $t['added_money'] ) . ' added' : '',
@@ -287,18 +289,23 @@ final class Display {
 			return self::EMPTY;
 		}
 		$id = $v->id();
-		$rows = [];
+		$rows = [ 'Type' => esc_html( Events::event_type_label( $id ) ) ];
 		$venue_id = (int) get_post_meta( $id, '_ppn_venue_id', true );
 		if ( $venue_id && 'publish' === get_post_status( $venue_id ) ) {
 			$rows['Venue'] = '<a href="' . esc_url( get_permalink( $venue_id ) ) . '">' . esc_html( get_the_title( $venue_id ) ) . '</a>';
+		}
+		$next = Play::upcoming_from_ids( [ $id ], 1 );
+		if ( $next ) {
+			$when = $next[0]['when'];
+			$rows['Next'] = esc_html( wp_date( 'l, F j', $when->getTimestamp() ) . ' at ' . Format::clock( (int) $when->format( 'G' ) * 60 + (int) $when->format( 'i' ) ) ) . ( $next[0]['recurring'] ? ' <span class="ppn-fineprint">(repeats)</span>' : '' );
 		}
 		$games = wp_get_object_terms( $id, 'game-type', [ 'fields' => 'names' ] );
 		if ( $games ) {
 			$rows['Game'] = esc_html( Format::join_list( $games ) );
 		}
-		$sizes = Format::sizes_label( wp_get_object_terms( $id, 'table-size', [ 'fields' => 'slugs' ] ) );
-		if ( $sizes ) {
-			$rows['Tables'] = esc_html( $sizes );
+		$size = Events::TABLE_SIZES[ $v->field( 'tournament-table-size' ) ] ?? Format::sizes_label( wp_get_object_terms( $id, 'table-size', [ 'fields' => 'slugs' ] ) );
+		if ( $size ) {
+			$rows['Tables'] = esc_html( $size );
 		}
 		foreach ( [ 'entry-fee' => 'Entry fee', 'added-money' => 'Added money' ] as $field => $label ) {
 			$money = Format::money( $v->field( $field ) );
@@ -315,7 +322,8 @@ final class Display {
 		if ( $status && 'Scheduled' !== $status ) {
 			$rows['Status'] = esc_html( $status );
 		}
-		return self::section( 'ppn-details', self::dl( $rows ) );
+		$ended = Events::is_ended( $id ) ? '<p class="ppn-notice ppn-notice--ended" role="status">This event has ended.' . ( $venue_id ? ' <a href="' . esc_url( get_permalink( $venue_id ) ) . '">See what is coming up at this venue</a>.' : '' ) . '</p>' : '';
+		return self::section( 'ppn-details', $ended . self::dl( $rows ) );
 	}
 
 	/** Details block on a league page. */
@@ -391,6 +399,8 @@ final class Display {
 			$html .= '<p class="ppn-claim">' . esc_html__( 'Own or manage this venue?', 'playpoolnation-core' )
 				. ' <a href="' . esc_url( $claim_url ) . '">' . esc_html__( 'Claim this listing', 'playpoolnation-core' ) . '</a></p>';
 		}
+		$html .= '<p class="ppn-claim">' . esc_html__( 'Hosting a tournament or event here?', 'playpoolnation-core' )
+			. ' <a href="' . esc_url( Events::page_url( $v->id() ) ) . '">' . esc_html__( 'Post an event', 'playpoolnation-core' ) . '</a></p>';
 		$html .= Forms::suggest_edit_form( $v->id() );
 		return '<div class="ppn-section ppn-trust">' . $html . '</div>';
 	}
@@ -417,11 +427,16 @@ final class Display {
 		if ( $bar && $bar->count ) {
 			$links[] = '<a class="ppn-quick" href="' . esc_url( self::explore_url( [ 'type' => Pool_Schema::VENUE_TYPE, 'category' => 'bars-with-pool-tables' ] ) ) . '">Bars with pool</a>';
 		}
-		foreach ( [ 'tournaments' => 'Tournaments', 'leagues' => 'Leagues' ] as $slug => $label ) {
+		foreach ( [ 'events' => 'Events', 'leagues' => 'Leagues', 'instructors' => 'Instructors' ] as $slug => $label ) {
 			$page = get_page_by_path( $slug );
-			if ( $page && 'publish' === $page->post_status ) {
-				$links[] = '<a class="ppn-quick" href="' . esc_url( get_permalink( $page ) ) . '">' . esc_html( $label ) . '</a>';
+			if ( ! $page || 'publish' !== $page->post_status ) {
+				continue;
 			}
+			// Only link to the instructor directory once it has profiles.
+			if ( 'instructors' === $slug && empty( Stats::stats()['instructors'] ) ) {
+				continue;
+			}
+			$links[] = '<a class="ppn-quick" href="' . esc_url( get_permalink( $page ) ) . '">' . esc_html( $label ) . '</a>';
 		}
 		return '<nav class="ppn-quick-links" aria-label="Quick discovery">' . implode( '', $links ) . '</nav>';
 	}

@@ -105,13 +105,13 @@ final class Listing_Config {
 		] );
 	}
 
-	public static function relation( string $slug, string $label, int $priority, bool $required = true ): array {
+	public static function relation( string $slug, string $label, int $priority, bool $required = true, string $relation_type = 'belongs_to_one', int $limit = 1 ): array {
 		return self::base( 'related-listing', $slug, $label, $priority, [
 			'listing_type'          => [ Pool_Schema::VENUE_TYPE ],
-			'relation_type'         => 'belongs_to_one',
+			'relation_type'         => $relation_type,
 			'author_restriction'    => 'any',
 			'status_restriction'    => [],
-			'selection_limit'       => 1,
+			'selection_limit'       => $limit,
 			'enable_package_limits' => false,
 			'package_limits'        => [],
 			'required'              => $required,
@@ -228,7 +228,8 @@ final class Listing_Config {
 					$block( 'text', 'About', 'mi view_headline', [ 'show_field' => 'job_description' ] ),
 					$raw( 'Amenities', '[ppn_amenities]', 'mi local_bar', 'ppn-block-amenities' ),
 					$raw( 'Leagues', '[ppn_leagues]', 'mi groups', 'ppn-block-leagues' ),
-					$raw( 'Upcoming tournaments', '[ppn_tournaments]', 'mi emoji_events', 'ppn-block-tournaments' ),
+					$raw( 'Upcoming events', '[ppn_tournaments]', 'mi emoji_events', 'ppn-block-tournaments' ),
+					$raw( 'Pool instructors', '[ppn_instructors_here]', 'mi school', 'ppn-block-instructors' ),
 					$block( 'gallery', 'Photos', 'mi insert_photo', [ 'gallery_type' => 'carousel', 'show_field' => 'job_gallery' ] ),
 				],
 				'sidebar'    => [
@@ -307,7 +308,7 @@ final class Listing_Config {
 		$keep = [ 'job_title', 'job_description', 'job_cover', 'job_gallery', 'job_location', 'event-date', Pool_Schema::TOURNAMENT_VENUE_FIELD ];
 		$fields = array_intersect_key( $fields, array_flip( $keep ) );
 		if ( isset( $fields['job_title'] ) ) {
-			$fields['job_title']['label'] = 'Tournament name';
+			$fields['job_title']['label'] = 'Event name';
 		}
 		if ( isset( $fields['job_description'] ) ) {
 			$fields['job_description']['label'] = 'Description';
@@ -326,6 +327,7 @@ final class Listing_Config {
 		$p = 20;
 		$add = [
 			self::relation( Pool_Schema::TOURNAMENT_VENUE_FIELD, 'Venue', $p++ ),
+			array_merge( self::terms( 'event_types', 'Type of event', Pool_Schema::TAX_EVENT_TYPE, $p++, true, true ), [ 'terms-template' => 'single-select', 'required' => true ] ),
 			self::terms( 'game_types', 'Game', 'game-type', $p++, true, true ),
 			self::select( 'tournament-table-size', 'Table size', $p++, [ '' => 'Not specified', '7-foot' => "7' tables", '8-foot' => "8' tables", '9-foot' => "9' tables", 'mixed' => 'Mixed sizes' ] ),
 			self::number( 'entry-fee', 'Entry fee (USD)', $p++, '', 0.01 ),
@@ -345,7 +347,7 @@ final class Listing_Config {
 		$search['advanced']['facets'] = array_merge(
 			[ self::facet( 'recurring-date', 'When', [ 'show_field' => 'event-date', 'datepicker' => true, 'timepicker' => false, 'ranges' => [ [ 'key' => 'all', 'label' => 'All upcoming' ], [ 'key' => 'this-week', 'label' => 'This week' ], [ 'key' => 'this-weekend', 'label' => 'This weekend' ], [ 'key' => 'next-week', 'label' => 'Next week' ] ] ] ) ],
 			self::location_facets( 'Where do you want to play?' ),
-			[ self::checkboxes( 'game_types', 'Game' ), self::facet( 'wp-search', 'Tournament name' ), self::facet( 'order', 'Sort by' ) ]
+			[ self::checkboxes( 'event_types', 'Type of event' ), self::checkboxes( 'game_types', 'Game' ), self::facet( 'wp-search', 'Event name' ), self::facet( 'order', 'Sort by' ) ]
 		);
 		$search['basic']['facets'] = [ self::facet( 'location', 'Where do you want to play?' ) ];
 		$search['order']['default'] = $search['order']['options'][0]['key'] ?? 'order-by-date';
@@ -361,7 +363,7 @@ final class Listing_Config {
 			'slug'       => '',
 			'template'   => 'two-columns',
 			'layout'     => [
-				[ 'type' => 'raw', 'title' => 'Tournament details', 'icon' => 'mi emoji_events', 'class' => 'ppn-block-details', 'id' => '', 'content' => '[ppn_tournament_details]', 'conditional_logic' => false, 'conditions' => [] ],
+				[ 'type' => 'raw', 'title' => 'Event details', 'icon' => 'mi emoji_events', 'class' => 'ppn-block-details', 'id' => '', 'content' => '[ppn_tournament_details]', 'conditional_logic' => false, 'conditions' => [] ],
 				[ 'type' => 'text', 'title' => 'About', 'icon' => 'mi view_headline', 'class' => '', 'id' => '', 'show_field' => 'job_description' ],
 				[ 'type' => 'location', 'title' => 'Location', 'icon' => 'mi map', 'class' => '', 'id' => '', 'display_type' => 'interactive', 'scale_image' => false, 'map_skin' => 'skin3', 'map_zoom' => 14, 'show_field' => 'job_location' ],
 			],
@@ -371,7 +373,7 @@ final class Listing_Config {
 			],
 		] ];
 		$single['quick_actions'] = [
-			[ 'action' => 'visit-website', 'label' => 'Register', 'icon' => 'icon-globe', 'class' => '', 'id' => '', 'label_l10n' => [ 'locale' => 'en_US' ] ],
+			[ 'action' => 'visit-website', 'label' => 'Register / info', 'icon' => 'icon-globe', 'class' => '', 'id' => '', 'label_l10n' => [ 'locale' => 'en_US' ] ],
 			[ 'action' => 'get-directions', 'label' => 'Directions', 'icon' => 'icon-location-pin-add-2', 'class' => '', 'id' => '', 'label_l10n' => [ 'locale' => 'en_US' ] ],
 			[ 'action' => 'bookmark', 'label' => 'Save', 'icon' => 'mi favorite_border', 'class' => '', 'id' => '', 'label_l10n' => [ 'locale' => 'en_US' ] ],
 			[ 'action' => 'share', 'label' => 'Share', 'icon' => 'mi share', 'class' => '', 'id' => '', 'label_l10n' => [ 'locale' => 'en_US' ] ],
@@ -484,5 +486,133 @@ final class Listing_Config {
 		];
 		$result['background'] = [ 'type' => 'image' ];
 		return $result;
+	}
+
+	/* ------------------------------------------------------ instructors */
+
+	public static function instructor_fields( array $fields ): array {
+		$keep = [ 'job_title', 'job_tagline', 'job_description', 'job_logo', 'contact-information', 'job_email', 'job_phone', 'job_website', 'social-networks', 'links', 'location', 'job_location' ];
+		$fields = array_intersect_key( $fields, array_flip( $keep ) );
+		$labels = [
+			'job_title'       => [ 'Your name', true ],
+			'job_tagline'     => [ 'Headline (for example: Teaching league players for 15 years)', false ],
+			'job_description' => [ 'About your teaching', false ],
+			'job_logo'        => [ 'Photo', false ],
+			'job_email'       => [ 'Email for lesson requests', false ],
+			'job_phone'       => [ 'Phone', false ],
+			'job_website'     => [ 'Booking or website link', false ],
+			'location'        => [ 'Where you teach', false ],
+			'job_location'    => [ 'City and state', true ],
+		];
+		foreach ( $labels as $key => [ $label, $required ] ) {
+			if ( isset( $fields[ $key ] ) ) {
+				$fields[ $key ]['label'] = $label;
+				$fields[ $key ]['required'] = $required;
+			}
+		}
+		if ( isset( $fields['job_location'] ) ) {
+			$fields['job_location']['description'] = 'Only your city and state are shown. Please do not enter a home address.';
+		}
+		$p = 40;
+		$add = [
+			self::heading( 'lessons-heading', 'Lessons', $p++ ),
+			self::number( 'years-teaching', 'Years teaching', $p++ ),
+			self::terms( 'instructor_credentials', 'Certifications', 'instructor-credential', $p++, true, true ),
+			self::terms( 'lesson_focus', 'What you teach', 'lesson-focus', $p++, true, true ),
+			self::terms( 'game_types', 'Games', 'game-type', $p++, true, true ),
+			self::terms( 'lesson_formats', 'Lesson formats', 'lesson-format', $p++, true, true ),
+			self::number( 'lesson-rate', 'Lesson rate per hour (USD)', $p++, 'Leave blank if you prefer to quote', 0.01 ),
+			self::text( 'rate-notes', 'Rates and packages', $p++, 'For example: $60 per hour, 5 lessons for $250', 'textarea' ),
+			self::text( 'service-area', 'Areas you travel to', $p++, 'For example: Sioux Falls and Brandon' ),
+			self::relation( Pool_Schema::INSTRUCTOR_VENUE_FIELD, 'Venues where you teach', $p++, false, 'belongs_to_many', 5 ),
+		];
+		foreach ( $add as $field ) {
+			$fields[ $field['slug'] ] = array_merge( $fields[ $field['slug'] ] ?? [], $field );
+		}
+		return $fields;
+	}
+
+	public static function instructor_search( array $search ): array {
+		$search['advanced']['facets'] = array_merge(
+			self::location_facets( 'Where do you want lessons?' ),
+			[
+				self::checkboxes( 'lesson_formats', 'Lesson format' ),
+				self::checkboxes( 'lesson_focus', 'What you want to work on' ),
+				self::checkboxes( 'instructor_credentials', 'Certification' ),
+				self::checkboxes( 'game_types', 'Game' ),
+				self::facet( 'wp-search', 'Instructor name' ),
+				self::facet( 'order', 'Sort by' ),
+			]
+		);
+		$search['basic']['facets'] = [ self::facet( 'location', 'Where do you want lessons?' ) ];
+		$search['order'] = [
+			'options' => [
+				[ 'label' => 'Nearby', 'key' => 'nearby', 'ignore_priority' => false, 'is_new' => false, 'clauses' => [ [ 'orderby' => 'proximity', 'order' => 'ASC', 'context' => 'option', 'type' => 'CHAR', 'custom_type' => false ] ], 'notes' => [ 'has-proximity-clause' ] ],
+				[ 'label' => 'Name (A to Z)', 'key' => 'a-z', 'ignore_priority' => false, 'is_new' => false, 'clauses' => [ [ 'orderby' => 'title', 'order' => 'ASC', 'context' => 'option', 'type' => 'CHAR', 'custom_type' => false ] ] ],
+			],
+			'default' => 'a-z',
+		];
+		$search['explore_tabs'] = [ [ 'type' => 'search-form', 'label' => 'Filters', 'icon' => 'mi filter_list', 'orderby' => '', 'order' => '', 'hide_empty' => false ] ];
+		return $search;
+	}
+
+	public static function instructor_single( array $single ): array {
+		$single['menu_items'] = [
+			[
+				'page'       => 'main',
+				'label'      => 'Profile',
+				'label_l10n' => [ 'locale' => 'en_US' ],
+				'slug'       => '',
+				'template'   => 'two-columns',
+				'layout'     => [
+					[ 'type' => 'raw', 'title' => 'Lessons', 'icon' => 'mi school', 'class' => 'ppn-block-details', 'id' => '', 'content' => '[ppn_instructor_details]', 'conditional_logic' => false, 'conditions' => [] ],
+					[ 'type' => 'text', 'title' => 'About', 'icon' => 'mi view_headline', 'class' => '', 'id' => '', 'show_field' => 'job_description' ],
+				],
+				'sidebar'    => [
+					[ 'type' => 'related_listing', 'title' => 'Teaches at', 'icon' => 'mi place', 'class' => '', 'id' => '', 'show_field' => Pool_Schema::INSTRUCTOR_VENUE_FIELD ],
+					[ 'type' => 'raw', 'title' => 'Profile details', 'icon' => 'mi verified', 'class' => 'ppn-block-trust', 'id' => '', 'content' => '[ppn_instructor_trust]', 'conditional_logic' => false, 'conditions' => [] ],
+				],
+			],
+			[
+				'page'       => 'comments',
+				'label'      => 'Reviews',
+				'label_l10n' => [ 'locale' => 'en_US' ],
+				'slug'       => 'reviews',
+				'layout'     => [],
+			],
+		];
+		$single['quick_actions'] = array_map(
+			static fn( $a ) => array_merge( [ 'class' => '', 'id' => '', 'label_l10n' => [ 'locale' => 'en_US' ] ], $a ),
+			[
+				[ 'action' => 'visit-website', 'label' => 'Book a lesson', 'icon' => 'icon-globe' ],
+				[ 'action' => 'call-now', 'label' => 'Call', 'icon' => 'icon-phone-outgoing' ],
+				[ 'action' => 'bookmark', 'label' => 'Save', 'icon' => 'mi favorite_border' ],
+				[ 'action' => 'share', 'label' => 'Share', 'icon' => 'mi share' ],
+				[ 'action' => 'leave-review', 'label' => 'Write a review', 'icon' => 'mi rate_review' ],
+			]
+		);
+		$single['cover_details'] = [];
+		$single['buttons'] = [];
+		return $single;
+	}
+
+	public static function instructor_settings( array $settings ): array {
+		$settings = self::play_settings( $settings, 'Instructor', 'Instructors', 'instructor', 'mi school' );
+		$settings['reviews'] = [
+			'multiple' => false,
+			'ratings'  => [
+				'enabled'    => true,
+				'categories' => [
+					[ 'id' => 'rating', 'label' => 'Overall', 'label_l10n' => [], 'is_new' => false ],
+					[ 'id' => 'teaching', 'label' => 'Teaching', 'label_l10n' => [], 'is_new' => false ],
+					[ 'id' => 'value', 'label' => 'Value', 'label_l10n' => [], 'is_new' => false ],
+				],
+				'mode'       => 10,
+			],
+			'gallery'  => [ 'enabled' => false ],
+			'author'   => [ 'enabled' => true ],
+			'show_in_compare' => false,
+		];
+		return $settings;
 	}
 }

@@ -196,6 +196,7 @@ final class Play {
 				'when'        => $next,
 				'recurring'   => 'NONE' !== $row->repeat_unit,
 				'games'       => wp_get_object_terms( $id, 'game-type', [ 'fields' => 'names' ] ),
+				'type'        => Events::event_type_label( $id ),
 				'entry_fee'   => (string) get_post_meta( $id, '_entry-fee', true ),
 				'added_money' => (string) get_post_meta( $id, '_added-money', true ),
 				'status'      => Pool_Schema::TOURNAMENT_STATUSES[ $status ] ?? '',

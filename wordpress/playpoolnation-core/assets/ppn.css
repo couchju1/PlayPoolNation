@@ -99,6 +99,20 @@ div:has(> .element.content-block .ppn-empty) { display: none !important; }
 .ppn-notice--ok { background: #E3F2EA; color: #145A38; }
 .ppn-notice--error { background: #FBE7E4; color: #8A2A1C; }
 
+/* Post an event */
+.ppn-label { font-weight: 600; font-size: 15px; margin: 0 0 6px; }
+.ppn-checks { margin: 0 0 14px; }
+.ppn-check { display: inline-flex !important; align-items: center; gap: 6px; margin: 0 16px 8px 0; font-weight: 500 !important; }
+.ppn-check input { width: 18px; height: 18px; }
+.ppn-venue-search .ppn-fineprint { display: block; margin-top: 6px; }
+.ppn-notice--ended { background: var(--ppn-brass-soft); color: #5E4318; }
+.ppn-notice a { color: inherit; text-decoration: underline; }
+
+/* Instructors */
+.ppn-creds { list-style: none; margin: 0 0 6px; padding: 0; }
+.ppn-creds li { margin: 0 0 4px; }
+.ppn-details .ppn-fineprint { display: block; }
+
 /* Add a venue aside */
 .ppn-aside { padding: 24px; border: 1px solid var(--ppn-line); border-radius: var(--ppn-radius); background: #fff; font-family: Figtree, sans-serif; }
 .ppn-aside h2 { font: 800 22px/1.15 Archivo, sans-serif; margin: 0 0 10px; color: var(--ppn-ink); }

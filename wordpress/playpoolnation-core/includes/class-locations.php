@@ -74,7 +74,46 @@ final class Locations {
 		}
 		if ( $ids ) {
 			wp_set_object_terms( $post_id, $ids, Pool_Schema::TAX_REGION );
+			delete_transient( self::COUNT_CACHE );
 		}
+	}
+
+	public const COUNT_CACHE = 'ppn_region_venue_counts';
+
+	/**
+	 * Published venues per region term. Term counts also include events that copy
+	 * their venue's region, so place counts and thin-page checks use this instead.
+	 *
+	 * @return array<int,int> term_id => venues
+	 */
+	public static function venue_counts(): array {
+		$cached = get_transient( self::COUNT_CACHE );
+		if ( is_array( $cached ) ) {
+			return $cached;
+		}
+		global $wpdb;
+		$rows = $wpdb->get_results( $wpdb->prepare(
+			"SELECT tt.term_id, COUNT(DISTINCT p.ID) AS n
+			 FROM {$wpdb->term_taxonomy} tt
+			 JOIN {$wpdb->term_relationships} tr ON tr.term_taxonomy_id = tt.term_taxonomy_id
+			 JOIN {$wpdb->posts} p ON p.ID = tr.object_id AND p.post_type = %s AND p.post_status = 'publish'
+			 JOIN {$wpdb->postmeta} m ON m.post_id = p.ID AND m.meta_key = '_case27_listing_type' AND m.meta_value = %s
+			 WHERE tt.taxonomy = %s
+			 GROUP BY tt.term_id",
+			Pool_Schema::POST_TYPE,
+			Pool_Schema::VENUE_TYPE,
+			Pool_Schema::TAX_REGION
+		) );
+		$counts = [];
+		foreach ( $rows as $row ) {
+			$counts[ (int) $row->term_id ] = (int) $row->n;
+		}
+		set_transient( self::COUNT_CACHE, $counts, 6 * HOUR_IN_SECONDS );
+		return $counts;
+	}
+
+	public static function venue_count( int $term_id ): int {
+		return self::venue_counts()[ $term_id ] ?? 0;
 	}
 
 	/** Find or create a region term under a parent. Returns term ID or 0. */

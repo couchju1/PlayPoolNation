@@ -10,6 +10,8 @@
  */
 
 use PlayPoolNation\Core\Display;
+use PlayPoolNation\Core\Events;
+use PlayPoolNation\Core\Instructors;
 use PlayPoolNation\Core\Forms;
 use PlayPoolNation\Core\Importer;
 use PlayPoolNation\Core\Moderation;
@@ -197,6 +199,96 @@ return ( static function (): array {
 		$check( 'filter page is noindexed', Seo::should_noindex() );
 		set_query_var( 'explore_tab', '' );
 		set_query_var( 'explore_region', '' );
+
+		/* ---------- events: dates ---------- */
+		$tz = wp_timezone();
+		$now = new \DateTimeImmutable( '2026-10-05 12:00', $tz );
+		$base = [ 'date' => '2026-10-09', 'start_time' => '19:00', 'end_time' => '', 'repeat' => 'none', 'until' => '' ];
+		$row = Events::date_row( $base, $now );
+		$check( 'one-off date row', is_array( $row ) && '2026-10-09 19:00:00' === $row['start_date'] && 'NONE' === $row['repeat_unit'], wp_json_encode( $row ) );
+		$row = Events::date_row( array_merge( $base, [ 'end_time' => '01:00' ] ), $now );
+		$check( 'end time after midnight rolls to next day', is_array( $row ) && '2026-10-10 01:00:00' === $row['end_date'] );
+		$row = Events::date_row( array_merge( $base, [ 'repeat' => 'weekly', 'until' => '2026-12-31' ] ), $now );
+		$check( 'weekly repeat stored as 7 days until last date', is_array( $row ) && 7 === $row['frequency'] && 'DAY' === $row['repeat_unit'] && '2026-12-31 23:59:59' === $row['repeat_end'] );
+		$check( 'monthly repeat', is_array( $r2 = Events::date_row( array_merge( $base, [ 'repeat' => 'monthly', 'until' => '2027-03-01' ] ), $now ) ) && 'MONTH' === $r2['repeat_unit'] && 1 === $r2['frequency'] );
+		$check( 'past date rejected', 'date' === Events::date_row( array_merge( $base, [ 'date' => '2026-10-01' ] ), $now ) );
+		$check( 'impossible date rejected', 'date' === Events::date_row( array_merge( $base, [ 'date' => '2026-02-30' ] ), $now ) );
+		$check( 'repeat without last date rejected', 'until' === Events::date_row( array_merge( $base, [ 'repeat' => 'weekly' ] ), $now ) );
+
+		/* ---------- events: posting ---------- */
+		$check( 'venue search finds venue', in_array( $v, wp_list_pluck( Events::search_venues( 'PPN Test Hall' ), 'id' ), true ) );
+		$check( 'anonymous cannot publish', ! Events::can_publish( 0, $v ) );
+		$check( 'admin can publish', Events::can_publish( (int) $admin, $v ) );
+		$owner_id = wp_insert_user( [ 'user_login' => 'ppn_test_owner_' . wp_generate_password( 6, false ), 'user_pass' => wp_generate_password(), 'user_email' => 'ppn-owner-' . wp_generate_password( 6, false ) . '@example.invalid', 'role' => 'subscriber' ] );
+		$test_users = is_wp_error( $owner_id ) ? [] : [ (int) $owner_id ];
+		$check( 'unclaimed owner cannot publish', ! is_wp_error( $owner_id ) && ! Events::can_publish( (int) $owner_id, $v ) );
+		wp_update_post( [ 'ID' => $v, 'post_author' => (int) $owner_id ] ); // $v is claimed above.
+		$check( 'owner of claimed venue can publish', Events::can_publish( (int) $owner_id, $v ) );
+
+		$future_date = wp_date( 'Y-m-d', time() + 5 * DAY_IN_SECONDS );
+		$form = [ 'name' => 'PPN Test Friday 8-Ball', 'event_type' => 'tournament', 'venue_id' => $v, 'games' => [ '8-ball' ], 'table_size' => '7-foot', 'entry_fee' => '20', 'added_money' => '100', 'eligibility' => 'Open', 'registration' => 'At the bar', 'link' => '', 'description' => 'Race to 3', 'relation' => 'player', 'email' => '' ];
+		$dates = Events::date_row( [ 'date' => $future_date, 'start_time' => '19:00', 'end_time' => '', 'repeat' => 'weekly', 'until' => wp_date( 'Y-m-d', time() + 60 * DAY_IN_SECONDS ) ] );
+		$pending_event = Events::create( $form, $dates, 'pending', 0 );
+		$created[] = $pending_event;
+		$check( 'community event saved pending', $pending_event && 'pending' === get_post_status( $pending_event ) );
+		$check( 'pending event linked to venue', $v === (int) get_post_meta( $pending_event, '_ppn_venue_id', true ) );
+		$check( 'pending event not shown on venue', ! in_array( $pending_event, wp_list_pluck( Play::upcoming_tournaments( $v, 20 ), 'id' ), true ) );
+
+		$clinic = Events::create( array_merge( $form, [ 'name' => 'PPN Test Break Clinic', 'event_type' => 'clinic', 'games' => [] ] ), Events::date_row( [ 'date' => $future_date, 'start_time' => '18:00', 'end_time' => '20:00', 'repeat' => 'none', 'until' => '' ] ), 'publish', (int) $owner_id );
+		$created[] = $clinic;
+		$up = Play::upcoming_tournaments( $v, 20 );
+		$mine = array_values( array_filter( $up, static fn( $t ) => $t['id'] === $clinic ) );
+		$check( 'owner event published and listed on venue', $mine && 'Clinic or lesson' === $mine[0]['type'] );
+		$check( 'event stores ML date row', 1 === (int) $wpdb->get_var( $wpdb->prepare( "SELECT COUNT(*) FROM {$wpdb->prefix}mylisting_events WHERE listing_id = %d AND field_key = 'event-date'", $clinic ) ) );
+		$check( 'event copies venue map location', (bool) $wpdb->get_var( $wpdb->prepare( "SELECT COUNT(*) FROM {$wpdb->prefix}mylisting_locations WHERE listing_id = %d", $clinic ) ) );
+		$check( 'event details show type', str_contains( Display::tournament_details( [ 'id' => $clinic ] ), 'Clinic or lesson' ) );
+		$check( 'upcoming event not ended', ! Events::is_ended( $clinic ) );
+		$check( 'past one-off event ended', Events::is_ended( $past ) );
+		$check( 'running weekly series not ended', ! Events::is_ended( $weekly ) );
+		$check( 'event description is factual', str_starts_with( Seo_Meta::event_description( Venue::get( $clinic ) ), 'Clinic or lesson at PPN Test Hall' ), Seo_Meta::event_description( Venue::get( $clinic ) ) );
+		$check( 'trust block links to post an event', str_contains( Display::trust( [ 'id' => $v ] ), 'venue=' . $v ) );
+
+		/* ---------- instructors ---------- */
+		$check( 'city/state from "City, ST"', [ 'city' => 'Sioux Falls', 'state' => 'SD' ] === Instructors::city_state( 'Sioux Falls, SD' ) );
+		$check( 'city/state from state name', [ 'city' => 'Sioux Falls', 'state' => 'SD' ] === Instructors::city_state( 'Sioux Falls, South Dakota, USA' ) );
+		$check( 'city/state from full address', [ 'city' => 'Testville', 'state' => 'SD' ] === Instructors::city_state( '1 Test Way, Testville, SD 57000' ) );
+		$check( 'no guess from a bare city', null === Instructors::city_state( 'Downtown' ) );
+		$ins = $make( Pool_Schema::INSTRUCTOR_TYPE, 'PPN Test Coach' );
+		$add_location( $ins, '12 Home St, Testville, SD 57000', 44.01, -97.01 );
+		$check( 'instructor location reduced to city', 'Testville, SD' === Instructors::coarsen_location( $ins ) && 'Testville, SD' === get_post_meta( $ins, '_job_location', true ) );
+		$check( 'home street not kept', ! $wpdb->get_var( $wpdb->prepare( "SELECT COUNT(*) FROM {$wpdb->prefix}mylisting_locations WHERE listing_id = %d AND address LIKE %s", $ins, '%Home St%' ) ) );
+		$check( 'instructor gets no region terms', ! wp_get_object_terms( $ins, Pool_Schema::TAX_REGION, [ 'fields' => 'ids' ] ) );
+		wp_set_object_terms( $ins, [ 'pbia-advanced' ], 'instructor-credential' );
+		wp_set_object_terms( $ins, [ 'beginners', 'position-play' ], 'lesson-focus' );
+		wp_set_object_terms( $ins, [ 'one-on-one' ], 'lesson-format' );
+		update_post_meta( $ins, '_lesson-rate', '60' );
+		Venue::flush_cache( $ins );
+		$creds = Instructors::credentials( $ins );
+		$check( 'credential self-reported until checked', 1 === count( $creds ) && '' === $creds[0]['verified'] );
+		$GLOBALS['post'] = get_post( $ins );
+		$details = Instructors::details( [ 'id' => $ins ] );
+		$check( 'unverified credential has no badge', str_contains( $details, 'PBIA Advanced Instructor' ) && ! str_contains( $details, 'ppn-badge' ) );
+		$check( 'person schema omits unverified credential', ! isset( Schema_Org::instructor( $ins )['hasCredential'] ) );
+		Instructors::set_verified( $ins, [ 'pbia-advanced', 'pbia-master' ] );
+		$check( 'only listed credentials can be verified', [ 'pbia-advanced' ] === array_keys( (array) get_post_meta( $ins, '_ppn_credentials_verified', true ) ) );
+		$check( 'verified credential shows badge', str_contains( Instructors::details( [ 'id' => $ins ] ), 'ppn-badge' ) );
+		$check( 'person schema has verified credential', 'PBIA Advanced Instructor' === ( Schema_Org::instructor( $ins )['hasCredential'][0]['name'] ?? '' ) );
+		$check( 'instructor description', str_contains( Seo_Meta::instructor_description( Venue::get( $ins ) ), 'teaches pool in Testville, SD' ) && str_contains( Seo_Meta::instructor_description( Venue::get( $ins ) ), '$60 an hour' ) );
+		$check( 'no instructors section before link', Display::EMPTY === Instructors::at_venue( [ 'id' => $v ] ) );
+		$wpdb->insert( $wpdb->prefix . 'mylisting_relations', [ 'parent_listing_id' => $v, 'child_listing_id' => $ins, 'field_key' => Pool_Schema::INSTRUCTOR_VENUE_FIELD, 'item_order' => 0 ] );
+		$check( 'venue lists instructor who teaches there', str_contains( Instructors::at_venue( [ 'id' => $v ] ), 'PPN Test Coach' ) );
+
+		/* ---------- venue-only counts ---------- */
+		Locations::sync( $v );
+		Play::copy_location( $clinic, $v ); // Events copy their venue's regions.
+		delete_transient( Locations::COUNT_CACHE );
+		$state_term = get_term_by( 'name', 'South Dakota', Pool_Schema::TAX_REGION );
+		$venues_only = (int) $wpdb->get_var( $wpdb->prepare(
+			"SELECT COUNT(DISTINCT p.ID) FROM {$wpdb->term_relationships} tr JOIN {$wpdb->term_taxonomy} tt ON tt.term_taxonomy_id = tr.term_taxonomy_id
+			 JOIN {$wpdb->posts} p ON p.ID = tr.object_id AND p.post_status = 'publish'
+			 JOIN {$wpdb->postmeta} m ON m.post_id = p.ID AND m.meta_key = '_case27_listing_type' AND m.meta_value = 'place'
+			 WHERE tt.term_id = %d", $state_term ? $state_term->term_id : 0 ) );
+		$check( 'region place count ignores events', $state_term && $venues_only === Locations::venue_count( (int) $state_term->term_id ), $venues_only . ' vs ' . ( $state_term ? Locations::venue_count( (int) $state_term->term_id ) : -1 ) );
 	} catch ( \Throwable $e ) {
 		$check( 'no exceptions', false, get_class( $e ) . ': ' . $e->getMessage() . ' @' . basename( $e->getFile() ) . ':' . $e->getLine() );
 	} finally {
@@ -217,6 +309,12 @@ return ( static function (): array {
 			}
 		}
 		$wpdb->query( "DELETE FROM " . Importer::log_table() . " WHERE message LIKE '%PPN Test%'" );
+		foreach ( $test_users ?? [] as $uid ) {
+			if ( get_userdata( $uid ) ) {
+				require_once ABSPATH . 'wp-admin/includes/user.php';
+				wp_delete_user( $uid );
+			}
+		}
 		wp_cache_flush();
 		PlayPoolNation\Core\Stats::flush();
 	}

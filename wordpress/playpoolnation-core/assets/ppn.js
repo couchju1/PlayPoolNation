@@ -34,6 +34,63 @@
 		} );
 	} );
 
+	/* Post an event: venue search, "a different venue", and the repeat end date. */
+	document.querySelectorAll( '[data-ppn-event-form]' ).forEach( function ( form ) {
+		var search = form.querySelector( '[data-ppn-venue-search]' );
+		var hiddenId = form.querySelector( '[data-ppn-venue-id]' );
+		var list = search ? document.getElementById( search.getAttribute( 'list' ) ) : null;
+		var owned = form.querySelector( 'select[name="venue_id"]' );
+		var other = form.querySelector( '[data-ppn-other-venue]' );
+		var repeat = form.querySelector( 'select[name="repeat"]' );
+		var until = form.querySelector( '[data-ppn-until]' );
+		var found = {};
+		var timer;
+
+		if ( owned && other ) {
+			var syncOther = function () {
+				var isOther = owned.value === 'other';
+				other.hidden = ! isOther;
+				search.required = isOther;
+			};
+			owned.addEventListener( 'change', syncOther );
+			syncOther();
+		}
+		if ( repeat && until ) {
+			var syncRepeat = function () {
+				var repeats = repeat.value && repeat.value !== 'none';
+				until.hidden = ! repeats;
+				until.querySelector( 'input' ).required = repeats;
+			};
+			repeat.addEventListener( 'change', syncRepeat );
+			syncRepeat();
+		}
+		if ( search && list && hiddenId && window.fetch ) {
+			search.addEventListener( 'input', function () {
+				var q = search.value.trim();
+				hiddenId.value = found[ q ] || '';
+				clearTimeout( timer );
+				if ( q.length < 2 || found[ q ] ) {
+					return;
+				}
+				timer = setTimeout( function () {
+					fetch( cfg.venuesUrl + '?q=' + encodeURIComponent( q ), { credentials: 'same-origin' } )
+						.then( function ( r ) { return r.json(); } )
+						.then( function ( rows ) {
+							list.innerHTML = '';
+							( Array.isArray( rows ) ? rows : [] ).forEach( function ( row ) {
+								found[ row.label ] = row.id;
+								var opt = document.createElement( 'option' );
+								opt.value = row.label;
+								list.appendChild( opt );
+							} );
+							hiddenId.value = found[ search.value.trim() ] || '';
+						} )
+						.catch( function () {} );
+				}, 250 );
+			} );
+		}
+	} );
+
 	/* Open the suggest-an-edit panel when linked to directly. */
 	if ( location.hash === '#suggest-edit' ) {
 		var panel = document.getElementById( 'suggest-edit' );

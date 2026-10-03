@@ -17,7 +17,7 @@ defined( 'ABSPATH' ) || exit;
 
 final class Stats {
 
-	private const CACHE = 'ppn_stats_v2';
+	private const CACHE = 'ppn_stats_v3';
 
 	public static function boot(): void {
 		add_shortcode( 'ppn_stat', [ __CLASS__, 'stat_shortcode' ] );
@@ -31,6 +31,7 @@ final class Stats {
 
 	public static function flush(): void {
 		delete_transient( self::CACHE );
+		delete_transient( Locations::COUNT_CACHE );
 	}
 
 	public static function stats(): array {
@@ -60,10 +61,18 @@ final class Stats {
 				$m[4]
 			) );
 		}
-		$states = get_terms( [ 'taxonomy' => Pool_Schema::TAX_REGION, 'hide_empty' => true, 'parent' => 0, 'fields' => 'ids' ] );
+		$instructors = (int) $wpdb->get_var( $wpdb->prepare(
+			"SELECT COUNT(*) FROM {$wpdb->posts} p JOIN {$wpdb->postmeta} m ON m.post_id = p.ID AND m.meta_key = '_case27_listing_type' AND m.meta_value = %s
+			 WHERE p.post_type = %s AND p.post_status = 'publish'",
+			Pool_Schema::INSTRUCTOR_TYPE,
+			Pool_Schema::POST_TYPE
+		) );
+		// States with at least one venue (event and instructor listings do not count).
+		$states = array_filter( Locations::venue_counts(), static fn( $n, $term_id ) => $n > 0 && 0 === (int) wp_get_term_taxonomy_parent_id( $term_id, Pool_Schema::TAX_REGION ), ARRAY_FILTER_USE_BOTH );
 		$stats = [
 			'venues'       => $venues,
-			'states'       => is_wp_error( $states ) ? 0 : count( $states ),
+			'instructors'  => $instructors,
+			'states'       => count( $states ),
 			'metros'       => count( array_filter( $counts ) ),
 			'metro_counts' => $counts,
 		];
@@ -106,7 +115,7 @@ final class Stats {
 			if ( is_wp_error( $link ) ) {
 				continue;
 			}
-			$out .= sprintf( '<li><a href="%s">%s<span>%d</span></a></li>', esc_url( $link ), esc_html( html_entity_decode( $term->name ) ), (int) $term->count );
+			$out .= sprintf( '<li><a href="%s">%s<span>%d</span></a></li>', esc_url( $link ), esc_html( html_entity_decode( $term->name ) ), Locations::venue_count( (int) $term->term_id ) );
 		}
 		return $out . '</ul>';
 	}

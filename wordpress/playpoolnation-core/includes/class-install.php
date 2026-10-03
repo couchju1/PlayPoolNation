@@ -44,6 +44,10 @@ final class Install {
 			'2026_10_09_retire_legacy'    => [ __CLASS__, 'm_retire_legacy' ],
 			'2026_10_10_rewrites'         => [ __CLASS__, 'm_rewrites' ],
 			'2026_10_11_city_rule'        => [ __CLASS__, 'm_rewrites' ],
+			'2026_10_12_more_taxonomies'  => [ __CLASS__, 'm_taxonomies' ],
+			'2026_10_13_more_terms'       => [ __CLASS__, 'm_terms' ],
+			'2026_10_14_events_instructors' => [ __CLASS__, 'm_events_instructors' ],
+			'2026_10_15_type_permalinks'  => [ __CLASS__, 'm_rewrites' ],
 		];
 	}
 
@@ -347,10 +351,10 @@ final class Install {
 		return wp_json_encode( $pages );
 	}
 
-	public static function ensure_explore_page( string $slug, string $title, string $type, string $heading, string $intro ): int {
+	public static function ensure_explore_page( string $slug, string $title, string $type, string $heading, string $intro, array $actions = [] ): int {
 		$page = get_page_by_path( $slug );
 		$id = $page ? (int) $page->ID : (int) wp_insert_post( [ 'post_type' => 'page', 'post_status' => 'publish', 'post_title' => $title, 'post_name' => $slug ] );
-		Pages::write_explore( $id, $type, $heading, $intro );
+		Pages::write_explore( $id, $type, $heading, $intro, $actions );
 		return $id;
 	}
 
@@ -372,5 +376,75 @@ final class Install {
 		Seo_Meta::rewrite();
 		flush_rewrite_rules( false );
 		return 'listing type permalinks refreshed';
+	}
+
+	/**
+	 * Events (the tournament type, renamed for visitors) and the new Instructor type,
+	 * with their pages and the navigation.
+	 */
+	public static function m_events_instructors(): string {
+		$log = [];
+		$event = Listing_Config::type_id( Pool_Schema::TOURNAMENT_TYPE );
+		if ( $event ) {
+			Listing_Config::set( $event, 'fields', Listing_Config::tournament_fields( Listing_Config::get( $event, 'fields' ) ) );
+			Listing_Config::set( $event, 'search', Listing_Config::tournament_search( Listing_Config::get( $event, 'search' ) ) );
+			Listing_Config::set( $event, 'single', Listing_Config::tournament_single( Listing_Config::get( $event, 'single' ) ) );
+			Listing_Config::set( $event, 'settings', Listing_Config::play_settings( Listing_Config::get( $event, 'settings' ), 'Event', 'Events', 'event', 'mi emoji_events' ) );
+			wp_update_post( [ 'ID' => $event, 'post_title' => 'Event' ] );
+			$log[] = "event type {$event}";
+		}
+		$venue = Listing_Config::type_id( Pool_Schema::VENUE_TYPE );
+		if ( $venue ) {
+			Listing_Config::set( $venue, 'single', Listing_Config::venue_single( Listing_Config::get( $venue, 'single' ) ) );
+		}
+
+		// Instructors: a new type, starting from the venue type's base fields (photo, contact, social links, location).
+		$instructor = Listing_Config::type_id( Pool_Schema::INSTRUCTOR_TYPE );
+		if ( ! $instructor && $venue ) {
+			$instructor = (int) wp_insert_post( [ 'post_type' => 'case27_listing_type', 'post_status' => 'publish', 'post_title' => 'Instructor', 'post_name' => Pool_Schema::INSTRUCTOR_TYPE ] );
+			foreach ( array_keys( Listing_Config::META ) as $part ) {
+				Listing_Config::set( $instructor, $part, Listing_Config::get( $venue, $part ) );
+			}
+		}
+		if ( $instructor ) {
+			Listing_Config::set( $instructor, 'fields', Listing_Config::instructor_fields( Listing_Config::get( $instructor, 'fields' ) ) );
+			Listing_Config::set( $instructor, 'search', Listing_Config::instructor_search( Listing_Config::get( $instructor, 'search' ) ) );
+			Listing_Config::set( $instructor, 'single', Listing_Config::instructor_single( Listing_Config::get( $instructor, 'single' ) ) );
+			Listing_Config::set( $instructor, 'result', Listing_Config::play_result( Listing_Config::get( $instructor, 'result' ), '[[lesson_formats]]' ) );
+			Listing_Config::set( $instructor, 'settings', Listing_Config::instructor_settings( Listing_Config::get( $instructor, 'settings' ) ) );
+			$log[] = "instructor type {$instructor}";
+		}
+
+		// Pages. The Tournaments page becomes Events; its old address redirects.
+		$redirects = (array) get_option( 'ppn_redirects', [] );
+		$events_page = get_page_by_path( 'events' ) ?: get_page_by_path( 'tournaments' );
+		if ( $events_page && 'events' !== $events_page->post_name ) {
+			wp_update_post( [ 'ID' => $events_page->ID, 'post_name' => 'events', 'post_title' => 'Events' ] );
+		}
+		$redirects['tournaments'] = 'events';
+		$redirects['tournament'] = 'events';
+		update_option( 'ppn_redirects', $redirects );
+
+		$pages = [];
+		$pages['events'] = self::ensure_explore_page( 'events', 'Events', Pool_Schema::TOURNAMENT_TYPE, 'Pool tournaments and events', 'Weekly tournaments, league sign-ups, clinics and more near you. Running one? Post it here.', [ 'Post an event' => Events::page_url() ] );
+		$league = get_page_by_path( 'leagues' );
+		$pages['leagues'] = $league ? (int) $league->ID : 0;
+		$pages['instructors'] = self::ensure_explore_page( 'instructors', 'Instructors', Pool_Schema::INSTRUCTOR_TYPE, 'Pool instructors near you', 'Find someone to help with your stroke, position play or league game. Compare what they teach, how they teach and what they charge.', [ 'Teach pool? Create a free profile' => home_url( '/' . Instructors::SIGNUP_PAGE . '/' ) ] );
+		$add = get_page_by_path( 'add-a-venue' );
+		$pages['add'] = $add ? (int) $add->ID : 0;
+
+		$post_event = get_page_by_path( Events::PAGE );
+		$post_event_id = $post_event ? (int) $post_event->ID : (int) wp_insert_post( [ 'post_type' => 'page', 'post_status' => 'publish', 'post_title' => 'Post an Event', 'post_name' => Events::PAGE ] );
+		Pages::write_post_event( $post_event_id );
+		$teach = get_page_by_path( Instructors::SIGNUP_PAGE );
+		$teach_id = $teach ? (int) $teach->ID : (int) wp_insert_post( [ 'post_type' => 'page', 'post_status' => 'publish', 'post_title' => 'Create Your Instructor Profile', 'post_name' => Instructors::SIGNUP_PAGE ] );
+		Pages::write_instructor_signup( $teach_id );
+
+		Pages::write_navigation( $pages );
+		Pages::write_home();
+		self::regenerate_elementor_text();
+		Stats::flush();
+		$log[] = 'pages ' . wp_json_encode( $pages + [ 'post_event' => $post_event_id, 'teach' => $teach_id ] );
+		return implode( '; ', $log );
 	}
 }

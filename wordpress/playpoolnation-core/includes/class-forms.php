@@ -98,7 +98,7 @@ final class Forms {
 	}
 
 	/** Shared checks; returns an error code or '' when the request may proceed. */
-	private static function guard( string $form ): string {
+	public static function guard( string $form ): string {
 		if ( 'POST' !== ( $_SERVER['REQUEST_METHOD'] ?? '' ) ) {
 			return 'method';
 		}
@@ -115,7 +115,7 @@ final class Forms {
 		return '';
 	}
 
-	private static function back( string $url, string $msg, string $anchor ): void {
+	public static function back( string $url, string $msg, string $anchor ): void {
 		wp_safe_redirect( add_query_arg( 'ppn_msg', $msg, $url ) . '#' . $anchor );
 		exit;
 	}
@@ -146,17 +146,19 @@ final class Forms {
 		return '<p class="ppn-notice ppn-notice--' . esc_attr( $type ) . '" role="' . ( 'ok' === $type ? 'status' : 'alert' ) . '">' . esc_html( $text ) . '</p>';
 	}
 
-	private static function common_fields(): string {
+	public static function common_fields(): string {
 		// Honeypot is visually hidden and skipped by keyboard and assistive tech.
 		return '<div class="ppn-hp" aria-hidden="true"><label>Leave this empty<input type="text" name="ppn_hp" tabindex="-1" autocomplete="off"></label></div>'
 			. '<input type="hidden" name="ppn_token" value="" data-ppn-token>';
 	}
 
-	private static function select( string $name, string $id, array $options, string $placeholder, bool $required ): string {
+	public static function select( string $name, string $id, array $options, string $placeholder, bool $required, string $selected = '' ): string {
 		$out = '<select id="' . esc_attr( $id ) . '" name="' . esc_attr( $name ) . '"' . ( $required ? ' required' : '' ) . '>';
-		$out .= '<option value="">' . esc_html( $placeholder ) . '</option>';
+		if ( '' !== $placeholder ) {
+			$out .= '<option value="">' . esc_html( $placeholder ) . '</option>';
+		}
 		foreach ( $options as $value => $label ) {
-			$out .= '<option value="' . esc_attr( $value ) . '">' . esc_html( $label ) . '</option>';
+			$out .= '<option value="' . esc_attr( $value ) . '"' . selected( (string) $value, $selected, false ) . '>' . esc_html( $label ) . '</option>';
 		}
 		return $out . '</select>';
 	}

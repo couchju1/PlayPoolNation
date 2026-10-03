@@ -22,10 +22,12 @@ final class Pool_Schema {
 	public const VENUE_TYPE      = 'place';
 	public const TOURNAMENT_TYPE = 'tournament';
 	public const LEAGUE_TYPE     = 'league';
+	public const INSTRUCTOR_TYPE = 'instructor';
 
 	public const TAX_VENUE_TYPE = 'job_listing_category';
 	public const TAX_AMENITY    = 'case27_job_listing_tags';
 	public const TAX_REGION     = 'region';
+	public const TAX_EVENT_TYPE = 'event-type';
 
 	/**
 	 * Custom taxonomies registered through My Listing's custom-taxonomy setting.
@@ -62,6 +64,50 @@ final class Pool_Schema {
 			'field' => 'game_types',
 			'terms' => [ '8-ball' => '8-Ball', '9-ball' => '9-Ball', '10-ball' => '10-Ball', 'one-pocket' => 'One Pocket', 'straight-pool' => 'Straight Pool', 'banks' => 'Banks', 'snooker' => 'Snooker', 'other-game' => 'Other' ],
 		],
+		'event-type'   => [
+			'label' => 'Event Types',
+			'field' => 'event_types',
+			'terms' => self::EVENT_TYPES,
+		],
+		'instructor-credential' => [
+			'label' => 'Instructor Credentials',
+			'field' => 'instructor_credentials',
+			// The PBIA's four instructor levels (playbetterbilliards.com/instruct/become-a-pbia-instructor/).
+			'terms' => [ 'pbia-recognized' => 'PBIA Recognized Instructor', 'pbia-certified' => 'PBIA Certified Instructor', 'pbia-advanced' => 'PBIA Advanced Instructor', 'pbia-master' => 'PBIA Master Instructor', 'other-certification' => 'Other certification' ],
+		],
+		'lesson-focus' => [
+			'label' => 'Lesson Focus',
+			'field' => 'lesson_focus',
+			'terms' => [
+				'beginners' => 'Beginners', 'juniors' => 'Juniors', 'league-players' => 'League players', 'tournament-players' => 'Tournament players',
+				'fundamentals' => 'Fundamentals', 'stroke-mechanics' => 'Stroke & mechanics', 'aiming' => 'Aiming', 'position-play' => 'Position play',
+				'safeties' => 'Safeties', 'kicks-banks' => 'Kicks & banks', 'break' => 'Break', 'mental-game' => 'Mental game', 'drills' => 'Practice drills',
+			],
+		],
+		'lesson-format' => [
+			'label' => 'Lesson Formats',
+			'field' => 'lesson_formats',
+			'terms' => [ 'one-on-one' => 'One-on-one', 'small-group' => 'Small group', 'clinics' => 'Clinics', 'online' => 'Online', 'video-analysis' => 'Video analysis', 'travels' => 'Travels to you' ],
+		],
+	];
+
+	/** Event types (the `tournament` listing type is shown to visitors as "Events"). */
+	public const EVENT_TYPES = [
+		'tournament'      => 'Tournament',
+		'league-signup'   => 'League sign-up',
+		'clinic'          => 'Clinic or lesson',
+		'exhibition'      => 'Exhibition',
+		'free-pool-night' => 'Free pool night',
+		'watch-party'     => 'Watch party',
+		'other-event'     => 'Other event',
+	];
+
+	/** How often a posted event repeats: label => [ frequency, My Listing repeat unit ]. */
+	public const EVENT_REPEATS = [
+		'none'     => [ 'Does not repeat', 0, 'NONE' ],
+		'weekly'   => [ 'Every week', 7, 'DAY' ],
+		'biweekly' => [ 'Every 2 weeks', 14, 'DAY' ],
+		'monthly'  => [ 'Every month', 1, 'MONTH' ],
 	];
 
 	/** Venue types (existing `job_listing_category` taxonomy). Keys are slugs. */
@@ -128,6 +174,7 @@ final class Pool_Schema {
 	/** Relation field keys (My Listing related-listing fields on the child type). */
 	public const TOURNAMENT_VENUE_FIELD = 'event-place-relation';
 	public const LEAGUE_VENUE_FIELD     = 'league-venue';
+	public const INSTRUCTOR_VENUE_FIELD = 'teaches-at';
 
 	public static function all_amenities(): array {
 		return array_merge( ...array_values( self::AMENITY_GROUPS ) );

@@ -27,6 +27,32 @@ final class Moderation {
 		add_filter( 'post_row_actions', [ __CLASS__, 'row_actions' ], 10, 2 );
 		add_action( 'admin_post_ppn_suggestion_status', [ __CLASS__, 'set_status' ] );
 		add_action( 'add_meta_boxes_' . self::CPT, [ __CLASS__, 'meta_boxes' ] );
+		add_action( 'pre_get_posts', [ __CLASS__, 'filter_admin_list' ] );
+	}
+
+	/** Lets review-queue links open the listings screen filtered to one listing type (?ppn_type=). */
+	public static function filter_admin_list( \WP_Query $q ): void {
+		if ( ! is_admin() || ! $q->is_main_query() || Pool_Schema::POST_TYPE !== $q->get( 'post_type' ) || empty( $_GET['ppn_type'] ) ) {
+			return;
+		}
+		$type = sanitize_key( wp_unslash( $_GET['ppn_type'] ) );
+		$meta = (array) $q->get( 'meta_query' );
+		$meta[] = [ 'key' => '_case27_listing_type', 'value' => $type ];
+		$q->set( 'meta_query', $meta );
+	}
+
+	private static function pending_of_type( string $type ): int {
+		global $wpdb;
+		return (int) $wpdb->get_var( $wpdb->prepare(
+			"SELECT COUNT(*) FROM {$wpdb->posts} p JOIN {$wpdb->postmeta} t ON t.post_id = p.ID AND t.meta_key = '_case27_listing_type' AND t.meta_value = %s
+			 WHERE p.post_type = %s AND p.post_status = 'pending'",
+			$type,
+			Pool_Schema::POST_TYPE
+		) );
+	}
+
+	private static function list_url( string $type, string $status = 'pending' ): string {
+		return admin_url( 'edit.php?post_type=' . Pool_Schema::POST_TYPE . '&post_status=' . $status . '&ppn_type=' . $type );
 	}
 
 	public static function register(): void {
@@ -168,7 +194,17 @@ final class Moderation {
 
 	public static function counts(): array {
 		global $wpdb;
-		$pending_venues = (int) $wpdb->get_var( $wpdb->prepare( "SELECT COUNT(*) FROM {$wpdb->posts} WHERE post_type = %s AND post_status = 'pending'", Pool_Schema::POST_TYPE ) );
+		$pending_venues = self::pending_of_type( Pool_Schema::VENUE_TYPE );
+		$pending_events = self::pending_of_type( Pool_Schema::TOURNAMENT_TYPE );
+		$pending_instructors = self::pending_of_type( Pool_Schema::INSTRUCTOR_TYPE );
+		// Published instructors listing a certification that has not been checked yet.
+		$unchecked = 0;
+		$with_creds = get_posts( [ 'post_type' => Pool_Schema::POST_TYPE, 'post_status' => [ 'publish', 'pending' ], 'fields' => 'ids', 'posts_per_page' => 200, 'meta_key' => '_case27_listing_type', 'meta_value' => Pool_Schema::INSTRUCTOR_TYPE, 'tax_query' => [ [ 'taxonomy' => 'instructor-credential', 'operator' => 'EXISTS' ] ] ] );
+		foreach ( $with_creds as $iid ) {
+			if ( in_array( '', wp_list_pluck( Instructors::credentials( (int) $iid ), 'verified' ), true ) ) {
+				$unchecked++;
+			}
+		}
 		$dupes = (int) $wpdb->get_var( $wpdb->prepare(
 			"SELECT COUNT(*) FROM {$wpdb->posts} p JOIN {$wpdb->postmeta} m ON m.post_id = p.ID AND m.meta_key = '_ppn_possible_duplicate_of'
 			 WHERE p.post_type = %s AND p.post_status = 'pending'",
@@ -179,7 +215,7 @@ final class Moderation {
 			 WHERE p.post_type = 'claim' AND p.post_status = 'publish'"
 		);
 		$suggestions = (int) ( wp_count_posts( self::CPT )->pending ?? 0 );
-		return compact( 'pending_venues', 'dupes', 'claims', 'suggestions' );
+		return compact( 'pending_venues', 'dupes', 'claims', 'suggestions', 'pending_events', 'pending_instructors', 'unchecked' );
 	}
 
 	public static function hub(): void {
@@ -188,8 +224,11 @@ final class Moderation {
 		}
 		$c = self::counts();
 		$rows = [
-			[ 'Venues waiting for approval', $c['pending_venues'], admin_url( 'edit.php?post_type=job_listing&post_status=pending' ), 'New submissions from players and owners. Check the details, then publish.' ],
-			[ '…of which may be duplicates', $c['dupes'], admin_url( 'edit.php?post_type=job_listing&post_status=pending' ), 'Each has a "Possible duplicate of" note on its edit screen.' ],
+			[ 'Venues waiting for approval', $c['pending_venues'], self::list_url( Pool_Schema::VENUE_TYPE ), 'New submissions from players and owners. Check the details, then publish.' ],
+			[ '…of which may be duplicates', $c['dupes'], self::list_url( Pool_Schema::VENUE_TYPE ), 'Each has a "Possible duplicate of" note on its edit screen.' ],
+			[ 'Events waiting for approval', $c['pending_events'], self::list_url( Pool_Schema::TOURNAMENT_TYPE ), 'Tournaments and events posted by players and organizers. Owners of claimed venues publish their own events without review.' ],
+			[ 'Instructor profiles waiting for approval', $c['pending_instructors'], self::list_url( Pool_Schema::INSTRUCTOR_TYPE ), 'New instructor sign-ups. Check that the profile is a real instructor, then publish.' ],
+			[ 'Instructor certifications to check', $c['unchecked'], self::list_url( Pool_Schema::INSTRUCTOR_TYPE, 'all' ), 'Certifications listed by instructors but not yet checked. Tick them on the profile once confirmed with the PBIA or issuing body.' ],
 			[ 'Ownership claims', $c['claims'], admin_url( 'edit.php?post_type=claim' ), 'Approving a claim gives the claimant control of the listing and marks it Owner Verified.' ],
 			[ 'Edit suggestions', $c['suggestions'], admin_url( 'edit.php?post_type=' . self::CPT . '&post_status=pending' ), 'Corrections reported by visitors. Nothing changes until you edit the venue.' ],
 		];

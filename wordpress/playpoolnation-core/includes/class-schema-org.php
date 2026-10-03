@@ -36,6 +36,8 @@ final class Schema_Org {
 			$data = self::venue( $id );
 		} elseif ( Pool_Schema::TOURNAMENT_TYPE === $type ) {
 			$data = self::tournament( $id );
+		} elseif ( Pool_Schema::INSTRUCTOR_TYPE === $type ) {
+			$data = self::instructor( $id );
 		}
 		if ( $data ) {
 			echo "<script type=\"application/ld+json\">" . wp_json_encode( $data, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE ) . "</script>\n";
@@ -193,6 +195,50 @@ final class Schema_Org {
 		$fee = $t->field( 'entry-fee' );
 		if ( '' !== $fee && is_numeric( $fee ) ) {
 			$data['offers'] = [ '@type' => 'Offer', 'price' => (float) $fee, 'priceCurrency' => 'USD', 'url' => $t->website() ?: $t->url() ];
+		}
+		return $data;
+	}
+
+	/** Person markup for an instructor profile. Only verified credentials are stated as credentials. */
+	public static function instructor( int $id ): ?array {
+		$i = Venue::get( $id );
+		if ( ! $i || 'publish' !== $i->post->post_status ) {
+			return null;
+		}
+		$a = $i->address_parts();
+		$data = [
+			'@context'  => 'https://schema.org',
+			'@type'     => 'Person',
+			'name'      => $i->name(),
+			'url'       => $i->url(),
+			'jobTitle'  => 'Pool instructor',
+			'knowsAbout' => array_values( array_merge( [ 'Pool (cue sports)' ], $i->term_names( 'lesson-focus' ), $i->term_names( 'game-type' ) ) ),
+		];
+		if ( '' !== $a['city'] && '' !== $a['state'] ) {
+			$data['address'] = [ '@type' => 'PostalAddress', 'addressLocality' => $a['city'], 'addressRegion' => $a['state'], 'addressCountry' => 'US' ];
+		}
+		$photo = '';
+		$logo = get_post_meta( $id, '_job_logo', true );
+		$first = is_array( $logo ) ? reset( $logo ) : $logo;
+		if ( is_numeric( $first ) ) {
+			$photo = (string) wp_get_attachment_image_url( (int) $first, 'medium' );
+		} elseif ( is_string( $first ) && filter_var( $first, FILTER_VALIDATE_URL ) ) {
+			$photo = $first;
+		}
+		if ( $photo ) {
+			$data['image'] = $photo;
+		}
+		if ( $i->website() ) {
+			$data['sameAs'] = [ $i->website() ];
+		}
+		$creds = [];
+		foreach ( Instructors::credentials( $id ) as $c ) {
+			if ( '' !== $c['verified'] ) {
+				$creds[] = [ '@type' => 'EducationalOccupationalCredential', 'name' => $c['name'] ];
+			}
+		}
+		if ( $creds ) {
+			$data['hasCredential'] = $creds;
 		}
 		return $data;
 	}
