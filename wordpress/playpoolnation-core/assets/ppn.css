@@ -206,6 +206,12 @@ body a.ppn-button, body a.ppn-button:visited, body a.ppn-button:hover { color: #
 	#wpadminbar #wp-admin-bar-my-account > .ab-item .display-name { display: none; }
 }
 
+/* The theme hides the toolbar at 1200px and below, but Elementor still offsets the
+   sticky header by the hidden toolbar's height, leaving a gap above the menu. */
+@media (max-width: 1200px) {
+	body.admin-bar .elementor-sticky--active { top: 0 !important; }
+}
+
 /* Add a venue aside */
 .ppn-aside { padding: 24px; border: 1px solid var(--ppn-line); border-radius: var(--ppn-radius); background: #fff; font-family: Figtree, sans-serif; }
 .ppn-aside h2 { font: 800 22px/1.15 Archivo, sans-serif; margin: 0 0 10px; color: var(--ppn-ink); }
