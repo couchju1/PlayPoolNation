@@ -71,8 +71,9 @@ div:has(> .element.content-block .ppn-empty) { display: none !important; }
 /* Buttons */
 .ppn-button, a.ppn-button { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 44px; padding: 10px 20px; border: 1px solid var(--ppn-accent); border-radius: 6px; background: var(--ppn-accent); color: #fff; font: 600 16px/1.2 Figtree, sans-serif; text-decoration: none; cursor: pointer; transition: background-color .15s ease; }
 .ppn-button:hover, a.ppn-button:hover { background: var(--ppn-accent-hover); border-color: var(--ppn-accent-hover); color: #fff; }
-.ppn-button--ghost { background: transparent; color: var(--ppn-accent); }
-.ppn-button--ghost:hover { background: rgba(47, 111, 228, .08); color: var(--ppn-accent-hover); }
+a.ppn-button, a.ppn-button:visited { color: #fff; }
+.ppn-button.ppn-button--ghost, a.ppn-button.ppn-button--ghost, a.ppn-button.ppn-button--ghost:visited { background: transparent; color: var(--ppn-accent); }
+.ppn-button.ppn-button--ghost:hover, a.ppn-button.ppn-button--ghost:hover { background: rgba(47, 111, 228, .08); color: var(--ppn-accent-hover); }
 .ppn-button:focus-visible, .ppn-suggest summary:focus-visible, .ppn-quick:focus-visible, .ppn-near-me:focus-visible { outline: 3px solid var(--ppn-accent); outline-offset: 2px; }
 
 /* Suggest an edit */
@@ -166,6 +167,11 @@ div:has(> .element.content-block .ppn-empty) { display: none !important; }
 .ppn-welcome-box p { margin: 0 0 20px; font-size: 16px; line-height: 1.55; color: var(--ppn-muted); }
 .ppn-welcome-actions { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; }
 .ppn-welcome-actions .ppn-button { flex: 1 1 150px; }
+/* The theme's link colour must not repaint the buttons inside the dialog. */
+.ppn-welcome .ppn-welcome-actions a.ppn-button { color: #fff; text-decoration: none; }
+.ppn-welcome .ppn-welcome-actions a.ppn-button.ppn-button--ghost { color: var(--ppn-accent); background: transparent; }
+.ppn-welcome .ppn-welcome-actions a.ppn-button:hover { color: #fff; }
+.ppn-welcome .ppn-welcome-actions a.ppn-button.ppn-button--ghost:hover { color: var(--ppn-accent-hover); background: rgba(47, 111, 228, .08); }
 .ppn-welcome-skip { margin-top: 14px; min-height: 44px; padding: 0 12px; border: 0; background: none; color: var(--ppn-muted); font: 600 15px/1 Figtree, sans-serif; text-decoration: underline; cursor: pointer; }
 .ppn-welcome-skip:hover { color: var(--ppn-ink); }
 .ppn-welcome-x { position: absolute; top: 8px; right: 8px; width: 44px; height: 44px; border: 0; background: none; color: var(--ppn-muted); font-size: 28px; line-height: 1; cursor: pointer; border-radius: 50%; }
