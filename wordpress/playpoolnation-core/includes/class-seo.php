@@ -136,8 +136,9 @@ final class Seo {
 			// Thin location and type pages stay out (Seo::should_noindex marks them noindex too).
 			$thin = [];
 			foreach ( array_intersect( $kept, [ Pool_Schema::TAX_REGION, Pool_Schema::TAX_VENUE_TYPE ] ) as $tax ) {
-				$counts = get_terms( [ 'taxonomy' => $tax, 'hide_empty' => false, 'fields' => 'id=>count' ] );
-				if ( ! is_wp_error( $counts ) ) {
+				$terms = get_terms( [ 'taxonomy' => $tax, 'hide_empty' => false ] );
+				if ( ! is_wp_error( $terms ) ) {
+					$counts = wp_list_pluck( $terms, 'count', 'term_id' );
 					$thin = array_merge( $thin, array_keys( array_filter( $counts, static fn( $c ) => (int) $c < self::MIN_REGION_VENUES ) ) );
 				}
 			}
