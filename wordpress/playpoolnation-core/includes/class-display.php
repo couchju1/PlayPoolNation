@@ -35,6 +35,25 @@ final class Display {
 		add_shortcode( 'ppn_quick_links', [ __CLASS__, 'quick_links' ] );
 		add_filter( 'woocommerce_account_menu_items', [ __CLASS__, 'account_menu' ], 50 );
 		add_filter( 'gettext_my-listing', [ __CLASS__, 'theme_strings' ], 10, 2 );
+		add_action( 'admin_bar_menu', [ __CLASS__, 'tidy_admin_bar' ], 999 );
+	}
+
+	/**
+	 * Administrators' toolbar on the public site: with every plugin's item it wrapped onto a
+	 * second line that covered the site header. Drop the core items that also live in the
+	 * dashboard and shorten the site name so it stays on one line. Plugin items are untouched.
+	 */
+	public static function tidy_admin_bar( \WP_Admin_Bar $bar ): void {
+		if ( is_admin() ) {
+			return;
+		}
+		foreach ( [ 'customize', 'comments', 'new-content', 'search' ] as $node ) {
+			$bar->remove_node( $node );
+		}
+		$site = $bar->get_node( 'site-name' );
+		if ( $site ) {
+			$bar->add_node( [ 'id' => 'site-name', 'title' => esc_html( Seo_Meta::brand() ) ] );
+		}
 	}
 
 	/** Account area: favorites are "Saved Places"; purchase-only tabs are hidden (listings are free). */
