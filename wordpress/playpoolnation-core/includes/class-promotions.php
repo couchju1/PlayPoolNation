@@ -296,7 +296,8 @@ final class Promotions {
 		}
 		$key = self::package_for_listing( $listing );
 		$product = $key ? self::product( $key ) : null;
-		if ( ! self::enabled() || ! $product || ! self::can_promote( $user, $listing ) || ! function_exists( 'WC' ) ) {
+		$allowed = self::enabled() || user_can( $user, 'edit_others_posts' ); // Staff can test before launch.
+		if ( ! $allowed || ! $product || ! self::can_promote( $user, $listing ) || ! function_exists( 'WC' ) ) {
 			wp_safe_redirect( $back );
 			exit;
 		}
@@ -365,7 +366,8 @@ final class Promotions {
 
 	/** [ppn_promote]: the owner's list of listings with Feature / Promote buttons. */
 	public static function promote_page(): string {
-		if ( ! self::enabled() ) {
+		$staff_preview = ! self::enabled() && current_user_can( 'edit_others_posts' );
+		if ( ! self::enabled() && ! $staff_preview ) {
 			return '<div class="ppn-pool"><section class="ppn-pool-section"><h2 class="ppn-pool-h">Promotions are coming soon</h2><p class="ppn-note">Listing your venue and posting events stay free. Featured placement for venues and events will be available here soon.</p></section></div>';
 		}
 		if ( ! is_user_logged_in() ) {
@@ -383,6 +385,9 @@ final class Promotions {
 		}
 		Venue::prime( $ids );
 		$h = '<div class="ppn-pool">' . self::message();
+		if ( $staff_preview ) {
+			$h .= '<p class="ppn-notice ppn-notice--ok" role="status">Promotions are switched off. Only staff can see and use this page until they are switched on.</p>';
+		}
 		if ( ! $ids ) {
 			return $h . '<section class="ppn-pool-section"><h2 class="ppn-pool-h">Nothing to promote yet</h2>'
 				. '<p class="ppn-note">Claim your venue first: open your venue\'s page on PlayPoolNation and choose <strong>Claim this venue</strong>. Once it is approved, your venue and its events show up here.</p>'

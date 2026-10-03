@@ -373,7 +373,10 @@ return ( static function (): array {
 		Promotions::end( $clinic );
 		$_GET['listing'] = $v;
 		wp_set_current_user( $admin );
-		$check( 'staff can open any listing on /promote/', str_contains( Promotions::enabled() ? Promotions::promote_page() : 'PPN Test Hall', 'PPN Test Hall' ) );
+		$check( 'staff can open any listing on /promote/', str_contains( Promotions::promote_page(), 'PPN Test Hall' ) );
+		wp_set_current_user( 0 );
+		$check( 'visitors see coming soon while off', Promotions::enabled() || str_contains( Promotions::promote_page(), 'coming soon' ) );
+		wp_set_current_user( $admin );
 		unset( $_GET['listing'] );
 
 		/* ---------- venue-only counts ---------- */
