@@ -30,6 +30,7 @@ final class My_Pool {
 		add_action( 'admin_post_ppn_set_home', [ __CLASS__, 'handle_set_home' ] );
 		add_action( 'admin_post_ppn_unsave', [ __CLASS__, 'handle_unsave' ] );
 		add_action( 'template_redirect', [ __CLASS__, 'no_cache' ], 1 );
+		add_action( 'wp_enqueue_scripts', [ __CLASS__, 'login_styles' ], 30 );
 		add_filter( 'woocommerce_account_menu_items', [ __CLASS__, 'account_menu' ], 70 );
 		add_filter( 'woocommerce_get_endpoint_url', [ __CLASS__, 'account_menu_url' ], 10, 2 );
 		add_filter( 'woocommerce_login_redirect', [ __CLASS__, 'after_login' ], 20, 2 );
@@ -50,6 +51,21 @@ final class My_Pool {
 		}
 		do_action( 'litespeed_control_set_nocache', 'personal page' );
 		nocache_headers();
+	}
+
+	/** The theme styles its sign-in/register form only on the account page; load the same sheet here. */
+	public static function login_styles(): void {
+		if ( ! is_page( self::PAGE ) || is_user_logged_in() ) {
+			return;
+		}
+		if ( ! wp_style_is( 'wc-login-register-page', 'registered' ) ) {
+			$file = '/assets/dist/wc-login-register-page.css';
+			if ( ! file_exists( get_template_directory() . $file ) ) {
+				return;
+			}
+			wp_register_style( 'wc-login-register-page', get_template_directory_uri() . $file, [], wp_get_theme( get_template() )->get( 'Version' ) );
+		}
+		wp_enqueue_style( 'wc-login-register-page' );
 	}
 
 	/* -------------------------------------------------------- account */
