@@ -21,12 +21,17 @@ defined( 'ABSPATH' ) || exit;
 final class My_Pool {
 
 	public const PAGE = 'my-pool';
+	public const SIGN_IN = 'sign-in';
+	public const JOIN = 'join';
 	public const HOME_META = 'ppn_home';
 	public const RADII = [ 10, 25, 50, 100 ];
 	private const NONCE = 'ppn_my_pool';
 
 	public static function boot(): void {
 		add_shortcode( 'ppn_my_pool', [ __CLASS__, 'render' ] );
+		add_shortcode( 'ppn_sign_in', [ __CLASS__, 'sign_in' ] );
+		add_action( 'template_redirect', [ __CLASS__, 'signed_in_redirect' ], 2 );
+		add_filter( 'wp_nav_menu_objects', [ __CLASS__, 'menu_account_item' ], 20, 2 );
 		add_action( 'admin_post_ppn_set_home', [ __CLASS__, 'handle_set_home' ] );
 		add_action( 'admin_post_ppn_unsave', [ __CLASS__, 'handle_unsave' ] );
 		add_action( 'template_redirect', [ __CLASS__, 'no_cache' ], 1 );
@@ -42,8 +47,70 @@ final class My_Pool {
 		return $page ? (string) get_permalink( $page ) : home_url( '/' . self::PAGE . '/' );
 	}
 
+	/** Pages with the personal or sign-in content. */
+	public static function is_account_page(): bool {
+		return is_page( [ self::PAGE, self::SIGN_IN, self::JOIN ] );
+	}
+
+	public static function sign_in_url( bool $join = false ): string {
+		$page = get_page_by_path( $join ? self::JOIN : self::SIGN_IN );
+		return $page ? (string) get_permalink( $page ) : self::page_url();
+	}
+
+	/** Signed-in visitors to the sign-in or join page go to their page (or a safe redirect_to). */
+	public static function signed_in_redirect(): void {
+		if ( ! is_user_logged_in() || ! is_page( [ self::SIGN_IN, self::JOIN ] ) ) {
+			return;
+		}
+		$to = isset( $_GET['redirect_to'] ) ? wp_validate_redirect( esc_url_raw( wp_unslash( $_GET['redirect_to'] ) ), '' ) : '';
+		wp_safe_redirect( $to ?: self::page_url() );
+		exit;
+	}
+
+	/**
+	 * Main menu: a "Sign in" link for visitors, "My Pool" once signed in.
+	 * The header is an Elementor menu widget, which renders through wp_nav_menu.
+	 *
+	 * @param array    $items
+	 * @param \stdClass $args
+	 */
+	public static function menu_account_item( array $items, $args ): array {
+		$menu = $args->menu ?? '';
+		$main = wp_get_nav_menu_object( 'Main Menu' );
+		$menu_id = $menu instanceof \WP_Term ? (int) $menu->term_id : ( is_numeric( $menu ) ? (int) $menu : ( ( $obj = wp_get_nav_menu_object( (string) $menu ) ) ? (int) $obj->term_id : 0 ) );
+		if ( ! $main || $menu_id !== (int) $main->term_id ) {
+			return $items;
+		}
+		$signed_in = is_user_logged_in();
+		$item = new \stdClass();
+		$item->ID = $item->db_id = 990000001;
+		$item->title = $signed_in ? 'My Pool' : 'Sign in';
+		$item->url = $signed_in ? self::page_url() : self::sign_in_url();
+		$item->menu_item_parent = 0;
+		$item->object_id = 0;
+		$item->object = 'custom';
+		$item->type = 'custom';
+		$item->type_label = 'Custom Link';
+		$item->target = '';
+		$item->attr_title = '';
+		$item->description = '';
+		$item->xfn = '';
+		$item->status = 'publish';
+		$item->menu_order = count( $items ) + 1;
+		$item->post_parent = 0;
+		$item->classes = [ 'menu-item', 'menu-item-type-custom', 'ppn-menu-account' ];
+		$item->current = self::is_account_page();
+		$item->current_item_ancestor = false;
+		$item->current_item_parent = false;
+		if ( $item->current ) {
+			$item->classes[] = 'current-menu-item';
+		}
+		$items[] = $item;
+		return $items;
+	}
+
 	public static function no_cache(): void {
-		if ( ! is_page( self::PAGE ) ) {
+		if ( ! self::is_account_page() ) {
 			return;
 		}
 		if ( ! defined( 'DONOTCACHEPAGE' ) ) {
@@ -55,7 +122,7 @@ final class My_Pool {
 
 	/** The theme styles its sign-in/register form only on the account page; load the same sheet here. */
 	public static function login_styles(): void {
-		if ( ! is_page( self::PAGE ) || is_user_logged_in() ) {
+		if ( ! self::is_account_page() || is_user_logged_in() ) {
 			return;
 		}
 		if ( ! wp_style_is( 'wc-login-register-page', 'registered' ) ) {
@@ -241,8 +308,17 @@ final class My_Pool {
 		return $h . '</div>';
 	}
 
-	private static function signed_out(): string {
-		$h = '<div class="ppn-pool ppn-pool--out">';
+	/** [ppn_sign_in tab="register"] on /sign-in/ and /join/. */
+	public static function sign_in( $atts = [] ): string {
+		$atts = shortcode_atts( [ 'tab' => 'login' ], (array) $atts );
+		if ( is_user_logged_in() ) {
+			return '<p><a class="ppn-button" href="' . esc_url( self::page_url() ) . '">Go to My Pool</a></p>';
+		}
+		return self::signed_out( 'register' === $atts['tab'] ? 'register' : 'login' );
+	}
+
+	private static function signed_out( string $tab = 'login' ): string {
+		$h = '<div class="ppn-pool ppn-pool--out" data-ppn-tab="' . esc_attr( $tab ) . '">';
 		$h .= '<div class="ppn-pool-intro"><h2>Your pool, in one place</h2><ul class="ppn-pool-benefits">'
 			. '<li><strong>Places near you.</strong> Pool halls and bars with tables around your area, nearest first.</li>'
 			. '<li><strong>Your saved places.</strong> Tap <strong>Save</strong> on any venue to keep it here, with today\'s hours.</li>'

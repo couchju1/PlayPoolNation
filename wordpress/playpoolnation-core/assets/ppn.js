@@ -129,6 +129,20 @@
 		}
 	} );
 
+	/* /join/ opens on the Register tab of the theme's sign-in form. */
+	var wantsRegister = document.querySelector( '[data-ppn-tab="register"]' );
+	if ( wantsRegister ) {
+		var regTab = wantsRegister.querySelector( 'a[data-form="register"]' );
+		var loginBox = wantsRegister.querySelector( '.login-form-wrap' );
+		var regBox = wantsRegister.querySelector( '.register-form-wrap' );
+		if ( regTab && loginBox && regBox ) {
+			wantsRegister.querySelectorAll( '.login-tabs li' ).forEach( function ( li ) { li.classList.remove( 'active' ); } );
+			regTab.closest( 'li' ).classList.add( 'active' );
+			loginBox.classList.add( 'hide' );
+			regBox.classList.remove( 'hide' );
+		}
+	}
+
 	/* Open the suggest-an-edit panel when linked to directly. */
 	if ( location.hash === '#suggest-edit' ) {
 		var panel = document.getElementById( 'suggest-edit' );

@@ -308,4 +308,14 @@ final class Pages {
 			], [ self::shortcode( '[ppn_my_pool]' ) ] ),
 		] );
 	}
+
+	public static function write_sign_in( int $id, bool $join ): void {
+		self::save( $id, [
+			self::hero( $join ? 'Create your free account' : 'Sign in', $join ? 'Save your favorite pool halls and see what is coming up near you.' : 'Welcome back. Sign in to see your places and what is coming up.' ),
+			self::container( [
+				'content_width' => 'boxed', 'background_background' => 'classic', 'background_color' => '#F2F4F1',
+				'padding' => self::pad( 32, 24, 64, 24 ), 'padding_mobile' => self::pad( 24, 16, 48, 16 ),
+			], [ self::shortcode( $join ? '[ppn_sign_in tab="register"]' : '[ppn_sign_in]' ) ] ),
+		] );
+	}
 }

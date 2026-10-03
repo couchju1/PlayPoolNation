@@ -49,6 +49,7 @@ final class Install {
 			'2026_10_14_events_instructors' => [ __CLASS__, 'm_events_instructors' ],
 			'2026_10_15_type_permalinks'  => [ __CLASS__, 'm_rewrites' ],
 			'2026_10_16_my_pool'          => [ __CLASS__, 'm_my_pool' ],
+			'2026_10_17_sign_in_pages'    => [ __CLASS__, 'm_sign_in_pages' ],
 		];
 	}
 
@@ -474,5 +475,19 @@ final class Install {
 			$added++;
 		}
 		return "page {$id}; account menus updated: {$added}";
+	}
+
+	/** /sign-in/ and /join/: friendly addresses for the account form (noindexed). */
+	public static function m_sign_in_pages(): string {
+		$ids = [];
+		foreach ( [ My_Pool::SIGN_IN => [ 'Sign In', false ], My_Pool::JOIN => [ 'Create Your Free Account', true ] ] as $slug => [ $title, $join ] ) {
+			$page = get_page_by_path( $slug );
+			$id = $page ? (int) $page->ID : (int) wp_insert_post( [ 'post_type' => 'page', 'post_status' => 'publish', 'post_title' => $title, 'post_name' => $slug ] );
+			Pages::write_sign_in( $id, $join );
+			$ids[] = $id;
+		}
+		$noindex = array_map( 'intval', (array) get_option( 'ppn_noindex_pages', [] ) );
+		update_option( 'ppn_noindex_pages', array_values( array_unique( array_merge( $noindex, $ids ) ) ) );
+		return 'pages ' . implode( ',', $ids );
 	}
 }

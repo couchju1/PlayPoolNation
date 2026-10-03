@@ -16,7 +16,7 @@ final class Performance {
 	private const WC_STYLES  = [ 'woocommerce-layout', 'woocommerce-smallscreen', 'woocommerce-general' ];
 
 	/** Pages that still need WooCommerce on the front end (slugs). */
-	private const WC_PAGES = [ 'list-your-venue', 'claim-listing', 'claim-your-listing', 'my-pool' ];
+	private const WC_PAGES = [ 'list-your-venue', 'claim-listing', 'claim-your-listing', 'my-pool', 'sign-in', 'join' ];
 
 	public static function boot(): void {
 		add_action( 'wp_enqueue_scripts', [ __CLASS__, 'trim_woocommerce' ], 99 );

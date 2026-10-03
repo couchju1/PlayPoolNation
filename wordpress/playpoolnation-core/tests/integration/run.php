@@ -306,6 +306,23 @@ return ( static function (): array {
 		wp_set_current_user( $admin );
 		$check( 'signed-out view invites sign in', str_contains( $out, 'Your pool, in one place' ) && ! str_contains( $out, 'PPN Test Hall' ) );
 
+		/* ---------- sign in / header link ---------- */
+		$main_menu = wp_get_nav_menu_object( 'Main Menu' );
+		if ( $main_menu ) {
+			wp_set_current_user( 0 );
+			$items = My_Pool::menu_account_item( [], (object) [ 'menu' => $main_menu ] );
+			$check( 'visitors see Sign in in the menu', 'Sign in' === ( end( $items )->title ?? '' ) && str_contains( end( $items )->url, '/sign-in' ) );
+			wp_set_current_user( $uid );
+			$items = My_Pool::menu_account_item( [], (object) [ 'menu' => (int) $main_menu->term_id ] );
+			$check( 'members see My Pool in the menu', 'My Pool' === ( end( $items )->title ?? '' ) );
+			wp_set_current_user( $admin );
+			$check( 'other menus untouched', [] === My_Pool::menu_account_item( [], (object) [ 'menu' => 'Woocommerce menu' ] ) );
+		}
+		wp_set_current_user( 0 );
+		$join = My_Pool::sign_in( [ 'tab' => 'register' ] );
+		wp_set_current_user( $admin );
+		$check( 'join page opens on register', str_contains( $join, 'data-ppn-tab="register"' ) );
+
 		/* ---------- venue-only counts ---------- */
 		Locations::sync( $v );
 		Play::copy_location( $clinic, $v ); // Events copy their venue's regions.
