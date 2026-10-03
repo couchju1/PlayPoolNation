@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       PlayPoolNation Core
  * Description:       Pool-specific data, trust, community and SEO features for PlayPoolNation, built on the My Listing theme.
- * Version:           1.0.0
+ * Version:     1.1.0
  * Requires at least: 6.4
  * Requires PHP:      8.1
  * Author:            PlayPoolNation
@@ -19,7 +19,7 @@ if ( defined( 'PPN_CORE_VERSION' ) ) {
 	return;
 }
 
-define( 'PPN_CORE_VERSION', '1.0.0' );
+define( 'PPN_CORE_VERSION', '1.1.0' );
 define( 'PPN_CORE_DB_VERSION', 3 );
 define( 'PPN_CORE_FILE', __FILE__ );
 define( 'PPN_CORE_DIR', __DIR__ );

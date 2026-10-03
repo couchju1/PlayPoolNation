@@ -196,7 +196,7 @@ final class Pages {
 			. '<div><dt>Tournaments</dt><dd>Upcoming events with game, entry fee and added money.</dd></div>'
 			. '<div><dt>Amenities</dt><dd>Food, full bar, age policy, parking and the rest.</dd></div></dl>';
 		$community = '<p style="margin:0;max-width:56ch">Add it in a minute and we will check it. Spot something out of date? Use <strong>Suggest an edit</strong> on any venue page. Own or manage a venue? Claim it to keep it accurate'
-			. ( $owner ? ', or <a href="' . esc_url( get_permalink( $owner ) ) . '" style="color:#FFFFFF;text-decoration:underline">list your venue</a> with full details' : '' ) . '.</p>';
+			. ( $owner ? ', or <a href="' . esc_url( get_permalink( $owner ) ) . '" style="color:#245BC2;font-weight:600;text-decoration:underline">list your venue</a> with full details' : '' ) . '.</p>';
 
 		$walk = static function ( array &$elements ) use ( &$walk, $feats, $community, $add_url ): void {
 			$insert_after = null;
