@@ -116,6 +116,10 @@ final class Seo {
 		}
 		// get_posts() replaces post__not_in with 'exclude' whenever that is set, so extend both.
 		$skip = array_merge( self::noindex_page_ids(), Events::ended_ids() );
+		$directory = get_page_by_path( 'instructors' );
+		if ( $directory && empty( Stats::stats()['instructors'] ) ) {
+			$skip[] = (int) $directory->ID; // Noindexed until the first profile (see should_noindex).
+		}
 		$args['exclude'] = array_values( array_unique( array_merge( wp_parse_id_list( $args['exclude'] ?? [] ), $skip ) ) );
 		$args['post__not_in'] = array_values( array_unique( array_merge( (array) ( $args['post__not_in'] ?? [] ), $skip ) ) );
 		if ( ! empty( $args['post__in'] ) ) {
