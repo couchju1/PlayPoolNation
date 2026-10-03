@@ -54,9 +54,9 @@ final class Seo {
 		if ( Seo_Meta::is_filter_page() ) {
 			return true;
 		}
-		$region = Seo_Meta::region_term();
-		if ( $region ) {
-			return (int) $region->count < self::MIN_REGION_VENUES;
+		if ( 'regions' === get_query_var( 'explore_tab' ) ) {
+			$region = Seo_Meta::region_term();
+			return ! $region || (int) $region->count < self::MIN_REGION_VENUES;
 		}
 		if ( is_tax( Pool_Schema::TAX_REGION ) ) {
 			$term = get_queried_object();

@@ -7,8 +7,9 @@
  * points their canonical at it. This class gives each location page its own
  * canonical, title and description, built only from known facts.
  *
- * ThinkRank remains the SEO plugin; this hooks its documented filters and only
- * replaces its meta description output on these directory contexts.
+ * ThinkRank remains the SEO plugin. Its title and description come from post
+ * meta, so this supplies factual values through that meta when an admin has not
+ * set one; ThinkRank then prints them (and reuses them for social tags).
  *
  * @package PlayPoolNation\Core
  */
@@ -25,9 +26,13 @@ final class Seo_Meta {
 	public static function boot(): void {
 		add_action( 'init', [ __CLASS__, 'rewrite' ] );
 		add_filter( 'rewrite_rules_array', [ __CLASS__, 'city_rule_first' ] );
-		add_filter( 'pre_get_document_title', [ __CLASS__, 'title' ], 20 );
+		// My Listing sets region titles at priority 10000.
+		add_filter( 'pre_get_document_title', [ __CLASS__, 'title' ], 10001 );
 		add_filter( 'thinkrank_canonical_url', [ __CLASS__, 'canonical' ], 20 );
-		add_action( 'wp', [ __CLASS__, 'take_over_description' ] );
+		add_filter( 'get_post_metadata', [ __CLASS__, 'thinkrank_meta' ], 10, 4 );
+		add_action( 'wp_head', [ __CLASS__, 'drop_explore_head' ], 0 );
+		// Schema_Org outputs accurate markup; the theme's default is a generic LocalBusiness.
+		add_filter( 'mylisting/schema/enable-listing-schema', '__return_false' );
 	}
 
 	/** /places/<state>/<city>/ shows the city (My Listing's own rule only reads the first segment). */
@@ -72,8 +77,19 @@ final class Seo_Meta {
 		return $name;
 	}
 
+	/** Site name without the tagline the site title carries. */
+	public static function brand(): string {
+		$name = html_entity_decode( (string) get_bloginfo( 'name' ), ENT_QUOTES );
+		return trim( explode( '|', $name )[0] ) ?: $name;
+	}
+
 	public static function title( $title ) {
-		$site = get_bloginfo( 'name' );
+		$computed = self::computed_title();
+		return '' !== $computed ? $computed : $title;
+	}
+
+	public static function computed_title(): string {
+		$site = self::brand();
 		$term = self::region_term();
 		if ( $term ) {
 			return sprintf( 'Pool Halls & Places to Play Pool in %s | %s', self::region_label( $term ), $site );
@@ -86,7 +102,10 @@ final class Seo_Meta {
 				return sprintf( '%s: %s in %s | %s', $v->name(), $kind, $v->city_state(), $site );
 			}
 		}
-		return $title;
+		if ( is_front_page() ) {
+			return sprintf( '%s: Find Pool Halls & Bars with Pool Tables Near You', $site );
+		}
+		return '';
 	}
 
 	public static function canonical( $url ) {
@@ -99,6 +118,9 @@ final class Seo_Meta {
 	}
 
 	public static function description(): string {
+		if ( is_front_page() ) {
+			return 'Find your next place to play pool. Search pool halls, billiards clubs and bars with pool tables across the U.S. by table size, brand, leagues and hours.';
+		}
 		$term = self::region_term();
 		if ( $term ) {
 			$count = (int) $term->count;
@@ -132,7 +154,8 @@ final class Seo_Meta {
 			'add-a-venue'     => 'Know a place to play pool that is missing from PlayPoolNation? Add it and we will check it before it goes on the map.',
 			'list-your-venue' => 'Own or manage a pool hall or bar with pool tables? List it on PlayPoolNation with tables, pricing, leagues and hours.',
 		];
-		if ( is_page() && ! self::is_filter_page() && ! get_query_var( 'explore_tab' ) ) {
+		if ( is_page() ) {
+			// Filter tabs and unknown regions render the explore page itself.
 			$slug = (string) get_post_field( 'post_name', get_queried_object_id() );
 			return $pages[ $slug ] ?? '';
 		}
@@ -165,20 +188,49 @@ final class Seo_Meta {
 		return $text . ' ' . ucfirst( Helpers\Format::join_list( $extras ) ) . ' on PlayPoolNation.';
 	}
 
-	/** Replace ThinkRank's content-derived meta description where we know better. */
-	public static function take_over_description(): void {
-		if ( '' === self::description() ) {
+	/**
+	 * Supply ThinkRank's title and description meta for the page being viewed
+	 * when none is stored, so it does not fall back to raw page content.
+	 *
+	 * @param mixed $value
+	 * @return mixed
+	 */
+	public static function thinkrank_meta( $value, $object_id, $meta_key, $single ) {
+		static $busy = false;
+		if ( $busy || ( '_thinkrank_meta_description' !== $meta_key && '_thinkrank_seo_title' !== $meta_key ) ) {
+			return $value;
+		}
+		if ( is_admin() || ! did_action( 'wp' ) || (int) $object_id !== (int) get_queried_object_id() ) {
+			return $value;
+		}
+		$busy = true;
+		try {
+			if ( '' !== (string) get_post_meta( $object_id, $meta_key, true ) ) {
+				return $value; // An admin-set value wins.
+			}
+			$text = '_thinkrank_seo_title' === $meta_key ? self::computed_title() : self::description();
+		} finally {
+			$busy = false;
+		}
+		if ( '' === $text ) {
+			return $value;
+		}
+		return [ $text ];
+	}
+
+	/** My Listing prints its own description and social tags on region and filter pages, duplicating ThinkRank's. */
+	public static function drop_explore_head(): void {
+		if ( ! get_query_var( 'explore_tab' ) ) {
 			return;
 		}
 		global $wp_filter;
 		foreach ( (array) ( $wp_filter['wp_head']->callbacks[1] ?? [] ) as $cb ) {
-			$fn = $cb['function'];
-			if ( is_array( $fn ) && is_object( $fn[0] ) && 'output_meta_description' === $fn[1] ) {
-				remove_action( 'wp_head', $fn, 1 );
+			if ( $cb['function'] instanceof \Closure ) {
+				$file = ( new \ReflectionFunction( $cb['function'] ) )->getFileName();
+				if ( $file && str_ends_with( wp_normalize_path( $file ), 'includes/src/explore.php' ) ) {
+					remove_action( 'wp_head', $cb['function'], 1 );
+				}
 			}
 		}
-		add_action( 'wp_head', static function () {
-			echo '<meta name="description" content="' . esc_attr( self::description() ) . '" />' . "\n";
-		}, 1 );
 	}
 }
