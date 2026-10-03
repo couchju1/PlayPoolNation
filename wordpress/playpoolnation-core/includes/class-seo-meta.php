@@ -165,7 +165,7 @@ final class Seo_Meta {
 			return 'Find your next place to play pool. Search pool halls, billiards clubs and bars with pool tables across the U.S. by table size, brand, leagues and hours.';
 		}
 		$type = self::type_term();
-		if ( $type ) {
+		if ( $type && $type->count > 0 ) {
 			return sprintf( '%d %s listed on PlayPoolNation, with table sizes and brands where known, hours, leagues and directions.', (int) $type->count, strtolower( self::type_label( $type ) ) );
 		}
 		$term = self::region_term();
