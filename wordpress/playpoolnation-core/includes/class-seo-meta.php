@@ -33,6 +33,8 @@ final class Seo_Meta {
 		add_action( 'wp_head', [ __CLASS__, 'drop_explore_head' ], 0 );
 		// Schema_Org outputs accurate markup; the theme's default is a generic LocalBusiness.
 		add_filter( 'mylisting/schema/enable-listing-schema', '__return_false' );
+		// ThinkRank prints the listing's social title and description; keep only the theme's listing image.
+		add_filter( 'mylisting\\single\\og:tags', static fn( $tags ) => array_intersect_key( (array) $tags, [ 'og:image' => 1 ] ) );
 	}
 
 	/** /places/<state>/<city>/ shows the city (My Listing's own rule only reads the first segment). */
@@ -104,6 +106,19 @@ final class Seo_Meta {
 		}
 		if ( is_front_page() ) {
 			return sprintf( '%s: Find Pool Halls & Bars with Pool Tables Near You', $site );
+		}
+		$pages = [
+			'places'          => 'Find Pool Halls & Bars with Pool Tables',
+			'tournaments'     => 'Upcoming Pool Tournaments',
+			'leagues'         => 'Pool Leagues Near You',
+			'add-a-venue'     => 'Add a Place to Play Pool',
+			'list-your-venue' => 'List Your Pool Hall or Bar',
+		];
+		if ( is_page() && ! self::is_filter_page() && ! get_query_var( 'explore_tab' ) ) {
+			$slug = (string) get_post_field( 'post_name', get_queried_object_id() );
+			if ( isset( $pages[ $slug ] ) ) {
+				return $pages[ $slug ] . ' | ' . $site;
+			}
 		}
 		return '';
 	}
