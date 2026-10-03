@@ -1,6 +1,8 @@
 import { NextResponse, NextRequest } from 'next/server';
 import { ObjectId } from 'mongodb';
-import clientPromise from '@/lib/mongodb';
+import { getMongoClient } from '@/lib/mongodb';
+
+export const dynamic = 'force-dynamic';
 
 function extractId(req: NextRequest): string | null {
   const parts = req.nextUrl.pathname.split('/');
@@ -12,7 +14,7 @@ export async function GET(req: NextRequest) {
     const id = extractId(req);
     if (!id) return NextResponse.json({ error: 'Missing ID' }, { status: 400 });
 
-    const client = await clientPromise;
+    const client = await getMongoClient();
     const db = client.db('playpoolnation');
     const bar = await db.collection('bars').findOne({ _id: new ObjectId(id) });
 
@@ -33,7 +35,7 @@ export async function PUT(req: NextRequest) {
     if (!id) return NextResponse.json({ error: 'Missing ID' }, { status: 400 });
 
     const data = await req.json();
-    const client = await clientPromise;
+    const client = await getMongoClient();
     const db = client.db('playpoolnation');
 
     const result = await db
@@ -56,7 +58,7 @@ export async function DELETE(req: NextRequest) {
     const id = extractId(req);
     if (!id) return NextResponse.json({ error: 'Missing ID' }, { status: 400 });
 
-    const client = await clientPromise;
+    const client = await getMongoClient();
     const db = client.db('playpoolnation');
 
     const result = await db
