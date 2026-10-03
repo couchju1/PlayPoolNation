@@ -22,6 +22,7 @@ It is currently loaded from `wp-content/novamira-sandbox/playpoolnation-core/` b
 | Venue page | `Display`, `Listing_Config` | Shortcodes for the summary, pool tables, amenities, leagues, tournaments, trust block and Near Me. Sections with no real data are hidden. |
 | Structured data | `Schema_Org` | `SportsActivityLocation`, `BarOrPub` or `BowlingAlley` for venues and `Event` for tournaments. Values are real only: no rating without reviews, no image without a photo. The theme's generic LocalBusiness markup is turned off. |
 | SEO | `Seo`, `Seo_Meta` | Works with ThinkRank, not instead of it. Noindexes search, filter pages, thin regions and venue types, cart and account pages, and the Hostinger preview domain. Keeps them out of ThinkRank's sitemap. Supplies factual titles, descriptions and canonicals for state, city, venue-type and venue pages through ThinkRank's own meta. Values an admin sets in ThinkRank always win. |
+| My Pool | `My_Pool` | `[ppn_my_pool]` on `/my-pool/` (never cached, noindexed). Signed out: what the page offers plus the theme's sign-in / register form, which returns the player here. Signed in: the player's area (city/ZIP via the Google geocoder, or browser location; 10–100 miles, stored in user meta `ppn_home`), up to 12 places nearby nearest first, saved places (My Listing bookmarks) with open status and a Remove button, and upcoming events at saved places and nearby. Players who sign in on the account page land here (staff keep the dashboard). First item in the account menu. |
 | Community | `Forms`, `Moderation`, `Claims` | Suggest an edit, Add a venue (duplicate check, honeypot, signed time token, per-IP rate limit) and claim approval. Everything lands in **PlayPoolNation → Review queue** in wp-admin, which also counts pending events, pending instructor profiles and unchecked instructor certifications. |
 | Ingestion | `Importer`, `Helpers\Dedupe`, `Geocoder` | CSV importer (wp-admin and `wp ppn import <file> [--source=] [--publish] [--dry-run]`). Matches by external ID, phone, website domain, distance and name similarity. Possible duplicates go to review; nothing is overwritten by a weaker source. |
 | Stats | `Stats` | `[ppn_stat]`, `[ppn_metros]`, `[ppn_states]` live counts (cached, flushed on change). |
@@ -45,11 +46,12 @@ It is currently loaded from `wp-content/novamira-sandbox/playpoolnation-core/` b
 | `2026_10_12_more_taxonomies`, `2026_10_13_more_terms` | Registers and seeds the event-type, instructor-credential, lesson-focus and lesson-format taxonomies. |
 | `2026_10_14_events_instructors` | Relabels the tournament type as Events (`/event/`), adds the Instructor type, renames `/tournaments/` to `/events/` (301), and creates `/instructors/`, `/post-an-event/` and `/teach/`. Also updates navigation, home copy and the venue page layout. |
 | `2026_10_15_type_permalinks` | Refreshes listing-type URL bases for `event` and `instructor`. |
+| `2026_10_16_my_pool` | Creates `/my-pool/`, adds it to the noindex list and puts "My Pool" first in the header account menu. |
 
 ## Tests
 
 - Unit (no WordPress): `composer install && vendor/bin/phpunit -c tests/phpunit.xml`.
-- Integration (live install, inside a rolled-back transaction, with mail and geocoding stubbed): `wp eval-file tests/integration/run.php`. As of 2026-10-03, 96/96 pass.
+- Integration (live install, inside a rolled-back transaction, with mail and geocoding stubbed): `wp eval-file tests/integration/run.php`. As of 2026-10-03, 111/111 pass.
 
 ## Adding pool data
 

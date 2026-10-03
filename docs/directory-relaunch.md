@@ -173,3 +173,13 @@ Only exact figures were stored. Where the sources disagreed or gave no number, t
   - Certifications are marked Verified only after an admin checks them (PBIA levels: Recognized, Certified, Advanced, Master).
   - Venue pages list their instructors.
 - **Counts.** "Places to play" counts on state and city pages now count venues only.
+
+## My Pool (3 October 2026)
+
+`/my-pool/` is each player's page. Signed out, it shows what it offers plus sign-in and free registration. Signed in, it shows:
+- the player's area (city, ZIP or "use my location");
+- places within 10 to 100 miles, nearest first, with open/closed status;
+- their saved places;
+- upcoming tournaments and events at those places and nearby.
+
+Players save a place with the Save button on any venue page. The page is private: it is never cached or indexed.

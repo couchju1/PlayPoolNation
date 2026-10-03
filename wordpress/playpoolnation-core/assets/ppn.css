@@ -132,7 +132,7 @@ div:has(> .element.content-block .ppn-empty) { display: none !important; }
 .ppn-place { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 14px; padding: 12px 0; border-bottom: 1px solid var(--ppn-line); }
 .ppn-place:last-child { border-bottom: 0; }
 .ppn-place-main { flex: 1 1 260px; display: flex; flex-direction: column; gap: 2px; }
-.ppn-saved { display: inline-block; margin-left: 6px; padding: 1px 8px; border-radius: 999px; background: var(--ppn-brass-soft); color: var(--ppn-brass); font-size: 12px; font-weight: 700; }
+.ppn-saved { align-self: flex-start; display: inline-block; margin: 2px 0; padding: 1px 8px; border-radius: 999px; background: var(--ppn-brass-soft); color: var(--ppn-brass); font-size: 12px; font-weight: 700; }
 .ppn-unsave { margin: 0; }
 .ppn-link-button { min-height: 44px; padding: 0 6px; border: 0; background: none; color: var(--ppn-muted); font: 600 14px/1 Figtree, sans-serif; text-decoration: underline; cursor: pointer; }
 .ppn-link-button:hover { color: #8A2A1C; }
