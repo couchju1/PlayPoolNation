@@ -13,6 +13,7 @@ use PlayPoolNation\Core\Display;
 use PlayPoolNation\Core\Events;
 use PlayPoolNation\Core\Instructors;
 use PlayPoolNation\Core\My_Pool;
+use PlayPoolNation\Core\Promotions;
 use PlayPoolNation\Core\Forms;
 use PlayPoolNation\Core\Importer;
 use PlayPoolNation\Core\Moderation;
@@ -334,6 +335,42 @@ return ( static function (): array {
 		wp_set_current_user( $admin );
 		$check( 'welcome popup for visitors', str_contains( $popup, 'Just looking' ) && str_contains( $popup, '/join' ) && str_contains( $popup, 'role="dialog"' ) );
 		$check( 'no welcome popup for members', '' === $popup_member );
+
+		/* ---------- promotions ---------- */
+		$check( 'package by listing type', 'venue' === Promotions::package_for_listing( $v ) && 'event' === Promotions::package_for_listing( $clinic ) && '' === Promotions::package_for_listing( $ins ) );
+		$check( 'owner can promote claimed venue', Promotions::can_promote( $uid, $v ) );
+		$check( 'owner can promote own event', Promotions::can_promote( $uid, $clinic ) );
+		$check( 'anonymous cannot promote', ! Promotions::can_promote( 0, $v ) );
+		$check( 'instructors are not promotable', ! Promotions::can_promote( (int) $admin, $ins ) );
+		$check( 'promote page lists venue and event', ! array_diff( [ $v, $clinic ], Promotions::promotable( $uid ) ) );
+		$first = Promotions::apply( $v, 30, 'test' );
+		$check( 'venue promoted as Featured (priority 1)', Promotions::is_promoted( $v ) && 1 === (int) get_post_meta( $v, '_featured', true ) );
+		$second = Promotions::apply( $v, 30, 'test' );
+		$check( 'buying again extends', strtotime( $second ) - strtotime( $first ) >= 29 * DAY_IN_SECONDS, $first . ' -> ' . $second );
+		$check( 'venue summary labels Featured', str_contains( Display::venue_summary( [ 'id' => $v ] ), 'Featured' ) );
+		Promotions::apply( $clinic, 14, 'test' );
+		$check( 'event promoted (priority 2) and labelled', 2 === (int) get_post_meta( $clinic, '_featured', true ) && str_contains( Display::tournaments( [ 'id' => $v ] ), 'Promoted' ) );
+		update_post_meta( $v, Promotions::UNTIL, gmdate( 'Y-m-d H:i:s', time() - 60 ) );
+		Promotions::expire();
+		$check( 'expired promotion ended and priority restored', ! Promotions::is_promoted( $v ) && '' === (string) get_post_meta( $v, '_featured', true ) && '' === (string) get_post_meta( $v, Promotions::UNTIL, true ) );
+		$venue_product = Promotions::product( 'venue' );
+		$check( 'package products exist and are off by default', $venue_product && ( Promotions::enabled() || 'private' === get_post_status( $venue_product->get_id() ) ) );
+		if ( $venue_product ) {
+			$check( 'packages cannot be added to cart directly', false === Promotions::only_through_promote( true, $venue_product->get_id() ) );
+			$order = wc_create_order();
+			$item = new \WC_Order_Item_Product();
+			$item->set_product( $venue_product );
+			$item->add_meta_data( '_ppn_listing_id', $v, true );
+			$order->add_item( $item );
+			$order->save();
+			Promotions::apply_order( $order->get_id() );
+			$until_once = (string) get_post_meta( $v, Promotions::UNTIL, true );
+			Promotions::apply_order( $order->get_id() );
+			$check( 'paid order promotes listing once', '' !== $until_once && $until_once === (string) get_post_meta( $v, Promotions::UNTIL, true ) );
+			$order->delete( true );
+		}
+		Promotions::end( $v );
+		Promotions::end( $clinic );
 
 		/* ---------- venue-only counts ---------- */
 		Locations::sync( $v );

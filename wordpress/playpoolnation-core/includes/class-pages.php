@@ -318,4 +318,15 @@ final class Pages {
 			], [ self::shortcode( $join ? '[ppn_sign_in tab="register"]' : '[ppn_sign_in]' ) ] ),
 		] );
 	}
+
+	/** Hero plus one shortcode on the light background (promote and advertise pages). */
+	public static function write_shortcode_page( int $id, string $heading, string $intro, string $shortcode ): void {
+		self::save( $id, [
+			self::hero( $heading, $intro ),
+			self::container( [
+				'content_width' => 'boxed', 'background_background' => 'classic', 'background_color' => '#F2F4F1',
+				'padding' => self::pad( 32, 24, 64, 24 ), 'padding_mobile' => self::pad( 24, 16, 48, 16 ),
+			], [ self::shortcode( $shortcode ) ] ),
+		] );
+	}
 }

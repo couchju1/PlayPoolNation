@@ -126,6 +126,9 @@ final class Display {
 		if ( Verification::has_badge( $verification ) ) {
 			$items[] = '<li class="ppn-fact ppn-fact--verified">' . esc_html( $verification['label'] ) . '</li>';
 		}
+		if ( Promotions::is_promoted( $v->id() ) ) {
+			$items[] = '<li class="ppn-fact ppn-fact--promo">Featured</li>';
+		}
 		return $items ? '<ul class="ppn-facts">' . implode( '', $items ) . '</ul>' : self::EMPTY;
 	}
 
@@ -265,6 +268,7 @@ final class Display {
 		$rows = '';
 		foreach ( Play::upcoming_tournaments( $v->id() ) as $t ) {
 			$meta = array_filter( [
+				$t['promoted'] ? 'Promoted' : '',
 				'Tournament' !== $t['type'] ? $t['type'] : '',
 				Format::join_list( $t['games'] ),
 				Format::money( $t['entry_fee'] ) ? Format::money( $t['entry_fee'] ) . ' entry' : '',

@@ -50,6 +50,7 @@ final class Install {
 			'2026_10_15_type_permalinks'  => [ __CLASS__, 'm_rewrites' ],
 			'2026_10_16_my_pool'          => [ __CLASS__, 'm_my_pool' ],
 			'2026_10_17_sign_in_pages'    => [ __CLASS__, 'm_sign_in_pages' ],
+			'2026_10_18_promotions'       => [ __CLASS__, 'm_promotions' ],
 		];
 	}
 
@@ -489,5 +490,49 @@ final class Install {
 		$noindex = array_map( 'intval', (array) get_option( 'ppn_noindex_pages', [] ) );
 		update_option( 'ppn_noindex_pages', array_values( array_unique( array_merge( $noindex, $ids ) ) ) );
 		return 'pages ' . implode( ',', $ids );
+	}
+
+	/**
+	 * Promotion packages (hidden, off until switched on), the owner Promote page,
+	 * the "Grow your business" sales page (draft until switched on), and the
+	 * theme's demo shop products moved to draft so nothing stray is for sale.
+	 */
+	public static function m_promotions() {
+		if ( ! class_exists( '\WC_Product_Simple' ) ) {
+			return self::DEFER;
+		}
+		$log = [];
+		$ids = Promotions::ensure_products();
+		$log[] = 'packages ' . wp_json_encode( $ids );
+
+		$drafted = [];
+		foreach ( get_posts( [ 'post_type' => 'product', 'post_status' => 'publish', 'posts_per_page' => -1 ] ) as $product ) {
+			if ( in_array( (int) $product->ID, $ids, true ) ) {
+				continue;
+			}
+			$types = wp_get_object_terms( $product->ID, 'product_type', [ 'fields' => 'slugs' ] );
+			$demo = array_intersect( (array) $types, [ 'promotion_package', 'job_package', 'job_package_subscription' ] ) || 'Some random product' === $product->post_title;
+			if ( $demo ) {
+				wp_update_post( [ 'ID' => $product->ID, 'post_status' => 'draft' ] );
+				$drafted[] = (int) $product->ID;
+			}
+		}
+		update_option( 'ppn_drafted_demo_products', $drafted, false );
+		$log[] = 'demo products drafted ' . implode( ',', $drafted );
+
+		$promote = get_page_by_path( Promotions::PAGE );
+		$promote_id = $promote ? (int) $promote->ID : (int) wp_insert_post( [ 'post_type' => 'page', 'post_status' => 'publish', 'post_title' => 'Promote', 'post_name' => Promotions::PAGE ] );
+		Pages::write_shortcode_page( $promote_id, 'Promote your venue or event', 'Show up first when players near you search. Pick a listing, pay securely, and it is promoted right away.', '[ppn_promote]' );
+		$noindex = array_map( 'intval', (array) get_option( 'ppn_noindex_pages', [] ) );
+		update_option( 'ppn_noindex_pages', array_values( array_unique( array_merge( $noindex, [ $promote_id ] ) ) ) );
+
+		$sales_id = (int) get_option( Promotions::SALES_OPTION );
+		if ( ! $sales_id || ! get_post( $sales_id ) ) {
+			$sales_id = (int) wp_insert_post( [ 'post_type' => 'page', 'post_status' => Promotions::enabled() ? 'publish' : 'draft', 'post_title' => 'Grow Your Business', 'post_name' => Promotions::SALES_PAGE ] );
+			update_option( Promotions::SALES_OPTION, $sales_id, false );
+		}
+		Pages::write_shortcode_page( $sales_id, 'Grow your pool hall or bar', 'Players use PlayPoolNation to decide where to play tonight. Listing is free. Featured placement puts you first.', '[ppn_advertise]' );
+		$log[] = "pages promote {$promote_id}, advertise {$sales_id}";
+		return implode( '; ', $log );
 	}
 }

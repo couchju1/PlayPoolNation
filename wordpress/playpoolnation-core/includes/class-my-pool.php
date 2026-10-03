@@ -395,6 +395,7 @@ final class My_Pool {
 		$h = '<li class="ppn-place">'
 			. '<div class="ppn-place-main"><a class="ppn-row-title" href="' . esc_url( $v->url() ) . '">' . esc_html( $v->name() ) . '</a>'
 			. ( $saved && ! $removable ? ' <span class="ppn-saved" title="Saved">Saved</span>' : '' )
+			. ( Promotions::is_promoted( $v->id() ) ? ' <span class="ppn-saved ppn-promo-tag">Featured</span>' : '' )
 			. '<span class="ppn-row-meta">' . esc_html( implode( ' · ', $meta ) ) . '</span></div>';
 		if ( $open['label'] ) {
 			$h .= '<span class="ppn-fact ppn-fact--' . esc_attr( $open['state'] ) . '">' . esc_html( $open['label'] ) . '</span>';
@@ -457,6 +458,7 @@ final class My_Pool {
 		foreach ( $events as $t ) {
 			$venue = (int) get_post_meta( $t['id'], '_ppn_venue_id', true );
 			$meta = array_filter( [
+				! empty( $t['promoted'] ) ? 'Promoted' : '',
 				'Tournament' !== $t['type'] ? $t['type'] : '',
 				Format::join_list( $t['games'] ),
 				Format::money( $t['entry_fee'] ) ? Format::money( $t['entry_fee'] ) . ' entry' : '',
@@ -479,6 +481,8 @@ final class My_Pool {
 		if ( $home ) {
 			$ids = array_diff( array_keys( self::nearby( $home['lat'], $home['lng'], $home['radius'], Pool_Schema::TOURNAMENT_TYPE, 60 ) ), wp_list_pluck( $mine, 'id' ) );
 			$near = Play::upcoming_from_ids( array_values( $ids ), 8 );
+			// Promoted events lead the "near you" list (labelled Promoted); the rest stay in date order.
+			usort( $near, static fn( $a, $b ) => [ empty( $a['promoted'] ), $a['when'] ] <=> [ empty( $b['promoted'] ), $b['when'] ] );
 		}
 		$h = '<section class="ppn-pool-section" id="events" aria-labelledby="ppn-events-h"><div class="ppn-pool-sechead"><h2 id="ppn-events-h" class="ppn-pool-h">Coming up</h2>'
 			. '<a href="' . esc_url( home_url( '/events/' ) ) . '">All events</a></div>';

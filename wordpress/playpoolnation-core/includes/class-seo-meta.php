@@ -151,6 +151,8 @@ final class Seo_Meta {
 			'instructors'     => 'Pool Instructors & Lessons Near You',
 			'post-an-event'   => 'Post a Pool Tournament or Event',
 			'my-pool'         => 'My Pool',
+			'promote'         => 'Promote Your Venue or Event',
+			'advertise'       => 'Grow Your Pool Hall or Bar',
 			'sign-in'         => 'Sign In',
 			'join'            => 'Create Your Free Account',
 			Instructors::SIGNUP_PAGE => 'Create Your Pool Instructor Profile',
@@ -217,6 +219,7 @@ final class Seo_Meta {
 		$pages = [
 			'places'          => 'Find pool halls, billiards clubs and bars with pool tables near you. Filter by table size, table brand, leagues, open now and more.',
 			'events'          => 'Upcoming pool tournaments and events near you: weekly 8-ball and 9-ball tournaments, league sign-ups, clinics and more, with entry fees and added money where known.',
+			'advertise'       => 'List your pool hall or bar on PlayPoolNation for free. Featured placement puts your venue and events first when players near you search.',
 			'instructors'     => 'Find a pool instructor near you. Compare certifications, what they teach, lesson formats and rates.',
 			'post-an-event'   => 'Post a pool tournament or event. Venue owners with a claimed listing publish instantly; other events are checked first.',
 			Instructors::SIGNUP_PAGE => 'Teach pool? Create a free instructor profile on PlayPoolNation so players near you can find your lessons.',
