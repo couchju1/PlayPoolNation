@@ -156,3 +156,20 @@ Only exact figures were stored. Where the sources disagreed or gave no number, t
 | Bangin Ballz Billiards Bar, Las Vegas NV | 7' and 9' tables; Rasson and Diamond; hourly rates. Total left unknown because the rate card lists Diamond tables beyond the 30 Rasson tables. | [banginballzbilliards.com](https://banginballzbilliards.com/) |
 | Buffalo Billiards, Philadelphia PA | Hourly, per-player rates | [buffalobilliardsphilly.com](https://www.buffalobilliardsphilly.com/) |
 | Pockets Billiards & Brew, San Diego CA | Hourly, from $9 | [pocketsbilliardsandbrew.com](https://www.pocketsbilliardsandbrew.com/) |
+
+## Events and instructors (3 October 2026)
+
+- **Events.**
+  - Tournaments became Events: tournaments plus league sign-ups, clinics, exhibitions, free pool nights and watch parties.
+  - Pages: `/events/` lists them, `/post-an-event/` takes new ones, and `/tournaments/` redirects to `/events/`.
+  - Owners of claimed venues publish instantly; anyone else's event waits in the review queue.
+  - Weekly, biweekly and monthly repeats.
+  - Past events drop out of search, and the poster gets one reminder to post their next event.
+  - Each venue page has a "Post an event" link that preselects the venue.
+- **Instructors.**
+  - Pages: `/instructors/` is the directory; `/teach/` is the free sign-up, held for approval.
+  - Profiles show certifications, what they teach, formats, rates and the venues where they teach.
+  - Only the city and state are shown.
+  - Certifications are marked Verified only after an admin checks them (PBIA levels: Recognized, Certified, Advanced, Master).
+  - Venue pages list their instructors.
+- **Counts.** "Places to play" counts on state and city pages now count venues only.
