@@ -183,3 +183,13 @@ Only exact figures were stored. Where the sources disagreed or gave no number, t
 - upcoming tournaments and events at those places and nearby.
 
 Players save a place with the Save button on any venue page. The page is private: it is never cached or indexed.
+
+## Promotions (set up, switched off)
+
+- **Featured Venue:** $29 for 30 days. The venue shows first in search and on the map, marked "Featured".
+- **Promoted Event:** $15 for 14 days. The event shows first on Events and in My Pool, marked "Promoted".
+- These prices are suggestions; change them in WooCommerce → Products.
+- **How owners buy:** they choose a listing on `/promote/` and pay at checkout. The promotion starts as soon as the payment goes through. Buying again adds days, and owners get one renewal email when a promotion ends.
+- **To launch:** set up a payment method (WooCommerce → Settings → Payments), then go to PlayPoolNation → Promotions → **Switch promotions on**. That also publishes the `/advertise/` sales page and adds "Promote" to the account menu.
+- **Free promotions:** give free days from the **Promotion** box on any venue's or event's edit screen.
+- **Demo cleanup:** the theme's demo shop products were moved to draft.

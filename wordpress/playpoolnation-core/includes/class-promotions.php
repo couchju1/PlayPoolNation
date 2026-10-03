@@ -157,7 +157,7 @@ final class Promotions {
 
 	public static function price_html( string $key ): string {
 		$p = self::product( $key );
-		return $p ? wp_strip_all_tags( wc_price( (float) $p->get_price() ) ) : '';
+		return $p ? html_entity_decode( wp_strip_all_tags( wc_price( (float) $p->get_price() ) ), ENT_QUOTES ) : '';
 	}
 
 	/* --------------------------------------------------------- applying */
