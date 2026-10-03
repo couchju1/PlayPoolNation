@@ -71,9 +71,9 @@ div:has(> .element.content-block .ppn-empty) { display: none !important; }
 /* Buttons */
 .ppn-button, a.ppn-button { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 44px; padding: 10px 20px; border: 1px solid var(--ppn-accent); border-radius: 6px; background: var(--ppn-accent); color: #fff; font: 600 16px/1.2 Figtree, sans-serif; text-decoration: none; cursor: pointer; transition: background-color .15s ease; }
 .ppn-button:hover, a.ppn-button:hover { background: var(--ppn-accent-hover); border-color: var(--ppn-accent-hover); color: #fff; }
-a.ppn-button, a.ppn-button:visited { color: #fff; }
-.ppn-button.ppn-button--ghost, a.ppn-button.ppn-button--ghost, a.ppn-button.ppn-button--ghost:visited { background: transparent; color: var(--ppn-accent); }
-.ppn-button.ppn-button--ghost:hover, a.ppn-button.ppn-button--ghost:hover { background: rgba(47, 111, 228, .08); color: var(--ppn-accent-hover); }
+body a.ppn-button, body a.ppn-button:visited, body a.ppn-button:hover { color: #fff; }
+.ppn-button.ppn-button--ghost, body a.ppn-button.ppn-button--ghost, body a.ppn-button.ppn-button--ghost:visited { background: transparent; color: var(--ppn-accent); }
+.ppn-button.ppn-button--ghost:hover, body a.ppn-button.ppn-button--ghost:hover { background: rgba(47, 111, 228, .08); color: var(--ppn-accent-hover); }
 .ppn-button:focus-visible, .ppn-suggest summary:focus-visible, .ppn-quick:focus-visible, .ppn-near-me:focus-visible { outline: 3px solid var(--ppn-accent); outline-offset: 2px; }
 
 /* Suggest an edit */
