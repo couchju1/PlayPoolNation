@@ -43,6 +43,7 @@ final class Install {
 			'2026_10_08_pages_nav'        => [ __CLASS__, 'm_pages_nav' ],
 			'2026_10_09_retire_legacy'    => [ __CLASS__, 'm_retire_legacy' ],
 			'2026_10_10_rewrites'         => [ __CLASS__, 'm_rewrites' ],
+			'2026_10_11_city_rule'        => [ __CLASS__, 'm_rewrites' ],
 		];
 	}
 

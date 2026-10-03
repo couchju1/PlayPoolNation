@@ -24,6 +24,7 @@ final class Seo_Meta {
 
 	public static function boot(): void {
 		add_action( 'init', [ __CLASS__, 'rewrite' ] );
+		add_filter( 'rewrite_rules_array', [ __CLASS__, 'city_rule_first' ] );
 		add_filter( 'pre_get_document_title', [ __CLASS__, 'title' ], 20 );
 		add_filter( 'thinkrank_canonical_url', [ __CLASS__, 'canonical' ], 20 );
 		add_action( 'wp', [ __CLASS__, 'take_over_description' ] );
@@ -35,6 +36,15 @@ final class Seo_Meta {
 		if ( $explore ) {
 			add_rewrite_rule( '^' . Locations::REGION_BASE . '/([^/]+)/([^/]+)/?$', 'index.php?page_id=' . $explore . '&explore_tab=regions&explore_region=$matches[2]', 'top' );
 		}
+	}
+
+	/** My Listing's own region rule has no end anchor, so the city rule must be checked before it. */
+	public static function city_rule_first( array $rules ): array {
+		$key = '^' . Locations::REGION_BASE . '/([^/]+)/([^/]+)/?$';
+		if ( isset( $rules[ $key ] ) ) {
+			$rules = [ $key => $rules[ $key ] ] + $rules;
+		}
+		return $rules;
 	}
 
 	public static function region_term(): ?\WP_Term {
