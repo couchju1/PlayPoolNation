@@ -63,6 +63,30 @@ final class Seo_Meta {
 		return $term instanceof \WP_Term ? $term : null;
 	}
 
+	/** Venue-type pages (/category/<type>/), also rendered by the explore page. */
+	public static function type_term(): ?\WP_Term {
+		if ( 'categories' !== get_query_var( 'explore_tab' ) ) {
+			return null;
+		}
+		$slug = sanitize_title( (string) get_query_var( 'explore_category' ) );
+		$term = $slug ? get_term_by( 'slug', $slug, Pool_Schema::TAX_VENUE_TYPE ) : false;
+		return $term instanceof \WP_Term ? $term : null;
+	}
+
+	private const TYPE_PLURALS = [
+		'pool-halls'            => 'Pool Halls',
+		'billiards-lounge'      => 'Billiards Lounges',
+		'bars-with-pool-tables' => 'Bars with Pool Tables',
+		'sports-bar'            => 'Sports Bars with Pool Tables',
+		'bowling-center'        => 'Bowling Centers with Pool Tables',
+		'recreation'            => 'Recreation Centers with Pool Tables',
+		'private-clubs'         => 'Private Clubs with Pool Tables',
+	];
+
+	private static function type_label( \WP_Term $term ): string {
+		return self::TYPE_PLURALS[ $term->slug ] ?? html_entity_decode( $term->name, ENT_QUOTES );
+	}
+
 	public static function is_filter_page(): bool {
 		return in_array( (string) get_query_var( 'explore_tab' ), self::FILTER_TABS, true );
 	}
@@ -96,6 +120,10 @@ final class Seo_Meta {
 		if ( $term ) {
 			return sprintf( 'Pool Halls & Places to Play Pool in %s | %s', self::region_label( $term ), $site );
 		}
+		$type = self::type_term();
+		if ( $type ) {
+			return sprintf( '%s Across the U.S. | %s', self::type_label( $type ), $site );
+		}
 		if ( is_singular( Pool_Schema::POST_TYPE ) ) {
 			$id = (int) get_queried_object_id();
 			$v = Venue::get( $id );
@@ -124,7 +152,7 @@ final class Seo_Meta {
 	}
 
 	public static function canonical( $url ) {
-		$term = self::region_term();
+		$term = self::region_term() ?: self::type_term();
 		if ( $term ) {
 			$link = get_term_link( $term );
 			return is_wp_error( $link ) ? $url : $link;
@@ -135,6 +163,10 @@ final class Seo_Meta {
 	public static function description(): string {
 		if ( is_front_page() ) {
 			return 'Find your next place to play pool. Search pool halls, billiards clubs and bars with pool tables across the U.S. by table size, brand, leagues and hours.';
+		}
+		$type = self::type_term();
+		if ( $type ) {
+			return sprintf( '%d %s listed on PlayPoolNation, with table sizes and brands where known, hours, leagues and directions.', (int) $type->count, strtolower( self::type_label( $type ) ) );
 		}
 		$term = self::region_term();
 		if ( $term ) {

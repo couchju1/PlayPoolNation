@@ -19,6 +19,7 @@ use PlayPoolNation\Core\Pool_Schema;
 use PlayPoolNation\Core\Provenance;
 use PlayPoolNation\Core\Schema_Org;
 use PlayPoolNation\Core\Seo;
+use PlayPoolNation\Core\Seo_Meta;
 use PlayPoolNation\Core\Venue;
 use PlayPoolNation\Core\Verification;
 use PlayPoolNation\Core\Locations;
@@ -177,6 +178,25 @@ return ( static function (): array {
 		$check( 'sitemap drops products', ! in_array( 'product', $args['post_type'], true ) && in_array( 'job_listing', $args['post_type'], true ) );
 		$terms = Seo::sitemap_term_args( [ 'taxonomy' => [ 'region', 'table-brand', 'job_listing_category' ] ] );
 		$check( 'sitemap drops filter taxonomies', ! in_array( 'table-brand', $terms['taxonomy'], true ) && in_array( 'region', $terms['taxonomy'], true ) );
+		$thin = wp_insert_term( 'PPN Test Town', Pool_Schema::TAX_REGION );
+		$thin_id = is_wp_error( $thin ) ? 0 : (int) $thin['term_id'];
+		$check( 'sitemap excludes thin regions', $thin_id && in_array( $thin_id, Seo::sitemap_term_args( [ 'taxonomy' => [ 'region' ] ] )['exclude'], true ) );
+		$only_filters = Seo::sitemap_term_args( [ 'taxonomy' => [ 'table-brand' ] ] );
+		$check( 'filter-only term query matches nothing', [ 0 ] === $only_filters['include'] );
+		$noindexed = Seo::noindex_page_ids();
+		$with_front = Seo::sitemap_query_args( [ 'post_type' => [ 'page' ], 'exclude' => [ 99999999 ] ] );
+		$check( 'sitemap keeps noindexed pages out even with exclude set', ! $noindexed || ! array_diff( $noindexed, $with_front['exclude'] ) );
+
+		set_query_var( 'explore_tab', 'regions' );
+		set_query_var( 'explore_region', 'south-dakota' );
+		$check( 'region page title', str_starts_with( Seo_Meta::computed_title(), 'Pool Halls & Places to Play Pool in South Dakota' ), Seo_Meta::computed_title() );
+		$check( 'region page canonical', str_ends_with( untrailingslashit( Seo_Meta::canonical( home_url( '/places/' ) ) ), '/places/south-dakota' ) );
+		set_query_var( 'explore_region', 'no-such-region-ppn' );
+		$check( 'unknown region is noindexed', Seo::should_noindex() );
+		set_query_var( 'explore_tab', 'table-brand' );
+		$check( 'filter page is noindexed', Seo::should_noindex() );
+		set_query_var( 'explore_tab', '' );
+		set_query_var( 'explore_region', '' );
 	} catch ( \Throwable $e ) {
 		$check( 'no exceptions', false, get_class( $e ) . ': ' . $e->getMessage() . ' @' . basename( $e->getFile() ) . ':' . $e->getLine() );
 	} finally {
