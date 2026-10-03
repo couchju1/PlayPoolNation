@@ -54,6 +54,10 @@ final class Seo {
 		if ( Seo_Meta::is_filter_page() ) {
 			return true;
 		}
+		if ( 'categories' === get_query_var( 'explore_tab' ) ) {
+			$type = get_term_by( 'slug', sanitize_title( (string) get_query_var( 'explore_category' ) ), Pool_Schema::TAX_VENUE_TYPE );
+			return ! $type || (int) $type->count < self::MIN_REGION_VENUES;
+		}
 		if ( 'regions' === get_query_var( 'explore_tab' ) ) {
 			$region = Seo_Meta::region_term();
 			return ! $region || (int) $region->count < self::MIN_REGION_VENUES;
@@ -104,7 +108,13 @@ final class Seo {
 			$types = array_values( array_diff( (array) $args['post_type'], [ 'product', 'attachment', 'elementor_library', 'claim', 'ppn_suggestion' ] ) );
 			$args['post_type'] = $types ?: [ 'page' ];
 		}
-		$args['post__not_in'] = array_values( array_unique( array_merge( (array) ( $args['post__not_in'] ?? [] ), self::noindex_page_ids() ) ) );
+		// get_posts() replaces post__not_in with 'exclude' whenever that is set, so extend both.
+		$skip = self::noindex_page_ids();
+		$args['exclude'] = array_values( array_unique( array_merge( wp_parse_id_list( $args['exclude'] ?? [] ), $skip ) ) );
+		$args['post__not_in'] = array_values( array_unique( array_merge( (array) ( $args['post__not_in'] ?? [] ), $skip ) ) );
+		if ( ! empty( $args['post__in'] ) ) {
+			$args['post__in'] = array_values( array_diff( wp_parse_id_list( $args['post__in'] ), $skip ) ) ?: [ 0 ];
+		}
 		return $args;
 	}
 
@@ -113,13 +123,29 @@ final class Seo {
 		if ( ! is_array( $args ) ) {
 			return $args;
 		}
-		if ( isset( $args['taxonomy'] ) ) {
-			$args['taxonomy'] = array_values( array_diff( (array) $args['taxonomy'], array_merge( self::FILTER_TAXONOMIES, [ 'product_cat', 'product_tag', 'product_brand' ] ) ) );
+		$taxonomies = (array) ( $args['taxonomy'] ?? [] );
+		$skipped = array_merge( self::FILTER_TAXONOMIES, [ 'product_cat', 'product_tag', 'product_brand', 'category', 'post_tag' ] );
+		$kept = array_values( array_diff( $taxonomies, $skipped ) );
+		if ( $taxonomies && ! $kept ) {
+			// An empty taxonomy list would match every taxonomy; match nothing instead.
+			$args['include'] = [ 0 ];
+			return $args;
 		}
-		$thin = get_terms( [ 'taxonomy' => Pool_Schema::TAX_REGION, 'hide_empty' => false, 'fields' => 'id=>count' ] );
-		if ( ! is_wp_error( $thin ) ) {
-			$exclude = array_keys( array_filter( $thin, static fn( $c ) => (int) $c < self::MIN_REGION_VENUES ) );
-			$args['exclude'] = array_values( array_unique( array_merge( (array) ( $args['exclude'] ?? [] ), $exclude ) ) );
+		$args['taxonomy'] = $kept;
+		if ( in_array( Pool_Schema::TAX_REGION, $kept, true ) || in_array( Pool_Schema::TAX_VENUE_TYPE, $kept, true ) ) {
+			// Thin location and type pages stay out (Seo::should_noindex marks them noindex too).
+			$thin = [];
+			foreach ( array_intersect( $kept, [ Pool_Schema::TAX_REGION, Pool_Schema::TAX_VENUE_TYPE ] ) as $tax ) {
+				$counts = get_terms( [ 'taxonomy' => $tax, 'hide_empty' => false, 'fields' => 'id=>count' ] );
+				if ( ! is_wp_error( $counts ) ) {
+					$thin = array_merge( $thin, array_keys( array_filter( $counts, static fn( $c ) => (int) $c < self::MIN_REGION_VENUES ) ) );
+				}
+			}
+			if ( ! empty( $args['include'] ) ) {
+				$args['include'] = array_values( array_diff( wp_parse_id_list( $args['include'] ), $thin ) ) ?: [ 0 ];
+			} else {
+				$args['exclude'] = array_values( array_unique( array_merge( wp_parse_id_list( $args['exclude'] ?? [] ), $thin ) ) );
+			}
 		}
 		return $args;
 	}
