@@ -1,5 +1,12 @@
 # Directory relaunch (October 2026)
 
+> **Platform upgrade (3 October 2026).** Most custom behaviour now lives in the
+> `playpoolnation-core` plugin. See `wordpress/playpoolnation-core/README.md`.
+> Several URLs below changed, and each old URL 301-redirects to its new one:
+> `/find-pool-halls/` → `/places/`, `/add-your-hall/` → `/add-a-venue/`,
+> `/listing/<slug>/` → `/place/<name-city-st>/`, `/region/<x>/` → `/places/<state>/<city>/`.
+> Owners list their own venue at `/list-your-venue/`.
+
 The live site at playpoolnation.com runs on **WordPress** (Hostinger) with the
 **My Listing** theme and **Elementor Pro**. The directory was rebuilt there,
 not in the Next.js app in this repo.
@@ -126,3 +133,26 @@ with photo. Photos are from Unsplash (Unsplash License: free commercial use,
 no attribution required), stored in the Media Library (attachments
 1839-1842, with the photo ID in each caption). Previous layout backed up in
 post meta `_ppn_backup_elementor_data_v2`.
+
+## Platform upgrade (3 October 2026)
+
+- **Pool data with Yes / No / Unknown.** Covers table counts by size, brands, pricing, amenities, leagues and tournaments. Unknown is never shown as "no".
+- **New listing types.** Tournaments (converted from the theme's Event type) and Leagues (new), linked to venues, with `/tournaments/` and `/leagues/` pages.
+- **Community tools.** Claims need admin approval. Suggest an edit and Add a venue go to **PlayPoolNation → Review queue**. Saved Places uses the theme's bookmarks.
+- **SEO.**
+  - Readable venue URLs; state and city pages at `/places/<state>/<city>/` with their own titles, descriptions and canonicals.
+  - Filter pages, thin regions and utility pages are noindexed and kept out of ThinkRank's `/sitemap.xml`, which now lists 155 URLs.
+  - One accurate JSON-LD block per venue.
+- **Ingestion.** CSV importer with duplicate detection and per-field provenance; a weaker source never overwrites a stronger one.
+
+### Pool data added from published sources
+
+Only exact figures were stored. Where the sources disagreed or gave no number, the field was left unknown.
+
+| Venue | Stored | Source |
+| --- | --- | --- |
+| Rack City Billiards, Sioux Falls SD | 18 tables: 16 at 7', 2 at 9'; Diamond and Valley; darts | Venue's own description on [FindTourneys](https://www.findtourneys.com/poolhall.php?id=2137) |
+| Bigs Bar, Sioux Falls SD | 12 tables; hourly pricing ($8 for 1½ hours); darts | [bigsbar.com](https://www.bigsbar.com/billiards-darts) |
+| Bangin Ballz Billiards Bar, Las Vegas NV | 7' and 9' tables; Rasson and Diamond; hourly rates. Total left unknown because the rate card lists Diamond tables beyond the 30 Rasson tables. | [banginballzbilliards.com](https://banginballzbilliards.com/) |
+| Buffalo Billiards, Philadelphia PA | Hourly, per-player rates | [buffalobilliardsphilly.com](https://www.buffalobilliardsphilly.com/) |
+| Pockets Billiards & Brew, San Diego CA | Hourly, from $9 | [pocketsbilliardsandbrew.com](https://www.pocketsbilliardsandbrew.com/) |
