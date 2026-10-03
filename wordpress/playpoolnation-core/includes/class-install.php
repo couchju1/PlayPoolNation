@@ -470,7 +470,7 @@ final class Install {
 			foreach ( $items as $item ) {
 				wp_update_post( [ 'ID' => (int) $item->ID, 'menu_order' => (int) $item->menu_order + 1 ] );
 			}
-			wp_update_nav_menu_item( $menu->term_id, 0, [ 'menu-item-title' => 'My Pool', 'menu-item-object' => 'page', 'menu-item-object-id' => $id, 'menu-item-type' => 'post_type', 'menu-item-status' => 'publish', 'menu-item-position' => 1 ] );
+			wp_update_nav_menu_item( $menu->term_id, 0, [ 'menu-item-title' => '[27-icon icon="mi place"] My Pool', 'menu-item-object' => 'page', 'menu-item-object-id' => $id, 'menu-item-type' => 'post_type', 'menu-item-status' => 'publish', 'menu-item-position' => 1 ] );
 			$added++;
 		}
 		return "page {$id}; account menus updated: {$added}";
