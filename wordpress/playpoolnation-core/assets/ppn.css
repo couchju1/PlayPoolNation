@@ -154,11 +154,8 @@ div:has(> .element.content-block .ppn-empty) { display: none !important; }
 }
 
 /* Header: Sign in / My Pool */
-.ppn-menu-account > a { border: 1px solid currentColor; border-radius: 999px; padding-left: 16px !important; padding-right: 16px !important; margin-left: 6px; }
-.ppn-menu-account > a:hover, .ppn-menu-account.current-menu-item > a { background: var(--ppn-accent); border-color: var(--ppn-accent); color: #fff !important; }
-@media (max-width: 1024px) {
-	.ppn-menu-account > a { border: 0; border-radius: 0; margin-left: 0; }
-}
+.ppn-menu-account > a { color: var(--ppn-accent) !important; font-weight: 700 !important; }
+.ppn-menu-account > a:hover, .ppn-menu-account > a:focus-visible { color: var(--ppn-accent-hover) !important; }
 
 /* Add a venue aside */
 .ppn-aside { padding: 24px; border: 1px solid var(--ppn-line); border-radius: var(--ppn-radius); background: #fff; font-family: Figtree, sans-serif; }
