@@ -229,6 +229,39 @@ final class Pages {
 			} );
 			update_post_meta( $footer, '_elementor_data', wp_slash( wp_json_encode( $data ) ) );
 		}
+		self::write_footer_legal();
+	}
+
+	/** Terms, Privacy and Refund links plus the contact email (from the Terms page), under the footer links. */
+	public static function write_footer_legal(): void {
+		$links = [];
+		foreach ( [ 'terms-of-service' => 'Terms of Service', 'privacy-policy' => 'Privacy Policy', 'refund-policy' => 'Refund Policy' ] as $slug => $label ) {
+			$page = get_page_by_path( $slug );
+			if ( $page && 'publish' === $page->post_status ) {
+				$links[] = '<a href="' . esc_url( get_permalink( $page ) ) . '">' . esc_html( $label ) . '</a>';
+			}
+		}
+		$terms = get_page_by_path( 'terms-of-service' );
+		if ( $terms && preg_match( '/[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}/i', wp_strip_all_tags( $terms->post_content ), $m ) && is_email( $m[0] ) ) {
+			$links[] = '<a href="mailto:' . esc_attr( $m[0] ) . '">' . esc_html( $m[0] ) . '</a>';
+		}
+		$nav = $links ? '<nav class="ppn-foot-legal" aria-label="Legal">' . implode( '', $links ) . '</nav>' : '';
+		$footer = (int) get_option( 'ppn_footer_template', 669 );
+		$data = json_decode( (string) get_post_meta( $footer, '_elementor_data', true ), true );
+		if ( ! is_array( $data ) ) {
+			return;
+		}
+		array_walk_recursive( $data, static function ( &$value, $key ) use ( $nav ) {
+			if ( 'html' !== $key || ! is_string( $value ) || ! str_contains( $value, 'ppn-foot-links' ) ) {
+				return;
+			}
+			$value = preg_replace( '#<nav class="ppn-foot-legal"[^>]*>.*?</nav>#s', '', $value );
+			$value = preg_replace( '#(<nav class="ppn-foot-links"[^>]*>.*?</nav>)#s', '$1' . $nav, $value, 1 );
+		} );
+		update_post_meta( $footer, '_elementor_data', wp_slash( wp_json_encode( $data ) ) );
+		if ( class_exists( '\Elementor\Plugin' ) ) {
+			\Elementor\Plugin::$instance->files_manager->clear_cache();
+		}
 	}
 
 	/** Homepage copy and sections per the discovery brief. Matches the widgets seeded earlier. */

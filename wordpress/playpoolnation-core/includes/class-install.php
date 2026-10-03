@@ -51,6 +51,7 @@ final class Install {
 			'2026_10_16_my_pool'          => [ __CLASS__, 'm_my_pool' ],
 			'2026_10_17_sign_in_pages'    => [ __CLASS__, 'm_sign_in_pages' ],
 			'2026_10_18_promotions'       => [ __CLASS__, 'm_promotions' ],
+			'2026_10_19_legal_pages'      => [ __CLASS__, 'm_legal_pages' ],
 		];
 	}
 
@@ -534,5 +535,36 @@ final class Install {
 		Pages::write_shortcode_page( $sales_id, 'Grow your pool hall or bar', 'Players use PlayPoolNation to decide where to play tonight. Listing is free. Featured placement puts you first.', '[ppn_advertise]' );
 		$log[] = "pages promote {$promote_id}, advertise {$sales_id}";
 		return implode( '; ', $log );
+	}
+
+	/**
+	 * The published Terms, Privacy and Refund pages: footer links, the checkout terms
+	 * page, the site privacy page, and the old placeholder pages retired with redirects.
+	 */
+	public static function m_legal_pages(): string {
+		$terms = get_page_by_path( 'terms-of-service' );
+		$privacy = get_page_by_path( 'privacy-policy' );
+		$refund = get_page_by_path( 'refund-policy' );
+		if ( ! $terms || 'publish' !== $terms->post_status ) {
+			return 'terms page not published; nothing changed';
+		}
+		update_option( 'woocommerce_terms_page_id', (int) $terms->ID );
+		if ( $privacy && 'publish' === $privacy->post_status ) {
+			update_option( 'wp_page_for_privacy_policy', (int) $privacy->ID );
+		}
+		$redirects = (array) get_option( 'ppn_redirects', [] );
+		$retired = [];
+		foreach ( [ 'terms-and-conditions' => 'terms-of-service', 'refund_returns' => $refund ? 'refund-policy' : '' ] as $old => $new ) {
+			$page = get_page_by_path( $old );
+			if ( $new && $page && 'publish' === $page->post_status ) {
+				wp_update_post( [ 'ID' => $page->ID, 'post_status' => 'draft' ] );
+				$redirects[ $old ] = $new;
+				$retired[] = $old;
+			}
+		}
+		update_option( 'ppn_redirects', $redirects );
+		Pages::write_footer_legal();
+		do_action( 'litespeed_purge_all' );
+		return 'checkout terms ' . $terms->ID . '; retired ' . implode( ',', $retired );
 	}
 }
