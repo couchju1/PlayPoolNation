@@ -157,6 +157,30 @@ div:has(> .element.content-block .ppn-empty) { display: none !important; }
 .ppn-menu-account > a { color: var(--ppn-accent) !important; font-weight: 700 !important; }
 .ppn-menu-account > a:hover, .ppn-menu-account > a:focus-visible { color: var(--ppn-accent-hover) !important; }
 
+/* First-visit welcome */
+.ppn-welcome[hidden] { display: none !important; }
+.ppn-welcome { position: fixed; inset: 0; z-index: 100000; display: flex; align-items: center; justify-content: center; padding: 16px; font-family: Figtree, sans-serif; }
+.ppn-welcome-backdrop { position: absolute; inset: 0; background: rgba(10, 42, 32, .55); }
+.ppn-welcome-box { position: relative; width: 100%; max-width: 440px; background: #fff; border-radius: 14px; padding: 30px 28px 22px; box-shadow: 0 24px 60px rgba(5, 20, 15, .35); text-align: center; color: var(--ppn-ink); animation: ppn-pop .2s ease-out; }
+.ppn-welcome-box h2 { margin: 0 0 10px; font: 800 26px/1.15 Archivo, sans-serif; color: var(--ppn-ink); }
+.ppn-welcome-box p { margin: 0 0 20px; font-size: 16px; line-height: 1.55; color: var(--ppn-muted); }
+.ppn-welcome-actions { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; }
+.ppn-welcome-actions .ppn-button { flex: 1 1 150px; }
+.ppn-welcome-skip { margin-top: 14px; min-height: 44px; padding: 0 12px; border: 0; background: none; color: var(--ppn-muted); font: 600 15px/1 Figtree, sans-serif; text-decoration: underline; cursor: pointer; }
+.ppn-welcome-skip:hover { color: var(--ppn-ink); }
+.ppn-welcome-x { position: absolute; top: 8px; right: 8px; width: 44px; height: 44px; border: 0; background: none; color: var(--ppn-muted); font-size: 28px; line-height: 1; cursor: pointer; border-radius: 50%; }
+.ppn-welcome-x:hover { background: var(--ppn-bone); color: var(--ppn-ink); }
+.ppn-welcome-x:focus-visible, .ppn-welcome-skip:focus-visible { outline: 3px solid var(--ppn-accent); outline-offset: 2px; }
+@keyframes ppn-pop { from { transform: translateY(10px); opacity: 0; } to { transform: none; opacity: 1; } }
+@media (max-width: 600px) {
+	/* On phones: a bottom sheet that leaves the page visible above it. */
+	.ppn-welcome { align-items: flex-end; padding: 0; }
+	.ppn-welcome-backdrop { background: rgba(10, 42, 32, .35); }
+	.ppn-welcome-box { max-width: none; border-radius: 16px 16px 0 0; padding: 26px 20px calc(16px + env(safe-area-inset-bottom)); }
+	.ppn-welcome-box h2 { font-size: 22px; }
+}
+@media (prefers-reduced-motion: reduce) { .ppn-welcome-box { animation: none; } }
+
 /* Add a venue aside */
 .ppn-aside { padding: 24px; border: 1px solid var(--ppn-line); border-radius: var(--ppn-radius); background: #fff; font-family: Figtree, sans-serif; }
 .ppn-aside h2 { font: 800 22px/1.15 Archivo, sans-serif; margin: 0 0 10px; color: var(--ppn-ink); }

@@ -143,6 +143,51 @@
 		}
 	}
 
+	/* First-visit welcome: shown once, remembered for 30 days. */
+	var welcome = document.querySelector( '[data-ppn-welcome]' );
+	if ( welcome && document.cookie.indexOf( 'ppn_welcome=1' ) === -1 ) {
+		var lastFocus = null;
+		var remember = function () {
+			document.cookie = 'ppn_welcome=1; max-age=' + ( 30 * 24 * 3600 ) + '; path=/; SameSite=Lax' + ( location.protocol === 'https:' ? '; Secure' : '' );
+		};
+		var closeWelcome = function () {
+			remember();
+			welcome.hidden = true;
+			document.documentElement.classList.remove( 'ppn-welcome-open' );
+			document.removeEventListener( 'keydown', onKey );
+			if ( lastFocus && lastFocus.focus ) {
+				lastFocus.focus();
+			}
+		};
+		var onKey = function ( e ) {
+			if ( e.key === 'Escape' ) {
+				closeWelcome();
+				return;
+			}
+			if ( e.key === 'Tab' ) {
+				// Keep keyboard focus inside the dialog while it is open.
+				var f = welcome.querySelectorAll( 'a[href], button' );
+				var first = f[0], last = f[ f.length - 1 ];
+				if ( e.shiftKey && document.activeElement === first ) { e.preventDefault(); last.focus(); }
+				else if ( ! e.shiftKey && document.activeElement === last ) { e.preventDefault(); first.focus(); }
+			}
+		};
+		welcome.querySelectorAll( '[data-ppn-welcome-close]' ).forEach( function ( el ) {
+			el.addEventListener( 'click', closeWelcome );
+		} );
+		welcome.querySelectorAll( '[data-ppn-welcome-go]' ).forEach( function ( el ) {
+			el.addEventListener( 'click', remember );
+		} );
+		setTimeout( function () {
+			lastFocus = document.activeElement;
+			welcome.hidden = false;
+			document.documentElement.classList.add( 'ppn-welcome-open' );
+			document.addEventListener( 'keydown', onKey );
+			var go = welcome.querySelector( '[data-ppn-welcome-go]' );
+			if ( go ) { go.focus(); }
+		}, 1200 );
+	}
+
 	/* Open the suggest-an-edit panel when linked to directly. */
 	if ( location.hash === '#suggest-edit' ) {
 		var panel = document.getElementById( 'suggest-edit' );

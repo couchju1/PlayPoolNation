@@ -323,6 +323,18 @@ return ( static function (): array {
 		wp_set_current_user( $admin );
 		$check( 'join page opens on register', str_contains( $join, 'data-ppn-tab="register"' ) );
 
+		wp_set_current_user( 0 );
+		ob_start();
+		My_Pool::welcome_popup();
+		$popup = ob_get_clean();
+		wp_set_current_user( $uid );
+		ob_start();
+		My_Pool::welcome_popup();
+		$popup_member = ob_get_clean();
+		wp_set_current_user( $admin );
+		$check( 'welcome popup for visitors', str_contains( $popup, 'Just looking' ) && str_contains( $popup, '/join' ) && str_contains( $popup, 'role="dialog"' ) );
+		$check( 'no welcome popup for members', '' === $popup_member );
+
 		/* ---------- venue-only counts ---------- */
 		Locations::sync( $v );
 		Play::copy_location( $clinic, $v ); // Events copy their venue's regions.

@@ -32,6 +32,7 @@ final class My_Pool {
 		add_shortcode( 'ppn_sign_in', [ __CLASS__, 'sign_in' ] );
 		add_action( 'template_redirect', [ __CLASS__, 'signed_in_redirect' ], 2 );
 		add_filter( 'wp_nav_menu_objects', [ __CLASS__, 'menu_account_item' ], 20, 2 );
+		add_action( 'wp_footer', [ __CLASS__, 'welcome_popup' ], 20 );
 		add_action( 'admin_post_ppn_set_home', [ __CLASS__, 'handle_set_home' ] );
 		add_action( 'admin_post_ppn_unsave', [ __CLASS__, 'handle_unsave' ] );
 		add_action( 'template_redirect', [ __CLASS__, 'no_cache' ], 1 );
@@ -107,6 +108,29 @@ final class My_Pool {
 		}
 		$items[] = $item;
 		return $items;
+	}
+
+	/**
+	 * First-visit welcome for signed-out visitors: sign in, sign up, or "Just looking".
+	 * Printed for every guest (pages are cached); the script shows it once and remembers
+	 * the choice for 30 days in a cookie. Never on the account pages themselves.
+	 */
+	public static function welcome_popup(): void {
+		if ( is_user_logged_in() || is_admin() || self::is_account_page() || is_404() ) {
+			return;
+		}
+		echo '<div class="ppn-welcome" data-ppn-welcome hidden>'
+			. '<div class="ppn-welcome-backdrop" data-ppn-welcome-close></div>'
+			. '<div class="ppn-welcome-box" role="dialog" aria-modal="true" aria-labelledby="ppn-welcome-title" aria-describedby="ppn-welcome-text" tabindex="-1">'
+			. '<button type="button" class="ppn-welcome-x" data-ppn-welcome-close aria-label="Close">&times;</button>'
+			. '<h2 id="ppn-welcome-title">Welcome to PlayPoolNation</h2>'
+			. '<p id="ppn-welcome-text">Sign in or create a free account to save your favorite pool halls and see the tournaments and events near you.</p>'
+			. '<div class="ppn-welcome-actions">'
+			. '<a class="ppn-button" href="' . esc_url( self::sign_in_url( true ) ) . '" data-ppn-welcome-go>Sign up free</a>'
+			. '<a class="ppn-button ppn-button--ghost" href="' . esc_url( self::sign_in_url() ) . '" data-ppn-welcome-go>Sign in</a>'
+			. '</div>'
+			. '<button type="button" class="ppn-welcome-skip" data-ppn-welcome-close>Just looking</button>'
+			. '</div></div>';
 	}
 
 	public static function no_cache(): void {
