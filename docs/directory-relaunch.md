@@ -88,3 +88,41 @@ Rebuilt in Elementor; the old demo layout is backed up in post meta
 
 ## Decisions
 - Google Maps API key in My Listing settings is the owner's own key.
+
+## Logo (October 2026)
+Map pin holding a striped 9-ball, with the wordmark PlayPool + **Nation** in
+Archivo ExtraBold (type converted to outlines, so no font is needed).
+Source files are in [`../brand/`](../brand/):
+- `playpoolnation-logo.svg` / `.png`: horizontal logo for light grounds
+- `playpoolnation-logo-reversed.svg` / `.png`: for dark grounds
+- `playpoolnation-mark.svg`: pin mark only
+- `playpoolnation-icon.svg` / `-512.png`: square app/browser icon
+
+On the site: header logo (custom logo, attachment 1836), footer reversed logo
+(1837), site icon (1838). Copies live in `wp-content/uploads/ppn-brand/`.
+Listings without photos use a branded felt cover (attachment 1843, set as the
+Venues type's `default_cover_image`).
+
+## Sioux Falls, SD
+10 venues added and verified as operating with Google Places:
+Rack City Billiards, JJ's Billiards & Darts, Bigs Bar, Nickel Spot, Lucky's,
+Lucky's on Louise, Thirsty Duck, Tommy Jack's Pub, Upper Cut Bar & Grill,
+Gibs Sports Bar. Not added: Detour Bar (closed permanently) and Gateway
+(the Google listing name doesn't match). Silver Moon Bar was imported, then
+trashed because the location could not be confirmed.
+
+## Live counts
+`wp-content/novamira-sandbox/ppn-stats.php` registers shortcodes:
+- `[ppn_stat type="venues|states|metros"]`: live numbers (6-hour cache, cleared
+  when a listing is saved or trashed).
+- `[ppn_metros]`: city links with live counts; metros are defined in the
+  `ppn_metros` option as [label, search_location, lat, lng, radius_miles].
+- `[ppn_states]`: state links with counts (directory page).
+
+## Home page v2
+Full-bleed photo hero with a single-row search, featured-hall carousel,
+editorial split with photo, city links over a pool hall photo, owner section
+with photo. Photos are from Unsplash (Unsplash License: free commercial use,
+no attribution required), stored in the Media Library (attachments
+1839-1842, with the photo ID in each caption). Previous layout backed up in
+post meta `_ppn_backup_elementor_data_v2`.
