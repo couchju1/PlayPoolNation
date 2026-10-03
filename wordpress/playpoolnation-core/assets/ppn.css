@@ -141,6 +141,14 @@ div:has(> .element.content-block .ppn-empty) { display: none !important; }
 .ppn-pool-benefits { margin: 0 0 12px; padding-left: 20px; line-height: 1.6; }
 .ppn-pool-benefits li { margin: 0 0 6px; }
 .ppn-pool-login { background: #fff; border: 1px solid var(--ppn-line); border-radius: var(--ppn-radius); padding: 22px 24px; }
+/* The theme's sign-in form is built for a full-screen page; fit it into the card. */
+.ppn-pool-login .sign-in-wrapper { padding: 0; }
+.ppn-pool-login .login-container { min-height: 0; width: auto; padding: 0; display: block; position: static; }
+.ppn-pool-login .login-content { max-width: 420px; margin: 0 auto; }
+.ppn-pool-login .login-tabs li:not(.active) a { color: var(--ppn-muted); }
+@media (min-width: 900px) {
+	.ppn-pool--out { grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); align-items: start; }
+}
 @media (max-width: 767px) {
 	.ppn-pool-section, .ppn-pool-login { padding: 18px 16px; }
 }
