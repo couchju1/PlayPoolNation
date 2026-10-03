@@ -63,14 +63,28 @@ Saved and active in the site's Novamira design library.
 | Headings | Archivo 800 |
 | Body | Figtree 400/600 |
 
-The chalk-blue accent is applied on the new pages only, through the theme's
-`--accent` variable in page CSS. The theme-wide brand color is still the
-demo purple `#6c1cff` (Theme Options) and should be switched to `#2F6FE4`
-if the rest of the site is restyled.
+Applied site-wide: My Listing brand color `#2F6FE4` and background
+`#F2F4F1` (Theme Options), Elementor kit 676 global colors and fonts, and
+site-wide CSS in the kit's Custom CSS (fonts, buttons, listing cards).
+The previous kit settings are backed up in post meta `_ppn_backup_page_settings`.
 
-## Open items
-- Listing packages (Basic $7.90 / Advanced $19.90 / Premium $29.90) are the
-  theme's defaults; decide pricing and confirm WooPayments is set up.
-- Confirm the Google Maps API key in My Listing settings belongs to this site's
-  Google Cloud project.
-- Home page (Elementor 1576) still contains theme demo sections.
+## Home page (page 1576)
+Rebuilt in Elementor; the old demo layout is backed up in post meta
+`_ppn_backup_elementor_data`. Sections:
+- Hero with live counts and My Listing's basic search (submits to the directory).
+- "Rooms players travel for": listing-feed carousel of 10 hand-picked halls.
+- "Built for the night you want to play": counts plus what the directory does.
+- "Pick a city": 22 metro links that open the directory centered on that city
+  (`search_location`, `lat`, `lng`, `proximity`, `sort=nearby`). The counts
+  beside each city are static and need updating as listings are added.
+- Owner call to action.
+
+## Listings are free
+- Packages are disabled for the Venues type (previous settings backed up in
+  `_ppn_backup_settings_page`), so submissions and claims cost nothing.
+- New submissions and claims still require admin approval.
+- Listing duration is unlimited (`job_manager_submission_duration` empty).
+- Every imported listing has a tagline such as "Pool hall in Chicago, IL".
+
+## Decisions
+- Google Maps API key in My Listing settings is the owner's own key.
