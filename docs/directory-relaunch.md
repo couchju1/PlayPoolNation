@@ -193,3 +193,11 @@ Players save a place with the Save button on any venue page. The page is private
 - **To launch:** set up a payment method (WooCommerce → Settings → Payments), then go to PlayPoolNation → Promotions → **Switch promotions on**. That also publishes the `/advertise/` sales page and adds "Promote" to the account menu.
 - **Free promotions:** give free days from the **Promotion** box on any venue's or event's edit screen.
 - **Demo cleanup:** the theme's demo shop products were moved to draft.
+
+## Find Places hero rack (4 October 2026)
+The flat circles in the `/places/` hero (Elementor HTML widget `6c3f6de` on page
+1669) were replaced with a shaded inline SVG: a wooden triangle on felt holding
+the 15 numbered balls in a standard 8-ball rack (1 at the apex, 8 in the centre,
+a solid and a stripe in the back corners). Max width went from 260px to 300px in
+the page's custom CSS. Previous Elementor data is backed up in post meta
+`_ppn_backup_elementor_data_rack`.
