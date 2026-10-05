@@ -195,6 +195,14 @@ return ( static function (): array {
 		set_query_var( 'explore_region', 'south-dakota' );
 		$check( 'region page title', str_starts_with( Seo_Meta::computed_title(), 'Pool Halls & Places to Play Pool in South Dakota' ), Seo_Meta::computed_title() );
 		$check( 'region page canonical', str_ends_with( untrailingslashit( Seo_Meta::canonical( home_url( '/places/' ) ) ), '/places/south-dakota' ) );
+		$hero = Seo_Meta::hero_copy();
+		$check( 'region hero names the place', $hero && 'Pool halls & places to play pool in South Dakota' === $hero['heading'], (string) ( $hero['heading'] ?? '' ) );
+		$check( 'region hero intro counts venues by type', $hero && (bool) preg_match( '/^\d+ places to play pool in South Dakota: \d+ pool hall/', $hero['intro'] ), (string) ( $hero['intro'] ?? '' ) );
+		$schema = Seo_Meta::schema_description( [ '@type' => 'WebPage', 'description' => 'raw page text' ] );
+		$check( 'schema description uses the meta description', str_starts_with( $schema['description'], 'Pool halls' ) || str_contains( $schema['description'], 'in South Dakota' ), $schema['description'] );
+		$sioux = PlayPoolNation\Core\Stats::city_term( 'Sioux Falls, SD' );
+		$check( 'metro links to its city page', $sioux && str_ends_with( untrailingslashit( (string) get_term_link( $sioux ) ), '/places/south-dakota/sioux-falls' ) );
+		$check( 'metro without a city page has no city link', null === PlayPoolNation\Core\Stats::city_term( 'Nowhere Ppn, SD' ) );
 		set_query_var( 'explore_region', 'no-such-region-ppn' );
 		$check( 'unknown region is noindexed', Seo::should_noindex() );
 		set_query_var( 'explore_tab', 'table-brand' );

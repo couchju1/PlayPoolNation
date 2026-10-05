@@ -86,12 +86,23 @@ final class Stats {
 		return isset( $stats[ $atts['type'] ] ) && is_int( $stats[ $atts['type'] ] ) ? esc_html( number_format_i18n( $stats[ $atts['type'] ] ) ) : '';
 	}
 
+	/**
+	 * Metros link to their city page (/places/<state>/<city>/) when it is indexable,
+	 * so search engines can follow them; otherwise to the map around the metro.
+	 */
 	public static function metros_shortcode(): string {
 		$stats = self::stats();
 		$out = '<ul class="ppn-chips ppn-chips--links">';
 		foreach ( (array) get_option( 'ppn_metros', [] ) as $i => $m ) {
 			$n = $stats['metro_counts'][ $i ] ?? 0;
 			if ( ! $n ) {
+				continue;
+			}
+			$city = self::city_term( (string) $m[1] );
+			$link = $city ? get_term_link( $city ) : '';
+			if ( $city && ! is_wp_error( $link ) ) {
+				// The city page lists that city only, so show its name and count rather than the metro's.
+				$out .= sprintf( '<li><a href="%s">%s <span>%d</span></a></li>', esc_url( $link ), esc_html( html_entity_decode( $city->name, ENT_QUOTES ) ), Locations::venue_count( (int) $city->term_id ) );
 				continue;
 			}
 			$url = Display::explore_url( [
@@ -105,6 +116,23 @@ final class Stats {
 			$out .= sprintf( '<li><a href="%s">%s <span>%d</span></a></li>', esc_url( $url ), esc_html( $m[0] ), $n );
 		}
 		return $out . '</ul>';
+	}
+
+	/** The indexable city region term for "City, ST", or null. */
+	public static function city_term( string $location ): ?\WP_Term {
+		$parts = array_map( 'trim', explode( ',', $location ) );
+		if ( 2 !== count( $parts ) ) {
+			return null;
+		}
+		$state = get_terms( [ 'taxonomy' => Pool_Schema::TAX_REGION, 'name' => Helpers\Address::state_name( $parts[1] ), 'parent' => 0, 'hide_empty' => false ] );
+		if ( is_wp_error( $state ) || ! $state ) {
+			return null;
+		}
+		$city = get_terms( [ 'taxonomy' => Pool_Schema::TAX_REGION, 'name' => $parts[0], 'parent' => (int) $state[0]->term_id, 'hide_empty' => false ] );
+		if ( is_wp_error( $city ) || ! $city || Locations::venue_count( (int) $city[0]->term_id ) < Seo::MIN_REGION_VENUES ) {
+			return null;
+		}
+		return $city[0];
 	}
 
 	/** State links, with the cities that have enough venues for their own page. */

@@ -31,6 +31,9 @@ final class Seo_Meta {
 		add_filter( 'thinkrank_canonical_url', [ __CLASS__, 'canonical' ], 20 );
 		add_filter( 'get_post_metadata', [ __CLASS__, 'thinkrank_meta' ], 10, 4 );
 		add_action( 'wp_head', [ __CLASS__, 'drop_explore_head' ], 0 );
+		add_action( 'elementor/frontend/widget/before_render', [ __CLASS__, 'location_hero' ] );
+		// ThinkRank's WebPage schema otherwise describes the page with an excerpt of its raw content.
+		add_filter( 'thinkrank_schema_output', [ __CLASS__, 'schema_description' ], 20 );
 		// Schema_Org outputs accurate markup; the theme's default is a generic LocalBusiness.
 		add_filter( 'mylisting/schema/enable-listing-schema', '__return_false' );
 		// ThinkRank prints the listing's social title and description; keep only the theme's listing image.
@@ -326,6 +329,108 @@ final class Seo_Meta {
 			return $value;
 		}
 		return [ $text ];
+	}
+
+	/** Singular and plural venue-type labels for running text. */
+	private const TYPE_NOUNS = [
+		'pool-halls'            => [ 'pool hall', 'pool halls' ],
+		'billiards-lounge'      => [ 'billiards lounge', 'billiards lounges' ],
+		'bars-with-pool-tables' => [ 'bar with pool tables', 'bars with pool tables' ],
+		'sports-bar'            => [ 'sports bar', 'sports bars' ],
+		'bowling-center'        => [ 'bowling center', 'bowling centers' ],
+		'recreation'            => [ 'recreation center', 'recreation centers' ],
+		'private-clubs'         => [ 'private club', 'private clubs' ],
+	];
+
+	/**
+	 * Heading and intro for the explore page's hero on state, city and venue-type pages.
+	 * Every one of those pages otherwise shares the same generic H1 and site-wide intro.
+	 *
+	 * @return array{heading:string,intro:string}|null
+	 */
+	public static function hero_copy(): ?array {
+		$term = self::region_term();
+		if ( $term ) {
+			$count = Locations::venue_count( (int) $term->term_id );
+			if ( ! $count ) {
+				return null;
+			}
+			$where = self::region_label( $term );
+			$mix = self::type_mix( (int) $term->term_id );
+			$intro = 1 === $count
+				? sprintf( 'One place to play pool in %s', $where )
+				: sprintf( '%d places to play pool in %s', $count, $where );
+			$intro .= ( $mix ? ': ' . $mix : '' ) . '. See table sizes and brands where we know them, who is open right now, and get directions in one tap.';
+			return [ 'heading' => sprintf( 'Pool halls & places to play pool in %s', $where ), 'intro' => $intro ];
+		}
+		$type = self::type_term();
+		if ( $type && $type->count > 0 ) {
+			return [ 'heading' => sprintf( '%s across the U.S.', ucfirst( strtolower( self::type_label( $type ) ) ) ), 'intro' => self::description() ];
+		}
+		return null;
+	}
+
+	/** e.g. "4 pool halls and 1 bar with pool tables", from the venues in a region. */
+	private static function type_mix( int $term_id ): string {
+		$ids = get_posts( [
+			'post_type'      => Pool_Schema::POST_TYPE,
+			'post_status'    => 'publish',
+			'fields'         => 'ids',
+			'posts_per_page' => 500,
+			'no_found_rows'  => true,
+			'tax_query'      => [ [ 'taxonomy' => Pool_Schema::TAX_REGION, 'terms' => [ $term_id ] ] ],
+			'meta_query'     => [ [ 'key' => '_case27_listing_type', 'value' => Pool_Schema::VENUE_TYPE ] ],
+		] );
+		$terms = $ids ? wp_get_object_terms( $ids, Pool_Schema::TAX_VENUE_TYPE, [ 'fields' => 'all_with_object_id' ] ) : [];
+		if ( is_wp_error( $terms ) ) {
+			return '';
+		}
+		$counts = array_fill_keys( array_keys( self::TYPE_NOUNS ), 0 );
+		foreach ( $terms as $t ) {
+			if ( isset( $counts[ $t->slug ] ) ) {
+				$counts[ $t->slug ]++;
+			}
+		}
+		$parts = [];
+		foreach ( array_filter( $counts ) as $slug => $n ) {
+			$parts[] = $n . ' ' . self::TYPE_NOUNS[ $slug ][ 1 === $n ? 0 : 1 ];
+		}
+		return Helpers\Format::join_list( $parts );
+	}
+
+	/** @param \Elementor\Element_Base $element */
+	public static function location_hero( $element ): void {
+		if ( ! get_query_var( 'explore_tab' ) || ! is_object( $element ) || ! method_exists( $element, 'set_settings' ) ) {
+			return;
+		}
+		$classes = (string) $element->get_settings( '_css_classes' );
+		if ( ! str_contains( $classes, 'ppn-h1' ) && ! str_contains( $classes, 'ppn-sub' ) ) {
+			return;
+		}
+		$copy = self::hero_copy();
+		if ( ! $copy ) {
+			return;
+		}
+		if ( str_contains( $classes, 'ppn-h1' ) ) {
+			$element->set_settings( 'title', $copy['heading'] );
+		} else {
+			$element->set_settings( 'editor', '<p>' . esc_html( $copy['intro'] ) . '</p>' );
+		}
+	}
+
+	/**
+	 * @param mixed $schema
+	 * @return mixed
+	 */
+	public static function schema_description( $schema ) {
+		if ( ! is_array( $schema ) || ! array_key_exists( 'description', $schema ) ) {
+			return $schema;
+		}
+		$description = self::description();
+		if ( '' !== $description ) {
+			$schema['description'] = $description;
+		}
+		return $schema;
 	}
 
 	/** My Listing prints its own description and social tags on region and filter pages, duplicating ThinkRank's. */
