@@ -95,6 +95,7 @@ p { margin: 0 0 1em; }
 .site-header.is-scrolled { box-shadow: 0 4px 18px rgba(0, 0, 0, .35); }
 .header-inner { display: flex; align-items: center; justify-content: space-between; min-height: var(--header-h); }
 .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--white); }
+.brand:hover, .brand:active, .brand:focus { color: var(--white); } /* stay light on the dark header */
 .brand img { width: 48px; height: auto; border-radius: 6px; }
 .brand-text { font-family: var(--font-head); font-size: 1.35rem; font-weight: 700; letter-spacing: .02em; line-height: 1.1; }
 .brand-text span { color: var(--silver); font-weight: 600; }
