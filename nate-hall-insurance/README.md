@@ -32,7 +32,7 @@ grep -rn "TODO_" --include=*.html --include=*.js .
 | `TODO_NPN` *(optional)* | NPN / license number | index.html footer (commented out; uncomment to show it) |
 | `TODO_SITE_URL` | The live site address with no trailing slash, e.g. `https://natehallinsurance.com` | `<link rel="canonical">`, Open Graph tags, and JSON-LD in index.html; canonical links in privacy.html and thanks.html |
 
-> Note: the banner image in `assets/og-image.jpg` (the preview shown when the link is shared on Facebook or in a text) already shows the phone number from Nate's banner graphic. If that isn't the number you want public, swap in a different image.
+> Link preview: `assets/og-image.jpg` (1200×630) is what shows when the site is shared on Facebook or by text. It's Nate's headshot with his name, title, and town, and it doesn't include contact info. Facebook caches previews, so after changing it, run the page URL through the [Sharing Debugger](https://developers.facebook.com/tools/debug/) and click **Scrape Again**.
 
 ## Testimonials
 
