@@ -24,8 +24,6 @@ grep -rn "TODO_" --include=*.html --include=*.js .
 
 | Token | What to put there | Where it appears |
 |---|---|---|
-| `TODO_PHONE_DISPLAY` | Phone number as people read it, e.g. `(605) 555-0100` | index.html (office box, contact section, form success message), privacy.html, thanks.html |
-| `TODO_PHONE_TEL` | Same number for `tel:` links: digits with country code, e.g. `+16055550100` | index.html (Call Now button, mobile Call button, office box, contact list, JSON-LD), privacy.html, thanks.html |
 | `TODO_EMAIL` | Email address | index.html (contact list, JSON-LD), privacy.html |
 | `TODO_HOURS` | Office hours, e.g. `Mon–Fri 9am–5pm, evenings by appointment` | index.html (office box). In the JSON-LD, use schema format such as `Mo-Fr 09:00-17:00` |
 | `TODO_BIO` | More about Nate: background, family, hobbies | index.html, About tab (a commented-out template is ready to fill in) |
@@ -33,6 +31,8 @@ grep -rn "TODO_" --include=*.html --include=*.js .
 | `TODO_SITE_URL` | The live site address with no trailing slash, e.g. `https://natehallinsurance.com` | `<link rel="canonical">`, Open Graph tags, and JSON-LD in index.html; canonical links in privacy.html and thanks.html |
 
 > Link preview: `assets/og-image.jpg` (1200×630) is what shows when the site is shared on Facebook or by text. It's Nate's headshot with his name, title, and town, and it doesn't include contact info. Facebook caches previews, so after changing it, run the page URL through the [Sharing Debugger](https://developers.facebook.com/tools/debug/) and click **Scrape Again**.
+
+**Already filled in:** phone number `605-321-5367` (`tel:+16053215367`). It's used in the Call buttons, office box, contact section, form messages, privacy and thanks pages, and the JSON-LD. To change it, search for both formats.
 
 ## Testimonials
 
