@@ -79,6 +79,14 @@
 
   if (/^#coverage-/.test(location.hash)) openCoverageCard(location.hash.slice(1), false);
 
+  // Links like the retirement callout can pre-check a product on the contact form.
+  document.querySelectorAll('[data-interest]').forEach(function (link) {
+    link.addEventListener('click', function () {
+      var box = document.querySelector('.contact-form input[name="interests"][value="' + link.getAttribute('data-interest') + '"]');
+      if (box) box.checked = true;
+    });
+  });
+
   /* ---------- FAQ accordion ---------- */
   document.querySelectorAll('.acc-trigger').forEach(function (btn) {
     btn.addEventListener('click', function () {
@@ -148,7 +156,7 @@
 
       var invalid = null;
       form.querySelectorAll('input, textarea').forEach(function (el) {
-        if (el.name === 'bot-field' || el.type === 'hidden' || el.type === 'checkbox') return;
+        if (el.name === 'bot-field' || el.type === 'hidden' || el.type === 'checkbox' || el.type === 'radio') return;
         var ok = el.checkValidity() && !(el.required && !el.value.trim());
         el.setAttribute('aria-invalid', String(!ok));
         if (!ok && !invalid) invalid = el;
