@@ -34,7 +34,7 @@
   <link rel="preload" as="image" href="assets/nate.webp" type="image/webp">
   <link rel="stylesheet" href="css/styles.css">
 
-  <!-- Structured data. TODO_EMAIL and TODO_HOURS are placeholders. -->
+  <!-- Structured data for search engines -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -45,8 +45,15 @@
     "image": "https://dashing-gumption-107aca.netlify.app/assets/nate.jpg",
     "description": "Independent insurance agency in Hartford, South Dakota offering life insurance, final expense, Medicare supplements, annuities, and cancer coverage.",
     "telephone": "+16053215367",
-    "email": "TODO_EMAIL",
-    "openingHours": "TODO_HOURS",
+    "email": "natehallinsurance@gmail.com",
+    "openingHoursSpecification": [
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+        "opens": "08:30",
+        "closes": "17:30"
+      }
+    ],
     "address": {
       "@type": "PostalAddress",
       "addressLocality": "Hartford",
@@ -189,8 +196,14 @@
             </div>
             <div class="office-item">
               <dt><svg class="icon" aria-hidden="true"><use href="#i-clock"/></svg> Hours</dt>
-              <!-- TODO_HOURS: e.g. "Mon–Fri 9am–5pm, evenings &amp; weekends by appointment" -->
-              <dd>TODO_HOURS</dd>
+              <dd>
+                <ul class="hours" role="list">
+                  <li><span>Mon–Fri</span> 8:30 AM–5:30 PM</li>
+                  <li><span>Saturday</span> By appointment</li>
+                  <li><span>Sunday</span> Closed</li>
+                </ul>
+                <p class="hours-note">Evening appointments available</p>
+              </dd>
             </div>
             <div class="office-item">
               <dt><svg class="icon" aria-hidden="true"><use href="#i-handshake"/></svg> How I Meet</dt>
@@ -441,8 +454,7 @@
           <p>Have a question or want a free quote? Fill out the form and I'll get back to you personally. Prefer to talk? Give me a call.</p>
           <ul class="contact-list" role="list">
             <li><svg class="icon" aria-hidden="true"><use href="#i-phone"/></svg> <a href="tel:+16053215367">605-321-5367</a></li>
-            <!-- TODO_EMAIL -->
-            <li><svg class="icon" aria-hidden="true"><use href="#i-mail"/></svg> <a href="mailto:TODO_EMAIL">TODO_EMAIL</a></li>
+            <li><svg class="icon" aria-hidden="true"><use href="#i-mail"/></svg> <a href="mailto:natehallinsurance@gmail.com">natehallinsurance@gmail.com</a></li>
             <li><svg class="icon" aria-hidden="true"><use href="#i-pin"/></svg> Hartford, SD 57033</li>
           </ul>
         </div>

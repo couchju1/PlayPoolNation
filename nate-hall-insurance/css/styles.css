@@ -216,9 +216,15 @@ p { margin: 0 0 1em; }
 .office-item dd { margin: 6px 0 0; font-size: 1.05rem; }
 .office-item dd a { color: var(--white); font-weight: 600; }
 .office-item dd a:hover { color: var(--gold); }
-@media (min-width: 768px) {
+@media (min-width: 600px) {
   .office-box { padding: 32px 36px; }
-  .office-grid { grid-template-columns: repeat(4, 1fr); gap: 24px; }
+  /* 2 x 2 on tablets */
+  .office-grid { grid-template-columns: 1fr 1fr; gap: 24px 32px; }
+  .office-item:nth-child(2) { border-top: 0; padding-top: 0; }
+}
+@media (min-width: 1024px) {
+  /* 4 across on desktop; the hours column gets extra room */
+  .office-grid { grid-template-columns: .9fr 1.1fr 1.45fr 1fr; gap: 24px; }
   .office-item { border-top: 0; padding-top: 0; border-left: 1px solid rgba(201, 206, 214, .18); padding-left: 20px; }
   .office-item:first-child { border-left: 0; padding-left: 0; }
 }
@@ -403,3 +409,9 @@ input[aria-invalid="true"] { border-color: #a3320b; }
 .legal ul { padding-left: 1.2em; }
 .legal li { margin-bottom: .4em; }
 .page-privacy { padding-bottom: 0; }
+
+/* Office hours list */
+.hours { list-style: none; margin: 0; padding: 0; display: grid; gap: 2px; }
+.hours li { display: flex; gap: 8px; white-space: nowrap; }
+.hours span { font-weight: 600; min-width: 5.2em; color: var(--white); }
+.hours-note { margin: 6px 0 0; font-size: .92rem; color: var(--silver); }

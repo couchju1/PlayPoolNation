@@ -24,8 +24,6 @@ grep -rn "TODO_" --include=*.html --include=*.js .
 
 | Token | What to put there | Where it appears |
 |---|---|---|
-| `TODO_EMAIL` | Email address | index.html (contact list, JSON-LD), privacy.html |
-| `TODO_HOURS` | Office hours, e.g. `Mon–Fri 9am–5pm, evenings by appointment` | index.html (office box). In the JSON-LD, use schema format such as `Mo-Fr 09:00-17:00` |
 | `TODO_BIO` | More about Nate: background, family, hobbies | index.html, About tab (a commented-out template is ready to fill in) |
 | `TODO_NPN` *(optional)* | NPN / license number | index.html footer (commented out; uncomment to show it) |
 
@@ -33,6 +31,8 @@ grep -rn "TODO_" --include=*.html --include=*.js .
 
 **Already filled in:**
 - Site address: `https://dashing-gumption-107aca.netlify.app`, used in the canonical links, Open Graph tags, and JSON-LD. If you add a custom domain later, search for `dashing-gumption` and replace it.
+- Email: `natehallinsurance@gmail.com` (contact section, privacy page, JSON-LD).
+- Hours: Mon–Fri 8:30 AM–5:30 PM, Saturday by appointment, Sunday closed, evening appointments available (office box). The JSON-LD lists only the Mon–Fri hours, because schema.org has no way to say "by appointment."
 - Phone number `605-321-5367` (`tel:+16053215367`). It's used in the Call buttons, office box, contact section, form messages, privacy and thanks pages, and the JSON-LD. To change it, search for both formats.
 
 ## Testimonials
