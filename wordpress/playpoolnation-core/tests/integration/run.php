@@ -89,7 +89,7 @@ return ( static function (): array {
 		$check( 'imported boilerplate is replaced', PlayPoolNation\Core\About::is_placeholder( '<p>X is a pool hall in Y, Z. Check the hours, call ahead, or get directions below.</p>' ) );
 		$check( 'a written description is kept', ! PlayPoolNation\Core\About::is_placeholder( '<p>Family run since 1979, with a full kitchen.</p>' ) );
 		$about = PlayPoolNation\Core\About::html( $hall );
-		$check( 'about text names the venue', str_contains( $about, 'PPN Test Hall is a' ) && ! preg_match( '/[\x{2013}\x{2014};]/u', $about ), $about );
+		$check( 'about text names the venue', str_contains( $about, 'PPN Test Hall is a' ) && ! preg_match( '/[\x{2013}\x{2014};]/u', html_entity_decode( wp_strip_all_tags( $about ), ENT_QUOTES ) ), $about );
 		$check( 'meta description from about text', str_starts_with( PlayPoolNation\Core\Seo_Meta::venue_description( $hall ), 'PPN Test Hall is a' ) );
 		$data = $hall->hours_data();
 		$check( 'hours data for the browser', isset( $data['tz'], $data['r'], $data['s'] ) && str_contains( PlayPoolNation\Core\Open_Status::attr( $hall ), 'data-ppn-hours=' ) );
