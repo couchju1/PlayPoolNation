@@ -28,7 +28,8 @@ final class About {
 
 	/** The importer's description: "<Name> is a … in …. Check the hours, call ahead, or get directions below." */
 	public static function is_placeholder( string $content ): bool {
-		$text = trim( (string) preg_replace( '/\s+/', ' ', wp_strip_all_tags( html_entity_decode( $content, ENT_QUOTES ) ) ) );
+		// Paragraphs are stored back to back ("…below.</p><p>Own…"), so tags become spaces.
+		$text = trim( (string) preg_replace( '/\s+/', ' ', wp_strip_all_tags( (string) preg_replace( '/<[^>]+>/', ' ', html_entity_decode( $content, ENT_QUOTES ) ) ) ) );
 		if ( '' === $text ) {
 			return true;
 		}

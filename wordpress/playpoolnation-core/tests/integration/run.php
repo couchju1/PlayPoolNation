@@ -87,6 +87,7 @@ return ( static function (): array {
 		/* ---------- cleanup prompts: about text, sharing, links, status, sort ---------- */
 		$hall = Venue::get( $v );
 		$check( 'imported boilerplate is replaced', PlayPoolNation\Core\About::is_placeholder( '<p>X is a pool hall in Y, Z. Check the hours, call ahead, or get directions below.</p>' ) );
+		$check( 'boilerplate stored without a gap between paragraphs', PlayPoolNation\Core\About::is_placeholder( '<p>X is a pool hall in Y, Z. Check the hours, call ahead, or get directions below.</p><p>Own or manage X? Claim this listing to add your table count and photos.</p>' ) );
 		$check( 'a written description is kept', ! PlayPoolNation\Core\About::is_placeholder( '<p>Family run since 1979, with a full kitchen.</p>' ) );
 		$about = PlayPoolNation\Core\About::html( $hall );
 		$check( 'about text names the venue', str_contains( $about, 'PPN Test Hall is a' ) && ! preg_match( '/[\x{2013}\x{2014};]/u', html_entity_decode( wp_strip_all_tags( $about ), ENT_QUOTES ) ), $about );
