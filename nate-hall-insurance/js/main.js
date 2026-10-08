@@ -82,7 +82,7 @@
   // Links like the retirement callout can pre-check a product on the contact form.
   document.querySelectorAll('[data-interest]').forEach(function (link) {
     link.addEventListener('click', function () {
-      var box = document.querySelector('.contact-form input[name="interests"][value="' + link.getAttribute('data-interest') + '"]');
+      var box = document.querySelector('.contact-form input[name="interests[]"][value="' + link.getAttribute('data-interest') + '"]');
       if (box) box.checked = true;
     });
   });
@@ -137,7 +137,7 @@
     render();
   })();
 
-  /* ---------- Contact form (Netlify Forms, submitted with fetch) ---------- */
+  /* ---------- Contact form (emailed by contact.php, submitted with fetch) ---------- */
   var form = document.querySelector('.contact-form');
   if (form) {
     var errorBox = form.querySelector('[data-form-error]');
@@ -171,19 +171,27 @@
       submitBtn.disabled = true;
       submitBtn.textContent = 'Sending…';
 
-      fetch('/', {
+      fetch(form.getAttribute('action'), {
         method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded', 'Accept': 'application/json' },
         body: new URLSearchParams(new FormData(form)).toString()
       })
         .then(function (res) {
-          if (!res.ok) throw new Error('HTTP ' + res.status);
+          // Only show "Thank you" when contact.php confirms the email was sent.
+          return res.json().catch(function () { return {}; }).then(function (data) {
+            if (!res.ok || !data.ok) throw new Error(data.message || 'HTTP ' + res.status);
+          });
+        })
+        .then(function () {
           form.hidden = true;
           success.hidden = false;
           success.focus();
         })
-        .catch(function () {
-          showError('Sorry, something went wrong sending your request. Please try again or give me a call.');
+        .catch(function (err) {
+          // Show contact.php's own message (e.g. "Please enter a valid email address.") when there is one.
+          var msg = err && err.message && !/^HTTP |JSON|fetch/i.test(err.message)
+            ? err.message : 'Sorry, something went wrong sending your request.';
+          showError(msg + ' If it keeps happening, please call me at 605-321-5367.');
         })
         .finally(function () {
           submitBtn.disabled = false;

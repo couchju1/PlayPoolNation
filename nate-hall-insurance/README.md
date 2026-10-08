@@ -7,10 +7,11 @@ nate-hall-insurance/
 ├── index.html        Main page
 ├── privacy.html      Privacy policy (linked from the footer)
 ├── thanks.html       Form confirmation page (used only if JavaScript is off)
+├── contact.php       Emails each contact form submission (needs PHP, e.g. Hostinger)
 ├── css/styles.css
 ├── js/main.js        Tabs, FAQ accordion, testimonials carousel, form submit
 ├── assets/           logo.png, nate.jpg (+ .webp), og-image.jpg, favicons
-├── netlify.toml      Netlify publish settings and headers
+├── netlify.toml      Only used if the site is ever hosted on Netlify again
 └── README.md
 ```
 
@@ -39,33 +40,39 @@ grep -rn "TODO_" --include=*.html --include=*.js .
 
 The carousel is built but hidden. To turn it on, open `js/main.js`, add real client quotes to the `TESTIMONIALS` array, and set `TESTIMONIALS_ENABLED = true`. Comments in that file explain how. Only use real reviews, with the client's permission.
 
+## How the contact form works
+
+The site is hosted on **Hostinger** at www.natehallinsurance.com. The form posts to `contact.php`, which Hostinger runs. It emails each request to **natehallinsurance@gmail.com** with the visitor's email as Reply-To, so clicking **Reply** in Gmail answers them directly. Nothing is saved on the server.
+
+- **Settings** are at the top of `contact.php`: the inbox (`$TO`), the sender address (`$FROM`, currently `no-reply@natehallinsurance.com`), and a limit of 5 submissions per visitor per hour.
+- **Spam protection:** a hidden "honeypot" field that bots fill in (those submissions are dropped silently) plus the hourly limit.
+- **Safety:** names and emails are checked, line breaks are stripped from anything that goes into an email header, and only the six known product names are accepted.
+- The page shows "Thank you!" **only** when `contact.php` confirms the email was sent. Otherwise the visitor sees an error with Nate's phone number, so a request is never silently lost.
+
+**After every upload, send a test** from the live site and confirm it reaches the Gmail inbox. If it lands in spam, mark it **Not spam** once. If test emails never arrive:
+1. In hPanel go to **Emails** and create the mailbox `no-reply@natehallinsurance.com` (or change `$FROM` in `contact.php` to an address that exists on the domain). Many servers reject mail "from" an address that doesn't exist.
+2. Make sure the domain's SPF record includes Hostinger's mail servers (hPanel → **Emails → Email configuration** shows the recommended DNS records).
+
 ## Run it locally
 
 ```bash
 cd nate-hall-insurance
-python3 -m http.server 8000
+php -S localhost:8000
 # open http://localhost:8000
 ```
 
-The contact form only submits on Netlify. Locally it will show the "something went wrong" message, which is expected.
+Using `php -S` (not a plain static server) lets the form run. Real emails only go out if your machine has a mail program set up; otherwise the form shows its "could not send" error, which is expected.
 
-## Deploy on Netlify
+## Deploy on Hostinger
 
-This site lives in the `nate-hall-insurance/` folder of the repo.
+1. In hPanel, open **Websites → natehallinsurance.com → File Manager** and go into `public_html`.
+2. Upload the **contents** of the `nate-hall-insurance` folder (index.html, privacy.html, thanks.html, contact.php, and the `css`, `js`, and `assets` folders) so `index.html` sits directly in `public_html`. Replace the old files when asked.
+3. You don't need to upload `README.md` or `netlify.toml`.
+4. Open the site and send a test from the form (see above).
 
-1. Log in at <https://app.netlify.com> and choose **Add new site → Import an existing project**.
-2. Connect GitHub and pick this repository and branch.
-3. Set **Base directory** to `nate-hall-insurance`. Leave **Build command** empty, and set **Publish directory** to `nate-hall-insurance` (or `.` relative to the base). `netlify.toml` already sets the publish directory.
-4. Click **Deploy**.
-5. **Forms:** go to **Site configuration → Forms** and enable form detection if it's off, then redeploy. Submissions to the `quote-request` form will show up there. Under **Forms → Form notifications**, add an email notification so Nate gets each request in his inbox.
-6. **Custom domain** (optional): go to **Domain management → Add a domain**. HTTPS is set up automatically.
-7. Replace `TODO_SITE_URL` with the final URL and push again.
+## Hosting elsewhere
 
-*Drag-and-drop option:* you can also drag the `nate-hall-insurance` folder onto <https://app.netlify.com/drop>. Forms still work, but you'll need to redeploy by hand after each change.
-
-## Deploy on GitHub Pages
-
-GitHub Pages serves the files as-is, but **it doesn't process Netlify Forms**. If you host there, point the form's `action` to a form service such as Formspree, then remove `data-netlify` and update the `fetch('/')` URL in `js/main.js` to match. Because the site sits in a subfolder, you'd also want to move it to its own repo (or the repo root/`docs/` folder) for Pages.
+`contact.php` needs a host that runs PHP and can send mail, which Hostinger shared hosting does. Netlify and GitHub Pages don't run PHP; on those hosts you'd switch the form to Netlify Forms or a service like Formspree.
 
 ## Notes
 

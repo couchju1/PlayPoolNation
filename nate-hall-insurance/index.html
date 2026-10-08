@@ -510,9 +510,8 @@
           </ul>
         </div>
 
-        <form class="contact-form" name="quote-request" method="POST" action="/thanks.html"
-              data-netlify="true" netlify-honeypot="bot-field" novalidate>
-          <input type="hidden" name="form-name" value="quote-request">
+        <!-- Submissions are emailed by contact.php (runs on Hostinger). -->
+        <form class="contact-form" name="quote-request" method="POST" action="contact.php" novalidate>
           <p class="visually-hidden" aria-hidden="true">
             <label>Leave this field empty: <input name="bot-field" tabindex="-1" autocomplete="off"></label>
           </p>
@@ -548,12 +547,12 @@
 
           <fieldset class="field checks">
             <legend>What are you interested in? <span class="hint">(choose any)</span></legend>
-            <label class="check"><input type="checkbox" name="interests" value="Life insurance"> Life insurance</label>
-            <label class="check"><input type="checkbox" name="interests" value="Annuities &amp; retirement"> Annuities &amp; retirement</label>
-            <label class="check"><input type="checkbox" name="interests" value="Medicare"> Medicare</label>
-            <label class="check"><input type="checkbox" name="interests" value="Health insurance"> Health insurance</label>
-            <label class="check"><input type="checkbox" name="interests" value="Cancer &amp; critical illness"> Cancer &amp; critical illness</label>
-            <label class="check"><input type="checkbox" name="interests" value="Long-term care"> Long-term care</label>
+            <label class="check"><input type="checkbox" name="interests[]" value="Life insurance"> Life insurance</label>
+            <label class="check"><input type="checkbox" name="interests[]" value="Annuities &amp; retirement"> Annuities &amp; retirement</label>
+            <label class="check"><input type="checkbox" name="interests[]" value="Medicare"> Medicare</label>
+            <label class="check"><input type="checkbox" name="interests[]" value="Health insurance"> Health insurance</label>
+            <label class="check"><input type="checkbox" name="interests[]" value="Cancer &amp; critical illness"> Cancer &amp; critical illness</label>
+            <label class="check"><input type="checkbox" name="interests[]" value="Long-term care"> Long-term care</label>
           </fieldset>
 
           <fieldset class="field checks">
