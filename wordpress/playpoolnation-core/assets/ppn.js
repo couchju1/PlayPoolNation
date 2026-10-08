@@ -255,51 +255,6 @@
 		}
 	}
 
-	/* First-visit welcome: shown once, remembered for 30 days. */
-	var welcome = document.querySelector( '[data-ppn-welcome]' );
-	if ( welcome && document.cookie.indexOf( 'ppn_welcome=1' ) === -1 ) {
-		var lastFocus = null;
-		var remember = function () {
-			document.cookie = 'ppn_welcome=1; max-age=' + ( 30 * 24 * 3600 ) + '; path=/; SameSite=Lax' + ( location.protocol === 'https:' ? '; Secure' : '' );
-		};
-		var closeWelcome = function () {
-			remember();
-			welcome.hidden = true;
-			document.documentElement.classList.remove( 'ppn-welcome-open' );
-			document.removeEventListener( 'keydown', onKey );
-			if ( lastFocus && lastFocus.focus ) {
-				lastFocus.focus();
-			}
-		};
-		var onKey = function ( e ) {
-			if ( e.key === 'Escape' ) {
-				closeWelcome();
-				return;
-			}
-			if ( e.key === 'Tab' ) {
-				// Keep keyboard focus inside the dialog while it is open.
-				var f = welcome.querySelectorAll( 'a[href], button' );
-				var first = f[0], last = f[ f.length - 1 ];
-				if ( e.shiftKey && document.activeElement === first ) { e.preventDefault(); last.focus(); }
-				else if ( ! e.shiftKey && document.activeElement === last ) { e.preventDefault(); first.focus(); }
-			}
-		};
-		welcome.querySelectorAll( '[data-ppn-welcome-close]' ).forEach( function ( el ) {
-			el.addEventListener( 'click', closeWelcome );
-		} );
-		welcome.querySelectorAll( '[data-ppn-welcome-go]' ).forEach( function ( el ) {
-			el.addEventListener( 'click', remember );
-		} );
-		setTimeout( function () {
-			lastFocus = document.activeElement;
-			welcome.hidden = false;
-			document.documentElement.classList.add( 'ppn-welcome-open' );
-			document.addEventListener( 'keydown', onKey );
-			var go = welcome.querySelector( '[data-ppn-welcome-go]' );
-			if ( go ) { go.focus(); }
-		}, 1200 );
-	}
-
 	/* Keep every open/closed status current; the HTML may have been cached days ago. */
 	( function () {
 		var mapEl = document.getElementById( 'ppn-hours-map' );
@@ -447,6 +402,78 @@
 			} ).observe( document.body, { childList: true, subtree: true } );
 		}
 	}() );
+
+	/* Sign-in prompt: only when a signed-out visitor tries to save a place or write a review. */
+	var signin = document.querySelector( '[data-ppn-signin]' );
+	if ( signin && ! document.body.classList.contains( 'logged-in' ) ) {
+		var TRIGGERS = { save: '.c27-bookmark-button, .mylisting-bookmark-item', review: '.show-review-form' };
+		var opener = null;
+		var title = signin.querySelector( '#ppn-signin-title' );
+		var text = signin.querySelector( '#ppn-signin-text' );
+		var withReturn = function ( href ) {
+			var url = new URL( href, location.href );
+			url.searchParams.set( 'redirect_to', location.href.split( '#' )[ 0 ] );
+			return url.toString();
+		};
+		signin.querySelectorAll( '[data-ppn-signin-go]' ).forEach( function ( a ) {
+			a.href = withReturn( a.getAttribute( 'href' ) );
+		} );
+		var focusable = function () {
+			return signin.querySelectorAll( 'a[href], button' );
+		};
+		var onKey = function ( e ) {
+			if ( e.key === 'Escape' ) {
+				closeSignin();
+				return;
+			}
+			if ( e.key === 'Tab' ) {
+				var f = focusable();
+				var first = f[ 0 ], last = f[ f.length - 1 ];
+				if ( e.shiftKey && document.activeElement === first ) {
+					e.preventDefault();
+					last.focus();
+				} else if ( ! e.shiftKey && document.activeElement === last ) {
+					e.preventDefault();
+					first.focus();
+				} else if ( ! signin.contains( document.activeElement ) ) {
+					e.preventDefault();
+					first.focus();
+				}
+			}
+		};
+		var closeSignin = function () {
+			signin.hidden = true;
+			document.removeEventListener( 'keydown', onKey );
+			if ( opener && opener.focus ) {
+				opener.focus();
+			}
+			opener = null;
+		};
+		var openSignin = function ( reason, trigger ) {
+			opener = trigger;
+			title.textContent = signin.getAttribute( 'data-' + reason + '-title' );
+			text.textContent = signin.getAttribute( 'data-' + reason + '-text' );
+			signin.hidden = false;
+			document.addEventListener( 'keydown', onKey );
+			var go = signin.querySelector( '[data-ppn-signin-go]' );
+			if ( go ) {
+				go.focus();
+			}
+		};
+		signin.querySelectorAll( '[data-ppn-signin-close]' ).forEach( function ( el ) {
+			el.addEventListener( 'click', closeSignin );
+		} );
+		// Capture phase, so the theme's own save and review handlers never run for guests.
+		document.addEventListener( 'click', function ( e ) {
+			var trigger = e.target.closest && e.target.closest( TRIGGERS.save + ', ' + TRIGGERS.review );
+			if ( ! trigger ) {
+				return;
+			}
+			e.preventDefault();
+			e.stopPropagation();
+			openSignin( trigger.matches( TRIGGERS.review ) ? 'review' : 'save', trigger );
+		}, true );
+	}
 
 	/* Open the suggest-an-edit panel when linked to directly. */
 	if ( location.hash === '#suggest-edit' ) {
