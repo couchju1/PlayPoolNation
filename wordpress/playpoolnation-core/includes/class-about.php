@@ -96,7 +96,8 @@ final class About {
 
 	/** Meta description: the About text's opening sentences, then what the page offers. */
 	public static function summary( Venue $v ): string {
-		$sentences = About_Text::build( self::facts( $v ) )['sentences'];
+		// Tables and brands say more in a search result than opening hours do.
+		$sentences = About_Text::build( array_diff_key( self::facts( $v ), [ 'hours' => 1, 'status' => 1 ] ) )['sentences'];
 		$text = (string) array_shift( $sentences );
 		foreach ( $sentences as $s ) {
 			if ( str_starts_with( $s, 'We don' ) || mb_strlen( $text . ' ' . $s ) > self::META_LIMIT - 10 ) {

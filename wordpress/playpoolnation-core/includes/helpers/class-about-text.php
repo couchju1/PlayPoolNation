@@ -137,7 +137,10 @@ final class About_Text {
 		if ( $latest >= 1440 ) {
 			$time = 1440 === $latest ? 'midnight' : Format::clock( $latest - 1440 );
 			$late = array_keys( array_filter( $close, static fn( $c ) => $c === $latest ) );
-			if ( count( $late ) < count( $close ) ) {
+			$early = array_values( array_diff( array_keys( $close ), $late ) );
+			if ( 1 === count( $early ) && count( $late ) >= 4 ) {
+				$out[] = sprintf( 'It stays open until %s every night except %s.', $time, self::DAY_PLURALS[ $early[0] ] );
+			} elseif ( count( $late ) < count( $close ) ) {
 				$out[] = sprintf( 'It stays open until %s on %s.', $time, self::and_list( array_map( static fn( $d ) => self::DAY_PLURALS[ $d ], $late ) ) );
 			} elseif ( $closed ) {
 				$out[] = sprintf( 'The other nights it stays open until %s.', $time );

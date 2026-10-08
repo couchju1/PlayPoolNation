@@ -71,6 +71,9 @@ final class AboutTextTest extends TestCase {
 		$week = [ $day( 1, 960, 1440 ), $day( 2, 960, 1440 ), $day( 3, 960, 1440 ), $day( 4, 960, 1560 ), $day( 5, 960, 1560 ), $day( 6, 960, 1440 ) ];
 		$this->assertSame( [ "It's closed on Mondays.", 'It stays open until 2 AM on Fridays and Saturdays.' ], About_Text::hours( [ 'hours' => $week ] ) );
 
+		$most = array_merge( array_map( static fn( $d ) => $day( $d, 660, 1440 ), range( 0, 5 ) ), [ $day( 6, 660, 1320 ) ] );
+		$this->assertSame( [ "It's open every day.", 'It stays open until midnight every night except Sundays.' ], About_Text::hours( [ 'hours' => $most ] ) );
+
 		$daily = array_map( static fn( $d ) => $day( $d, 840, 1560 ), range( 0, 6 ) );
 		$this->assertSame( [ "It's open every day until 2 AM." ], About_Text::hours( [ 'hours' => $daily ] ) );
 
