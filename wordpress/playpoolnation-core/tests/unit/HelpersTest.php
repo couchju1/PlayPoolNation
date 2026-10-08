@@ -113,6 +113,14 @@ final class HelpersTest extends TestCase {
 		$this->assertSame( 'Opens Tue 4 PM', Format::open_status( $tue_only, $mon )['label'] );
 	}
 
+	public function test_phone_and_directions_links(): void {
+		$this->assertSame( '+16052712951', Format::e164( '(605) 271-2951' ) );
+		$this->assertSame( '+16052712951', Format::e164( '1-605-271-2951' ) );
+		$this->assertSame( '+442071234567', Format::e164( '+44 20 7123 4567' ) );
+		$this->assertSame( '', Format::e164( 'call us' ) );
+		$this->assertSame( 'https://www.google.com/maps/dir/?api=1&destination=309%20S%20Bahnson%20Ave%2C%20Sioux%20Falls%2C%20SD%2057103', Format::directions_url( '309 S Bahnson Ave, Sioux Falls, SD 57103' ) );
+	}
+
 	/** The same cases run against ppnOpenStatus in tests/js/open-status.test.js. */
 	public function test_open_status_fixtures(): void {
 		$cases = json_decode( (string) file_get_contents( __DIR__ . '/../fixtures/open-status.json' ), true );

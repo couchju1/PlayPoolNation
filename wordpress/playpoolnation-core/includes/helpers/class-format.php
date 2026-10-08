@@ -86,6 +86,24 @@ final class Format {
 		return '$' . ( floor( $amount ) == $amount ? number_format( $amount, 0 ) : number_format( $amount, 2 ) );
 	}
 
+	/** "(605) 271-2951" to "+16052712951" for tel: links (US numbers); '' when it is not a phone number. */
+	public static function e164( string $phone ): string {
+		$plus = str_starts_with( trim( $phone ), '+' );
+		$digits = (string) preg_replace( '/\D+/', '', $phone );
+		if ( 10 === strlen( $digits ) && ! $plus ) {
+			return '+1' . $digits;
+		}
+		if ( 11 === strlen( $digits ) && '1' === $digits[0] ) {
+			return '+' . $digits;
+		}
+		return ( $plus && strlen( $digits ) >= 8 ) ? '+' . $digits : '';
+	}
+
+	/** Google Maps directions to an address (works in the app and the browser). */
+	public static function directions_url( string $destination ): string {
+		return 'https://www.google.com/maps/dir/?api=1&destination=' . rawurlencode( trim( $destination ) );
+	}
+
 	/** Minutes since midnight to "1 AM", "11:30 PM", "Midnight", "Noon". */
 	public static function clock( int $minutes ): string {
 		$minutes = ( ( $minutes % 1440 ) + 1440 ) % 1440;
