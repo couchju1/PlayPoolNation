@@ -61,6 +61,7 @@ require_once PPN_CORE_DIR . '/includes/class-importer.php';
 require_once PPN_CORE_DIR . '/includes/class-listing-config.php';
 require_once PPN_CORE_DIR . '/includes/class-pages.php';
 require_once PPN_CORE_DIR . '/includes/class-performance.php';
+require_once PPN_CORE_DIR . '/includes/class-cleanup.php';
 require_once PPN_CORE_DIR . '/includes/class-install.php';
 
 PlayPoolNation\Core\Install::boot();
@@ -87,3 +88,4 @@ PlayPoolNation\Core\Moderation::boot();
 PlayPoolNation\Core\Claims::boot();
 PlayPoolNation\Core\Importer::boot();
 PlayPoolNation\Core\Performance::boot();
+PlayPoolNation\Core\Cleanup::boot();
