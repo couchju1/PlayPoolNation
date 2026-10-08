@@ -4,8 +4,8 @@
  * blocks), discovery helpers, and assets.
  *
  * Sections render nothing visible when there is no real data. They emit an empty
- * marker and the stylesheet hides the surrounding My Listing block, so pages never
- * show "No information available".
+ * marker, and Listing_Page removes the surrounding My Listing block (title included),
+ * so pages never show "No information available".
  *
  * @package PlayPoolNation\Core
  */
@@ -276,6 +276,9 @@ final class Display {
 				. ( $when ? '<span class="ppn-row-when">' . esc_html( $when ) . '</span>' : '' )
 				. ( $meta ? '<span class="ppn-row-meta">' . esc_html( implode( ', ', $meta ) ) . '</span>' : '' )
 				. '</li>';
+		}
+		if ( ! $rows && Venue::is_venue( $v->id() ) ) {
+			return self::section( 'ppn-leagues', '<p class="ppn-tell-us">Know the league night here? <a href="#suggest-edit" data-ppn-suggest="league">Tell us</a></p>' );
 		}
 		return self::section( 'ppn-leagues', $rows ? '<ul class="ppn-rows">' . $rows . '</ul>' : '' );
 	}

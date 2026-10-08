@@ -475,6 +475,23 @@
 		}, true );
 	}
 
+	/* "Tell us" links open Suggest an edit with the right reason chosen. */
+	document.addEventListener( 'click', function ( e ) {
+		var link = e.target.closest && e.target.closest( '[data-ppn-suggest]' );
+		var panel = link && document.getElementById( 'suggest-edit' );
+		if ( ! panel ) {
+			return;
+		}
+		e.preventDefault();
+		panel.open = true;
+		var reason = panel.querySelector( 'select[name="reason"]' );
+		if ( reason ) {
+			reason.value = link.getAttribute( 'data-ppn-suggest' );
+		}
+		panel.scrollIntoView( { behavior: 'smooth', block: 'start' } );
+		( reason || panel.querySelector( 'summary' ) ).focus( { preventScroll: true } );
+	} );
+
 	/* Open the suggest-an-edit panel when linked to directly. */
 	if ( location.hash === '#suggest-edit' ) {
 		var panel = document.getElementById( 'suggest-edit' );

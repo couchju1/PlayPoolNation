@@ -13,8 +13,10 @@
 	--ppn-radius: 10px;
 }
 
-/* Sections with no real data hide their whole My Listing block. */
+/* Sections with no real data: removed server-side; this covers a page served before that runs. */
 div:has(> .element.content-block .ppn-empty) { display: none !important; }
+.ppn-tell-us { margin: 0; color: var(--ppn-muted); font-size: 15px; }
+.ppn-tell-us a { font-weight: 700; color: var(--ppn-accent); }
 .ppn-block-summary .pf-head { display: none; }
 .ppn-block-summary .element.content-block { padding-top: 18px; padding-bottom: 18px; }
 

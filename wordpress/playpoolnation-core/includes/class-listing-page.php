@@ -18,7 +18,20 @@ final class Listing_Page {
 	public static function markup(): void {
 		if ( is_singular( Pool_Schema::POST_TYPE ) ) {
 			Markup::add( [ __CLASS__, 'single_heading' ] );
+			Markup::add( [ __CLASS__, 'drop_empty_blocks' ] );
 		}
+	}
+
+	/**
+	 * Page blocks whose shortcode found nothing (Display::EMPTY) are removed with their
+	 * title, so pages never show a heading with nothing under it.
+	 */
+	public static function drop_empty_blocks( string $html ): string {
+		return (string) preg_replace(
+			'#<div class="[^"]*\bblock-type-raw\b[^"]*" id="[^"]*">\s*<div class="element content-block">\s*<div class="pf-head">\s*<div class="title-style-1">(?:(?!</div>).)*</div>\s*</div>\s*<div class="pf-body">\s*' . preg_quote( Display::EMPTY, '#' ) . '\s*</div>\s*</div>\s*</div>#s',
+			'',
+			$html
+		);
 	}
 
 	/**
