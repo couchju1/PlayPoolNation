@@ -36,6 +36,24 @@ div:has(> .element.content-block .ppn-empty) { display: none !important; }
 .main-info-desktop .profile-name p.profile-tagline.ppn-title-copy { position: relative; top: -2px; overflow: hidden; text-overflow: ellipsis; font: 400 15px/22px Archivo, sans-serif; }
 .user-profile-cover .listing-main-info .profile-name p.ppn-title-copy { color: #242429 !important; }
 
+/* Listing cards without a real photo (the theme falls back to the branded default cover):
+   no empty image area, the status badge sits on the name line. Detected from the cover
+   URL so cards loaded later by Load more or map search get it too. */
+.lf-item-container:has(.lf-background[style*="/ppn-brand/listing-default-cover"]) .lf-item { height: auto; }
+.lf-item-container:has(.lf-background[style*="/ppn-brand/listing-default-cover"]) .lf-background,
+.lf-item-container:has(.lf-background[style*="/ppn-brand/listing-default-cover"]) .overlay { display: none !important; }
+.lf-item-container:has(.lf-background[style*="/ppn-brand/listing-default-cover"]) .lf-item-info-2 { position: static; transform: none !important; padding: 16px 16px 4px; }
+.lf-item-container:has(.lf-background[style*="/ppn-brand/listing-default-cover"]) .lf-item-info-2 h4 { padding-right: 84px; white-space: normal; }
+.lf-item-container:has(.lf-background[style*="/ppn-brand/listing-default-cover"]) .lf-head { top: 14px; right: 14px; bottom: auto; left: auto; }
+.lf-item-container:has(.lf-background[style*="/ppn-brand/listing-default-cover"]) .lf-head-btn { background: #fff; border: 1px solid var(--ppn-line); color: var(--ppn-muted); font-size: 12px; }
+.lf-item-container:has(.lf-background[style*="/ppn-brand/listing-default-cover"]) .lf-head-btn.listing-status-open { color: #1E8A55; border-color: #1E8A55; }
+.lf-item-container:has(.lf-background[style*="/ppn-brand/listing-default-cover"]) .lf-head-btn.listing-status-closed { color: #B3412F; border-color: #B3412F; }
+@media (max-width: 767px) {
+	/* Card footer controls: at least 44px to tap. */
+	.lf-item-container .listing-details .c27-listing-preview-category-list a,
+	.lf-item-container .listing-details .ld-info a { display: inline-flex; align-items: center; justify-content: center; min-width: 44px; min-height: 44px; }
+}
+
 /* Key facts strip */
 .ppn-facts { display: flex; flex-wrap: wrap; gap: 8px; list-style: none; margin: 0; padding: 0; }
 .ppn-fact { display: inline-flex; align-items: center; gap: 6px; padding: 7px 12px; border: 1px solid var(--ppn-line); border-radius: 999px; background: #fff; font: 600 14px/1.2 Figtree, sans-serif; color: var(--ppn-ink); }

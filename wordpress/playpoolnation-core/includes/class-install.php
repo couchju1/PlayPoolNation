@@ -52,6 +52,7 @@ final class Install {
 			'2026_10_17_sign_in_pages'    => [ __CLASS__, 'm_sign_in_pages' ],
 			'2026_10_18_promotions'       => [ __CLASS__, 'm_promotions' ],
 			'2026_10_19_legal_pages'      => [ __CLASS__, 'm_legal_pages' ],
+			'2026_10_20_explore_sort'     => [ __CLASS__, 'm_explore_sort' ],
 		];
 	}
 
@@ -541,6 +542,19 @@ final class Install {
 	 * The published Terms, Privacy and Refund pages: footer links, the checkout terms
 	 * page, the site privacy page, and the old placeholder pages retired with redirects.
 	 */
+	/** Completeness scores first (the new default sort skips venues without one), then the sort options. */
+	public static function m_explore_sort(): string {
+		$scored = Explore_Sort::refresh_all();
+		$venue = Listing_Config::type_id( Pool_Schema::VENUE_TYPE );
+		if ( ! $venue ) {
+			return 'venue type not found';
+		}
+		$search = Listing_Config::get( $venue, 'search' );
+		$search['order'] = [ 'options' => Explore_Sort::options(), 'default' => Explore_Sort::DEFAULT_KEY ];
+		Listing_Config::set( $venue, 'search', $search );
+		return sprintf( '%d venues scored', $scored );
+	}
+
 	public static function m_legal_pages(): string {
 		$terms = get_page_by_path( 'terms-of-service' );
 		$privacy = get_page_by_path( 'privacy-policy' );

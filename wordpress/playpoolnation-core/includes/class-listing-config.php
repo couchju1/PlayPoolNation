@@ -208,6 +208,7 @@ final class Listing_Config {
 		);
 		$search['basic']['facets'] = [ self::facet( 'location', 'Where do you want to play?' ), self::facet( 'wp-search', 'Venue name (optional)' ) ];
 		$search['explore_tabs'] = [ [ 'type' => 'search-form', 'label' => 'Filters', 'icon' => 'mi filter_list', 'orderby' => '', 'order' => '', 'hide_empty' => false ] ];
+		$search['order'] = [ 'options' => Explore_Sort::options(), 'default' => Explore_Sort::DEFAULT_KEY ];
 		return $search;
 	}
 
