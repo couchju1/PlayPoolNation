@@ -21,6 +21,12 @@ final class Format {
 
 	private const DAYS = [ 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun' ];
 
+	/** Listing statuses that override the weekly hours. */
+	public const CLOSED_STATUSES = [
+		'temporarily-closed' => 'Temporarily closed',
+		'permanently-closed' => 'Permanently closed',
+	];
+
 	public static function slugify( string $text ): string {
 		$text = html_entity_decode( $text, ENT_QUOTES );
 		if ( function_exists( 'iconv' ) ) {
@@ -114,6 +120,20 @@ final class Format {
 			$h = 0;
 		}
 		return $h * 60 + $min;
+	}
+
+	/**
+	 * Open/closed summary for a listing: a temporary or permanent closure wins over the hours.
+	 * assets/ppn.js (ppnOpenStatus) mirrors this; tests/fixtures/open-status.json covers both.
+	 *
+	 * @param array<int,array{0:int,1:int}> $ranges
+	 * @return array{state:string,label:string}
+	 */
+	public static function listing_open_status( array $ranges, string $status, \DateTimeImmutable $now ): array {
+		if ( isset( self::CLOSED_STATUSES[ $status ] ) ) {
+			return [ 'state' => 'closed', 'label' => self::CLOSED_STATUSES[ $status ] ];
+		}
+		return self::open_status( $ranges, $now );
 	}
 
 	/**

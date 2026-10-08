@@ -112,6 +112,15 @@ final class HelpersTest extends TestCase {
 		$this->assertSame( 'Opens Tue 4 PM', Format::open_status( $tue_only, $mon )['label'] );
 	}
 
+	/** The same cases run against ppnOpenStatus in tests/js/open-status.test.js. */
+	public function test_open_status_fixtures(): void {
+		$cases = json_decode( (string) file_get_contents( __DIR__ . '/../fixtures/open-status.json' ), true );
+		foreach ( $cases as $c ) {
+			$now = ( new DateTimeImmutable( $c['now'] ) )->setTimezone( new DateTimeZone( $c['tz'] ) );
+			$this->assertSame( [ 'state' => $c['state'], 'label' => $c['label'] ], Format::listing_open_status( $c['r'], $c['s'], $now ), $c['name'] );
+		}
+	}
+
 	/* --------------------------------------------------------- dedupe */
 
 	public function test_external_id_is_decisive(): void {

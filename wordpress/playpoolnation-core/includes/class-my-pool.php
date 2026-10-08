@@ -398,7 +398,7 @@ final class My_Pool {
 			. ( Promotions::is_promoted( $v->id() ) ? ' <span class="ppn-saved ppn-promo-tag">Featured</span>' : '' )
 			. '<span class="ppn-row-meta">' . esc_html( implode( ' · ', $meta ) ) . '</span></div>';
 		if ( $open['label'] ) {
-			$h .= '<span class="ppn-fact ppn-fact--' . esc_attr( $open['state'] ) . '">' . esc_html( $open['label'] ) . '</span>';
+			$h .= '<span class="ppn-fact ppn-fact--' . esc_attr( $open['state'] ) . '"' . Open_Status::attr( $v ) . '>' . esc_html( $open['label'] ) . '</span>';
 		}
 		if ( $removable ) {
 			$h .= '<form method="post" action="' . esc_url( admin_url( 'admin-post.php' ) ) . '" class="ppn-unsave">'

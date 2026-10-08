@@ -1,6 +1,118 @@
-/* PlayPoolNation Core front-end: form tokens and "Near me". No dependencies. */
+/* PlayPoolNation Core front-end: form tokens, open/closed status and "Near me". No dependencies. */
 ( function () {
 	'use strict';
+
+	/* Open/closed status. Mirrors Format::listing_open_status() in PHP; tests/fixtures/open-status.json covers both. */
+	var WEEK = 10080;
+	var DAYS = [ 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun' ];
+	var CLOSED_STATUSES = { 'temporarily-closed': 'Temporarily closed', 'permanently-closed': 'Permanently closed' };
+
+	function clock( minutes ) {
+		minutes = ( ( minutes % 1440 ) + 1440 ) % 1440;
+		if ( minutes === 0 ) {
+			return 'Midnight';
+		}
+		if ( minutes === 720 ) {
+			return 'Noon';
+		}
+		var h = Math.floor( minutes / 60 );
+		var m = minutes % 60;
+		var h12 = h % 12 || 12;
+		return h12 + ( m ? ':' + ( m < 10 ? '0' : '' ) + m : '' ) + ' ' + ( h >= 12 ? 'PM' : 'AM' );
+	}
+
+	/* Minutes since Monday 00:00 in the venue's timezone, never the visitor's. */
+	function weekMinute( tz, now ) {
+		var parts = {};
+		new Intl.DateTimeFormat( 'en-US', { timeZone: tz, weekday: 'short', hour: '2-digit', minute: '2-digit', hourCycle: 'h23' } )
+			.formatToParts( now )
+			.forEach( function ( p ) { parts[ p.type ] = p.value; } );
+		return DAYS.indexOf( parts.weekday ) * 1440 + ( parseInt( parts.hour, 10 ) % 24 ) * 60 + parseInt( parts.minute, 10 );
+	}
+
+	function normalize( ranges ) {
+		var norm = [];
+		for ( var i = 0; i < ranges.length; i++ ) {
+			var s = ranges[ i ][ 0 ], e = ranges[ i ][ 1 ];
+			if ( e <= s ) {
+				continue;
+			}
+			if ( e - s >= WEEK ) {
+				return null;
+			}
+			norm.push( [ s, e ] );
+		}
+		return norm.sort( function ( a, b ) { return a[ 0 ] - b[ 0 ]; } );
+	}
+
+	function ppnOpenStatus( data, now ) {
+		if ( CLOSED_STATUSES[ data.s ] ) {
+			return { state: 'closed', label: CLOSED_STATUSES[ data.s ] };
+		}
+		var ranges = data.r || [];
+		if ( ! ranges.length ) {
+			return { state: 'unknown', label: '' };
+		}
+		var minute = weekMinute( data.tz, now );
+		var norm = normalize( ranges );
+		if ( norm === null ) {
+			return { state: 'open', label: 'Open 24 hours' };
+		}
+		if ( ! norm.length ) {
+			return { state: 'unknown', label: '' };
+		}
+		var total = norm.reduce( function ( sum, r ) { return sum + r[ 1 ] - r[ 0 ]; }, 0 );
+		if ( total >= WEEK - 1 ) {
+			return { state: 'open', label: 'Open 24 hours' };
+		}
+
+		var shifts = [ 0, WEEK, -WEEK ];
+		for ( var i = 0; i < norm.length; i++ ) {
+			for ( var k = 0; k < shifts.length; k++ ) {
+				if ( minute >= norm[ i ][ 0 ] + shifts[ k ] && minute < norm[ i ][ 1 ] + shifts[ k ] ) {
+					var close = norm[ i ][ 1 ];
+					for ( var j = 0; j < norm.length; j++ ) {
+						if ( norm[ j ][ 0 ] === close % WEEK && norm[ j ][ 1 ] > norm[ j ][ 0 ] ) {
+							close += norm[ j ][ 1 ] - norm[ j ][ 0 ];
+						}
+					}
+					return { state: 'open', label: 'Open until ' + clock( close % 1440 ) };
+				}
+			}
+		}
+
+		var best = null;
+		norm.forEach( function ( r ) {
+			var delta = ( r[ 0 ] - minute + WEEK ) % WEEK;
+			if ( best === null || delta < best[ 0 ] ) {
+				best = [ delta, r[ 0 ] ];
+			}
+		} );
+		var openDay = Math.floor( ( best[ 1 ] % WEEK ) / 1440 );
+		var time = clock( best[ 1 ] % 1440 );
+		var today = Math.floor( minute / 1440 );
+		return { state: 'closed', label: ( openDay === today && best[ 0 ] < 1440 ) ? 'Opens ' + time : 'Opens ' + DAYS[ openDay ] + ' ' + time };
+	}
+
+	/* "Open hours today: 2 PM - 2 AM" for the venue's current day. */
+	function todaysHours( data, now ) {
+		var today = Math.floor( weekMinute( data.tz, now ) / 1440 );
+		var spans = ( data.r || [] ).filter( function ( r ) { return Math.floor( r[ 0 ] / 1440 ) === today && r[ 1 ] > r[ 0 ]; } );
+		if ( ! spans.length ) {
+			return ( data.r || [] ).length ? 'Closed today' : '';
+		}
+		return 'Open hours today: ' + spans.map( function ( r ) {
+			return r[ 1 ] - r[ 0 ] >= 1440 ? 'Open 24h' : clock( r[ 0 ] ) + ' - ' + clock( r[ 1 ] );
+		} ).join( ', ' );
+	}
+
+	if ( typeof module !== 'undefined' && module.exports ) {
+		module.exports = { ppnOpenStatus: ppnOpenStatus, todaysHours: todaysHours };
+	}
+	if ( typeof document === 'undefined' ) {
+		return;
+	}
+
 	var cfg = window.ppnCore || {};
 
 	/* Signed form tokens: pages are cached, so fetch a fresh token when a form is used. */
@@ -187,6 +299,154 @@
 			if ( go ) { go.focus(); }
 		}, 1200 );
 	}
+
+	/* Keep every open/closed status current; the HTML may have been cached days ago. */
+	( function () {
+		var mapEl = document.getElementById( 'ppn-hours-map' );
+		var hours = {};
+		var requested = {};
+		var timer;
+		try {
+			hours = mapEl ? JSON.parse( mapEl.textContent ) || {} : {};
+		} catch ( e ) {
+			hours = {};
+		}
+
+		function parse( el ) {
+			try {
+				return JSON.parse( el.getAttribute( 'data-ppn-hours' ) );
+			} catch ( e ) {
+				return null;
+			}
+		}
+
+		function statusFor( data ) {
+			try {
+				return ppnOpenStatus( data, new Date() );
+			} catch ( e ) {
+				return null;
+			}
+		}
+
+		function setState( el, prefix, state ) {
+			[ 'open', 'closed', 'unknown' ].forEach( function ( s ) { el.classList.remove( prefix + s ); } );
+			el.classList.add( prefix + state );
+		}
+
+		function updateChips() {
+			document.querySelectorAll( '.ppn-fact[data-ppn-hours]' ).forEach( function ( el ) {
+				var data = parse( el );
+				var st = data && statusFor( data );
+				if ( st && st.label ) {
+					setState( el, 'ppn-fact--', st.state );
+					el.textContent = st.label;
+				}
+			} );
+		}
+
+		function updateHoursBlock() {
+			document.querySelectorAll( '.open-now[data-ppn-hours]' ).forEach( function ( block ) {
+				var data = parse( block );
+				var st = data && statusFor( data );
+				if ( ! st || ! st.label ) {
+					return;
+				}
+				var status = block.querySelector( '.work-hours-status' );
+				if ( status ) {
+					status.className = st.state + ' work-hours-status';
+					status.textContent = st.label;
+				}
+				var today = block.querySelector( '.timing-today' );
+				var text = todaysHours( data, new Date() );
+				if ( today && text ) {
+					var line = today.querySelector( '.ppn-today' );
+					if ( ! line ) {
+						line = document.createElement( 'span' );
+						line.className = 'ppn-today';
+						while ( today.firstChild && ! ( today.firstChild.classList && today.firstChild.classList.contains( 'tooltip-element' ) ) ) {
+							today.removeChild( today.firstChild );
+						}
+						today.insertBefore( line, today.firstChild );
+					}
+					line.textContent = text;
+				}
+				var local = block.querySelector( '[data-ppn-local-time]' );
+				if ( local ) {
+					try {
+						local.querySelector( 'em' ).textContent = new Intl.DateTimeFormat( 'en-US', { timeZone: data.tz, weekday: 'long', month: 'long', day: 'numeric', hour: 'numeric', minute: '2-digit' } ).format( new Date() ) + ' local time';
+						local.hidden = false;
+					} catch ( e ) {
+						local.hidden = true;
+					}
+				}
+			} );
+		}
+
+		function cardId( card ) {
+			var m = /^listing-id-(\d+)$/.exec( card.getAttribute( 'data-id' ) || '' );
+			return m ? m[ 1 ] : '';
+		}
+
+		function updateCards() {
+			var missing = [];
+			document.querySelectorAll( '.lf-item-container[data-id]' ).forEach( function ( card ) {
+				var badge = card.querySelector( '.lf-head-btn.open-status' );
+				var id = cardId( card );
+				if ( ! badge || ! id ) {
+					return;
+				}
+				if ( ! hours[ id ] ) {
+					if ( ! requested[ id ] ) {
+						missing.push( id );
+					}
+					return;
+				}
+				var st = statusFor( hours[ id ] );
+				if ( ! st || st.state === 'unknown' ) {
+					return;
+				}
+				[ 'open', 'closed', 'closing', 'opening', 'open-all-day', 'not-available' ].forEach( function ( s ) { badge.classList.remove( 'listing-status-' + s ); } );
+				badge.classList.add( 'listing-status-' + st.state );
+				badge.textContent = st.state === 'open' ? 'OPEN' : 'CLOSED';
+				badge.title = st.label;
+			} );
+			if ( missing.length && cfg.hoursUrl && window.fetch ) {
+				missing.forEach( function ( id ) { requested[ id ] = true; } );
+				fetch( cfg.hoursUrl + '?ids=' + missing.slice( 0, 100 ).join( ',' ), { credentials: 'omit' } )
+					.then( function ( r ) { return r.json(); } )
+					.then( function ( more ) {
+						Object.keys( more || {} ).forEach( function ( id ) { hours[ id ] = more[ id ]; } );
+						updateCards();
+					} )
+					.catch( function () {} );
+			}
+		}
+
+		function updateAll() {
+			updateChips();
+			updateHoursBlock();
+			updateCards();
+		}
+
+		if ( ! window.Intl || ! Intl.DateTimeFormat ) {
+			return;
+		}
+		updateAll();
+		setInterval( updateAll, 60000 );
+		if ( window.MutationObserver ) {
+			new MutationObserver( function ( records ) {
+				var added = records.some( function ( r ) {
+					return Array.prototype.some.call( r.addedNodes, function ( n ) {
+						return n.nodeType === 1 && ( n.matches( '.lf-item-container' ) || n.querySelector( '.lf-item-container' ) );
+					} );
+				} );
+				if ( added ) {
+					clearTimeout( timer );
+					timer = setTimeout( updateCards, 50 );
+				}
+			} ).observe( document.body, { childList: true, subtree: true } );
+		}
+	}() );
 
 	/* Open the suggest-an-edit panel when linked to directly. */
 	if ( location.hash === '#suggest-edit' ) {

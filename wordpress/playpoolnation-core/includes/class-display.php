@@ -85,6 +85,7 @@ final class Display {
 			'exploreUrl' => self::explore_url(),
 			'tokenUrl'   => esc_url_raw( rest_url( 'ppn/v1/form-token' ) ),
 			'venuesUrl'  => esc_url_raw( rest_url( 'ppn/v1/venues' ) ),
+			'hoursUrl'   => esc_url_raw( rest_url( 'ppn/v1/hours' ) ),
 		] );
 	}
 
@@ -127,7 +128,7 @@ final class Display {
 		$items = [];
 		$open = $v->open_status();
 		if ( $open['label'] ) {
-			$items[] = '<li class="ppn-fact ppn-fact--' . esc_attr( $open['state'] ) . '">' . esc_html( $open['label'] ) . '</li>';
+			$items[] = '<li class="ppn-fact ppn-fact--' . esc_attr( $open['state'] ) . '"' . Open_Status::attr( $v ) . '>' . esc_html( $open['label'] ) . '</li>';
 		}
 		$total = $v->total_tables();
 		if ( $total ) {

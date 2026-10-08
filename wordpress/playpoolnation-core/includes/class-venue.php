@@ -216,11 +216,17 @@ final class Venue {
 
 	/** @return array{state:string,label:string} */
 	public function open_status( ?\DateTimeImmutable $now = null ): array {
-		if ( in_array( $this->status(), [ 'temporarily-closed', 'permanently-closed' ], true ) ) {
-			return [ 'state' => 'closed', 'label' => Pool_Schema::VENUE_STATUSES[ $this->status() ] ];
-		}
 		$now = ( $now ?? new \DateTimeImmutable( 'now' ) )->setTimezone( $this->timezone() );
-		return Format::open_status( $this->hour_ranges(), $now );
+		return Format::listing_open_status( $this->hour_ranges(), $this->status(), $now );
+	}
+
+	/**
+	 * What the browser needs to work out open/closed itself, so cached pages stay right.
+	 *
+	 * @return array{tz:string,r:array<int,array{0:int,1:int}>,s:string}
+	 */
+	public function hours_data(): array {
+		return [ 'tz' => $this->timezone()->getName(), 'r' => $this->hour_ranges(), 's' => $this->status() ?: 'open' ];
 	}
 
 	public function is_claimed(): bool {
