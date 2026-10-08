@@ -82,7 +82,24 @@ return ( static function (): array {
 		$tables = Display::pool_tables( [ 'id' => $v ] );
 		$check( 'pool tables section renders data', str_contains( $tables, 'ppn-total-num' ) && str_contains( $tables, 'Diamond' ) );
 		$check( 'amenities empty renders marker only', Display::EMPTY === Display::amenities( [ 'id' => $v ] ) );
-		$check( 'no leagues renders marker only', Display::EMPTY === Display::leagues( [ 'id' => $v ] ) );
+		$check( 'no leagues asks players to tell us', str_contains( Display::leagues( [ 'id' => $v ] ), 'data-ppn-suggest="league"' ) );
+
+		/* ---------- cleanup prompts: about text, sharing, links, status, sort ---------- */
+		$hall = Venue::get( $v );
+		$check( 'imported boilerplate is replaced', PlayPoolNation\Core\About::is_placeholder( '<p>X is a pool hall in Y, Z. Check the hours, call ahead, or get directions below.</p>' ) );
+		$check( 'a written description is kept', ! PlayPoolNation\Core\About::is_placeholder( '<p>Family run since 1979, with a full kitchen.</p>' ) );
+		$about = PlayPoolNation\Core\About::html( $hall );
+		$check( 'about text names the venue', str_contains( $about, 'PPN Test Hall is a' ) && ! preg_match( '/[\x{2013}\x{2014};]/u', $about ), $about );
+		$check( 'meta description from about text', str_starts_with( PlayPoolNation\Core\Seo_Meta::venue_description( $hall ), 'PPN Test Hall is a' ) );
+		$data = $hall->hours_data();
+		$check( 'hours data for the browser', isset( $data['tz'], $data['r'], $data['s'] ) && str_contains( PlayPoolNation\Core\Open_Status::attr( $hall ), 'data-ppn-hours=' ) );
+		$links = PlayPoolNation\Core\Social::share_links( [ 'vkontakte' => '<a href="x">VK</a>', 'viber' => '<a href="">Viber</a>', 'facebook' => '<a href="https://facebook.com">F</a>', 'mail' => '<a href="mailto:?subject=%5BA%20%26amp%3B%20B%5D%20Hall&#038;body=u">Mail</a>' ] );
+		$check( 'share menu keeps only allowed networks', [ 'facebook', 'mail' ] === array_keys( $links ) );
+		$check( 'mail subject not double encoded', ! str_contains( $links['mail'], '%26amp%3B' ) );
+		$rewritten = PlayPoolNation\Core\Contact_Links::rewrite( '<a href="tel:(605)%20271-2951"><a href="http://maps.google.com/maps?daddr=1+Test+Way">' );
+		$check( 'phone and directions links rewritten', str_contains( $rewritten, 'tel:+16052712951' ) && str_contains( $rewritten, 'https://www.google.com/maps/dir/?api=1' ), $rewritten );
+		PlayPoolNation\Core\Explore_Sort::refresh( $v );
+		$check( 'completeness score stored', (int) get_post_meta( $v, PlayPoolNation\Core\Explore_Sort::META, true ) > 0 );
 		$check( 'trust section has suggest form', str_contains( Display::trust( [ 'id' => $v ] ), 'ppn_suggest_edit' ) );
 		$check( 'no verification badge without data', ! str_contains( Display::trust( [ 'id' => $v ] ), 'ppn-badge' ) );
 
@@ -334,15 +351,15 @@ return ( static function (): array {
 
 		wp_set_current_user( 0 );
 		ob_start();
-		My_Pool::welcome_popup();
+		My_Pool::sign_in_prompt();
 		$popup = ob_get_clean();
 		wp_set_current_user( $uid );
 		ob_start();
-		My_Pool::welcome_popup();
+		My_Pool::sign_in_prompt();
 		$popup_member = ob_get_clean();
 		wp_set_current_user( $admin );
-		$check( 'welcome popup for visitors', str_contains( $popup, 'Just looking' ) && str_contains( $popup, '/join' ) && str_contains( $popup, 'role="dialog"' ) );
-		$check( 'no welcome popup for members', '' === $popup_member );
+		$check( 'sign-in prompt for visitors', str_contains( $popup, 'Not now' ) && str_contains( $popup, '/join' ) && str_contains( $popup, 'role="dialog"' ) && str_contains( $popup, 'data-save-title' ) );
+		$check( 'no sign-in prompt for members', '' === $popup_member );
 
 		/* ---------- promotions ---------- */
 		$check( 'package by listing type', 'venue' === Promotions::package_for_listing( $v ) && 'event' === Promotions::package_for_listing( $clinic ) && '' === Promotions::package_for_listing( $ins ) );
