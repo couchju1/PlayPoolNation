@@ -13,6 +13,11 @@
 	--ppn-radius: 10px;
 }
 
+/* Explore pages before Vue mounts (or with JavaScript off): hide raw template text.
+   Vue replaces its component tags (location-filter, order-filter, ...) when it mounts,
+   so :not(:defined) only matches them while they still hold {{ }} placeholders. */
+[v-cloak], .cts-explore :not(:defined) { display: none !important; }
+
 /* Sections with no real data: removed server-side; this covers a page served before that runs. */
 div:has(> .element.content-block .ppn-empty) { display: none !important; }
 .ppn-tell-us { margin: 0; color: var(--ppn-muted); font-size: 15px; }

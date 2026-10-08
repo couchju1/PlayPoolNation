@@ -475,6 +475,63 @@
 		}, true );
 	}
 
+	/*
+	 * The theme's controls are <a href="#"> (quick view, save, share, tabs, back to top).
+	 * Announce them as buttons, make Space work like Enter, and name the icon-only ones
+	 * after the venue they act on.
+	 */
+	( function () {
+		var LABELS = [
+			[ '.c27-toggle-quick-view-modal', 'Quick view' ],
+			[ '.c27-bookmark-button, .mylisting-bookmark-item', 'Save' ],
+			[ '.c27-native-share', 'Share' ],
+			[ '.back-to-top', 'Back to top' ],
+			[ '.marker-icon', 'Show on map' ]
+		];
+		function venueName( el ) {
+			var card = el.closest( '.lf-item-container' );
+			var title = card ? card.querySelector( '.listing-preview-title' ) : document.querySelector( '.main-info-mobile .profile-name h1' );
+			return title ? title.textContent.replace( /\s+/g, ' ' ).trim() : '';
+		}
+		function enhance( root ) {
+			root.querySelectorAll( 'a[href="#"]:not([data-ppn-button])' ).forEach( function ( a ) {
+				a.setAttribute( 'data-ppn-button', '' );
+				a.setAttribute( 'role', 'button' );
+				a.setAttribute( 'tabindex', '0' );
+				a.removeAttribute( 'type' );
+				var visible = a.textContent.replace( /\s+/g, '' ) !== '';
+				for ( var i = 0; i < LABELS.length; i++ ) {
+					if ( a.matches( LABELS[ i ][ 0 ] ) ) {
+						var name = LABELS[ i ][ 1 ] === 'Back to top' ? '' : venueName( a );
+						if ( ! visible || /button$/i.test( a.getAttribute( 'aria-label' ) || '' ) ) {
+							a.setAttribute( 'aria-label', LABELS[ i ][ 1 ] + ( name ? ' ' + name : '' ) );
+						}
+						break;
+					}
+				}
+			} );
+		}
+		document.addEventListener( 'keydown', function ( e ) {
+			var a = ( e.key === ' ' || e.key === 'Spacebar' ) && e.target.closest && e.target.closest( 'a[data-ppn-button]' );
+			if ( a ) {
+				e.preventDefault();
+				a.click();
+			}
+		} );
+		enhance( document );
+		if ( window.MutationObserver ) {
+			new MutationObserver( function ( records ) {
+				records.forEach( function ( r ) {
+					r.addedNodes.forEach( function ( n ) {
+						if ( n.nodeType === 1 ) {
+							enhance( n.matches( 'a' ) ? n.parentNode || n : n );
+						}
+					} );
+				} );
+			} ).observe( document.body, { childList: true, subtree: true } );
+		}
+	}() );
+
 	/* "Tell us" links open Suggest an edit with the right reason chosen. */
 	document.addEventListener( 'click', function ( e ) {
 		var link = e.target.closest && e.target.closest( '[data-ppn-suggest]' );
