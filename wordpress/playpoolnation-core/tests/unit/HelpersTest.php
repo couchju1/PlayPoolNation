@@ -4,6 +4,7 @@ use PHPUnit\Framework\TestCase;
 use PlayPoolNation\Core\Helpers\Address;
 use PlayPoolNation\Core\Helpers\Dedupe;
 use PlayPoolNation\Core\Helpers\Format;
+use PlayPoolNation\Core\Helpers\Og_Card;
 use PlayPoolNation\Core\Helpers\Tri_State;
 
 final class HelpersTest extends TestCase {
@@ -119,6 +120,28 @@ final class HelpersTest extends TestCase {
 			$now = ( new DateTimeImmutable( $c['now'] ) )->setTimezone( new DateTimeZone( $c['tz'] ) );
 			$this->assertSame( [ 'state' => $c['state'], 'label' => $c['label'] ], Format::listing_open_status( $c['r'], $c['s'], $now ), $c['name'] );
 		}
+	}
+
+	/* -------------------------------------------------------- og card */
+
+	public function test_og_card_is_1200_by_630(): void {
+		if ( ! function_exists( 'imagettftext' ) ) {
+			$this->markTestSkipped( 'GD with FreeType is not installed.' );
+		}
+		$png = Og_Card::render( 'Rack City Billiards', 'Pool hall in Sioux Falls, SD', [ '18 tables', 'Diamond & Valley' ], __DIR__ . '/../../assets/fonts' );
+		$size = getimagesizefromstring( $png );
+		$this->assertSame( [ 1200, 630 ], [ $size[0], $size[1] ] );
+		$this->assertSame( 'image/png', $size['mime'] );
+		$this->assertSame( '', Og_Card::render( 'X', '', [], '/no/fonts/here' ) );
+	}
+
+	public function test_og_card_wraps_long_names(): void {
+		if ( ! function_exists( 'imagettfbbox' ) ) {
+			$this->markTestSkipped( 'GD with FreeType is not installed.' );
+		}
+		$font = __DIR__ . '/../../assets/fonts/Archivo-ExtraBold.ttf';
+		$this->assertSame( [ 'Rack City Billiards' ], Og_Card::wrap( 'Rack City Billiards', $font, 84, 1040 ) );
+		$this->assertGreaterThan( 1, count( Og_Card::wrap( 'The Very Long Name Billiards Sports Bar and Grill of Greater Minneapolis', $font, 84, 1040 ) ) );
 	}
 
 	/* --------------------------------------------------------- dedupe */

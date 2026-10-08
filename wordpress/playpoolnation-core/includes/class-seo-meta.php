@@ -36,8 +36,8 @@ final class Seo_Meta {
 		add_filter( 'thinkrank_schema_output', [ __CLASS__, 'schema_description' ], 20 );
 		// Schema_Org outputs accurate markup; the theme's default is a generic LocalBusiness.
 		add_filter( 'mylisting/schema/enable-listing-schema', '__return_false' );
-		// ThinkRank prints the listing's social title and description; keep only the theme's listing image.
-		add_filter( 'mylisting\\single\\og:tags', static fn( $tags ) => array_intersect_key( (array) $tags, [ 'og:image' => 1 ] ) );
+		// ThinkRank prints the listing's social tags; Social sets the image in that block.
+		add_filter( 'mylisting\\single\\og:tags', '__return_empty_array' );
 	}
 
 	/** /places/<state>/<city>/ shows the city (My Listing's own rule only reads the first segment). */
