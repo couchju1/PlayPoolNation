@@ -238,30 +238,9 @@ final class Seo_Meta {
 		return '';
 	}
 
-	/** Factual one-liner from known data, e.g. "Rack City Billiards is a pool hall in Sioux Falls, SD with 19 pool tables..." */
+	/** The venue's generated About text, opening sentences only (see About::summary()). */
 	public static function venue_description( Venue $v ): string {
-		$type = strtolower( $v->primary_type() );
-		$type = ( '' === $type || 'other' === $type ) ? 'place to play pool' : $type;
-		$parts = [ sprintf( '%s is a %s%s', $v->name(), 'bar' === $type ? 'bar with pool tables' : $type, $v->city_state() ? ' in ' . $v->city_state() : '' ) ];
-		$facts = [];
-		$total = $v->total_tables();
-		if ( $total ) {
-			$facts[] = sprintf( _n( '%d pool table', '%d pool tables', $total, 'playpoolnation-core' ), $total );
-		}
-		$brands = $v->term_names( 'table-brand' );
-		$sizes = Helpers\Format::sizes_label( $v->size_slugs() );
-		if ( $brands || $sizes ) {
-			$facts[] = trim( Helpers\Format::join_list( $brands ) . ' ' . $sizes ) . ' tables';
-		}
-		$text = $parts[0] . ( $facts ? ' with ' . implode( ', ', $facts ) : '' ) . '.';
-		$extras = [ 'hours', 'phone', 'directions' ];
-		if ( in_array( 'leagues', $v->term_slugs( 'pool-play' ), true ) ) {
-			$extras[] = 'leagues';
-		}
-		if ( in_array( 'tournaments', $v->term_slugs( 'pool-play' ), true ) ) {
-			$extras[] = 'upcoming tournaments';
-		}
-		return $text . ' ' . ucfirst( Helpers\Format::join_list( $extras ) ) . ' on PlayPoolNation.';
+		return About::summary( $v );
 	}
 
 	/** e.g. "Tournament at Rack City Billiards in Sioux Falls, SD. Friday, October 10 at 7 PM. 9-Ball, $20 entry, $200 added." */
