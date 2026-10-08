@@ -30,7 +30,7 @@ grep -rn "TODO_" --include=*.html --include=*.js .
 > Link preview: `assets/og-image.jpg` (1200×630) is what shows when the site is shared on Facebook or by text. It's Nate's headshot with his name, title, and town, and it doesn't include contact info. Facebook caches previews, so after changing it, run the page URL through the [Sharing Debugger](https://developers.facebook.com/tools/debug/) and click **Scrape Again**.
 
 **Already filled in:**
-- Site address: `https://dashing-gumption-107aca.netlify.app`, used in the canonical links, Open Graph tags, and JSON-LD. If you add a custom domain later, search for `dashing-gumption` and replace it.
+- Site address: `https://www.natehallinsurance.com`, used in the canonical links, Open Graph tags, and JSON-LD. To change it, search for `natehallinsurance.com`. (The original Netlify address was `https://dashing-gumption-107aca.netlify.app`.)
 - Email: `natehallinsurance@gmail.com` (contact section, privacy page, JSON-LD).
 - Hours: Mon–Fri 8:30 AM–5:30 PM, Saturday by appointment, Sunday closed, evening appointments available (office box). The JSON-LD lists only the Mon–Fri hours, because schema.org has no way to say "by appointment."
 - Phone number `605-321-5367` (`tel:+16053215367`). It's used in the Call buttons, office box, contact section, form messages, privacy and thanks pages, and the JSON-LD. To change it, search for both formats.
