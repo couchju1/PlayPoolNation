@@ -27,6 +27,12 @@ It is currently loaded from `wp-content/novamira-sandbox/playpoolnation-core/` b
 | Community | `Forms`, `Moderation`, `Claims` | Suggest an edit, Add a venue (duplicate check, honeypot, signed time token, per-IP rate limit) and claim approval. Everything lands in **PlayPoolNation → Review queue** in wp-admin, which also counts pending events, pending instructor profiles and unchecked instructor certifications. |
 | Ingestion | `Importer`, `Helpers\Dedupe`, `Geocoder` | CSV importer (wp-admin and `wp ppn import <file> [--source=] [--publish] [--dry-run]`). Matches by external ID, phone, website domain, distance and name similarity. Possible duplicates go to review; nothing is overwritten by a weaker source. |
 | Stats | `Stats` | `[ppn_stat]`, `[ppn_metros]`, `[ppn_states]` live counts (cached, flushed on change). |
+| Open/closed status | `Open_Status`, `Helpers\Format::listing_open_status` | Pages are cached for days, so the browser recomputes every status (cards, venue strip, Hours block, My Pool) from the venue's weekly hours and timezone (`ppnOpenStatus` in `assets/ppn.js`). Cards get their hours from a footer JSON map keyed by listing ID; cards added later come from one cached request to `/wp-json/ppn/v1/hours`. |
+| Theme markup fixes | `Markup`, `Listing_Page`, `Cleanup`, `Contact_Links` | One front-end output buffer for markup the theme offers no hook for: one H1 per listing page, empty venue sections removed with their titles, ThinkRank's HTML comments and generator tag removed, phone links in E.164, Google Maps directions over https, and venue websites over https when the site supports it (checked on save or with `wp ppn check-websites`). |
+| Sharing | `Social`, `Helpers\Og_Card` | Share menu limited to Facebook, X, WhatsApp, Reddit, Copy link and Mail. `og:site_name` is "PlayPoolNation", listings are `og:type` website with no `article:*` tags. Venues without a photo share a 1200x630 card drawn with GD from the bundled Archivo and Figtree fonts (`/og/place/<id>.png`, stored in `uploads/ppn-og/`, redrawn on save). Other pages use `uploads/ppn-brand/og-default-1200x630.jpg` when it exists. |
+| Venue About text | `About`, `Helpers\About_Text` | While a venue still has the imported boilerplate description, its About block is written from stored facts that have a recorded source, plus its hours. The claim line lists only what is still unknown. The opening sentences double as the meta description when ThinkRank has none. |
+| Sign-in prompt, reviews | `My_Pool`, `Review_Form` | Signed-out visitors see the sign-in prompt only when they try to save a place or write a review, and return to the same page after signing in. Listing review forms use the site's own copy. |
+| Explore order | `Explore_Sort` | Default sort "Best match": nearest first for a location search, otherwise the venues we know most about (`_ppn_completeness`), then by name. Venue cards without a photo use a compact layout (`ppn.css`). |
 
 ## Migrations
 
@@ -50,10 +56,13 @@ It is currently loaded from `wp-content/novamira-sandbox/playpoolnation-core/` b
 | `2026_10_17_sign_in_pages` | Creates `/sign-in/` and `/join/` (noindexed). |
 | `2026_10_18_promotions` | Creates the two package products (private), the `/promote/` page and the draft `/advertise/` page, and moves the theme's demo shop products to draft (IDs kept in `ppn_drafted_demo_products`). |
 | `2026_10_16_my_pool` | Creates `/my-pool/`, adds it to the noindex list and puts "My Pool" first in the header account menu. |
+| `2026_10_19_legal_pages` | Sets the WooCommerce terms page and privacy page, and retires the theme's duplicate legal pages. |
+| `2026_10_20_explore_sort` | Scores every venue's completeness, then makes "Best match" the default sort on the venue explore page. |
 
 ## Tests
 
 - Unit (no WordPress): `composer install && vendor/bin/phpunit -c tests/phpunit.xml`.
+- Browser open/closed logic against the same fixtures as PHP (`tests/fixtures/open-status.json`): `node tests/js/open-status.test.js`.
 - Integration (live install, inside a rolled-back transaction, with mail and geocoding stubbed): `wp eval-file tests/integration/run.php`. As of 2026-10-03, 131/131 pass.
 
 ## Adding pool data
