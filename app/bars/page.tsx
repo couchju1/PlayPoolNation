@@ -1,10 +1,10 @@
-import clientPromise from '../../lib/mongodb';
+import { getMongoClient } from '../../lib/mongodb';
 import BarCardWithActions, { Bar } from '@/components/BarCardWithActions';
 
 export const dynamic = 'force-dynamic';
 
 async function getBars(): Promise<Bar[]> {
-  const client = await clientPromise;
+  const client = await getMongoClient();
   const db = client.db('playpoolnation');
   const bars = await db.collection('bars').find({}).toArray();
 

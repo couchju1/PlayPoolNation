@@ -1,44 +1,19 @@
 import { MongoClient } from 'mongodb';
 
-const uri = process.env.MONGODB_URI;
-const options = {};
+// Cache the connection across hot reloads in dev and across invocations in prod.
+const globalForMongo = globalThis as typeof globalThis & {
+  _mongoClientPromise?: Promise<MongoClient>;
+};
 
-// Extend globalThis to hold the cached connection during dev
-declare global {
-  interface GlobalThis {
-    _mongoClientPromise?: Promise<MongoClient>;
+// Connect lazily so `next build` succeeds when MONGODB_URI is not set
+// (e.g. Vercel preview deployments); the error surfaces at request time instead.
+export function getMongoClient(): Promise<MongoClient> {
+  if (!globalForMongo._mongoClientPromise) {
+    const uri = process.env.MONGODB_URI;
+    if (!uri) {
+      throw new Error('Please define the MONGODB_URI environment variable inside .env.local');
+    }
+    globalForMongo._mongoClientPromise = new MongoClient(uri).connect();
   }
+  return globalForMongo._mongoClientPromise;
 }
-
-if (!uri) {
-  throw new Error('Please define the MONGODB_URI environment variable inside .env.local');
-}
-let client: MongoClient;
-let clientPromise: Promise<MongoClient>;
-
-if (process.env.NODE_ENV === 'development') {
-  // @ts-expect-error: global._mongoClientPromise is not typed
-  if (!global._mongoClientPromise) {
-    client = new MongoClient(uri, options);
-    // @ts-expect-error: assigning to undeclared global prop
-    global._mongoClientPromise = client.connect();
-  }
-  // @ts-expect-error: reading undeclared global prop
-  clientPromise = global._mongoClientPromise;
-} else {
-  // Always create a new client in production
-  const client = new MongoClient(uri, options);
-  clientPromise = client.connect();
-}
-
-export default clientPromise;
-
-
-
-
-
-
-
-
-
-

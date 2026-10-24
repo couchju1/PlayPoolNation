@@ -3,7 +3,9 @@ import Footer from '../components/Footer';
 import SearchBarComponent from '../components/SearchBarComponent';
 import FeaturedBarsCarousel from '../components/FeaturedBarsCarousel';
 import MapComponent from '../components/MapComponent';
-import clientPromise from '@/lib/mongodb';
+import { getMongoClient } from '@/lib/mongodb';
+
+export const dynamic = 'force-dynamic';
 
 type Bar = {
   _id: string;
@@ -19,7 +21,7 @@ type Bar = {
 
 // Fetch bars from MongoDB
 async function getBars(): Promise<Bar[]> {
-  const client = await clientPromise;
+  const client = await getMongoClient();
   const db = client.db('playpoolnation');
   const bars = await db.collection('bars').find({}).toArray();
   return bars as unknown as Bar[];

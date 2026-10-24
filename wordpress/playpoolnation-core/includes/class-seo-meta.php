@@ -1,0 +1,430 @@
+<?php
+/**
+ * Titles, meta descriptions and canonical URLs for directory pages.
+ *
+ * My Listing renders state/city and filter pages through the explore page
+ * (?explore_tab=...), so the SEO plugin treats them all as that one page and
+ * points their canonical at it. This class gives each location page its own
+ * canonical, title and description, built only from known facts.
+ *
+ * ThinkRank remains the SEO plugin. Its title and description come from post
+ * meta, so this supplies factual values through that meta when an admin has not
+ * set one; ThinkRank then prints them (and reuses them for social tags).
+ *
+ * @package PlayPoolNation\Core
+ */
+
+namespace PlayPoolNation\Core;
+
+defined( 'ABSPATH' ) || exit;
+
+final class Seo_Meta {
+
+	/** Explore tabs whose pages are filters, not destinations. */
+	private const FILTER_TABS = [ 'tags', 'table-size', 'table-brand', 'pool-pricing', 'league-org', 'pool-play', 'game-type', 'event-type', 'instructor-credential', 'lesson-focus', 'lesson-format' ];
+
+	public static function boot(): void {
+		add_action( 'init', [ __CLASS__, 'rewrite' ] );
+		add_filter( 'rewrite_rules_array', [ __CLASS__, 'city_rule_first' ] );
+		// My Listing sets region titles at priority 10000.
+		add_filter( 'pre_get_document_title', [ __CLASS__, 'title' ], 10001 );
+		add_filter( 'thinkrank_canonical_url', [ __CLASS__, 'canonical' ], 20 );
+		add_filter( 'get_post_metadata', [ __CLASS__, 'thinkrank_meta' ], 10, 4 );
+		add_action( 'wp_head', [ __CLASS__, 'drop_explore_head' ], 0 );
+		add_action( 'elementor/frontend/widget/before_render', [ __CLASS__, 'location_hero' ] );
+		// ThinkRank's WebPage schema otherwise describes the page with an excerpt of its raw content.
+		add_filter( 'thinkrank_schema_output', [ __CLASS__, 'schema_description' ], 20 );
+		// Schema_Org outputs accurate markup; the theme's default is a generic LocalBusiness.
+		add_filter( 'mylisting/schema/enable-listing-schema', '__return_false' );
+		// ThinkRank prints the listing's social tags; Social sets the image in that block.
+		add_filter( 'mylisting\\single\\og:tags', '__return_empty_array' );
+	}
+
+	/** /places/<state>/<city>/ shows the city (My Listing's own rule only reads the first segment). */
+	public static function rewrite(): void {
+		$explore = (int) get_option( 'options_general_explore_listings_page' );
+		if ( $explore ) {
+			add_rewrite_rule( '^' . Locations::REGION_BASE . '/([^/]+)/([^/]+)/?$', 'index.php?page_id=' . $explore . '&explore_tab=regions&explore_region=$matches[2]', 'top' );
+		}
+	}
+
+	/** My Listing's own region rule has no end anchor, so the city rule must be checked before it. */
+	public static function city_rule_first( array $rules ): array {
+		$key = '^' . Locations::REGION_BASE . '/([^/]+)/([^/]+)/?$';
+		if ( isset( $rules[ $key ] ) ) {
+			$rules = [ $key => $rules[ $key ] ] + $rules;
+		}
+		return $rules;
+	}
+
+	public static function region_term(): ?\WP_Term {
+		if ( 'regions' !== get_query_var( 'explore_tab' ) ) {
+			return null;
+		}
+		$slug = sanitize_title( (string) get_query_var( 'explore_region' ) );
+		$term = $slug ? get_term_by( 'slug', $slug, Pool_Schema::TAX_REGION ) : false;
+		return $term instanceof \WP_Term ? $term : null;
+	}
+
+	/** Venue-type pages (/category/<type>/), also rendered by the explore page. */
+	public static function type_term(): ?\WP_Term {
+		if ( 'categories' !== get_query_var( 'explore_tab' ) ) {
+			return null;
+		}
+		$slug = sanitize_title( (string) get_query_var( 'explore_category' ) );
+		$term = $slug ? get_term_by( 'slug', $slug, Pool_Schema::TAX_VENUE_TYPE ) : false;
+		return $term instanceof \WP_Term ? $term : null;
+	}
+
+	private const TYPE_PLURALS = [
+		'pool-halls'            => 'Pool Halls',
+		'billiards-lounge'      => 'Billiards Lounges',
+		'bars-with-pool-tables' => 'Bars with Pool Tables',
+		'sports-bar'            => 'Sports Bars with Pool Tables',
+		'bowling-center'        => 'Bowling Centers with Pool Tables',
+		'recreation'            => 'Recreation Centers with Pool Tables',
+		'private-clubs'         => 'Private Clubs with Pool Tables',
+	];
+
+	private static function type_label( \WP_Term $term ): string {
+		return self::TYPE_PLURALS[ $term->slug ] ?? html_entity_decode( $term->name, ENT_QUOTES );
+	}
+
+	public static function is_filter_page(): bool {
+		return in_array( (string) get_query_var( 'explore_tab' ), self::FILTER_TABS, true );
+	}
+
+	private static function region_label( \WP_Term $term ): string {
+		$name = html_entity_decode( $term->name, ENT_QUOTES );
+		if ( $term->parent ) {
+			$parent = get_term( $term->parent, Pool_Schema::TAX_REGION );
+			if ( $parent instanceof \WP_Term ) {
+				$abbr = Helpers\Address::state_abbr( $parent->name );
+				$name .= ', ' . ( $abbr ?: html_entity_decode( $parent->name, ENT_QUOTES ) );
+			}
+		}
+		return $name;
+	}
+
+	/** Site name without the tagline the site title carries. */
+	public static function brand(): string {
+		$name = html_entity_decode( (string) get_bloginfo( 'name' ), ENT_QUOTES );
+		return trim( explode( '|', $name )[0] ) ?: $name;
+	}
+
+	public static function title( $title ) {
+		$computed = self::computed_title();
+		return '' !== $computed ? $computed : $title;
+	}
+
+	public static function computed_title(): string {
+		$site = self::brand();
+		$term = self::region_term();
+		if ( $term ) {
+			return sprintf( 'Pool Halls & Places to Play Pool in %s | %s', self::region_label( $term ), $site );
+		}
+		$type = self::type_term();
+		if ( $type ) {
+			return sprintf( '%s Across the U.S. | %s', self::type_label( $type ), $site );
+		}
+		if ( is_singular( Pool_Schema::POST_TYPE ) ) {
+			$id = (int) get_queried_object_id();
+			$v = Venue::get( $id );
+			if ( $v && Venue::is_venue( $id ) && $v->city_state() ) {
+				$kind = in_array( $v->primary_type(), [ '', 'Other' ], true ) ? 'Place to Play Pool' : $v->primary_type();
+				return sprintf( '%s: %s in %s | %s', $v->name(), $kind, $v->city_state(), $site );
+			}
+			$type = Venue::listing_type( $id );
+			if ( $v && Pool_Schema::TOURNAMENT_TYPE === $type ) {
+				$venue = Venue::get( (int) get_post_meta( $id, '_ppn_venue_id', true ) );
+				$at = $venue ? ' at ' . $venue->name() . ( $venue->city_state() ? ', ' . $venue->city_state() : '' ) : '';
+				return sprintf( '%s: %s%s | %s', $v->name(), Events::event_type_label( $id ), $at, $site );
+			}
+			if ( $v && Pool_Schema::INSTRUCTOR_TYPE === $type ) {
+				return sprintf( '%s: Pool Instructor%s | %s', $v->name(), $v->city_state() ? ' in ' . $v->city_state() : '', $site );
+			}
+		}
+		if ( is_front_page() ) {
+			return sprintf( '%s: Find Pool Halls & Bars with Pool Tables Near You', $site );
+		}
+		$pages = [
+			'places'          => 'Find Pool Halls & Bars with Pool Tables',
+			'events'          => 'Pool Tournaments & Events Near You',
+			'leagues'         => 'Pool Leagues Near You',
+			'instructors'     => 'Pool Instructors & Lessons Near You',
+			'post-an-event'   => 'Post a Pool Tournament or Event',
+			'my-pool'         => 'My Pool',
+			'promote'         => 'Promote Your Venue or Event',
+			'advertise'       => 'Grow Your Pool Hall or Bar',
+			'sign-in'         => 'Sign In',
+			'join'            => 'Create Your Free Account',
+			Instructors::SIGNUP_PAGE => 'Create Your Pool Instructor Profile',
+			'add-a-venue'     => 'Add a Place to Play Pool',
+			'list-your-venue' => 'List Your Pool Hall or Bar',
+		];
+		if ( is_page() && ! self::is_filter_page() && ! get_query_var( 'explore_tab' ) ) {
+			$slug = (string) get_post_field( 'post_name', get_queried_object_id() );
+			if ( isset( $pages[ $slug ] ) ) {
+				return $pages[ $slug ] . ' | ' . $site;
+			}
+		}
+		return '';
+	}
+
+	public static function canonical( $url ) {
+		$term = self::region_term() ?: self::type_term();
+		if ( $term ) {
+			$link = get_term_link( $term );
+			return is_wp_error( $link ) ? $url : $link;
+		}
+		return $url;
+	}
+
+	public static function description(): string {
+		if ( is_front_page() ) {
+			return 'Find your next place to play pool. Search pool halls, billiards clubs and bars with pool tables across the U.S. by table size, brand, leagues and hours.';
+		}
+		$type = self::type_term();
+		if ( $type && $type->count > 0 ) {
+			return sprintf( '%d %s listed on PlayPoolNation, with table sizes and brands where known, hours, leagues and directions.', (int) $type->count, strtolower( self::type_label( $type ) ) );
+		}
+		$term = self::region_term();
+		if ( $term ) {
+			$count = Locations::venue_count( (int) $term->term_id );
+			$where = self::region_label( $term );
+			return sprintf(
+				'%s in %s. See table sizes and brands where known, hours, and who is open right now.',
+				1 === $count ? 'A place to play pool' : sprintf( '%d places to play pool, from pool halls to bars with tables,', $count ),
+				$where
+			);
+		}
+		if ( is_singular( Pool_Schema::POST_TYPE ) ) {
+			$id = (int) get_queried_object_id();
+			$v = Venue::get( $id );
+			if ( ! $v ) {
+				return '';
+			}
+			$type = Venue::listing_type( $id );
+			if ( Pool_Schema::VENUE_TYPE === $type ) {
+				return self::venue_description( $v );
+			}
+			if ( Pool_Schema::TOURNAMENT_TYPE === $type ) {
+				return self::event_description( $v );
+			}
+			if ( Pool_Schema::INSTRUCTOR_TYPE === $type ) {
+				return self::instructor_description( $v );
+			}
+			if ( Pool_Schema::LEAGUE_TYPE === $type ) {
+				$venue = Venue::get( (int) get_post_meta( $id, '_ppn_venue_id', true ) );
+				return trim( sprintf( 'Pool league at %s%s.', $venue ? $venue->name() : 'a local venue', $venue && $venue->city_state() ? ' in ' . $venue->city_state() : '' ) );
+			}
+		}
+		$pages = [
+			'places'          => 'Find pool halls, billiards clubs and bars with pool tables near you. Filter by table size, table brand, leagues, open now and more.',
+			'events'          => 'Upcoming pool tournaments and events near you: weekly 8-ball and 9-ball tournaments, league sign-ups, clinics and more, with entry fees and added money where known.',
+			'advertise'       => 'List your pool hall or bar on PlayPoolNation for free. Featured placement puts your venue and events first when players near you search.',
+			'instructors'     => 'Find a pool instructor near you. Compare certifications, what they teach, lesson formats and rates.',
+			'post-an-event'   => 'Post a pool tournament or event. Venue owners with a claimed listing publish instantly; other events are checked first.',
+			Instructors::SIGNUP_PAGE => 'Teach pool? Create a free instructor profile on PlayPoolNation so players near you can find your lessons.',
+			'leagues'         => 'Pool leagues near you, including APA, BCA, USAPL and local leagues, with the night they play.',
+			'add-a-venue'     => 'Know a place to play pool that is missing from PlayPoolNation? Add it and we will check it before it goes on the map.',
+			'list-your-venue' => 'Own or manage a pool hall or bar with pool tables? List it on PlayPoolNation with tables, pricing, leagues and hours.',
+		];
+		if ( is_page() ) {
+			// Filter tabs and unknown regions render the explore page itself.
+			$slug = (string) get_post_field( 'post_name', get_queried_object_id() );
+			return $pages[ $slug ] ?? '';
+		}
+		return '';
+	}
+
+	/** The venue's generated About text, opening sentences only (see About::summary()). */
+	public static function venue_description( Venue $v ): string {
+		return About::summary( $v );
+	}
+
+	/** e.g. "Tournament at Rack City Billiards in Sioux Falls, SD. Friday, October 10 at 7 PM. 9-Ball, $20 entry, $200 added." */
+	public static function event_description( Venue $e ): string {
+		$id = $e->id();
+		$venue = Venue::get( (int) get_post_meta( $id, '_ppn_venue_id', true ) );
+		$text = sprintf( '%s at %s%s.', Events::event_type_label( $id ), $venue ? $venue->name() : 'a local venue', $venue && $venue->city_state() ? ' in ' . $venue->city_state() : '' );
+		$next = Play::upcoming_from_ids( [ $id ], 1 );
+		if ( $next ) {
+			$when = $next[0]['when'];
+			$text .= ' ' . ( $next[0]['recurring'] ? 'Next: ' : '' ) . wp_date( 'l, F j', $when->getTimestamp() ) . ' at ' . Helpers\Format::clock( (int) $when->format( 'G' ) * 60 + (int) $when->format( 'i' ) ) . '.';
+		}
+		$facts = array_filter( [
+			Helpers\Format::join_list( $e->term_names( 'game-type' ) ),
+			Helpers\Format::money( $e->field( 'entry-fee' ) ) ? Helpers\Format::money( $e->field( 'entry-fee' ) ) . ' entry' : '',
+			Helpers\Format::money( $e->field( 'added-money' ) ) ? Helpers\Format::money( $e->field( 'added-money' ) ) . ' added' : '',
+		] );
+		return $text . ( $facts ? ' ' . implode( ', ', $facts ) . '.' : '' );
+	}
+
+	/** e.g. "Jane Doe teaches pool in Sioux Falls, SD: beginners and position play. One-on-one and online lessons. From $60 an hour." */
+	public static function instructor_description( Venue $i ): string {
+		$focus = array_slice( $i->term_names( 'lesson-focus' ), 0, 3 );
+		$text = sprintf( '%s teaches pool%s%s.', $i->name(), $i->city_state() ? ' in ' . $i->city_state() : '', $focus ? ': ' . strtolower( Helpers\Format::join_list( $focus ) ) : '' );
+		$verified = array_values( array_filter( Instructors::credentials( $i->id() ), static fn( $c ) => '' !== $c['verified'] ) );
+		if ( $verified ) {
+			$text .= ' ' . $verified[0]['name'] . ' (verified).';
+		}
+		$formats = $i->term_names( 'lesson-format' );
+		if ( $formats ) {
+			$text .= ' ' . ucfirst( strtolower( Helpers\Format::join_list( $formats ) ) ) . ' lessons.';
+		}
+		$rate = Helpers\Format::money( $i->field( 'lesson-rate' ) );
+		if ( $rate ) {
+			$text .= ' From ' . $rate . ' an hour.';
+		}
+		return $text;
+	}
+
+	/**
+	 * Supply ThinkRank's title and description meta for the page being viewed
+	 * when none is stored, so it does not fall back to raw page content.
+	 *
+	 * @param mixed $value
+	 * @return mixed
+	 */
+	public static function thinkrank_meta( $value, $object_id, $meta_key, $single ) {
+		static $busy = false;
+		if ( $busy || ( '_thinkrank_meta_description' !== $meta_key && '_thinkrank_seo_title' !== $meta_key ) ) {
+			return $value;
+		}
+		if ( is_admin() || ! did_action( 'wp' ) || (int) $object_id !== (int) get_queried_object_id() ) {
+			return $value;
+		}
+		$busy = true;
+		try {
+			if ( '' !== (string) get_post_meta( $object_id, $meta_key, true ) ) {
+				return $value; // An admin-set value wins.
+			}
+			$text = '_thinkrank_seo_title' === $meta_key ? self::computed_title() : self::description();
+		} finally {
+			$busy = false;
+		}
+		if ( '' === $text ) {
+			return $value;
+		}
+		return [ $text ];
+	}
+
+	/** Singular and plural venue-type labels for running text. */
+	private const TYPE_NOUNS = [
+		'pool-halls'            => [ 'pool hall', 'pool halls' ],
+		'billiards-lounge'      => [ 'billiards lounge', 'billiards lounges' ],
+		'bars-with-pool-tables' => [ 'bar with pool tables', 'bars with pool tables' ],
+		'sports-bar'            => [ 'sports bar', 'sports bars' ],
+		'bowling-center'        => [ 'bowling center', 'bowling centers' ],
+		'recreation'            => [ 'recreation center', 'recreation centers' ],
+		'private-clubs'         => [ 'private club', 'private clubs' ],
+	];
+
+	/**
+	 * Heading and intro for the explore page's hero on state, city and venue-type pages.
+	 * Every one of those pages otherwise shares the same generic H1 and site-wide intro.
+	 *
+	 * @return array{heading:string,intro:string}|null
+	 */
+	public static function hero_copy(): ?array {
+		$term = self::region_term();
+		if ( $term ) {
+			$count = Locations::venue_count( (int) $term->term_id );
+			if ( ! $count ) {
+				return null;
+			}
+			$where = self::region_label( $term );
+			$mix = self::type_mix( (int) $term->term_id );
+			$intro = 1 === $count
+				? sprintf( 'One place to play pool in %s', $where )
+				: sprintf( '%d places to play pool in %s', $count, $where );
+			$intro .= ( $mix ? ': ' . $mix : '' ) . '. See table sizes and brands where we know them, who is open right now, and get directions in one tap.';
+			return [ 'heading' => sprintf( 'Pool halls & places to play pool in %s', $where ), 'intro' => $intro ];
+		}
+		$type = self::type_term();
+		if ( $type && $type->count > 0 ) {
+			return [ 'heading' => sprintf( '%s across the U.S.', ucfirst( strtolower( self::type_label( $type ) ) ) ), 'intro' => self::description() ];
+		}
+		return null;
+	}
+
+	/** e.g. "4 pool halls and 1 bar with pool tables", from the venues in a region. */
+	private static function type_mix( int $term_id ): string {
+		$ids = get_posts( [
+			'post_type'      => Pool_Schema::POST_TYPE,
+			'post_status'    => 'publish',
+			'fields'         => 'ids',
+			'posts_per_page' => 500,
+			'no_found_rows'  => true,
+			'tax_query'      => [ [ 'taxonomy' => Pool_Schema::TAX_REGION, 'terms' => [ $term_id ] ] ],
+			'meta_query'     => [ [ 'key' => '_case27_listing_type', 'value' => Pool_Schema::VENUE_TYPE ] ],
+		] );
+		$terms = $ids ? wp_get_object_terms( $ids, Pool_Schema::TAX_VENUE_TYPE, [ 'fields' => 'all_with_object_id' ] ) : [];
+		if ( is_wp_error( $terms ) ) {
+			return '';
+		}
+		$counts = array_fill_keys( array_keys( self::TYPE_NOUNS ), 0 );
+		foreach ( $terms as $t ) {
+			if ( isset( $counts[ $t->slug ] ) ) {
+				$counts[ $t->slug ]++;
+			}
+		}
+		$parts = [];
+		foreach ( array_filter( $counts ) as $slug => $n ) {
+			$parts[] = $n . ' ' . self::TYPE_NOUNS[ $slug ][ 1 === $n ? 0 : 1 ];
+		}
+		return Helpers\Format::join_list( $parts );
+	}
+
+	/** @param \Elementor\Element_Base $element */
+	public static function location_hero( $element ): void {
+		if ( ! get_query_var( 'explore_tab' ) || ! is_object( $element ) || ! method_exists( $element, 'set_settings' ) ) {
+			return;
+		}
+		$classes = (string) $element->get_settings( '_css_classes' );
+		if ( ! str_contains( $classes, 'ppn-h1' ) && ! str_contains( $classes, 'ppn-sub' ) ) {
+			return;
+		}
+		$copy = self::hero_copy();
+		if ( ! $copy ) {
+			return;
+		}
+		if ( str_contains( $classes, 'ppn-h1' ) ) {
+			$element->set_settings( 'title', $copy['heading'] );
+		} else {
+			$element->set_settings( 'editor', '<p>' . esc_html( $copy['intro'] ) . '</p>' );
+		}
+	}
+
+	/**
+	 * @param mixed $schema
+	 * @return mixed
+	 */
+	public static function schema_description( $schema ) {
+		if ( ! is_array( $schema ) || ! array_key_exists( 'description', $schema ) ) {
+			return $schema;
+		}
+		$description = self::description();
+		if ( '' !== $description ) {
+			$schema['description'] = $description;
+		}
+		return $schema;
+	}
+
+	/** My Listing prints its own description and social tags on region and filter pages, duplicating ThinkRank's. */
+	public static function drop_explore_head(): void {
+		if ( ! get_query_var( 'explore_tab' ) ) {
+			return;
+		}
+		global $wp_filter;
+		foreach ( (array) ( $wp_filter['wp_head']->callbacks[1] ?? [] ) as $cb ) {
+			if ( $cb['function'] instanceof \Closure ) {
+				$file = ( new \ReflectionFunction( $cb['function'] ) )->getFileName();
+				if ( $file && str_ends_with( wp_normalize_path( $file ), 'includes/src/explore.php' ) ) {
+					remove_action( 'wp_head', $cb['function'], 1 );
+				}
+			}
+		}
+	}
+}

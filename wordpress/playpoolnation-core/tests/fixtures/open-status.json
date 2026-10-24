@@ -1,0 +1,484 @@
+[
+	{
+		"name": "evening, open past midnight",
+		"tz": "America/Chicago",
+		"r": [
+			[
+				840,
+				1560
+			],
+			[
+				2280,
+				3000
+			],
+			[
+				3720,
+				4440
+			],
+			[
+				5160,
+				5880
+			],
+			[
+				6600,
+				7320
+			],
+			[
+				8040,
+				8760
+			],
+			[
+				9480,
+				10200
+			]
+		],
+		"s": "open",
+		"now": "2026-10-08T03:00:00Z",
+		"state": "open",
+		"label": "Open until 2 AM"
+	},
+	{
+		"name": "before opening",
+		"tz": "America/Chicago",
+		"r": [
+			[
+				840,
+				1560
+			],
+			[
+				2280,
+				3000
+			],
+			[
+				3720,
+				4440
+			],
+			[
+				5160,
+				5880
+			],
+			[
+				6600,
+				7320
+			],
+			[
+				8040,
+				8760
+			],
+			[
+				9480,
+				10200
+			]
+		],
+		"s": "open",
+		"now": "2026-10-07T17:00:00Z",
+		"state": "closed",
+		"label": "Opens 2 PM"
+	},
+	{
+		"name": "after midnight inside the previous day's range",
+		"tz": "America/Chicago",
+		"r": [
+			[
+				840,
+				1560
+			],
+			[
+				2280,
+				3000
+			],
+			[
+				3720,
+				4440
+			],
+			[
+				5160,
+				5880
+			],
+			[
+				6600,
+				7320
+			],
+			[
+				8040,
+				8760
+			],
+			[
+				9480,
+				10200
+			]
+		],
+		"s": "open",
+		"now": "2026-10-08T06:30:00Z",
+		"state": "open",
+		"label": "Open until 2 AM"
+	},
+	{
+		"name": "Sunday night range wrapping into Monday",
+		"tz": "America/Chicago",
+		"r": [
+			[
+				840,
+				1560
+			],
+			[
+				2280,
+				3000
+			],
+			[
+				3720,
+				4440
+			],
+			[
+				5160,
+				5880
+			],
+			[
+				6600,
+				7320
+			],
+			[
+				8040,
+				8760
+			],
+			[
+				9480,
+				10200
+			]
+		],
+		"s": "open",
+		"now": "2026-10-12T06:00:00Z",
+		"state": "open",
+		"label": "Open until 2 AM"
+	},
+	{
+		"name": "closed all day, opens tomorrow",
+		"tz": "America/Chicago",
+		"r": [
+			[
+				2400,
+				2820
+			]
+		],
+		"s": "open",
+		"now": "2026-10-05T17:00:00Z",
+		"state": "closed",
+		"label": "Opens Tue 4 PM"
+	},
+	{
+		"name": "open 24 hours",
+		"tz": "America/Chicago",
+		"r": [
+			[
+				0,
+				10080
+			]
+		],
+		"s": "open",
+		"now": "2026-10-07T17:00:00Z",
+		"state": "open",
+		"label": "Open 24 hours"
+	},
+	{
+		"name": "every day split into back-to-back ranges",
+		"tz": "America/Chicago",
+		"r": [
+			[
+				0,
+				1440
+			],
+			[
+				1440,
+				2880
+			],
+			[
+				2880,
+				4320
+			],
+			[
+				4320,
+				5760
+			],
+			[
+				5760,
+				7200
+			],
+			[
+				7200,
+				8640
+			],
+			[
+				8640,
+				10080
+			]
+		],
+		"s": "open",
+		"now": "2026-10-07T17:00:00Z",
+		"state": "open",
+		"label": "Open 24 hours"
+	},
+	{
+		"name": "no hours known",
+		"tz": "America/Chicago",
+		"r": [],
+		"s": "open",
+		"now": "2026-10-07T17:00:00Z",
+		"state": "unknown",
+		"label": ""
+	},
+	{
+		"name": "ranges that continue into the next one",
+		"tz": "America/Chicago",
+		"r": [
+			[
+				4080,
+				4320
+			],
+			[
+				4320,
+				4440
+			]
+		],
+		"s": "open",
+		"now": "2026-10-08T03:00:00Z",
+		"state": "open",
+		"label": "Open until 2 AM"
+	},
+	{
+		"name": "DST ends: 2:30 AM CST after the clocks fall back",
+		"tz": "America/Chicago",
+		"r": [
+			[
+				840,
+				1560
+			],
+			[
+				2280,
+				3000
+			],
+			[
+				3720,
+				4440
+			],
+			[
+				5160,
+				5880
+			],
+			[
+				6600,
+				7320
+			],
+			[
+				8040,
+				8760
+			],
+			[
+				9480,
+				10200
+			]
+		],
+		"s": "open",
+		"now": "2026-11-01T08:30:00Z",
+		"state": "closed",
+		"label": "Opens 2 PM"
+	},
+	{
+		"name": "DST starts: 1:30 AM CST before the clocks spring forward",
+		"tz": "America/Chicago",
+		"r": [
+			[
+				840,
+				1560
+			],
+			[
+				2280,
+				3000
+			],
+			[
+				3720,
+				4440
+			],
+			[
+				5160,
+				5880
+			],
+			[
+				6600,
+				7320
+			],
+			[
+				8040,
+				8760
+			],
+			[
+				9480,
+				10200
+			]
+		],
+		"s": "open",
+		"now": "2026-03-08T07:30:00Z",
+		"state": "open",
+		"label": "Open until 2 AM"
+	},
+	{
+		"name": "DST starts: 3:30 AM CDT after the clocks spring forward",
+		"tz": "America/Chicago",
+		"r": [
+			[
+				840,
+				1560
+			],
+			[
+				2280,
+				3000
+			],
+			[
+				3720,
+				4440
+			],
+			[
+				5160,
+				5880
+			],
+			[
+				6600,
+				7320
+			],
+			[
+				8040,
+				8760
+			],
+			[
+				9480,
+				10200
+			]
+		],
+		"s": "open",
+		"now": "2026-03-08T08:30:00Z",
+		"state": "closed",
+		"label": "Opens 2 PM"
+	},
+	{
+		"name": "Pacific venue in the evening",
+		"tz": "America/Los_Angeles",
+		"r": [
+			[
+				840,
+				1560
+			],
+			[
+				2280,
+				3000
+			],
+			[
+				3720,
+				4440
+			],
+			[
+				5160,
+				5880
+			],
+			[
+				6600,
+				7320
+			],
+			[
+				8040,
+				8760
+			],
+			[
+				9480,
+				10200
+			]
+		],
+		"s": "open",
+		"now": "2026-10-08T05:30:00Z",
+		"state": "open",
+		"label": "Open until 2 AM"
+	},
+	{
+		"name": "Pacific venue at noon",
+		"tz": "America/Los_Angeles",
+		"r": [
+			[
+				840,
+				1560
+			],
+			[
+				2280,
+				3000
+			],
+			[
+				3720,
+				4440
+			],
+			[
+				5160,
+				5880
+			],
+			[
+				6600,
+				7320
+			],
+			[
+				8040,
+				8760
+			],
+			[
+				9480,
+				10200
+			]
+		],
+		"s": "open",
+		"now": "2026-10-07T19:00:00Z",
+		"state": "closed",
+		"label": "Opens 2 PM"
+	},
+	{
+		"name": "temporarily closed wins over the hours",
+		"tz": "America/Chicago",
+		"r": [
+			[
+				840,
+				1560
+			],
+			[
+				2280,
+				3000
+			],
+			[
+				3720,
+				4440
+			],
+			[
+				5160,
+				5880
+			],
+			[
+				6600,
+				7320
+			],
+			[
+				8040,
+				8760
+			],
+			[
+				9480,
+				10200
+			]
+		],
+		"s": "temporarily-closed",
+		"now": "2026-10-08T03:00:00Z",
+		"state": "closed",
+		"label": "Temporarily closed"
+	},
+	{
+		"name": "permanently closed with no hours",
+		"tz": "America/Chicago",
+		"r": [],
+		"s": "permanently-closed",
+		"now": "2026-10-08T03:00:00Z",
+		"state": "closed",
+		"label": "Permanently closed"
+	}
+]
