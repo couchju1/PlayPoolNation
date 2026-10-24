@@ -7,6 +7,7 @@
  * [ppn_states]                             State links with counts.
  *
  * Metro definitions live in the `ppn_metros` option: [ label, search_location, lat, lng, radius_miles ].
+ * Metros spread over several cities get a page of their own (see Metros).
  *
  * @package PlayPoolNation\Core
  */
@@ -17,7 +18,7 @@ defined( 'ABSPATH' ) || exit;
 
 final class Stats {
 
-	private const CACHE = 'ppn_stats_v3';
+	private const CACHE = 'ppn_stats_v4';
 
 	public static function boot(): void {
 		add_shortcode( 'ppn_stat', [ __CLASS__, 'stat_shortcode' ] );
@@ -47,9 +48,10 @@ final class Stats {
 			Pool_Schema::POST_TYPE
 		) );
 		$counts = [];
+		$cities = [];
 		foreach ( (array) get_option( 'ppn_metros', [] ) as $m ) {
-			$counts[] = (int) $wpdb->get_var( $wpdb->prepare(
-				"SELECT COUNT(DISTINCT l.listing_id) FROM {$wpdb->prefix}mylisting_locations l
+			$ids = array_map( 'intval', $wpdb->get_col( $wpdb->prepare(
+				"SELECT DISTINCT l.listing_id FROM {$wpdb->prefix}mylisting_locations l
 				 JOIN {$wpdb->posts} p ON p.ID = l.listing_id AND p.post_status = 'publish' AND p.post_type = %s
 				 JOIN {$wpdb->postmeta} t ON t.post_id = p.ID AND t.meta_key = '_case27_listing_type' AND t.meta_value = %s
 				 WHERE ( 3959 * ACOS( LEAST( 1, COS( RADIANS( %f ) ) * COS( RADIANS( l.lat ) ) * COS( RADIANS( l.lng ) - RADIANS( %f ) ) + SIN( RADIANS( %f ) ) * SIN( RADIANS( l.lat ) ) ) ) ) < %d",
@@ -59,7 +61,9 @@ final class Stats {
 				$m[3],
 				$m[2],
 				$m[4]
-			) );
+			) ) );
+			$counts[] = count( $ids );
+			$cities[] = self::city_names( $ids );
 		}
 		$instructors = (int) $wpdb->get_var( $wpdb->prepare(
 			"SELECT COUNT(*) FROM {$wpdb->posts} p JOIN {$wpdb->postmeta} m ON m.post_id = p.ID AND m.meta_key = '_case27_listing_type' AND m.meta_value = %s
@@ -75,9 +79,28 @@ final class Stats {
 			'states'       => count( $states ),
 			'metros'       => count( array_filter( $counts ) ),
 			'metro_counts' => $counts,
+			'metro_cities' => $cities,
 		];
 		set_transient( self::CACHE, $stats, 6 * HOUR_IN_SECONDS );
 		return $stats;
+	}
+
+	/**
+	 * Cities the venues are in, most venues first.
+	 *
+	 * @param int[] $ids
+	 * @return string[]
+	 */
+	private static function city_names( array $ids ): array {
+		global $wpdb;
+		if ( ! $ids ) {
+			return [];
+		}
+		$in = implode( ',', array_map( 'intval', $ids ) );
+		return $wpdb->get_col(
+			"SELECT meta_value FROM {$wpdb->postmeta} WHERE meta_key = '_ppn_city' AND meta_value <> '' AND post_id IN ({$in})
+			 GROUP BY meta_value ORDER BY COUNT(*) DESC, meta_value"
+		);
 	}
 
 	public static function stat_shortcode( $atts ): string {
@@ -88,7 +111,9 @@ final class Stats {
 
 	/**
 	 * Metros link to their city page (/places/<state>/<city>/) when it is indexable,
-	 * so search engines can follow them; otherwise to the map around the metro.
+	 * or to their metro page (/places/<metro>/) when the venues are spread over
+	 * several cities, so search engines can follow them; otherwise to the map
+	 * around the metro.
 	 */
 	public static function metros_shortcode(): string {
 		$stats = self::stats();
@@ -103,6 +128,11 @@ final class Stats {
 			if ( $city && ! is_wp_error( $link ) ) {
 				// The city page lists that city only, so show its name and count rather than the metro's.
 				$out .= sprintf( '<li><a href="%s">%s <span>%d</span></a></li>', esc_url( $link ), esc_html( html_entity_decode( $city->name, ENT_QUOTES ) ), Locations::venue_count( (int) $city->term_id ) );
+				continue;
+			}
+			$metro = Metros::find( Metros::slug( (string) $m[0] ) );
+			if ( $metro && Metros::has_page( $metro ) ) {
+				$out .= sprintf( '<li><a href="%s">%s <span>%d</span></a></li>', esc_url( Metros::url( $metro ) ), esc_html( $m[0] ), $n );
 				continue;
 			}
 			$url = Display::explore_url( [

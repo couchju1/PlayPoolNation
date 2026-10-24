@@ -53,6 +53,7 @@ final class Install {
 			'2026_10_18_promotions'       => [ __CLASS__, 'm_promotions' ],
 			'2026_10_19_legal_pages'      => [ __CLASS__, 'm_legal_pages' ],
 			'2026_10_20_explore_sort'     => [ __CLASS__, 'm_explore_sort' ],
+			'2026_10_24_live_domain'      => [ __CLASS__, 'm_live_domain' ],
 		];
 	}
 
@@ -553,6 +554,25 @@ final class Install {
 		$search['order'] = [ 'options' => Explore_Sort::options(), 'default' => Explore_Sort::DEFAULT_KEY ];
 		Listing_Config::set( $venue, 'search', $search );
 		return sprintf( '%d venues scored', $scored );
+	}
+
+	/**
+	 * Temporary-domain links out of stored content and caches, "Add your hall" buttons
+	 * to /add-a-venue/, and the metro page rules and sitemap entries.
+	 */
+	public static function m_live_domain(): string {
+		$buttons = Pages::fix_add_venue_buttons();
+		$repaired = Live_Domain::repair();
+		Stats::flush();
+		flush_rewrite_rules( false );
+		$metros = Metros::patch_sitemap();
+		Live_Domain::clear_page_caches();
+		return wp_json_encode( [
+			'temp domain' => $repaired,
+			'add venue buttons' => $buttons,
+			'metro pages' => array_keys( Metros::with_pages() ),
+			'sitemap' => $metros < 0 ? 'no flat sitemap.xml' : $metros . ' metro URLs',
+		] );
 	}
 
 	public static function m_legal_pages(): string {

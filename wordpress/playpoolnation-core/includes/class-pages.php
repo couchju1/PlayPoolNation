@@ -332,6 +332,52 @@ final class Pages {
 		}
 	}
 
+	/**
+	 * "Add your hall" buttons left on Elementor pages and templates (the Places page's
+	 * owner call to action among them) point at /add-a-venue/ and read "Add a venue".
+	 *
+	 * @return int[] IDs of the pages changed.
+	 */
+	public static function fix_add_venue_buttons(): array {
+		global $wpdb;
+		$add = get_page_by_path( 'add-a-venue' );
+		if ( ! $add ) {
+			return [];
+		}
+		$add_url = get_permalink( $add );
+		$ids = $wpdb->get_col( "SELECT post_id FROM {$wpdb->postmeta} WHERE meta_key = '_elementor_data' AND ( meta_value LIKE '%Add your hall%' OR meta_value LIKE '%add-your-hall%' )" );
+		$changed = [];
+		foreach ( array_map( 'intval', $ids ) as $id ) {
+			$data = json_decode( (string) get_post_meta( $id, '_elementor_data', true ), true );
+			if ( ! is_array( $data ) ) {
+				continue;
+			}
+			$hits = 0;
+			$walk = static function ( array &$elements ) use ( &$walk, &$hits, $add_url ): void {
+				foreach ( $elements as &$el ) {
+					$s = &$el['settings'];
+					$url = (string) ( $s['link']['url'] ?? '' );
+					if ( 'button' === ( $el['widgetType'] ?? '' ) && ( 'Add your hall' === ( $s['text'] ?? '' ) || str_contains( $url, '/add-your-hall' ) ) ) {
+						$s['text'] = 'Add a venue';
+						$s['link']['url'] = $add_url;
+						$hits++;
+					}
+					unset( $s );
+					if ( ! empty( $el['elements'] ) ) {
+						$walk( $el['elements'] );
+					}
+				}
+				unset( $el );
+			};
+			$walk( $data );
+			if ( $hits ) {
+				update_post_meta( $id, '_elementor_data', wp_slash( wp_json_encode( $data ) ) );
+				$changed[] = $id;
+			}
+		}
+		return $changed;
+	}
+
 	public static function write_my_pool( int $id ): void {
 		self::save( $id, [
 			self::hero( 'My Pool', 'Places near you, your saved places, and the tournaments and events coming up.' ),

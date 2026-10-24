@@ -16,7 +16,28 @@
 /* Explore pages before Vue mounts (or with JavaScript off): hide raw template text.
    Vue replaces its component tags (location-filter, order-filter, ...) when it mounts,
    so :not(:defined) only matches them while they still hold {{ }} placeholders. */
-[v-cloak], .cts-explore :not(:defined) { display: none !important; }
+[v-cloak], .cts-explore :not(:defined):not(load-more-results) { display: none !important; }
+/* The result count is printed with the page (Helpers\Html_Fix::explore); its buttons need the script. */
+.cts-explore load-more-results:not(:defined) a { display: none !important; }
+
+/* Pool game: nothing loads until Play is pressed (Helpers\Html_Fix::pool_game_on_click). */
+.ppn-pg__frame[data-ppn-idle] iframe { visibility: hidden; }
+.ppn-pg__play {
+	position: absolute;
+	inset: 0;
+	width: max-content;
+	height: 52px;
+	margin: auto;
+	padding: 0 32px;
+	border: 0;
+	border-radius: 999px;
+	background: var(--ppn-accent, #2F6FE4);
+	color: #fff;
+	font: 700 18px/52px Figtree, sans-serif;
+	cursor: pointer;
+}
+.ppn-pg__play:hover { background: var(--ppn-accent-hover, #245BC2); }
+.ppn-pg__play:focus-visible { outline: 3px solid #fff; outline-offset: 3px; }
 
 /* Sections with no real data: removed server-side; this covers a page served before that runs. */
 div:has(> .element.content-block .ppn-empty) { display: none !important; }
