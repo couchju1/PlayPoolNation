@@ -152,6 +152,27 @@ final class Html_Fix {
 	}
 
 	/**
+	 * The explore page's hero heading (.ppn-h1) and intro (.ppn-sub) carry the same
+	 * text on every state, city and metro page; this puts the page's own in place.
+	 * Heading and intro are plain text.
+	 */
+	public static function hero( string $html, string $heading, string $intro ): string {
+		$text = static fn( string $s ): string => htmlspecialchars( $s, ENT_QUOTES | ENT_HTML5, 'UTF-8', false );
+		$html = (string) preg_replace_callback(
+			'#(<div class="[^"]*\bppn-h1\b[^"]*"[^>]*>\s*(?:<div class="elementor-widget-container">\s*)?<h1\b[^>]*>).*?(</h1>)#s',
+			static fn( array $m ): string => $m[1] . $text( $heading ) . $m[2],
+			$html,
+			1
+		);
+		return (string) preg_replace_callback(
+			'#(<div class="[^"]*\bppn-sub\b[^"]*"[^>]*>\s*(?:<div class="elementor-widget-container">\s*)?)<p>.*?</p>#s',
+			static fn( array $m ): string => $m[1] . '<p>' . $text( $intro ) . '</p>',
+			$html,
+			1
+		);
+	}
+
+	/**
 	 * The pool game (ppn-pool-game plugin) loads in an iframe as soon as it nears the
 	 * screen, which pulls in the whole game on the homepage. Hold the address until
 	 * the visitor presses Play; assets/ppn.js loads it then.

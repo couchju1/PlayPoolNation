@@ -32,8 +32,7 @@ final class Seo_Meta {
 		add_filter( 'thinkrank_canonical_url', [ __CLASS__, 'canonical' ], 20 );
 		add_filter( 'get_post_metadata', [ __CLASS__, 'thinkrank_meta' ], 10, 4 );
 		add_action( 'wp_head', [ __CLASS__, 'drop_explore_head' ], 0 );
-		add_action( 'elementor/frontend/widget/before_render', [ __CLASS__, 'location_hero' ] );
-		add_filter( 'elementor/element/is_dynamic_content', [ __CLASS__, 'hero_renders_live' ], 10, 2 );
+		add_action( 'ppn_markup', [ __CLASS__, 'markup' ] );
 		// ThinkRank's WebPage schema otherwise describes the page with an excerpt of its raw content.
 		add_filter( 'thinkrank_schema_output', [ __CLASS__, 'schema_description' ], 20 );
 		// Schema_Org outputs accurate markup; the theme's default is a generic LocalBusiness.
@@ -419,36 +418,22 @@ final class Seo_Meta {
 		return Helpers\Format::join_list( $parts );
 	}
 
-	/** @param \Elementor\Element_Base $element */
-	public static function location_hero( $element ): void {
-		if ( ( ! get_query_var( 'explore_tab' ) && ! get_query_var( Metros::QUERY_VAR ) ) || ! is_object( $element ) || ! method_exists( $element, 'set_settings' ) ) {
-			return;
-		}
-		$classes = (string) $element->get_settings( '_css_classes' );
-		if ( ! str_contains( $classes, 'ppn-h1' ) && ! str_contains( $classes, 'ppn-sub' ) ) {
-			return;
-		}
-		$copy = self::hero_copy();
-		if ( ! $copy ) {
-			return;
-		}
-		if ( str_contains( $classes, 'ppn-h1' ) ) {
-			$element->set_settings( 'title', $copy['heading'] );
-		} else {
-			$element->set_settings( 'editor', '<p>' . esc_html( $copy['intro'] ) . '</p>' );
+	public static function markup(): void {
+		if ( self::hero_copy() ) {
+			Markup::add( [ __CLASS__, 'location_hero' ] );
 		}
 	}
 
 	/**
-	 * Every state, city and metro page is the explore page, so Elementor's element
-	 * cache (one copy per page) printed whichever hero it rendered first on all of
-	 * them. The hero heading and intro are rendered for each request instead.
-	 *
-	 * @param bool  $dynamic
-	 * @param array $raw_data Elementor element data.
+	 * State, city and metro pages are all the explore page, which prints one hero.
+	 * Its heading and intro are replaced in the finished page: changing the widgets'
+	 * settings before they render did not stick (another plugin's before_render
+	 * handler reads them first, and Elementor keeps that parsed copy), and the
+	 * element cache kept one rendered hero for every location page.
 	 */
-	public static function hero_renders_live( $dynamic, $raw_data ): bool {
-		return $dynamic || (bool) preg_match( '#\bppn-(h1|sub)\b#', (string) ( $raw_data['settings']['_css_classes'] ?? '' ) );
+	public static function location_hero( string $html ): string {
+		$copy = self::hero_copy();
+		return $copy ? Helpers\Html_Fix::hero( $html, $copy['heading'], $copy['intro'] ) : $html;
 	}
 
 	/**

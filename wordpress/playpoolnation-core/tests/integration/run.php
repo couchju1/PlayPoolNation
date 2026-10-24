@@ -247,7 +247,6 @@ return ( static function (): array {
 		set_query_var( Metros::QUERY_VAR, '' );
 		$state_slugs = wp_list_pluck( get_terms( [ 'taxonomy' => Pool_Schema::TAX_REGION, 'parent' => 0, 'hide_empty' => false ] ), 'slug' );
 		$check( 'metro rule never takes a state address', ! $rules || ! array_filter( $state_slugs, static fn( $s ) => (bool) preg_match( '#^' . array_key_first( $rules ) . '#', 'places/' . $s . '/' ) ) );
-		$check( 'hero widgets render per request', Seo_Meta::hero_renders_live( false, [ 'settings' => [ '_css_classes' => 'ppn-h1' ] ] ) && ! Seo_Meta::hero_renders_live( false, [ 'settings' => [ '_css_classes' => 'other' ] ] ) );
 
 		/* ---------- temporary domain ---------- */
 		update_option( Live_Domain::SEEN_OPTION, [ 'url' => 'test' ], false ); // Already logged: keeps the test out of the error log.
