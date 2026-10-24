@@ -4,8 +4,9 @@
  *
  * My Listing renders state/city and filter pages through the explore page
  * (?explore_tab=...), so the SEO plugin treats them all as that one page and
- * points their canonical at it. This class gives each location page its own
- * canonical, title and description, built only from known facts.
+ * points their canonical at it. This class gives each location page (metro
+ * pages included, see Metros) its own canonical, title and description, built
+ * only from known facts.
  *
  * ThinkRank remains the SEO plugin. Its title and description come from post
  * meta, so this supplies factual values through that meta when an admin has not
@@ -32,6 +33,7 @@ final class Seo_Meta {
 		add_filter( 'get_post_metadata', [ __CLASS__, 'thinkrank_meta' ], 10, 4 );
 		add_action( 'wp_head', [ __CLASS__, 'drop_explore_head' ], 0 );
 		add_action( 'elementor/frontend/widget/before_render', [ __CLASS__, 'location_hero' ] );
+		add_filter( 'elementor/element/is_dynamic_content', [ __CLASS__, 'hero_renders_live' ], 10, 2 );
 		// ThinkRank's WebPage schema otherwise describes the page with an excerpt of its raw content.
 		add_filter( 'thinkrank_schema_output', [ __CLASS__, 'schema_description' ], 20 );
 		// Schema_Org outputs accurate markup; the theme's default is a generic LocalBusiness.
@@ -123,6 +125,10 @@ final class Seo_Meta {
 		if ( $term ) {
 			return sprintf( 'Pool Halls & Places to Play Pool in %s | %s', self::region_label( $term ), $site );
 		}
+		$metro = Metros::current();
+		if ( $metro ) {
+			return sprintf( 'Pool Halls & Places to Play Pool in the %s Area | %s', $metro['label'], $site );
+		}
 		$type = self::type_term();
 		if ( $type ) {
 			return sprintf( '%s Across the U.S. | %s', self::type_label( $type ), $site );
@@ -172,6 +178,10 @@ final class Seo_Meta {
 	}
 
 	public static function canonical( $url ) {
+		$metro = Metros::current();
+		if ( $metro ) {
+			return Metros::url( $metro );
+		}
 		$term = self::region_term() ?: self::type_term();
 		if ( $term ) {
 			$link = get_term_link( $term );
@@ -196,6 +206,15 @@ final class Seo_Meta {
 				'%s in %s. See table sizes and brands where known, hours, and who is open right now.',
 				1 === $count ? 'A place to play pool' : sprintf( '%d places to play pool, from pool halls to bars with tables,', $count ),
 				$where
+			);
+		}
+		$metro = Metros::current();
+		if ( $metro ) {
+			return sprintf(
+				'%d places to play pool across %s, in %s. See table sizes and brands where known, hours, and who is open right now.',
+				Metros::venue_count( $metro ),
+				Metros::area( $metro ),
+				self::metro_cities( $metro )
 			);
 		}
 		if ( is_singular( Pool_Schema::POST_TYPE ) ) {
@@ -342,11 +361,34 @@ final class Seo_Meta {
 			$intro .= ( $mix ? ': ' . $mix : '' ) . '. See table sizes and brands where we know them, who is open right now, and get directions in one tap.';
 			return [ 'heading' => sprintf( 'Pool halls & places to play pool in %s', $where ), 'intro' => $intro ];
 		}
+		$metro = Metros::current();
+		if ( $metro ) {
+			return [
+				'heading' => sprintf( 'Pool halls & places to play pool in %s', Metros::area( $metro ) ),
+				'intro'   => sprintf(
+					'%d places to play pool within %d miles of %s, in %s. See table sizes and brands where we know them, who is open right now, and get directions in one tap.',
+					Metros::venue_count( $metro ),
+					$metro['radius'],
+					$metro['location'],
+					self::metro_cities( $metro )
+				),
+			];
+		}
 		$type = self::type_term();
 		if ( $type && $type->count > 0 ) {
 			return [ 'heading' => sprintf( '%s across the U.S.', ucfirst( strtolower( self::type_label( $type ) ) ) ), 'intro' => self::description() ];
 		}
 		return null;
+	}
+
+	/** e.g. "Roseville, Hopkins & Burnsville", or "Roseville, Hopkins, Burnsville and 2 other cities". */
+	private static function metro_cities( array $metro ): string {
+		$cities = Metros::cities( $metro );
+		if ( count( $cities ) <= 4 ) {
+			return Helpers\Format::join_list( $cities );
+		}
+		$more = count( $cities ) - 3;
+		return implode( ', ', array_slice( $cities, 0, 3 ) ) . sprintf( ' and %d other %s', $more, 1 === $more ? 'city' : 'cities' );
 	}
 
 	/** e.g. "4 pool halls and 1 bar with pool tables", from the venues in a region. */
@@ -379,7 +421,7 @@ final class Seo_Meta {
 
 	/** @param \Elementor\Element_Base $element */
 	public static function location_hero( $element ): void {
-		if ( ! get_query_var( 'explore_tab' ) || ! is_object( $element ) || ! method_exists( $element, 'set_settings' ) ) {
+		if ( ( ! get_query_var( 'explore_tab' ) && ! get_query_var( Metros::QUERY_VAR ) ) || ! is_object( $element ) || ! method_exists( $element, 'set_settings' ) ) {
 			return;
 		}
 		$classes = (string) $element->get_settings( '_css_classes' );
@@ -395,6 +437,18 @@ final class Seo_Meta {
 		} else {
 			$element->set_settings( 'editor', '<p>' . esc_html( $copy['intro'] ) . '</p>' );
 		}
+	}
+
+	/**
+	 * Every state, city and metro page is the explore page, so Elementor's element
+	 * cache (one copy per page) printed whichever hero it rendered first on all of
+	 * them. The hero heading and intro are rendered for each request instead.
+	 *
+	 * @param bool  $dynamic
+	 * @param array $raw_data Elementor element data.
+	 */
+	public static function hero_renders_live( $dynamic, $raw_data ): bool {
+		return $dynamic || (bool) preg_match( '#\bppn-(h1|sub)\b#', (string) ( $raw_data['settings']['_css_classes'] ?? '' ) );
 	}
 
 	/**

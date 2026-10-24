@@ -5,7 +5,7 @@
  * else. Payment plugins (WooPayments, PayPal Payments, Stripe) and WooCommerce
  * Blocks are matched by source folder, since their handle names change between
  * versions. WooPay's direct checkout alone pulled React and ~18 wp-* packages
- * onto every page.
+ * onto every page. The homepage pool game loads only when the visitor presses Play.
  *
  * @package PlayPoolNation\Core
  */
@@ -35,6 +35,8 @@ final class Performance {
 		add_action( 'wp_print_footer_scripts', [ __CLASS__, 'trim_woocommerce' ], 1 );
 		add_action( 'wp_enqueue_scripts', [ __CLASS__, 'defer_scripts' ], 999 );
 		add_action( 'wp_print_footer_scripts', [ __CLASS__, 'defer_scripts' ], 1 );
+		// The pool game's iframe loads the whole game; it now waits for the Play button.
+		add_action( 'ppn_markup', static fn() => Markup::add( [ Helpers\Html_Fix::class, 'pool_game_on_click' ] ) );
 	}
 
 	public static function needs_woocommerce(): bool {

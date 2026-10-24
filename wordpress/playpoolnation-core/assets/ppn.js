@@ -557,6 +557,46 @@
 		}
 	}
 
+	/*
+	 * Pool game: the iframe address is held in data-src (Helpers\Html_Fix::pool_game_on_click)
+	 * and loaded when the visitor presses Play. Until then, game and table changes only
+	 * update that address, so choosing them loads nothing either.
+	 */
+	document.querySelectorAll( '.ppn-pg' ).forEach( function ( root ) {
+		var wrap = root.querySelector( '.ppn-pg__frame[data-ppn-idle]' );
+		var frame = wrap && wrap.querySelector( 'iframe[data-src]' );
+		var play = wrap && wrap.querySelector( '[data-ppn-play]' );
+		if ( ! frame || ! play ) {
+			return;
+		}
+		var base = root.getAttribute( 'data-base' ) || '';
+		var game = root.querySelector( '[data-ppn="game"]' );
+		var table = root.querySelector( '[data-ppn="table"]' );
+		var full = root.querySelector( '[data-ppn="full"]' );
+		function address() {
+			if ( ! game || ! table ) {
+				return frame.getAttribute( 'data-src' );
+			}
+			var size = table.options[ table.selectedIndex ].getAttribute( 'data-size' );
+			return base + 'index.html?ruletype=' + encodeURIComponent( game.value ) + '&tableSize=' + encodeURIComponent( size ) + '&v=' + encodeURIComponent( root.getAttribute( 'data-ver' ) || '' );
+		}
+		root.addEventListener( 'change', function ( e ) {
+			if ( wrap.hasAttribute( 'data-ppn-idle' ) && ( e.target === game || e.target === table ) ) {
+				e.stopPropagation();
+				frame.setAttribute( 'data-src', address() );
+				if ( full ) {
+					full.href = address();
+				}
+			}
+		}, true );
+		play.addEventListener( 'click', function () {
+			wrap.removeAttribute( 'data-ppn-idle' );
+			frame.src = frame.getAttribute( 'data-src' );
+			play.remove();
+			frame.focus();
+		} );
+	} );
+
 	/* Near me: use the browser location, then open the map sorted by distance. */
 	document.addEventListener( 'click', function ( e ) {
 		var btn = e.target.closest( '[data-ppn-near-me]' );

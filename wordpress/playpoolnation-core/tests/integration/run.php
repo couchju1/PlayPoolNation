@@ -26,7 +26,9 @@ use PlayPoolNation\Core\Seo;
 use PlayPoolNation\Core\Seo_Meta;
 use PlayPoolNation\Core\Venue;
 use PlayPoolNation\Core\Verification;
+use PlayPoolNation\Core\Live_Domain;
 use PlayPoolNation\Core\Locations;
+use PlayPoolNation\Core\Metros;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -221,6 +223,40 @@ return ( static function (): array {
 		$sioux = PlayPoolNation\Core\Stats::city_term( 'Sioux Falls, SD' );
 		$check( 'metro links to its city page', $sioux && str_ends_with( untrailingslashit( (string) get_term_link( $sioux ) ), '/places/south-dakota/sioux-falls' ) );
 		$check( 'metro without a city page has no city link', null === PlayPoolNation\Core\Stats::city_term( 'Nowhere Ppn, SD' ) );
+		set_query_var( 'explore_tab', '' );
+		set_query_var( 'explore_region', '' );
+
+		/* ---------- metro pages ---------- */
+		$metro_pages = Metros::with_pages();
+		$metro_links = PlayPoolNation\Core\Stats::metros_shortcode();
+		$rules = Metros::rules( [] );
+		foreach ( $metro_pages as $slug => $metro ) {
+			$url = Metros::url( $metro );
+			$check( "metro {$slug} has its own address", str_ends_with( untrailingslashit( $url ), '/places/' . $slug ), $url );
+			$check( "metro {$slug} spans several cities with no city page", count( Metros::cities( $metro ) ) > 1 && ! PlayPoolNation\Core\Stats::city_term( $metro['location'] ) );
+			$check( "homepage links metro {$slug} to its page", str_contains( $metro_links, 'href="' . esc_url( $url ) . '"' ) );
+			$check( "metro {$slug} has a rewrite rule", (bool) array_filter( array_keys( $rules ), static fn( $k ) => str_contains( $k, $slug ) ) );
+			set_query_var( Metros::QUERY_VAR, $slug );
+			$check( "metro {$slug} title", str_starts_with( Seo_Meta::computed_title(), 'Pool Halls & Places to Play Pool in the ' . $metro['label'] . ' Area' ), Seo_Meta::computed_title() );
+			$check( "metro {$slug} canonical", Seo_Meta::canonical( home_url( '/places/' ) ) === $url );
+			$hero = Seo_Meta::hero_copy();
+			$check( "metro {$slug} H1", $hero && 'Pool halls & places to play pool in the ' . $metro['label'] . ' area' === $hero['heading'], (string) ( $hero['heading'] ?? '' ) );
+			$check( "metro {$slug} description counts venues", (bool) preg_match( '/^\d+ places to play pool across the /', Seo_Meta::description() ), Seo_Meta::description() );
+			$check( "metro {$slug} is indexable", ! Seo::should_noindex() );
+		}
+		set_query_var( Metros::QUERY_VAR, '' );
+		$state_slugs = wp_list_pluck( get_terms( [ 'taxonomy' => Pool_Schema::TAX_REGION, 'parent' => 0, 'hide_empty' => false ] ), 'slug' );
+		$check( 'metro rule never takes a state address', ! $rules || ! array_filter( $state_slugs, static fn( $s ) => (bool) preg_match( '#^' . array_key_first( $rules ) . '#', 'places/' . $s . '/' ) ) );
+		$check( 'hero widgets render per request', Seo_Meta::hero_renders_live( false, [ 'settings' => [ '_css_classes' => 'ppn-h1' ] ] ) && ! Seo_Meta::hero_renders_live( false, [ 'settings' => [ '_css_classes' => 'other' ] ] ) );
+
+		/* ---------- temporary domain ---------- */
+		update_option( Live_Domain::SEEN_OPTION, [ 'url' => 'test' ], false ); // Already logged: keeps the test out of the error log.
+		$guarded = Live_Domain::guard( '<html><a href="https://gray-hedgehog-574573.hostingersite.com/place/x/">x</a></html>' );
+		$check( 'guard rewrites temporary-domain links', ! str_contains( $guarded, 'hostingersite' ) && str_contains( $guarded, home_url( '/place/x/' ) ), $guarded );
+		$check( 'listing feed renders per request', Live_Domain::render_live( false, [ 'widgetType' => 'case27-listing-feed-widget' ] ) );
+		$check( 'no temporary domain in stored page data', ! (int) $wpdb->get_var( "SELECT COUNT(*) FROM {$wpdb->postmeta} WHERE meta_key = '_elementor_data' AND meta_value LIKE '%hostingersite.com%'" ) );
+
+		set_query_var( 'explore_tab', 'regions' );
 		set_query_var( 'explore_region', 'no-such-region-ppn' );
 		$check( 'unknown region is noindexed', Seo::should_noindex() );
 		set_query_var( 'explore_tab', 'table-brand' );
