@@ -89,6 +89,20 @@ final class HtmlFixTest extends TestCase {
 		$this->assertSame( $html, Html_Fix::explore( $html ) );
 	}
 
+	/* ------------------------------------------------------------- hero */
+
+	public function test_hero_replaces_the_shared_heading_and_intro(): void {
+		$html = '<div class="elementor-element elementor-element-e574025 ppn-h1 elementor-widget elementor-widget-heading" data-id="e574025">' . "\n\t"
+			. '<h1 class="elementor-heading-title elementor-size-default">Find a pool table <em>tonight.</em></h1></div>'
+			. '<div class="elementor-element ppn-sub elementor-widget elementor-widget-text-editor" data-id="ff5182d">' . "\n\t"
+			. '<p><strong>107 verified pool halls.</strong> Search near you.</p></div><h1>Other</h1><p>Other</p>';
+		$out = Html_Fix::hero( $html, 'Pool halls & places to play pool in Sioux Falls, SD', '10 places to play pool in Sioux Falls, SD.' );
+		$this->assertStringContainsString( '<h1 class="elementor-heading-title elementor-size-default">Pool halls &amp; places to play pool in Sioux Falls, SD</h1>', $out );
+		$this->assertStringContainsString( "data-id=\"ff5182d\">\n\t<p>10 places to play pool in Sioux Falls, SD.</p></div>", $out );
+		$this->assertStringContainsString( '<h1>Other</h1><p>Other</p>', $out );
+		$this->assertStringNotContainsString( 'tonight', $out );
+	}
+
 	/* --------------------------------------------------------- pool game */
 
 	public function test_pool_game_waits_for_play(): void {
