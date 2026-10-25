@@ -7,7 +7,8 @@
  * They render through the explore page like state and city pages, with the
  * metro's radius search applied on the server, so they get their own H1, title,
  * description and canonical (Seo_Meta) and a place in ThinkRank's sitemap.xml.
- * Metros without a page redirect to their city page or to the map around them.
+ * Metros without a page redirect to their city page or to the map around them,
+ * and a metro's main city without a city page of its own redirects to the metro.
  *
  * @package PlayPoolNation\Core
  */
@@ -174,7 +175,11 @@ final class Metros {
 	/** Metros without a page go to their city page, or the map around them while they are thin. */
 	public static function redirect(): void {
 		$slug = (string) get_query_var( self::QUERY_VAR );
-		if ( '' === $slug || self::current() ) {
+		if ( '' === $slug ) {
+			self::city_redirect();
+			return;
+		}
+		if ( self::current() ) {
 			return;
 		}
 		$metro = self::find( $slug );
@@ -190,6 +195,42 @@ final class Metros {
 		$target = $city && ! is_wp_error( $link ) ? $link : Display::explore_url( self::venue_count( $metro ) ? self::search_args( $metro ) : [] );
 		wp_safe_redirect( $target, $city ? 301 : 302, 'PlayPoolNation' );
 		exit;
+	}
+
+	/**
+	 * /places/<state>/<city>/ for a metro's main city that has no city page of its own
+	 * (Minneapolis and Detroit have no venues inside city limits; Boston has one)
+	 * showed the whole directory or a single venue under a noindex. It goes to the
+	 * metro page instead, which lists the metro's venues.
+	 */
+	private static function city_redirect(): void {
+		if ( 'regions' !== get_query_var( 'explore_tab' ) ) {
+			return;
+		}
+		$path = trim( (string) wp_parse_url( (string) ( $_SERVER['REQUEST_URI'] ?? '' ), PHP_URL_PATH ), '/' );
+		if ( ! preg_match( '#^' . Locations::REGION_BASE . '/([^/]+)/([^/]+)$#', $path, $m ) ) {
+			return;
+		}
+		$state = self::state_term( sanitize_title( $m[1] ) );
+		if ( ! $state ) {
+			return;
+		}
+		$city_slug = sanitize_title( $m[2] );
+		$city = get_term_by( 'slug', $city_slug, Pool_Schema::TAX_REGION );
+		$city = $city instanceof \WP_Term && (int) $city->parent === (int) $state->term_id ? $city : null;
+		if ( $city && Locations::venue_count( (int) $city->term_id ) >= Seo::MIN_REGION_VENUES ) {
+			return;
+		}
+		foreach ( self::with_pages() as $metro ) {
+			$parts = array_map( 'trim', explode( ',', $metro['location'] ) );
+			if ( 2 !== count( $parts ) || Helpers\Address::state_name( $parts[1] ) !== html_entity_decode( $state->name, ENT_QUOTES ) ) {
+				continue;
+			}
+			if ( self::slug( $parts[0] ) === $city_slug || ( $city && html_entity_decode( $city->name, ENT_QUOTES ) === $parts[0] ) ) {
+				wp_safe_redirect( self::url( $metro ), 301, 'PlayPoolNation' );
+				exit;
+			}
+		}
 	}
 
 	public static function metros_changed(): void {
