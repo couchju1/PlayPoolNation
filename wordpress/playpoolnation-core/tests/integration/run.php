@@ -283,6 +283,8 @@ return ( static function (): array {
 		$check( 'stored event reads back', $row && 'directions' === $row['event_type'] && 'venue_page' === $row['context'] && 'mobile' === $row['device'] && 'google' === $row['source'] && str_ends_with( $row['created_at'], ':00:00' ), wp_json_encode( $row ) );
 		$check( 'stored event has no personal data columns', $row && ! array_intersect( array_keys( $row ), [ 'ip', 'user_agent', 'user_id', 'referrer' ] ) );
 		$check( 'stored event has the venue city', $row && PlayPoolNation\Core\Tracking::city_slug( $track_venue ) === $row['city'] );
+		$top = PlayPoolNation\Core\Venue_Stats::top_venues( gmdate( 'Y-m-d 00:00:00', time() - DAY_IN_SECONDS ) );
+		$check( 'stats page lists the venue among top venues', '' === $wpdb->last_error && in_array( (string) $track_venue, wp_list_pluck( $top, 'venue_id' ), true ), $wpdb->last_error );
 		$count_rows = static fn() => (int) $wpdb->get_var( "SELECT COUNT(*) FROM {$events_table} WHERE path = '/ppn-test-path/'" );
 		$before = $count_rows();
 		$check( 'invalid event type rejected', 400 === $post_event( array_merge( $base, [ 'type' => 'purchase' ] ) )->get_status() );
