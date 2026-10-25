@@ -111,8 +111,12 @@ def enrich_venue(venue: dict, city: dict, fetcher: Fetcher, league_facts: list[d
         return 2
 
     facts = merge(candidates, rank)
+    shared = venue.get("_shared_with", [])
     for f in facts:
         f["source_type"] = ("official_website", "facebook", "league_operator")[rank(f["source_url"])]
+        if shared and f["source_type"] == "official_website":
+            # One site for several locations: the page may be about another one.
+            f["flags"].append("website shared with " + ", ".join(shared))
     found = {f["field"] for f in facts}
     return {
         "schema": 1,
@@ -163,5 +167,13 @@ def venues_for(city: dict, listings: list[dict]) -> list[dict]:
         if c.get("places_expired"):
             continue
         out.append(dict(c, _kind="new"))
+    by_host: dict[str, list[str]] = {}
+    for v in out:
+        if v.get("website"):
+            by_host.setdefault(host(v["website"]), []).append(v["name"])
+    for v in out:
+        names = by_host.get(host(v.get("website", "")), []) if v.get("website") else []
+        if len(names) > 1:
+            v["_shared_with"] = [n for n in names if n != v["name"]]
     out.sort(key=lambda v: (not (is_pool_hall(v) or v.get("venue_type") == "pool-halls"), v["_kind"] != "listing", v["name"].lower()))
     return out

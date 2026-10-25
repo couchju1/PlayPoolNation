@@ -89,7 +89,8 @@ def write() -> str:
         d = s["state"].get("discovery", {})
         if d:
             osm = d.get("osm", {})
-            lines.append(f"Discovery: OpenStreetMap {osm.get('pool_tagged', 0)} pool-tagged places and {osm.get('bars', 0)} other bars; "
+            osm_text = f"OpenStreetMap {osm.get('pool_tagged', 0)} pool-tagged places and {osm.get('bars', 0)} other bars" if osm else f"OpenStreetMap not reached yet ({d.get('osm_pending', 'pending')}); the next run retries it"
+            lines.append(f"Discovery: {osm_text}; "
                          f"Google Places {'skipped (' + d['places']['skipped'] + ')' if d.get('places', {}).get('skipped') else 'used'}; "
                          f"{len(d.get('league_pages', {}))} league page(s); {d.get('matched_existing', 0)} matched our listings, {d.get('new', 0)} new.")
             lines.append("")

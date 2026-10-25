@@ -1,0 +1,58 @@
+{
+  "schema": 1,
+  "slug": "gibs-sports-bar-sioux-falls-sd",
+  "city": "sioux-falls",
+  "kind": "listing",
+  "listing": {
+    "id": 1834,
+    "url": "https://playpoolnation.com/place/gibs-sports-bar-sioux-falls-sd/",
+    "name": "Gibs Sports Bar",
+    "street": "3104 E 26th St",
+    "city": "Sioux Falls",
+    "state": "SD",
+    "zip": "57103",
+    "phone": "(605) 271-4569",
+    "website": "http://gibssportsbar.com/",
+    "type": "Bar",
+    "lat": 43.52969,
+    "lng": -96.68641
+  },
+  "checked_at": "2026-10-25",
+  "sources_checked": [
+    {
+      "url": "https://www.gibssportsbar.com/",
+      "result": "read",
+      "note": ""
+    },
+    {
+      "url": "https://www.gibssportsbar.com/menu/",
+      "result": "read",
+      "note": ""
+    }
+  ],
+  "facts": [
+    {
+      "field": "food",
+      "key": "food",
+      "value": true,
+      "source_url": "https://www.gibssportsbar.com/menu/",
+      "quote_snippet": "Burgers & Sandwiches",
+      "checked_at": "2026-10-25",
+      "confidence": "stated",
+      "flags": [],
+      "seen_on": [
+        "https://www.gibssportsbar.com/menu/"
+      ],
+      "source_type": "official_website"
+    }
+  ],
+  "missing": [
+    "table_count",
+    "table_sizes",
+    "table_brands",
+    "pricing_model",
+    "league_nights",
+    "age_policy",
+    "full_bar"
+  ]
+}

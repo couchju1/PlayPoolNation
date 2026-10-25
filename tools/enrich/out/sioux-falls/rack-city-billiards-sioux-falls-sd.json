@@ -1,0 +1,73 @@
+{
+  "schema": 1,
+  "slug": "rack-city-billiards-sioux-falls-sd",
+  "city": "sioux-falls",
+  "kind": "listing",
+  "listing": {
+    "id": 1824,
+    "url": "https://playpoolnation.com/place/rack-city-billiards-sioux-falls-sd/",
+    "name": "Rack City Billiards",
+    "street": "309 S Bahnson Ave",
+    "city": "Sioux Falls",
+    "state": "SD",
+    "zip": "57103",
+    "phone": "(605) 271-2951",
+    "website": "http://rackcitybilliards.com/",
+    "type": "Pool Hall",
+    "lat": 43.54556,
+    "lng": -96.68301
+  },
+  "checked_at": "2026-10-25",
+  "sources_checked": [
+    {
+      "url": "https://www.rackcitybilliards.com/",
+      "result": "read",
+      "note": ""
+    },
+    {
+      "url": "https://www.rackcitybilliards.com/home/",
+      "result": "read",
+      "note": ""
+    }
+  ],
+  "facts": [
+    {
+      "field": "table_count",
+      "key": "table_count",
+      "value": 19,
+      "source_url": "https://www.rackcitybilliards.com/",
+      "quote_snippet": "… is Sioux Falls most upscale pool hall, featuring 19 pool tables & casino, beer, wine & liquor.",
+      "checked_at": "2026-10-25",
+      "confidence": "stated",
+      "flags": [],
+      "seen_on": [
+        "https://www.rackcitybilliards.com/",
+        "https://www.rackcitybilliards.com/home/"
+      ],
+      "source_type": "official_website"
+    },
+    {
+      "field": "full_bar",
+      "key": "full_bar",
+      "value": true,
+      "source_url": "https://www.rackcitybilliards.com/",
+      "quote_snippet": "… is Sioux Falls most upscale pool hall, featuring 19 pool tables & casino, beer, wine & liquor.",
+      "checked_at": "2026-10-25",
+      "confidence": "implied",
+      "flags": [],
+      "seen_on": [
+        "https://www.rackcitybilliards.com/",
+        "https://www.rackcitybilliards.com/home/"
+      ],
+      "source_type": "official_website"
+    }
+  ],
+  "missing": [
+    "table_sizes",
+    "table_brands",
+    "pricing_model",
+    "league_nights",
+    "age_policy",
+    "food"
+  ]
+}

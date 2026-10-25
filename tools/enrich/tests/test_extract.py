@@ -116,6 +116,22 @@ class Amenities(unittest.TestCase):
         self.assertEqual(by_field(facts("We are permanently closed. Thank you!"), "venue_status")[0]["value"], "permanently-closed")
 
 
+class FalsePositives(unittest.TestCase):
+    def test_cocktail_sauce_is_not_a_bar(self):
+        self.assertEqual(by_field(facts("Crispy shrimp served with Texas toast and cocktail sauce."), "full_bar"), [])
+
+    def test_show_age_is_not_venue_age(self):
+        self.assertEqual(by_field(facts("BROTHER ALI Live at BIGS w/DJ Abilities - All Ages"), "age_policy"), [])
+        self.assertEqual(by_field(merge(extract(["Must be 21 or older."], "https://x.com/current-events", AT), lambda u: 0), "age_policy"), [])
+
+    def test_pool_and_dart_leagues(self):
+        f = by_field(facts("Downtown bar, pool and dart leagues, wine and spirits."), "league_nights")
+        self.assertEqual((f[0]["value"], f[0]["confidence"]), ({"league": "Pool league", "weekday": None}, "implied"))
+
+    def test_in_house_tournament_is_not_a_league(self):
+        self.assertEqual(by_field(facts("Join us every Monday night for an in house pool tournament."), "league_nights"), [])
+
+
 class Snippets(unittest.TestCase):
     def test_under_20_words(self):
         s = " ".join(f"word{i}" for i in range(60)) + " we have 18 pool tables " + " ".join(f"w{i}" for i in range(60))

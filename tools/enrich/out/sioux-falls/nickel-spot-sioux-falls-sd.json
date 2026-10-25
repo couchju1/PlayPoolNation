@@ -1,0 +1,141 @@
+{
+  "schema": 1,
+  "slug": "nickel-spot-sioux-falls-sd",
+  "city": "sioux-falls",
+  "kind": "listing",
+  "listing": {
+    "id": 1827,
+    "url": "https://playpoolnation.com/place/nickel-spot-sioux-falls-sd/",
+    "name": "Nickel Spot",
+    "street": "2918 S Minnesota Ave",
+    "city": "Sioux Falls",
+    "state": "SD",
+    "zip": "57105",
+    "phone": "(605) 335-3180",
+    "website": "http://www.thenickelspot.com/",
+    "type": "Bar",
+    "lat": 43.51776,
+    "lng": -96.73056
+  },
+  "checked_at": "2026-10-25",
+  "sources_checked": [
+    {
+      "url": "https://www.thenickelspot.com/index.cfm",
+      "result": "read",
+      "note": ""
+    },
+    {
+      "url": "https://www.thenickelspot.com/index.cfm/page/ptype=results/category_id=1/mode=cat/cat1.htm",
+      "result": "read",
+      "note": ""
+    },
+    {
+      "url": "https://www.thenickelspot.com/index.cfm/page/ptype=results/category_id=2/mode=cat/cat2.htm",
+      "result": "read",
+      "note": ""
+    },
+    {
+      "url": "https://www.thenickelspot.com/index.cfm/page/ptype=results/category_id=12/mode=cat/cat12.htm",
+      "result": "read",
+      "note": ""
+    },
+    {
+      "url": "https://www.thenickelspot.com/index.cfm/page/ptype=results/category_id=3/mode=cat/cat3.htm",
+      "result": "read",
+      "note": ""
+    },
+    {
+      "url": "https://www.thenickelspot.com/index.cfm/page/ptype=results/category_id=4/mode=cat/cat4.htm",
+      "result": "read",
+      "note": ""
+    },
+    {
+      "url": "https://www.thenickelspot.com/index.cfm/page/ptype=results/category_id=5/mode=cat/cat5.htm",
+      "result": "read",
+      "note": ""
+    },
+    {
+      "url": "https://www.thenickelspot.com/index.cfm/page/ptype=results/category_id=6/mode=cat/cat6.htm",
+      "result": "read",
+      "note": ""
+    },
+    {
+      "url": "https://www.thenickelspot.com/index.cfm/page/ptype=results/category_id=10/mode=cat/cat10.htm",
+      "result": "read",
+      "note": ""
+    }
+  ],
+  "facts": [
+    {
+      "field": "league_nights",
+      "key": "league_nights:pool-league:",
+      "value": {
+        "league": "Pool league",
+        "weekday": null
+      },
+      "source_url": "https://www.thenickelspot.com/index.cfm",
+      "quote_snippet": "POOL LEAGUES",
+      "checked_at": "2026-10-25",
+      "confidence": "implied",
+      "flags": [
+        "no weekday given"
+      ],
+      "seen_on": [
+        "https://www.thenickelspot.com/index.cfm",
+        "https://www.thenickelspot.com/index.cfm/page/ptype=results/category_id=1/mode=cat/cat1.htm",
+        "https://www.thenickelspot.com/index.cfm/page/ptype=results/category_id=10/mode=cat/cat10.htm",
+        "https://www.thenickelspot.com/index.cfm/page/ptype=results/category_id=12/mode=cat/cat12.htm",
+        "https://www.thenickelspot.com/index.cfm/page/ptype=results/category_id=2/mode=cat/cat2.htm",
+        "https://www.thenickelspot.com/index.cfm/page/ptype=results/category_id=3/mode=cat/cat3.htm",
+        "https://www.thenickelspot.com/index.cfm/page/ptype=results/category_id=4/mode=cat/cat4.htm",
+        "https://www.thenickelspot.com/index.cfm/page/ptype=results/category_id=5/mode=cat/cat5.htm",
+        "https://www.thenickelspot.com/index.cfm/page/ptype=results/category_id=6/mode=cat/cat6.htm"
+      ],
+      "source_type": "official_website"
+    },
+    {
+      "field": "food",
+      "key": "food",
+      "value": true,
+      "source_url": "https://www.thenickelspot.com/index.cfm/page/ptype=results/category_id=1/mode=cat/cat1.htm",
+      "quote_snippet": "Appetizers",
+      "checked_at": "2026-10-25",
+      "confidence": "stated",
+      "flags": [],
+      "seen_on": [
+        "https://www.thenickelspot.com/index.cfm/page/ptype=results/category_id=1/mode=cat/cat1.htm",
+        "https://www.thenickelspot.com/index.cfm/page/ptype=results/category_id=2/mode=cat/cat2.htm"
+      ],
+      "source_type": "official_website"
+    },
+    {
+      "field": "full_bar",
+      "key": "full_bar",
+      "value": true,
+      "source_url": "https://www.thenickelspot.com/index.cfm",
+      "quote_snippet": "LIQUOR",
+      "checked_at": "2026-10-25",
+      "confidence": "implied",
+      "flags": [],
+      "seen_on": [
+        "https://www.thenickelspot.com/index.cfm",
+        "https://www.thenickelspot.com/index.cfm/page/ptype=results/category_id=1/mode=cat/cat1.htm",
+        "https://www.thenickelspot.com/index.cfm/page/ptype=results/category_id=10/mode=cat/cat10.htm",
+        "https://www.thenickelspot.com/index.cfm/page/ptype=results/category_id=12/mode=cat/cat12.htm",
+        "https://www.thenickelspot.com/index.cfm/page/ptype=results/category_id=2/mode=cat/cat2.htm",
+        "https://www.thenickelspot.com/index.cfm/page/ptype=results/category_id=3/mode=cat/cat3.htm",
+        "https://www.thenickelspot.com/index.cfm/page/ptype=results/category_id=4/mode=cat/cat4.htm",
+        "https://www.thenickelspot.com/index.cfm/page/ptype=results/category_id=5/mode=cat/cat5.htm",
+        "https://www.thenickelspot.com/index.cfm/page/ptype=results/category_id=6/mode=cat/cat6.htm"
+      ],
+      "source_type": "official_website"
+    }
+  ],
+  "missing": [
+    "table_count",
+    "table_sizes",
+    "table_brands",
+    "pricing_model",
+    "age_policy"
+  ]
+}

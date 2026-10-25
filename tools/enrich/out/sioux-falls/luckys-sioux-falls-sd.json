@@ -1,0 +1,90 @@
+{
+  "schema": 1,
+  "slug": "luckys-sioux-falls-sd",
+  "city": "sioux-falls",
+  "kind": "listing",
+  "listing": {
+    "id": 1828,
+    "url": "https://playpoolnation.com/place/luckys-sioux-falls-sd/",
+    "name": "Lucky’s",
+    "street": "224 S Phillips Ave",
+    "city": "Sioux Falls",
+    "state": "SD",
+    "zip": "57104",
+    "phone": "(605) 335-1313",
+    "website": "https://luckysgroup.com/",
+    "type": "Bar",
+    "lat": 43.5451,
+    "lng": -96.72658
+  },
+  "checked_at": "2026-10-25",
+  "sources_checked": [
+    {
+      "url": "https://luckysgroup.com/",
+      "result": "read",
+      "note": ""
+    },
+    {
+      "url": "https://luckysgroup.com/lol-happy-hour-and-drinks/",
+      "result": "read",
+      "note": ""
+    },
+    {
+      "url": "https://luckysgroup.com/luckys-on-louise-food/",
+      "result": "read",
+      "note": ""
+    },
+    {
+      "url": "https://luckysgroup.com/lol-calendar-of-events/",
+      "result": "read",
+      "note": ""
+    },
+    {
+      "url": "https://luckysgroup.com/events-dt/",
+      "result": "read",
+      "note": ""
+    }
+  ],
+  "facts": [
+    {
+      "field": "food",
+      "key": "food",
+      "value": true,
+      "source_url": "https://luckysgroup.com/lol-happy-hour-and-drinks/",
+      "quote_snippet": "BONELESS WINGS",
+      "checked_at": "2026-10-25",
+      "confidence": "stated",
+      "flags": [
+        "website shared with Lucky’s on Louise"
+      ],
+      "seen_on": [
+        "https://luckysgroup.com/lol-happy-hour-and-drinks/"
+      ],
+      "source_type": "official_website"
+    },
+    {
+      "field": "full_bar",
+      "key": "full_bar",
+      "value": true,
+      "source_url": "https://luckysgroup.com/lol-happy-hour-and-drinks/",
+      "quote_snippet": "HIGH WATER COCKTAIL",
+      "checked_at": "2026-10-25",
+      "confidence": "implied",
+      "flags": [
+        "website shared with Lucky’s on Louise"
+      ],
+      "seen_on": [
+        "https://luckysgroup.com/lol-happy-hour-and-drinks/"
+      ],
+      "source_type": "official_website"
+    }
+  ],
+  "missing": [
+    "table_count",
+    "table_sizes",
+    "table_brands",
+    "pricing_model",
+    "league_nights",
+    "age_policy"
+  ]
+}

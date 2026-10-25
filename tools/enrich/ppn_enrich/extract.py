@@ -9,6 +9,7 @@ cut to under 20 words, for the reviewer.
 from __future__ import annotations
 
 import re
+import urllib.parse
 
 from .text import sentences, snippet
 
@@ -100,13 +101,16 @@ AGE = [
     ("all-ages", re.compile(r"\ball\s+ages\b|\bminors\s+(?:are\s+)?welcome\b|\bkids\s+(?:are\s+)?welcome\b|\bchildren\s+(?:are\s+)?welcome\b", re.I), "stated"),
     ("all-ages", re.compile(r"\bfamily[- ]friendly\b|\bkids'?\s+menu\b|\bchildren'?s\s+menu\b", re.I), "implied"),
 ]
-AGE_NOISE = re.compile(r"\b(event|show|concert|night only|tournament|party|tickets?|id required for alcohol|to drink|to purchase alcohol|alcohol)\b", re.I)
+AGE_NOISE = re.compile(r"\b(events?|shows?|concerts?|live|tour|presents?|doors|dj|band|night only|tournament|party|tickets?|id required for alcohol|to drink|to purchase alcohol|alcohol)\b|\bw/", re.I)
+# Pages listing shows: an "All ages" or "21+" there is about one show, not the venue.
+EVENT_PAGE = re.compile(r"event|calendar|show|concert|ticket|music", re.I)
 
 FOOD_YES = re.compile(r"\b(full\s+menu|food\s+menu|our\s+menu|kitchen\s+(?:is\s+)?open|kitchen\s+hours|appetizers|burgers?|pizzas?|wings|sandwiches|tacos|entr[eé]es|grill\s+menu|lunch\s+menu|dinner\s+menu|bar\s+food|pub\s+food|food\s+(?:and|&)\s+drinks?|serving\s+food)\b", re.I)
 FOOD_IMPLIED = re.compile(r"\b(snacks?|frozen\s+pizza|popcorn|chips)\b", re.I)
 FOOD_NO = re.compile(r"\b(no\s+food|no\s+kitchen|we\s+do\s+not\s+serve\s+food|don'?t\s+serve\s+food|bring\s+your\s+own\s+food)\b", re.I)
 BAR_YES = re.compile(r"\bfull[- ](?:service\s+)?bar\b|\bfull\s+liquor\b", re.I)
 BAR_IMPLIED = re.compile(r"\b(cocktails?|mixed\s+drinks|liquor|spirits|whiske?y|vodka|tequila|margaritas?|martinis?|bloody\s+marys?)\b", re.I)
+NOT_DRINKS = re.compile(r"\b(cocktail\s+sauce|shrimp\s+cocktail|fruit\s+cocktail|cocktail\s+(?:napkins?|tables?|attire|dress))\b", re.I)
 BAR_NO = re.compile(r"\bbeer\s+(?:and|&)\s+wine\s+only\b|\bno\s+(?:hard\s+)?liquor\b|\balcohol[- ]free\b|\bno\s+alcohol\b|\bdry\s+venue\b", re.I)
 CLOSED = re.compile(r"\b(permanently\s+closed|closed\s+permanently|closed\s+for\s+good|(?:have|has)\s+closed\s+(?:our|its|the)\s+doors|(?:we\s+are|we're)\s+closing\s+(?:our\s+doors|permanently)|final\s+day\s+of\s+business|out\s+of\s+business)\b", re.I)
 TEMP_CLOSED = re.compile(r"\btemporarily\s+closed\b|\bclosed\s+(?:until\s+further\s+notice|for\s+renovations?)\b", re.I)
@@ -280,7 +284,9 @@ def _leagues(s, url, at, pool):
     generic = GENERIC_LEAGUE.search(s)
     if not orgs and not generic:
         return out
-    darts_only = re.search(r"\bdarts?\b|\bcornhole\b|\bbowling\b|\bvolleyball\b|\bsoftball\b|\btrivia\b|\bbags\b", s, re.I) and not POOL_CONTEXT.search(s)
+    # A bare "pool" counts here ("pool and dart leagues"), unless it is a swimming pool.
+    pool = pool or (bool(re.search(r"\bpool\b", s, re.I)) and not SWIMMING.search(s))
+    darts_only = re.search(r"\bdarts?\b|\bcornhole\b|\bbowling\b|\bvolleyball\b|\bsoftball\b|\btrivia\b|\bbags\b", s, re.I) and not pool
     if darts_only:
         return out
     if not orgs:
@@ -307,7 +313,7 @@ def _leagues(s, url, at, pool):
 
 def _amenities(s, url, at):
     out = []
-    if not AGE_NOISE.search(s):
+    if not AGE_NOISE.search(s) and not EVENT_PAGE.search(urllib.parse.urlsplit(url).path):
         for value, rx, conf in AGE:
             m = rx.search(s)
             if m:
@@ -318,8 +324,9 @@ def _amenities(s, url, at):
         if m:
             out.append(_fact("food", "food", value, s, m.start(), m.end(), url, at, conf))
             break
+    drinks = NOT_DRINKS.sub(lambda m: " " * len(m.group(0)), s)
     for rx, value, conf in ((BAR_NO, False, "stated"), (BAR_YES, True, "stated"), (BAR_IMPLIED, True, "implied")):
-        m = rx.search(s)
+        m = rx.search(drinks)
         if m:
             out.append(_fact("full_bar", "full_bar", value, s, m.start(), m.end(), url, at, conf))
             break

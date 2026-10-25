@@ -1,0 +1,177 @@
+{
+  "schema": 1,
+  "slug": "bigs-bar-sioux-falls-sd",
+  "city": "sioux-falls",
+  "kind": "listing",
+  "listing": {
+    "id": 1826,
+    "url": "https://playpoolnation.com/place/bigs-bar-sioux-falls-sd/",
+    "name": "Bigs Bar",
+    "street": "3110 W 12th St",
+    "city": "Sioux Falls",
+    "state": "SD",
+    "zip": "57104",
+    "phone": "(605) 275-2447",
+    "website": "http://www.bigsbar.com/",
+    "type": "Pool Hall",
+    "lat": 43.54533,
+    "lng": -96.76828
+  },
+  "checked_at": "2026-10-25",
+  "sources_checked": [
+    {
+      "url": "https://www.bigsbar.com/",
+      "result": "read",
+      "note": ""
+    },
+    {
+      "url": "https://www.bigsbar.com/current-events",
+      "result": "read",
+      "note": ""
+    },
+    {
+      "url": "https://www.bigsbar.com/past-events",
+      "result": "read",
+      "note": ""
+    },
+    {
+      "url": "https://www.bigsbar.com/billiards-darts",
+      "result": "read",
+      "note": ""
+    },
+    {
+      "url": "https://www.bigsbar.com/menu",
+      "result": "read",
+      "note": ""
+    }
+  ],
+  "facts": [
+    {
+      "field": "table_count",
+      "key": "table_count",
+      "value": 12,
+      "source_url": "https://www.bigsbar.com/",
+      "quote_snippet": "Our expanded venue features 12 pool tables, darts and 18 TV's for sports viewing all year long.",
+      "checked_at": "2026-10-25",
+      "confidence": "stated",
+      "flags": [],
+      "seen_on": [
+        "https://www.bigsbar.com/",
+        "https://www.bigsbar.com/billiards-darts"
+      ],
+      "source_type": "official_website"
+    },
+    {
+      "field": "pricing_model",
+      "key": "pricing_model:hourly",
+      "value": {
+        "model": "hourly",
+        "rate": null
+      },
+      "source_url": "https://www.bigsbar.com/billiards-darts",
+      "quote_snippet": "Pool hourly rate is $8 for 1 1/2 hours.",
+      "checked_at": "2026-10-25",
+      "confidence": "stated",
+      "flags": [],
+      "seen_on": [
+        "https://www.bigsbar.com/billiards-darts"
+      ],
+      "source_type": "official_website"
+    },
+    {
+      "field": "league_nights",
+      "key": "league_nights:apa:",
+      "value": {
+        "league": "APA",
+        "weekday": null
+      },
+      "source_url": "https://www.bigsbar.com/billiards-darts",
+      "quote_snippet": "American Poolplayers Association Music Service",
+      "checked_at": "2026-10-25",
+      "confidence": "implied",
+      "flags": [
+        "no weekday given"
+      ],
+      "seen_on": [
+        "https://www.bigsbar.com/billiards-darts"
+      ],
+      "source_type": "official_website"
+    },
+    {
+      "field": "league_nights",
+      "key": "league_nights:pool-league:monday",
+      "value": {
+        "league": "Pool league",
+        "weekday": "monday"
+      },
+      "source_url": "https://www.bigsbar.com/billiards-darts",
+      "quote_snippet": "We currently host pool leagues on Monday and Saturday.",
+      "checked_at": "2026-10-25",
+      "confidence": "stated",
+      "flags": [
+        "league name not given"
+      ],
+      "seen_on": [
+        "https://www.bigsbar.com/billiards-darts"
+      ],
+      "source_type": "official_website"
+    },
+    {
+      "field": "league_nights",
+      "key": "league_nights:pool-league:saturday",
+      "value": {
+        "league": "Pool league",
+        "weekday": "saturday"
+      },
+      "source_url": "https://www.bigsbar.com/billiards-darts",
+      "quote_snippet": "We currently host pool leagues on Monday and Saturday.",
+      "checked_at": "2026-10-25",
+      "confidence": "stated",
+      "flags": [
+        "league name not given"
+      ],
+      "seen_on": [
+        "https://www.bigsbar.com/billiards-darts"
+      ],
+      "source_type": "official_website"
+    },
+    {
+      "field": "food",
+      "key": "food",
+      "value": true,
+      "source_url": "https://www.bigsbar.com/",
+      "quote_snippet": "The Sioux Empire venue for live music, pizza, craft beer, billiards & darts",
+      "checked_at": "2026-10-25",
+      "confidence": "stated",
+      "flags": [],
+      "seen_on": [
+        "https://www.bigsbar.com/",
+        "https://www.bigsbar.com/billiards-darts",
+        "https://www.bigsbar.com/current-events",
+        "https://www.bigsbar.com/menu",
+        "https://www.bigsbar.com/past-events"
+      ],
+      "source_type": "official_website"
+    },
+    {
+      "field": "full_bar",
+      "key": "full_bar",
+      "value": true,
+      "source_url": "https://www.bigsbar.com/",
+      "quote_snippet": "Enjoy our full bar featuring premium liquor and craft beers from all over the world on one …",
+      "checked_at": "2026-10-25",
+      "confidence": "stated",
+      "flags": [],
+      "seen_on": [
+        "https://www.bigsbar.com/",
+        "https://www.bigsbar.com/menu"
+      ],
+      "source_type": "official_website"
+    }
+  ],
+  "missing": [
+    "table_sizes",
+    "table_brands",
+    "age_policy"
+  ]
+}

@@ -1,0 +1,90 @@
+{
+  "schema": 1,
+  "slug": "luckys-on-louise-sioux-falls-sd",
+  "city": "sioux-falls",
+  "kind": "listing",
+  "listing": {
+    "id": 1829,
+    "url": "https://playpoolnation.com/place/luckys-on-louise-sioux-falls-sd/",
+    "name": "Lucky’s on Louise",
+    "street": "6401 S Louise Ave",
+    "city": "Sioux Falls",
+    "state": "SD",
+    "zip": "57108",
+    "phone": "(605) 271-9225",
+    "website": "https://luckysgroup.com/home",
+    "type": "Bar",
+    "lat": 43.48705,
+    "lng": -96.76842
+  },
+  "checked_at": "2026-10-25",
+  "sources_checked": [
+    {
+      "url": "https://luckysgroup.com/home",
+      "result": "read",
+      "note": ""
+    },
+    {
+      "url": "https://luckysgroup.com/lol-happy-hour-and-drinks/",
+      "result": "read",
+      "note": ""
+    },
+    {
+      "url": "https://luckysgroup.com/luckys-on-louise-food/",
+      "result": "read",
+      "note": ""
+    },
+    {
+      "url": "https://luckysgroup.com/lol-calendar-of-events/",
+      "result": "read",
+      "note": ""
+    },
+    {
+      "url": "https://luckysgroup.com/events-dt/",
+      "result": "read",
+      "note": ""
+    }
+  ],
+  "facts": [
+    {
+      "field": "food",
+      "key": "food",
+      "value": true,
+      "source_url": "https://luckysgroup.com/lol-happy-hour-and-drinks/",
+      "quote_snippet": "BONELESS WINGS",
+      "checked_at": "2026-10-25",
+      "confidence": "stated",
+      "flags": [
+        "website shared with Lucky’s"
+      ],
+      "seen_on": [
+        "https://luckysgroup.com/lol-happy-hour-and-drinks/"
+      ],
+      "source_type": "official_website"
+    },
+    {
+      "field": "full_bar",
+      "key": "full_bar",
+      "value": true,
+      "source_url": "https://luckysgroup.com/lol-happy-hour-and-drinks/",
+      "quote_snippet": "HIGH WATER COCKTAIL",
+      "checked_at": "2026-10-25",
+      "confidence": "implied",
+      "flags": [
+        "website shared with Lucky’s"
+      ],
+      "seen_on": [
+        "https://luckysgroup.com/lol-happy-hour-and-drinks/"
+      ],
+      "source_type": "official_website"
+    }
+  ],
+  "missing": [
+    "table_count",
+    "table_sizes",
+    "table_brands",
+    "pricing_model",
+    "league_nights",
+    "age_policy"
+  ]
+}

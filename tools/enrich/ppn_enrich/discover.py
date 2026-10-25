@@ -22,7 +22,12 @@ from .match import best_match, normalize_name
 from .paths import ROOT, REPO
 from .text import parse_html, plain_lines
 
-OVERPASS = "https://overpass-api.de/api/interpreter"
+# Public Overpass instances, tried in this order.
+OVERPASS = [
+    "https://overpass-api.de/api/interpreter",
+    "https://overpass.private.coffee/api/interpreter",
+    "https://maps.mail.ru/osm/tools/overpass/api/interpreter",
+]
 PLACES = "https://places.googleapis.com/v1/places:searchText"
 # Google Maps Platform terms: only the place ID may be kept indefinitely; other content at most 30 days.
 PLACES_KEEP_DAYS = 30
@@ -63,12 +68,19 @@ out center tags;"""
 
 def osm_candidates(fetcher: Fetcher, city: dict) -> tuple[list[dict], list[dict]]:
     """(pool venues, all other bars). Bars without a pool tag only help fill in our own listings."""
-    r = fetcher.post(OVERPASS, {"data": overpass_query(city)}, retries=6)
-    if r.status in (429, 504) or (not r.ok and r.status == 0):
-        # Busy or unreachable: pause, and the next run starts discovery again.
-        raise UsageLimit(f"Overpass {'rate limit' if r.status == 429 else r.error or 'busy'}")
-    if not r.ok:
-        raise RuntimeError(f"Overpass failed: {r.error}")
+    timeout, fetcher.timeout = fetcher.timeout, 120.0  # The query itself may take a minute or two.
+    errors = []
+    try:
+        for url in OVERPASS:
+            r = fetcher.post(url, {"data": overpass_query(city)}, retries=1)
+            if r.ok:
+                break
+            errors.append(f"{url.split('/')[2]}: {'rate limit' if r.status == 429 else r.error or r.status}")
+        else:
+            # Busy or unreachable everywhere: the next run tries again.
+            raise UsageLimit("Overpass unavailable (" + "; ".join(errors) + ")")
+    finally:
+        fetcher.timeout = timeout
     elements = json.loads(r.text).get("elements", [])
     pool, bars, seen = [], [], set()
     for e in elements:
@@ -204,7 +216,16 @@ def run(city: dict, listings: list[dict], fetcher: Fetcher) -> dict:
 
     if not disc.get("osm"):
         print("  OpenStreetMap (Overpass)…")
-        pool, bars = osm_candidates(fetcher, city)
+        try:
+            pool, bars = osm_candidates(fetcher, city)
+        except UsageLimit as e:
+            # Don't hold up the rest of the city; the next run retries this step only.
+            print(f"  {e}; continuing without it.")
+            disc["osm_pending"] = str(e)[:300]
+            store.save_state(city["slug"], state)
+            pool = None
+    if not disc.get("osm") and pool is not None:
+        disc.pop("osm_pending", None)
         candidates += pool
         # Plain bars only fill in missing websites/phones on listings we already have.
         fills = {}
@@ -261,7 +282,8 @@ def run(city: dict, listings: list[dict], fetcher: Fetcher) -> dict:
         (matched if m["class"] == "match" else new).append(c)
     new.sort(key=lambda c: (c.get("venue_type") != "pool-halls", c["name"].lower()))
     store.write_json(city["slug"], "new-venues.json", new)
-    disc["done"] = checked_at
+    if disc.get("osm"):
+        disc["done"] = checked_at
     disc["new"] = len(new)
     disc["matched_existing"] = len(matched)
     store.save_state(city["slug"], state)

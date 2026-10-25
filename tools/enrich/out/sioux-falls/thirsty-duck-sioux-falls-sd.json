@@ -1,0 +1,128 @@
+{
+  "schema": 1,
+  "slug": "thirsty-duck-sioux-falls-sd",
+  "city": "sioux-falls",
+  "kind": "listing",
+  "listing": {
+    "id": 1830,
+    "url": "https://playpoolnation.com/place/thirsty-duck-sioux-falls-sd/",
+    "name": "Thirsty Duck",
+    "street": "945 S Marion Rd",
+    "city": "Sioux Falls",
+    "state": "SD",
+    "zip": "57106",
+    "phone": "(605) 334-0124",
+    "website": "http://www.thirstyducksiouxfalls.com/",
+    "type": "Bar",
+    "lat": 43.53845,
+    "lng": -96.79178
+  },
+  "checked_at": "2026-10-25",
+  "sources_checked": [
+    {
+      "url": "https://www.thirstyducksiouxfalls.com/index.cfm",
+      "result": "read",
+      "note": ""
+    },
+    {
+      "url": "https://www.thirstyducksiouxfalls.com/index.cfm/page/ptype=results/category_id=5/mode=cat/cat5.htm",
+      "result": "read",
+      "note": ""
+    },
+    {
+      "url": "https://www.thirstyducksiouxfalls.com/index.cfm/page/ptype=results/category_id=1/mode=cat/cat1.htm",
+      "result": "read",
+      "note": ""
+    },
+    {
+      "url": "https://www.thirstyducksiouxfalls.com/index.cfm/page/ptype=results/category_id=6/mode=cat/cat6.htm",
+      "result": "read",
+      "note": ""
+    },
+    {
+      "url": "https://www.thirstyducksiouxfalls.com/index.cfm/page/ptype=results/category_id=9/mode=cat/cat9.htm",
+      "result": "read",
+      "note": ""
+    },
+    {
+      "url": "https://www.thirstyducksiouxfalls.com/index.cfm/page/ptype=results/category_id=12/mode=cat/cat12.htm",
+      "result": "read",
+      "note": ""
+    },
+    {
+      "url": "https://www.thirstyducksiouxfalls.com/index.cfm/page/ptype=results/category_id=11/mode=cat/cat11.htm",
+      "result": "read",
+      "note": ""
+    },
+    {
+      "url": "https://www.thirstyducksiouxfalls.com/index.cfm/page/ptype=page/page_cd=info/info.htm",
+      "result": "read",
+      "note": ""
+    }
+  ],
+  "facts": [
+    {
+      "field": "league_nights",
+      "key": "league_nights:pool-league:",
+      "value": {
+        "league": "Pool league",
+        "weekday": null
+      },
+      "source_url": "https://www.thirstyducksiouxfalls.com/index.cfm/page/ptype=results/category_id=11/mode=cat/cat11.htm",
+      "quote_snippet": "Pool Leagues",
+      "checked_at": "2026-10-25",
+      "confidence": "implied",
+      "flags": [
+        "no weekday given"
+      ],
+      "seen_on": [
+        "https://www.thirstyducksiouxfalls.com/index.cfm/page/ptype=results/category_id=11/mode=cat/cat11.htm"
+      ],
+      "source_type": "official_website"
+    },
+    {
+      "field": "food",
+      "key": "food",
+      "value": true,
+      "source_url": "https://www.thirstyducksiouxfalls.com/index.cfm/page/ptype=results/category_id=5/mode=cat/cat5.htm",
+      "quote_snippet": "Prime Rib Tacos",
+      "checked_at": "2026-10-25",
+      "confidence": "stated",
+      "flags": [],
+      "seen_on": [
+        "https://www.thirstyducksiouxfalls.com/index.cfm/page/ptype=results/category_id=5/mode=cat/cat5.htm",
+        "https://www.thirstyducksiouxfalls.com/index.cfm/page/ptype=results/category_id=6/mode=cat/cat6.htm",
+        "https://www.thirstyducksiouxfalls.com/index.cfm/page/ptype=results/category_id=9/mode=cat/cat9.htm"
+      ],
+      "source_type": "official_website"
+    },
+    {
+      "field": "full_bar",
+      "key": "full_bar",
+      "value": true,
+      "source_url": "https://www.thirstyducksiouxfalls.com/index.cfm",
+      "quote_snippet": "LIQUOR",
+      "checked_at": "2026-10-25",
+      "confidence": "implied",
+      "flags": [],
+      "seen_on": [
+        "https://www.thirstyducksiouxfalls.com/index.cfm",
+        "https://www.thirstyducksiouxfalls.com/index.cfm/page/ptype=page/page_cd=info/info.htm",
+        "https://www.thirstyducksiouxfalls.com/index.cfm/page/ptype=results/category_id=1/mode=cat/cat1.htm",
+        "https://www.thirstyducksiouxfalls.com/index.cfm/page/ptype=results/category_id=11/mode=cat/cat11.htm",
+        "https://www.thirstyducksiouxfalls.com/index.cfm/page/ptype=results/category_id=12/mode=cat/cat12.htm",
+        "https://www.thirstyducksiouxfalls.com/index.cfm/page/ptype=results/category_id=5/mode=cat/cat5.htm",
+        "https://www.thirstyducksiouxfalls.com/index.cfm/page/ptype=results/category_id=6/mode=cat/cat6.htm",
+        "https://www.thirstyducksiouxfalls.com/index.cfm/page/ptype=results/category_id=9/mode=cat/cat9.htm"
+      ],
+      "source_type": "official_website"
+    }
+  ],
+  "missing": [
+    "table_count",
+    "table_sizes",
+    "table_brands",
+    "pricing_model",
+    "age_policy"
+  ]
+}

@@ -86,18 +86,21 @@ def do_enrich(city: dict, listings: list[dict], fetcher: Fetcher, *, recheck: bo
         done_now += 1
         if crash_after and done_now >= crash_after:
             print(f"Simulated crash after {done_now} venue(s) (PPN_ENRICH_CRASH_AFTER).", flush=True)
+            progress.log(slug, f"simulated crash after {done_now} venues (PPN_ENRICH_CRASH_AFTER)")
+            progress.write()
             os._exit(70)
         if limit and done_now >= limit:
             print(f"Stopped after --limit {limit}; run again to continue.")
             return
     state = store.load_state(slug)
+    pending = state.get("discovery", {}).get("osm_pending")
     if recheck:
         state["recheck"]["_finished"] = dt.date.today().isoformat()
-    else:
+    elif not pending:
         state["finished_at"] = dt.date.today().isoformat()
     state.pop("paused", None)
     store.save_state(slug, state)
-    progress.log(slug, ("re-check" if recheck else "enrichment") + f" finished: {len(venues)} venues")
+    progress.log(slug, ("re-check" if recheck else "enrichment") + f" finished: {len(venues)} venues" + ("; OpenStreetMap discovery still to do, run again" if pending else ""))
     progress.write()
 
 
@@ -108,12 +111,23 @@ def run_city(slug: str, args) -> None:
     if purged:
         print(f"Removed expired Google Places details from {purged} candidate(s).")
     state = store.load_state(slug)
-    if state.get("paused"):
-        progress.log(slug, "resumed after pause")
-    elif state.get("venues") and not state.get("finished_at"):
-        progress.log(slug, f"resumed; {sum(1 for v in state['venues'].values() if v.get('status') == 'done')} venues already done")
+    if args.redo and args.cmd == "run":
+        state["venues"] = {}
+        state.pop("finished_at", None)
+        store.save_state(slug, state)
+        progress.log(slug, "redo: enriching every venue again")
+        state = store.load_state(slug)
+    done = sum(1 for v in state.get("venues", {}).values() if v.get("status") == "done")
+    label = "re-check" if args.cmd == "recheck" else "run"
+    if args.cmd == "run" and done and not state.get("finished_at"):
+        progress.log(slug, f"resumed{' after pause' if state.get('paused') else ''}: {done} venues already done, skipping them")
+    elif state.get("paused"):
+        progress.log(slug, f"{label} resumed after pause")
     else:
-        progress.log(slug, "run started")
+        progress.log(slug, f"{label} started")
+    state = store.load_state(slug)
+    state.pop("paused", None)
+    store.save_state(slug, state)
     try:
         listings = get_listings(city, fetcher, args.listings, args.refresh_listings)
         if not store.load_state(slug).get("discovery", {}).get("done") or args.rediscover:
@@ -124,6 +138,9 @@ def run_city(slug: str, args) -> None:
                 store.write_json(slug, "_candidates.json", [])
             print("Discovery…")
             res = discover.run(city, listings, fetcher)
+            s = store.load_state(slug)
+            s.pop("paused", None)
+            store.save_state(slug, s)
             print(f"  {res['candidates']} candidates, {res['matched']} already listed, {res['new']} new → out/{slug}/new-venues.json")
         do_enrich(city, listings, fetcher, recheck=args.cmd == "recheck", limit=args.limit)
     except UsageLimit as e:
@@ -168,6 +185,7 @@ def main() -> None:
     p.add_argument("--listings", help="JSON from `wp ppn enrich export <city>` instead of reading the public site")
     p.add_argument("--refresh-listings", action="store_true")
     p.add_argument("--rediscover", action="store_true", help="run Step A again")
+    p.add_argument("--redo", action="store_true", help="run: enrich every venue again (e.g. after improving the extraction rules)")
     p.add_argument("--limit", type=int, default=0, help="stop after this many venues")
     p.add_argument("--delay", type=float, default=4.0, help="seconds between requests to one domain (default 4)")
     args = p.parse_args()

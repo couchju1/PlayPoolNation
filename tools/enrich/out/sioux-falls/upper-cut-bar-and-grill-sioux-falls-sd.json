@@ -1,0 +1,59 @@
+{
+  "schema": 1,
+  "slug": "upper-cut-bar-and-grill-sioux-falls-sd",
+  "city": "sioux-falls",
+  "kind": "listing",
+  "listing": {
+    "id": 1833,
+    "url": "https://playpoolnation.com/place/upper-cut-bar-and-grill-sioux-falls-sd/",
+    "name": "Upper Cut Bar & Grill",
+    "street": "2819 E 10th St",
+    "city": "Sioux Falls",
+    "state": "SD",
+    "zip": "57103",
+    "phone": "(605) 336-0900",
+    "website": "http://www.uppercut605.com/",
+    "type": "Bar",
+    "lat": 43.54611,
+    "lng": -96.68967
+  },
+  "checked_at": "2026-10-25",
+  "sources_checked": [
+    {
+      "url": "https://www.uppercut605.com/",
+      "result": "read",
+      "note": ""
+    },
+    {
+      "url": "https://www.uppercut605.com/upcoming-events",
+      "result": "read",
+      "note": ""
+    }
+  ],
+  "facts": [
+    {
+      "field": "full_bar",
+      "key": "full_bar",
+      "value": true,
+      "source_url": "https://www.uppercut605.com/",
+      "quote_snippet": "Ventures - Upper Cut located in Sioux Falls SD, your source for Bar, cocktails, beer, and wines.",
+      "checked_at": "2026-10-25",
+      "confidence": "implied",
+      "flags": [],
+      "seen_on": [
+        "https://www.uppercut605.com/",
+        "https://www.uppercut605.com/upcoming-events"
+      ],
+      "source_type": "official_website"
+    }
+  ],
+  "missing": [
+    "table_count",
+    "table_sizes",
+    "table_brands",
+    "pricing_model",
+    "league_nights",
+    "age_policy",
+    "food"
+  ]
+}
