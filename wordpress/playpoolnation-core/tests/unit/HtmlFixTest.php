@@ -105,6 +105,13 @@ final class HtmlFixTest extends TestCase {
 
 	/* --------------------------------------------------------- pool game */
 
+	public function test_pool_game_title_is_the_h1_only_when_the_page_has_none(): void {
+		$game = '<header class="ppn-pg__head"><p class="ppn-pg__eyebrow">Practice</p><h2 class="ppn-pg__title">Play a few racks.</h2></header><h2 id="ppn-signin-title">Save this spot</h2>';
+		$this->assertSame( '<header class="ppn-pg__head"><p class="ppn-pg__eyebrow">Practice</p><h1 class="ppn-pg__title">Play a few racks.</h1></header><h2 id="ppn-signin-title">Save this spot</h2>', Html_Fix::pool_game_h1( $game ) );
+		$with_h1 = '<h1>Find your next place to play.</h1>' . $game;
+		$this->assertSame( $with_h1, Html_Fix::pool_game_h1( $with_h1 ) );
+	}
+
 	public function test_pool_game_waits_for_play(): void {
 		$html = '<div class="ppn-pg__frame">' . "\n\t" . '<iframe data-ppn="frame" title="Billiards game" src="https://x.test/game/index.html?ruletype=nineball&#038;v=1" loading="lazy"></iframe>' . "\n</div>";
 		$out = Html_Fix::pool_game_on_click( $html );

@@ -195,6 +195,18 @@ final class Html_Fix {
 	}
 
 	/**
+	 * On a page whose only main heading is the pool game's (the Practice page), the
+	 * game's title becomes the page's H1. The game styles it by class, so it looks
+	 * the same. Pages that already have an H1 are left alone.
+	 */
+	public static function pool_game_h1( string $html ): string {
+		if ( ! str_contains( $html, 'ppn-pg__title' ) || preg_match( '#<h1\b#i', $html ) ) {
+			return $html;
+		}
+		return (string) preg_replace( '#<h2(\s+class="ppn-pg__title"[^>]*)>(.*?)</h2>#s', '<h1$1>$2</h1>', $html, 1 );
+	}
+
+	/**
 	 * Run a transform on the HTML outside <script>, <style> and <textarea> elements,
 	 * whose contents are not markup (My Listing's map marker templates use {{ }} too).
 	 *
