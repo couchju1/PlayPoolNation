@@ -676,10 +676,12 @@
 	 * theme's Save buttons are matched by class because cards from "Load more" are
 	 * built outside the page markup. One beacon per click, no cookies. The landing
 	 * referrer's host is kept for this tab only, so later pages keep their source.
+	 * Browsers under automation (navigator.webdriver: PageSpeed, Lighthouse, test
+	 * scripts) send nothing; they present ordinary phone and desktop user agents.
 	 */
 	( function () {
 		var track = cfg.track;
-		if ( ! track || ! track.url ) {
+		if ( ! track || ! track.url || navigator.webdriver ) {
 			return;
 		}
 		var SAVE = '.c27-bookmark-button, .mylisting-bookmark-item';
