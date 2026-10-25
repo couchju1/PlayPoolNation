@@ -45,7 +45,9 @@ final class Social {
 			if ( '' === $html || preg_match( '/href=""/', $html ) ) {
 				continue;
 			}
-			$out[ $key ] = 'mail' === $key ? self::fix_mail_link( $html ) : $html;
+			$html = 'mail' === $key ? self::fix_mail_link( $html ) : $html;
+			// Counted as a share (Tracking).
+			$out[ $key ] = (string) preg_replace( '#^<a\b(?![^>]*data-ppn-event)#', '<a data-ppn-event="share"', $html, 1 );
 		}
 		return $out;
 	}

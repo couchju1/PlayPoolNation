@@ -263,6 +263,48 @@ return ( static function (): array {
 		$check( 'no temporary domain in stored page data', ! (int) $wpdb->get_var( "SELECT COUNT(*) FROM {$wpdb->postmeta} WHERE meta_key = '_elementor_data' AND meta_value LIKE '%hostingersite.com%'" ) );
 		$check( 'home and siteurl are the live domain', ! str_contains( home_url(), 'hostingersite.com' ) && ! str_contains( site_url(), 'hostingersite.com' ) );
 
+		/* ---------- click tracking ---------- */
+		PlayPoolNation\Core\Tracking::maybe_install();
+		$track_venue = $rack ?: (int) ( $any_venue[0] ?? 0 );
+		$events_table = PlayPoolNation\Core\Tracking::table( PlayPoolNation\Core\Tracking::EVENTS_TABLE );
+		$views_table = PlayPoolNation\Core\Tracking::table( PlayPoolNation\Core\Tracking::VIEWS_TABLE );
+		$ua_before = $_SERVER['HTTP_USER_AGENT'] ?? null;
+		$_SERVER['HTTP_USER_AGENT'] = 'Mozilla/5.0 (iPhone; CPU iPhone OS 18_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.0 Mobile/15E148 Safari/604.1';
+		$_SERVER['REMOTE_ADDR'] = $_SERVER['REMOTE_ADDR'] ?? '203.0.113.9';
+		$post_event = static function ( array $params ) {
+			$req = new WP_REST_Request( 'POST', '/ppn/v1/event' );
+			$req->set_body_params( $params );
+			return rest_do_request( $req );
+		};
+		$base = [ 'venue' => (string) $track_venue, 'type' => 'directions', 'where' => 'venue_page', 'path' => '/ppn-test-path/', 'device' => 'mobile', 'ref' => 'www.google.com' ];
+		$res = $post_event( $base );
+		$check( 'event endpoint accepts a click', 204 === $res->get_status(), (string) $res->get_status() );
+		$row = $wpdb->get_row( $wpdb->prepare( "SELECT * FROM {$events_table} WHERE venue_id = %d AND path = '/ppn-test-path/' ORDER BY id DESC LIMIT 1", $track_venue ), ARRAY_A );
+		$check( 'stored event reads back', $row && 'directions' === $row['event_type'] && 'venue_page' === $row['context'] && 'mobile' === $row['device'] && 'google' === $row['source'] && str_ends_with( $row['created_at'], ':00:00' ), wp_json_encode( $row ) );
+		$check( 'stored event has no personal data columns', $row && ! array_intersect( array_keys( $row ), [ 'ip', 'user_agent', 'user_id', 'referrer' ] ) );
+		$check( 'stored event has the venue city', $row && PlayPoolNation\Core\Tracking::city_slug( $track_venue ) === $row['city'] );
+		$count_rows = static fn() => (int) $wpdb->get_var( "SELECT COUNT(*) FROM {$events_table} WHERE path = '/ppn-test-path/'" );
+		$before = $count_rows();
+		$check( 'invalid event type rejected', 400 === $post_event( array_merge( $base, [ 'type' => 'purchase' ] ) )->get_status() );
+		$check( 'non-venue listing rejected', 400 === $post_event( array_merge( $base, [ 'venue' => '999999999' ] ) )->get_status() );
+		$_SERVER['HTTP_USER_AGENT'] = 'Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)';
+		$check( 'bot requests are dropped', 204 === $post_event( $base )->get_status() && $count_rows() === $before );
+		$_SERVER['HTTP_USER_AGENT'] = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Safari/537.36';
+		$views_before = (int) $wpdb->get_var( $wpdb->prepare( "SELECT views FROM {$views_table} WHERE venue_id = %d AND day = %s", $track_venue, gmdate( 'Y-m-d' ) ) );
+		$post_event( array_merge( $base, [ 'type' => 'view', 'device' => 'desktop' ] ) );
+		$post_event( array_merge( $base, [ 'type' => 'view', 'device' => 'desktop' ] ) );
+		$views_after = (int) $wpdb->get_var( $wpdb->prepare( "SELECT views FROM {$views_table} WHERE venue_id = %d AND day = %s", $track_venue, gmdate( 'Y-m-d' ) ) );
+		$check( 'page views counted per venue per day', $views_after === $views_before + 2 && $count_rows() === $before, $views_before . ' -> ' . $views_after );
+		if ( null === $ua_before ) {
+			unset( $_SERVER['HTTP_USER_AGENT'] );
+		} else {
+			$_SERVER['HTTP_USER_AGENT'] = $ua_before;
+		}
+		$wpdb->insert( $events_table, [ 'venue_id' => $track_venue, 'event_type' => 'call', 'context' => 'card', 'path' => '/ppn-test-old/', 'city' => '', 'device' => 'desktop', 'source' => 'direct', 'created_at' => '2001-01-15 10:00:00' ] );
+		PlayPoolNation\Core\Tracking::rollup();
+		$monthly = (int) $wpdb->get_var( $wpdb->prepare( 'SELECT count FROM ' . PlayPoolNation\Core\Tracking::table( PlayPoolNation\Core\Tracking::MONTHLY_TABLE ) . " WHERE month = '2001-01-01' AND venue_id = %d AND event_type = 'call' AND context = 'card'", $track_venue ) );
+		$check( 'old events roll into monthly counts', $monthly >= 1 && ! (int) $wpdb->get_var( "SELECT COUNT(*) FROM {$events_table} WHERE path = '/ppn-test-old/'" ) );
+
 		set_query_var( 'explore_tab', 'regions' );
 		set_query_var( 'explore_region', 'no-such-region-ppn' );
 		$check( 'unknown region is noindexed', Seo::should_noindex() );

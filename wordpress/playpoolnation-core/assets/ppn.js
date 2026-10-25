@@ -671,6 +671,100 @@
 		} );
 	}() );
 
+	/*
+	 * Listing clicks and venue page views (Tracking). Links carry data-ppn-event; the
+	 * theme's Save buttons are matched by class because cards from "Load more" are
+	 * built outside the page markup. One beacon per click, no cookies. The landing
+	 * referrer's host is kept for this tab only, so later pages keep their source.
+	 */
+	( function () {
+		var track = cfg.track;
+		if ( ! track || ! track.url ) {
+			return;
+		}
+		var SAVE = '.c27-bookmark-button, .mylisting-bookmark-item';
+		var CARD = '.lf-item-container';
+		var ref = '';
+		try {
+			var host = document.referrer ? new URL( document.referrer ).hostname : '';
+			if ( host && host !== location.hostname ) {
+				sessionStorage.setItem( 'ppnRef', host );
+			}
+			ref = sessionStorage.getItem( 'ppnRef' ) || '';
+		} catch ( err ) {
+			ref = '';
+		}
+		function send( type, venue, where ) {
+			var body = new URLSearchParams( {
+				venue: String( venue ),
+				type: type,
+				where: where,
+				path: location.pathname,
+				device: window.innerWidth < 768 ? 'mobile' : 'desktop',
+				ref: ref
+			} );
+			if ( navigator.sendBeacon && navigator.sendBeacon( track.url, body ) ) {
+				return;
+			}
+			fetch( track.url, { method: 'POST', body: body, keepalive: true, credentials: 'same-origin' } ).catch( function () {} );
+		}
+		function venueOf( el ) {
+			var holder = el.closest( '[data-listing-id]' );
+			if ( holder ) {
+				return parseInt( holder.getAttribute( 'data-listing-id' ), 10 ) || 0;
+			}
+			var card = el.closest( CARD );
+			if ( card ) {
+				return parseInt( ( card.getAttribute( 'data-id' ) || '' ).replace( 'listing-id-', '' ), 10 ) || 0;
+			}
+			var claim = /[?&]listing_id=(\d+)/.exec( el.getAttribute( 'href' ) || '' );
+			return claim ? parseInt( claim[ 1 ], 10 ) : track.venue;
+		}
+		function whereOf( el, venue ) {
+			if ( track.page === 'my_pool' ) {
+				return 'my_pool';
+			}
+			if ( track.page === 'city' ) {
+				return 'city_page';
+			}
+			if ( track.page === 'hub' ) {
+				return 'hub_page';
+			}
+			return track.page === 'venue' && venue === track.venue && ! el.closest( CARD ) ? 'venue_page' : 'card';
+		}
+		function onClick( e ) {
+			if ( e.type === 'auxclick' && e.button !== 1 ) {
+				return;
+			}
+			var el = e.target.closest && e.target.closest( '[data-ppn-event], ' + SAVE );
+			if ( ! el ) {
+				return;
+			}
+			var type = el.getAttribute( 'data-ppn-event' ) || 'save';
+			if ( el.tagName === 'SUMMARY' && el.parentNode.open ) {
+				return;
+			}
+			var venue = venueOf( el );
+			if ( venue ) {
+				send( type, venue, whereOf( el, venue ) );
+			}
+		}
+		document.addEventListener( 'click', onClick, true );
+		document.addEventListener( 'auxclick', onClick, true );
+		if ( track.page === 'venue' && track.venue ) {
+			var view = function () {
+				send( 'view', track.venue, 'venue_page' );
+			};
+			if ( document.readyState === 'complete' ) {
+				setTimeout( view, 0 );
+			} else {
+				window.addEventListener( 'load', function () {
+					setTimeout( view, 0 );
+				} );
+			}
+		}
+	}() );
+
 	/* Near me: use the browser location, then open the map sorted by distance. */
 	document.addEventListener( 'click', function ( e ) {
 		var btn = e.target.closest( '[data-ppn-near-me]' );

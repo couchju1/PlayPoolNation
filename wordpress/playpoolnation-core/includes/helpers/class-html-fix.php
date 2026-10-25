@@ -207,6 +207,31 @@ final class Html_Fix {
 	}
 
 	/**
+	 * Mark the links whose clicks are counted (Tracking) on links the theme prints:
+	 * phone links (call), Google Maps directions (directions, after Contact_Links
+	 * rewrote them) and claim links (claim). Links that already carry a
+	 * data-ppn-event are left alone; script contents are not touched.
+	 */
+	public static function track_links( string $html ): string {
+		return self::outside_scripts( $html, static fn( string $part ): string => (string) preg_replace_callback(
+			'#<a\b(?![^>]*\bdata-ppn-event=)([^>]*\bhref=(["\'])(.*?)\2[^>]*)>#is',
+			static function ( array $m ): string {
+				$href = html_entity_decode( $m[3], ENT_QUOTES );
+				$event = '';
+				if ( str_starts_with( $href, 'tel:' ) ) {
+					$event = 'call';
+				} elseif ( preg_match( '#^https://www\.google\.com/maps/dir/|^https?://maps\.google\.com/maps\?daddr=#i', $href ) ) {
+					$event = 'directions';
+				} elseif ( preg_match( '#/claim-listing/\?(?:[^"\']*&)?listing_id=\d+#', $href ) ) {
+					$event = 'claim';
+				}
+				return $event ? '<a data-ppn-event="' . $event . '"' . $m[1] . '>' : $m[0];
+			},
+			$part
+		) );
+	}
+
+	/**
 	 * A <script> tag without `async`, keeping `defer`: deferred scripts run in the
 	 * order they appear, after the page is parsed, where async ones run whenever
 	 * they arrive. Only the opening tag's own attribute is removed.

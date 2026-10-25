@@ -86,7 +86,7 @@ final class Display {
 			'tokenUrl'   => esc_url_raw( rest_url( 'ppn/v1/form-token' ) ),
 			'venuesUrl'  => esc_url_raw( rest_url( 'ppn/v1/venues' ) ),
 			'hoursUrl'   => esc_url_raw( rest_url( 'ppn/v1/hours' ) ),
-		] );
+		] + array_filter( [ 'track' => Tracking::page_config() ] ) );
 	}
 
 	/* ------------------------------------------------------------ helpers */
@@ -278,7 +278,7 @@ final class Display {
 				. '</li>';
 		}
 		if ( ! $rows && Venue::is_venue( $v->id() ) ) {
-			return self::section( 'ppn-leagues', '<p class="ppn-tell-us">Know the league night here? <a href="#suggest-edit" data-ppn-suggest="league">Tell us</a></p>' );
+			return self::section( 'ppn-leagues', '<p class="ppn-tell-us">Know the league night here? <a href="#suggest-edit" data-ppn-suggest="league" data-ppn-event="suggest_edit">Tell us</a></p>' );
 		}
 		return self::section( 'ppn-leagues', $rows ? '<ul class="ppn-rows">' . $rows . '</ul>' : '' );
 	}
