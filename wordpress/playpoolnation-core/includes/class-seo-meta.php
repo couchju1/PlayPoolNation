@@ -166,6 +166,7 @@ final class Seo_Meta {
 			Instructors::SIGNUP_PAGE => 'Create Your Pool Instructor Profile',
 			'add-a-venue'     => 'Add a Place to Play Pool',
 			'list-your-venue' => 'List Your Pool Hall or Bar',
+			'practice'        => 'Practice Pool Online: Free 8-Ball, 9-Ball & 10-Ball Game',
 		];
 		if ( is_page() && ! self::is_filter_page() && ! get_query_var( 'explore_tab' ) ) {
 			$slug = (string) get_post_field( 'post_name', get_queried_object_id() );
@@ -247,6 +248,7 @@ final class Seo_Meta {
 			'leagues'         => 'Pool leagues near you, including APA, BCA, USAPL and local leagues, with the night they play.',
 			'add-a-venue'     => 'Know a place to play pool that is missing from PlayPoolNation? Add it and we will check it before it goes on the map.',
 			'list-your-venue' => 'Own or manage a pool hall or bar with pool tables? List it on PlayPoolNation with tables, pricing, leagues and hours.',
+			'practice'        => 'Play a few racks of 8-ball, 9-ball or 10-ball in your browser, on a 7, 8 or 9-foot table. A free pool game with realistic physics: no download, no account.',
 		];
 		if ( is_page() ) {
 			// Filter tabs and unknown regions render the explore page itself.
@@ -421,6 +423,9 @@ final class Seo_Meta {
 	public static function markup(): void {
 		if ( self::hero_copy() ) {
 			Markup::add( [ __CLASS__, 'location_hero' ] );
+		}
+		if ( is_page() ) {
+			Markup::add( [ Helpers\Html_Fix::class, 'pool_game_h1' ] );
 		}
 	}
 
