@@ -1,9 +1,10 @@
 <?php
 /**
  * The site was built on Hostinger's temporary domain, and some output stored
- * then still links there. Stored values are repaired once (Install migration
- * 2026_10_24_live_domain); this guard catches anything still cached or stored
- * elsewhere, rewrites it to home_url() and records the first page it was seen on.
+ * then still linked there. Stored values were repaired once (Install migration
+ * 2026_10_24_live_domain); `wp search-replace` found nothing left afterwards.
+ * Links are not rewritten at render time: tests/integration/run.php fetches the
+ * homepage, /places/ and a venue page and fails on any temporary-domain link.
  *
  * The homepage "Rooms players travel for" rail is My Listing's listing-feed
  * widget. The theme marks it static, so Elementor's element cache served the
@@ -21,30 +22,16 @@ defined( 'ABSPATH' ) || exit;
 
 final class Live_Domain {
 
-	/** First page the guard had to fix: [ url, replacements, time ]. */
-	public const SEEN_OPTION = 'ppn_temp_domain_seen';
-
 	/** Elementor widgets that show live listing data and must not come from its element cache. */
 	private const LIVE_WIDGETS = [ 'case27-listing-feed-widget' ];
 
 	public static function boot(): void {
-		add_action( 'ppn_markup', static fn() => Markup::add( [ __CLASS__, 'guard' ] ) );
 		add_filter( 'elementor/element/is_dynamic_content', [ __CLASS__, 'render_live' ], 10, 2 );
 	}
 
 	public static function origin(): string {
 		$parts = wp_parse_url( home_url() );
 		return ( $parts['scheme'] ?? 'https' ) . '://' . ( $parts['host'] ?? '' ) . ( isset( $parts['port'] ) ? ':' . $parts['port'] : '' );
-	}
-
-	public static function guard( string $html ): string {
-		[ $html, $count ] = Html_Fix::live_domain( $html, self::origin() );
-		if ( $count && ! get_option( self::SEEN_OPTION ) ) {
-			$url = home_url( (string) wp_parse_url( (string) ( $_SERVER['REQUEST_URI'] ?? '/' ), PHP_URL_PATH ) );
-			update_option( self::SEEN_OPTION, [ 'url' => $url, 'replacements' => $count, 'time' => gmdate( 'c' ) ], false );
-			error_log( sprintf( 'PlayPoolNation: rewrote %d temporary-domain link(s) to %s on %s. Run `wp ppn migrate` or clear the page and Elementor caches.', $count, home_url(), $url ) ); // phpcs:ignore WordPress.PHP.DevelopmentFunctions
-		}
-		return $html;
 	}
 
 	/**
@@ -95,7 +82,7 @@ final class Live_Domain {
 
 		$rows = $wpdb->get_results( $wpdb->prepare( "SELECT option_name, option_value FROM {$wpdb->options} WHERE option_value LIKE %s", $like ) );
 		foreach ( $rows as $row ) {
-			if ( in_array( $row->option_name, [ 'home', 'siteurl', self::SEEN_OPTION ], true ) ) {
+			if ( in_array( $row->option_name, [ 'home', 'siteurl' ], true ) ) {
 				continue;
 			}
 			if ( self::is_cache_key( $row->option_name ) ) {
@@ -108,7 +95,6 @@ final class Live_Domain {
 		}
 		wp_cache_delete( 'alloptions', 'options' );
 		wp_cache_delete( 'notoptions', 'options' );
-		delete_option( self::SEEN_OPTION );
 
 		self::clear_page_caches();
 		return $log;

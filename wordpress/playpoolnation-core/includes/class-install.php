@@ -54,6 +54,7 @@ final class Install {
 			'2026_10_19_legal_pages'      => [ __CLASS__, 'm_legal_pages' ],
 			'2026_10_20_explore_sort'     => [ __CLASS__, 'm_explore_sort' ],
 			'2026_10_24_live_domain'      => [ __CLASS__, 'm_live_domain' ],
+			'2026_10_25_drop_domain_log'  => [ __CLASS__, 'm_drop_domain_log' ],
 		];
 	}
 
@@ -573,6 +574,12 @@ final class Install {
 			'metro pages' => array_keys( Metros::with_pages() ),
 			'sitemap' => $metros < 0 ? 'no flat sitemap.xml' : $metros . ' metro URLs',
 		] );
+	}
+
+	/** The render-time temporary-domain rewrite is gone, and with it the option it logged to. */
+	public static function m_drop_domain_log(): string {
+		delete_option( 'ppn_temp_domain_seen' );
+		return 'removed ppn_temp_domain_seen';
 	}
 
 	public static function m_legal_pages(): string {
