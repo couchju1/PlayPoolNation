@@ -19,7 +19,7 @@ if ( defined( 'PPN_CORE_VERSION' ) ) {
 	return;
 }
 
-define( 'PPN_CORE_VERSION', '1.9.4' );
+define( 'PPN_CORE_VERSION', '1.9.5' );
 define( 'PPN_CORE_DB_VERSION', 4 );
 define( 'PPN_CORE_FILE', __FILE__ );
 define( 'PPN_CORE_DIR', __DIR__ );
@@ -107,5 +107,12 @@ PlayPoolNation\Core\Importer::boot();
 PlayPoolNation\Core\Performance::boot();
 PlayPoolNation\Core\Cleanup::boot();
 PlayPoolNation\Core\Live_Domain::boot();
+
+if ( defined( 'WP_CLI' ) && WP_CLI ) {
+	require_once PPN_CORE_DIR . '/includes/helpers/class-keywords.php';
+	require_once PPN_CORE_DIR . '/includes/helpers/class-keyword-report.php';
+	require_once PPN_CORE_DIR . '/includes/cli/class-keywords-command.php';
+	PlayPoolNation\Core\Cli\Keywords_Command::boot();
+}
 
 register_activation_hook( PPN_CORE_FILE, [ PlayPoolNation\Core\Tracking::class, 'install' ] );
