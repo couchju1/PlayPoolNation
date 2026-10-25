@@ -249,11 +249,19 @@ return ( static function (): array {
 		$check( 'metro rule never takes a state address', ! $rules || ! array_filter( $state_slugs, static fn( $s ) => (bool) preg_match( '#^' . array_key_first( $rules ) . '#', 'places/' . $s . '/' ) ) );
 
 		/* ---------- temporary domain ---------- */
-		update_option( Live_Domain::SEEN_OPTION, [ 'url' => 'test' ], false ); // Already logged: keeps the test out of the error log.
-		$guarded = Live_Domain::guard( '<html><a href="https://gray-hedgehog-574573.hostingersite.com/place/x/">x</a></html>' );
-		$check( 'guard rewrites temporary-domain links', ! str_contains( $guarded, 'hostingersite' ) && str_contains( $guarded, home_url( '/place/x/' ) ), $guarded );
+		// Pages as visitors get them (signed out, freshly rendered): no href or src on a temporary domain.
+		$rack = Seo::listing_by_slug( 'rack-city-billiards-sioux-falls-sd' );
+		$any_venue = get_posts( [ 'post_type' => Pool_Schema::POST_TYPE, 'post_status' => 'publish', 'fields' => 'ids', 'posts_per_page' => 1, 'meta_key' => '_case27_listing_type', 'meta_value' => Pool_Schema::VENUE_TYPE ] );
+		$venue_url = (string) get_permalink( $rack ?: (int) ( $any_venue[0] ?? 0 ) );
+		foreach ( [ home_url( '/' ), home_url( '/places/' ), $venue_url ] as $url ) {
+			$res = wp_remote_get( add_query_arg( 'ppn_check', time(), $url ), [ 'timeout' => 30, 'redirection' => 0 ] );
+			$code = is_wp_error( $res ) ? 0 : (int) wp_remote_retrieve_response_code( $res );
+			preg_match_all( '#\b(?:href|src|srcset)\s*=\s*["\']([^"\']*hostingersite\.com[^"\']*)#i', is_wp_error( $res ) ? '' : wp_remote_retrieve_body( $res ), $leaks );
+			$check( 'no temporary-domain links on ' . $url, 200 === $code && ! $leaks[1], 200 === $code ? implode( ', ', array_slice( array_unique( $leaks[1] ), 0, 3 ) ) : 'HTTP ' . ( is_wp_error( $res ) ? $res->get_error_message() : $code ) );
+		}
 		$check( 'listing feed renders per request', Live_Domain::render_live( false, [ 'widgetType' => 'case27-listing-feed-widget' ] ) );
 		$check( 'no temporary domain in stored page data', ! (int) $wpdb->get_var( "SELECT COUNT(*) FROM {$wpdb->postmeta} WHERE meta_key = '_elementor_data' AND meta_value LIKE '%hostingersite.com%'" ) );
+		$check( 'home and siteurl are the live domain', ! str_contains( home_url(), 'hostingersite.com' ) && ! str_contains( site_url(), 'hostingersite.com' ) );
 
 		set_query_var( 'explore_tab', 'regions' );
 		set_query_var( 'explore_region', 'no-such-region-ppn' );
