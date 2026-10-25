@@ -21,13 +21,33 @@ final class Install {
 	private const LOCK = 'ppn_core_migrating';
 	private const DEFER = 'defer';
 
+	/** The plugin version whose pages LiteSpeed was last told to drop. */
+	public const PURGED_OPTION = 'ppn_core_purged_version';
+
 	public static function boot(): void {
 		add_action( 'admin_init', [ __CLASS__, 'maybe_run' ] );
+		add_action( 'wp_loaded', [ __CLASS__, 'purge_after_update' ] );
 		if ( defined( 'WP_CLI' ) && WP_CLI ) {
 			\WP_CLI::add_command( 'ppn migrate', static function () {
 				\WP_CLI::log( print_r( self::run(), true ) ); // phpcs:ignore WordPress.PHP.DevelopmentFunctions
 			} );
 		}
+	}
+
+	/**
+	 * Pages cached before a deploy still load the previous plugin's markup and
+	 * assets, so the first web request PHP handles after the version changes purges
+	 * LiteSpeed's page cache. That is usually a cache miss, an admin page or a
+	 * visitor's tracking beacon. LiteSpeed purges through response headers, so
+	 * WP-CLI and requests made before LiteSpeed is active are skipped and the
+	 * purge waits for the next web request. The CDN in front still needs its own purge.
+	 */
+	public static function purge_after_update(): void {
+		if ( ( defined( 'WP_CLI' ) && WP_CLI ) || PPN_CORE_VERSION === get_option( self::PURGED_OPTION ) || ! has_action( 'litespeed_purge_all' ) ) {
+			return;
+		}
+		update_option( self::PURGED_OPTION, PPN_CORE_VERSION, true );
+		do_action( 'litespeed_purge_all' );
 	}
 
 	/** @return array<string,callable> */

@@ -8,6 +8,8 @@ It is currently loaded from `wp-content/novamira-sandbox/playpoolnation-core/` b
 
 `DEPLOYED_COMMIT` in the deployed folder names the git commit that is live.
 
+After a deploy, the first web request PHP handles with the new version (a cache miss, an admin page or a visitor's tracking beacon) purges LiteSpeed's page cache once (`Install::purge_after_update`, recorded in `ppn_core_purged_version`). WP-CLI never purges: LiteSpeed purges through response headers. Purge the Hostinger CDN in hPanel after deploying.
+
 ## What it adds
 
 | Area | Classes | Notes |
