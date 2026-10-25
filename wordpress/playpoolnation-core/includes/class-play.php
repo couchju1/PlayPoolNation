@@ -126,6 +126,50 @@ final class Play {
 		return $out;
 	}
 
+	/**
+	 * Publish a league at a venue (an approved league night from the review queue).
+	 * Returns the existing league instead when the venue already has one for that
+	 * organization on that day, and 0 when the venue is not a venue.
+	 */
+	public static function add_league( int $venue_id, string $name, string $org, string $day ): int {
+		global $wpdb;
+		$venue = Venue::get( $venue_id );
+		if ( ! $venue || ! Venue::is_venue( $venue_id ) ) {
+			return 0;
+		}
+		$day = isset( Pool_Schema::LEAGUE_DAYS[ $day ] ) ? $day : '';
+		foreach ( self::children( $venue_id, Pool_Schema::LEAGUE_VENUE_FIELD ) as $id ) {
+			$orgs = wp_get_object_terms( $id, 'league-org', [ 'fields' => 'slugs' ] );
+			if ( (string) get_post_meta( $id, '_league-day', true ) === $day && in_array( $org, is_array( $orgs ) ? $orgs : [], true ) ) {
+				return $id;
+			}
+		}
+		$title = $name . ' at ' . $venue->name();
+		$id = wp_insert_post( [
+			'post_type'   => Pool_Schema::POST_TYPE,
+			'post_status' => 'publish',
+			'post_title'  => $title,
+			'post_name'   => Format::slugify( $title . ( $day ? ' ' . $day : '' ) ),
+			'post_author' => get_current_user_id() ?: 1,
+		], true );
+		if ( is_wp_error( $id ) || ! $id ) {
+			return 0;
+		}
+		$id = (int) $id;
+		update_post_meta( $id, '_case27_listing_type', Pool_Schema::LEAGUE_TYPE );
+		update_post_meta( $id, '_league-status', 'active' );
+		if ( $day ) {
+			update_post_meta( $id, '_league-day', $day );
+		}
+		if ( get_term_by( 'slug', $org, 'league-org' ) ) {
+			wp_set_object_terms( $id, $org, 'league-org' );
+		}
+		$wpdb->insert( $wpdb->prefix . 'mylisting_relations', [ 'parent_listing_id' => $venue_id, 'child_listing_id' => $id, 'field_key' => Pool_Schema::LEAGUE_VENUE_FIELD, 'item_order' => 0 ] );
+		Provenance::set_origin( $id, 'web_research' );
+		self::on_save( $id );
+		return $id;
+	}
+
 	private static function league_time_label( int $id ): string {
 		$minutes = get_post_meta( $id, '_ppn_league_minutes', true );
 		return '' === $minutes ? trim( (string) get_post_meta( $id, '_league-time', true ) ) : Format::clock( (int) $minutes );

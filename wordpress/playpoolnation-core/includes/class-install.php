@@ -75,6 +75,7 @@ final class Install {
 			'2026_10_20_explore_sort'     => [ __CLASS__, 'm_explore_sort' ],
 			'2026_10_24_live_domain'      => [ __CLASS__, 'm_live_domain' ],
 			'2026_10_25_drop_domain_log'  => [ __CLASS__, 'm_drop_domain_log' ],
+			'2026_10_26_enrich_queue'     => [ Enrich_Queue::class, 'install' ],
 		];
 	}
 

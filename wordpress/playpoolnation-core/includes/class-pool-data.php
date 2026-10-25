@@ -96,6 +96,59 @@ final class Pool_Data {
 		}
 	}
 
+	/**
+	 * Write one approved fact from the enrichment review queue (Helpers\Enrich_Fact::plan)
+	 * and record where it came from. The reviewer has seen the current value, so an
+	 * approved fact replaces it whatever its provenance.
+	 *
+	 * @return string[] what changed, for the review screen
+	 */
+	public static function apply_fact( int $post_id, string $field, $value, string $source, string $url ): array {
+		$changed = [];
+		foreach ( Helpers\Enrich_Fact::plan( $field, $value ) as $op ) {
+			$key = (string) end( $op );
+			switch ( $op[0] ) {
+				case 'count':
+				case 'meta':
+					update_post_meta( $post_id, '_' . $op[1], (string) $op[2] );
+					$changed[] = $op[1];
+					break;
+				case 'append':
+					$current = trim( (string) get_post_meta( $post_id, '_' . $op[1], true ) );
+					if ( false === stripos( $current, (string) $op[2] ) ) {
+						update_post_meta( $post_id, '_' . $op[1], ltrim( $current . "\n" . $op[2] ) );
+						$changed[] = $op[1];
+					}
+					break;
+				case 'term':
+				case 'no':
+					if ( ! get_term_by( 'slug', $op[2], $op[1] ) && 'table-brand' === $op[1] ) {
+						break;
+					}
+					self::set_state( $post_id, $op[1], $op[2], 'term' === $op[0] ? Tri_State::YES : Tri_State::NO );
+					$changed[] = $op[1] . ':' . $op[2];
+					break;
+				case 'league':
+					$league = Play::add_league( $post_id, (string) $op[2], (string) $op[1], $op[3] ? (string) $op[3] : '' );
+					if ( $league ) {
+						$changed[] = 'league #' . $league;
+					}
+					break;
+				case 'status':
+					update_post_meta( $post_id, '_venue-status', (string) $op[1] );
+					$changed[] = 'venue-status';
+					break;
+			}
+			Provenance::record_field( $post_id, $key, $source, $url );
+		}
+		Provenance::touch_checked( $post_id );
+		self::sync_size_terms( $post_id );
+		Venue::flush_cache( $post_id );
+		clean_post_cache( $post_id );
+		do_action( 'litespeed_purge_post', $post_id );
+		return $changed;
+	}
+
 	public static function after_listing_save( $post_id ): void {
 		$post_id = (int) $post_id;
 		if ( Venue::is_venue( $post_id ) ) {
