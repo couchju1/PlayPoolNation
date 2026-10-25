@@ -30,6 +30,16 @@ final class Seo {
 		add_filter( 'thinkrank_robots_meta', [ __CLASS__, 'thinkrank_robots' ], 50 );
 		add_action( 'send_headers', [ __CLASS__, 'preview_domain_header' ] );
 		add_action( 'template_redirect', [ __CLASS__, 'redirects' ], 1 );
+		add_action( 'wp_loaded', [ __CLASS__, 'sitemap_after_update' ] );
+	}
+
+	/** Once per plugin version: bring a sitemap.xml written by an older version up to date. */
+	public static function sitemap_after_update(): void {
+		if ( PPN_CORE_VERSION === get_option( 'ppn_core_sitemap_version' ) ) {
+			return;
+		}
+		update_option( 'ppn_core_sitemap_version', PPN_CORE_VERSION, true );
+		Metros::patch_sitemap();
 	}
 
 	/** @return int[] */

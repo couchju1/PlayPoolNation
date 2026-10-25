@@ -31,16 +31,72 @@ final class City_Page {
 	private const NEARBY_MILES = 300;
 	private const NEARBY_LIMIT = 6;
 
-	/** Explore page assets the city page does not use (handles as My Listing and Elementor register them). */
-	private const EXPLORE_SCRIPTS = [ 'ml:explore', 'ml:dialog' ];
-	private const EXPLORE_STYLES  = [ 'mylisting-explore-widget', 'ml:jquery-ui', 'widget-heading' ];
+	/** Explore page scripts the city page does not use (handles as My Listing registers them). */
+	private const UNUSED_SCRIPTS = [ 'ml:explore', 'ml:dialog' ];
+
+	/**
+	 * Stylesheets that change nothing on a city page, header, footer and open mobile
+	 * menu included (checked against the live page with each one blocked): the
+	 * explore page's, maps, select2, WooCommerce, quick view, icon fonts it shows
+	 * none of, and a font it does not use. Most of them block rendering.
+	 */
+	private const UNUSED_STYLES = [
+		'mylisting-explore-widget', 'ml:jquery-ui', 'widget-heading', 'mylisting-google-maps', 'mylisting-select2', 'wc-general-style',
+		'ml:quick-view-modal', 'mylisting-paper-spinner', 'eael-general', 'elementor-gf-josefinsans', 'font-awesome-5-all', 'font-awesome-4-shim',
+		'mylisting-material-icons', 'mylisting-icons', 'hostinger-reach-subscription-block',
+	];
 
 	public static function boot(): void {
 		add_filter( 'template_include', [ __CLASS__, 'template' ], 99 );
 		add_filter( 'body_class', [ __CLASS__, 'body_class' ] );
-		add_action( 'wp_enqueue_scripts', [ __CLASS__, 'drop_explore_assets' ], 1000 );
-		add_action( 'wp_print_footer_scripts', [ __CLASS__, 'drop_explore_assets' ], 1 );
+		add_action( 'wp_enqueue_scripts', [ __CLASS__, 'drop_unused_assets' ], 1000 );
+		add_action( 'wp_print_styles', [ __CLASS__, 'drop_unused_assets' ], 1 );
+		add_action( 'wp_print_footer_scripts', [ __CLASS__, 'drop_unused_assets' ], 1 );
 		add_action( 'wp_head', [ __CLASS__, 'schema' ], 30 );
+		add_filter( 'thinkrank_schema_output', [ __CLASS__, 'thinkrank_schema' ], 30 );
+	}
+
+	/**
+	 * ThinkRank describes the explore page (/places/, "Find Places") on every city
+	 * page. Its WebPage and BreadcrumbList are pointed at the city page instead, with
+	 * the same @id and crumbs as schema(), so the two describe one page.
+	 *
+	 * @param mixed $schema one node, or a graph of them
+	 * @return mixed
+	 */
+	public static function thinkrank_schema( $schema ) {
+		$term = self::current();
+		if ( ! $term || ! is_array( $schema ) ) {
+			return $schema;
+		}
+		if ( isset( $schema['@graph'] ) && is_array( $schema['@graph'] ) ) {
+			$schema['@graph'] = array_map( [ __CLASS__, 'thinkrank_schema' ], $schema['@graph'] );
+			return $schema;
+		}
+		$link = get_term_link( $term );
+		$url = is_wp_error( $link ) ? '' : $link;
+		$type = $schema['@type'] ?? '';
+		if ( 'WebPage' === $type || ( is_array( $type ) && in_array( 'WebPage', $type, true ) ) ) {
+			$schema['name'] = sprintf( 'Pool halls and bars with pool tables in %s', self::where( $term ) );
+			$schema['url'] = $url;
+			$schema['@id'] = $url . '#webpage';
+			if ( isset( $schema['breadcrumb'] ) ) {
+				$schema['breadcrumb'] = [ '@id' => $url . '#breadcrumb' ];
+			}
+		} elseif ( 'BreadcrumbList' === $type ) {
+			$schema['@id'] = $url . '#breadcrumb';
+			$schema['itemListElement'] = self::crumb_items( $term, $url );
+		}
+		return $schema;
+	}
+
+	/** @return array<int,array> BreadcrumbList items */
+	private static function crumb_items( \WP_Term $term, string $url ): array {
+		$items = [];
+		foreach ( self::crumbs( $term ) as $i => [ $name, $crumb_url ] ) {
+			$items[] = [ '@type' => 'ListItem', 'position' => $i + 1, 'name' => $name, 'item' => $crumb_url ?: $url ];
+		}
+		return $items;
 	}
 
 	/** The city being viewed: a city region term with at least one venue. */
@@ -67,15 +123,15 @@ final class City_Page {
 		return $classes;
 	}
 
-	public static function drop_explore_assets(): void {
+	public static function drop_unused_assets(): void {
 		if ( ! self::current() ) {
 			return;
 		}
-		foreach ( self::EXPLORE_SCRIPTS as $handle ) {
+		foreach ( self::UNUSED_SCRIPTS as $handle ) {
 			wp_dequeue_script( $handle );
 		}
 		$explore = (int) get_option( 'options_general_explore_listings_page' );
-		foreach ( array_merge( self::EXPLORE_STYLES, [ 'elementor-post-' . $explore ] ) as $handle ) {
+		foreach ( array_merge( self::UNUSED_STYLES, [ 'elementor-post-' . $explore ] ) as $handle ) {
 			wp_dequeue_style( $handle );
 		}
 	}
@@ -228,6 +284,8 @@ final class City_Page {
 		$h .= '<h2 id="ppn-find">Find a table</h2>';
 		if ( $buttons ) {
 			$h .= '<div class="ppn-city-filters" data-ppn-city-filters hidden><div class="ppn-city-chips" role="group" aria-label="Filter places">' . $buttons . '</div><p class="ppn-city-count" aria-live="polite"></p></div>';
+			// Shown before the first paint when scripts run, so the page below does not shift (assets/ppn.js wires the chips).
+			$h .= '<script>document.currentScript.previousElementSibling.hidden=false;</script>';
 		}
 		$h .= '<nav class="ppn-city-jump" aria-label="' . esc_attr( 'Places in ' . $where ) . '"><p class="ppn-city-jump-label">Jump to a place</p><ul>';
 		foreach ( $venues as $v ) {
@@ -470,11 +528,7 @@ final class City_Page {
 			$items[] = [ '@type' => 'ListItem', 'position' => $i + 1, 'url' => $v['url'], 'name' => $v['name'] ];
 		}
 		$graph[] = [ '@type' => 'ItemList', '@id' => $url . '#places', 'name' => 'Places to play pool in ' . self::where( $term ), 'numberOfItems' => count( $items ), 'itemListElement' => $items ];
-		$crumbs = [];
-		foreach ( self::crumbs( $term ) as $i => [ $name, $crumb_url ] ) {
-			$crumbs[] = [ '@type' => 'ListItem', 'position' => $i + 1, 'name' => $name, 'item' => $crumb_url ?: $url ];
-		}
-		$graph[] = [ '@type' => 'BreadcrumbList', '@id' => $url . '#breadcrumb', 'itemListElement' => $crumbs ];
+		$graph[] = [ '@type' => 'BreadcrumbList', '@id' => $url . '#breadcrumb', 'itemListElement' => self::crumb_items( $term, $url ) ];
 		$faq = City_Text::faq( $city, $venues );
 		if ( count( $faq ) >= 2 ) {
 			$graph[] = [

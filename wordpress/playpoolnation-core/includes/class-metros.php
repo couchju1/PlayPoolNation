@@ -248,7 +248,9 @@ final class Metros {
 	/**
 	 * ThinkRank builds sitemap.xml from posts and terms only and has no filter for
 	 * other URLs, so metro pages are added to the file it wrote, after each rebuild.
-	 * Entries for metros that no longer have a page are removed.
+	 * Entries for metros that no longer have a page are removed, and so are venue
+	 * pages that are not indexed (Venue::is_indexable), in case the file was
+	 * written before they became noindex.
 	 *
 	 * @return int Metro URLs in the sitemap, or -1 when there is no flat sitemap.xml to update.
 	 */
@@ -260,6 +262,9 @@ final class Metros {
 			return -1;
 		}
 		$before = $xml;
+		foreach ( Venue::unindexable_ids() as $id ) {
+			$xml = (string) preg_replace( '#\s*<url>\s*<loc>' . preg_quote( esc_url( (string) get_permalink( $id ) ), '#' ) . '</loc>.*?</url>#s', '', $xml );
+		}
 		foreach ( self::all() as $metro ) {
 			$xml = (string) preg_replace( '#\s*<url>\s*<loc>' . preg_quote( esc_url( self::url( $metro ) ), '#' ) . '</loc>.*?</url>#s', '', $xml );
 		}
