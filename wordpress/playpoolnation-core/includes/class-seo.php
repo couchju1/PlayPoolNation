@@ -72,6 +72,9 @@ final class Seo {
 		if ( is_singular( Pool_Schema::POST_TYPE ) && 'publish' !== get_post_status() ) {
 			return true;
 		}
+		if ( is_singular( Pool_Schema::POST_TYPE ) && Venue::is_venue( (int) get_queried_object_id() ) && ! Venue::is_indexable( (int) get_queried_object_id() ) ) {
+			return true; // Too few facts to compete with its city page; indexed once it has them.
+		}
 		if ( is_singular( Pool_Schema::POST_TYPE ) && Pool_Schema::TOURNAMENT_TYPE === Venue::listing_type( (int) get_queried_object_id() ) && Events::is_ended( (int) get_queried_object_id() ) ) {
 			return true; // Past events stay reachable for links but leave search results.
 		}
@@ -116,6 +119,9 @@ final class Seo {
 		}
 		// get_posts() replaces post__not_in with 'exclude' whenever that is set, so extend both.
 		$skip = array_merge( self::noindex_page_ids(), Events::ended_ids() );
+		if ( in_array( Pool_Schema::POST_TYPE, (array) ( $args['post_type'] ?? [] ), true ) ) {
+			$skip = array_merge( $skip, Venue::unindexable_ids() ); // Same check as should_noindex().
+		}
 		$directory = get_page_by_path( 'instructors' );
 		if ( $directory && empty( Stats::stats()['instructors'] ) ) {
 			$skip[] = (int) $directory->ID; // Noindexed until the first profile (see should_noindex).

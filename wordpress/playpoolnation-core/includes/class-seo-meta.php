@@ -120,6 +120,10 @@ final class Seo_Meta {
 
 	public static function computed_title(): string {
 		$site = self::brand();
+		$city = City_Page::current();
+		if ( $city ) {
+			return Helpers\City_Text::title( City_Page::where( $city ), count( City_Page::venues( $city ) ), $site );
+		}
 		$term = self::region_term();
 		if ( $term ) {
 			return sprintf( 'Pool Halls & Places to Play Pool in %s | %s', self::region_label( $term ), $site );
@@ -197,6 +201,10 @@ final class Seo_Meta {
 		$type = self::type_term();
 		if ( $type && $type->count > 0 ) {
 			return sprintf( '%d %s listed on PlayPoolNation, with table sizes and brands where known, hours, leagues and directions.', (int) $type->count, strtolower( self::type_label( $type ) ) );
+		}
+		$city = City_Page::current();
+		if ( $city ) {
+			return Helpers\City_Text::description( City_Page::where( $city ), City_Page::venues( $city ) );
 		}
 		$term = self::region_term();
 		if ( $term ) {
@@ -421,7 +429,7 @@ final class Seo_Meta {
 	}
 
 	public static function markup(): void {
-		if ( self::hero_copy() ) {
+		if ( self::hero_copy() && ! City_Page::current() ) {
 			Markup::add( [ __CLASS__, 'location_hero' ] );
 		}
 		if ( is_page() ) {

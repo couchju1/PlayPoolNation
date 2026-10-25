@@ -19,6 +19,7 @@ use PlayPoolNation\Core\Importer;
 use PlayPoolNation\Core\Moderation;
 use PlayPoolNation\Core\Play;
 use PlayPoolNation\Core\Pool_Data;
+use PlayPoolNation\Core\Performance;
 use PlayPoolNation\Core\Pool_Schema;
 use PlayPoolNation\Core\Provenance;
 use PlayPoolNation\Core\Schema_Org;
@@ -262,6 +263,32 @@ return ( static function (): array {
 		$check( 'listing feed renders per request', Live_Domain::render_live( false, [ 'widgetType' => 'case27-listing-feed-widget' ] ) );
 		$check( 'no temporary domain in stored page data', ! (int) $wpdb->get_var( "SELECT COUNT(*) FROM {$wpdb->postmeta} WHERE meta_key = '_elementor_data' AND meta_value LIKE '%hostingersite.com%'" ) );
 		$check( 'home and siteurl are the live domain', ! str_contains( home_url(), 'hostingersite.com' ) && ! str_contains( site_url(), 'hostingersite.com' ) );
+
+		/* ---------- city pages ---------- */
+		// Rendered in this process: a request to the site would wait on this test's open transaction.
+		$sioux = get_term_by( 'slug', 'sioux-falls', Pool_Schema::TAX_REGION );
+		if ( $sioux ) {
+			set_query_var( 'explore_tab', 'regions' );
+			set_query_var( 'explore_region', 'sioux-falls' );
+			$body = PlayPoolNation\Core\City_Page::html();
+			ob_start();
+			PlayPoolNation\Core\City_Page::schema();
+			$schema = (string) ob_get_clean();
+			$check( 'city page has one H1', 1 === preg_match_all( '#<h1[\s>]#i', $body ) );
+			$check( 'city page has a section per venue', substr_count( $body, 'class="ppn-city-venue"' ) === Locations::venue_count( (int) $sioux->term_id ) );
+			$check( 'city page anchors Rack City', ! $rack || str_contains( $body, 'id="rack-city-billiards"' ) );
+			$check( 'city page schema', str_contains( $schema, '"@type":"ItemList"' ) && str_contains( $schema, '"@type":"BreadcrumbList"' ) );
+			$check( 'city page waits for "Show map"', ! Performance::maps_on_load() && str_contains( $body, 'data-ppn-show-map' ) );
+			$check( 'city page title under 60 characters', mb_strlen( Seo_Meta::computed_title() ) < 60, Seo_Meta::computed_title() );
+			$check( 'city page description under 155 characters', mb_strlen( Seo_Meta::description() ) < 155, Seo_Meta::description() );
+			set_query_var( 'explore_tab', '' );
+			set_query_var( 'explore_region', '' );
+		}
+		// The sitemap leaves out exactly the venue pages that are noindexed.
+		$sitemap = Seo::sitemap_query_args( [ 'post_type' => [ Pool_Schema::POST_TYPE ] ] );
+		$all_venues = get_posts( [ 'post_type' => Pool_Schema::POST_TYPE, 'post_status' => 'publish', 'fields' => 'ids', 'posts_per_page' => -1, 'meta_key' => '_case27_listing_type', 'meta_value' => Pool_Schema::VENUE_TYPE ] );
+		$mismatch = array_filter( $all_venues, static fn( $id ) => in_array( (int) $id, $sitemap['post__not_in'], true ) === Venue::is_indexable( (int) $id ) );
+		$check( 'sitemap and noindex agree on venues', ! $mismatch, implode( ', ', array_slice( $mismatch, 0, 5 ) ) );
 
 		/* ---------- click tracking ---------- */
 		PlayPoolNation\Core\Tracking::maybe_install();

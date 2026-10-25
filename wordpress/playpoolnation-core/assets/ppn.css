@@ -284,3 +284,70 @@ body a.ppn-button, body a.ppn-button:visited, body a.ppn-button:hover { color: #
 @media (prefers-reduced-motion: reduce) {
 	.ppn-button, .ppn-quick, .ppn-near-me { transition: none; }
 }
+
+/* City pages (City_Page): one long page per city, complete without JavaScript. */
+.ppn-city { max-width: 1120px; margin: 0 auto; padding: 24px 16px 56px; background: #fff; font-family: Figtree, sans-serif; color: var(--ppn-ink); }
+.ppn-city h1 { margin: 8px 0 12px; font: 800 clamp(28px, 4.5vw, 42px)/1.1 Archivo, sans-serif; color: var(--ppn-ink); }
+.ppn-city h2 { margin: 0 0 14px; font: 800 24px/1.2 Archivo, sans-serif; color: var(--ppn-ink); }
+.ppn-city h3 { margin: 20px 0 6px; font: 700 18px/1.3 Figtree, sans-serif; color: var(--ppn-ink); }
+.ppn-city section { margin-top: 36px; }
+.ppn-city-intro { max-width: 68ch; margin: 0; font-size: 18px; line-height: 1.6; }
+.ppn-crumbs ol { display: flex; flex-wrap: wrap; gap: 6px; list-style: none; margin: 0; padding: 0; font-size: 14px; color: var(--ppn-muted); }
+.ppn-crumbs li + li::before { content: "›"; margin-right: 6px; }
+.ppn-crumbs a { color: var(--ppn-muted); }
+.ppn-city-chips, .ppn-city-jump ul { display: flex; flex-wrap: wrap; gap: 8px; list-style: none; margin: 0; padding: 0; }
+/* Themes style every button; these keep their own look (!important on colours only). */
+.ppn-city button.ppn-city-chip { min-height: 44px; padding: 8px 16px; border: 1px solid var(--ppn-line) !important; border-radius: 999px; background: #fff !important; color: var(--ppn-ink) !important; font: 600 15px/1.2 Figtree, sans-serif; cursor: pointer; }
+.ppn-city button.ppn-city-chip[aria-pressed="true"] { border-color: var(--ppn-felt) !important; background: var(--ppn-felt) !important; color: #fff !important; }
+.ppn-city-chip:focus-visible, .ppn-city-jump a:focus-visible, [data-ppn-sort]:focus-visible { outline: 3px solid var(--ppn-accent); outline-offset: 2px; }
+.ppn-city-jump-label { margin: 18px 0 8px; color: var(--ppn-muted); font-size: 14px; font-weight: 600; }
+.ppn-city-count { min-height: 1.4em; margin: 10px 0 14px; color: var(--ppn-muted); font-size: 15px; }
+.ppn-city-jump a { display: inline-flex; align-items: center; min-height: 40px; padding: 6px 14px; border: 1px solid var(--ppn-line); border-radius: 999px; background: var(--ppn-bone); color: var(--ppn-ink); font-weight: 600; text-decoration: none; }
+.ppn-city-jump a:hover { border-color: var(--ppn-accent); color: var(--ppn-accent); }
+.ppn-city-table { width: 100%; border: 0; border-collapse: collapse; font-size: 15px; }
+.ppn-city-table th, .ppn-city-table td { padding: 10px 12px; border: 0; border-bottom: 1px solid var(--ppn-line); text-align: left; vertical-align: middle; }
+.ppn-city-table thead th { font: 700 12px/1.2 Figtree, sans-serif; letter-spacing: .06em; text-transform: uppercase; color: var(--ppn-muted); white-space: nowrap; }
+.ppn-city-table tbody th { font-weight: 700; }
+.ppn-city-table tbody th a { color: var(--ppn-ink); }
+.ppn-city button[data-ppn-sort] { min-height: 0; padding: 0; border: 0 !important; border-radius: 0; background: none !important; box-shadow: none; font: inherit; letter-spacing: inherit; text-transform: inherit; color: var(--ppn-accent) !important; cursor: pointer; }
+[aria-sort="descending"] [data-ppn-sort]::after { content: " ↓"; }
+[aria-sort="ascending"] [data-ppn-sort]::after { content: " ↑"; }
+.ppn-city-mapbox { margin-top: 20px; }
+.ppn-city-map { width: 100%; height: 380px; margin-top: 12px; border-radius: var(--ppn-radius); background: var(--ppn-bone); }
+.ppn-city-venues { margin-top: 12px; }
+.ppn-city-venue { scroll-margin-top: 96px; padding: 22px; border: 1px solid var(--ppn-line); border-radius: var(--ppn-radius); background: #fff; }
+.ppn-city-venue + .ppn-city-venue { margin-top: 16px; }
+.ppn-city-venue:target { border-color: var(--ppn-accent); box-shadow: 0 0 0 2px var(--ppn-accent); }
+.ppn-city-venue h2 { margin-bottom: 10px; }
+.ppn-city-facts { display: grid; gap: 6px; margin: 14px 0 0; }
+.ppn-city-facts > div { display: grid; grid-template-columns: 110px 1fr; gap: 12px; }
+.ppn-city-facts dt { color: var(--ppn-muted); font-weight: 600; }
+.ppn-city-facts dd { margin: 0; }
+.ppn-city-hours { margin-top: 12px; }
+.ppn-city-hours summary { min-height: 44px; display: flex; align-items: center; color: var(--ppn-accent); font-weight: 700; cursor: pointer; }
+.ppn-city-hours table { border-collapse: collapse; font-size: 15px; }
+.ppn-city-hours th, .ppn-city-hours td { padding: 3px 16px 3px 0; text-align: left; font-weight: 400; }
+.ppn-city-hours th { color: var(--ppn-muted); }
+.ppn-city-actions { display: flex; flex-wrap: wrap; gap: 10px; margin: 16px 0 0; }
+.ppn-city-more { margin: 12px 0 0; }
+.ppn-city-more a { color: var(--ppn-accent); font-weight: 600; }
+.ppn-city-leagues dl > div { display: grid; grid-template-columns: 130px 1fr; gap: 4px 12px; padding: 8px 0; border-bottom: 1px solid var(--ppn-line); }
+.ppn-city-leagues dt { font-weight: 700; }
+.ppn-city-leagues dd { grid-column: 2; margin: 0; }
+.ppn-city-faq p { max-width: 68ch; margin: 0; line-height: 1.6; }
+.ppn-city-links .ppn-chips a { display: inline-flex; min-height: 40px; align-items: center; padding: 6px 14px; border: 1px solid var(--ppn-line); border-radius: 999px; color: var(--ppn-ink); font-weight: 600; text-decoration: none; }
+.ppn-city-miles { color: var(--ppn-muted); font-size: 14px; }
+[data-ppn-venue][hidden] { display: none !important; }
+@media (max-width: 767px) {
+	.ppn-city-table thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+	.ppn-city-table, .ppn-city-table tbody, .ppn-city-table tr, .ppn-city-table th, .ppn-city-table td { display: block; width: 100%; }
+	.ppn-city-table tr { padding: 10px 0; border-bottom: 1px solid var(--ppn-line); }
+	.ppn-city-table th, .ppn-city-table td { padding: 3px 0; border: 0; }
+	.ppn-city-table td { display: grid; grid-template-columns: 120px 1fr; gap: 12px; }
+	.ppn-city-table td::before { content: attr(data-label); color: var(--ppn-muted); font-weight: 600; }
+	.ppn-city-table td > .ppn-fact { justify-self: start; }
+	.ppn-city-table td.ppn-empty-cell { display: none; }
+	.ppn-city-venue { padding: 16px; }
+	.ppn-city-facts > div { grid-template-columns: 90px 1fr; }
+	.ppn-city-map { height: 300px; }
+}

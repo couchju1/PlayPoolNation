@@ -672,6 +672,168 @@
 	}() );
 
 	/*
+	 * City pages (City_Page): filter chips, sorting the summary table by tables, and
+	 * the map. The page is complete without this: the chips stay hidden, the jump
+	 * links are plain anchors and "Show map" opens the explore map instead.
+	 */
+	( function () {
+		var root = document.querySelector( '[data-ppn-city]' );
+		if ( ! root ) {
+			return;
+		}
+		var sections = Array.prototype.slice.call( root.querySelectorAll( '.ppn-city-venue[data-ppn-venue]' ) );
+		var filters = root.querySelector( '[data-ppn-city-filters]' );
+		var active = {};
+
+		function hoursOf( el ) {
+			var chip = el.querySelector( '[data-ppn-hours]' );
+			try {
+				return chip ? JSON.parse( chip.getAttribute( 'data-ppn-hours' ) ) : null;
+			} catch ( err ) {
+				return null;
+			}
+		}
+		function weekday( tz ) {
+			var name = '';
+			try {
+				name = new Intl.DateTimeFormat( 'en-US', { timeZone: tz || undefined, weekday: 'short' } ).format( new Date() );
+			} catch ( err ) {
+				name = '';
+			}
+			var i = [ 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun' ].indexOf( name );
+			return i < 0 ? ( new Date().getDay() + 6 ) % 7 : i;
+		}
+		function matches( el ) {
+			var tags = ( el.getAttribute( 'data-ppn-tags' ) || '' ).split( ' ' );
+			return Object.keys( active ).every( function ( key ) {
+				if ( key === 'open' ) {
+					var data = hoursOf( el );
+					return !! data && ppnOpenStatus( data, new Date() ).state === 'open';
+				}
+				if ( key === 'tonight' ) {
+					var days = ( el.getAttribute( 'data-ppn-league-days' ) || '' ).split( ' ' ).filter( Boolean ).map( Number );
+					var data2 = hoursOf( el );
+					return days.indexOf( weekday( data2 && data2.tz ) ) >= 0;
+				}
+				return tags.indexOf( key ) >= 0;
+			} );
+		}
+		function apply() {
+			var shown = 0;
+			sections.forEach( function ( section ) {
+				var ok = matches( section );
+				shown += ok ? 1 : 0;
+				root.querySelectorAll( '[data-ppn-venue="' + section.getAttribute( 'data-ppn-venue' ) + '"]' ).forEach( function ( el ) {
+					el.hidden = ! ok;
+				} );
+			} );
+			var count = filters && filters.querySelector( '.ppn-city-count' );
+			if ( count ) {
+				count.textContent = Object.keys( active ).length ? 'Showing ' + shown + ' of ' + sections.length + ' places.' : '';
+			}
+		}
+		if ( filters ) {
+			filters.hidden = false;
+			filters.addEventListener( 'click', function ( e ) {
+				var chip = e.target.closest( '[data-ppn-filter]' );
+				if ( ! chip ) {
+					return;
+				}
+				var key = chip.getAttribute( 'data-ppn-filter' );
+				var on = chip.getAttribute( 'aria-pressed' ) !== 'true';
+				chip.setAttribute( 'aria-pressed', on ? 'true' : 'false' );
+				if ( on ) {
+					active[ key ] = true;
+				} else {
+					delete active[ key ];
+				}
+				apply();
+			} );
+		}
+
+		var sortCol = root.querySelector( '[data-ppn-sort-col]' );
+		var sortBtn = sortCol && sortCol.querySelector( '[data-ppn-sort]' );
+		if ( sortBtn ) {
+			var label = sortCol.querySelector( '[data-ppn-sort-label]' );
+			if ( label ) {
+				label.hidden = true;
+			}
+			sortBtn.hidden = false;
+			sortBtn.addEventListener( 'click', function () {
+				var asc = sortCol.getAttribute( 'aria-sort' ) === 'descending';
+				var body = root.querySelector( '.ppn-city-table tbody' );
+				var rows = Array.prototype.slice.call( body.rows );
+				rows.sort( function ( a, b ) {
+					var ta = parseInt( a.getAttribute( 'data-ppn-tables' ), 10 );
+					var tb = parseInt( b.getAttribute( 'data-ppn-tables' ), 10 );
+					if ( ta < 0 || tb < 0 ) {
+						return ta < 0 && tb < 0 ? a.getAttribute( 'data-ppn-order' ) - b.getAttribute( 'data-ppn-order' ) : ( ta < 0 ? 1 : -1 );
+					}
+					return asc ? ta - tb : tb - ta;
+				} );
+				rows.forEach( function ( row ) {
+					body.appendChild( row );
+				} );
+				sortCol.setAttribute( 'aria-sort', asc ? 'ascending' : 'descending' );
+			} );
+		}
+
+		var show = root.querySelector( '[data-ppn-show-map]' );
+		var box = root.querySelector( '[data-ppn-city-map]' );
+		var held = document.getElementById( 'ppn-maps' );
+		if ( ! show || ! box || ! held ) {
+			return;
+		}
+		show.addEventListener( 'click', function ( e ) {
+			var srcs = [];
+			try {
+				srcs = JSON.parse( held.textContent || '[]' );
+			} catch ( err ) {
+				srcs = [];
+			}
+			if ( ! srcs.length ) {
+				return;
+			}
+			e.preventDefault();
+			show.hidden = true;
+			box.hidden = false;
+			if ( ! ( window.google && google.maps && google.maps.Map ) ) {
+				srcs.forEach( function ( src ) {
+					var s = document.createElement( 'script' );
+					s.src = src;
+					s.async = false;
+					document.head.appendChild( s );
+				} );
+			}
+			var tries = 0;
+			var timer = setInterval( function () {
+				tries++;
+				if ( ! ( window.google && google.maps && google.maps.Map ) ) {
+					if ( tries > 150 ) {
+						clearInterval( timer );
+						location.href = show.href;
+					}
+					return;
+				}
+				clearInterval( timer );
+				var points = JSON.parse( box.getAttribute( 'data-points' ) || '[]' );
+				var map = new google.maps.Map( box, { center: { lat: points[ 0 ].lat, lng: points[ 0 ].lng }, zoom: 12, mapTypeControl: false, streetViewControl: false } );
+				var bounds = new google.maps.LatLngBounds();
+				points.forEach( function ( p ) {
+					var marker = new google.maps.Marker( { position: { lat: p.lat, lng: p.lng }, map: map, title: p.n } );
+					bounds.extend( marker.getPosition() );
+					marker.addListener( 'click', function () {
+						location.hash = p.a;
+					} );
+				} );
+				if ( points.length > 1 ) {
+					map.fitBounds( bounds );
+				}
+			}, 100 );
+		} );
+	}() );
+
+	/*
 	 * Listing clicks and venue page views (Tracking). Links carry data-ppn-event; the
 	 * theme's Save buttons are matched by class because cards from "Load more" are
 	 * built outside the page markup. One beacon per click, no cookies. The landing
