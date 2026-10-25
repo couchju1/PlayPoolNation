@@ -54,6 +54,16 @@ final class City_Page {
 		add_action( 'wp_print_footer_scripts', [ __CLASS__, 'drop_unused_assets' ], 1 );
 		add_action( 'wp_head', [ __CLASS__, 'schema' ], 30 );
 		add_filter( 'thinkrank_schema_output', [ __CLASS__, 'thinkrank_schema' ], 30 );
+		// The breadcrumb and the page's link to it are added after thinkrank_schema_output runs.
+		add_filter( 'thinkrank_schema_graph', [ __CLASS__, 'thinkrank_graph' ], 30 );
+	}
+
+	/**
+	 * @param mixed $graph list of nodes
+	 * @return mixed
+	 */
+	public static function thinkrank_graph( $graph ) {
+		return is_array( $graph ) && array_is_list( $graph ) ? array_map( [ __CLASS__, 'thinkrank_schema' ], $graph ) : self::thinkrank_schema( $graph );
 	}
 
 	/**
