@@ -18,6 +18,10 @@
  * before owl.js or background-carousel.js and the rail never started. They now
  * run deferred, in the order printed.
  *
+ * ThinkRank loads breadcrumbs.css on every page while its breadcrumbs setting is
+ * on (which also gives Google the BreadcrumbList data); the site shows no visible
+ * breadcrumbs, so the stylesheet loads only where they are printed.
+ *
  * @package PlayPoolNation\Core
  */
 
@@ -64,6 +68,8 @@ final class Performance {
 		add_filter( 'wpcf7_load_css', [ __CLASS__, 'cf7_assets' ] );
 		add_filter( 'do_shortcode_tag', [ __CLASS__, 'cf7_shortcode_rendered' ], 10, 2 );
 		add_filter( 'render_block_contact-form-7/contact-form-selector', [ __CLASS__, 'cf7_rendered' ] );
+		add_action( 'wp_enqueue_scripts', [ __CLASS__, 'drop_breadcrumb_style' ], 99 );
+		add_action( 'thinkrank_breadcrumbs', [ __CLASS__, 'breadcrumbs_printed' ], 0 );
 	}
 
 	/** The venue explore page and its state, city and metro views draw a map straight away. */
@@ -135,7 +141,29 @@ final class Performance {
 		if ( in_array( $tag, [ 'contact-form-7', 'contact-form' ], true ) ) {
 			self::cf7_rendered( '' );
 		}
+		if ( 'thinkrank_breadcrumbs' === $tag ) {
+			self::breadcrumbs_printed();
+		}
 		return $output;
+	}
+
+	/** ThinkRank's breadcrumbs stylesheet only on pages whose content prints breadcrumbs. */
+	public static function drop_breadcrumb_style(): void {
+		if ( is_admin() || ! wp_style_is( 'thinkrank-breadcrumbs', 'enqueued' ) ) {
+			return;
+		}
+		$id = is_singular() ? (int) get_queried_object_id() : 0;
+		$content = $id ? (string) get_post_field( 'post_content', $id ) . (string) get_post_meta( $id, '_elementor_data', true ) : '';
+		if ( ! str_contains( $content, 'thinkrank_breadcrumbs' ) ) {
+			wp_dequeue_style( 'thinkrank-breadcrumbs' );
+		}
+	}
+
+	/** Breadcrumbs printed from a template or widget still get their styles (in the footer). */
+	public static function breadcrumbs_printed(): void {
+		if ( wp_style_is( 'thinkrank-breadcrumbs', 'registered' ) ) {
+			wp_enqueue_style( 'thinkrank-breadcrumbs' );
+		}
 	}
 
 	/** @param string $html */
