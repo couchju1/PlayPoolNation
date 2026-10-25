@@ -13,6 +13,11 @@
  * or a quick view (which shows a map) is opened. Contact Form 7's script and
  * styles load only on pages that show a form.
  *
+ * The theme prints its carousel scripts with `async`, so they ran in whatever
+ * order they arrived: the homepage rail's listing-feed-carousel.js sometimes ran
+ * before owl.js or background-carousel.js and the rail never started. They now
+ * run deferred, in the order printed.
+ *
  * @package PlayPoolNation\Core
  */
 
@@ -35,6 +40,9 @@ final class Performance {
 	/** Google's Maps API and the theme's map script, in the order they must run. */
 	private const MAP_HANDLES = [ 'google-maps', 'mylisting-google-maps' ];
 
+	/** Theme scripts that must run in the order printed (listing-feed-carousel.js uses the other two). */
+	private const ORDERED_SCRIPTS = [ 'mylisting-background-carousel', 'mylisting-owl', 'mylisting-listing-feed-carousel' ];
+
 	/** @var array<string,string> handle => src of map scripts held back on this page */
 	private static array $held_maps = [];
 
@@ -50,6 +58,7 @@ final class Performance {
 		// The pool game's iframe loads the whole game; it now waits for the Play button.
 		add_action( 'ppn_markup', static fn() => Markup::add( [ Helpers\Html_Fix::class, 'pool_game_on_click' ] ) );
 		add_filter( 'script_loader_tag', [ __CLASS__, 'hold_maps' ], 20, 3 );
+		add_filter( 'script_loader_tag', [ __CLASS__, 'keep_order' ], 999, 2 );
 		add_action( 'wp_print_footer_scripts', [ __CLASS__, 'print_held_maps' ], 20 );
 		add_filter( 'wpcf7_load_js', [ __CLASS__, 'cf7_assets' ] );
 		add_filter( 'wpcf7_load_css', [ __CLASS__, 'cf7_assets' ] );
@@ -77,6 +86,14 @@ final class Performance {
 		}
 		self::$held_maps[ $handle ] = (string) $src;
 		return (string) preg_replace( '#<script\b[^>]*\bsrc=[^>]*>\s*</script>\s*#', '', (string) $tag );
+	}
+
+	/**
+	 * @param string $tag
+	 * @param string $handle
+	 */
+	public static function keep_order( $tag, $handle ): string {
+		return in_array( $handle, self::ORDERED_SCRIPTS, true ) ? Helpers\Html_Fix::without_async( (string) $tag ) : (string) $tag;
 	}
 
 	public static function print_held_maps(): void {
