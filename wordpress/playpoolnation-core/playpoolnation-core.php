@@ -19,7 +19,7 @@ if ( defined( 'PPN_CORE_VERSION' ) ) {
 	return;
 }
 
-define( 'PPN_CORE_VERSION', '1.10.0' );
+define( 'PPN_CORE_VERSION', '1.10.1' );
 define( 'PPN_CORE_DB_VERSION', 4 );
 define( 'PPN_CORE_FILE', __FILE__ );
 define( 'PPN_CORE_DIR', __DIR__ );
