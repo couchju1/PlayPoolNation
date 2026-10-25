@@ -130,6 +130,15 @@ final class HelpersTest extends TestCase {
 		}
 	}
 
+	public function test_https_upgrade_follows_the_site_to_https_only(): void {
+		// rackcitybilliards.com redirects http visitors to https://www.rackcitybilliards.com/.
+		$this->assertSame( 'https://www.rackcitybilliards.com/', Format::https_upgrade( 'http://rackcitybilliards.com/', 'https://www.rackcitybilliards.com/' ) );
+		$this->assertSame( 'https://bigsbar.com/', Format::https_upgrade( 'http://www.bigsbar.com', 'https://bigsbar.com/' ) );
+		$this->assertSame( '', Format::https_upgrade( 'http://rackcitybilliards.com/', 'http://www.rackcitybilliards.com/' ) );
+		$this->assertSame( '', Format::https_upgrade( 'http://rackcitybilliards.com/', 'https://parked-domains.example/' ) );
+		$this->assertSame( '', Format::https_upgrade( 'http://rackcitybilliards.com/', '' ) );
+	}
+
 	/* -------------------------------------------------------- og card */
 
 	public function test_og_card_is_1200_by_630(): void {

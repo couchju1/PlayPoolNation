@@ -597,6 +597,80 @@
 		} );
 	} );
 
+	/*
+	 * Google Maps, where the page held it back (Performance::hold_maps): loaded when a
+	 * map comes into view, a location field is used, or something that needs it is
+	 * clicked (quick view shows a map; the location icon uses the geocoder). Those
+	 * clicks are replayed once the theme reports the maps ready.
+	 */
+	( function () {
+		var data = document.getElementById( 'ppn-maps' );
+		if ( ! data ) {
+			return;
+		}
+		var srcs = JSON.parse( data.textContent || '[]' );
+		var LOCATION = '.location-wrapper input, .ehs-location input, .form-location-autocomplete, input[name="job_location"], input[name="_job_location"]';
+		var NEEDS_MAPS = '.c27-toggle-quick-view-modal, .geocode-location';
+		var started = false;
+		var waiting = [];
+		function ready() {
+			return window.MyListing && MyListing.Maps && MyListing.Maps.loaded;
+		}
+		function load() {
+			if ( started ) {
+				return;
+			}
+			started = true;
+			srcs.forEach( function ( src ) {
+				var s = document.createElement( 'script' );
+				s.src = src;
+				s.async = false;
+				document.head.appendChild( s );
+			} );
+		}
+		if ( window.jQuery ) {
+			jQuery( document ).on( 'maps:loaded', function () {
+				waiting.splice( 0 ).forEach( function ( el ) {
+					el.click();
+				} );
+			} );
+		}
+		window.addEventListener( 'click', function ( e ) {
+			var el = e.target.closest && e.target.closest( NEEDS_MAPS );
+			if ( ! el || ready() ) {
+				return;
+			}
+			e.preventDefault();
+			e.stopPropagation();
+			if ( waiting.indexOf( el ) < 0 ) {
+				waiting.push( el );
+			}
+			load();
+		}, true );
+		document.addEventListener( 'focusin', function ( e ) {
+			if ( e.target.matches && e.target.matches( LOCATION ) ) {
+				load();
+			}
+		} );
+		var maps = document.querySelectorAll( '.c27-map' );
+		if ( ! maps.length ) {
+			return;
+		}
+		if ( ! ( 'IntersectionObserver' in window ) ) {
+			load();
+			return;
+		}
+		var observer = new IntersectionObserver( function ( entries ) {
+			if ( entries.some( function ( entry ) { return entry.isIntersecting; } ) ) {
+				observer.disconnect();
+				load();
+			}
+		}, { rootMargin: '100px 0px' } );
+		maps.forEach( function ( map ) {
+			observer.observe( map );
+		} );
+	}() );
+
 	/* Near me: use the browser location, then open the map sorted by distance. */
 	document.addEventListener( 'click', function ( e ) {
 		var btn = e.target.closest( '[data-ppn-near-me]' );
