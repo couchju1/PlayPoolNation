@@ -207,6 +207,22 @@ final class Html_Fix {
 	}
 
 	/**
+	 * A <script> tag without `async`, keeping `defer`: deferred scripts run in the
+	 * order they appear, after the page is parsed, where async ones run whenever
+	 * they arrive. Only the opening tag's own attribute is removed.
+	 */
+	public static function without_async( string $tag ): string {
+		return (string) preg_replace_callback(
+			'#<script\b[^>]*>#i',
+			static function ( array $m ): string {
+				$open = (string) preg_replace( '#\sasync(?:=(["\']?)async\1)?(?=[\s>])#i', '', $m[0] );
+				return preg_match( '#\sdefer\b#i', $open ) || ! preg_match( '#\ssrc=#i', $open ) ? $open : str_replace( '<script', '<script defer', $open );
+			},
+			$tag
+		);
+	}
+
+	/**
 	 * Run a transform on the HTML outside <script>, <style> and <textarea> elements,
 	 * whose contents are not markup (My Listing's map marker templates use {{ }} too).
 	 *

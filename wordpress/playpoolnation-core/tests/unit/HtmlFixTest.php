@@ -112,6 +112,20 @@ final class HtmlFixTest extends TestCase {
 		$this->assertSame( $with_h1, Html_Fix::pool_game_h1( $with_h1 ) );
 	}
 
+	public function test_without_async_keeps_defer_and_inline_code(): void {
+		$this->assertSame(
+			'<script defer id="mylisting-owl-js" src="https://x.test/owl.js?ver=2.15"></script>',
+			Html_Fix::without_async( '<script async defer id="mylisting-owl-js" src="https://x.test/owl.js?ver=2.15"></script>' )
+		);
+		$this->assertSame(
+			'<script defer src="/a.js"></script>',
+			Html_Fix::without_async( "<script async='async' src=\"/a.js\"></script>" )
+		);
+		$inline = '<script id="x-js-after">var async = 1;</script>';
+		$this->assertSame( $inline, Html_Fix::without_async( $inline ) );
+		$this->assertSame( '<script defer data-async-note="1" src="/b.js"></script>', Html_Fix::without_async( '<script async data-async-note="1" src="/b.js"></script>' ) );
+	}
+
 	public function test_pool_game_waits_for_play(): void {
 		$html = '<div class="ppn-pg__frame">' . "\n\t" . '<iframe data-ppn="frame" title="Billiards game" src="https://x.test/game/index.html?ruletype=nineball&#038;v=1" loading="lazy"></iframe>' . "\n</div>";
 		$out = Html_Fix::pool_game_on_click( $html );
