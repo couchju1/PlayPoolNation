@@ -82,11 +82,7 @@ final class Venue_Stats {
 		$since = self::since( $days );
 		self::totals( self::type_counts( $since, 0 ) );
 
-		$top = $wpdb->get_results( $wpdb->prepare(
-			"SELECT venue_id, SUM(event_type = 'call') AS calls, SUM(event_type = 'directions') AS directions, SUM(event_type = 'website') AS website, COUNT(*) AS total
-			 FROM {$events} WHERE created_at >= %s GROUP BY venue_id ORDER BY calls + directions DESC, total DESC LIMIT 25",
-			$since
-		) );
+		$top = self::top_venues( $since );
 		$rows = [];
 		foreach ( $top as $r ) {
 			$url = add_query_arg( [ 'page' => self::PAGE, 'days' => $days, 'venue' => (int) $r->venue_id ], admin_url( 'admin.php' ) );
@@ -100,6 +96,24 @@ final class Venue_Stats {
 		) );
 		self::table( 'Top cities', [ 'City', 'Clicks' ], array_map( static fn( $r ) => [ esc_html( self::city_name( $r->city ) ), (int) $r->n ], $cities ) );
 		self::splits( $since, 0 );
+	}
+
+	/**
+	 * Venues with the most calls and directions since a time. MySQL cannot order by
+	 * an expression of SELECT aliases of aggregates (error 1247), so the order
+	 * repeats the aggregates.
+	 *
+	 * @return array<int,object{venue_id:string,calls:string,directions:string,website:string,total:string}>
+	 */
+	public static function top_venues( string $since, int $limit = 25 ): array {
+		global $wpdb;
+		return (array) $wpdb->get_results( $wpdb->prepare(
+			"SELECT venue_id, SUM(event_type = 'call') AS calls, SUM(event_type = 'directions') AS directions, SUM(event_type = 'website') AS website, COUNT(*) AS total
+			 FROM " . Tracking::table( Tracking::EVENTS_TABLE ) . " WHERE created_at >= %s GROUP BY venue_id
+			 ORDER BY SUM(event_type IN ('call', 'directions')) DESC, COUNT(*) DESC LIMIT %d",
+			$since,
+			$limit
+		) );
 	}
 
 	private static function venue_report( int $venue, int $days ): void {
