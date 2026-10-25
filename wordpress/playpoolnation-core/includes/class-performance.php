@@ -7,6 +7,12 @@
  * versions. WooPay's direct checkout alone pulled React and ~18 wp-* packages
  * onto every page. The homepage pool game loads only when the visitor presses Play.
  *
+ * Google Maps (the API and the theme's google-maps.js) loads with the page only on
+ * the venue explore page (/places/, state, city and metro pages). Elsewhere
+ * assets/ppn.js loads it when a map comes into view, a location search is used,
+ * or a quick view (which shows a map) is opened. Contact Form 7's script and
+ * styles load only on pages that show a form.
+ *
  * @package PlayPoolNation\Core
  */
 
@@ -26,6 +32,12 @@ final class Performance {
 	/** Accessibility widget scripts that should never block rendering. */
 	private const DEFER_SOURCES = [ '/plugins/pojo-accessibility/' ];
 
+	/** Google's Maps API and the theme's map script, in the order they must run. */
+	private const MAP_HANDLES = [ 'google-maps', 'mylisting-google-maps' ];
+
+	/** @var array<string,string> handle => src of map scripts held back on this page */
+	private static array $held_maps = [];
+
 	/** Pages that still need WooCommerce on the front end (slugs). */
 	private const WC_PAGES = [ 'list-your-venue', 'claim-listing', 'claim-your-listing', 'my-pool', 'sign-in', 'join' ];
 
@@ -37,6 +49,86 @@ final class Performance {
 		add_action( 'wp_print_footer_scripts', [ __CLASS__, 'defer_scripts' ], 1 );
 		// The pool game's iframe loads the whole game; it now waits for the Play button.
 		add_action( 'ppn_markup', static fn() => Markup::add( [ Helpers\Html_Fix::class, 'pool_game_on_click' ] ) );
+		add_filter( 'script_loader_tag', [ __CLASS__, 'hold_maps' ], 20, 3 );
+		add_action( 'wp_print_footer_scripts', [ __CLASS__, 'print_held_maps' ], 20 );
+		add_filter( 'wpcf7_load_js', [ __CLASS__, 'cf7_assets' ] );
+		add_filter( 'wpcf7_load_css', [ __CLASS__, 'cf7_assets' ] );
+		add_filter( 'do_shortcode_tag', [ __CLASS__, 'cf7_shortcode_rendered' ], 10, 2 );
+		add_filter( 'render_block_contact-form-7/contact-form-selector', [ __CLASS__, 'cf7_rendered' ] );
+	}
+
+	/** The venue explore page and its state, city and metro views draw a map straight away. */
+	public static function maps_on_load(): bool {
+		$explore = (int) get_option( 'options_general_explore_listings_page' );
+		return $explore && is_page( $explore );
+	}
+
+	/**
+	 * Print map scripts' inline parts but not the scripts themselves; their addresses
+	 * go to print_held_maps() for assets/ppn.js to load when needed.
+	 *
+	 * @param string $tag
+	 * @param string $handle
+	 * @param string $src
+	 */
+	public static function hold_maps( $tag, $handle, $src ): string {
+		if ( is_admin() || ! in_array( $handle, self::MAP_HANDLES, true ) || self::maps_on_load() ) {
+			return (string) $tag;
+		}
+		self::$held_maps[ $handle ] = (string) $src;
+		return (string) preg_replace( '#<script\b[^>]*\bsrc=[^>]*>\s*</script>\s*#', '', (string) $tag );
+	}
+
+	public static function print_held_maps(): void {
+		$srcs = [];
+		foreach ( self::MAP_HANDLES as $handle ) {
+			if ( ! empty( self::$held_maps[ $handle ] ) ) {
+				$srcs[] = self::$held_maps[ $handle ];
+			}
+		}
+		if ( $srcs ) {
+			printf( '<script type="application/json" id="ppn-maps">%s</script>' . "\n", wp_json_encode( $srcs, JSON_UNESCAPED_SLASHES | JSON_HEX_TAG ) );
+		}
+	}
+
+	/** Contact Form 7 assets with the page only where its content has a form. */
+	public static function cf7_assets( $load ): bool {
+		return $load && self::has_cf7_form();
+	}
+
+	private static function has_cf7_form(): bool {
+		if ( ! is_singular() ) {
+			return false;
+		}
+		$id = (int) get_queried_object_id();
+		$content = (string) get_post_field( 'post_content', $id ) . (string) get_post_meta( $id, '_elementor_data', true );
+		// The shortcode, the block, and Elementor widgets that wrap them all name contact-form-7.
+		return str_contains( $content, 'contact-form-7' ) || str_contains( $content, '[contact-form ' );
+	}
+
+	/**
+	 * A form printed from somewhere has_cf7_form() does not read (a widget, a
+	 * template) still gets its script and styles, in the footer.
+	 *
+	 * @param string|false $output
+	 * @param string       $tag
+	 * @return string|false
+	 */
+	public static function cf7_shortcode_rendered( $output, $tag ) {
+		if ( in_array( $tag, [ 'contact-form-7', 'contact-form' ], true ) ) {
+			self::cf7_rendered( '' );
+		}
+		return $output;
+	}
+
+	/** @param string $html */
+	public static function cf7_rendered( $html ): string {
+		// wpcf7_enqueue_scripts() adds its inline settings on every call, so only once.
+		if ( function_exists( 'wpcf7_enqueue_scripts' ) && function_exists( 'wpcf7_enqueue_styles' ) && ! wp_script_is( 'contact-form-7', 'enqueued' ) ) {
+			wpcf7_enqueue_scripts();
+			wpcf7_enqueue_styles();
+		}
+		return (string) $html;
 	}
 
 	public static function needs_woocommerce(): bool {

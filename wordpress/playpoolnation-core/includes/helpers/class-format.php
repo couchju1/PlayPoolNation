@@ -99,6 +99,19 @@ final class Format {
 		return ( $plus && strlen( $digits ) >= 8 ) ? '+' . $digits : '';
 	}
 
+	/**
+	 * The https address to link for a venue website, given where a request for it
+	 * ended up: an https page on the same site (www. or not), or '' when it ended
+	 * on plain http or somewhere else.
+	 */
+	public static function https_upgrade( string $site, string $final ): string {
+		$host = static fn( string $url ): string => (string) preg_replace( '#^www\.#', '', strtolower( (string) parse_url( $url, PHP_URL_HOST ) ) );
+		if ( 'https' !== strtolower( (string) parse_url( $final, PHP_URL_SCHEME ) ) || '' === $host( $final ) || $host( $final ) !== $host( $site ) ) {
+			return '';
+		}
+		return $final;
+	}
+
 	/** Google Maps directions to an address (works in the app and the browser). */
 	public static function directions_url( string $destination ): string {
 		return 'https://www.google.com/maps/dir/?api=1&destination=' . rawurlencode( trim( $destination ) );
