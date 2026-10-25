@@ -19,7 +19,7 @@ if ( defined( 'PPN_CORE_VERSION' ) ) {
 	return;
 }
 
-define( 'PPN_CORE_VERSION', '1.9.5' );
+define( 'PPN_CORE_VERSION', '1.10.0' );
 define( 'PPN_CORE_DB_VERSION', 4 );
 define( 'PPN_CORE_FILE', __FILE__ );
 define( 'PPN_CORE_DIR', __DIR__ );
@@ -34,6 +34,8 @@ require_once PPN_CORE_DIR . '/includes/helpers/class-about-text.php';
 require_once PPN_CORE_DIR . '/includes/helpers/class-tri-state.php';
 require_once PPN_CORE_DIR . '/includes/helpers/class-html-fix.php';
 require_once PPN_CORE_DIR . '/includes/helpers/class-event-data.php';
+require_once PPN_CORE_DIR . '/includes/helpers/class-city-text.php';
+require_once PPN_CORE_DIR . '/includes/helpers/class-index-rule.php';
 require_once PPN_CORE_DIR . '/includes/class-pool-schema.php';
 require_once PPN_CORE_DIR . '/includes/class-venue.php';
 require_once PPN_CORE_DIR . '/includes/class-provenance.php';
@@ -62,6 +64,7 @@ require_once PPN_CORE_DIR . '/includes/class-seo.php';
 require_once PPN_CORE_DIR . '/includes/class-seo-meta.php';
 require_once PPN_CORE_DIR . '/includes/class-stats.php';
 require_once PPN_CORE_DIR . '/includes/class-metros.php';
+require_once PPN_CORE_DIR . '/includes/class-city-page.php';
 require_once PPN_CORE_DIR . '/includes/class-geocoder.php';
 require_once PPN_CORE_DIR . '/includes/class-forms.php';
 require_once PPN_CORE_DIR . '/includes/class-moderation.php';
@@ -100,6 +103,7 @@ PlayPoolNation\Core\Seo::boot();
 PlayPoolNation\Core\Seo_Meta::boot();
 PlayPoolNation\Core\Stats::boot();
 PlayPoolNation\Core\Metros::boot();
+PlayPoolNation\Core\City_Page::boot();
 PlayPoolNation\Core\Forms::boot();
 PlayPoolNation\Core\Moderation::boot();
 PlayPoolNation\Core\Claims::boot();
@@ -112,7 +116,9 @@ if ( defined( 'WP_CLI' ) && WP_CLI ) {
 	require_once PPN_CORE_DIR . '/includes/helpers/class-keywords.php';
 	require_once PPN_CORE_DIR . '/includes/helpers/class-keyword-report.php';
 	require_once PPN_CORE_DIR . '/includes/cli/class-keywords-command.php';
+	require_once PPN_CORE_DIR . '/includes/cli/class-venues-command.php';
 	PlayPoolNation\Core\Cli\Keywords_Command::boot();
+	PlayPoolNation\Core\Cli\Venues_Command::boot();
 }
 
 register_activation_hook( PPN_CORE_FILE, [ PlayPoolNation\Core\Tracking::class, 'install' ] );

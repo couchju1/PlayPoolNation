@@ -8,7 +8,8 @@
  * onto every page. The homepage pool game loads only when the visitor presses Play.
  *
  * Google Maps (the API and the theme's google-maps.js) loads with the page only on
- * the venue explore page (/places/, state, city and metro pages). Elsewhere
+ * the venue explore page (/places/, state and metro pages); city pages (City_Page)
+ * load it when "Show map" is pressed. Elsewhere
  * assets/ppn.js loads it when a map comes into view, a location search is used,
  * or a quick view (which shows a map) is opened. Contact Form 7's script and
  * styles load only on pages that show a form.
@@ -72,10 +73,10 @@ final class Performance {
 		add_action( 'thinkrank_breadcrumbs', [ __CLASS__, 'breadcrumbs_printed' ], 0 );
 	}
 
-	/** The venue explore page and its state, city and metro views draw a map straight away. */
+	/** The venue explore page and its state and metro views draw a map straight away. */
 	public static function maps_on_load(): bool {
 		$explore = (int) get_option( 'options_general_explore_listings_page' );
-		return $explore && is_page( $explore );
+		return $explore && is_page( $explore ) && ! City_Page::current(); // City pages load the map on request.
 	}
 
 	/**

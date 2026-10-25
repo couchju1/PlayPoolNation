@@ -9,7 +9,9 @@
 namespace PlayPoolNation\Core;
 
 use PlayPoolNation\Core\Helpers\Address;
+use PlayPoolNation\Core\Helpers\City_Text;
 use PlayPoolNation\Core\Helpers\Format;
+use PlayPoolNation\Core\Helpers\Index_Rule;
 use PlayPoolNation\Core\Helpers\Tri_State;
 
 defined( 'ABSPATH' ) || exit;
@@ -68,6 +70,45 @@ final class Venue {
 				self::$hours[ (int) $row->listing_id ][] = $row;
 			}
 		}
+	}
+
+	/**
+	 * Whether the venue page is indexed (Seo::should_noindex, the sitemap): an
+	 * address, a phone number or website, hours, and Helpers\Index_Rule::MIN_TABLE_FACTS
+	 * sourced table facts.
+	 */
+	public static function is_indexable( int $id ): bool {
+		return ! self::index_gaps( $id );
+	}
+
+	/** @return string[] what the venue still needs to be indexed (Helpers\Index_Rule::missing) */
+	public static function index_gaps( int $id ): array {
+		static $memo = [];
+		if ( ! isset( $memo[ $id ] ) ) {
+			$v = self::get( $id );
+			$memo[ $id ] = $v ? Index_Rule::missing(
+				'' !== trim( $v->address() ),
+				'' !== $v->phone() || '' !== $v->website(),
+				(bool) $v->hour_ranges(),
+				City_Text::table_facts( About::facts( $v ) )
+			) : [ 'venue' ];
+		}
+		return $memo[ $id ];
+	}
+
+	/**
+	 * Published venues whose pages are not indexed yet.
+	 *
+	 * @return int[]
+	 */
+	public static function unindexable_ids(): array {
+		static $memo = null;
+		if ( null === $memo ) {
+			$ids = array_map( 'intval', get_posts( [ 'post_type' => Pool_Schema::POST_TYPE, 'post_status' => 'publish', 'fields' => 'ids', 'posts_per_page' => -1, 'no_found_rows' => true, 'meta_key' => '_case27_listing_type', 'meta_value' => Pool_Schema::VENUE_TYPE ] ) );
+			self::prime( $ids );
+			$memo = array_values( array_filter( $ids, static fn( $id ) => ! self::is_indexable( $id ) ) );
+		}
+		return $memo;
 	}
 
 	public static function flush_cache( int $id ): void {

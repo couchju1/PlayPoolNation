@@ -117,6 +117,8 @@ final class Tracking {
 			$venue = (int) get_queried_object_id();
 		} elseif ( is_page( My_Pool::PAGE ) ) {
 			$page = 'my_pool';
+		} elseif ( City_Page::current() ) {
+			$page = 'city';
 		} elseif ( Performance::maps_on_load() ) {
 			$page = Seo_Meta::region_term() || Metros::current() ? 'city' : 'hub';
 		}
