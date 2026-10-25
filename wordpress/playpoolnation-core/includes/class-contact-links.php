@@ -68,7 +68,8 @@ final class Contact_Links {
 				$tag = str_replace( 'href="' . $m[1] . '"', 'href="' . esc_attr( $https ) . '"', $tag );
 			}
 			$tag = (string) preg_replace( '#\s(rel|target)="[^"]*"#', '', $tag );
-			return (string) preg_replace( '#^<a\s#', '<a target="_blank" rel="nofollow noopener" ', $tag );
+			$tag = (string) preg_replace( '#\sdata-ppn-event="[^"]*"#', '', $tag );
+			return (string) preg_replace( '#^<a\s#', '<a target="_blank" rel="nofollow noopener" data-ppn-event="website" ', $tag );
 		}, $html );
 	}
 

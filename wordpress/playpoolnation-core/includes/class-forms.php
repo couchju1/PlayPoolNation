@@ -169,7 +169,7 @@ final class Forms {
 		$message = self::message( 'suggest' );
 		$open = $message ? ' open' : '';
 		$html = '<details class="ppn-suggest" id="suggest-edit"' . $open . '>';
-		$html .= '<summary class="ppn-button ppn-button--ghost">Suggest an edit</summary>' . $message;
+		$html .= '<summary class="ppn-button ppn-button--ghost" data-ppn-event="suggest_edit">Suggest an edit</summary>' . $message;
 		$html .= '<form class="ppn-form" method="post" action="' . esc_url( admin_url( 'admin-post.php' ) ) . '">';
 		$html .= '<input type="hidden" name="action" value="ppn_suggest_edit"><input type="hidden" name="venue_id" value="' . esc_attr( (string) $venue_id ) . '">';
 		$html .= self::common_fields();
