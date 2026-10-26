@@ -1153,12 +1153,12 @@
       "note": ""
     },
     "sugar-mouse-new-york-ny": {
-      "status": "retry",
+      "status": "done",
       "name": "Sugar Mouse",
       "kind": "new",
       "at": "2026-10-26",
-      "stated": 0,
-      "note": "site rate-limited us; retried next run"
+      "stated": 3,
+      "note": ""
     },
     "superfine-new-york-ny": {
       "status": "done",
@@ -1201,8 +1201,13 @@
     "2026-10-26 01:33 run started",
     "2026-10-26 01:40 paused: www.sugarmousenyc.com returned 429 4 times",
     "2026-10-26 01:40 run resumed after pause",
-    "2026-10-26 01:42 enrichment finished: 147 venues; some steps still to do (OpenStreetMap or rate-limited sites), run again"
+    "2026-10-26 01:42 enrichment finished: 147 venues; some steps still to do (OpenStreetMap or rate-limited sites), run again",
+    "2026-10-26 01:43 resumed: 146 venues already done, skipping them",
+    "2026-10-26 01:44 enrichment finished: 147 venues; some steps still to do (OpenStreetMap or rate-limited sites), run again",
+    "2026-10-26 01:45 resumed: 146 venues already done, skipping them",
+    "2026-10-26 01:46 enrichment finished: 147 venues"
   ],
-  "updated_at": "2026-10-26T01:42:54+00:00",
-  "total_venues": 147
+  "updated_at": "2026-10-26T01:46:50+00:00",
+  "total_venues": 147,
+  "finished_at": "2026-10-26"
 }

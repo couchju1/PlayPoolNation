@@ -78,6 +78,9 @@ def do_enrich(city: dict, listings: list[dict], fetcher: Fetcher, *, recheck: bo
         note = "" if record["listing"].get("website") or record["listing"].get("facebook") else "no website"
         state = store.load_state(slug)
         limited = any(c["result"] == "rate_limited" for c in record["sources_checked"])
+        if limited and state.get(key, {}).get(v["slug"], {}).get("status") == "retry":
+            limited = False  # Retried once already: keep what we read, note the rest.
+            note = "some pages rate-limited twice; not read"
         state.setdefault(key, {})[v["slug"]] = {"status": "retry" if limited else "done", "name": v["name"], "kind": v["_kind"], "at": record["checked_at"], "stated": stated, "note": "site rate-limited us; retried next run" if limited else note}
         if recheck:
             state.setdefault("venues", {}).setdefault(v["slug"], {}).update(status="done", name=v["name"], kind=v["_kind"], at=record["checked_at"], stated=stated, note=note)

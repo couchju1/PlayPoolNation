@@ -17,20 +17,110 @@
   "sources_checked": [
     {
       "url": "https://www.sugarmousenyc.com",
-      "result": "rate_limited",
-      "note": "www.sugarmousenyc.com returned 429 4 times"
+      "result": "read",
+      "note": ""
+    },
+    {
+      "url": "https://www.sugarmousenyc.com/menu",
+      "result": "read",
+      "note": ""
+    },
+    {
+      "url": "https://www.sugarmousenyc.com/games",
+      "result": "read",
+      "note": ""
+    },
+    {
+      "url": "https://www.sugarmousenyc.com/book-an-event",
+      "result": "read",
+      "note": ""
+    },
+    {
+      "url": "https://www.sugarmousenyc.com/corporate",
+      "result": "read",
+      "note": ""
+    },
+    {
+      "url": "https://www.sugarmousenyc.com/events",
+      "result": "read",
+      "note": ""
+    },
+    {
+      "url": "https://www.sugarmousenyc.com/faqs",
+      "result": "read",
+      "note": ""
     }
   ],
   "facts": [
+    {
+      "field": "table_count",
+      "key": "table_count",
+      "value": 8,
+      "source_url": "https://www.sugarmousenyc.com/games",
+      "quote_snippet": "8 competition-standard Pool tables",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [],
+      "seen_on": [
+        "https://www.sugarmousenyc.com/faqs",
+        "https://www.sugarmousenyc.com/games"
+      ],
+      "source_type": "official_website"
+    },
+    {
+      "field": "age_policy",
+      "key": "age_policy",
+      "value": "all-ages",
+      "source_url": "https://www.sugarmousenyc.com/games",
+      "quote_snippet": "Fun for all ages!",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [],
+      "seen_on": [
+        "https://www.sugarmousenyc.com/faqs",
+        "https://www.sugarmousenyc.com/games"
+      ],
+      "source_type": "official_website"
+    },
+    {
+      "field": "food",
+      "key": "food",
+      "value": true,
+      "source_url": "https://www.sugarmousenyc.com/menu",
+      "quote_snippet": "View our full menu and find the perfect bites and drinks for your visit.",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [],
+      "seen_on": [
+        "https://www.sugarmousenyc.com/corporate",
+        "https://www.sugarmousenyc.com/menu"
+      ],
+      "source_type": "official_website"
+    },
+    {
+      "field": "full_bar",
+      "key": "full_bar",
+      "value": true,
+      "source_url": "https://www.sugarmousenyc.com",
+      "quote_snippet": "Pool, ping pong, live indie music, craft cocktails, and a room full of good energy.",
+      "checked_at": "2026-10-26",
+      "confidence": "implied",
+      "flags": [],
+      "seen_on": [
+        "https://www.sugarmousenyc.com",
+        "https://www.sugarmousenyc.com/corporate"
+      ],
+      "source_type": "official_website"
+    },
     {
       "field": "table_sizes",
       "key": "table_sizes:7ft",
       "value": {
         "size": "7ft",
-        "count": null
+        "count": 8
       },
-      "source_url": "https://www.sugarmousenyc.com",
-      "quote_snippet": "Listed as a place to play pool; no table size stated anywhere.",
+      "source_url": "https://www.sugarmousenyc.com/games",
+      "quote_snippet": "8 competition-standard Pool tables",
       "checked_at": "2026-10-26",
       "confidence": "implied",
       "flags": [
@@ -38,18 +128,14 @@
       ],
       "source_type": "default",
       "seen_on": [
-        "https://www.sugarmousenyc.com"
+        "https://www.sugarmousenyc.com/games"
       ]
     }
   ],
   "missing": [
-    "table_count",
     "table_sizes",
     "table_brands",
     "pricing_model",
-    "league_nights",
-    "age_policy",
-    "food",
-    "full_bar"
+    "league_nights"
   ]
 }

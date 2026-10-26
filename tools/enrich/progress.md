@@ -1,30 +1,30 @@
 # Venue enrichment progress
 
-Updated 2026-10-26 01:43. Rebuilt by `python3 tools/enrich/enrich.py progress` and after every venue.
+Updated 2026-10-26 01:47. Rebuilt by `python3 tools/enrich/enrich.py progress` and after every venue.
 
 Cities are worked in the order of the latest keyword report; a city is finished before the next starts. A *hit* is a venue with at least one **stated** fact for that field (implied facts are counted separately and go to review flagged).
 
 | City | Venues done | Facts (stated) | Venues with a stated fact | With a table fact | New venues found | Disk |
 |---|--:|--:|--:|--:|--:|--:|
-| new-york (in progress) | 146/147 | 250 (66) | 37 (25%) | 6 (4%) | 142 | 445 KB |
+| new-york (done) | 147/147 | 254 (69) | 38 (26%) | 7 (5%) | 142 | 448 KB |
 | sioux-falls (done) | 26/26 | 157 (98) | 24 (92%) | 2 (8%) | 16 | 268 KB |
 
 ## new-york
 
 Discovery: OpenStreetMap 145 pool-tagged places and 1839 other bars; Google Places skipped (GOOGLE_PLACES_API_KEY not set); 0 league page(s); 3 matched our listings, 142 new.
 
-Pages read 184, skipped by robots.txt or login 20, errors 17.
+Pages read 191, skipped by robots.txt or login 20, errors 17.
 
 | Field | Venues with stated fact | Hit rate | Implied only |
 |---|--:|--:|--:|
-| Table count | 5 | 3% | 0 |
+| Table count | 6 | 4% | 0 |
 | Table sizes | 0 | 0% | 147 |
 | Table brands | 2 | 1% | 0 |
 | Pricing | 8 | 5% | 0 |
 | League nights | 3 | 2% | 2 |
-| Age policy | 6 | 4% | 4 |
-| Food | 32 | 22% | 2 |
-| Full bar | 7 | 5% | 27 |
+| Age policy | 7 | 5% | 4 |
+| Food | 33 | 22% | 2 |
+| Full bar | 7 | 5% | 28 |
 | Closed notice | 0 | 0% | 0 |
 
 | Venue | Status | Stated facts | Implied | Sources read |
@@ -173,7 +173,7 @@ Pages read 184, skipped by robots.txt or login 20, errors 17.
 | Sour Mouse | done | 3 | 3 | 8 |
 | St. John’s Recreation Center | done | 0 | 1 | 0 |
 | Stonewall Inn | done | 1 | 2 | 9 |
-| Sugar Mouse | retry – site rate-limited us; retried next run | 0 | 1 | 0 |
+| Sugar Mouse | done | 3 | 2 | 7 |
 | Superfine | done | 0 | 1 | 0 |
 | The Flower Shop | done | 0 | 1 | 1 |
 
@@ -190,6 +190,10 @@ Run log:
 - 2026-10-26 01:40 paused: www.sugarmousenyc.com returned 429 4 times
 - 2026-10-26 01:40 run resumed after pause
 - 2026-10-26 01:42 enrichment finished: 147 venues; some steps still to do (OpenStreetMap or rate-limited sites), run again
+- 2026-10-26 01:43 resumed: 146 venues already done, skipping them
+- 2026-10-26 01:44 enrichment finished: 147 venues; some steps still to do (OpenStreetMap or rate-limited sites), run again
+- 2026-10-26 01:45 resumed: 146 venues already done, skipping them
+- 2026-10-26 01:46 enrichment finished: 147 venues
 
 ## sioux-falls
 
