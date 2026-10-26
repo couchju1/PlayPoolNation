@@ -1,0 +1,186 @@
+{
+  "schema": 1,
+  "slug": "red-eye-sioux-falls-sd",
+  "city": "sioux-falls",
+  "kind": "new",
+  "listing": {
+    "name": "Red Eye",
+    "city": "Sioux Falls",
+    "state": "SD",
+    "venue_type": "bars-with-pool-tables"
+  },
+  "checked_at": "2026-10-26",
+  "sources_checked": [],
+  "facts": [
+    {
+      "field": "league_nights",
+      "key": "league_nights:sioux-falls-a-1-division-1-music-service:wednesday",
+      "value": {
+        "league": "Sioux Falls A-1 Division 1 (Music Service)",
+        "weekday": "wednesday"
+      },
+      "source_url": "https://musicservice.com/pool-league/sioux-falls-a-1-division-1/",
+      "evidence_url": "https://musicservice.com/wp-content/uploads/musicservice/pool_league/weeklystatistics/A-1-DIV-1-WEEK-4-2.pdf",
+      "quote_snippet": "4 RED EYE 8-BALL BRIGADE 53.33 15 8.0 7.0 60 29 459 459 · results 2026-10-14",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [
+        "from the league's team names"
+      ],
+      "seen_on": [
+        "https://musicservice.com/pool-league/sioux-falls-a-1-division-1/"
+      ],
+      "source_type": "league_operator"
+    },
+    {
+      "field": "league_nights",
+      "key": "league_nights:sioux-falls-a-1-division-2-music-service:wednesday",
+      "value": {
+        "league": "Sioux Falls A-1 Division 2 (Music Service)",
+        "weekday": "wednesday"
+      },
+      "source_url": "https://musicservice.com/pool-league/sioux-falls-a-1-division-2/",
+      "evidence_url": "https://musicservice.com/wp-content/uploads/musicservice/pool_league/weeklystatistics/A-1-DIV-2-WEEK-4-2.pdf",
+      "quote_snippet": "7 RED EYE ON FIRE 35 20 7.0 13.0 80 36 598 594 · results 2026-10-14",
+      "checked_at": "2026-10-26",
+      "confidence": "implied",
+      "flags": [
+        "from the league's team names",
+        "team 'RED EYE ON FIRE' may be another location"
+      ],
+      "seen_on": [
+        "https://musicservice.com/pool-league/sioux-falls-a-1-division-2/"
+      ],
+      "source_type": "league_operator"
+    },
+    {
+      "field": "league_nights",
+      "key": "league_nights:sioux-falls-aa-division-1-music-service:wednesday",
+      "value": {
+        "league": "Sioux Falls AA Division 1 (Music Service)",
+        "weekday": "wednesday"
+      },
+      "source_url": "https://musicservice.com/pool-league/sioux-falls-aa-division-1/",
+      "evidence_url": "https://musicservice.com/wp-content/uploads/musicservice/pool_league/weeklystatistics/AA-DIV-1-WEEK-4-2.pdf",
+      "quote_snippet": "7 RED EYE CUE FORCE 50 24 12.0 12.0 100 53 743 743 · results 2026-10-14",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [
+        "from the league's team names"
+      ],
+      "seen_on": [
+        "https://musicservice.com/pool-league/sioux-falls-aa-division-1/"
+      ],
+      "source_type": "league_operator"
+    },
+    {
+      "field": "league_nights",
+      "key": "league_nights:sioux-falls-summer-8-ball-wednesday-music-service:wednesday",
+      "value": {
+        "league": "Sioux Falls Summer 8-ball Wednesday (Music Service)",
+        "weekday": "wednesday"
+      },
+      "source_url": "https://musicservice.com/pool-league/sioux-falls-summer-8-ball-wednesday/",
+      "evidence_url": "https://musicservice.com/wp-content/uploads/musicservice/pool_league/weeklystatistics/WED-SUM-WEEK-9-2.pdf",
+      "quote_snippet": "5 RED EYE HAVOC 55.56 36 20.0 16.0 81 56 688 685 · results 2026-08-12",
+      "checked_at": "2026-10-26",
+      "confidence": "implied",
+      "flags": [
+        "from the league's team names",
+        "no results since 2026-08-12 (off-season?)"
+      ],
+      "seen_on": [
+        "https://musicservice.com/pool-league/sioux-falls-summer-8-ball-wednesday/"
+      ],
+      "source_type": "league_operator"
+    },
+    {
+      "field": "league_nights",
+      "key": "league_nights:sioux-falls-tuesday-a-division-1-music-service:tuesday",
+      "value": {
+        "league": "Sioux Falls Tuesday A Division 1 (Music Service)",
+        "weekday": "tuesday"
+      },
+      "source_url": "https://musicservice.com/pool-league/sioux-falls-tuesday-a-division-1/",
+      "evidence_url": "https://musicservice.com/wp-content/uploads/musicservice/pool_league/weeklystatistics/TUES-A-DIV-1-WEEK-4-2.pdf",
+      "quote_snippet": "8 RED EYE BLURRED VISION 52.5 20 10.5 9.5 64 27 500 440 · results 2026-10-13",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [
+        "from the league's team names"
+      ],
+      "seen_on": [
+        "https://musicservice.com/pool-league/sioux-falls-tuesday-a-division-1/"
+      ],
+      "source_type": "league_operator"
+    },
+    {
+      "field": "league_nights",
+      "key": "league_nights:sioux-falls-tuesday-a-division-2-music-service:tuesday",
+      "value": {
+        "league": "Sioux Falls Tuesday A Division 2 (Music Service)",
+        "weekday": "tuesday"
+      },
+      "source_url": "https://musicservice.com/pool-league/sioux-falls-tuesday-a-division-2/",
+      "evidence_url": "https://musicservice.com/wp-content/uploads/musicservice/pool_league/weeklystatistics/TUES-A-DIV-2-WEEK-4-2.pdf",
+      "quote_snippet": "3 RED EYE OFF A LITTLE BIT 65 20 13.0 7.0 64 43 536 536 · results …",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [
+        "from the league's team names"
+      ],
+      "seen_on": [
+        "https://musicservice.com/pool-league/sioux-falls-tuesday-a-division-2/"
+      ],
+      "source_type": "league_operator"
+    },
+    {
+      "field": "league_nights",
+      "key": "league_nights:sioux-falls-wednesday-b-music-service:wednesday",
+      "value": {
+        "league": "Sioux Falls Wednesday B (Music Service)",
+        "weekday": "wednesday"
+      },
+      "source_url": "https://musicservice.com/pool-league/sioux-falls-wednesday-b/",
+      "evidence_url": "https://musicservice.com/wp-content/uploads/musicservice/pool_league/weeklystatistics/WED-B-WEEK-4-2.pdf",
+      "quote_snippet": "5 RED EYE I 53.33 15 8.0 7.0 48 31 416 416 · results 2026-10-14",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [
+        "from the league's team names"
+      ],
+      "seen_on": [
+        "https://musicservice.com/pool-league/sioux-falls-wednesday-b/"
+      ],
+      "source_type": "league_operator"
+    },
+    {
+      "field": "table_sizes",
+      "key": "table_sizes:7ft",
+      "value": {
+        "size": "7ft",
+        "count": null
+      },
+      "source_url": "https://musicservice.com/pool-league/sioux-falls-a-1-division-1/",
+      "quote_snippet": "Listed as a place to play pool; no table size stated anywhere.",
+      "checked_at": "2026-10-26",
+      "confidence": "implied",
+      "flags": [
+        "size not stated, 7 ft by default"
+      ],
+      "source_type": "default",
+      "seen_on": [
+        "https://musicservice.com/pool-league/sioux-falls-a-1-division-1/"
+      ]
+    }
+  ],
+  "missing": [
+    "table_count",
+    "table_sizes",
+    "table_brands",
+    "pricing_model",
+    "age_policy",
+    "food",
+    "full_bar"
+  ]
+}

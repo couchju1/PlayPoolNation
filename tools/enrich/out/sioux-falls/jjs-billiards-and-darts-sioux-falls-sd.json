@@ -1,0 +1,314 @@
+{
+  "schema": 1,
+  "slug": "jjs-billiards-and-darts-sioux-falls-sd",
+  "city": "sioux-falls",
+  "kind": "listing",
+  "listing": {
+    "id": 1825,
+    "url": "https://playpoolnation.com/place/jjs-billiards-and-darts-sioux-falls-sd/",
+    "name": "JJ’s Billiards & Darts",
+    "street": "309 S Elmwood Ave",
+    "city": "Sioux Falls",
+    "state": "SD",
+    "zip": "57104",
+    "phone": "(605) 335-7637",
+    "type": "Pool Hall",
+    "lat": 43.5442,
+    "lng": -96.75629
+  },
+  "checked_at": "2026-10-26",
+  "sources_checked": [],
+  "facts": [
+    {
+      "field": "league_nights",
+      "key": "league_nights:sioux-falls-a-3-division-1-music-service:thursday",
+      "value": {
+        "league": "Sioux Falls A-3 Division 1 (Music Service)",
+        "weekday": "thursday"
+      },
+      "source_url": "https://musicservice.com/pool-league/sioux-falls-a-3-division-1/",
+      "evidence_url": "https://musicservice.com/wp-content/uploads/musicservice/pool_league/weeklystatistics/A-3-DIV-1-WEEK-4-2.pdf",
+      "quote_snippet": "1 JJ'S 101 BOYS 66.67 15 10.0 5.0 60 31 473 457 · results 2026-10-15",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [
+        "from the league's team names"
+      ],
+      "seen_on": [
+        "https://musicservice.com/pool-league/sioux-falls-a-3-division-1/"
+      ],
+      "source_type": "league_operator"
+    },
+    {
+      "field": "league_nights",
+      "key": "league_nights:sioux-falls-a-3-division-2-music-service:thursday",
+      "value": {
+        "league": "Sioux Falls A-3 Division 2 (Music Service)",
+        "weekday": "thursday"
+      },
+      "source_url": "https://musicservice.com/pool-league/sioux-falls-a-3-division-2/",
+      "evidence_url": "https://musicservice.com/wp-content/uploads/musicservice/pool_league/weeklystatistics/A-3-DIV-2-WEEK-4-2.pdf",
+      "quote_snippet": "6 JJ'S 3 POLEZ & 2 HOLEZ 45 20 9.0 11.0 80 37 613 609 · results …",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [
+        "from the league's team names"
+      ],
+      "seen_on": [
+        "https://musicservice.com/pool-league/sioux-falls-a-3-division-2/"
+      ],
+      "source_type": "league_operator"
+    },
+    {
+      "field": "league_nights",
+      "key": "league_nights:sioux-falls-a-3-division-3-music-service:thursday",
+      "value": {
+        "league": "Sioux Falls A-3 Division 3 (Music Service)",
+        "weekday": "thursday"
+      },
+      "source_url": "https://musicservice.com/pool-league/sioux-falls-a-3-division-3/",
+      "evidence_url": "https://musicservice.com/wp-content/uploads/musicservice/pool_league/weeklystatistics/A-3-DIV-3-WEEK-4-2.pdf",
+      "quote_snippet": "2 JJ'S WORK IT OUT 70 20 14.0 6.0 80 38 660 596 · results 2026-10-15",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [
+        "from the league's team names"
+      ],
+      "seen_on": [
+        "https://musicservice.com/pool-league/sioux-falls-a-3-division-3/"
+      ],
+      "source_type": "league_operator"
+    },
+    {
+      "field": "league_nights",
+      "key": "league_nights:sioux-falls-aa-division-1-music-service:wednesday",
+      "value": {
+        "league": "Sioux Falls AA Division 1 (Music Service)",
+        "weekday": "wednesday"
+      },
+      "source_url": "https://musicservice.com/pool-league/sioux-falls-aa-division-1/",
+      "evidence_url": "https://musicservice.com/wp-content/uploads/musicservice/pool_league/weeklystatistics/AA-DIV-1-WEEK-4-2.pdf",
+      "quote_snippet": "2 JJ'S SCRATCH ADDICTS 66.67 24 16.0 8.0 100 52 734 734 · results 2026-10-14",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [
+        "from the league's team names"
+      ],
+      "seen_on": [
+        "https://musicservice.com/pool-league/sioux-falls-aa-division-1/"
+      ],
+      "source_type": "league_operator"
+    },
+    {
+      "field": "league_nights",
+      "key": "league_nights:sioux-falls-aa-division-2-music-service:wednesday",
+      "value": {
+        "league": "Sioux Falls AA Division 2 (Music Service)",
+        "weekday": "wednesday"
+      },
+      "source_url": "https://musicservice.com/pool-league/sioux-falls-aa-division-2/",
+      "evidence_url": "https://musicservice.com/wp-content/uploads/musicservice/pool_league/weeklystatistics/AA-DIV-2-WEEK-4-2.pdf",
+      "quote_snippet": "1 JJ'S POCKET HOBOS 75 20 15.0 5.0 80 44 640 628 · results 2026-10-14",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [
+        "from the league's team names"
+      ],
+      "seen_on": [
+        "https://musicservice.com/pool-league/sioux-falls-aa-division-2/"
+      ],
+      "source_type": "league_operator"
+    },
+    {
+      "field": "league_nights",
+      "key": "league_nights:sioux-falls-aa-division-3-music-service:wednesday",
+      "value": {
+        "league": "Sioux Falls AA Division 3 (Music Service)",
+        "weekday": "wednesday"
+      },
+      "source_url": "https://musicservice.com/pool-league/sioux-falls-aa-division-3/",
+      "evidence_url": "https://musicservice.com/wp-content/uploads/musicservice/pool_league/weeklystatistics/AA-DIV-3-WEEK-4.pdf",
+      "quote_snippet": "5 JJ'S TEAM OOPS 50 20 10.0 10.0 80 35 617 577 · results 2026-10-14",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [
+        "from the league's team names"
+      ],
+      "seen_on": [
+        "https://musicservice.com/pool-league/sioux-falls-aa-division-3/"
+      ],
+      "source_type": "league_operator"
+    },
+    {
+      "field": "league_nights",
+      "key": "league_nights:sioux-falls-b-1-music-service:thursday",
+      "value": {
+        "league": "Sioux Falls B-1 (Music Service)",
+        "weekday": "thursday"
+      },
+      "source_url": "https://musicservice.com/pool-league/sioux-falls-b-1/",
+      "evidence_url": "https://musicservice.com/wp-content/uploads/musicservice/pool_league/weeklystatistics/B-1-WEEK-4-2.pdf",
+      "quote_snippet": "6 JJ'S 8 BALLS 50 12 6.0 6.0 45 26 360 360 · results 2026-10-15",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [
+        "from the league's team names"
+      ],
+      "seen_on": [
+        "https://musicservice.com/pool-league/sioux-falls-b-1/"
+      ],
+      "source_type": "league_operator"
+    },
+    {
+      "field": "league_nights",
+      "key": "league_nights:sioux-falls-masters-music-service:wednesday",
+      "value": {
+        "league": "Sioux Falls Masters (Music Service)",
+        "weekday": "wednesday"
+      },
+      "source_url": "https://musicservice.com/pool-league/sioux-falls-masters/",
+      "evidence_url": "https://musicservice.com/wp-content/uploads/musicservice/pool_league/weeklystatistics/MASTERS-WEEK-4-2.pdf",
+      "quote_snippet": "8 JJ'S GET'N LUCKY 33.33 24 8.0 16.0 100 43 668 668 · results 2026-10-14",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [
+        "from the league's team names"
+      ],
+      "seen_on": [
+        "https://musicservice.com/pool-league/sioux-falls-masters/"
+      ],
+      "source_type": "league_operator"
+    },
+    {
+      "field": "league_nights",
+      "key": "league_nights:sioux-falls-summer-8-ball-tuesday-music-service:tuesday",
+      "value": {
+        "league": "Sioux Falls Summer 8-ball Tuesday (Music Service)",
+        "weekday": "tuesday"
+      },
+      "source_url": "https://musicservice.com/pool-league/sioux-falls-summer-8-ball-tuesday/",
+      "evidence_url": "https://musicservice.com/wp-content/uploads/musicservice/pool_league/weeklystatistics/TUES-SUM-WEEK-9-2.pdf",
+      "quote_snippet": "1 JJ'S BONZAI BOYS 77.78 36 28.0 8.0 81 57 682 682 · results 2026-08-11",
+      "checked_at": "2026-10-26",
+      "confidence": "implied",
+      "flags": [
+        "from the league's team names",
+        "no results since 2026-08-11 (off-season?)"
+      ],
+      "seen_on": [
+        "https://musicservice.com/pool-league/sioux-falls-summer-8-ball-tuesday/"
+      ],
+      "source_type": "league_operator"
+    },
+    {
+      "field": "league_nights",
+      "key": "league_nights:sioux-falls-summer-8-ball-wednesday-music-service:wednesday",
+      "value": {
+        "league": "Sioux Falls Summer 8-ball Wednesday (Music Service)",
+        "weekday": "wednesday"
+      },
+      "source_url": "https://musicservice.com/pool-league/sioux-falls-summer-8-ball-wednesday/",
+      "evidence_url": "https://musicservice.com/wp-content/uploads/musicservice/pool_league/weeklystatistics/WED-SUM-WEEK-9-2.pdf",
+      "quote_snippet": "2 JJ'S KLOCKWERKS 66.67 36 24.0 12.0 81 55 700 700 · results 2026-08-12",
+      "checked_at": "2026-10-26",
+      "confidence": "implied",
+      "flags": [
+        "from the league's team names",
+        "no results since 2026-08-12 (off-season?)"
+      ],
+      "seen_on": [
+        "https://musicservice.com/pool-league/sioux-falls-summer-8-ball-wednesday/"
+      ],
+      "source_type": "league_operator"
+    },
+    {
+      "field": "league_nights",
+      "key": "league_nights:sioux-falls-summer-9-ball-music-service:thursday",
+      "value": {
+        "league": "Sioux Falls Summer 9-ball (Music Service)",
+        "weekday": "thursday"
+      },
+      "source_url": "https://musicservice.com/pool-league/sioux-falls-summer-9-ball/",
+      "evidence_url": "https://musicservice.com/wp-content/uploads/musicservice/pool_league/weeklystatistics/SF-9-BALL-WEEK-9.pdf",
+      "quote_snippet": "4 JJ'S ALL IN 49.21 63 31.0 32.0 162 72 834 714 · results 2026-08-13",
+      "checked_at": "2026-10-26",
+      "confidence": "implied",
+      "flags": [
+        "from the league's team names",
+        "no results since 2026-08-13 (off-season?)"
+      ],
+      "seen_on": [
+        "https://musicservice.com/pool-league/sioux-falls-summer-9-ball/"
+      ],
+      "source_type": "league_operator"
+    },
+    {
+      "field": "league_nights",
+      "key": "league_nights:sioux-falls-tuesday-a-division-1-music-service:tuesday",
+      "value": {
+        "league": "Sioux Falls Tuesday A Division 1 (Music Service)",
+        "weekday": "tuesday"
+      },
+      "source_url": "https://musicservice.com/pool-league/sioux-falls-tuesday-a-division-1/",
+      "evidence_url": "https://musicservice.com/wp-content/uploads/musicservice/pool_league/weeklystatistics/TUES-A-DIV-1-WEEK-4-2.pdf",
+      "quote_snippet": "7 JJ'S BONZAI BOYS 52.5 20 10.5 9.5 64 37 512 512 · results 2026-10-13",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [
+        "from the league's team names"
+      ],
+      "seen_on": [
+        "https://musicservice.com/pool-league/sioux-falls-tuesday-a-division-1/"
+      ],
+      "source_type": "league_operator"
+    },
+    {
+      "field": "league_nights",
+      "key": "league_nights:sioux-falls-tuesday-a-division-2-music-service:tuesday",
+      "value": {
+        "league": "Sioux Falls Tuesday A Division 2 (Music Service)",
+        "weekday": "tuesday"
+      },
+      "source_url": "https://musicservice.com/pool-league/sioux-falls-tuesday-a-division-2/",
+      "evidence_url": "https://musicservice.com/wp-content/uploads/musicservice/pool_league/weeklystatistics/TUES-A-DIV-2-WEEK-4-2.pdf",
+      "quote_snippet": "4 JJ'S DEADLY AIM 60 20 12.0 8.0 64 41 525 525 · results 2026-10-13",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [
+        "from the league's team names"
+      ],
+      "seen_on": [
+        "https://musicservice.com/pool-league/sioux-falls-tuesday-a-division-2/"
+      ],
+      "source_type": "league_operator"
+    },
+    {
+      "field": "table_sizes",
+      "key": "table_sizes:7ft",
+      "value": {
+        "size": "7ft",
+        "count": null
+      },
+      "source_url": "https://playpoolnation.com/place/jjs-billiards-and-darts-sioux-falls-sd/",
+      "quote_snippet": "Listed as a place to play pool; no table size stated anywhere.",
+      "checked_at": "2026-10-26",
+      "confidence": "implied",
+      "flags": [
+        "size not stated, 7 ft by default"
+      ],
+      "source_type": "default",
+      "seen_on": [
+        "https://playpoolnation.com/place/jjs-billiards-and-darts-sioux-falls-sd/"
+      ]
+    }
+  ],
+  "missing": [
+    "table_count",
+    "table_sizes",
+    "table_brands",
+    "pricing_model",
+    "age_policy",
+    "food",
+    "full_bar"
+  ]
+}

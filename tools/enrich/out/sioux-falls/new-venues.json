@@ -1,0 +1,540 @@
+[
+  {
+    "name": "18th",
+    "street": "",
+    "city": "Sioux Falls",
+    "state": "SD",
+    "zip": "",
+    "lat": null,
+    "lng": null,
+    "phone": "",
+    "website": "",
+    "facebook": "",
+    "venue_type": "bars-with-pool-tables",
+    "flags": [
+      "name taken from league team names (one word; the bar's full name may be longer)",
+      "no address found; add it when approving"
+    ],
+    "sources": [
+      {
+        "source": "league",
+        "id": "https://musicservice.com/pool-league/sioux-falls-wednesday-b/",
+        "url": "https://musicservice.com/pool-league/sioux-falls-wednesday-b/",
+        "evidence": "Music Service teams: 18TH AMENDMNT RACK N ROLL, 18TH CUE THE CHAOS (Sioux Falls Wednesday B)"
+      }
+    ],
+    "match": {
+      "score": 10,
+      "class": "distinct",
+      "reasons": [],
+      "slug": "thirsty-duck-sioux-falls-sd"
+    },
+    "slug": "18th-sioux-falls-sd",
+    "discovered_at": "2026-10-26"
+  },
+  {
+    "name": "Axes & Ales",
+    "street": "",
+    "city": "Sioux Falls",
+    "state": "SD",
+    "zip": "",
+    "lat": null,
+    "lng": null,
+    "phone": "",
+    "website": "",
+    "facebook": "",
+    "venue_type": "bars-with-pool-tables",
+    "flags": [
+      "name taken from league team names",
+      "no address found; add it when approving"
+    ],
+    "sources": [
+      {
+        "source": "league",
+        "id": "https://musicservice.com/pool-league/sioux-falls-a-1-division-1/",
+        "url": "https://musicservice.com/pool-league/sioux-falls-a-1-division-1/",
+        "evidence": "Music Service teams: AXE & ALE MAD FROM SCRATCH, AXES & ALES BREAK DANCERS, AXES & ALES CUE-TASTROPHE, AXES & ALES GAUNTLET, AXES & ALES I (Sioux Falls A-1 Division 1, Sioux Falls A-1 Division 2, Sioux Falls A-3 Division 2, Sioux Falls Tuesday A Division 1)"
+      }
+    ],
+    "match": {
+      "score": 18,
+      "class": "distinct",
+      "reasons": [],
+      "slug": "jjs-billiards-and-darts-sioux-falls-sd"
+    },
+    "slug": "axes-and-ales-sioux-falls-sd",
+    "discovered_at": "2026-10-26"
+  },
+  {
+    "name": "Bb's",
+    "street": "",
+    "city": "Sioux Falls",
+    "state": "SD",
+    "zip": "",
+    "lat": null,
+    "lng": null,
+    "phone": "",
+    "website": "",
+    "facebook": "",
+    "venue_type": "bars-with-pool-tables",
+    "flags": [
+      "name taken from league team names (one word; the bar's full name may be longer)",
+      "no address found; add it when approving"
+    ],
+    "sources": [
+      {
+        "source": "league",
+        "id": "https://musicservice.com/pool-league/sioux-falls-aa-division-1/",
+        "url": "https://musicservice.com/pool-league/sioux-falls-aa-division-1/",
+        "evidence": "Music Service teams: BB'S QUEEN B'S, BB'S THAT JUST HAPPENED, BB'S X (Sioux Falls AA Division 1, Sioux Falls AA Division 2, Sioux Falls B-1, Sioux Falls Summer 8-ball Wednesday)"
+      }
+    ],
+    "match": {
+      "score": 23,
+      "class": "distinct",
+      "reasons": [],
+      "slug": "bigs-bar-sioux-falls-sd"
+    },
+    "slug": "bbs-sioux-falls-sd",
+    "discovered_at": "2026-10-26"
+  },
+  {
+    "name": "Billy Frogs",
+    "street": "",
+    "city": "Sioux Falls",
+    "state": "SD",
+    "zip": "",
+    "lat": null,
+    "lng": null,
+    "phone": "",
+    "website": "",
+    "facebook": "",
+    "venue_type": "bars-with-pool-tables",
+    "flags": [
+      "name taken from league team names",
+      "no address found; add it when approving"
+    ],
+    "sources": [
+      {
+        "source": "league",
+        "id": "https://musicservice.com/pool-league/sioux-falls-tuesday-a-division-1/",
+        "url": "https://musicservice.com/pool-league/sioux-falls-tuesday-a-division-1/",
+        "evidence": "Music Service teams: BILLY FROGS WITTY BITTIES, BILLY FROGS X (Sioux Falls Tuesday A Division 1, Sioux Falls Wednesday B)"
+      }
+    ],
+    "match": {
+      "score": 21,
+      "class": "distinct",
+      "reasons": [],
+      "slug": "bigs-bar-sioux-falls-sd"
+    },
+    "slug": "billy-frogs-sioux-falls-sd",
+    "discovered_at": "2026-10-26"
+  },
+  {
+    "name": "Chasers",
+    "street": "",
+    "city": "Sioux Falls",
+    "state": "SD",
+    "zip": "",
+    "lat": null,
+    "lng": null,
+    "phone": "",
+    "website": "",
+    "facebook": "",
+    "venue_type": "bars-with-pool-tables",
+    "flags": [
+      "name taken from league team names (one word; the bar's full name may be longer)",
+      "no address found; add it when approving"
+    ],
+    "sources": [
+      {
+        "source": "league",
+        "id": "https://musicservice.com/pool-league/sioux-falls-a-2/",
+        "url": "https://musicservice.com/pool-league/sioux-falls-a-2/",
+        "evidence": "Music Service teams: CHASERS COUNTRY CLUB, CHASERS CUE SLINGERS, CHASERS SANDBAGGERS, CHASERS SNIPER GANG, CHASERS SONOMA SHOOTERS (Sioux Falls A-2, Sioux Falls Masters, Sioux Falls Tuesday A Division 1, Sioux Falls Wednesday B)"
+      }
+    ],
+    "match": {
+      "score": 13,
+      "class": "distinct",
+      "reasons": [],
+      "slug": "thirsty-duck-sioux-falls-sd"
+    },
+    "slug": "chasers-sioux-falls-sd",
+    "discovered_at": "2026-10-26"
+  },
+  {
+    "name": "Crow Bar",
+    "street": "",
+    "city": "Sioux Falls",
+    "state": "SD",
+    "zip": "",
+    "lat": null,
+    "lng": null,
+    "phone": "",
+    "website": "",
+    "facebook": "",
+    "venue_type": "bars-with-pool-tables",
+    "flags": [
+      "name taken from league team names",
+      "no address found; add it when approving"
+    ],
+    "sources": [
+      {
+        "source": "league",
+        "id": "https://musicservice.com/pool-league/sioux-falls-a-2/",
+        "url": "https://musicservice.com/pool-league/sioux-falls-a-2/",
+        "evidence": "Music Service teams: CROW BAR 8-BALLERS, CROW BAR CHAIN STROKERS, CROW BAR DOLLAR BIN CUES, CROW BAR ERO SPEEDWAGON, CROW BAR MISFITS (Sioux Falls A-2, Sioux Falls AA Division 1, Sioux Falls AA Division 2, Sioux Falls B-1)"
+      }
+    ],
+    "match": {
+      "score": 11,
+      "class": "distinct",
+      "reasons": [],
+      "slug": "nickel-spot-sioux-falls-sd"
+    },
+    "slug": "crow-bar-sioux-falls-sd",
+    "discovered_at": "2026-10-26"
+  },
+  {
+    "name": "Double D",
+    "street": "",
+    "city": "Sioux Falls",
+    "state": "SD",
+    "zip": "",
+    "lat": null,
+    "lng": null,
+    "phone": "",
+    "website": "",
+    "facebook": "",
+    "venue_type": "bars-with-pool-tables",
+    "flags": [
+      "name taken from league team names",
+      "no address found; add it when approving"
+    ],
+    "sources": [
+      {
+        "source": "league",
+        "id": "https://musicservice.com/pool-league/sioux-falls-a-1-division-2/",
+        "url": "https://musicservice.com/pool-league/sioux-falls-a-1-division-2/",
+        "evidence": "Music Service teams: DOUBLE D RACKSTARS, DOUBLE D SALOON I, DOUBLE D SALOON RACK EM, DOUBLE D SALOON TRAVELERS, DOUBLE D SKOL, DOUBLE D SKOL SHOOTERS (Sioux Falls A-1 Division 2, Sioux Falls A-2, Sioux Falls A-3 Division 1, Sioux Falls B-1)"
+      }
+    ],
+    "match": {
+      "score": 14,
+      "class": "distinct",
+      "reasons": [],
+      "slug": "upper-cut-bar-and-grill-sioux-falls-sd"
+    },
+    "slug": "double-d-sioux-falls-sd",
+    "discovered_at": "2026-10-26"
+  },
+  {
+    "name": "Garage",
+    "street": "",
+    "city": "Sioux Falls",
+    "state": "SD",
+    "zip": "",
+    "lat": null,
+    "lng": null,
+    "phone": "",
+    "website": "",
+    "facebook": "",
+    "venue_type": "bars-with-pool-tables",
+    "flags": [
+      "name taken from league team names (one word; the bar's full name may be longer)",
+      "no address found; add it when approving"
+    ],
+    "sources": [
+      {
+        "source": "league",
+        "id": "https://musicservice.com/pool-league/sioux-falls-summer-9-ball/",
+        "url": "https://musicservice.com/pool-league/sioux-falls-summer-9-ball/",
+        "evidence": "Music Service teams: GARAGE 5 MORE SHOTS, GARAGE 9 MORE SHOTS (Sioux Falls Summer 9-ball, Sioux Falls Wednesday B)"
+      }
+    ],
+    "match": {
+      "score": 11,
+      "class": "distinct",
+      "reasons": [],
+      "slug": "rack-city-billiards-sioux-falls-sd"
+    },
+    "slug": "garage-sioux-falls-sd",
+    "discovered_at": "2026-10-26"
+  },
+  {
+    "name": "Liebrary",
+    "street": "",
+    "city": "Sioux Falls",
+    "state": "SD",
+    "zip": "",
+    "lat": null,
+    "lng": null,
+    "phone": "",
+    "website": "",
+    "facebook": "",
+    "venue_type": "bars-with-pool-tables",
+    "flags": [
+      "name taken from league team names (one word; the bar's full name may be longer)",
+      "no address found; add it when approving"
+    ],
+    "sources": [
+      {
+        "source": "league",
+        "id": "https://musicservice.com/pool-league/sioux-falls-a-2/",
+        "url": "https://musicservice.com/pool-league/sioux-falls-a-2/",
+        "evidence": "Music Service teams: LIEBRARY EXCUSE TO DRINK, LIEBRARY RIGHT ON CUE, LIEBRARY SAFETY FIRST (Sioux Falls A-2, Sioux Falls A-3 Division 2, Sioux Falls Wednesday B)"
+      }
+    ],
+    "match": {
+      "score": 14,
+      "class": "distinct",
+      "reasons": [],
+      "slug": "rack-city-billiards-sioux-falls-sd"
+    },
+    "slug": "liebrary-sioux-falls-sd",
+    "discovered_at": "2026-10-26"
+  },
+  {
+    "name": "Luckys South",
+    "street": "",
+    "city": "Sioux Falls",
+    "state": "SD",
+    "zip": "",
+    "lat": null,
+    "lng": null,
+    "phone": "",
+    "website": "",
+    "facebook": "",
+    "venue_type": "bars-with-pool-tables",
+    "flags": [
+      "name taken from league team names",
+      "no address found; add it when approving"
+    ],
+    "sources": [
+      {
+        "source": "league",
+        "id": "https://musicservice.com/pool-league/sioux-falls-a-2/",
+        "url": "https://musicservice.com/pool-league/sioux-falls-a-2/",
+        "evidence": "Music Service teams: LUCK SOUT RAK TO THE FUTUR, LUCKY SOUT HA'S HOOLIGANS, LUCKY SOUTH FORGT ABOUT IT, LUCKY SOUTH POCKET ROCKET, LUCKYS SOUTH MIS-CUES, LUCKYS SOUTH PEN15 (Sioux Falls A-2, Sioux Falls A-3 Division 3, Sioux Falls AA Division 1, Sioux Falls AA Division 2)"
+      }
+    ],
+    "match": {
+      "score": 33,
+      "class": "distinct",
+      "reasons": [],
+      "slug": "luckys-sioux-falls-sd"
+    },
+    "slug": "luckys-south-sioux-falls-sd",
+    "discovered_at": "2026-10-26"
+  },
+  {
+    "name": "Pave",
+    "street": "130 South Phillips Avenue",
+    "city": "Sioux Falls",
+    "state": "SD",
+    "zip": "57104",
+    "lat": 43.5462332,
+    "lng": -96.7265619,
+    "phone": "",
+    "website": "",
+    "facebook": "",
+    "venue_type": "bars-with-pool-tables",
+    "flags": [
+      "name taken from league team names (one word; the bar's full name may be longer)"
+    ],
+    "sources": [
+      {
+        "source": "league",
+        "id": "https://musicservice.com/pool-league/sioux-falls-a-1-division-1/",
+        "url": "https://musicservice.com/pool-league/sioux-falls-a-1-division-1/",
+        "evidence": "Music Service teams: PAVE POUNDERS, PAVE RACK STARZ, PAVE REUNITED (Sioux Falls A-1 Division 1, Sioux Falls A-3 Division 2)"
+      },
+      {
+        "source": "openstreetmap",
+        "id": "node/4065704558",
+        "url": "https://www.openstreetmap.org/node/4065704558",
+        "evidence": "amenity=bar"
+      }
+    ],
+    "match": {
+      "score": 0,
+      "class": "distinct",
+      "reasons": [],
+      "slug": ""
+    },
+    "slug": "pave-sioux-falls-sd",
+    "discovered_at": "2026-10-26"
+  },
+  {
+    "name": "Phoenix",
+    "street": "",
+    "city": "Sioux Falls",
+    "state": "SD",
+    "zip": "",
+    "lat": null,
+    "lng": null,
+    "phone": "",
+    "website": "",
+    "facebook": "",
+    "venue_type": "bars-with-pool-tables",
+    "flags": [
+      "name taken from league team names (one word; the bar's full name may be longer)",
+      "no address found; add it when approving"
+    ],
+    "sources": [
+      {
+        "source": "league",
+        "id": "https://musicservice.com/pool-league/sioux-falls-a-1-division-1/",
+        "url": "https://musicservice.com/pool-league/sioux-falls-a-1-division-1/",
+        "evidence": "Music Service teams: PHOENIX EAGLE EYES, PHOENIX POOL GODS, PHOENIX SHOCKERZ, PHOENIX TEAM VIGNA + 1, PHOENIX XXX (Sioux Falls A-1 Division 1, Sioux Falls A-1 Division 2, Sioux Falls Tuesday A Division 2)"
+      }
+    ],
+    "match": {
+      "score": 10,
+      "class": "distinct",
+      "reasons": [],
+      "slug": "upper-cut-bar-and-grill-sioux-falls-sd"
+    },
+    "slug": "phoenix-sioux-falls-sd",
+    "discovered_at": "2026-10-26"
+  },
+  {
+    "name": "Red Eye",
+    "street": "",
+    "city": "Sioux Falls",
+    "state": "SD",
+    "zip": "",
+    "lat": null,
+    "lng": null,
+    "phone": "",
+    "website": "",
+    "facebook": "",
+    "venue_type": "bars-with-pool-tables",
+    "flags": [
+      "name taken from league team names",
+      "no address found; add it when approving"
+    ],
+    "sources": [
+      {
+        "source": "league",
+        "id": "https://musicservice.com/pool-league/sioux-falls-a-1-division-1/",
+        "url": "https://musicservice.com/pool-league/sioux-falls-a-1-division-1/",
+        "evidence": "Music Service teams: RED EYE 8-BALL BRIGADE, RED EYE BLURRED VISION, RED EYE CUE FORCE, RED EYE HAVOC, RED EYE I, RED EYE OFF A LITTLE BIT (Sioux Falls A-1 Division 1, Sioux Falls A-1 Division 2, Sioux Falls AA Division 1, Sioux Falls Summer 8-ball Wednesday)"
+      }
+    ],
+    "match": {
+      "score": 15,
+      "class": "distinct",
+      "reasons": [],
+      "slug": "rack-city-billiards-sioux-falls-sd"
+    },
+    "slug": "red-eye-sioux-falls-sd",
+    "discovered_at": "2026-10-26"
+  },
+  {
+    "name": "The Den",
+    "street": "",
+    "city": "Sioux Falls",
+    "state": "SD",
+    "zip": "",
+    "lat": null,
+    "lng": null,
+    "phone": "",
+    "website": "",
+    "facebook": "",
+    "venue_type": "bars-with-pool-tables",
+    "flags": [
+      "name taken from league team names (one word; the bar's full name may be longer)",
+      "no address found; add it when approving"
+    ],
+    "sources": [
+      {
+        "source": "league",
+        "id": "https://musicservice.com/pool-league/sioux-falls-a-1-division-2/",
+        "url": "https://musicservice.com/pool-league/sioux-falls-a-1-division-2/",
+        "evidence": "Music Service teams: THE DEN DAD BODS, THE DEN HAPPY HOOKERS (Sioux Falls A-1 Division 2, Sioux Falls B-1)"
+      }
+    ],
+    "match": {
+      "score": 7,
+      "class": "distinct",
+      "reasons": [],
+      "slug": "jjs-billiards-and-darts-sioux-falls-sd"
+    },
+    "slug": "the-den-sioux-falls-sd",
+    "discovered_at": "2026-10-26"
+  },
+  {
+    "name": "The Gulch",
+    "street": "",
+    "city": "Sioux Falls",
+    "state": "SD",
+    "zip": "",
+    "lat": null,
+    "lng": null,
+    "phone": "",
+    "website": "",
+    "facebook": "",
+    "venue_type": "bars-with-pool-tables",
+    "flags": [
+      "name taken from league team names (one word; the bar's full name may be longer)",
+      "no address found; add it when approving"
+    ],
+    "sources": [
+      {
+        "source": "league",
+        "id": "https://musicservice.com/pool-league/sioux-falls-a-3-division-3/",
+        "url": "https://musicservice.com/pool-league/sioux-falls-a-3-division-3/",
+        "evidence": "Music Service teams: THE GULCH LOW BALLZ, THE GULCH OUTLAWS, THE GULCH RENEGADES (Sioux Falls A-3 Division 3, Sioux Falls Tuesday A Division 2)"
+      }
+    ],
+    "match": {
+      "score": 15,
+      "class": "distinct",
+      "reasons": [],
+      "slug": "luckys-sioux-falls-sd"
+    },
+    "slug": "the-gulch-sioux-falls-sd",
+    "discovered_at": "2026-10-26"
+  },
+  {
+    "name": "Wileys",
+    "street": "330 North Main Avenue",
+    "city": "Sioux Falls",
+    "state": "SD",
+    "zip": "57104",
+    "lat": 43.551057,
+    "lng": -96.7279936,
+    "phone": "",
+    "website": "",
+    "facebook": "",
+    "venue_type": "bars-with-pool-tables",
+    "flags": [
+      "name taken from league team names (one word; the bar's full name may be longer)"
+    ],
+    "sources": [
+      {
+        "source": "league",
+        "id": "https://musicservice.com/pool-league/sioux-falls-a-1-division-2/",
+        "url": "https://musicservice.com/pool-league/sioux-falls-a-1-division-2/",
+        "evidence": "Music Service teams: WILEYS DREAM TEAM, WILEYS HIGH FIVE, WILEYS III, WILEYS THEY GONE (Sioux Falls A-1 Division 2, Sioux Falls A-3 Division 1, Sioux Falls A-3 Division 2, Sioux Falls AA Division 2)"
+      },
+      {
+        "source": "openstreetmap",
+        "id": "node/4065575093",
+        "url": "https://www.openstreetmap.org/node/4065575093",
+        "evidence": "amenity=bar"
+      }
+    ],
+    "match": {
+      "score": 5,
+      "class": "distinct",
+      "reasons": [],
+      "slug": "luckys-sioux-falls-sd"
+    },
+    "slug": "wileys-sioux-falls-sd",
+    "discovered_at": "2026-10-26"
+  }
+]

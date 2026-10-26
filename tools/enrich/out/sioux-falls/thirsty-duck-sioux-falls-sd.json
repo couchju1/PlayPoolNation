@@ -1,0 +1,209 @@
+{
+  "schema": 1,
+  "slug": "thirsty-duck-sioux-falls-sd",
+  "city": "sioux-falls",
+  "kind": "listing",
+  "listing": {
+    "id": 1830,
+    "url": "https://playpoolnation.com/place/thirsty-duck-sioux-falls-sd/",
+    "name": "Thirsty Duck",
+    "street": "945 S Marion Rd",
+    "city": "Sioux Falls",
+    "state": "SD",
+    "zip": "57106",
+    "phone": "(605) 334-0124",
+    "website": "http://www.thirstyducksiouxfalls.com/",
+    "type": "Bar",
+    "lat": 43.53845,
+    "lng": -96.79178
+  },
+  "checked_at": "2026-10-26",
+  "sources_checked": [
+    {
+      "url": "https://www.thirstyducksiouxfalls.com/index.cfm",
+      "result": "read",
+      "note": ""
+    },
+    {
+      "url": "https://www.thirstyducksiouxfalls.com/index.cfm/page/ptype=results/category_id=5/mode=cat/cat5.htm",
+      "result": "read",
+      "note": ""
+    },
+    {
+      "url": "https://www.thirstyducksiouxfalls.com/index.cfm/page/ptype=results/category_id=1/mode=cat/cat1.htm",
+      "result": "read",
+      "note": ""
+    },
+    {
+      "url": "https://www.thirstyducksiouxfalls.com/index.cfm/page/ptype=results/category_id=6/mode=cat/cat6.htm",
+      "result": "read",
+      "note": ""
+    },
+    {
+      "url": "https://www.thirstyducksiouxfalls.com/index.cfm/page/ptype=results/category_id=9/mode=cat/cat9.htm",
+      "result": "read",
+      "note": ""
+    },
+    {
+      "url": "https://www.thirstyducksiouxfalls.com/index.cfm/page/ptype=results/category_id=12/mode=cat/cat12.htm",
+      "result": "read",
+      "note": ""
+    },
+    {
+      "url": "https://www.thirstyducksiouxfalls.com/index.cfm/page/ptype=results/category_id=11/mode=cat/cat11.htm",
+      "result": "read",
+      "note": ""
+    },
+    {
+      "url": "https://www.thirstyducksiouxfalls.com/index.cfm/page/ptype=page/page_cd=info/info.htm",
+      "result": "read",
+      "note": ""
+    }
+  ],
+  "facts": [
+    {
+      "field": "league_nights",
+      "key": "league_nights:sioux-falls-a-3-division-3-music-service:thursday",
+      "value": {
+        "league": "Sioux Falls A-3 Division 3 (Music Service)",
+        "weekday": "thursday"
+      },
+      "source_url": "https://musicservice.com/pool-league/sioux-falls-a-3-division-3/",
+      "evidence_url": "https://musicservice.com/wp-content/uploads/musicservice/pool_league/weeklystatistics/A-3-DIV-3-WEEK-4-2.pdf",
+      "quote_snippet": "4 THIRSTY DUCK MAMA & PAPAS 60 20 12.0 8.0 80 45 638 622 · results 2026-10-15",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [
+        "from the league's team names"
+      ],
+      "seen_on": [
+        "https://musicservice.com/pool-league/sioux-falls-a-3-division-3/"
+      ],
+      "source_type": "league_operator"
+    },
+    {
+      "field": "league_nights",
+      "key": "league_nights:sioux-falls-aa-division-1-music-service:wednesday",
+      "value": {
+        "league": "Sioux Falls AA Division 1 (Music Service)",
+        "weekday": "wednesday"
+      },
+      "source_url": "https://musicservice.com/pool-league/sioux-falls-aa-division-1/",
+      "evidence_url": "https://musicservice.com/wp-content/uploads/musicservice/pool_league/weeklystatistics/AA-DIV-1-WEEK-4-2.pdf",
+      "quote_snippet": "8 THIRSTY DUCK GUN SLINGERS 45.83 24 11.0 13.0 100 49 717 717 · results 2026-10-14",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [
+        "from the league's team names"
+      ],
+      "seen_on": [
+        "https://musicservice.com/pool-league/sioux-falls-aa-division-1/"
+      ],
+      "source_type": "league_operator"
+    },
+    {
+      "field": "league_nights",
+      "key": "league_nights:sioux-falls-summer-9-ball-music-service:thursday",
+      "value": {
+        "league": "Sioux Falls Summer 9-ball (Music Service)",
+        "weekday": "thursday"
+      },
+      "source_url": "https://musicservice.com/pool-league/sioux-falls-summer-9-ball/",
+      "evidence_url": "https://musicservice.com/wp-content/uploads/musicservice/pool_league/weeklystatistics/SF-9-BALL-WEEK-9.pdf",
+      "quote_snippet": "1 THIRSTY DUCK GUN SLINGERS 63.49 63 40.0 23.0 162 95 908 908 · results 2026-08-13",
+      "checked_at": "2026-10-26",
+      "confidence": "implied",
+      "flags": [
+        "from the league's team names",
+        "no results since 2026-08-13 (off-season?)"
+      ],
+      "seen_on": [
+        "https://musicservice.com/pool-league/sioux-falls-summer-9-ball/"
+      ],
+      "source_type": "league_operator"
+    },
+    {
+      "field": "league_nights",
+      "key": "league_nights:sioux-falls-wednesday-b-music-service:wednesday",
+      "value": {
+        "league": "Sioux Falls Wednesday B (Music Service)",
+        "weekday": "wednesday"
+      },
+      "source_url": "https://musicservice.com/pool-league/sioux-falls-wednesday-b/",
+      "evidence_url": "https://musicservice.com/wp-content/uploads/musicservice/pool_league/weeklystatistics/WED-B-WEEK-4-2.pdf",
+      "quote_snippet": "9 THIRSTY DUCK BREAK N RUN 23.33 15 3.5 11.5 48 18 344 332 · results 2026-10-14",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [
+        "from the league's team names"
+      ],
+      "seen_on": [
+        "https://musicservice.com/pool-league/sioux-falls-wednesday-b/"
+      ],
+      "source_type": "league_operator"
+    },
+    {
+      "field": "food",
+      "key": "food",
+      "value": true,
+      "source_url": "https://www.thirstyducksiouxfalls.com/index.cfm/page/ptype=results/category_id=5/mode=cat/cat5.htm",
+      "quote_snippet": "Prime Rib Tacos",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [],
+      "seen_on": [
+        "https://www.thirstyducksiouxfalls.com/index.cfm/page/ptype=results/category_id=5/mode=cat/cat5.htm",
+        "https://www.thirstyducksiouxfalls.com/index.cfm/page/ptype=results/category_id=6/mode=cat/cat6.htm",
+        "https://www.thirstyducksiouxfalls.com/index.cfm/page/ptype=results/category_id=9/mode=cat/cat9.htm"
+      ],
+      "source_type": "official_website"
+    },
+    {
+      "field": "full_bar",
+      "key": "full_bar",
+      "value": true,
+      "source_url": "https://www.thirstyducksiouxfalls.com/index.cfm",
+      "quote_snippet": "LIQUOR",
+      "checked_at": "2026-10-26",
+      "confidence": "implied",
+      "flags": [],
+      "seen_on": [
+        "https://www.thirstyducksiouxfalls.com/index.cfm",
+        "https://www.thirstyducksiouxfalls.com/index.cfm/page/ptype=page/page_cd=info/info.htm",
+        "https://www.thirstyducksiouxfalls.com/index.cfm/page/ptype=results/category_id=1/mode=cat/cat1.htm",
+        "https://www.thirstyducksiouxfalls.com/index.cfm/page/ptype=results/category_id=11/mode=cat/cat11.htm",
+        "https://www.thirstyducksiouxfalls.com/index.cfm/page/ptype=results/category_id=12/mode=cat/cat12.htm",
+        "https://www.thirstyducksiouxfalls.com/index.cfm/page/ptype=results/category_id=5/mode=cat/cat5.htm",
+        "https://www.thirstyducksiouxfalls.com/index.cfm/page/ptype=results/category_id=6/mode=cat/cat6.htm",
+        "https://www.thirstyducksiouxfalls.com/index.cfm/page/ptype=results/category_id=9/mode=cat/cat9.htm"
+      ],
+      "source_type": "official_website"
+    },
+    {
+      "field": "table_sizes",
+      "key": "table_sizes:7ft",
+      "value": {
+        "size": "7ft",
+        "count": null
+      },
+      "source_url": "https://playpoolnation.com/place/thirsty-duck-sioux-falls-sd/",
+      "quote_snippet": "Listed as a place to play pool; no table size stated anywhere.",
+      "checked_at": "2026-10-26",
+      "confidence": "implied",
+      "flags": [
+        "size not stated, 7 ft by default"
+      ],
+      "source_type": "default",
+      "seen_on": [
+        "https://playpoolnation.com/place/thirsty-duck-sioux-falls-sd/"
+      ]
+    }
+  ],
+  "missing": [
+    "table_count",
+    "table_sizes",
+    "table_brands",
+    "pricing_model",
+    "age_policy"
+  ]
+}

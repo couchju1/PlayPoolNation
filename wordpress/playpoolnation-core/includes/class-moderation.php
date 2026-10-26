@@ -215,7 +215,8 @@ final class Moderation {
 			 WHERE p.post_type = 'claim' AND p.post_status = 'publish'"
 		);
 		$suggestions = (int) ( wp_count_posts( self::CPT )->pending ?? 0 );
-		return compact( 'pending_venues', 'dupes', 'claims', 'suggestions', 'pending_events', 'pending_instructors', 'unchecked' );
+		$research = Enrich_Queue::pending_count();
+		return compact( 'pending_venues', 'dupes', 'claims', 'suggestions', 'pending_events', 'pending_instructors', 'unchecked', 'research' );
 	}
 
 	public static function hub(): void {
@@ -230,6 +231,7 @@ final class Moderation {
 			[ 'Instructor profiles waiting for approval', $c['pending_instructors'], self::list_url( Pool_Schema::INSTRUCTOR_TYPE ), 'New instructor sign-ups. Check that the profile is a real instructor, then publish.' ],
 			[ 'Instructor certifications to check', $c['unchecked'], self::list_url( Pool_Schema::INSTRUCTOR_TYPE, 'all' ), 'Certifications listed by instructors but not yet checked. Tick them on the profile once confirmed with the PBIA or issuing body.' ],
 			[ 'Ownership claims', $c['claims'], admin_url( 'edit.php?post_type=claim' ), 'Approving a claim gives the claimant control of the listing and marks it Owner Verified.' ],
+			[ 'Web research to review', $c['research'], Enrich_Queue::page_url(), 'Table counts, sizes, brands, pricing, league nights and new venues found on venues\' own websites by tools/enrich. Nothing is published until you approve it.' ],
 			[ 'Edit suggestions', $c['suggestions'], admin_url( 'edit.php?post_type=' . self::CPT . '&post_status=pending' ), 'Corrections reported by visitors. Nothing changes until you edit the venue.' ],
 		];
 		echo '<div class="wrap"><h1>PlayPoolNation review queue</h1><table class="widefat striped" style="max-width:900px"><tbody>';

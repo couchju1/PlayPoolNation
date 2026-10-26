@@ -1,0 +1,102 @@
+{
+  "schema": 1,
+  "slug": "tommy-jacks-pub-sioux-falls-sd",
+  "city": "sioux-falls",
+  "kind": "listing",
+  "listing": {
+    "id": 1832,
+    "url": "https://playpoolnation.com/place/tommy-jacks-pub-sioux-falls-sd/",
+    "name": "Tommy Jack’s Pub",
+    "street": "214 E 12th St",
+    "city": "Sioux Falls",
+    "state": "SD",
+    "zip": "57104",
+    "phone": "(605) 367-9706",
+    "website": "https://www.tommyjacks605.com/",
+    "type": "Bar",
+    "lat": 43.54365,
+    "lng": -96.72436
+  },
+  "checked_at": "2026-10-26",
+  "sources_checked": [
+    {
+      "url": "https://www.tommyjacks605.com/",
+      "result": "read",
+      "note": ""
+    },
+    {
+      "url": "https://www.tommyjacks605.com/menu",
+      "result": "read",
+      "note": ""
+    },
+    {
+      "url": "https://www.tommyjacks605.com/weekly-events",
+      "result": "read",
+      "note": ""
+    }
+  ],
+  "facts": [
+    {
+      "field": "league_nights",
+      "key": "league_nights:pool-league:",
+      "value": {
+        "league": "Pool league",
+        "weekday": null
+      },
+      "source_url": "https://www.tommyjacks605.com/",
+      "quote_snippet": "… located in Sioux Falls SD.offering downtown bar, pool and dart leagues,wine and spirits and outdoor patio seating",
+      "checked_at": "2026-10-26",
+      "confidence": "implied",
+      "flags": [
+        "no weekday given"
+      ],
+      "seen_on": [
+        "https://www.tommyjacks605.com/"
+      ],
+      "source_type": "official_website"
+    },
+    {
+      "field": "full_bar",
+      "key": "full_bar",
+      "value": true,
+      "source_url": "https://www.tommyjacks605.com/",
+      "quote_snippet": "… located in Sioux Falls SD.offering downtown bar, pool and dart leagues,wine and spirits and outdoor patio seating",
+      "checked_at": "2026-10-26",
+      "confidence": "implied",
+      "flags": [],
+      "seen_on": [
+        "https://www.tommyjacks605.com/",
+        "https://www.tommyjacks605.com/menu",
+        "https://www.tommyjacks605.com/weekly-events"
+      ],
+      "source_type": "official_website"
+    },
+    {
+      "field": "table_sizes",
+      "key": "table_sizes:7ft",
+      "value": {
+        "size": "7ft",
+        "count": null
+      },
+      "source_url": "https://playpoolnation.com/place/tommy-jacks-pub-sioux-falls-sd/",
+      "quote_snippet": "Listed as a place to play pool; no table size stated anywhere.",
+      "checked_at": "2026-10-26",
+      "confidence": "implied",
+      "flags": [
+        "size not stated, 7 ft by default"
+      ],
+      "source_type": "default",
+      "seen_on": [
+        "https://playpoolnation.com/place/tommy-jacks-pub-sioux-falls-sd/"
+      ]
+    }
+  ],
+  "missing": [
+    "table_count",
+    "table_sizes",
+    "table_brands",
+    "pricing_model",
+    "age_policy",
+    "food"
+  ]
+}

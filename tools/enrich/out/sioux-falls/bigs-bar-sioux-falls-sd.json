@@ -1,0 +1,398 @@
+{
+  "schema": 1,
+  "slug": "bigs-bar-sioux-falls-sd",
+  "city": "sioux-falls",
+  "kind": "listing",
+  "listing": {
+    "id": 1826,
+    "url": "https://playpoolnation.com/place/bigs-bar-sioux-falls-sd/",
+    "name": "Bigs Bar",
+    "street": "3110 W 12th St",
+    "city": "Sioux Falls",
+    "state": "SD",
+    "zip": "57104",
+    "phone": "(605) 275-2447",
+    "website": "http://www.bigsbar.com/",
+    "type": "Pool Hall",
+    "lat": 43.54533,
+    "lng": -96.76828
+  },
+  "checked_at": "2026-10-26",
+  "sources_checked": [
+    {
+      "url": "https://www.bigsbar.com/",
+      "result": "read",
+      "note": ""
+    },
+    {
+      "url": "https://www.bigsbar.com/current-events",
+      "result": "read",
+      "note": ""
+    },
+    {
+      "url": "https://www.bigsbar.com/past-events",
+      "result": "read",
+      "note": ""
+    },
+    {
+      "url": "https://www.bigsbar.com/billiards-darts",
+      "result": "read",
+      "note": ""
+    },
+    {
+      "url": "https://www.bigsbar.com/menu",
+      "result": "read",
+      "note": ""
+    }
+  ],
+  "facts": [
+    {
+      "field": "table_count",
+      "key": "table_count",
+      "value": 12,
+      "source_url": "https://www.bigsbar.com/",
+      "quote_snippet": "Our expanded venue features 12 pool tables, darts and 18 TV's for sports viewing all year long.",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [],
+      "seen_on": [
+        "https://www.bigsbar.com/",
+        "https://www.bigsbar.com/billiards-darts"
+      ],
+      "source_type": "official_website"
+    },
+    {
+      "field": "pricing_model",
+      "key": "pricing_model:hourly",
+      "value": {
+        "model": "hourly",
+        "rate": null
+      },
+      "source_url": "https://www.bigsbar.com/billiards-darts",
+      "quote_snippet": "Pool hourly rate is $8 for 1 1/2 hours.",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [],
+      "seen_on": [
+        "https://www.bigsbar.com/billiards-darts"
+      ],
+      "source_type": "official_website"
+    },
+    {
+      "field": "league_nights",
+      "key": "league_nights:apa:",
+      "value": {
+        "league": "APA",
+        "weekday": null
+      },
+      "source_url": "https://www.bigsbar.com/billiards-darts",
+      "quote_snippet": "American Poolplayers Association Music Service",
+      "checked_at": "2026-10-26",
+      "confidence": "implied",
+      "flags": [
+        "no weekday given"
+      ],
+      "seen_on": [
+        "https://www.bigsbar.com/billiards-darts"
+      ],
+      "source_type": "official_website"
+    },
+    {
+      "field": "league_nights",
+      "key": "league_nights:pool-league:saturday",
+      "value": {
+        "league": "Pool league",
+        "weekday": "saturday"
+      },
+      "source_url": "https://www.bigsbar.com/billiards-darts",
+      "quote_snippet": "We currently host pool leagues on Monday and Saturday.",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [
+        "league name not given"
+      ],
+      "seen_on": [
+        "https://www.bigsbar.com/billiards-darts"
+      ],
+      "source_type": "official_website"
+    },
+    {
+      "field": "league_nights",
+      "key": "league_nights:sioux-falls-a-2-music-service:monday",
+      "value": {
+        "league": "Sioux Falls A-2 (Music Service)",
+        "weekday": "monday"
+      },
+      "source_url": "https://musicservice.com/pool-league/sioux-falls-a-2/",
+      "evidence_url": "https://musicservice.com/wp-content/uploads/musicservice/pool_league/weeklystatistics/A-2-WEEK-5-2.pdf",
+      "quote_snippet": "1 BIGS IV 60 25 15.0 10.0 100 68 838 838 · results 2026-10-19",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [
+        "from the league's team names"
+      ],
+      "seen_on": [
+        "https://musicservice.com/pool-league/sioux-falls-a-2/"
+      ],
+      "source_type": "league_operator"
+    },
+    {
+      "field": "league_nights",
+      "key": "league_nights:sioux-falls-a-3-division-1-music-service:thursday",
+      "value": {
+        "league": "Sioux Falls A-3 Division 1 (Music Service)",
+        "weekday": "thursday"
+      },
+      "source_url": "https://musicservice.com/pool-league/sioux-falls-a-3-division-1/",
+      "evidence_url": "https://musicservice.com/wp-content/uploads/musicservice/pool_league/weeklystatistics/A-3-DIV-1-WEEK-4-2.pdf",
+      "quote_snippet": "2 BIGS TITO'S HEROS 60 20 12.0 8.0 80 43 638 638 · results 2026-10-15",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [
+        "from the league's team names"
+      ],
+      "seen_on": [
+        "https://musicservice.com/pool-league/sioux-falls-a-3-division-1/"
+      ],
+      "source_type": "league_operator"
+    },
+    {
+      "field": "league_nights",
+      "key": "league_nights:sioux-falls-a-3-division-2-music-service:thursday",
+      "value": {
+        "league": "Sioux Falls A-3 Division 2 (Music Service)",
+        "weekday": "thursday"
+      },
+      "source_url": "https://musicservice.com/pool-league/sioux-falls-a-3-division-2/",
+      "evidence_url": "https://musicservice.com/wp-content/uploads/musicservice/pool_league/weeklystatistics/A-3-DIV-2-WEEK-4-2.pdf",
+      "quote_snippet": "4 BIGS POCKET POUNDERS 55 20 11.0 9.0 80 44 626 626 · results 2026-10-15",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [
+        "from the league's team names"
+      ],
+      "seen_on": [
+        "https://musicservice.com/pool-league/sioux-falls-a-3-division-2/"
+      ],
+      "source_type": "league_operator"
+    },
+    {
+      "field": "league_nights",
+      "key": "league_nights:sioux-falls-a-3-division-3-music-service:thursday",
+      "value": {
+        "league": "Sioux Falls A-3 Division 3 (Music Service)",
+        "weekday": "thursday"
+      },
+      "source_url": "https://musicservice.com/pool-league/sioux-falls-a-3-division-3/",
+      "evidence_url": "https://musicservice.com/wp-content/uploads/musicservice/pool_league/weeklystatistics/A-3-DIV-3-WEEK-4-2.pdf",
+      "quote_snippet": "5 BIGS PLAN B 50 20 10.0 10.0 80 44 629 625 · results 2026-10-15",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [
+        "from the league's team names"
+      ],
+      "seen_on": [
+        "https://musicservice.com/pool-league/sioux-falls-a-3-division-3/"
+      ],
+      "source_type": "league_operator"
+    },
+    {
+      "field": "league_nights",
+      "key": "league_nights:sioux-falls-aa-division-1-music-service:wednesday",
+      "value": {
+        "league": "Sioux Falls AA Division 1 (Music Service)",
+        "weekday": "wednesday"
+      },
+      "source_url": "https://musicservice.com/pool-league/sioux-falls-aa-division-1/",
+      "evidence_url": "https://musicservice.com/wp-content/uploads/musicservice/pool_league/weeklystatistics/AA-DIV-1-WEEK-4-2.pdf",
+      "quote_snippet": "3 BIGS SKID ERO 62.5 24 15.0 9.0 100 60 776 776 · results 2026-10-14",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [
+        "from the league's team names"
+      ],
+      "seen_on": [
+        "https://musicservice.com/pool-league/sioux-falls-aa-division-1/"
+      ],
+      "source_type": "league_operator"
+    },
+    {
+      "field": "league_nights",
+      "key": "league_nights:sioux-falls-aa-division-2-music-service:wednesday",
+      "value": {
+        "league": "Sioux Falls AA Division 2 (Music Service)",
+        "weekday": "wednesday"
+      },
+      "source_url": "https://musicservice.com/pool-league/sioux-falls-aa-division-2/",
+      "evidence_url": "https://musicservice.com/wp-content/uploads/musicservice/pool_league/weeklystatistics/AA-DIV-2-WEEK-4-2.pdf",
+      "quote_snippet": "4 BIGS ALZHEIMERS 55 20 11.0 9.0 80 45 622 622 · results 2026-10-14",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [
+        "from the league's team names"
+      ],
+      "seen_on": [
+        "https://musicservice.com/pool-league/sioux-falls-aa-division-2/"
+      ],
+      "source_type": "league_operator"
+    },
+    {
+      "field": "league_nights",
+      "key": "league_nights:sioux-falls-aa-division-3-music-service:wednesday",
+      "value": {
+        "league": "Sioux Falls AA Division 3 (Music Service)",
+        "weekday": "wednesday"
+      },
+      "source_url": "https://musicservice.com/pool-league/sioux-falls-aa-division-3/",
+      "evidence_url": "https://musicservice.com/wp-content/uploads/musicservice/pool_league/weeklystatistics/AA-DIV-3-WEEK-4.pdf",
+      "quote_snippet": "1 BIGS EAZY MONEY 73.33 15 11.0 4.0 60 32 492 436 · results 2026-10-14",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [
+        "from the league's team names"
+      ],
+      "seen_on": [
+        "https://musicservice.com/pool-league/sioux-falls-aa-division-3/"
+      ],
+      "source_type": "league_operator"
+    },
+    {
+      "field": "league_nights",
+      "key": "league_nights:sioux-falls-masters-music-service:wednesday",
+      "value": {
+        "league": "Sioux Falls Masters (Music Service)",
+        "weekday": "wednesday"
+      },
+      "source_url": "https://musicservice.com/pool-league/sioux-falls-masters/",
+      "evidence_url": "https://musicservice.com/wp-content/uploads/musicservice/pool_league/weeklystatistics/MASTERS-WEEK-4-2.pdf",
+      "quote_snippet": "1 BIGS GRAVY TRAIN 83.33 18 15.0 3.0 75 48 581 581 · results 2026-10-14",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [
+        "from the league's team names"
+      ],
+      "seen_on": [
+        "https://musicservice.com/pool-league/sioux-falls-masters/"
+      ],
+      "source_type": "league_operator"
+    },
+    {
+      "field": "league_nights",
+      "key": "league_nights:sioux-falls-summer-8-ball-tuesday-music-service:tuesday",
+      "value": {
+        "league": "Sioux Falls Summer 8-ball Tuesday (Music Service)",
+        "weekday": "tuesday"
+      },
+      "source_url": "https://musicservice.com/pool-league/sioux-falls-summer-8-ball-tuesday/",
+      "evidence_url": "https://musicservice.com/wp-content/uploads/musicservice/pool_league/weeklystatistics/TUES-SUM-WEEK-9-2.pdf",
+      "quote_snippet": "3 BIGS 1 OUTTA THE MONEY 55.56 36 20.0 16.0 81 46 654 639 · results 2026-08-11",
+      "checked_at": "2026-10-26",
+      "confidence": "implied",
+      "flags": [
+        "from the league's team names",
+        "no results since 2026-08-11 (off-season?)"
+      ],
+      "seen_on": [
+        "https://musicservice.com/pool-league/sioux-falls-summer-8-ball-tuesday/"
+      ],
+      "source_type": "league_operator"
+    },
+    {
+      "field": "league_nights",
+      "key": "league_nights:sioux-falls-tuesday-a-division-1-music-service:tuesday",
+      "value": {
+        "league": "Sioux Falls Tuesday A Division 1 (Music Service)",
+        "weekday": "tuesday"
+      },
+      "source_url": "https://musicservice.com/pool-league/sioux-falls-tuesday-a-division-1/",
+      "evidence_url": "https://musicservice.com/wp-content/uploads/musicservice/pool_league/weeklystatistics/TUES-A-DIV-1-WEEK-4-2.pdf",
+      "quote_snippet": "9 BIGS SCRATCH N SNIFF 45 20 9.0 11.0 64 25 460 432 · results 2026-10-13",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [
+        "from the league's team names"
+      ],
+      "seen_on": [
+        "https://musicservice.com/pool-league/sioux-falls-tuesday-a-division-1/"
+      ],
+      "source_type": "league_operator"
+    },
+    {
+      "field": "league_nights",
+      "key": "league_nights:sioux-falls-tuesday-a-division-2-music-service:tuesday",
+      "value": {
+        "league": "Sioux Falls Tuesday A Division 2 (Music Service)",
+        "weekday": "tuesday"
+      },
+      "source_url": "https://musicservice.com/pool-league/sioux-falls-tuesday-a-division-2/",
+      "evidence_url": "https://musicservice.com/wp-content/uploads/musicservice/pool_league/weeklystatistics/TUES-A-DIV-2-WEEK-4-2.pdf",
+      "quote_snippet": "1 BIGS GOT LUCKY 75 20 15.0 5.0 64 41 541 537 · results 2026-10-13",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [
+        "from the league's team names"
+      ],
+      "seen_on": [
+        "https://musicservice.com/pool-league/sioux-falls-tuesday-a-division-2/"
+      ],
+      "source_type": "league_operator"
+    },
+    {
+      "field": "food",
+      "key": "food",
+      "value": true,
+      "source_url": "https://www.bigsbar.com/",
+      "quote_snippet": "The Sioux Empire venue for live music, pizza, craft beer, billiards & darts",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [],
+      "seen_on": [
+        "https://www.bigsbar.com/",
+        "https://www.bigsbar.com/billiards-darts",
+        "https://www.bigsbar.com/current-events",
+        "https://www.bigsbar.com/menu",
+        "https://www.bigsbar.com/past-events"
+      ],
+      "source_type": "official_website"
+    },
+    {
+      "field": "full_bar",
+      "key": "full_bar",
+      "value": true,
+      "source_url": "https://www.bigsbar.com/",
+      "quote_snippet": "Enjoy our full bar featuring premium liquor and craft beers from all over the world on one …",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [],
+      "seen_on": [
+        "https://www.bigsbar.com/",
+        "https://www.bigsbar.com/menu"
+      ],
+      "source_type": "official_website"
+    },
+    {
+      "field": "table_sizes",
+      "key": "table_sizes:7ft",
+      "value": {
+        "size": "7ft",
+        "count": 12
+      },
+      "source_url": "https://www.bigsbar.com/",
+      "quote_snippet": "Our expanded venue features 12 pool tables, darts and 18 TV's for sports viewing all year long.",
+      "checked_at": "2026-10-26",
+      "confidence": "implied",
+      "flags": [
+        "size not stated, 7 ft by default"
+      ],
+      "source_type": "default",
+      "seen_on": [
+        "https://www.bigsbar.com/"
+      ]
+    }
+  ],
+  "missing": [
+    "table_sizes",
+    "table_brands",
+    "age_policy"
+  ]
+}

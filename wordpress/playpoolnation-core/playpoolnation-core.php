@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       PlayPoolNation Core
  * Description:       Pool-specific data, trust, community and SEO features for PlayPoolNation, built on the My Listing theme.
- * Version:     1.9.4
+ * Version:     1.11.0
  * Requires at least: 6.4
  * Requires PHP:      8.1
  * Author:            PlayPoolNation
@@ -19,7 +19,7 @@ if ( defined( 'PPN_CORE_VERSION' ) ) {
 	return;
 }
 
-define( 'PPN_CORE_VERSION', '1.10.2' );
+define( 'PPN_CORE_VERSION', '1.11.0' );
 define( 'PPN_CORE_DB_VERSION', 4 );
 define( 'PPN_CORE_FILE', __FILE__ );
 define( 'PPN_CORE_DIR', __DIR__ );
@@ -36,6 +36,7 @@ require_once PPN_CORE_DIR . '/includes/helpers/class-html-fix.php';
 require_once PPN_CORE_DIR . '/includes/helpers/class-event-data.php';
 require_once PPN_CORE_DIR . '/includes/helpers/class-city-text.php';
 require_once PPN_CORE_DIR . '/includes/helpers/class-index-rule.php';
+require_once PPN_CORE_DIR . '/includes/helpers/class-enrich-fact.php';
 require_once PPN_CORE_DIR . '/includes/class-pool-schema.php';
 require_once PPN_CORE_DIR . '/includes/class-venue.php';
 require_once PPN_CORE_DIR . '/includes/class-provenance.php';
@@ -70,6 +71,7 @@ require_once PPN_CORE_DIR . '/includes/class-forms.php';
 require_once PPN_CORE_DIR . '/includes/class-moderation.php';
 require_once PPN_CORE_DIR . '/includes/class-claims.php';
 require_once PPN_CORE_DIR . '/includes/class-importer.php';
+require_once PPN_CORE_DIR . '/includes/class-enrich-queue.php';
 require_once PPN_CORE_DIR . '/includes/class-listing-config.php';
 require_once PPN_CORE_DIR . '/includes/class-pages.php';
 require_once PPN_CORE_DIR . '/includes/class-performance.php';
@@ -108,6 +110,7 @@ PlayPoolNation\Core\Forms::boot();
 PlayPoolNation\Core\Moderation::boot();
 PlayPoolNation\Core\Claims::boot();
 PlayPoolNation\Core\Importer::boot();
+PlayPoolNation\Core\Enrich_Queue::boot();
 PlayPoolNation\Core\Performance::boot();
 PlayPoolNation\Core\Cleanup::boot();
 PlayPoolNation\Core\Live_Domain::boot();
@@ -117,8 +120,10 @@ if ( defined( 'WP_CLI' ) && WP_CLI ) {
 	require_once PPN_CORE_DIR . '/includes/helpers/class-keyword-report.php';
 	require_once PPN_CORE_DIR . '/includes/cli/class-keywords-command.php';
 	require_once PPN_CORE_DIR . '/includes/cli/class-venues-command.php';
+	require_once PPN_CORE_DIR . '/includes/cli/class-enrich-command.php';
 	PlayPoolNation\Core\Cli\Keywords_Command::boot();
 	PlayPoolNation\Core\Cli\Venues_Command::boot();
+	PlayPoolNation\Core\Cli\Enrich_Command::boot();
 }
 
 register_activation_hook( PPN_CORE_FILE, [ PlayPoolNation\Core\Tracking::class, 'install' ] );

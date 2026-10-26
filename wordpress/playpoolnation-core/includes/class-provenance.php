@@ -31,6 +31,7 @@ final class Provenance {
 		'google_places'    => 10,
 		'openstreetmap'    => 10,
 		'import'           => 5,
+		'default'          => 1, // A value assumed when no source states it (7 ft tables when no size is given).
 	];
 
 	public static function rank( string $source ): int {

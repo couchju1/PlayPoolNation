@@ -1,0 +1,21 @@
+{
+  "_comment": "Per-city settings. Cities from the keyword report work without an entry; add one to name league operators' public host-location pages, or a different OpenStreetMap boundary name.",
+  "sioux-falls": {
+    "name": "Sioux Falls",
+    "state": "SD",
+    "listings_page": "https://playpoolnation.com/places/south-dakota/sioux-falls/",
+    "league_pages": [
+      {
+        "operator": "Music Service",
+        "url": "https://musicservice.com/pool/pool-leagues/",
+        "parser": "musicservice",
+        "league_filter": "Sioux Falls"
+      },
+      {
+        "operator": "Sioux Empire Pride Sports Association",
+        "league": "SEPSA pool league",
+        "url": "https://siouxempirepsa.org/leagues/pool"
+      }
+    ]
+  }
+}

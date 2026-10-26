@@ -1,0 +1,364 @@
+{
+  "venues": {
+    "bigs-bar-sioux-falls-sd": {
+      "status": "done",
+      "name": "Bigs Bar",
+      "kind": "listing",
+      "at": "2026-10-26",
+      "stated": 15,
+      "note": ""
+    },
+    "jjs-billiards-and-darts-sioux-falls-sd": {
+      "status": "done",
+      "name": "JJ’s Billiards & Darts",
+      "kind": "listing",
+      "at": "2026-10-26",
+      "stated": 10,
+      "note": "no website"
+    },
+    "rack-city-billiards-sioux-falls-sd": {
+      "status": "done",
+      "name": "Rack City Billiards",
+      "kind": "listing",
+      "at": "2026-10-26",
+      "stated": 9,
+      "note": ""
+    },
+    "gibs-sports-bar-sioux-falls-sd": {
+      "status": "done",
+      "name": "Gibs Sports Bar",
+      "kind": "listing",
+      "at": "2026-10-26",
+      "stated": 1,
+      "note": ""
+    },
+    "luckys-sioux-falls-sd": {
+      "status": "done",
+      "name": "Lucky’s",
+      "kind": "listing",
+      "at": "2026-10-26",
+      "stated": 4,
+      "note": ""
+    },
+    "luckys-on-louise-sioux-falls-sd": {
+      "status": "done",
+      "name": "Lucky’s on Louise",
+      "kind": "listing",
+      "at": "2026-10-26",
+      "stated": 1,
+      "note": ""
+    },
+    "nickel-spot-sioux-falls-sd": {
+      "status": "done",
+      "name": "Nickel Spot",
+      "kind": "listing",
+      "at": "2026-10-26",
+      "stated": 7,
+      "note": ""
+    },
+    "thirsty-duck-sioux-falls-sd": {
+      "status": "done",
+      "name": "Thirsty Duck",
+      "kind": "listing",
+      "at": "2026-10-26",
+      "stated": 4,
+      "note": ""
+    },
+    "tommy-jacks-pub-sioux-falls-sd": {
+      "status": "done",
+      "name": "Tommy Jack’s Pub",
+      "kind": "listing",
+      "at": "2026-10-26",
+      "stated": 0,
+      "note": ""
+    },
+    "upper-cut-bar-and-grill-sioux-falls-sd": {
+      "status": "done",
+      "name": "Upper Cut Bar & Grill",
+      "kind": "listing",
+      "at": "2026-10-26",
+      "stated": 0,
+      "note": ""
+    },
+    "18th-sioux-falls-sd": {
+      "status": "done",
+      "name": "18th",
+      "kind": "new",
+      "at": "2026-10-26",
+      "stated": 1,
+      "note": "no website"
+    },
+    "axes-and-ales-sioux-falls-sd": {
+      "status": "done",
+      "name": "Axes & Ales",
+      "kind": "new",
+      "at": "2026-10-26",
+      "stated": 4,
+      "note": "no website"
+    },
+    "bbs-sioux-falls-sd": {
+      "status": "done",
+      "name": "Bb's",
+      "kind": "new",
+      "at": "2026-10-26",
+      "stated": 3,
+      "note": "no website"
+    },
+    "billy-frogs-sioux-falls-sd": {
+      "status": "done",
+      "name": "Billy Frogs",
+      "kind": "new",
+      "at": "2026-10-26",
+      "stated": 2,
+      "note": "no website"
+    },
+    "chasers-sioux-falls-sd": {
+      "status": "done",
+      "name": "Chasers",
+      "kind": "new",
+      "at": "2026-10-26",
+      "stated": 4,
+      "note": "no website"
+    },
+    "crow-bar-sioux-falls-sd": {
+      "status": "done",
+      "name": "Crow Bar",
+      "kind": "new",
+      "at": "2026-10-26",
+      "stated": 4,
+      "note": "no website"
+    },
+    "double-d-sioux-falls-sd": {
+      "status": "done",
+      "name": "Double D",
+      "kind": "new",
+      "at": "2026-10-26",
+      "stated": 5,
+      "note": "no website"
+    },
+    "garage-sioux-falls-sd": {
+      "status": "done",
+      "name": "Garage",
+      "kind": "new",
+      "at": "2026-10-26",
+      "stated": 1,
+      "note": "no website"
+    },
+    "liebrary-sioux-falls-sd": {
+      "status": "done",
+      "name": "Liebrary",
+      "kind": "new",
+      "at": "2026-10-26",
+      "stated": 3,
+      "note": "no website"
+    },
+    "luckys-south-sioux-falls-sd": {
+      "status": "done",
+      "name": "Luckys South",
+      "kind": "new",
+      "at": "2026-10-26",
+      "stated": 2,
+      "note": "no website"
+    },
+    "pave-sioux-falls-sd": {
+      "status": "done",
+      "name": "Pave",
+      "kind": "new",
+      "at": "2026-10-26",
+      "stated": 2,
+      "note": "no website"
+    },
+    "phoenix-sioux-falls-sd": {
+      "status": "done",
+      "name": "Phoenix",
+      "kind": "new",
+      "at": "2026-10-26",
+      "stated": 3,
+      "note": "no website"
+    },
+    "red-eye-sioux-falls-sd": {
+      "status": "done",
+      "name": "Red Eye",
+      "kind": "new",
+      "at": "2026-10-26",
+      "stated": 5,
+      "note": "no website"
+    },
+    "the-den-sioux-falls-sd": {
+      "status": "done",
+      "name": "The Den",
+      "kind": "new",
+      "at": "2026-10-26",
+      "stated": 2,
+      "note": "no website"
+    },
+    "the-gulch-sioux-falls-sd": {
+      "status": "done",
+      "name": "The Gulch",
+      "kind": "new",
+      "at": "2026-10-26",
+      "stated": 2,
+      "note": "no website"
+    },
+    "wileys-sioux-falls-sd": {
+      "status": "done",
+      "name": "Wileys",
+      "kind": "new",
+      "at": "2026-10-26",
+      "stated": 4,
+      "note": "no website"
+    }
+  },
+  "discovery": {
+    "osm": {
+      "at": "2026-10-26",
+      "pool_tagged": 0,
+      "bars": 21
+    },
+    "places": {
+      "skipped": "GOOGLE_PLACES_API_KEY not set"
+    },
+    "league_pages": {
+      "https://musicservice.com/pool/pool-leagues/": {
+        "at": "2026-10-26",
+        "venues": 16,
+        "listings_with_league_facts": 22
+      },
+      "https://siouxempirepsa.org/leagues/pool": {
+        "at": "2026-10-26",
+        "venues": 0,
+        "listings_with_league_facts": 0
+      }
+    },
+    "done": "2026-10-26",
+    "new": 16,
+    "matched_existing": 0
+  },
+  "log": [
+    "2026-10-25 22:30 run started",
+    "2026-10-25 22:35 run started",
+    "2026-10-25 22:42 paused: Overpass network error: [Errno 104] Connection reset by peer",
+    "2026-10-25 22:45 resumed after pause",
+    "2026-10-25 22:48 resumed after pause",
+    "2026-10-25 22:54 paused: Overpass network error: [Errno 104] Connection reset by peer",
+    "2026-10-25 23:00 resumed after pause",
+    "2026-10-25 23:10 resumed after pause",
+    "2026-10-25 23:11 resumed after pause",
+    "2026-10-25 23:12 resumed after pause",
+    "2026-10-25 23:15 enrichment finished: 10 venues",
+    "2026-10-25 23:16 redo: enriching every venue again",
+    "2026-10-25 23:16 run started",
+    "2026-10-25 23:20 enrichment finished: 10 venues",
+    "2026-10-25 23:21 run started",
+    "2026-10-25 23:21 re-check 2026-10 started",
+    "2026-10-25 23:25 re-check finished: 10 venues",
+    "2026-10-25 23:26 redo: enriching every venue again",
+    "2026-10-25 23:26 run started",
+    "2026-10-25 23:26 simulated crash after 3 venues (PPN_ENRICH_CRASH_AFTER)",
+    "2026-10-25 23:26 resumed: 3 venues already done, skipping them",
+    "2026-10-25 23:29 enrichment finished: 10 venues",
+    "2026-10-25 23:43 redo: enriching every venue again",
+    "2026-10-25 23:43 run started",
+    "2026-10-25 23:54 enrichment finished: 42 venues; OpenStreetMap discovery still to do, run again",
+    "2026-10-25 23:55 redo: enriching every venue again",
+    "2026-10-25 23:55 run started",
+    "2026-10-26 00:02 resumed: 1 venues already done, skipping them",
+    "2026-10-26 00:05 enrichment finished: 25 venues",
+    "2026-10-26 00:06 redo: enriching every venue again",
+    "2026-10-26 00:06 run started",
+    "2026-10-26 00:13 enrichment finished: 25 venues",
+    "2026-10-26 00:14 redo: enriching every venue again",
+    "2026-10-26 00:14 run started",
+    "2026-10-26 00:26 enrichment finished: 26 venues; OpenStreetMap discovery still to do, run again",
+    "2026-10-26 00:26 redo: enriching every venue again",
+    "2026-10-26 00:26 run started",
+    "2026-10-26 00:33 enrichment finished: 26 venues"
+  ],
+  "updated_at": "2026-10-26T00:33:28+00:00",
+  "total_venues": 26,
+  "recheck": {
+    "_run": "2026-10",
+    "bigs-bar-sioux-falls-sd": {
+      "status": "done",
+      "name": "Bigs Bar",
+      "kind": "listing",
+      "at": "2026-10-25",
+      "stated": 6,
+      "note": ""
+    },
+    "jjs-billiards-and-darts-sioux-falls-sd": {
+      "status": "done",
+      "name": "JJ’s Billiards & Darts",
+      "kind": "listing",
+      "at": "2026-10-25",
+      "stated": 0,
+      "note": "no website"
+    },
+    "rack-city-billiards-sioux-falls-sd": {
+      "status": "done",
+      "name": "Rack City Billiards",
+      "kind": "listing",
+      "at": "2026-10-25",
+      "stated": 1,
+      "note": ""
+    },
+    "gibs-sports-bar-sioux-falls-sd": {
+      "status": "done",
+      "name": "Gibs Sports Bar",
+      "kind": "listing",
+      "at": "2026-10-25",
+      "stated": 1,
+      "note": ""
+    },
+    "luckys-sioux-falls-sd": {
+      "status": "done",
+      "name": "Lucky’s",
+      "kind": "listing",
+      "at": "2026-10-25",
+      "stated": 1,
+      "note": ""
+    },
+    "luckys-on-louise-sioux-falls-sd": {
+      "status": "done",
+      "name": "Lucky’s on Louise",
+      "kind": "listing",
+      "at": "2026-10-25",
+      "stated": 1,
+      "note": ""
+    },
+    "nickel-spot-sioux-falls-sd": {
+      "status": "done",
+      "name": "Nickel Spot",
+      "kind": "listing",
+      "at": "2026-10-25",
+      "stated": 1,
+      "note": ""
+    },
+    "thirsty-duck-sioux-falls-sd": {
+      "status": "done",
+      "name": "Thirsty Duck",
+      "kind": "listing",
+      "at": "2026-10-25",
+      "stated": 1,
+      "note": ""
+    },
+    "tommy-jacks-pub-sioux-falls-sd": {
+      "status": "done",
+      "name": "Tommy Jack’s Pub",
+      "kind": "listing",
+      "at": "2026-10-25",
+      "stated": 0,
+      "note": ""
+    },
+    "upper-cut-bar-and-grill-sioux-falls-sd": {
+      "status": "done",
+      "name": "Upper Cut Bar & Grill",
+      "kind": "listing",
+      "at": "2026-10-25",
+      "stated": 0,
+      "note": ""
+    },
+    "_finished": "2026-10-25"
+  },
+  "finished_at": "2026-10-26"
+}
