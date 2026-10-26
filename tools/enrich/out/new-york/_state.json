@@ -1,0 +1,34 @@
+{
+  "venues": {
+    "amsterdam-billiards-new-york-ny": {
+      "status": "done",
+      "name": "Amsterdam Billiards",
+      "kind": "listing",
+      "at": "2026-10-26",
+      "stated": 8,
+      "note": ""
+    }
+  },
+  "discovery": {
+    "osm": {
+      "at": "2026-10-26",
+      "pool_tagged": 145,
+      "bars": 1839
+    },
+    "places": {
+      "skipped": "GOOGLE_PLACES_API_KEY not set"
+    },
+    "done": "2026-10-26",
+    "new": 142,
+    "matched_existing": 3
+  },
+  "log": [
+    "2026-10-26 00:52 run started",
+    "2026-10-26 00:55 enrichment finished: 5 venues",
+    "2026-10-26 00:55 run started",
+    "2026-10-26 01:06 redo: enriching every venue again",
+    "2026-10-26 01:06 run started"
+  ],
+  "updated_at": "2026-10-26T01:07:03+00:00",
+  "total_venues": 147
+}

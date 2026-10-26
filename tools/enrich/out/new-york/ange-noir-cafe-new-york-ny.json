@@ -1,0 +1,56 @@
+{
+  "schema": 1,
+  "slug": "ange-noir-cafe-new-york-ny",
+  "city": "new-york",
+  "kind": "new",
+  "listing": {
+    "name": "Ange Noir Cafe",
+    "street": "247 Varet Street",
+    "city": "New York",
+    "state": "NY",
+    "phone": "+1-718-366-1520",
+    "website": "https://angenoircafe.com/",
+    "venue_type": "pool-halls",
+    "lat": 40.7041849,
+    "lng": -73.9341582
+  },
+  "checked_at": "2026-10-26",
+  "sources_checked": [
+    {
+      "url": "https://angenoircafe.com/",
+      "result": "error",
+      "note": "HTTP 403"
+    }
+  ],
+  "facts": [
+    {
+      "field": "table_sizes",
+      "key": "table_sizes:7ft",
+      "value": {
+        "size": "7ft",
+        "count": null
+      },
+      "source_url": "https://angenoircafe.com/",
+      "quote_snippet": "Listed as a place to play pool; no table size stated anywhere.",
+      "checked_at": "2026-10-26",
+      "confidence": "implied",
+      "flags": [
+        "size not stated, 7 ft by default"
+      ],
+      "source_type": "default",
+      "seen_on": [
+        "https://angenoircafe.com/"
+      ]
+    }
+  ],
+  "missing": [
+    "table_count",
+    "table_sizes",
+    "table_brands",
+    "pricing_model",
+    "league_nights",
+    "age_policy",
+    "food",
+    "full_bar"
+  ]
+}

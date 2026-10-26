@@ -1,0 +1,178 @@
+{
+  "schema": 1,
+  "slug": "anytime-bar-and-billiards-new-york-ny",
+  "city": "new-york",
+  "kind": "listing",
+  "listing": {
+    "id": 1695,
+    "url": "https://playpoolnation.com/place/anytime-bar-and-billiards-new-york-ny/",
+    "name": "Anytime Bar & Billiards",
+    "street": "112 W 30th St",
+    "city": "New York",
+    "state": "NY",
+    "zip": "10001",
+    "phone": "(646) 666-0144",
+    "website": "http://anytimebilliardsnyc.com/",
+    "type": "Pool Hall",
+    "lat": 40.74737,
+    "lng": -73.99042
+  },
+  "checked_at": "2026-10-26",
+  "sources_checked": [
+    {
+      "url": "https://www.anytimebilliardsnyc.com/",
+      "result": "read",
+      "note": ""
+    },
+    {
+      "url": "https://www.anytimebilliardsnyc.com/pricing",
+      "result": "read",
+      "note": ""
+    },
+    {
+      "url": "https://www.anytimebilliardsnyc.com/qrmenu",
+      "result": "read",
+      "note": ""
+    },
+    {
+      "url": "https://www.anytimebilliardsnyc.com/contact",
+      "result": "read",
+      "note": ""
+    }
+  ],
+  "facts": [
+    {
+      "field": "pricing_model",
+      "key": "pricing_model:hourly",
+      "value": {
+        "model": "hourly",
+        "rate": 25.75
+      },
+      "source_url": "https://www.anytimebilliardsnyc.com/pricing",
+      "quote_snippet": "Cash $25 Card $25.75/hour",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [
+        "sources disagree"
+      ],
+      "conflicts": [
+        {
+          "value": {
+            "model": "hourly",
+            "rate": 36.05
+          },
+          "source_url": "https://www.anytimebilliardsnyc.com/pricing",
+          "quote_snippet": "Cash $35 Card $36.05/hour"
+        },
+        {
+          "value": {
+            "model": "hourly",
+            "rate": 44.29
+          },
+          "source_url": "https://www.anytimebilliardsnyc.com/pricing",
+          "quote_snippet": "Cash $43 Card $44.29/hour"
+        },
+        {
+          "value": {
+            "model": "hourly",
+            "rate": 49.44
+          },
+          "source_url": "https://www.anytimebilliardsnyc.com/pricing",
+          "quote_snippet": "Cash $48 Card $49.44/hour"
+        },
+        {
+          "value": {
+            "model": "hourly",
+            "rate": 54.59
+          },
+          "source_url": "https://www.anytimebilliardsnyc.com/pricing",
+          "quote_snippet": "Cash $53 Card $54.59/hour"
+        },
+        {
+          "value": {
+            "model": "hourly",
+            "rate": 19.57
+          },
+          "source_url": "https://www.anytimebilliardsnyc.com/pricing",
+          "quote_snippet": "Cash $19 Card $19.57/hour"
+        },
+        {
+          "value": {
+            "model": "hourly",
+            "rate": 29.87
+          },
+          "source_url": "https://www.anytimebilliardsnyc.com/pricing",
+          "quote_snippet": "Cash $29 Card $29.87/hour"
+        },
+        {
+          "value": {
+            "model": "hourly",
+            "rate": 38.11
+          },
+          "source_url": "https://www.anytimebilliardsnyc.com/pricing",
+          "quote_snippet": "Cash $37 Card $38.11/hour"
+        }
+      ],
+      "seen_on": [
+        "https://www.anytimebilliardsnyc.com/pricing"
+      ],
+      "source_type": "official_website"
+    },
+    {
+      "field": "food",
+      "key": "food",
+      "value": true,
+      "source_url": "https://www.anytimebilliardsnyc.com/qrmenu",
+      "quote_snippet": "Check out our menu today!",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [],
+      "seen_on": [
+        "https://www.anytimebilliardsnyc.com/qrmenu"
+      ],
+      "source_type": "official_website"
+    },
+    {
+      "field": "full_bar",
+      "key": "full_bar",
+      "value": true,
+      "source_url": "https://www.anytimebilliardsnyc.com/qrmenu",
+      "quote_snippet": "Explore the Anytime Billiards menu featuring delicious tapas, craft cocktails, and a full bar selection in NYC.",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [],
+      "seen_on": [
+        "https://www.anytimebilliardsnyc.com/",
+        "https://www.anytimebilliardsnyc.com/contact",
+        "https://www.anytimebilliardsnyc.com/qrmenu"
+      ],
+      "source_type": "official_website"
+    },
+    {
+      "field": "table_sizes",
+      "key": "table_sizes:7ft",
+      "value": {
+        "size": "7ft",
+        "count": null
+      },
+      "source_url": "https://playpoolnation.com/place/anytime-bar-and-billiards-new-york-ny/",
+      "quote_snippet": "Listed as a place to play pool; no table size stated anywhere.",
+      "checked_at": "2026-10-26",
+      "confidence": "implied",
+      "flags": [
+        "size not stated, 7 ft by default"
+      ],
+      "source_type": "default",
+      "seen_on": [
+        "https://playpoolnation.com/place/anytime-bar-and-billiards-new-york-ny/"
+      ]
+    }
+  ],
+  "missing": [
+    "table_count",
+    "table_sizes",
+    "table_brands",
+    "league_nights",
+    "age_policy"
+  ]
+}

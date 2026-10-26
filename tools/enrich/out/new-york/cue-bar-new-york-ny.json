@@ -1,0 +1,166 @@
+{
+  "schema": 1,
+  "slug": "cue-bar-new-york-ny",
+  "city": "new-york",
+  "kind": "new",
+  "listing": {
+    "name": "Cue Bar",
+    "street": "45-18 Bell Boulevard",
+    "city": "Bayside",
+    "state": "NY",
+    "zip": "11361",
+    "phone": "+1-718-631-2646",
+    "website": "https://www.cuebar.com/",
+    "facebook": "http://www.facebook.com/cuebar",
+    "venue_type": "bars-with-pool-tables",
+    "lat": 40.7597158,
+    "lng": -73.7694093
+  },
+  "checked_at": "2026-10-26",
+  "sources_checked": [
+    {
+      "url": "https://www.cuebarbayside.com/",
+      "result": "read",
+      "note": ""
+    },
+    {
+      "url": "https://www.cuebarbayside.com/about",
+      "result": "read",
+      "note": ""
+    },
+    {
+      "url": "https://www.cuebarbayside.com/entertainment",
+      "result": "read",
+      "note": ""
+    },
+    {
+      "url": "https://www.cuebarbayside.com/pool-tables",
+      "result": "read",
+      "note": ""
+    },
+    {
+      "url": "https://www.cuebarbayside.com/menus",
+      "result": "read",
+      "note": ""
+    },
+    {
+      "url": "http://www.facebook.com/cuebar",
+      "result": "skipped",
+      "note": "robots.txt disallows"
+    }
+  ],
+  "facts": [
+    {
+      "field": "table_count",
+      "key": "table_count",
+      "value": 21,
+      "source_url": "https://www.cuebarbayside.com/",
+      "quote_snippet": "Cue Bar Features 21 Pool Tables, 2 Ping Pong tables, a Full Bar, Restaurant and Lounge.",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [],
+      "seen_on": [
+        "https://www.cuebarbayside.com/"
+      ],
+      "source_type": "official_website"
+    },
+    {
+      "field": "league_nights",
+      "key": "league_nights:pool-league:thursday",
+      "value": {
+        "league": "Pool league",
+        "weekday": "thursday"
+      },
+      "source_url": "https://www.cuebarbayside.com/pool-tables",
+      "quote_snippet": "Thursday @ 8 pm: 8/9-ball League",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [
+        "league name not given"
+      ],
+      "seen_on": [
+        "https://www.cuebarbayside.com/pool-tables"
+      ],
+      "source_type": "official_website"
+    },
+    {
+      "field": "age_policy",
+      "key": "age_policy",
+      "value": "all-ages",
+      "source_url": "https://www.cuebarbayside.com/",
+      "quote_snippet": "Fun for All Ages",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [
+        "sources disagree"
+      ],
+      "conflicts": [
+        {
+          "value": "21-plus",
+          "source_url": "https://www.cuebarbayside.com/",
+          "quote_snippet": "* 21 and over after 9 p.m*"
+        }
+      ],
+      "seen_on": [
+        "https://www.cuebarbayside.com/",
+        "https://www.cuebarbayside.com/about",
+        "https://www.cuebarbayside.com/entertainment"
+      ],
+      "source_type": "official_website"
+    },
+    {
+      "field": "food",
+      "key": "food",
+      "value": true,
+      "source_url": "https://www.cuebarbayside.com/",
+      "quote_snippet": "… liquor. we also offer 10,000 square feet of party area and a full lunch and dinner menu.",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [],
+      "seen_on": [
+        "https://www.cuebarbayside.com/",
+        "https://www.cuebarbayside.com/entertainment",
+        "https://www.cuebarbayside.com/menus"
+      ],
+      "source_type": "official_website"
+    },
+    {
+      "field": "full_bar",
+      "key": "full_bar",
+      "value": true,
+      "source_url": "https://www.cuebarbayside.com/",
+      "quote_snippet": "Cue Bar Features 21 Pool Tables, 2 Ping Pong tables, a Full Bar, Restaurant and Lounge.",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [],
+      "seen_on": [
+        "https://www.cuebarbayside.com/"
+      ],
+      "source_type": "official_website"
+    },
+    {
+      "field": "table_sizes",
+      "key": "table_sizes:7ft",
+      "value": {
+        "size": "7ft",
+        "count": 21
+      },
+      "source_url": "https://www.cuebarbayside.com/",
+      "quote_snippet": "Cue Bar Features 21 Pool Tables, 2 Ping Pong tables, a Full Bar, Restaurant and Lounge.",
+      "checked_at": "2026-10-26",
+      "confidence": "implied",
+      "flags": [
+        "size not stated, 7 ft by default"
+      ],
+      "source_type": "default",
+      "seen_on": [
+        "https://www.cuebarbayside.com/"
+      ]
+    }
+  ],
+  "missing": [
+    "table_sizes",
+    "table_brands",
+    "pricing_model"
+  ]
+}

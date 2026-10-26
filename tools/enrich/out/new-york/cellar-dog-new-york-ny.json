@@ -1,0 +1,122 @@
+{
+  "schema": 1,
+  "slug": "cellar-dog-new-york-ny",
+  "city": "new-york",
+  "kind": "listing",
+  "listing": {
+    "id": 1693,
+    "url": "https://playpoolnation.com/place/cellar-dog-new-york-ny/",
+    "name": "Cellar Dog",
+    "street": "75 Christopher St",
+    "city": "New York",
+    "state": "NY",
+    "zip": "10014",
+    "phone": "(212) 675-6056",
+    "website": "http://cellar.dog/",
+    "type": "Bar",
+    "lat": 40.73364,
+    "lng": -74.0032
+  },
+  "checked_at": "2026-10-26",
+  "sources_checked": [
+    {
+      "url": "https://www.cellardog.net/",
+      "result": "read",
+      "note": ""
+    },
+    {
+      "url": "https://www.cellardog.net/events/",
+      "result": "read",
+      "note": ""
+    },
+    {
+      "url": "https://www.cellardog.net/in-the-news",
+      "result": "read",
+      "note": ""
+    },
+    {
+      "url": "https://www.cellardog.net/visit/",
+      "result": "read",
+      "note": ""
+    }
+  ],
+  "facts": [
+    {
+      "field": "table_count",
+      "key": "table_count",
+      "value": 9,
+      "source_url": "https://www.cellardog.net/visit/",
+      "quote_snippet": "We have 9 Billiards tables, 6 Ping Pong tables, 6 Shuffleboard tables, 3 Foosball tables, and a …",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [],
+      "seen_on": [
+        "https://www.cellardog.net/visit/"
+      ],
+      "source_type": "official_website"
+    },
+    {
+      "field": "age_policy",
+      "key": "age_policy",
+      "value": "21-plus",
+      "source_url": "https://www.cellardog.net/visit/",
+      "quote_snippet": "Is the venue 21+?",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [],
+      "seen_on": [
+        "https://www.cellardog.net/visit/"
+      ],
+      "source_type": "official_website"
+    },
+    {
+      "field": "food",
+      "key": "food",
+      "value": true,
+      "source_url": "https://www.cellardog.net/events/",
+      "quote_snippet": "We host events for parties of 20- 275, with food and drink options available upon request.",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [
+        "sources disagree"
+      ],
+      "conflicts": [
+        {
+          "value": false,
+          "source_url": "https://www.cellardog.net/visit/",
+          "quote_snippet": "We do not serve food, but we do offer select flavors of kettle chips as well as …"
+        }
+      ],
+      "seen_on": [
+        "https://www.cellardog.net/events/"
+      ],
+      "source_type": "official_website"
+    },
+    {
+      "field": "table_sizes",
+      "key": "table_sizes:7ft",
+      "value": {
+        "size": "7ft",
+        "count": 9
+      },
+      "source_url": "https://www.cellardog.net/visit/",
+      "quote_snippet": "We have 9 Billiards tables, 6 Ping Pong tables, 6 Shuffleboard tables, 3 Foosball tables, and a …",
+      "checked_at": "2026-10-26",
+      "confidence": "implied",
+      "flags": [
+        "size not stated, 7 ft by default"
+      ],
+      "source_type": "default",
+      "seen_on": [
+        "https://www.cellardog.net/visit/"
+      ]
+    }
+  ],
+  "missing": [
+    "table_sizes",
+    "table_brands",
+    "pricing_model",
+    "league_nights",
+    "full_bar"
+  ]
+}

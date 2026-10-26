@@ -1,0 +1,224 @@
+{
+  "schema": 1,
+  "slug": "amsterdam-billiards-new-york-ny",
+  "city": "new-york",
+  "kind": "listing",
+  "listing": {
+    "id": 1691,
+    "url": "https://playpoolnation.com/place/amsterdam-billiards-new-york-ny/",
+    "name": "Amsterdam Billiards",
+    "street": "110 E 11th St",
+    "city": "New York",
+    "state": "NY",
+    "zip": "10003",
+    "phone": "(212) 995-0333",
+    "website": "http://www.amsterdambilliards.com/",
+    "type": "Pool Hall",
+    "lat": 40.73171,
+    "lng": -73.98994
+  },
+  "checked_at": "2026-10-26",
+  "sources_checked": [
+    {
+      "url": "https://amsterdambilliards.com/",
+      "result": "read",
+      "note": ""
+    },
+    {
+      "url": "https://amsterdambilliards.com/reservations/",
+      "result": "read",
+      "note": ""
+    },
+    {
+      "url": "https://amsterdambilliards.com/leagues/",
+      "result": "read",
+      "note": ""
+    },
+    {
+      "url": "https://amsterdambilliards.com/games/",
+      "result": "read",
+      "note": ""
+    }
+  ],
+  "facts": [
+    {
+      "field": "table_count",
+      "key": "table_count",
+      "value": 25,
+      "source_url": "https://amsterdambilliards.com/games/",
+      "quote_snippet": "We have 25 Brunswick pool tables waiting for you.",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [],
+      "seen_on": [
+        "https://amsterdambilliards.com/games/"
+      ],
+      "source_type": "official_website"
+    },
+    {
+      "field": "table_brands",
+      "key": "table_brands:brunswick",
+      "value": "Brunswick",
+      "source_url": "https://amsterdambilliards.com/games/",
+      "quote_snippet": "We have 25 Brunswick pool tables waiting for you.",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [],
+      "seen_on": [
+        "https://amsterdambilliards.com/games/"
+      ],
+      "source_type": "official_website"
+    },
+    {
+      "field": "pricing_model",
+      "key": "pricing_model:hourly",
+      "value": {
+        "model": "hourly",
+        "rate": null
+      },
+      "source_url": "https://amsterdambilliards.com/reservations/",
+      "quote_snippet": "Reservation rate is $110 per table per hour on Sundays-Wednesdays and $130 per table per hour on …",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [],
+      "seen_on": [
+        "https://amsterdambilliards.com/games/",
+        "https://amsterdambilliards.com/reservations/"
+      ],
+      "source_type": "official_website"
+    },
+    {
+      "field": "league_nights",
+      "key": "league_nights:bca:",
+      "value": {
+        "league": "BCA",
+        "weekday": null
+      },
+      "source_url": "https://amsterdambilliards.com/leagues/",
+      "quote_snippet": "… they do), and they are sanctioned by the BCA Pool League (which means you will be eligible …",
+      "checked_at": "2026-10-26",
+      "confidence": "implied",
+      "flags": [
+        "no weekday given"
+      ],
+      "seen_on": [
+        "https://amsterdambilliards.com/leagues/"
+      ],
+      "source_type": "official_website"
+    },
+    {
+      "field": "league_nights",
+      "key": "league_nights:pool-league:sunday",
+      "value": {
+        "league": "Pool league",
+        "weekday": "sunday"
+      },
+      "source_url": "https://amsterdambilliards.com/leagues/",
+      "quote_snippet": "The league meets on Thursday evenings at 6 pm and 8:30 pm and on Sunday’s at 6 …",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [
+        "league name not given"
+      ],
+      "seen_on": [
+        "https://amsterdambilliards.com/leagues/"
+      ],
+      "source_type": "official_website"
+    },
+    {
+      "field": "league_nights",
+      "key": "league_nights:pool-league:thursday",
+      "value": {
+        "league": "Pool league",
+        "weekday": "thursday"
+      },
+      "source_url": "https://amsterdambilliards.com/leagues/",
+      "quote_snippet": "The league meets on Thursday evenings at 6 pm and 8:30 pm and on Sunday’s at 6 …",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [
+        "league name not given"
+      ],
+      "seen_on": [
+        "https://amsterdambilliards.com/leagues/"
+      ],
+      "source_type": "official_website"
+    },
+    {
+      "field": "league_nights",
+      "key": "league_nights:pool-league:tuesday",
+      "value": {
+        "league": "Pool league",
+        "weekday": "tuesday"
+      },
+      "source_url": "https://amsterdambilliards.com/leagues/",
+      "quote_snippet": "… the night you want to play – the Team 8-ball league meets on Tuesday and Wednesday evenings.",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [
+        "league name not given"
+      ],
+      "seen_on": [
+        "https://amsterdambilliards.com/leagues/"
+      ],
+      "source_type": "official_website"
+    },
+    {
+      "field": "league_nights",
+      "key": "league_nights:pool-league:wednesday",
+      "value": {
+        "league": "Pool league",
+        "weekday": "wednesday"
+      },
+      "source_url": "https://amsterdambilliards.com/leagues/",
+      "quote_snippet": "… the night you want to play – the Team 8-ball league meets on Tuesday and Wednesday evenings.",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [
+        "league name not given"
+      ],
+      "seen_on": [
+        "https://amsterdambilliards.com/leagues/"
+      ],
+      "source_type": "official_website"
+    },
+    {
+      "field": "food",
+      "key": "food",
+      "value": true,
+      "source_url": "https://amsterdambilliards.com/reservations/",
+      "quote_snippet": "Reservation add-ons: Darts, Large Jenga, Connect Four, Outside Cake Fee, Bucket of Beer, Drink Tickets, Pizzas",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [],
+      "seen_on": [
+        "https://amsterdambilliards.com/reservations/"
+      ],
+      "source_type": "official_website"
+    },
+    {
+      "field": "table_sizes",
+      "key": "table_sizes:7ft",
+      "value": {
+        "size": "7ft",
+        "count": 25
+      },
+      "source_url": "https://amsterdambilliards.com/games/",
+      "quote_snippet": "We have 25 Brunswick pool tables waiting for you.",
+      "checked_at": "2026-10-26",
+      "confidence": "implied",
+      "flags": [
+        "size not stated, 7 ft by default"
+      ],
+      "source_type": "default",
+      "seen_on": [
+        "https://amsterdambilliards.com/games/"
+      ]
+    }
+  ],
+  "missing": [
+    "table_sizes",
+    "age_policy",
+    "full_bar"
+  ]
+}

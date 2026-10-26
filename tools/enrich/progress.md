@@ -1,12 +1,43 @@
 # Venue enrichment progress
 
-Updated 2026-10-26 00:36. Rebuilt by `python3 tools/enrich/enrich.py progress` and after every venue.
+Updated 2026-10-26 01:07. Rebuilt by `python3 tools/enrich/enrich.py progress` and after every venue.
 
 Cities are worked in the order of the latest keyword report; a city is finished before the next starts. A *hit* is a venue with at least one **stated** fact for that field (implied facts are counted separately and go to review flagged).
 
 | City | Venues done | Facts (stated) | Venues with a stated fact | With a table fact | New venues found | Disk |
 |---|--:|--:|--:|--:|--:|--:|
+| new-york (in progress) | 1/147 | 10 (8) | 1 (100%) | 1 (100%) | 142 | 974 KB |
 | sioux-falls (done) | 26/26 | 157 (98) | 24 (92%) | 2 (8%) | 16 | 268 KB |
+
+## new-york
+
+Discovery: OpenStreetMap 145 pool-tagged places and 1839 other bars; Google Places skipped (GOOGLE_PLACES_API_KEY not set); 0 league page(s); 3 matched our listings, 142 new.
+
+Pages read 4, skipped by robots.txt or login 0, errors 0.
+
+| Field | Venues with stated fact | Hit rate | Implied only |
+|---|--:|--:|--:|
+| Table count | 1 | 100% | 0 |
+| Table sizes | 0 | 0% | 1 |
+| Table brands | 1 | 100% | 0 |
+| Pricing | 1 | 100% | 0 |
+| League nights | 1 | 100% | 0 |
+| Age policy | 0 | 0% | 0 |
+| Food | 1 | 100% | 0 |
+| Full bar | 0 | 0% | 0 |
+| Closed notice | 0 | 0% | 0 |
+
+| Venue | Status | Stated facts | Implied | Sources read |
+|---|---|--:|--:|--:|
+| Amsterdam Billiards | done | 8 | 2 | 4 |
+
+Run log:
+
+- 2026-10-26 00:52 run started
+- 2026-10-26 00:55 enrichment finished: 5 venues
+- 2026-10-26 00:55 run started
+- 2026-10-26 01:06 redo: enriching every venue again
+- 2026-10-26 01:06 run started
 
 ## sioux-falls
 

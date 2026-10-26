@@ -1,0 +1,136 @@
+{
+  "schema": 1,
+  "slug": "space-billiard-pool-hall-and-sports-bar-new-york-ny",
+  "city": "new-york",
+  "kind": "listing",
+  "listing": {
+    "id": 1694,
+    "url": "https://playpoolnation.com/place/space-billiard-pool-hall-and-sports-bar-new-york-ny/",
+    "name": "Space Billiard Pool Hall & Sports Bar",
+    "street": "34 W 32nd St Fl 12",
+    "city": "New York",
+    "state": "NY",
+    "zip": "10001",
+    "phone": "(212) 239-4166",
+    "website": "https://spacebilliard.com/",
+    "type": "Pool Hall",
+    "lat": 40.74766,
+    "lng": -73.98736
+  },
+  "checked_at": "2026-10-26",
+  "sources_checked": [
+    {
+      "url": "https://spacebilliard.com/",
+      "result": "read",
+      "note": ""
+    },
+    {
+      "url": "https://order.spacebilliard.com/s/appointments/",
+      "result": "read",
+      "note": ""
+    },
+    {
+      "url": "https://spacebilliard.com/assets/menus/space-billiard-menu-2026-09-30.pdf",
+      "result": "read",
+      "note": "pdf without text"
+    },
+    {
+      "url": "https://spacebilliard.com/assets/menus/space-billiard-events-menu-2024-12-17.pdf",
+      "result": "read",
+      "note": "pdf without text"
+    }
+  ],
+  "facts": [
+    {
+      "field": "pricing_model",
+      "key": "pricing_model:hourly",
+      "value": {
+        "model": "hourly",
+        "rate": 5.0
+      },
+      "source_url": "https://spacebilliard.com/",
+      "quote_snippet": "Additional guests +$5/hour each.",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [
+        "sources disagree"
+      ],
+      "conflicts": [
+        {
+          "value": {
+            "model": "hourly",
+            "rate": 30.0
+          },
+          "source_url": "https://spacebilliard.com/",
+          "quote_snippet": "$30/hour"
+        },
+        {
+          "value": {
+            "model": "hourly",
+            "rate": 40.0
+          },
+          "source_url": "https://spacebilliard.com/",
+          "quote_snippet": "$40/hour"
+        }
+      ],
+      "seen_on": [
+        "https://spacebilliard.com/"
+      ],
+      "source_type": "official_website"
+    },
+    {
+      "field": "food",
+      "key": "food",
+      "value": true,
+      "source_url": "https://spacebilliard.com/",
+      "quote_snippet": "Food & Drinks",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [],
+      "seen_on": [
+        "https://spacebilliard.com/"
+      ],
+      "source_type": "official_website"
+    },
+    {
+      "field": "full_bar",
+      "key": "full_bar",
+      "value": true,
+      "source_url": "https://spacebilliard.com/",
+      "quote_snippet": "Pool tables, full bar service, bar bites, and late-night private events at Space Billiard in Koreatown NYC.",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [],
+      "seen_on": [
+        "https://spacebilliard.com/"
+      ],
+      "source_type": "official_website"
+    },
+    {
+      "field": "table_sizes",
+      "key": "table_sizes:7ft",
+      "value": {
+        "size": "7ft",
+        "count": null
+      },
+      "source_url": "https://playpoolnation.com/place/space-billiard-pool-hall-and-sports-bar-new-york-ny/",
+      "quote_snippet": "Listed as a place to play pool; no table size stated anywhere.",
+      "checked_at": "2026-10-26",
+      "confidence": "implied",
+      "flags": [
+        "size not stated, 7 ft by default"
+      ],
+      "source_type": "default",
+      "seen_on": [
+        "https://playpoolnation.com/place/space-billiard-pool-hall-and-sports-bar-new-york-ny/"
+      ]
+    }
+  ],
+  "missing": [
+    "table_count",
+    "table_sizes",
+    "table_brands",
+    "league_nights",
+    "age_policy"
+  ]
+}

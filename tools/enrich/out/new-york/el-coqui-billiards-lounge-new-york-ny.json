@@ -1,0 +1,49 @@
+{
+  "schema": 1,
+  "slug": "el-coqui-billiards-lounge-new-york-ny",
+  "city": "new-york",
+  "kind": "new",
+  "listing": {
+    "name": "El Coqui Billiards Lounge",
+    "street": "54-19 Myrtle Avenue",
+    "city": "New York",
+    "state": "NY",
+    "phone": "+1-718-386-3131",
+    "venue_type": "pool-halls",
+    "lat": 40.6997989,
+    "lng": -73.9103217
+  },
+  "checked_at": "2026-10-26",
+  "sources_checked": [],
+  "facts": [
+    {
+      "field": "table_sizes",
+      "key": "table_sizes:7ft",
+      "value": {
+        "size": "7ft",
+        "count": null
+      },
+      "source_url": "https://www.openstreetmap.org/node/5543404633",
+      "quote_snippet": "Listed as a place to play pool; no table size stated anywhere.",
+      "checked_at": "2026-10-26",
+      "confidence": "implied",
+      "flags": [
+        "size not stated, 7 ft by default"
+      ],
+      "source_type": "default",
+      "seen_on": [
+        "https://www.openstreetmap.org/node/5543404633"
+      ]
+    }
+  ],
+  "missing": [
+    "table_count",
+    "table_sizes",
+    "table_brands",
+    "pricing_model",
+    "league_nights",
+    "age_policy",
+    "food",
+    "full_bar"
+  ]
+}

@@ -1,0 +1,4153 @@
+[
+  {
+    "name": "ABC Billiards & Cafe",
+    "street": "",
+    "city": "New York",
+    "state": "NY",
+    "zip": "",
+    "lat": 40.7538244,
+    "lng": -73.804193,
+    "phone": "",
+    "website": "",
+    "facebook": "",
+    "venue_type": "pool-halls",
+    "sources": [
+      {
+        "source": "openstreetmap",
+        "id": "node/12386676805",
+        "url": "https://www.openstreetmap.org/node/12386676805",
+        "evidence": "amenity=cafe"
+      }
+    ],
+    "match": {
+      "score": 0,
+      "class": "distinct",
+      "reasons": [],
+      "slug": ""
+    },
+    "slug": "abc-billiards-and-cafe-new-york-ny",
+    "discovered_at": "2026-10-26"
+  },
+  {
+    "name": "Aloft",
+    "street": "27-45 Jackson Avenue",
+    "city": "Long Island City",
+    "state": "NY",
+    "zip": "11101",
+    "lat": 40.748469,
+    "lng": -73.9398372,
+    "phone": "+1 718-433-9305",
+    "website": "https://www.marriott.com/en-us/hotels/ispva-aloft-long-island-city-manhattan-view/overview/",
+    "facebook": "",
+    "venue_type": "other-venue",
+    "sources": [
+      {
+        "source": "openstreetmap",
+        "id": "way/281343190",
+        "url": "https://www.openstreetmap.org/way/281343190",
+        "evidence": "sport=billiards"
+      }
+    ],
+    "match": {
+      "score": 0,
+      "class": "distinct",
+      "reasons": [],
+      "slug": ""
+    },
+    "slug": "aloft-new-york-ny",
+    "discovered_at": "2026-10-26",
+    "flags": [
+      "hotel: a pool table for guests, probably not a place to play"
+    ]
+  },
+  {
+    "name": "Aloft Hotel",
+    "street": "2296 Frederick Douglass Boulevard",
+    "city": "New York",
+    "state": "NY",
+    "zip": "",
+    "lat": 40.8091429,
+    "lng": -73.9514277,
+    "phone": "",
+    "website": "http://www.aloftharlem.com/",
+    "facebook": "",
+    "venue_type": "other-venue",
+    "sources": [
+      {
+        "source": "openstreetmap",
+        "id": "way/271800354",
+        "url": "https://www.openstreetmap.org/way/271800354",
+        "evidence": "sport=billiards"
+      }
+    ],
+    "match": {
+      "score": 0,
+      "class": "distinct",
+      "reasons": [],
+      "slug": ""
+    },
+    "slug": "aloft-hotel-new-york-ny",
+    "discovered_at": "2026-10-26",
+    "flags": [
+      "hotel: a pool table for guests, probably not a place to play"
+    ]
+  },
+  {
+    "name": "Aloft Manhattan Downtown",
+    "street": "49 Ann Street",
+    "city": "New York",
+    "state": "NY",
+    "zip": "10038",
+    "lat": 40.7104099,
+    "lng": -74.0066701,
+    "phone": "",
+    "website": "http://www.aloftmanhattandowntown.com/",
+    "facebook": "",
+    "venue_type": "other-venue",
+    "sources": [
+      {
+        "source": "openstreetmap",
+        "id": "way/292727024",
+        "url": "https://www.openstreetmap.org/way/292727024",
+        "evidence": "sport=billiards"
+      }
+    ],
+    "match": {
+      "score": 0,
+      "class": "distinct",
+      "reasons": [],
+      "slug": ""
+    },
+    "slug": "aloft-manhattan-downtown-new-york-ny",
+    "discovered_at": "2026-10-26",
+    "flags": [
+      "hotel: a pool table for guests, probably not a place to play"
+    ]
+  },
+  {
+    "name": "Aloft New York LaGuardia Airport",
+    "street": "100-15 Ditmars Boulevard",
+    "city": "East Elmhurst",
+    "state": "NY",
+    "zip": "11369",
+    "lat": 40.7703534,
+    "lng": -73.8699192,
+    "phone": "+1-718-512-0248",
+    "website": "http://www.aloftnewyorklaguardiaairport.com/",
+    "facebook": "",
+    "venue_type": "other-venue",
+    "sources": [
+      {
+        "source": "openstreetmap",
+        "id": "way/281398264",
+        "url": "https://www.openstreetmap.org/way/281398264",
+        "evidence": "sport=billiards"
+      }
+    ],
+    "match": {
+      "score": 0,
+      "class": "distinct",
+      "reasons": [],
+      "slug": ""
+    },
+    "slug": "aloft-new-york-laguardia-airport-new-york-ny",
+    "discovered_at": "2026-10-26",
+    "flags": [
+      "hotel: a pool table for guests, probably not a place to play"
+    ]
+  },
+  {
+    "name": "Ange Noir Cafe",
+    "street": "247 Varet Street",
+    "city": "New York",
+    "state": "NY",
+    "zip": "",
+    "lat": 40.7041849,
+    "lng": -73.9341582,
+    "phone": "+1-718-366-1520",
+    "website": "https://angenoircafe.com/",
+    "facebook": "",
+    "venue_type": "pool-halls",
+    "sources": [
+      {
+        "source": "openstreetmap",
+        "id": "node/5751854223",
+        "url": "https://www.openstreetmap.org/node/5751854223",
+        "evidence": "sport=billiards, amenity=cafe"
+      }
+    ],
+    "match": {
+      "score": 0,
+      "class": "distinct",
+      "reasons": [],
+      "slug": ""
+    },
+    "slug": "ange-noir-cafe-new-york-ny",
+    "discovered_at": "2026-10-26"
+  },
+  {
+    "name": "Arena Billiards and Cafe",
+    "street": "341 Saint Nicholas Avenue",
+    "city": "Ridgewood",
+    "state": "NY",
+    "zip": "11385",
+    "lat": 40.7005077,
+    "lng": -73.9094042,
+    "phone": "",
+    "website": "",
+    "facebook": "",
+    "venue_type": "pool-halls",
+    "sources": [
+      {
+        "source": "openstreetmap",
+        "id": "node/11158122484",
+        "url": "https://www.openstreetmap.org/node/11158122484",
+        "evidence": ""
+      }
+    ],
+    "match": {
+      "score": 0,
+      "class": "distinct",
+      "reasons": [],
+      "slug": ""
+    },
+    "slug": "arena-billiards-and-cafe-new-york-ny",
+    "discovered_at": "2026-10-26"
+  },
+  {
+    "name": "Backyard Bar & Billards",
+    "street": "740 5th Avenue",
+    "city": "New York",
+    "state": "NY",
+    "zip": "11232",
+    "lat": 40.6596495,
+    "lng": -73.995606,
+    "phone": "+1-917-909-0908",
+    "website": "https://www.bkbackyard.com/southslope",
+    "facebook": "",
+    "venue_type": "pool-halls",
+    "sources": [
+      {
+        "source": "openstreetmap",
+        "id": "way/884238866",
+        "url": "https://www.openstreetmap.org/way/884238866",
+        "evidence": "sport=billiards;air_hockey;darts;cornhole, amenity=biergarten"
+      }
+    ],
+    "match": {
+      "score": 0,
+      "class": "distinct",
+      "reasons": [],
+      "slug": ""
+    },
+    "slug": "backyard-bar-and-billards-new-york-ny",
+    "discovered_at": "2026-10-26"
+  },
+  {
+    "name": "Bar Set Lounge & Billiards",
+    "street": "1828 McDonald Avenue",
+    "city": "New York",
+    "state": "NY",
+    "zip": "11223",
+    "lat": 40.6080436,
+    "lng": -73.9732125,
+    "phone": "",
+    "website": "",
+    "facebook": "",
+    "venue_type": "pool-halls",
+    "sources": [
+      {
+        "source": "openstreetmap",
+        "id": "way/249090102",
+        "url": "https://www.openstreetmap.org/way/249090102",
+        "evidence": "sport=billiards, leisure=sports_centre, amenity=sport"
+      }
+    ],
+    "match": {
+      "score": 0,
+      "class": "distinct",
+      "reasons": [],
+      "slug": ""
+    },
+    "slug": "bar-set-lounge-and-billiards-new-york-ny",
+    "discovered_at": "2026-10-26"
+  },
+  {
+    "name": "Billiard Factory Lofts",
+    "street": "363 Prospect Place",
+    "city": "Brooklyn",
+    "state": "NY",
+    "zip": "11238",
+    "lat": 40.6771708,
+    "lng": -73.9643073,
+    "phone": "+1-718-878-1948",
+    "website": "",
+    "facebook": "",
+    "venue_type": "pool-halls",
+    "sources": [
+      {
+        "source": "openstreetmap",
+        "id": "way/248141002",
+        "url": "https://www.openstreetmap.org/way/248141002",
+        "evidence": ""
+      }
+    ],
+    "match": {
+      "score": 0,
+      "class": "distinct",
+      "reasons": [],
+      "slug": ""
+    },
+    "slug": "billiard-factory-lofts-new-york-ny",
+    "discovered_at": "2026-10-26"
+  },
+  {
+    "name": "Brooklyn Billiards Bushwick",
+    "street": "339 Troutman Street",
+    "city": "New York",
+    "state": "NY",
+    "zip": "",
+    "lat": 40.7053057,
+    "lng": -73.9243489,
+    "phone": "",
+    "website": "",
+    "facebook": "",
+    "venue_type": "pool-halls",
+    "sources": [
+      {
+        "source": "openstreetmap",
+        "id": "node/13648548488",
+        "url": "https://www.openstreetmap.org/node/13648548488",
+        "evidence": "sport=billiards"
+      }
+    ],
+    "match": {
+      "score": 0,
+      "class": "distinct",
+      "reasons": [],
+      "slug": ""
+    },
+    "slug": "brooklyn-billiards-bushwick-new-york-ny",
+    "discovered_at": "2026-10-26"
+  },
+  {
+    "name": "Carom Café Billiards",
+    "street": "34-02 Linden Place",
+    "city": "New York",
+    "state": "NY",
+    "zip": "11354",
+    "lat": 40.7661567,
+    "lng": -73.8316226,
+    "phone": "",
+    "website": "",
+    "facebook": "",
+    "venue_type": "pool-halls",
+    "sources": [
+      {
+        "source": "openstreetmap",
+        "id": "way/284617320",
+        "url": "https://www.openstreetmap.org/way/284617320",
+        "evidence": "sport=billiards, leisure=bowling_alley"
+      }
+    ],
+    "match": {
+      "score": 0,
+      "class": "distinct",
+      "reasons": [],
+      "slug": ""
+    },
+    "slug": "carom-caf-billiards-new-york-ny",
+    "discovered_at": "2026-10-26"
+  },
+  {
+    "name": "City Snooker Pool House",
+    "street": "75-32 Broadway",
+    "city": "New York",
+    "state": "NY",
+    "zip": "",
+    "lat": 40.7457615,
+    "lng": -73.8895912,
+    "phone": "+1 646 733 7189",
+    "website": "",
+    "facebook": "",
+    "venue_type": "pool-halls",
+    "sources": [
+      {
+        "source": "openstreetmap",
+        "id": "node/7230975173",
+        "url": "https://www.openstreetmap.org/node/7230975173",
+        "evidence": "sport=billiards"
+      }
+    ],
+    "match": {
+      "score": 0,
+      "class": "distinct",
+      "reasons": [],
+      "slug": ""
+    },
+    "slug": "city-snooker-pool-house-new-york-ny",
+    "discovered_at": "2026-10-26"
+  },
+  {
+    "name": "Corner Pocket",
+    "street": "",
+    "city": "New York",
+    "state": "NY",
+    "zip": "",
+    "lat": 40.7373245,
+    "lng": -73.8170693,
+    "phone": "",
+    "website": "",
+    "facebook": "",
+    "venue_type": "pool-halls",
+    "sources": [
+      {
+        "source": "openstreetmap",
+        "id": "node/11739507545",
+        "url": "https://www.openstreetmap.org/node/11739507545",
+        "evidence": "sport=billiards, leisure=pitch"
+      }
+    ],
+    "match": {
+      "score": 0,
+      "class": "distinct",
+      "reasons": [],
+      "slug": ""
+    },
+    "slug": "corner-pocket-new-york-ny",
+    "discovered_at": "2026-10-26"
+  },
+  {
+    "name": "El Coqui Billiards Lounge",
+    "street": "54-19 Myrtle Avenue",
+    "city": "New York",
+    "state": "NY",
+    "zip": "",
+    "lat": 40.6997989,
+    "lng": -73.9103217,
+    "phone": "+1-718-386-3131",
+    "website": "",
+    "facebook": "",
+    "venue_type": "pool-halls",
+    "sources": [
+      {
+        "source": "openstreetmap",
+        "id": "node/5543404633",
+        "url": "https://www.openstreetmap.org/node/5543404633",
+        "evidence": "sport=billiards"
+      }
+    ],
+    "match": {
+      "score": 0,
+      "class": "distinct",
+      "reasons": [],
+      "slug": ""
+    },
+    "slug": "el-coqui-billiards-lounge-new-york-ny",
+    "discovered_at": "2026-10-26"
+  },
+  {
+    "name": "Fort Hamilton Bowling Center",
+    "street": "124 Wainwright Drive",
+    "city": "New York",
+    "state": "NY",
+    "zip": "11209",
+    "lat": 40.608581,
+    "lng": -74.0270159,
+    "phone": "",
+    "website": "https://hamilton.armymwr.com/programs/hamilton-bowling",
+    "facebook": "",
+    "venue_type": "pool-halls",
+    "sources": [
+      {
+        "source": "openstreetmap",
+        "id": "way/249053447",
+        "url": "https://www.openstreetmap.org/way/249053447",
+        "evidence": "sport=10pin;billiards, leisure=bowling_alley"
+      }
+    ],
+    "match": {
+      "score": 0,
+      "class": "distinct",
+      "reasons": [],
+      "slug": ""
+    },
+    "slug": "fort-hamilton-bowling-center-new-york-ny",
+    "discovered_at": "2026-10-26"
+  },
+  {
+    "name": "Frames Bowling Lounge NYC",
+    "street": "550 9th Avenue",
+    "city": "New York",
+    "state": "NY",
+    "zip": "",
+    "lat": 40.7571722,
+    "lng": -73.9932074,
+    "phone": "",
+    "website": "https://www.framesnyc.com",
+    "facebook": "",
+    "venue_type": "pool-halls",
+    "sources": [
+      {
+        "source": "openstreetmap",
+        "id": "node/8789533319",
+        "url": "https://www.openstreetmap.org/node/8789533319",
+        "evidence": "sport=10pin;billiards;table_tennis, leisure=sports_centre"
+      }
+    ],
+    "match": {
+      "score": 0,
+      "class": "distinct",
+      "reasons": [],
+      "slug": ""
+    },
+    "slug": "frames-bowling-lounge-nyc-new-york-ny",
+    "discovered_at": "2026-10-26"
+  },
+  {
+    "name": "New City Billiards & Cafe",
+    "street": "43-12 50th Street",
+    "city": "New York",
+    "state": "NY",
+    "zip": "",
+    "lat": 40.7439734,
+    "lng": -73.9148875,
+    "phone": "",
+    "website": "",
+    "facebook": "",
+    "venue_type": "pool-halls",
+    "sources": [
+      {
+        "source": "openstreetmap",
+        "id": "node/6744726774",
+        "url": "https://www.openstreetmap.org/node/6744726774",
+        "evidence": "amenity=cafe"
+      }
+    ],
+    "match": {
+      "score": 0,
+      "class": "distinct",
+      "reasons": [],
+      "slug": ""
+    },
+    "slug": "new-city-billiards-and-cafe-new-york-ny",
+    "discovered_at": "2026-10-26"
+  },
+  {
+    "name": "PUBLIC, an Ian Schrager hotel",
+    "street": "215 Chrystie Street",
+    "city": "New York",
+    "state": "NY",
+    "zip": "10002",
+    "lat": 40.7230518,
+    "lng": -73.9920178,
+    "phone": "+1-212-735-6000",
+    "website": "https://www.publichotels.com/",
+    "facebook": "",
+    "venue_type": "other-venue",
+    "sources": [
+      {
+        "source": "openstreetmap",
+        "id": "way/317111780",
+        "url": "https://www.openstreetmap.org/way/317111780",
+        "evidence": "sport=billiards"
+      }
+    ],
+    "match": {
+      "score": 0,
+      "class": "distinct",
+      "reasons": [],
+      "slug": ""
+    },
+    "slug": "public-an-ian-schrager-hotel-new-york-ny",
+    "discovered_at": "2026-10-26",
+    "flags": [
+      "hotel: a pool table for guests, probably not a place to play"
+    ]
+  },
+  {
+    "name": "Q4 hotel",
+    "street": "Queens Plaza North",
+    "city": "New York",
+    "state": "NY",
+    "zip": "",
+    "lat": 40.7499439,
+    "lng": -73.9375408,
+    "phone": "+1 718-706-7700",
+    "website": "",
+    "facebook": "",
+    "venue_type": "other-venue",
+    "sources": [
+      {
+        "source": "openstreetmap",
+        "id": "node/4248061489",
+        "url": "https://www.openstreetmap.org/node/4248061489",
+        "evidence": "sport=billiards"
+      }
+    ],
+    "match": {
+      "score": 11,
+      "class": "distinct",
+      "reasons": [],
+      "slug": "anytime-bar-and-billiards-new-york-ny"
+    },
+    "slug": "q4-hotel-new-york-ny",
+    "discovered_at": "2026-10-26",
+    "flags": [
+      "hotel: a pool table for guests, probably not a place to play"
+    ]
+  },
+  {
+    "name": "Queens Brewery",
+    "street": "15-39 Covert Street",
+    "city": "New York",
+    "state": "NY",
+    "zip": "",
+    "lat": 40.6949358,
+    "lng": -73.9040723,
+    "phone": "",
+    "website": "https://www.queensbrewery.com/",
+    "facebook": "",
+    "venue_type": "pool-halls",
+    "sources": [
+      {
+        "source": "openstreetmap",
+        "id": "node/5476739551",
+        "url": "https://www.openstreetmap.org/node/5476739551",
+        "evidence": "sport=billiards"
+      }
+    ],
+    "match": {
+      "score": 0,
+      "class": "distinct",
+      "reasons": [],
+      "slug": ""
+    },
+    "slug": "queens-brewery-new-york-ny",
+    "discovered_at": "2026-10-26"
+  },
+  {
+    "name": "Roxy Hotel",
+    "street": "2 Avenue of the Americas",
+    "city": "New York",
+    "state": "NY",
+    "zip": "10013",
+    "lat": 40.7193706,
+    "lng": -74.0047857,
+    "phone": "",
+    "website": "https://www.roxyhotelnyc.com/",
+    "facebook": "",
+    "venue_type": "other-venue",
+    "sources": [
+      {
+        "source": "openstreetmap",
+        "id": "way/250052719",
+        "url": "https://www.openstreetmap.org/way/250052719",
+        "evidence": "sport=billiards"
+      }
+    ],
+    "match": {
+      "score": 0,
+      "class": "distinct",
+      "reasons": [],
+      "slug": ""
+    },
+    "slug": "roxy-hotel-new-york-ny",
+    "discovered_at": "2026-10-26",
+    "flags": [
+      "hotel: a pool table for guests, probably not a place to play"
+    ]
+  },
+  {
+    "name": "Salmagundi Club",
+    "street": "",
+    "city": "New York",
+    "state": "NY",
+    "zip": "",
+    "lat": 40.7343016,
+    "lng": -73.9945529,
+    "phone": "",
+    "website": "",
+    "facebook": "",
+    "venue_type": "pool-halls",
+    "sources": [
+      {
+        "source": "openstreetmap",
+        "id": "node/4319632990",
+        "url": "https://www.openstreetmap.org/node/4319632990",
+        "evidence": "sport=billiards, amenity=social_centre"
+      }
+    ],
+    "match": {
+      "score": 13,
+      "class": "distinct",
+      "reasons": [],
+      "slug": "amsterdam-billiards-new-york-ny"
+    },
+    "slug": "salmagundi-club-new-york-ny",
+    "discovered_at": "2026-10-26"
+  },
+  {
+    "name": "Set Billiards & Bowling",
+    "street": "3200 Coney Island Avenue",
+    "city": "Brooklyn",
+    "state": "NY",
+    "zip": "11235",
+    "lat": 40.5775708,
+    "lng": -73.9598031,
+    "phone": "",
+    "website": "",
+    "facebook": "",
+    "venue_type": "pool-halls",
+    "sources": [
+      {
+        "source": "openstreetmap",
+        "id": "node/2552903078",
+        "url": "https://www.openstreetmap.org/node/2552903078",
+        "evidence": "sport=billiards;table_tennis;snooker;10pin;9pin, leisure=sports_centre"
+      }
+    ],
+    "match": {
+      "score": 0,
+      "class": "distinct",
+      "reasons": [],
+      "slug": ""
+    },
+    "slug": "set-billiards-and-bowling-new-york-ny",
+    "discovered_at": "2026-10-26"
+  },
+  {
+    "name": "Sharks",
+    "street": "34-01 Steinway Street",
+    "city": "New York",
+    "state": "NY",
+    "zip": "11101",
+    "lat": 40.7563697,
+    "lng": -73.9209268,
+    "phone": "",
+    "website": "",
+    "facebook": "",
+    "venue_type": "pool-halls",
+    "sources": [
+      {
+        "source": "openstreetmap",
+        "id": "node/2846607015",
+        "url": "https://www.openstreetmap.org/node/2846607015",
+        "evidence": "sport=billiards"
+      }
+    ],
+    "match": {
+      "score": 0,
+      "class": "distinct",
+      "reasons": [],
+      "slug": ""
+    },
+    "slug": "sharks-new-york-ny",
+    "discovered_at": "2026-10-26"
+  },
+  {
+    "name": "Social Cues",
+    "street": "",
+    "city": "New York",
+    "state": "NY",
+    "zip": "",
+    "lat": 40.69097,
+    "lng": -73.9558672,
+    "phone": "+1-718-550-3553",
+    "website": "https://socialcues.com",
+    "facebook": "",
+    "venue_type": "pool-halls",
+    "sources": [
+      {
+        "source": "openstreetmap",
+        "id": "node/5611400094",
+        "url": "https://www.openstreetmap.org/node/5611400094",
+        "evidence": "sport=billiards, amenity=events_venue"
+      }
+    ],
+    "match": {
+      "score": 0,
+      "class": "distinct",
+      "reasons": [],
+      "slug": ""
+    },
+    "slug": "social-cues-new-york-ny",
+    "discovered_at": "2026-10-26"
+  },
+  {
+    "name": "St. John’s Recreation Center",
+    "street": "1251 Prospect Place",
+    "city": "Brooklyn",
+    "state": "NY",
+    "zip": "11213",
+    "lat": 40.6738862,
+    "lng": -73.9349053,
+    "phone": "+1-718-771-2787",
+    "website": "https://www.nycgovparks.org/facilities/recreationcenters/B245",
+    "facebook": "",
+    "venue_type": "pool-halls",
+    "sources": [
+      {
+        "source": "openstreetmap",
+        "id": "way/250330539",
+        "url": "https://www.openstreetmap.org/way/250330539",
+        "evidence": "sport=basketball;soccer;table_tennis;billiards;athletics;dance, leisure=sports_centre"
+      }
+    ],
+    "match": {
+      "score": 0,
+      "class": "distinct",
+      "reasons": [],
+      "slug": ""
+    },
+    "slug": "st-johns-recreation-center-new-york-ny",
+    "discovered_at": "2026-10-26"
+  },
+  {
+    "name": "Studio6 Gallery",
+    "street": "106 Rivington Street",
+    "city": "New York",
+    "state": "NY",
+    "zip": "",
+    "lat": 40.7200689,
+    "lng": -73.9879624,
+    "phone": "",
+    "website": "",
+    "facebook": "",
+    "venue_type": "pool-halls",
+    "sources": [
+      {
+        "source": "openstreetmap",
+        "id": "node/13241423684",
+        "url": "https://www.openstreetmap.org/node/13241423684",
+        "evidence": "sport=billiards"
+      }
+    ],
+    "match": {
+      "score": 1,
+      "class": "distinct",
+      "reasons": [],
+      "slug": "space-billiard-pool-hall-and-sports-bar-new-york-ny"
+    },
+    "slug": "studio6-gallery-new-york-ny",
+    "discovered_at": "2026-10-26"
+  },
+  {
+    "name": "The Drift",
+    "street": "579 Meeker Street",
+    "city": "New York",
+    "state": "NY",
+    "zip": "",
+    "lat": 40.7214943,
+    "lng": -73.9424461,
+    "phone": "",
+    "website": "",
+    "facebook": "",
+    "venue_type": "pool-halls",
+    "sources": [
+      {
+        "source": "openstreetmap",
+        "id": "node/10897828872",
+        "url": "https://www.openstreetmap.org/node/10897828872",
+        "evidence": "sport=billiards"
+      }
+    ],
+    "match": {
+      "score": 0,
+      "class": "distinct",
+      "reasons": [],
+      "slug": ""
+    },
+    "slug": "the-drift-new-york-ny",
+    "discovered_at": "2026-10-26"
+  },
+  {
+    "name": "The Trim Lounge",
+    "street": "",
+    "city": "New York",
+    "state": "NY",
+    "zip": "",
+    "lat": 40.6650611,
+    "lng": -73.9947658,
+    "phone": "+1-718-369-0875",
+    "website": "",
+    "facebook": "",
+    "venue_type": "pool-halls",
+    "sources": [
+      {
+        "source": "openstreetmap",
+        "id": "node/6304537184",
+        "url": "https://www.openstreetmap.org/node/6304537184",
+        "evidence": "sport=billiards"
+      }
+    ],
+    "match": {
+      "score": 0,
+      "class": "distinct",
+      "reasons": [],
+      "slug": ""
+    },
+    "slug": "the-trim-lounge-new-york-ny",
+    "discovered_at": "2026-10-26"
+  },
+  {
+    "name": "Three Star Billiards",
+    "street": "45-42 162nd Street",
+    "city": "Flushing",
+    "state": "NY",
+    "zip": "11358",
+    "lat": 40.7552058,
+    "lng": -73.8048627,
+    "phone": "",
+    "website": "",
+    "facebook": "",
+    "venue_type": "pool-halls",
+    "sources": [
+      {
+        "source": "openstreetmap",
+        "id": "node/9708061946",
+        "url": "https://www.openstreetmap.org/node/9708061946",
+        "evidence": "amenity=gambling"
+      }
+    ],
+    "match": {
+      "score": 0,
+      "class": "distinct",
+      "reasons": [],
+      "slug": ""
+    },
+    "slug": "three-star-billiards-new-york-ny",
+    "discovered_at": "2026-10-26"
+  },
+  {
+    "name": "Tru by Hilton",
+    "street": "545 President Street",
+    "city": "New York",
+    "state": "NY",
+    "zip": "11215",
+    "lat": 40.6775916,
+    "lng": -73.9851205,
+    "phone": "+1-718-524-9000",
+    "website": "https://www.hilton.com/en/hotels/jfkibru-tru-brooklyn/",
+    "facebook": "",
+    "venue_type": "other-venue",
+    "sources": [
+      {
+        "source": "openstreetmap",
+        "id": "way/1242226071",
+        "url": "https://www.openstreetmap.org/way/1242226071",
+        "evidence": "sport=billiards"
+      }
+    ],
+    "match": {
+      "score": 0,
+      "class": "distinct",
+      "reasons": [],
+      "slug": ""
+    },
+    "slug": "tru-by-hilton-new-york-ny",
+    "discovered_at": "2026-10-26",
+    "flags": [
+      "hotel: a pool table for guests, probably not a place to play"
+    ]
+  },
+  {
+    "name": "V/S Sports Gaming",
+    "street": "32-43 Steinway Street",
+    "city": "New York",
+    "state": "NY",
+    "zip": "",
+    "lat": 40.7576891,
+    "lng": -73.9198292,
+    "phone": "",
+    "website": "",
+    "facebook": "",
+    "venue_type": "pool-halls",
+    "sources": [
+      {
+        "source": "openstreetmap",
+        "id": "node/12162695277",
+        "url": "https://www.openstreetmap.org/node/12162695277",
+        "evidence": "sport=billiards;table_tennis"
+      }
+    ],
+    "match": {
+      "score": 0,
+      "class": "distinct",
+      "reasons": [],
+      "slug": ""
+    },
+    "slug": "v-s-sports-gaming-new-york-ny",
+    "discovered_at": "2026-10-26"
+  },
+  {
+    "name": "169 Bar",
+    "street": "169 East Broadway",
+    "city": "New York",
+    "state": "NY",
+    "zip": "10002",
+    "lat": 40.7139326,
+    "lng": -73.9897603,
+    "phone": "+1-516-986-7938",
+    "website": "https://169barnyc.com",
+    "facebook": "",
+    "venue_type": "bars-with-pool-tables",
+    "sources": [
+      {
+        "source": "openstreetmap",
+        "id": "node/6231529913",
+        "url": "https://www.openstreetmap.org/node/6231529913",
+        "evidence": "sport=billiards, amenity=bar"
+      }
+    ],
+    "match": {
+      "score": 0,
+      "class": "distinct",
+      "reasons": [],
+      "slug": ""
+    },
+    "slug": "169-bar-new-york-ny",
+    "discovered_at": "2026-10-26"
+  },
+  {
+    "name": "3 Dollar Bill",
+    "street": "260 Meserole Street",
+    "city": "New York",
+    "state": "NY",
+    "zip": "",
+    "lat": 40.7084122,
+    "lng": -73.9381164,
+    "phone": "+1-718-366-3031",
+    "website": "https://www.3dollarbillbk.com/",
+    "facebook": "https://www.facebook.com/3dollarbillbk/",
+    "venue_type": "bars-with-pool-tables",
+    "sources": [
+      {
+        "source": "openstreetmap",
+        "id": "node/6002923285",
+        "url": "https://www.openstreetmap.org/node/6002923285",
+        "evidence": "sport=billiards, leisure=dance, amenity=bar"
+      }
+    ],
+    "match": {
+      "score": 0,
+      "class": "distinct",
+      "reasons": [],
+      "slug": ""
+    },
+    "slug": "3-dollar-bill-new-york-ny",
+    "discovered_at": "2026-10-26"
+  },
+  {
+    "name": "Abe's Pagoda Bar",
+    "street": "108 Wyckoff Avenue",
+    "city": "New York",
+    "state": "NY",
+    "zip": "",
+    "lat": 40.7038877,
+    "lng": -73.9188896,
+    "phone": "+1-718-366-6913",
+    "website": "https://www.abespagodabar.com/",
+    "facebook": "",
+    "venue_type": "bars-with-pool-tables",
+    "sources": [
+      {
+        "source": "openstreetmap",
+        "id": "node/5627874267",
+        "url": "https://www.openstreetmap.org/node/5627874267",
+        "evidence": "sport=billiards, amenity=pub"
+      }
+    ],
+    "match": {
+      "score": 0,
+      "class": "distinct",
+      "reasons": [],
+      "slug": ""
+    },
+    "slug": "abes-pagoda-bar-new-york-ny",
+    "discovered_at": "2026-10-26"
+  },
+  {
+    "name": "Alibi",
+    "street": "",
+    "city": "New York",
+    "state": "NY",
+    "zip": "",
+    "lat": 40.6893642,
+    "lng": -73.9694855,
+    "phone": "",
+    "website": "",
+    "facebook": "",
+    "venue_type": "bars-with-pool-tables",
+    "sources": [
+      {
+        "source": "openstreetmap",
+        "id": "node/6402886957",
+        "url": "https://www.openstreetmap.org/node/6402886957",
+        "evidence": "sport=billiards, amenity=bar"
+      }
+    ],
+    "match": {
+      "score": 0,
+      "class": "distinct",
+      "reasons": [],
+      "slug": ""
+    },
+    "slug": "alibi-new-york-ny",
+    "discovered_at": "2026-10-26"
+  },
+  {
+    "name": "Alligator Lounge",
+    "street": "",
+    "city": "New York",
+    "state": "NY",
+    "zip": "",
+    "lat": 40.7139741,
+    "lng": -73.9489283,
+    "phone": "+1-718-599-4440",
+    "website": "https://www.alligatorloungebrooklyn.com",
+    "facebook": "",
+    "venue_type": "bars-with-pool-tables",
+    "sources": [
+      {
+        "source": "openstreetmap",
+        "id": "node/10968324908",
+        "url": "https://www.openstreetmap.org/node/10968324908",
+        "evidence": "sport=billiards, amenity=bar"
+      }
+    ],
+    "match": {
+      "score": 10,
+      "class": "distinct",
+      "reasons": [],
+      "slug": "society-billiards-and-bar-new-york-ny"
+    },
+    "slug": "alligator-lounge-new-york-ny",
+    "discovered_at": "2026-10-26"
+  },
+  {
+    "name": "Alma",
+    "street": "187 Columbia Street",
+    "city": "New York",
+    "state": "NY",
+    "zip": "11231",
+    "lat": 40.6855582,
+    "lng": -74.0021356,
+    "phone": "+1-718-643-5400",
+    "website": "https://www.almabk.com",
+    "facebook": "",
+    "venue_type": "bars-with-pool-tables",
+    "sources": [
+      {
+        "source": "openstreetmap",
+        "id": "way/248152461",
+        "url": "https://www.openstreetmap.org/way/248152461",
+        "evidence": "sport=table_tennis;billiards, amenity=restaurant"
+      }
+    ],
+    "match": {
+      "score": 0,
+      "class": "distinct",
+      "reasons": [],
+      "slug": ""
+    },
+    "slug": "alma-new-york-ny",
+    "discovered_at": "2026-10-26"
+  },
+  {
+    "name": "Aunt Ginny's",
+    "street": "652 Woodward Avenue",
+    "city": "Ridgewood",
+    "state": "NY",
+    "zip": "11385",
+    "lat": 40.7055595,
+    "lng": -73.9070695,
+    "phone": "",
+    "website": "http://auntginnys.com/",
+    "facebook": "",
+    "venue_type": "bars-with-pool-tables",
+    "sources": [
+      {
+        "source": "openstreetmap",
+        "id": "node/5364870788",
+        "url": "https://www.openstreetmap.org/node/5364870788",
+        "evidence": "sport=billiards, amenity=bar"
+      }
+    ],
+    "match": {
+      "score": 0,
+      "class": "distinct",
+      "reasons": [],
+      "slug": ""
+    },
+    "slug": "aunt-ginnys-new-york-ny",
+    "discovered_at": "2026-10-26"
+  },
+  {
+    "name": "Bar & Play Pool",
+    "street": "",
+    "city": "New York",
+    "state": "NY",
+    "zip": "",
+    "lat": 40.6372371,
+    "lng": -73.968411,
+    "phone": "",
+    "website": "",
+    "facebook": "",
+    "venue_type": "bars-with-pool-tables",
+    "sources": [
+      {
+        "source": "openstreetmap",
+        "id": "node/12082261801",
+        "url": "https://www.openstreetmap.org/node/12082261801",
+        "evidence": "sport=billiards, amenity=bar"
+      }
+    ],
+    "match": {
+      "score": 0,
+      "class": "distinct",
+      "reasons": [],
+      "slug": ""
+    },
+    "slug": "bar-and-play-pool-new-york-ny",
+    "discovered_at": "2026-10-26"
+  },
+  {
+    "name": "Barfly",
+    "street": "244 3rd Avenue",
+    "city": "New York",
+    "state": "NY",
+    "zip": "10010",
+    "lat": 40.7371351,
+    "lng": -73.9846154,
+    "phone": "+1-212-473-9660",
+    "website": "https://barfly.nyc",
+    "facebook": "",
+    "venue_type": "bars-with-pool-tables",
+    "sources": [
+      {
+        "source": "openstreetmap",
+        "id": "node/2142758742",
+        "url": "https://www.openstreetmap.org/node/2142758742",
+        "evidence": "sport=billiards, amenity=bar"
+      }
+    ],
+    "match": {
+      "score": 0,
+      "class": "distinct",
+      "reasons": [],
+      "slug": ""
+    },
+    "slug": "barfly-new-york-ny",
+    "discovered_at": "2026-10-26"
+  },
+  {
+    "name": "Bleecker Street Bar",
+    "street": "648 Broadway",
+    "city": "New York",
+    "state": "NY",
+    "zip": "",
+    "lat": 40.7265973,
+    "lng": -73.9953567,
+    "phone": "+1-212-466-6482",
+    "website": "https://bleeckerstreetbarnyc.com/",
+    "facebook": "",
+    "venue_type": "bars-with-pool-tables",
+    "sources": [
+      {
+        "source": "openstreetmap",
+        "id": "node/11875083121",
+        "url": "https://www.openstreetmap.org/node/11875083121",
+        "evidence": "sport=billiards, amenity=bar"
+      }
+    ],
+    "match": {
+      "score": 0,
+      "class": "distinct",
+      "reasons": [],
+      "slug": ""
+    },
+    "slug": "bleecker-street-bar-new-york-ny",
+    "discovered_at": "2026-10-26"
+  },
+  {
+    "name": "Blue Ruin Bar",
+    "street": "548 9th Avenue",
+    "city": "New York",
+    "state": "NY",
+    "zip": "",
+    "lat": 40.756877,
+    "lng": -73.993538,
+    "phone": "",
+    "website": "",
+    "facebook": "",
+    "venue_type": "bars-with-pool-tables",
+    "sources": [
+      {
+        "source": "openstreetmap",
+        "id": "node/13530551350",
+        "url": "https://www.openstreetmap.org/node/13530551350",
+        "evidence": "sport=billiards, amenity=bar"
+      }
+    ],
+    "match": {
+      "score": 0,
+      "class": "distinct",
+      "reasons": [],
+      "slug": ""
+    },
+    "slug": "blue-ruin-bar-new-york-ny",
+    "discovered_at": "2026-10-26"
+  },
+  {
+    "name": "Boat",
+    "street": "",
+    "city": "New York",
+    "state": "NY",
+    "zip": "",
+    "lat": 40.685806,
+    "lng": -73.9909431,
+    "phone": "",
+    "website": "",
+    "facebook": "https://www.facebook.com/smithstreetbrooklyn/",
+    "venue_type": "bars-with-pool-tables",
+    "sources": [
+      {
+        "source": "openstreetmap",
+        "id": "node/4951740122",
+        "url": "https://www.openstreetmap.org/node/4951740122",
+        "evidence": "sport=billiards, amenity=bar"
+      }
+    ],
+    "match": {
+      "score": 0,
+      "class": "distinct",
+      "reasons": [],
+      "slug": ""
+    },
+    "slug": "boat-new-york-ny",
+    "discovered_at": "2026-10-26"
+  },
+  {
+    "name": "Bonus Room",
+    "street": "991 Wyckoff Avenue",
+    "city": "Ridgewood",
+    "state": "NY",
+    "zip": "11385",
+    "lat": 40.6961093,
+    "lng": -73.9046609,
+    "phone": "",
+    "website": "http://bonusroombar.com",
+    "facebook": "",
+    "venue_type": "bars-with-pool-tables",
+    "sources": [
+      {
+        "source": "openstreetmap",
+        "id": "node/5365021884",
+        "url": "https://www.openstreetmap.org/node/5365021884",
+        "evidence": "sport=billiards, amenity=bar"
+      }
+    ],
+    "match": {
+      "score": 0,
+      "class": "distinct",
+      "reasons": [],
+      "slug": ""
+    },
+    "slug": "bonus-room-new-york-ny",
+    "discovered_at": "2026-10-26"
+  },
+  {
+    "name": "Bootleg Bar",
+    "street": "1438 Myrtle Avenue",
+    "city": "New York",
+    "state": "NY",
+    "zip": "",
+    "lat": 40.6988008,
+    "lng": -73.9172377,
+    "phone": "+1-347-715-6307",
+    "website": "http://bootlegbarnyc.com/",
+    "facebook": "",
+    "venue_type": "bars-with-pool-tables",
+    "sources": [
+      {
+        "source": "openstreetmap",
+        "id": "node/10738353371",
+        "url": "https://www.openstreetmap.org/node/10738353371",
+        "evidence": "sport=billiards, amenity=bar"
+      }
+    ],
+    "match": {
+      "score": 0,
+      "class": "distinct",
+      "reasons": [],
+      "slug": ""
+    },
+    "slug": "bootleg-bar-new-york-ny",
+    "discovered_at": "2026-10-26"
+  },
+  {
+    "name": "Boxers",
+    "street": "",
+    "city": "New York",
+    "state": "NY",
+    "zip": "",
+    "lat": 40.7407461,
+    "lng": -73.9931415,
+    "phone": "",
+    "website": "",
+    "facebook": "",
+    "venue_type": "bars-with-pool-tables",
+    "sources": [
+      {
+        "source": "openstreetmap",
+        "id": "node/5607967821",
+        "url": "https://www.openstreetmap.org/node/5607967821",
+        "evidence": "sport=billiards, amenity=bar"
+      }
+    ],
+    "match": {
+      "score": 12,
+      "class": "distinct",
+      "reasons": [],
+      "slug": "society-billiards-and-bar-new-york-ny"
+    },
+    "slug": "boxers-new-york-ny",
+    "discovered_at": "2026-10-26"
+  },
+  {
+    "name": "BQE Billiards and Bar",
+    "street": "",
+    "city": "New York",
+    "state": "NY",
+    "zip": "",
+    "lat": 40.752165,
+    "lng": -73.8958282,
+    "phone": "",
+    "website": "",
+    "facebook": "",
+    "venue_type": "bars-with-pool-tables",
+    "sources": [
+      {
+        "source": "openstreetmap",
+        "id": "way/250587177",
+        "url": "https://www.openstreetmap.org/way/250587177",
+        "evidence": "sport=billiards, amenity=pub"
+      }
+    ],
+    "match": {
+      "score": 0,
+      "class": "distinct",
+      "reasons": [],
+      "slug": ""
+    },
+    "slug": "bqe-billiards-and-bar-new-york-ny",
+    "discovered_at": "2026-10-26"
+  },
+  {
+    "name": "Brooklyn Safehouse",
+    "street": "120 Franklin Street",
+    "city": "Brooklyn",
+    "state": "NY",
+    "zip": "11222",
+    "lat": 40.7288633,
+    "lng": -73.9572833,
+    "phone": "+1-718-349-6895",
+    "website": "https://brooklynsafehouse.com",
+    "facebook": "",
+    "venue_type": "bars-with-pool-tables",
+    "sources": [
+      {
+        "source": "openstreetmap",
+        "id": "node/6684049782",
+        "url": "https://www.openstreetmap.org/node/6684049782",
+        "evidence": "sport=billiards, amenity=bar"
+      }
+    ],
+    "match": {
+      "score": 0,
+      "class": "distinct",
+      "reasons": [],
+      "slug": ""
+    },
+    "slug": "brooklyn-safehouse-new-york-ny",
+    "discovered_at": "2026-10-26"
+  },
+  {
+    "name": "Brooklyn Social",
+    "street": "",
+    "city": "New York",
+    "state": "NY",
+    "zip": "",
+    "lat": 40.6804846,
+    "lng": -73.9945351,
+    "phone": "+1-718-858-7758",
+    "website": "https://brooklynsocialbar.com/",
+    "facebook": "",
+    "venue_type": "bars-with-pool-tables",
+    "sources": [
+      {
+        "source": "openstreetmap",
+        "id": "node/4194049557",
+        "url": "https://www.openstreetmap.org/node/4194049557",
+        "evidence": "sport=billiards, amenity=bar"
+      }
+    ],
+    "match": {
+      "score": 0,
+      "class": "distinct",
+      "reasons": [],
+      "slug": ""
+    },
+    "slug": "brooklyn-social-new-york-ny",
+    "discovered_at": "2026-10-26"
+  },
+  {
+    "name": "Bushwick Ice House",
+    "street": "35 Ingraham Street",
+    "city": "Brooklyn",
+    "state": "NY",
+    "zip": "11206",
+    "lat": 40.7070838,
+    "lng": -73.9324951,
+    "phone": "",
+    "website": "",
+    "facebook": "",
+    "venue_type": "bars-with-pool-tables",
+    "sources": [
+      {
+        "source": "openstreetmap",
+        "id": "node/5596263398",
+        "url": "https://www.openstreetmap.org/node/5596263398",
+        "evidence": "sport=billiards, amenity=bar"
+      }
+    ],
+    "match": {
+      "score": 0,
+      "class": "distinct",
+      "reasons": [],
+      "slug": ""
+    },
+    "slug": "bushwick-ice-house-new-york-ny",
+    "discovered_at": "2026-10-26"
+  },
+  {
+    "name": "Buttermilk Bar",
+    "street": "577 5th Avenue",
+    "city": "New York",
+    "state": "NY",
+    "zip": "11215",
+    "lat": 40.6648053,
+    "lng": -73.9897664,
+    "phone": "+1-718-788-6297",
+    "website": "",
+    "facebook": "https://www.facebook.com/buttermilkbrooklyn/",
+    "venue_type": "bars-with-pool-tables",
+    "sources": [
+      {
+        "source": "openstreetmap",
+        "id": "node/5777945555",
+        "url": "https://www.openstreetmap.org/node/5777945555",
+        "evidence": "sport=billiards, amenity=bar"
+      }
+    ],
+    "match": {
+      "score": 0,
+      "class": "distinct",
+      "reasons": [],
+      "slug": ""
+    },
+    "slug": "buttermilk-bar-new-york-ny",
+    "discovered_at": "2026-10-26"
+  },
+  {
+    "name": "Carlow East",
+    "street": "1254 Lexington Avenue",
+    "city": "New York",
+    "state": "NY",
+    "zip": "",
+    "lat": 40.7786314,
+    "lng": -73.9564131,
+    "phone": "+1 212-744-6397",
+    "website": "https://www.carloweastbar.com",
+    "facebook": "https://www.facebook.com/pages/Carlow-East/118044641542044",
+    "venue_type": "bars-with-pool-tables",
+    "sources": [
+      {
+        "source": "openstreetmap",
+        "id": "node/6781739945",
+        "url": "https://www.openstreetmap.org/node/6781739945",
+        "evidence": "sport=billiards, amenity=bar"
+      }
+    ],
+    "match": {
+      "score": 0,
+      "class": "distinct",
+      "reasons": [],
+      "slug": ""
+    },
+    "slug": "carlow-east-new-york-ny",
+    "discovered_at": "2026-10-26"
+  },
+  {
+    "name": "Carmelo's",
+    "street": "1544 DeKalb Avenue",
+    "city": "New York",
+    "state": "NY",
+    "zip": "",
+    "lat": 40.7027786,
+    "lng": -73.9205174,
+    "phone": "",
+    "website": "",
+    "facebook": "",
+    "venue_type": "bars-with-pool-tables",
+    "sources": [
+      {
+        "source": "openstreetmap",
+        "id": "node/10698434810",
+        "url": "https://www.openstreetmap.org/node/10698434810",
+        "evidence": "sport=billiards, amenity=bar"
+      }
+    ],
+    "match": {
+      "score": 0,
+      "class": "distinct",
+      "reasons": [],
+      "slug": ""
+    },
+    "slug": "carmelos-new-york-ny",
+    "discovered_at": "2026-10-26"
+  },
+  {
+    "name": "Carousel",
+    "street": "36 Wyckoff Street",
+    "city": "New York",
+    "state": "NY",
+    "zip": "",
+    "lat": 40.7059005,
+    "lng": -73.9220539,
+    "phone": "",
+    "website": "",
+    "facebook": "",
+    "venue_type": "bars-with-pool-tables",
+    "sources": [
+      {
+        "source": "openstreetmap",
+        "id": "node/11334987760",
+        "url": "https://www.openstreetmap.org/node/11334987760",
+        "evidence": "sport=billiards, amenity=bar"
+      }
+    ],
+    "match": {
+      "score": 0,
+      "class": "distinct",
+      "reasons": [],
+      "slug": ""
+    },
+    "slug": "carousel-new-york-ny",
+    "discovered_at": "2026-10-26"
+  },
+  {
+    "name": "Clara's",
+    "street": "53 Wilson Avenue",
+    "city": "New York",
+    "state": "NY",
+    "zip": "",
+    "lat": 40.7025745,
+    "lng": -73.9287202,
+    "phone": "+1-347-295-1338",
+    "website": "https://clarasbushwick.com/",
+    "facebook": "",
+    "venue_type": "bars-with-pool-tables",
+    "sources": [
+      {
+        "source": "openstreetmap",
+        "id": "node/6126009713",
+        "url": "https://www.openstreetmap.org/node/6126009713",
+        "evidence": "sport=billiards, amenity=bar"
+      }
+    ],
+    "match": {
+      "score": 0,
+      "class": "distinct",
+      "reasons": [],
+      "slug": ""
+    },
+    "slug": "claras-new-york-ny",
+    "discovered_at": "2026-10-26"
+  },
+  {
+    "name": "Cobra Club",
+    "street": "6 Wyckoff Avenue",
+    "city": "Brooklyn",
+    "state": "NY",
+    "zip": "11237",
+    "lat": 40.7066929,
+    "lng": -73.9235048,
+    "phone": "+1-917-719-1138",
+    "website": "https://www.cobraclubbk.com/",
+    "facebook": "",
+    "venue_type": "bars-with-pool-tables",
+    "sources": [
+      {
+        "source": "openstreetmap",
+        "id": "way/250424743",
+        "url": "https://www.openstreetmap.org/way/250424743",
+        "evidence": "sport=billiards;yoga, amenity=bar"
+      }
+    ],
+    "match": {
+      "score": 0,
+      "class": "distinct",
+      "reasons": [],
+      "slug": ""
+    },
+    "slug": "cobra-club-new-york-ny",
+    "discovered_at": "2026-10-26"
+  },
+  {
+    "name": "Connie O's Pub",
+    "street": "",
+    "city": "New York",
+    "state": "NY",
+    "zip": "",
+    "lat": 40.7265415,
+    "lng": -73.9480403,
+    "phone": "",
+    "website": "",
+    "facebook": "",
+    "venue_type": "bars-with-pool-tables",
+    "sources": [
+      {
+        "source": "openstreetmap",
+        "id": "node/3957456405",
+        "url": "https://www.openstreetmap.org/node/3957456405",
+        "evidence": "sport=billiards, amenity=bar"
+      }
+    ],
+    "match": {
+      "score": 15,
+      "class": "distinct",
+      "reasons": [],
+      "slug": "anytime-bar-and-billiards-new-york-ny"
+    },
+    "slug": "connie-os-pub-new-york-ny",
+    "discovered_at": "2026-10-26"
+  },
+  {
+    "name": "Cozy Corner",
+    "street": "60-01 70th Avenue",
+    "city": "Ridgewood",
+    "state": "NY",
+    "zip": "11385",
+    "lat": 40.701672,
+    "lng": -73.8987795,
+    "phone": "+1-718-381-8397",
+    "website": "",
+    "facebook": "",
+    "venue_type": "bars-with-pool-tables",
+    "sources": [
+      {
+        "source": "openstreetmap",
+        "id": "node/5365021889",
+        "url": "https://www.openstreetmap.org/node/5365021889",
+        "evidence": "sport=billiards, amenity=bar"
+      }
+    ],
+    "match": {
+      "score": 0,
+      "class": "distinct",
+      "reasons": [],
+      "slug": ""
+    },
+    "slug": "cozy-corner-new-york-ny",
+    "discovered_at": "2026-10-26"
+  },
+  {
+    "name": "Cue Bar",
+    "street": "45-18 Bell Boulevard",
+    "city": "Bayside",
+    "state": "NY",
+    "zip": "11361",
+    "lat": 40.7597158,
+    "lng": -73.7694093,
+    "phone": "+1-718-631-2646",
+    "website": "https://www.cuebar.com/",
+    "facebook": "http://www.facebook.com/cuebar",
+    "venue_type": "bars-with-pool-tables",
+    "sources": [
+      {
+        "source": "openstreetmap",
+        "id": "way/284429392",
+        "url": "https://www.openstreetmap.org/way/284429392",
+        "evidence": "sport=billiards;table_tennis, amenity=bar"
+      }
+    ],
+    "match": {
+      "score": 0,
+      "class": "distinct",
+      "reasons": [],
+      "slug": ""
+    },
+    "slug": "cue-bar-new-york-ny",
+    "discovered_at": "2026-10-26"
+  },
+  {
+    "name": "Daddy's Bar",
+    "street": "464 Onderdonk Avenue",
+    "city": "Ridgewood",
+    "state": "NY",
+    "zip": "11385",
+    "lat": 40.7068127,
+    "lng": -73.9122223,
+    "phone": "",
+    "website": "",
+    "facebook": "",
+    "venue_type": "bars-with-pool-tables",
+    "sources": [
+      {
+        "source": "openstreetmap",
+        "id": "node/12300459338",
+        "url": "https://www.openstreetmap.org/node/12300459338",
+        "evidence": "sport=billiards, amenity=bar"
+      }
+    ],
+    "match": {
+      "score": 0,
+      "class": "distinct",
+      "reasons": [],
+      "slug": ""
+    },
+    "slug": "daddys-bar-new-york-ny",
+    "discovered_at": "2026-10-26"
+  },
+  {
+    "name": "Doc Holidays",
+    "street": "",
+    "city": "New York",
+    "state": "NY",
+    "zip": "",
+    "lat": 40.7076524,
+    "lng": -73.9451047,
+    "phone": "",
+    "website": "",
+    "facebook": "",
+    "venue_type": "bars-with-pool-tables",
+    "sources": [
+      {
+        "source": "openstreetmap",
+        "id": "node/13067819047",
+        "url": "https://www.openstreetmap.org/node/13067819047",
+        "evidence": "sport=billiards, amenity=bar"
+      }
+    ],
+    "match": {
+      "score": 8,
+      "class": "distinct",
+      "reasons": [],
+      "slug": "amsterdam-billiards-new-york-ny"
+    },
+    "slug": "doc-holidays-new-york-ny",
+    "discovered_at": "2026-10-26"
+  },
+  {
+    "name": "Double Down Saloon",
+    "street": "14 Avenue A",
+    "city": "New York",
+    "state": "NY",
+    "zip": "10009",
+    "lat": 40.7225821,
+    "lng": -73.985875,
+    "phone": "",
+    "website": "",
+    "facebook": "",
+    "venue_type": "bars-with-pool-tables",
+    "sources": [
+      {
+        "source": "openstreetmap",
+        "id": "node/6030861392",
+        "url": "https://www.openstreetmap.org/node/6030861392",
+        "evidence": "sport=billiards, amenity=bar"
+      }
+    ],
+    "match": {
+      "score": 0,
+      "class": "distinct",
+      "reasons": [],
+      "slug": ""
+    },
+    "slug": "double-down-saloon-new-york-ny",
+    "discovered_at": "2026-10-26"
+  },
+  {
+    "name": "Dram Shop",
+    "street": "",
+    "city": "New York",
+    "state": "NY",
+    "zip": "",
+    "lat": 40.6687941,
+    "lng": -73.9851157,
+    "phone": "+1-929-276-3452",
+    "website": "https://www.dramshopbrooklyn.com",
+    "facebook": "",
+    "venue_type": "bars-with-pool-tables",
+    "sources": [
+      {
+        "source": "openstreetmap",
+        "id": "node/5706864741",
+        "url": "https://www.openstreetmap.org/node/5706864741",
+        "evidence": "sport=billiards;darts, amenity=pub"
+      }
+    ],
+    "match": {
+      "score": 0,
+      "class": "distinct",
+      "reasons": [],
+      "slug": ""
+    },
+    "slug": "dram-shop-new-york-ny",
+    "discovered_at": "2026-10-26"
+  },
+  {
+    "name": "Finn's Corner",
+    "street": "660 Washington Avenue",
+    "city": "Brooklyn",
+    "state": "NY",
+    "zip": "11238",
+    "lat": 40.6784339,
+    "lng": -73.9640584,
+    "phone": "+1-347-663-9316",
+    "website": "https://www.finnscornernyc.com",
+    "facebook": "",
+    "venue_type": "bars-with-pool-tables",
+    "sources": [
+      {
+        "source": "openstreetmap",
+        "id": "node/6833039071",
+        "url": "https://www.openstreetmap.org/node/6833039071",
+        "evidence": "sport=billiards;darts, amenity=pub"
+      }
+    ],
+    "match": {
+      "score": 0,
+      "class": "distinct",
+      "reasons": [],
+      "slug": ""
+    },
+    "slug": "finns-corner-new-york-ny",
+    "discovered_at": "2026-10-26"
+  },
+  {
+    "name": "Frog Wine Bar",
+    "street": "358 Marcus Garvey Boulevard",
+    "city": "New York",
+    "state": "NY",
+    "zip": "",
+    "lat": 40.6848398,
+    "lng": -73.9385822,
+    "phone": "+1-585-456-1050",
+    "website": "",
+    "facebook": "",
+    "venue_type": "bars-with-pool-tables",
+    "sources": [
+      {
+        "source": "openstreetmap",
+        "id": "node/10982856731",
+        "url": "https://www.openstreetmap.org/node/10982856731",
+        "evidence": "sport=billiards, amenity=bar"
+      }
+    ],
+    "match": {
+      "score": 0,
+      "class": "distinct",
+      "reasons": [],
+      "slug": ""
+    },
+    "slug": "frog-wine-bar-new-york-ny",
+    "discovered_at": "2026-10-26"
+  },
+  {
+    "name": "Fáílte",
+    "street": "531 2nd Avenue",
+    "city": "New York",
+    "state": "NY",
+    "zip": "10016",
+    "lat": 40.7420693,
+    "lng": -73.9781971,
+    "phone": "+1-212-725-9440",
+    "website": "https://failtebar.com",
+    "facebook": "",
+    "venue_type": "bars-with-pool-tables",
+    "sources": [
+      {
+        "source": "openstreetmap",
+        "id": "way/248827294",
+        "url": "https://www.openstreetmap.org/way/248827294",
+        "evidence": "sport=billiards, amenity=pub"
+      }
+    ],
+    "match": {
+      "score": 0,
+      "class": "distinct",
+      "reasons": [],
+      "slug": ""
+    },
+    "slug": "f-lte-new-york-ny",
+    "discovered_at": "2026-10-26"
+  },
+  {
+    "name": "George & Jacks Tap Room",
+    "street": "103 Berry Street",
+    "city": "Brooklyn",
+    "state": "NY",
+    "zip": "11249",
+    "lat": 40.7190372,
+    "lng": -73.9584135,
+    "phone": "",
+    "website": "",
+    "facebook": "",
+    "venue_type": "bars-with-pool-tables",
+    "sources": [
+      {
+        "source": "openstreetmap",
+        "id": "node/2839699816",
+        "url": "https://www.openstreetmap.org/node/2839699816",
+        "evidence": "sport=billiards, amenity=bar"
+      }
+    ],
+    "match": {
+      "score": 0,
+      "class": "distinct",
+      "reasons": [],
+      "slug": ""
+    },
+    "slug": "george-and-jacks-tap-room-new-york-ny",
+    "discovered_at": "2026-10-26"
+  },
+  {
+    "name": "Ginger's Bar",
+    "street": "363 5th Avenue",
+    "city": "Brooklyn",
+    "state": "NY",
+    "zip": "11215",
+    "lat": 40.6713308,
+    "lng": -73.9843022,
+    "phone": "",
+    "website": "https://www.gingersbarbk.com/",
+    "facebook": "",
+    "venue_type": "bars-with-pool-tables",
+    "sources": [
+      {
+        "source": "openstreetmap",
+        "id": "node/5182473281",
+        "url": "https://www.openstreetmap.org/node/5182473281",
+        "evidence": "sport=billiards, amenity=bar"
+      }
+    ],
+    "match": {
+      "score": 0,
+      "class": "distinct",
+      "reasons": [],
+      "slug": ""
+    },
+    "slug": "gingers-bar-new-york-ny",
+    "discovered_at": "2026-10-26"
+  },
+  {
+    "name": "Ha-Weeda Tavern",
+    "street": "4575 2nd Avenue",
+    "city": "New York",
+    "state": "NY",
+    "zip": "11220",
+    "lat": 40.6514815,
+    "lng": -74.014222,
+    "phone": "",
+    "website": "https://www.haweedatavern.com",
+    "facebook": "",
+    "venue_type": "bars-with-pool-tables",
+    "sources": [
+      {
+        "source": "openstreetmap",
+        "id": "node/9775989876",
+        "url": "https://www.openstreetmap.org/node/9775989876",
+        "evidence": "sport=billiards, leisure=amusement_arcade, amenity=pub"
+      }
+    ],
+    "match": {
+      "score": 0,
+      "class": "distinct",
+      "reasons": [],
+      "slug": ""
+    },
+    "slug": "ha-weeda-tavern-new-york-ny",
+    "discovered_at": "2026-10-26"
+  },
+  {
+    "name": "Halyards",
+    "street": "406 3rd Avenue",
+    "city": "New York",
+    "state": "NY",
+    "zip": "11215",
+    "lat": 40.6732561,
+    "lng": -73.9897416,
+    "phone": "",
+    "website": "https://www.barhalyards.com/",
+    "facebook": "",
+    "venue_type": "bars-with-pool-tables",
+    "sources": [
+      {
+        "source": "openstreetmap",
+        "id": "node/5774139397",
+        "url": "https://www.openstreetmap.org/node/5774139397",
+        "evidence": "sport=billiards, amenity=pub"
+      }
+    ],
+    "match": {
+      "score": 0,
+      "class": "distinct",
+      "reasons": [],
+      "slug": ""
+    },
+    "slug": "halyards-new-york-ny",
+    "discovered_at": "2026-10-26"
+  },
+  {
+    "name": "Haven Lounge",
+    "street": "683 Grand Street",
+    "city": "New York",
+    "state": "NY",
+    "zip": "",
+    "lat": 40.7116684,
+    "lng": -73.9452005,
+    "phone": "+1-347-599-2607",
+    "website": "https://www.haven683grand.com/",
+    "facebook": "",
+    "venue_type": "bars-with-pool-tables",
+    "sources": [
+      {
+        "source": "openstreetmap",
+        "id": "node/5595354776",
+        "url": "https://www.openstreetmap.org/node/5595354776",
+        "evidence": "sport=billiards, amenity=bar"
+      }
+    ],
+    "match": {
+      "score": 0,
+      "class": "distinct",
+      "reasons": [],
+      "slug": ""
+    },
+    "slug": "haven-lounge-new-york-ny",
+    "discovered_at": "2026-10-26"
+  },
+  {
+    "name": "Heavy Woods",
+    "street": "50 Wyckoff Avenue",
+    "city": "New York",
+    "state": "NY",
+    "zip": "11237",
+    "lat": 40.7056487,
+    "lng": -73.9216186,
+    "phone": "+1-929-234-3500",
+    "website": "https://www.heavywoodsbar.com/",
+    "facebook": "",
+    "venue_type": "bars-with-pool-tables",
+    "sources": [
+      {
+        "source": "openstreetmap",
+        "id": "node/5625538922",
+        "url": "https://www.openstreetmap.org/node/5625538922",
+        "evidence": "sport=billiards, amenity=pub"
+      }
+    ],
+    "match": {
+      "score": 0,
+      "class": "distinct",
+      "reasons": [],
+      "slug": ""
+    },
+    "slug": "heavy-woods-new-york-ny",
+    "discovered_at": "2026-10-26"
+  },
+  {
+    "name": "Horses and Divorces",
+    "street": "285 Bedford Avenue",
+    "city": "Brooklyn",
+    "state": "NY",
+    "zip": "11211",
+    "lat": 40.7140946,
+    "lng": -73.961426,
+    "phone": "",
+    "website": "",
+    "facebook": "",
+    "venue_type": "bars-with-pool-tables",
+    "sources": [
+      {
+        "source": "openstreetmap",
+        "id": "node/4336929647",
+        "url": "https://www.openstreetmap.org/node/4336929647",
+        "evidence": "sport=billiards, amenity=bar"
+      }
+    ],
+    "match": {
+      "score": 0,
+      "class": "distinct",
+      "reasons": [],
+      "slug": ""
+    },
+    "slug": "horses-and-divorces-new-york-ny",
+    "discovered_at": "2026-10-26"
+  },
+  {
+    "name": "Industry",
+    "street": "355 West 52nd Street",
+    "city": "New York",
+    "state": "NY",
+    "zip": "",
+    "lat": 40.7643224,
+    "lng": -73.9873646,
+    "phone": "",
+    "website": "",
+    "facebook": "",
+    "venue_type": "bars-with-pool-tables",
+    "sources": [
+      {
+        "source": "openstreetmap",
+        "id": "node/4435477389",
+        "url": "https://www.openstreetmap.org/node/4435477389",
+        "evidence": "sport=billiards, amenity=bar"
+      }
+    ],
+    "match": {
+      "score": 1,
+      "class": "distinct",
+      "reasons": [],
+      "slug": "society-billiards-and-bar-new-york-ny"
+    },
+    "slug": "industry-new-york-ny",
+    "discovered_at": "2026-10-26"
+  },
+  {
+    "name": "Joe Broadway's Billiards & Sports Pub",
+    "street": "",
+    "city": "New York",
+    "state": "NY",
+    "zip": "",
+    "lat": 40.6263384,
+    "lng": -74.1621376,
+    "phone": "",
+    "website": "",
+    "facebook": "",
+    "venue_type": "bars-with-pool-tables",
+    "sources": [
+      {
+        "source": "openstreetmap",
+        "id": "node/10759831075",
+        "url": "https://www.openstreetmap.org/node/10759831075",
+        "evidence": "amenity=bar"
+      }
+    ],
+    "match": {
+      "score": 0,
+      "class": "distinct",
+      "reasons": [],
+      "slug": ""
+    },
+    "slug": "joe-broadways-billiards-and-sports-pub-new-york-ny",
+    "discovered_at": "2026-10-26"
+  },
+  {
+    "name": "Joe's Bar & Grill",
+    "street": "257 Avenue U",
+    "city": "New York",
+    "state": "NY",
+    "zip": "",
+    "lat": 40.5969453,
+    "lng": -73.974653,
+    "phone": "+1 718-372-9595",
+    "website": "",
+    "facebook": "",
+    "venue_type": "bars-with-pool-tables",
+    "sources": [
+      {
+        "source": "openstreetmap",
+        "id": "node/13563215324",
+        "url": "https://www.openstreetmap.org/node/13563215324",
+        "evidence": "sport=billiards, amenity=bar"
+      }
+    ],
+    "match": {
+      "score": 0,
+      "class": "distinct",
+      "reasons": [],
+      "slug": ""
+    },
+    "slug": "joes-bar-and-grill-new-york-ny",
+    "discovered_at": "2026-10-26"
+  },
+  {
+    "name": "Kingston Hall",
+    "street": "149 2nd Avenue",
+    "city": "New York",
+    "state": "NY",
+    "zip": "10003",
+    "lat": 40.7295009,
+    "lng": -73.9872677,
+    "phone": "",
+    "website": "https://www.kingstonhall.com/",
+    "facebook": "",
+    "venue_type": "bars-with-pool-tables",
+    "sources": [
+      {
+        "source": "openstreetmap",
+        "id": "node/4947754523",
+        "url": "https://www.openstreetmap.org/node/4947754523",
+        "evidence": "sport=billiards, amenity=bar"
+      }
+    ],
+    "match": {
+      "score": 5,
+      "class": "distinct",
+      "reasons": [],
+      "slug": "space-billiard-pool-hall-and-sports-bar-new-york-ny"
+    },
+    "slug": "kingston-hall-new-york-ny",
+    "discovered_at": "2026-10-26"
+  },
+  {
+    "name": "Lone Wolf",
+    "street": "1089 Broadway",
+    "city": "Brooklyn",
+    "state": "NY",
+    "zip": "11221",
+    "lat": 40.694457,
+    "lng": -73.93051,
+    "phone": "+1-718-455-2028",
+    "website": "",
+    "facebook": "",
+    "venue_type": "bars-with-pool-tables",
+    "sources": [
+      {
+        "source": "openstreetmap",
+        "id": "node/2568566984",
+        "url": "https://www.openstreetmap.org/node/2568566984",
+        "evidence": "sport=billiards, amenity=bar"
+      }
+    ],
+    "match": {
+      "score": 0,
+      "class": "distinct",
+      "reasons": [],
+      "slug": ""
+    },
+    "slug": "lone-wolf-new-york-ny",
+    "discovered_at": "2026-10-26"
+  },
+  {
+    "name": "Lou's Athletic Club",
+    "street": "384 Knickerbocker Avenue",
+    "city": "New York",
+    "state": "NY",
+    "zip": "11237",
+    "lat": 40.6995926,
+    "lng": -73.920372,
+    "phone": "",
+    "website": "",
+    "facebook": "",
+    "venue_type": "bars-with-pool-tables",
+    "sources": [
+      {
+        "source": "openstreetmap",
+        "id": "node/12329893247",
+        "url": "https://www.openstreetmap.org/node/12329893247",
+        "evidence": "sport=billiards, amenity=bar"
+      }
+    ],
+    "match": {
+      "score": 0,
+      "class": "distinct",
+      "reasons": [],
+      "slug": ""
+    },
+    "slug": "lous-athletic-club-new-york-ny",
+    "discovered_at": "2026-10-26"
+  },
+  {
+    "name": "Lucy's Bar",
+    "street": "",
+    "city": "New York",
+    "state": "NY",
+    "zip": "",
+    "lat": 40.7270608,
+    "lng": -73.9830229,
+    "phone": "",
+    "website": "",
+    "facebook": "",
+    "venue_type": "bars-with-pool-tables",
+    "sources": [
+      {
+        "source": "openstreetmap",
+        "id": "node/11189423585",
+        "url": "https://www.openstreetmap.org/node/11189423585",
+        "evidence": "sport=billiards, amenity=bar"
+      }
+    ],
+    "match": {
+      "score": 13,
+      "class": "distinct",
+      "reasons": [],
+      "slug": "society-billiards-and-bar-new-york-ny"
+    },
+    "slug": "lucys-bar-new-york-ny",
+    "discovered_at": "2026-10-26"
+  },
+  {
+    "name": "MacDougal Street Ale House",
+    "street": "122 MacDougal Street",
+    "city": "New York",
+    "state": "NY",
+    "zip": "10012",
+    "lat": 40.7299133,
+    "lng": -74.0004358,
+    "phone": "+1 212 254 0006",
+    "website": "",
+    "facebook": "https://www.facebook.com/pages/MacDougal-St-Ale-House-Pla-Street/116550071739296",
+    "venue_type": "bars-with-pool-tables",
+    "sources": [
+      {
+        "source": "openstreetmap",
+        "id": "node/3822461833",
+        "url": "https://www.openstreetmap.org/node/3822461833",
+        "evidence": "sport=billiards, amenity=pub"
+      }
+    ],
+    "match": {
+      "score": 0,
+      "class": "distinct",
+      "reasons": [],
+      "slug": ""
+    },
+    "slug": "macdougal-street-ale-house-new-york-ny",
+    "discovered_at": "2026-10-26"
+  },
+  {
+    "name": "Mai Tai's Bar and Kitchen",
+    "street": "1087 Broadway",
+    "city": "Brooklyn",
+    "state": "NY",
+    "zip": "11221",
+    "lat": 40.6945038,
+    "lng": -73.9305705,
+    "phone": "",
+    "website": "",
+    "facebook": "",
+    "venue_type": "bars-with-pool-tables",
+    "sources": [
+      {
+        "source": "openstreetmap",
+        "id": "node/11934154219",
+        "url": "https://www.openstreetmap.org/node/11934154219",
+        "evidence": "sport=billiards, amenity=bar"
+      }
+    ],
+    "match": {
+      "score": 0,
+      "class": "distinct",
+      "reasons": [],
+      "slug": ""
+    },
+    "slug": "mai-tais-bar-and-kitchen-new-york-ny",
+    "discovered_at": "2026-10-26"
+  },
+  {
+    "name": "Marian's Brooklyn",
+    "street": "",
+    "city": "New York",
+    "state": "NY",
+    "zip": "",
+    "lat": 40.6880276,
+    "lng": -73.927241,
+    "phone": "",
+    "website": "",
+    "facebook": "",
+    "venue_type": "bars-with-pool-tables",
+    "sources": [
+      {
+        "source": "openstreetmap",
+        "id": "node/11759949067",
+        "url": "https://www.openstreetmap.org/node/11759949067",
+        "evidence": "sport=billiards, amenity=bar"
+      }
+    ],
+    "match": {
+      "score": 0,
+      "class": "distinct",
+      "reasons": [],
+      "slug": ""
+    },
+    "slug": "marians-brooklyn-new-york-ny",
+    "discovered_at": "2026-10-26"
+  },
+  {
+    "name": "Merrion Square Pub",
+    "street": "1840 2nd Avenue",
+    "city": "New York",
+    "state": "NY",
+    "zip": "10128",
+    "lat": 40.7835603,
+    "lng": -73.9472416,
+    "phone": "+1 212-831-7696",
+    "website": "",
+    "facebook": "",
+    "venue_type": "bars-with-pool-tables",
+    "sources": [
+      {
+        "source": "openstreetmap",
+        "id": "way/664632831",
+        "url": "https://www.openstreetmap.org/way/664632831",
+        "evidence": "sport=billiards, amenity=bar"
+      }
+    ],
+    "match": {
+      "score": 0,
+      "class": "distinct",
+      "reasons": [],
+      "slug": ""
+    },
+    "slug": "merrion-square-pub-new-york-ny",
+    "discovered_at": "2026-10-26"
+  },
+  {
+    "name": "Merv's",
+    "street": "266 Irving Avenue",
+    "city": "New York",
+    "state": "NY",
+    "zip": "",
+    "lat": 40.6996659,
+    "lng": -73.9157869,
+    "phone": "+1-347-715-4255",
+    "website": "https://dromedarybar.com/",
+    "facebook": "",
+    "venue_type": "bars-with-pool-tables",
+    "sources": [
+      {
+        "source": "openstreetmap",
+        "id": "node/5419416497",
+        "url": "https://www.openstreetmap.org/node/5419416497",
+        "evidence": "sport=billiards, amenity=bar"
+      }
+    ],
+    "match": {
+      "score": 0,
+      "class": "distinct",
+      "reasons": [],
+      "slug": ""
+    },
+    "slug": "mervs-new-york-ny",
+    "discovered_at": "2026-10-26"
+  },
+  {
+    "name": "Metropolitan Bar",
+    "street": "559 Lorimer Street",
+    "city": "New York",
+    "state": "NY",
+    "zip": "",
+    "lat": 40.7136339,
+    "lng": -73.9494852,
+    "phone": "+1-718-599-4444",
+    "website": "",
+    "facebook": "",
+    "venue_type": "bars-with-pool-tables",
+    "sources": [
+      {
+        "source": "openstreetmap",
+        "id": "node/6379666403",
+        "url": "https://www.openstreetmap.org/node/6379666403",
+        "evidence": "sport=billiards, amenity=bar"
+      }
+    ],
+    "match": {
+      "score": 0,
+      "class": "distinct",
+      "reasons": [],
+      "slug": ""
+    },
+    "slug": "metropolitan-bar-new-york-ny",
+    "discovered_at": "2026-10-26"
+  },
+  {
+    "name": "Midway",
+    "street": "272 Grand Street",
+    "city": "New York",
+    "state": "NY",
+    "zip": "",
+    "lat": 40.7130957,
+    "lng": -73.9581236,
+    "phone": "",
+    "website": "",
+    "facebook": "",
+    "venue_type": "bars-with-pool-tables",
+    "sources": [
+      {
+        "source": "openstreetmap",
+        "id": "node/11483961768",
+        "url": "https://www.openstreetmap.org/node/11483961768",
+        "evidence": "sport=billiards, amenity=bar"
+      }
+    ],
+    "match": {
+      "score": 1,
+      "class": "distinct",
+      "reasons": [],
+      "slug": "amsterdam-billiards-new-york-ny"
+    },
+    "slug": "midway-new-york-ny",
+    "discovered_at": "2026-10-26"
+  },
+  {
+    "name": "Mona's",
+    "street": "224 Avenue B",
+    "city": "New York",
+    "state": "NY",
+    "zip": "10009",
+    "lat": 40.7291724,
+    "lng": -73.9783661,
+    "phone": "+1-212-353-3780",
+    "website": "",
+    "facebook": "https://www.facebook.com/Monas-Bar-NYC-118839478171924/",
+    "venue_type": "bars-with-pool-tables",
+    "sources": [
+      {
+        "source": "openstreetmap",
+        "id": "node/2491343755",
+        "url": "https://www.openstreetmap.org/node/2491343755",
+        "evidence": "sport=billiards, amenity=bar"
+      }
+    ],
+    "match": {
+      "score": 0,
+      "class": "distinct",
+      "reasons": [],
+      "slug": ""
+    },
+    "slug": "monas-new-york-ny",
+    "discovered_at": "2026-10-26"
+  },
+  {
+    "name": "Montero's Bar",
+    "street": "",
+    "city": "New York",
+    "state": "NY",
+    "zip": "",
+    "lat": 40.6913864,
+    "lng": -73.9979208,
+    "phone": "+1-646-729-4129",
+    "website": "",
+    "facebook": "https://www.facebook.com/Monteros-Bar-125302204147658/",
+    "venue_type": "bars-with-pool-tables",
+    "sources": [
+      {
+        "source": "openstreetmap",
+        "id": "node/6372786025",
+        "url": "https://www.openstreetmap.org/node/6372786025",
+        "evidence": "sport=billiards, amenity=bar"
+      }
+    ],
+    "match": {
+      "score": 19,
+      "class": "distinct",
+      "reasons": [],
+      "slug": "amsterdam-billiards-new-york-ny"
+    },
+    "slug": "monteros-bar-new-york-ny",
+    "discovered_at": "2026-10-26"
+  },
+  {
+    "name": "Nightshade",
+    "street": "",
+    "city": "New York",
+    "state": "NY",
+    "zip": "",
+    "lat": 40.7195446,
+    "lng": -73.9457523,
+    "phone": "",
+    "website": "",
+    "facebook": "",
+    "venue_type": "bars-with-pool-tables",
+    "sources": [
+      {
+        "source": "openstreetmap",
+        "id": "node/10897850842",
+        "url": "https://www.openstreetmap.org/node/10897850842",
+        "evidence": "sport=billiards, amenity=bar"
+      }
+    ],
+    "match": {
+      "score": 14,
+      "class": "distinct",
+      "reasons": [],
+      "slug": "anytime-bar-and-billiards-new-york-ny"
+    },
+    "slug": "nightshade-new-york-ny",
+    "discovered_at": "2026-10-26"
+  },
+  {
+    "name": "Nowhere",
+    "street": "322 East 14th Street",
+    "city": "New York",
+    "state": "NY",
+    "zip": "10003",
+    "lat": 40.7318045,
+    "lng": -73.9840953,
+    "phone": "+1-212-477-4744",
+    "website": "https://www.nowherebarnyc.com/",
+    "facebook": "",
+    "venue_type": "bars-with-pool-tables",
+    "sources": [
+      {
+        "source": "openstreetmap",
+        "id": "node/3677010929",
+        "url": "https://www.openstreetmap.org/node/3677010929",
+        "evidence": "sport=billiards, amenity=bar"
+      }
+    ],
+    "match": {
+      "score": 0,
+      "class": "distinct",
+      "reasons": [],
+      "slug": ""
+    },
+    "slug": "nowhere-new-york-ny",
+    "discovered_at": "2026-10-26"
+  },
+  {
+    "name": "Ocean's 8",
+    "street": "308 Flatbush Avenue",
+    "city": "New York",
+    "state": "NY",
+    "zip": "11238",
+    "lat": 40.6773707,
+    "lng": -73.9730851,
+    "phone": "+1-718-857-5555",
+    "website": "https://www.oceans8ny.com",
+    "facebook": "",
+    "venue_type": "bars-with-pool-tables",
+    "sources": [
+      {
+        "source": "openstreetmap",
+        "id": "way/637354701",
+        "url": "https://www.openstreetmap.org/way/637354701",
+        "evidence": "sport=billiards;table_tennis;air_hockey, leisure=amusement_arcade, amenity=bar"
+      }
+    ],
+    "match": {
+      "score": 0,
+      "class": "distinct",
+      "reasons": [],
+      "slug": ""
+    },
+    "slug": "oceans-8-new-york-ny",
+    "discovered_at": "2026-10-26"
+  },
+  {
+    "name": "Olympia Billiards Snooker Bar",
+    "street": "",
+    "city": "New York",
+    "state": "NY",
+    "zip": "",
+    "lat": 40.7468267,
+    "lng": -73.8884901,
+    "phone": "",
+    "website": "",
+    "facebook": "",
+    "venue_type": "bars-with-pool-tables",
+    "sources": [
+      {
+        "source": "openstreetmap",
+        "id": "node/7917128907",
+        "url": "https://www.openstreetmap.org/node/7917128907",
+        "evidence": "amenity=bar"
+      }
+    ],
+    "match": {
+      "score": 0,
+      "class": "distinct",
+      "reasons": [],
+      "slug": ""
+    },
+    "slug": "olympia-billiards-snooker-bar-new-york-ny",
+    "discovered_at": "2026-10-26"
+  },
+  {
+    "name": "One and One",
+    "street": "76 East 1st Street",
+    "city": "New York",
+    "state": "NY",
+    "zip": "10009",
+    "lat": 40.7232877,
+    "lng": -73.9882234,
+    "phone": "+1-212-598-9126",
+    "website": "https://www.oneandonenyc.com",
+    "facebook": "",
+    "venue_type": "bars-with-pool-tables",
+    "sources": [
+      {
+        "source": "openstreetmap",
+        "id": "node/2555128954",
+        "url": "https://www.openstreetmap.org/node/2555128954",
+        "evidence": "sport=billiards, amenity=bar"
+      }
+    ],
+    "match": {
+      "score": 0,
+      "class": "distinct",
+      "reasons": [],
+      "slug": ""
+    },
+    "slug": "one-and-one-new-york-ny",
+    "discovered_at": "2026-10-26"
+  },
+  {
+    "name": "Ontario Bar",
+    "street": "559 Grand Street",
+    "city": "New York",
+    "state": "NY",
+    "zip": "11211",
+    "lat": 40.7112593,
+    "lng": -73.9492151,
+    "phone": "",
+    "website": "",
+    "facebook": "",
+    "venue_type": "bars-with-pool-tables",
+    "sources": [
+      {
+        "source": "openstreetmap",
+        "id": "node/10693258589",
+        "url": "https://www.openstreetmap.org/node/10693258589",
+        "evidence": "sport=billiards, amenity=bar"
+      }
+    ],
+    "match": {
+      "score": 0,
+      "class": "distinct",
+      "reasons": [],
+      "slug": ""
+    },
+    "slug": "ontario-bar-new-york-ny",
+    "discovered_at": "2026-10-26"
+  },
+  {
+    "name": "Paddy Maguire's",
+    "street": "237 3rd Avenue",
+    "city": "New York",
+    "state": "NY",
+    "zip": "",
+    "lat": 40.7366487,
+    "lng": -73.9844977,
+    "phone": "+1-212-253-0031",
+    "website": "https://www.paddymaguiresnyc.com/",
+    "facebook": "",
+    "venue_type": "bars-with-pool-tables",
+    "sources": [
+      {
+        "source": "openstreetmap",
+        "id": "node/7667683409",
+        "url": "https://www.openstreetmap.org/node/7667683409",
+        "evidence": "sport=billiards, amenity=pub"
+      }
+    ],
+    "match": {
+      "score": 0,
+      "class": "distinct",
+      "reasons": [],
+      "slug": ""
+    },
+    "slug": "paddy-maguires-new-york-ny",
+    "discovered_at": "2026-10-26"
+  },
+  {
+    "name": "Paddy Reilly's",
+    "street": "519 2nd Avenue",
+    "city": "New York",
+    "state": "NY",
+    "zip": "10016",
+    "lat": 40.7416176,
+    "lng": -73.9784219,
+    "phone": "+1-212-686-1210",
+    "website": "https://paddyreillysmusicbar.us",
+    "facebook": "",
+    "venue_type": "bars-with-pool-tables",
+    "sources": [
+      {
+        "source": "openstreetmap",
+        "id": "node/2555577469",
+        "url": "https://www.openstreetmap.org/node/2555577469",
+        "evidence": "sport=billiards, amenity=pub"
+      }
+    ],
+    "match": {
+      "score": 0,
+      "class": "distinct",
+      "reasons": [],
+      "slug": ""
+    },
+    "slug": "paddy-reillys-new-york-ny",
+    "discovered_at": "2026-10-26"
+  },
+  {
+    "name": "Parkside Lounge",
+    "street": "317 East Houston Street",
+    "city": "New York",
+    "state": "NY",
+    "zip": "10002",
+    "lat": 40.7210809,
+    "lng": -73.9832025,
+    "phone": "+1-212-673-6270",
+    "website": "https://www.parksidelounge.net/",
+    "facebook": "",
+    "venue_type": "bars-with-pool-tables",
+    "sources": [
+      {
+        "source": "openstreetmap",
+        "id": "node/2178443636",
+        "url": "https://www.openstreetmap.org/node/2178443636",
+        "evidence": "sport=billiards, amenity=restaurant"
+      }
+    ],
+    "match": {
+      "score": 1,
+      "class": "distinct",
+      "reasons": [],
+      "slug": "anytime-bar-and-billiards-new-york-ny"
+    },
+    "slug": "parkside-lounge-new-york-ny",
+    "discovered_at": "2026-10-26"
+  },
+  {
+    "name": "Peter Dillon's",
+    "street": "130 East 40th Street",
+    "city": "New York",
+    "state": "NY",
+    "zip": "10016",
+    "lat": 40.7499156,
+    "lng": -73.9767115,
+    "phone": "",
+    "website": "",
+    "facebook": "",
+    "venue_type": "bars-with-pool-tables",
+    "sources": [
+      {
+        "source": "openstreetmap",
+        "id": "node/6542803860",
+        "url": "https://www.openstreetmap.org/node/6542803860",
+        "evidence": "sport=billiards, amenity=pub"
+      }
+    ],
+    "match": {
+      "score": 2,
+      "class": "distinct",
+      "reasons": [],
+      "slug": "cellar-dog-new-york-ny"
+    },
+    "slug": "peter-dillons-new-york-ny",
+    "discovered_at": "2026-10-26"
+  },
+  {
+    "name": "Phil Hughes Bar",
+    "street": "1682 1st Avenue",
+    "city": "New York",
+    "state": "NY",
+    "zip": "10128",
+    "lat": 40.7780024,
+    "lng": -73.9482923,
+    "phone": "+1 212-722-9415",
+    "website": "philhughesbar",
+    "facebook": "",
+    "venue_type": "bars-with-pool-tables",
+    "sources": [
+      {
+        "source": "openstreetmap",
+        "id": "node/9560186050",
+        "url": "https://www.openstreetmap.org/node/9560186050",
+        "evidence": "sport=billiards, amenity=bar"
+      }
+    ],
+    "match": {
+      "score": 0,
+      "class": "distinct",
+      "reasons": [],
+      "slug": ""
+    },
+    "slug": "phil-hughes-bar-new-york-ny",
+    "discovered_at": "2026-10-26"
+  },
+  {
+    "name": "Phoenix Bar",
+    "street": "447 East 13th Street",
+    "city": "New York",
+    "state": "NY",
+    "zip": "10009",
+    "lat": 40.7299744,
+    "lng": -73.9811697,
+    "phone": "+1-212-477-9979",
+    "website": "https://www.phoenixbarnyc.com/",
+    "facebook": "",
+    "venue_type": "bars-with-pool-tables",
+    "sources": [
+      {
+        "source": "openstreetmap",
+        "id": "node/2547218207",
+        "url": "https://www.openstreetmap.org/node/2547218207",
+        "evidence": "sport=billiards, amenity=bar"
+      }
+    ],
+    "match": {
+      "score": 0,
+      "class": "distinct",
+      "reasons": [],
+      "slug": ""
+    },
+    "slug": "phoenix-bar-new-york-ny",
+    "discovered_at": "2026-10-26"
+  },
+  {
+    "name": "Pioneers Bar NYC",
+    "street": "138 West 29th Street",
+    "city": "New York",
+    "state": "NY",
+    "zip": "",
+    "lat": 40.7472543,
+    "lng": -73.9918207,
+    "phone": "+1-212-714-2222",
+    "website": "https://www.pioneersbar.com/",
+    "facebook": "",
+    "venue_type": "bars-with-pool-tables",
+    "sources": [
+      {
+        "source": "openstreetmap",
+        "id": "node/5815748398",
+        "url": "https://www.openstreetmap.org/node/5815748398",
+        "evidence": "sport=billiards;pinball, amenity=bar"
+      }
+    ],
+    "match": {
+      "score": 8,
+      "class": "distinct",
+      "reasons": [
+        "within 250 m"
+      ],
+      "slug": "anytime-bar-and-billiards-new-york-ny"
+    },
+    "slug": "pioneers-bar-nyc-new-york-ny",
+    "discovered_at": "2026-10-26"
+  },
+  {
+    "name": "Propaganda",
+    "street": "360 Bedford Avenue",
+    "city": "New York",
+    "state": "NY",
+    "zip": "",
+    "lat": 40.7120937,
+    "lng": -73.9629898,
+    "phone": "",
+    "website": "",
+    "facebook": "",
+    "venue_type": "bars-with-pool-tables",
+    "sources": [
+      {
+        "source": "openstreetmap",
+        "id": "node/11941135093",
+        "url": "https://www.openstreetmap.org/node/11941135093",
+        "evidence": "sport=billiards, amenity=bar"
+      }
+    ],
+    "match": {
+      "score": 0,
+      "class": "distinct",
+      "reasons": [],
+      "slug": ""
+    },
+    "slug": "propaganda-new-york-ny",
+    "discovered_at": "2026-10-26"
+  },
+  {
+    "name": "Ray's",
+    "street": "177 Chrystie Street",
+    "city": "New York",
+    "state": "NY",
+    "zip": "10002-2825",
+    "lat": 40.7212215,
+    "lng": -73.9924426,
+    "phone": "",
+    "website": "https://www.raysbarnyc.com/location/les/",
+    "facebook": "",
+    "venue_type": "bars-with-pool-tables",
+    "sources": [
+      {
+        "source": "openstreetmap",
+        "id": "node/2547684104",
+        "url": "https://www.openstreetmap.org/node/2547684104",
+        "evidence": "sport=billiards, amenity=bar"
+      }
+    ],
+    "match": {
+      "score": 0,
+      "class": "distinct",
+      "reasons": [],
+      "slug": ""
+    },
+    "slug": "rays-new-york-ny",
+    "discovered_at": "2026-10-26"
+  },
+  {
+    "name": "Redd's Tavern",
+    "street": "",
+    "city": "New York",
+    "state": "NY",
+    "zip": "",
+    "lat": 40.7111208,
+    "lng": -73.9506787,
+    "phone": "",
+    "website": "https://reddsbrooklyn.com",
+    "facebook": "",
+    "venue_type": "bars-with-pool-tables",
+    "sources": [
+      {
+        "source": "openstreetmap",
+        "id": "node/7173648217",
+        "url": "https://www.openstreetmap.org/node/7173648217",
+        "evidence": "sport=billiards, amenity=bar"
+      }
+    ],
+    "match": {
+      "score": 11,
+      "class": "distinct",
+      "reasons": [],
+      "slug": "amsterdam-billiards-new-york-ny"
+    },
+    "slug": "redds-tavern-new-york-ny",
+    "discovered_at": "2026-10-26"
+  },
+  {
+    "name": "Reif's Tavern",
+    "street": "302 East 92nd Street",
+    "city": "New York",
+    "state": "NY",
+    "zip": "10128",
+    "lat": 40.7814029,
+    "lng": -73.9485796,
+    "phone": "+1 212-426-0519",
+    "website": "https://www.reifsbar.com",
+    "facebook": "",
+    "venue_type": "bars-with-pool-tables",
+    "sources": [
+      {
+        "source": "openstreetmap",
+        "id": "node/5548115057",
+        "url": "https://www.openstreetmap.org/node/5548115057",
+        "evidence": "sport=billiards, amenity=bar"
+      }
+    ],
+    "match": {
+      "score": 0,
+      "class": "distinct",
+      "reasons": [],
+      "slug": ""
+    },
+    "slug": "reifs-tavern-new-york-ny",
+    "discovered_at": "2026-10-26"
+  },
+  {
+    "name": "Ryan's Daughter",
+    "street": "350 East 85th Street",
+    "city": "New York",
+    "state": "NY",
+    "zip": "10028",
+    "lat": 40.7762991,
+    "lng": -73.9504574,
+    "phone": "+1 212-628-2613",
+    "website": "https://ryansdaughter.nyc",
+    "facebook": "",
+    "venue_type": "bars-with-pool-tables",
+    "sources": [
+      {
+        "source": "openstreetmap",
+        "id": "node/10893590822",
+        "url": "https://www.openstreetmap.org/node/10893590822",
+        "evidence": "sport=billiards, amenity=bar"
+      }
+    ],
+    "match": {
+      "score": 0,
+      "class": "distinct",
+      "reasons": [],
+      "slug": ""
+    },
+    "slug": "ryans-daughter-new-york-ny",
+    "discovered_at": "2026-10-26"
+  },
+  {
+    "name": "Secret Pour",
+    "street": "1114 DeKalb Avenue",
+    "city": "New York",
+    "state": "NY",
+    "zip": "11221",
+    "lat": 40.6937282,
+    "lng": -73.9298594,
+    "phone": "+1-718-484-0548",
+    "website": "https://www.secretpour.com/",
+    "facebook": "",
+    "venue_type": "bars-with-pool-tables",
+    "sources": [
+      {
+        "source": "openstreetmap",
+        "id": "node/2567906055",
+        "url": "https://www.openstreetmap.org/node/2567906055",
+        "evidence": "sport=billiards, amenity=bar"
+      }
+    ],
+    "match": {
+      "score": 0,
+      "class": "distinct",
+      "reasons": [],
+      "slug": ""
+    },
+    "slug": "secret-pour-new-york-ny",
+    "discovered_at": "2026-10-26"
+  },
+  {
+    "name": "Seneca Bar",
+    "street": "6-81 Seneca Avenue",
+    "city": "New York",
+    "state": "NY",
+    "zip": "",
+    "lat": 40.7031703,
+    "lng": -73.9080468,
+    "phone": "",
+    "website": "",
+    "facebook": "",
+    "venue_type": "bars-with-pool-tables",
+    "sources": [
+      {
+        "source": "openstreetmap",
+        "id": "node/13099256108",
+        "url": "https://www.openstreetmap.org/node/13099256108",
+        "evidence": "sport=billiards, amenity=bar"
+      }
+    ],
+    "match": {
+      "score": 0,
+      "class": "distinct",
+      "reasons": [],
+      "slug": ""
+    },
+    "slug": "seneca-bar-new-york-ny",
+    "discovered_at": "2026-10-26"
+  },
+  {
+    "name": "Sour Mouse",
+    "street": "110 Delaney Street",
+    "city": "New York",
+    "state": "NY",
+    "zip": "",
+    "lat": 40.7188557,
+    "lng": -73.9883675,
+    "phone": "",
+    "website": "https://www.sourmousenyc.com/",
+    "facebook": "",
+    "venue_type": "bars-with-pool-tables",
+    "sources": [
+      {
+        "source": "openstreetmap",
+        "id": "node/11918630622",
+        "url": "https://www.openstreetmap.org/node/11918630622",
+        "evidence": "sport=billiards, amenity=bar"
+      }
+    ],
+    "match": {
+      "score": 13,
+      "class": "distinct",
+      "reasons": [],
+      "slug": "amsterdam-billiards-new-york-ny"
+    },
+    "slug": "sour-mouse-new-york-ny",
+    "discovered_at": "2026-10-26"
+  },
+  {
+    "name": "Sports Bar and Billiards",
+    "street": "23-44 Steinway Street",
+    "city": "New York",
+    "state": "NY",
+    "zip": "11105",
+    "lat": 40.7702996,
+    "lng": -73.9096332,
+    "phone": "",
+    "website": "",
+    "facebook": "",
+    "venue_type": "bars-with-pool-tables",
+    "sources": [
+      {
+        "source": "openstreetmap",
+        "id": "way/281349616",
+        "url": "https://www.openstreetmap.org/way/281349616",
+        "evidence": "amenity=bar"
+      }
+    ],
+    "match": {
+      "score": 0,
+      "class": "distinct",
+      "reasons": [],
+      "slug": ""
+    },
+    "slug": "sports-bar-and-billiards-new-york-ny",
+    "discovered_at": "2026-10-26"
+  },
+  {
+    "name": "Starr Bar",
+    "street": "214 Starr Street",
+    "city": "Brooklyn",
+    "state": "NY",
+    "zip": "11237",
+    "lat": 40.7050054,
+    "lng": -73.9230385,
+    "phone": "+1-718-821-1100",
+    "website": "https://starrbar.com/",
+    "facebook": "https://www.facebook.com/StarrBarBK",
+    "venue_type": "bars-with-pool-tables",
+    "sources": [
+      {
+        "source": "openstreetmap",
+        "id": "node/5550525387",
+        "url": "https://www.openstreetmap.org/node/5550525387",
+        "evidence": "sport=billiards, leisure=dance, amenity=bar"
+      }
+    ],
+    "match": {
+      "score": 0,
+      "class": "distinct",
+      "reasons": [],
+      "slug": ""
+    },
+    "slug": "starr-bar-new-york-ny",
+    "discovered_at": "2026-10-26"
+  },
+  {
+    "name": "Status Q",
+    "street": "",
+    "city": "New York",
+    "state": "NY",
+    "zip": "",
+    "lat": 40.6259077,
+    "lng": -74.0302332,
+    "phone": "+1-718-836-0805",
+    "website": "",
+    "facebook": "",
+    "venue_type": "bars-with-pool-tables",
+    "sources": [
+      {
+        "source": "openstreetmap",
+        "id": "node/14099580086",
+        "url": "https://www.openstreetmap.org/node/14099580086",
+        "evidence": "sport=billiards, amenity=bar"
+      }
+    ],
+    "match": {
+      "score": 0,
+      "class": "distinct",
+      "reasons": [],
+      "slug": ""
+    },
+    "slug": "status-q-new-york-ny",
+    "discovered_at": "2026-10-26"
+  },
+  {
+    "name": "Stonewall Inn",
+    "street": "53 Christopher Street",
+    "city": "New York",
+    "state": "NY",
+    "zip": "10014",
+    "lat": 40.7338163,
+    "lng": -74.0021613,
+    "phone": "",
+    "website": "https://thestonewallinnnyc.com/",
+    "facebook": "",
+    "venue_type": "bars-with-pool-tables",
+    "sources": [
+      {
+        "source": "openstreetmap",
+        "id": "node/368043598",
+        "url": "https://www.openstreetmap.org/node/368043598",
+        "evidence": "sport=billiards, amenity=bar"
+      }
+    ],
+    "match": {
+      "score": 14,
+      "class": "distinct",
+      "reasons": [
+        "within 250 m"
+      ],
+      "slug": "cellar-dog-new-york-ny"
+    },
+    "slug": "stonewall-inn-new-york-ny",
+    "discovered_at": "2026-10-26",
+    "flags": []
+  },
+  {
+    "name": "Sugar Mouse",
+    "street": "47 3rd ave",
+    "city": "New York",
+    "state": "NY",
+    "zip": "",
+    "lat": 40.7308162,
+    "lng": -73.9887471,
+    "phone": "",
+    "website": "https://www.sugarmousenyc.com",
+    "facebook": "",
+    "venue_type": "bars-with-pool-tables",
+    "sources": [
+      {
+        "source": "openstreetmap",
+        "id": "node/12333450784",
+        "url": "https://www.openstreetmap.org/node/12333450784",
+        "evidence": "sport=billiards, amenity=bar"
+      }
+    ],
+    "match": {
+      "score": 12,
+      "class": "distinct",
+      "reasons": [
+        "within 250 m"
+      ],
+      "slug": "amsterdam-billiards-new-york-ny"
+    },
+    "slug": "sugar-mouse-new-york-ny",
+    "discovered_at": "2026-10-26"
+  },
+  {
+    "name": "Superfine",
+    "street": "126 Front Street",
+    "city": "New York",
+    "state": "NY",
+    "zip": "11201",
+    "lat": 40.7023397,
+    "lng": -73.9874667,
+    "phone": "+1-718-243-9005",
+    "website": "https://superfine.nyc/",
+    "facebook": "",
+    "venue_type": "bars-with-pool-tables",
+    "sources": [
+      {
+        "source": "openstreetmap",
+        "id": "node/2568518924",
+        "url": "https://www.openstreetmap.org/node/2568518924",
+        "evidence": "sport=billiards, amenity=restaurant"
+      }
+    ],
+    "match": {
+      "score": 0,
+      "class": "distinct",
+      "reasons": [],
+      "slug": ""
+    },
+    "slug": "superfine-new-york-ny",
+    "discovered_at": "2026-10-26"
+  },
+  {
+    "name": "Talon Bar",
+    "street": "220 Wyckoff Avenue",
+    "city": "New York",
+    "state": "NY",
+    "zip": "",
+    "lat": 40.701142,
+    "lng": -73.9143303,
+    "phone": "+1-718-366-3192",
+    "website": "https://www.talonbar.com/",
+    "facebook": "",
+    "venue_type": "bars-with-pool-tables",
+    "sources": [
+      {
+        "source": "openstreetmap",
+        "id": "node/5367390412",
+        "url": "https://www.openstreetmap.org/node/5367390412",
+        "evidence": "sport=billiards, amenity=bar"
+      }
+    ],
+    "match": {
+      "score": 0,
+      "class": "distinct",
+      "reasons": [],
+      "slug": ""
+    },
+    "slug": "talon-bar-new-york-ny",
+    "discovered_at": "2026-10-26"
+  },
+  {
+    "name": "The Anchored Inn",
+    "street": "57 Waterbury Street",
+    "city": "Brooklyn",
+    "state": "NY",
+    "zip": "11206",
+    "lat": 40.7092274,
+    "lng": -73.9372024,
+    "phone": "+1-718-576-3297",
+    "website": "https://theanchoredinn.com/",
+    "facebook": "",
+    "venue_type": "bars-with-pool-tables",
+    "sources": [
+      {
+        "source": "openstreetmap",
+        "id": "node/2630333113",
+        "url": "https://www.openstreetmap.org/node/2630333113",
+        "evidence": "sport=billiards, amenity=pub"
+      }
+    ],
+    "match": {
+      "score": 0,
+      "class": "distinct",
+      "reasons": [],
+      "slug": ""
+    },
+    "slug": "the-anchored-inn-new-york-ny",
+    "discovered_at": "2026-10-26",
+    "flags": []
+  },
+  {
+    "name": "The Billiard Company",
+    "street": "Austin Street",
+    "city": "Forest Hills",
+    "state": "NY",
+    "zip": "",
+    "lat": 40.7204211,
+    "lng": -73.8451568,
+    "phone": "",
+    "website": "",
+    "facebook": "",
+    "venue_type": "bars-with-pool-tables",
+    "sources": [
+      {
+        "source": "openstreetmap",
+        "id": "node/8934083914",
+        "url": "https://www.openstreetmap.org/node/8934083914",
+        "evidence": "amenity=bar"
+      }
+    ],
+    "match": {
+      "score": 0,
+      "class": "distinct",
+      "reasons": [],
+      "slug": ""
+    },
+    "slug": "the-billiard-company-new-york-ny",
+    "discovered_at": "2026-10-26"
+  },
+  {
+    "name": "The Boiler Room",
+    "street": "86 East 4th Street",
+    "city": "New York",
+    "state": "NY",
+    "zip": "10003",
+    "lat": 40.7259518,
+    "lng": -73.9891412,
+    "phone": "",
+    "website": "https://www.theboilerroomnyc.com/",
+    "facebook": "",
+    "venue_type": "bars-with-pool-tables",
+    "sources": [
+      {
+        "source": "openstreetmap",
+        "id": "node/5446733056",
+        "url": "https://www.openstreetmap.org/node/5446733056",
+        "evidence": "sport=billiards, amenity=bar"
+      }
+    ],
+    "match": {
+      "score": 0,
+      "class": "distinct",
+      "reasons": [],
+      "slug": ""
+    },
+    "slug": "the-boiler-room-new-york-ny",
+    "discovered_at": "2026-10-26"
+  },
+  {
+    "name": "The Broadway",
+    "street": "1272 Broadway",
+    "city": "New York",
+    "state": "NY",
+    "zip": "",
+    "lat": 40.6909367,
+    "lng": -73.9249072,
+    "phone": "+1-347-365-9861",
+    "website": "https://www.thebroadway.nyc/",
+    "facebook": "",
+    "venue_type": "bars-with-pool-tables",
+    "sources": [
+      {
+        "source": "openstreetmap",
+        "id": "node/9761753661",
+        "url": "https://www.openstreetmap.org/node/9761753661",
+        "evidence": "sport=billiards, amenity=bar"
+      }
+    ],
+    "match": {
+      "score": 0,
+      "class": "distinct",
+      "reasons": [],
+      "slug": ""
+    },
+    "slug": "the-broadway-new-york-ny",
+    "discovered_at": "2026-10-26"
+  },
+  {
+    "name": "The Brooklyn Inn",
+    "street": "148 Hoyt Street",
+    "city": "New York",
+    "state": "NY",
+    "zip": "11217",
+    "lat": 40.6858219,
+    "lng": -73.9884647,
+    "phone": "+1-718-522-2525",
+    "website": "",
+    "facebook": "",
+    "venue_type": "bars-with-pool-tables",
+    "sources": [
+      {
+        "source": "openstreetmap",
+        "id": "node/2510927727",
+        "url": "https://www.openstreetmap.org/node/2510927727",
+        "evidence": "sport=billiards, amenity=bar"
+      }
+    ],
+    "match": {
+      "score": 0,
+      "class": "distinct",
+      "reasons": [],
+      "slug": ""
+    },
+    "slug": "the-brooklyn-inn-new-york-ny",
+    "discovered_at": "2026-10-26",
+    "flags": []
+  },
+  {
+    "name": "The Emerson",
+    "street": "",
+    "city": "New York",
+    "state": "NY",
+    "zip": "",
+    "lat": 40.6940535,
+    "lng": -73.9618019,
+    "phone": "",
+    "website": "",
+    "facebook": "",
+    "venue_type": "bars-with-pool-tables",
+    "sources": [
+      {
+        "source": "openstreetmap",
+        "id": "node/9583805198",
+        "url": "https://www.openstreetmap.org/node/9583805198",
+        "evidence": "sport=billiards, amenity=bar"
+      }
+    ],
+    "match": {
+      "score": 15,
+      "class": "distinct",
+      "reasons": [],
+      "slug": "amsterdam-billiards-new-york-ny"
+    },
+    "slug": "the-emerson-new-york-ny",
+    "discovered_at": "2026-10-26"
+  },
+  {
+    "name": "The Flower Shop",
+    "street": "107 Eldridge Street",
+    "city": "New York",
+    "state": "NY",
+    "zip": "10002",
+    "lat": 40.7180663,
+    "lng": -73.992134,
+    "phone": "+1-212-257-4072",
+    "website": "https://www.theflowershopnyc.com",
+    "facebook": "",
+    "venue_type": "bars-with-pool-tables",
+    "sources": [
+      {
+        "source": "openstreetmap",
+        "id": "node/8762810418",
+        "url": "https://www.openstreetmap.org/node/8762810418",
+        "evidence": "sport=billiards, amenity=restaurant"
+      }
+    ],
+    "match": {
+      "score": 0,
+      "class": "distinct",
+      "reasons": [],
+      "slug": ""
+    },
+    "slug": "the-flower-shop-new-york-ny",
+    "discovered_at": "2026-10-26"
+  },
+  {
+    "name": "The Irish American",
+    "street": "",
+    "city": "New York",
+    "state": "NY",
+    "zip": "",
+    "lat": 40.7098633,
+    "lng": -74.0086893,
+    "phone": "",
+    "website": "",
+    "facebook": "",
+    "venue_type": "bars-with-pool-tables",
+    "sources": [
+      {
+        "source": "openstreetmap",
+        "id": "node/11084164914",
+        "url": "https://www.openstreetmap.org/node/11084164914",
+        "evidence": "sport=billiards, amenity=bar"
+      }
+    ],
+    "match": {
+      "score": 17,
+      "class": "distinct",
+      "reasons": [],
+      "slug": "amsterdam-billiards-new-york-ny"
+    },
+    "slug": "the-irish-american-new-york-ny",
+    "discovered_at": "2026-10-26"
+  },
+  {
+    "name": "The Johnson's",
+    "street": "369 Troutman Street",
+    "city": "Brooklyn",
+    "state": "NY",
+    "zip": "11237",
+    "lat": 40.7058302,
+    "lng": -73.9237933,
+    "phone": "+1-718-417-7100",
+    "website": "",
+    "facebook": "",
+    "venue_type": "bars-with-pool-tables",
+    "sources": [
+      {
+        "source": "openstreetmap",
+        "id": "node/5623442598",
+        "url": "https://www.openstreetmap.org/node/5623442598",
+        "evidence": "sport=billiards, amenity=bar"
+      }
+    ],
+    "match": {
+      "score": 0,
+      "class": "distinct",
+      "reasons": [],
+      "slug": ""
+    },
+    "slug": "the-johnsons-new-york-ny",
+    "discovered_at": "2026-10-26"
+  },
+  {
+    "name": "The Less Dead",
+    "street": "949 Grand Street",
+    "city": "Brooklyn",
+    "state": "NY",
+    "zip": "11211",
+    "lat": 40.7131206,
+    "lng": -73.9365744,
+    "phone": "+1-718-387-5410",
+    "website": "https://kingstavernny.com",
+    "facebook": "",
+    "venue_type": "bars-with-pool-tables",
+    "sources": [
+      {
+        "source": "openstreetmap",
+        "id": "node/6242162275",
+        "url": "https://www.openstreetmap.org/node/6242162275",
+        "evidence": "sport=billiards, amenity=bar"
+      }
+    ],
+    "match": {
+      "score": 0,
+      "class": "distinct",
+      "reasons": [],
+      "slug": ""
+    },
+    "slug": "the-less-dead-new-york-ny",
+    "discovered_at": "2026-10-26"
+  },
+  {
+    "name": "The Levee",
+    "street": "212 Berry Street",
+    "city": "Brooklyn",
+    "state": "NY",
+    "zip": "11211",
+    "lat": 40.7163751,
+    "lng": -73.9615756,
+    "phone": "",
+    "website": "",
+    "facebook": "",
+    "venue_type": "bars-with-pool-tables",
+    "sources": [
+      {
+        "source": "openstreetmap",
+        "id": "node/2465889352",
+        "url": "https://www.openstreetmap.org/node/2465889352",
+        "evidence": "sport=billiards, amenity=bar"
+      }
+    ],
+    "match": {
+      "score": 0,
+      "class": "distinct",
+      "reasons": [],
+      "slug": ""
+    },
+    "slug": "the-levee-new-york-ny",
+    "discovered_at": "2026-10-26"
+  },
+  {
+    "name": "The Mallard Drake",
+    "street": "43 Franklin st",
+    "city": "New York",
+    "state": "NY",
+    "zip": "",
+    "lat": 40.7267439,
+    "lng": -73.9575377,
+    "phone": "",
+    "website": "",
+    "facebook": "",
+    "venue_type": "bars-with-pool-tables",
+    "sources": [
+      {
+        "source": "openstreetmap",
+        "id": "node/12468222473",
+        "url": "https://www.openstreetmap.org/node/12468222473",
+        "evidence": "sport=billiards, amenity=bar"
+      }
+    ],
+    "match": {
+      "score": 6,
+      "class": "distinct",
+      "reasons": [],
+      "slug": "cellar-dog-new-york-ny"
+    },
+    "slug": "the-mallard-drake-new-york-ny",
+    "discovered_at": "2026-10-26"
+  },
+  {
+    "name": "The Richardson",
+    "street": "",
+    "city": "New York",
+    "state": "NY",
+    "zip": "",
+    "lat": 40.7189211,
+    "lng": -73.9452678,
+    "phone": "",
+    "website": "",
+    "facebook": "",
+    "venue_type": "bars-with-pool-tables",
+    "sources": [
+      {
+        "source": "openstreetmap",
+        "id": "node/617740843",
+        "url": "https://www.openstreetmap.org/node/617740843",
+        "evidence": "sport=billiards, amenity=bar"
+      }
+    ],
+    "match": {
+      "score": 13,
+      "class": "distinct",
+      "reasons": [],
+      "slug": "amsterdam-billiards-new-york-ny"
+    },
+    "slug": "the-richardson-new-york-ny",
+    "discovered_at": "2026-10-26"
+  },
+  {
+    "name": "The Spotted Dog",
+    "street": "1154 1st Avenue",
+    "city": "New York",
+    "state": "NY",
+    "zip": "10065",
+    "lat": 40.7622657,
+    "lng": -73.9598052,
+    "phone": "",
+    "website": "",
+    "facebook": "",
+    "venue_type": "bars-with-pool-tables",
+    "sources": [
+      {
+        "source": "openstreetmap",
+        "id": "node/12300150547",
+        "url": "https://www.openstreetmap.org/node/12300150547",
+        "evidence": "sport=billiards, amenity=bar"
+      }
+    ],
+    "match": {
+      "score": 4,
+      "class": "distinct",
+      "reasons": [],
+      "slug": "cellar-dog-new-york-ny"
+    },
+    "slug": "the-spotted-dog-new-york-ny",
+    "discovered_at": "2026-10-26"
+  },
+  {
+    "name": "The Spotted Owl",
+    "street": "211 Avenue A",
+    "city": "New York",
+    "state": "NY",
+    "zip": "",
+    "lat": 40.7298793,
+    "lng": -73.9809353,
+    "phone": "",
+    "website": "",
+    "facebook": "",
+    "venue_type": "bars-with-pool-tables",
+    "sources": [
+      {
+        "source": "openstreetmap",
+        "id": "node/12150641967",
+        "url": "https://www.openstreetmap.org/node/12150641967",
+        "evidence": "sport=billiards, amenity=bar"
+      }
+    ],
+    "match": {
+      "score": 1,
+      "class": "distinct",
+      "reasons": [],
+      "slug": "amsterdam-billiards-new-york-ny"
+    },
+    "slug": "the-spotted-owl-new-york-ny",
+    "discovered_at": "2026-10-26"
+  },
+  {
+    "name": "The Whiskey",
+    "street": "",
+    "city": "New York",
+    "state": "NY",
+    "zip": "",
+    "lat": 40.7108928,
+    "lng": -73.9503704,
+    "phone": "",
+    "website": "https://thewhiskeyog.com",
+    "facebook": "",
+    "venue_type": "bars-with-pool-tables",
+    "sources": [
+      {
+        "source": "openstreetmap",
+        "id": "node/10968102820",
+        "url": "https://www.openstreetmap.org/node/10968102820",
+        "evidence": "sport=billiards;table_shuffleboard;table_tennis, amenity=bar"
+      }
+    ],
+    "match": {
+      "score": 17,
+      "class": "distinct",
+      "reasons": [],
+      "slug": "society-billiards-and-bar-new-york-ny"
+    },
+    "slug": "the-whiskey-new-york-ny",
+    "discovered_at": "2026-10-26"
+  },
+  {
+    "name": "The Windjammer",
+    "street": "552 Grandview Avenue",
+    "city": "Ridgewood",
+    "state": "NY",
+    "zip": "11385",
+    "lat": 40.7091645,
+    "lng": -73.9069695,
+    "phone": "+1-718-821-9779",
+    "website": "",
+    "facebook": "https://www.facebook.com/thewindjammerny/",
+    "venue_type": "bars-with-pool-tables",
+    "sources": [
+      {
+        "source": "openstreetmap",
+        "id": "node/5365011095",
+        "url": "https://www.openstreetmap.org/node/5365011095",
+        "evidence": "sport=billiards, amenity=bar"
+      }
+    ],
+    "match": {
+      "score": 0,
+      "class": "distinct",
+      "reasons": [],
+      "slug": ""
+    },
+    "slug": "the-windjammer-new-york-ny",
+    "discovered_at": "2026-10-26"
+  },
+  {
+    "name": "Toad Hall",
+    "street": "",
+    "city": "New York",
+    "state": "NY",
+    "zip": "",
+    "lat": 40.7221836,
+    "lng": -74.0035553,
+    "phone": "",
+    "website": "",
+    "facebook": "https://www.facebook.com/toadhallgrand/",
+    "venue_type": "bars-with-pool-tables",
+    "sources": [
+      {
+        "source": "openstreetmap",
+        "id": "node/10090538380",
+        "url": "https://www.openstreetmap.org/node/10090538380",
+        "evidence": "sport=billiards, amenity=bar"
+      }
+    ],
+    "match": {
+      "score": 20,
+      "class": "distinct",
+      "reasons": [],
+      "slug": "space-billiard-pool-hall-and-sports-bar-new-york-ny"
+    },
+    "slug": "toad-hall-new-york-ny",
+    "discovered_at": "2026-10-26"
+  },
+  {
+    "name": "Triona's",
+    "street": "237 Sullivan Street",
+    "city": "New York",
+    "state": "NY",
+    "zip": "10012",
+    "lat": 40.7298527,
+    "lng": -73.9994054,
+    "phone": "",
+    "website": "",
+    "facebook": "",
+    "venue_type": "bars-with-pool-tables",
+    "sources": [
+      {
+        "source": "openstreetmap",
+        "id": "node/12547817794",
+        "url": "https://www.openstreetmap.org/node/12547817794",
+        "evidence": "sport=billiards, amenity=pub"
+      }
+    ],
+    "match": {
+      "score": 0,
+      "class": "distinct",
+      "reasons": [],
+      "slug": ""
+    },
+    "slug": "trionas-new-york-ny",
+    "discovered_at": "2026-10-26"
+  },
+  {
+    "name": "Uncle Roger's",
+    "street": "704 Nostrand Avenue",
+    "city": "New York",
+    "state": "NY",
+    "zip": "",
+    "lat": 40.6746469,
+    "lng": -73.9502619,
+    "phone": "",
+    "website": "",
+    "facebook": "",
+    "venue_type": "bars-with-pool-tables",
+    "sources": [
+      {
+        "source": "openstreetmap",
+        "id": "node/13519821877",
+        "url": "https://www.openstreetmap.org/node/13519821877",
+        "evidence": "sport=billiards, amenity=bar"
+      }
+    ],
+    "match": {
+      "score": 0,
+      "class": "distinct",
+      "reasons": [],
+      "slug": ""
+    },
+    "slug": "uncle-rogers-new-york-ny",
+    "discovered_at": "2026-10-26"
+  },
+  {
+    "name": "Uno Cafe and Billiards",
+    "street": "78-01 Roosevelt Avenue",
+    "city": "New York",
+    "state": "NY",
+    "zip": "",
+    "lat": 40.7474191,
+    "lng": -73.8873961,
+    "phone": "",
+    "website": "",
+    "facebook": "",
+    "venue_type": "bars-with-pool-tables",
+    "sources": [
+      {
+        "source": "openstreetmap",
+        "id": "node/11477199561",
+        "url": "https://www.openstreetmap.org/node/11477199561",
+        "evidence": "sport=billiards, amenity=bar"
+      }
+    ],
+    "match": {
+      "score": 0,
+      "class": "distinct",
+      "reasons": [],
+      "slug": ""
+    },
+    "slug": "uno-cafe-and-billiards-new-york-ny",
+    "discovered_at": "2026-10-26"
+  },
+  {
+    "name": "Walsh's Pub",
+    "street": "68-67 Fresh Pond Road",
+    "city": "New York",
+    "state": "NY",
+    "zip": "",
+    "lat": 40.7034775,
+    "lng": -73.8953145,
+    "phone": "+1-718-497-1216",
+    "website": "",
+    "facebook": "",
+    "venue_type": "bars-with-pool-tables",
+    "sources": [
+      {
+        "source": "openstreetmap",
+        "id": "node/5351679386",
+        "url": "https://www.openstreetmap.org/node/5351679386",
+        "evidence": "sport=billiards, amenity=bar"
+      }
+    ],
+    "match": {
+      "score": 0,
+      "class": "distinct",
+      "reasons": [],
+      "slug": ""
+    },
+    "slug": "walshs-pub-new-york-ny",
+    "discovered_at": "2026-10-26"
+  },
+  {
+    "name": "Welcome to the Johnsons",
+    "street": "123 Rivington Street",
+    "city": "New York",
+    "state": "NY",
+    "zip": "10002",
+    "lat": 40.7196706,
+    "lng": -73.9873004,
+    "phone": "+1 212-420-9911",
+    "website": "",
+    "facebook": "",
+    "venue_type": "bars-with-pool-tables",
+    "sources": [
+      {
+        "source": "openstreetmap",
+        "id": "node/4282785789",
+        "url": "https://www.openstreetmap.org/node/4282785789",
+        "evidence": "sport=billiards, amenity=bar"
+      }
+    ],
+    "match": {
+      "score": 0,
+      "class": "distinct",
+      "reasons": [],
+      "slug": ""
+    },
+    "slug": "welcome-to-the-johnsons-new-york-ny",
+    "discovered_at": "2026-10-26"
+  }
+]

@@ -1,0 +1,140 @@
+{
+  "schema": 1,
+  "slug": "society-billiards-and-bar-new-york-ny",
+  "city": "new-york",
+  "kind": "listing",
+  "listing": {
+    "id": 1692,
+    "url": "https://playpoolnation.com/place/society-billiards-and-bar-new-york-ny/",
+    "name": "Society Billiards + Bar",
+    "street": "10 E 21st St",
+    "city": "New York",
+    "state": "NY",
+    "zip": "10010",
+    "phone": "(212) 420-1000",
+    "website": "http://societybilliards.com/",
+    "type": "Pool Hall",
+    "lat": 40.73996,
+    "lng": -73.99007
+  },
+  "checked_at": "2026-10-26",
+  "sources_checked": [
+    {
+      "url": "https://societybilliards.com:443/",
+      "result": "read",
+      "note": ""
+    },
+    {
+      "url": "https://societybilliards.com:443/our-menu/",
+      "result": "read",
+      "note": ""
+    }
+  ],
+  "facts": [
+    {
+      "field": "table_brands",
+      "key": "table_brands:diamond",
+      "value": "Diamond",
+      "source_url": "https://societybilliards.com:443/",
+      "quote_snippet": "society billiards premium diamond pool tables",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [],
+      "seen_on": [
+        "https://societybilliards.com:443/"
+      ],
+      "source_type": "official_website"
+    },
+    {
+      "field": "pricing_model",
+      "key": "pricing_model:hourly",
+      "value": {
+        "model": "hourly",
+        "rate": null
+      },
+      "source_url": "https://societybilliards.com:443/",
+      "quote_snippet": "Per Player / Per Hour",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [],
+      "seen_on": [
+        "https://societybilliards.com:443/"
+      ],
+      "source_type": "official_website"
+    },
+    {
+      "field": "league_nights",
+      "key": "league_nights:pool-league:",
+      "value": {
+        "league": "Pool league",
+        "weekday": null
+      },
+      "source_url": "https://societybilliards.com:443/",
+      "quote_snippet": "Leagues",
+      "checked_at": "2026-10-26",
+      "confidence": "implied",
+      "flags": [
+        "no weekday given"
+      ],
+      "seen_on": [
+        "https://societybilliards.com:443/",
+        "https://societybilliards.com:443/our-menu/"
+      ],
+      "source_type": "official_website"
+    },
+    {
+      "field": "food",
+      "key": "food",
+      "value": true,
+      "source_url": "https://societybilliards.com:443/",
+      "quote_snippet": "Our Menu",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [],
+      "seen_on": [
+        "https://societybilliards.com:443/",
+        "https://societybilliards.com:443/our-menu/"
+      ],
+      "source_type": "official_website"
+    },
+    {
+      "field": "full_bar",
+      "key": "full_bar",
+      "value": true,
+      "source_url": "https://societybilliards.com:443/",
+      "quote_snippet": "Society Billiards + Bar has over two dozen beers and an incredible selection of craft cocktails.",
+      "checked_at": "2026-10-26",
+      "confidence": "implied",
+      "flags": [],
+      "seen_on": [
+        "https://societybilliards.com:443/",
+        "https://societybilliards.com:443/our-menu/"
+      ],
+      "source_type": "official_website"
+    },
+    {
+      "field": "table_sizes",
+      "key": "table_sizes:7ft",
+      "value": {
+        "size": "7ft",
+        "count": null
+      },
+      "source_url": "https://playpoolnation.com/place/society-billiards-and-bar-new-york-ny/",
+      "quote_snippet": "Listed as a place to play pool; no table size stated anywhere.",
+      "checked_at": "2026-10-26",
+      "confidence": "implied",
+      "flags": [
+        "size not stated, 7 ft by default"
+      ],
+      "source_type": "default",
+      "seen_on": [
+        "https://playpoolnation.com/place/society-billiards-and-bar-new-york-ny/"
+      ]
+    }
+  ],
+  "missing": [
+    "table_count",
+    "table_sizes",
+    "age_policy"
+  ]
+}
