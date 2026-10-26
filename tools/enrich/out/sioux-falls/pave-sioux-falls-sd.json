@@ -1,0 +1,88 @@
+{
+  "schema": 1,
+  "slug": "pave-sioux-falls-sd",
+  "city": "sioux-falls",
+  "kind": "new",
+  "listing": {
+    "name": "Pave",
+    "street": "130 South Phillips Avenue",
+    "city": "Sioux Falls",
+    "state": "SD",
+    "zip": "57104",
+    "venue_type": "bars-with-pool-tables",
+    "lat": 43.5462332,
+    "lng": -96.7265619
+  },
+  "checked_at": "2026-10-26",
+  "sources_checked": [],
+  "facts": [
+    {
+      "field": "league_nights",
+      "key": "league_nights:sioux-falls-a-1-division-1-music-service:wednesday",
+      "value": {
+        "league": "Sioux Falls A-1 Division 1 (Music Service)",
+        "weekday": "wednesday"
+      },
+      "source_url": "https://musicservice.com/pool-league/sioux-falls-a-1-division-1/",
+      "evidence_url": "https://musicservice.com/wp-content/uploads/musicservice/pool_league/weeklystatistics/A-1-DIV-1-WEEK-4-2.pdf",
+      "quote_snippet": "6 PAVE RACK STARZ 46.67 15 7.0 8.0 60 31 446 446 · results 2026-10-14",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [
+        "from the league's team names"
+      ],
+      "seen_on": [
+        "https://musicservice.com/pool-league/sioux-falls-a-1-division-1/"
+      ],
+      "source_type": "league_operator"
+    },
+    {
+      "field": "league_nights",
+      "key": "league_nights:sioux-falls-a-3-division-2-music-service:thursday",
+      "value": {
+        "league": "Sioux Falls A-3 Division 2 (Music Service)",
+        "weekday": "thursday"
+      },
+      "source_url": "https://musicservice.com/pool-league/sioux-falls-a-3-division-2/",
+      "evidence_url": "https://musicservice.com/wp-content/uploads/musicservice/pool_league/weeklystatistics/A-3-DIV-2-WEEK-4-2.pdf",
+      "quote_snippet": "5 PAVE POUNDERS 45 20 9.0 11.0 80 39 630 610 · results 2026-10-15",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [
+        "from the league's team names"
+      ],
+      "seen_on": [
+        "https://musicservice.com/pool-league/sioux-falls-a-3-division-2/"
+      ],
+      "source_type": "league_operator"
+    },
+    {
+      "field": "table_sizes",
+      "key": "table_sizes:7ft",
+      "value": {
+        "size": "7ft",
+        "count": null
+      },
+      "source_url": "https://musicservice.com/pool-league/sioux-falls-a-1-division-1/",
+      "quote_snippet": "Listed as a place to play pool; no table size stated anywhere.",
+      "checked_at": "2026-10-26",
+      "confidence": "implied",
+      "flags": [
+        "size not stated, 7 ft by default"
+      ],
+      "source_type": "default",
+      "seen_on": [
+        "https://musicservice.com/pool-league/sioux-falls-a-1-division-1/"
+      ]
+    }
+  ],
+  "missing": [
+    "table_count",
+    "table_sizes",
+    "table_brands",
+    "pricing_model",
+    "age_policy",
+    "food",
+    "full_bar"
+  ]
+}

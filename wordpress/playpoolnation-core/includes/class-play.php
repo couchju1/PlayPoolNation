@@ -128,8 +128,8 @@ final class Play {
 
 	/**
 	 * Publish a league at a venue (an approved league night from the review queue).
-	 * Returns the existing league instead when the venue already has one for that
-	 * organization on that day, and 0 when the venue is not a venue.
+	 * Returns the existing league instead when the venue already has the same league
+	 * (name, organization and day), and 0 when the venue is not a venue.
 	 */
 	public static function add_league( int $venue_id, string $name, string $org, string $day ): int {
 		global $wpdb;
@@ -140,7 +140,8 @@ final class Play {
 		$day = isset( Pool_Schema::LEAGUE_DAYS[ $day ] ) ? $day : '';
 		foreach ( self::children( $venue_id, Pool_Schema::LEAGUE_VENUE_FIELD ) as $id ) {
 			$orgs = wp_get_object_terms( $id, 'league-org', [ 'fields' => 'slugs' ] );
-			if ( (string) get_post_meta( $id, '_league-day', true ) === $day && in_array( $org, is_array( $orgs ) ? $orgs : [], true ) ) {
+			$same_name = str_starts_with( html_entity_decode( get_the_title( $id ), ENT_QUOTES ), $name . ' at ' );
+			if ( (string) get_post_meta( $id, '_league-day', true ) === $day && in_array( $org, is_array( $orgs ) ? $orgs : [], true ) && $same_name ) {
 				return $id;
 			}
 		}

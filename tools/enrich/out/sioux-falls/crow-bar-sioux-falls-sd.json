@@ -1,0 +1,166 @@
+{
+  "schema": 1,
+  "slug": "crow-bar-sioux-falls-sd",
+  "city": "sioux-falls",
+  "kind": "new",
+  "listing": {
+    "name": "Crow Bar",
+    "city": "Sioux Falls",
+    "state": "SD",
+    "venue_type": "bars-with-pool-tables"
+  },
+  "checked_at": "2026-10-26",
+  "sources_checked": [],
+  "facts": [
+    {
+      "field": "league_nights",
+      "key": "league_nights:sioux-falls-a-2-music-service:monday",
+      "value": {
+        "league": "Sioux Falls A-2 (Music Service)",
+        "weekday": "monday"
+      },
+      "source_url": "https://musicservice.com/pool-league/sioux-falls-a-2/",
+      "evidence_url": "https://musicservice.com/wp-content/uploads/musicservice/pool_league/weeklystatistics/A-2-WEEK-5-2.pdf",
+      "quote_snippet": "6 CROW BAR CHAIN STROKERS 52 25 13.0 12.0 100 49 789 737 · results 2026-10-19",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [
+        "from the league's team names"
+      ],
+      "seen_on": [
+        "https://musicservice.com/pool-league/sioux-falls-a-2/"
+      ],
+      "source_type": "league_operator"
+    },
+    {
+      "field": "league_nights",
+      "key": "league_nights:sioux-falls-aa-division-1-music-service:wednesday",
+      "value": {
+        "league": "Sioux Falls AA Division 1 (Music Service)",
+        "weekday": "wednesday"
+      },
+      "source_url": "https://musicservice.com/pool-league/sioux-falls-aa-division-1/",
+      "evidence_url": "https://musicservice.com/wp-content/uploads/musicservice/pool_league/weeklystatistics/AA-DIV-1-WEEK-4-2.pdf",
+      "quote_snippet": "10 CROW BAR ERO SPEEDWAGON 41.67 24 10.0 14.0 100 47 691 691 · results 2026-10-14",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [
+        "from the league's team names"
+      ],
+      "seen_on": [
+        "https://musicservice.com/pool-league/sioux-falls-aa-division-1/"
+      ],
+      "source_type": "league_operator"
+    },
+    {
+      "field": "league_nights",
+      "key": "league_nights:sioux-falls-aa-division-2-music-service:wednesday",
+      "value": {
+        "league": "Sioux Falls AA Division 2 (Music Service)",
+        "weekday": "wednesday"
+      },
+      "source_url": "https://musicservice.com/pool-league/sioux-falls-aa-division-2/",
+      "evidence_url": "https://musicservice.com/wp-content/uploads/musicservice/pool_league/weeklystatistics/AA-DIV-2-WEEK-4-2.pdf",
+      "quote_snippet": "3 CROW BAR MISFITS 65 20 13.0 7.0 80 40 674 602 · results 2026-10-14",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [
+        "from the league's team names"
+      ],
+      "seen_on": [
+        "https://musicservice.com/pool-league/sioux-falls-aa-division-2/"
+      ],
+      "source_type": "league_operator"
+    },
+    {
+      "field": "league_nights",
+      "key": "league_nights:sioux-falls-b-1-music-service:thursday",
+      "value": {
+        "league": "Sioux Falls B-1 (Music Service)",
+        "weekday": "thursday"
+      },
+      "source_url": "https://musicservice.com/pool-league/sioux-falls-b-1/",
+      "evidence_url": "https://musicservice.com/wp-content/uploads/musicservice/pool_league/weeklystatistics/B-1-WEEK-4-2.pdf",
+      "quote_snippet": "4 CROW BAR DOLLAR BIN CUES 56.25 16 9.0 7.0 60 33 461 461 · results 2026-10-15",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [
+        "from the league's team names"
+      ],
+      "seen_on": [
+        "https://musicservice.com/pool-league/sioux-falls-b-1/"
+      ],
+      "source_type": "league_operator"
+    },
+    {
+      "field": "league_nights",
+      "key": "league_nights:sioux-falls-summer-8-ball-wednesday-music-service:wednesday",
+      "value": {
+        "league": "Sioux Falls Summer 8-ball Wednesday (Music Service)",
+        "weekday": "wednesday"
+      },
+      "source_url": "https://musicservice.com/pool-league/sioux-falls-summer-8-ball-wednesday/",
+      "evidence_url": "https://musicservice.com/wp-content/uploads/musicservice/pool_league/weeklystatistics/WED-SUM-WEEK-9-2.pdf",
+      "quote_snippet": "7 CROW BAR DOLLAR BIN CUES 33.33 36 12.0 24.0 81 31 624 555 · results 2026-08-12",
+      "checked_at": "2026-10-26",
+      "confidence": "implied",
+      "flags": [
+        "from the league's team names",
+        "no results since 2026-08-12 (off-season?)"
+      ],
+      "seen_on": [
+        "https://musicservice.com/pool-league/sioux-falls-summer-8-ball-wednesday/"
+      ],
+      "source_type": "league_operator"
+    },
+    {
+      "field": "league_nights",
+      "key": "league_nights:sioux-falls-summer-9-ball-music-service:thursday",
+      "value": {
+        "league": "Sioux Falls Summer 9-ball (Music Service)",
+        "weekday": "thursday"
+      },
+      "source_url": "https://musicservice.com/pool-league/sioux-falls-summer-9-ball/",
+      "evidence_url": "https://musicservice.com/wp-content/uploads/musicservice/pool_league/weeklystatistics/SF-9-BALL-WEEK-9.pdf",
+      "quote_snippet": "5 CROW BAR 8-BALLERS 47.62 63 30.0 33.0 162 83 838 784 · results 2026-08-13",
+      "checked_at": "2026-10-26",
+      "confidence": "implied",
+      "flags": [
+        "from the league's team names",
+        "no results since 2026-08-13 (off-season?)"
+      ],
+      "seen_on": [
+        "https://musicservice.com/pool-league/sioux-falls-summer-9-ball/"
+      ],
+      "source_type": "league_operator"
+    },
+    {
+      "field": "table_sizes",
+      "key": "table_sizes:7ft",
+      "value": {
+        "size": "7ft",
+        "count": null
+      },
+      "source_url": "https://musicservice.com/pool-league/sioux-falls-a-2/",
+      "quote_snippet": "Listed as a place to play pool; no table size stated anywhere.",
+      "checked_at": "2026-10-26",
+      "confidence": "implied",
+      "flags": [
+        "size not stated, 7 ft by default"
+      ],
+      "source_type": "default",
+      "seen_on": [
+        "https://musicservice.com/pool-league/sioux-falls-a-2/"
+      ]
+    }
+  ],
+  "missing": [
+    "table_count",
+    "table_sizes",
+    "table_brands",
+    "pricing_model",
+    "age_policy",
+    "food",
+    "full_bar"
+  ]
+}

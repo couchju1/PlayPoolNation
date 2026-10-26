@@ -17,7 +17,7 @@
     "lat": 43.51776,
     "lng": -96.73056
   },
-  "checked_at": "2026-10-25",
+  "checked_at": "2026-10-26",
   "sources_checked": [
     {
       "url": "https://www.thenickelspot.com/index.cfm",
@@ -68,30 +68,292 @@
   "facts": [
     {
       "field": "league_nights",
-      "key": "league_nights:pool-league:",
+      "key": "league_nights:sioux-falls-a-1-division-1-music-service:wednesday",
       "value": {
-        "league": "Pool league",
-        "weekday": null
+        "league": "Sioux Falls A-1 Division 1 (Music Service)",
+        "weekday": "wednesday"
       },
-      "source_url": "https://www.thenickelspot.com/index.cfm",
-      "quote_snippet": "POOL LEAGUES",
-      "checked_at": "2026-10-25",
+      "source_url": "https://musicservice.com/pool-league/sioux-falls-a-1-division-1/",
+      "evidence_url": "https://musicservice.com/wp-content/uploads/musicservice/pool_league/weeklystatistics/A-1-DIV-1-WEEK-4-2.pdf",
+      "quote_snippet": "1 NICKEL 8-BALL CRUSHERS 73.33 15 11.0 4.0 60 38 502 502 · results 2026-10-14",
+      "checked_at": "2026-10-26",
       "confidence": "implied",
       "flags": [
-        "no weekday given"
+        "from the league's team names",
+        "team 'NICKEL 8-BALL CRUSHERS' matched on its first word only"
       ],
       "seen_on": [
-        "https://www.thenickelspot.com/index.cfm",
-        "https://www.thenickelspot.com/index.cfm/page/ptype=results/category_id=1/mode=cat/cat1.htm",
-        "https://www.thenickelspot.com/index.cfm/page/ptype=results/category_id=10/mode=cat/cat10.htm",
-        "https://www.thenickelspot.com/index.cfm/page/ptype=results/category_id=12/mode=cat/cat12.htm",
-        "https://www.thenickelspot.com/index.cfm/page/ptype=results/category_id=2/mode=cat/cat2.htm",
-        "https://www.thenickelspot.com/index.cfm/page/ptype=results/category_id=3/mode=cat/cat3.htm",
-        "https://www.thenickelspot.com/index.cfm/page/ptype=results/category_id=4/mode=cat/cat4.htm",
-        "https://www.thenickelspot.com/index.cfm/page/ptype=results/category_id=5/mode=cat/cat5.htm",
-        "https://www.thenickelspot.com/index.cfm/page/ptype=results/category_id=6/mode=cat/cat6.htm"
+        "https://musicservice.com/pool-league/sioux-falls-a-1-division-1/"
       ],
-      "source_type": "official_website"
+      "source_type": "league_operator"
+    },
+    {
+      "field": "league_nights",
+      "key": "league_nights:sioux-falls-a-1-division-2-music-service:wednesday",
+      "value": {
+        "league": "Sioux Falls A-1 Division 2 (Music Service)",
+        "weekday": "wednesday"
+      },
+      "source_url": "https://musicservice.com/pool-league/sioux-falls-a-1-division-2/",
+      "evidence_url": "https://musicservice.com/wp-content/uploads/musicservice/pool_league/weeklystatistics/A-1-DIV-2-WEEK-4-2.pdf",
+      "quote_snippet": "4 NICKEL SPOT THE LEFTIES 66.67 15 10.0 5.0 60 36 488 484 · results 2026-10-14",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [
+        "from the league's team names"
+      ],
+      "seen_on": [
+        "https://musicservice.com/pool-league/sioux-falls-a-1-division-2/"
+      ],
+      "source_type": "league_operator"
+    },
+    {
+      "field": "league_nights",
+      "key": "league_nights:sioux-falls-a-2-music-service:monday",
+      "value": {
+        "league": "Sioux Falls A-2 (Music Service)",
+        "weekday": "monday"
+      },
+      "source_url": "https://musicservice.com/pool-league/sioux-falls-a-2/",
+      "evidence_url": "https://musicservice.com/wp-content/uploads/musicservice/pool_league/weeklystatistics/A-2-WEEK-5-2.pdf",
+      "quote_snippet": "2 NICKEL SPOT I 60 25 15.0 10.0 100 65 831 831 · results 2026-10-19",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [
+        "from the league's team names"
+      ],
+      "seen_on": [
+        "https://musicservice.com/pool-league/sioux-falls-a-2/"
+      ],
+      "source_type": "league_operator"
+    },
+    {
+      "field": "league_nights",
+      "key": "league_nights:sioux-falls-a-3-division-1-music-service:thursday",
+      "value": {
+        "league": "Sioux Falls A-3 Division 1 (Music Service)",
+        "weekday": "thursday"
+      },
+      "source_url": "https://musicservice.com/pool-league/sioux-falls-a-3-division-1/",
+      "evidence_url": "https://musicservice.com/wp-content/uploads/musicservice/pool_league/weeklystatistics/A-3-DIV-1-WEEK-4-2.pdf",
+      "quote_snippet": "3 NICKEL SPOT CUE THE CHAOS 60 15 9.0 6.0 60 24 503 423 · results 2026-10-15",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [
+        "from the league's team names"
+      ],
+      "seen_on": [
+        "https://musicservice.com/pool-league/sioux-falls-a-3-division-1/"
+      ],
+      "source_type": "league_operator"
+    },
+    {
+      "field": "league_nights",
+      "key": "league_nights:sioux-falls-a-3-division-2-music-service:thursday",
+      "value": {
+        "league": "Sioux Falls A-3 Division 2 (Music Service)",
+        "weekday": "thursday"
+      },
+      "source_url": "https://musicservice.com/pool-league/sioux-falls-a-3-division-2/",
+      "evidence_url": "https://musicservice.com/wp-content/uploads/musicservice/pool_league/weeklystatistics/A-3-DIV-2-WEEK-4-2.pdf",
+      "quote_snippet": "3 NICKEL SPOT WOODEN NICKELS 60 20 12.0 8.0 80 40 646 610 · results 2026-10-15",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [
+        "from the league's team names"
+      ],
+      "seen_on": [
+        "https://musicservice.com/pool-league/sioux-falls-a-3-division-2/"
+      ],
+      "source_type": "league_operator"
+    },
+    {
+      "field": "league_nights",
+      "key": "league_nights:sioux-falls-a-3-division-3-music-service:thursday",
+      "value": {
+        "league": "Sioux Falls A-3 Division 3 (Music Service)",
+        "weekday": "thursday"
+      },
+      "source_url": "https://musicservice.com/pool-league/sioux-falls-a-3-division-3/",
+      "evidence_url": "https://musicservice.com/wp-content/uploads/musicservice/pool_league/weeklystatistics/A-3-DIV-3-WEEK-4-2.pdf",
+      "quote_snippet": "1 NICKEL WILL DRINK FOR POOL 90 20 18.0 2.0 80 54 685 685 · results 2026-10-15",
+      "checked_at": "2026-10-26",
+      "confidence": "implied",
+      "flags": [
+        "from the league's team names",
+        "team 'NICKEL WILL DRINK FOR POOL' matched on its first word only"
+      ],
+      "seen_on": [
+        "https://musicservice.com/pool-league/sioux-falls-a-3-division-3/"
+      ],
+      "source_type": "league_operator"
+    },
+    {
+      "field": "league_nights",
+      "key": "league_nights:sioux-falls-aa-division-1-music-service:wednesday",
+      "value": {
+        "league": "Sioux Falls AA Division 1 (Music Service)",
+        "weekday": "wednesday"
+      },
+      "source_url": "https://musicservice.com/pool-league/sioux-falls-aa-division-1/",
+      "evidence_url": "https://musicservice.com/wp-content/uploads/musicservice/pool_league/weeklystatistics/AA-DIV-1-WEEK-4-2.pdf",
+      "quote_snippet": "1 NICKEL SPOT MONEY SHOT 70.83 24 17.0 7.0 100 60 781 781 · results 2026-10-14",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [
+        "from the league's team names"
+      ],
+      "seen_on": [
+        "https://musicservice.com/pool-league/sioux-falls-aa-division-1/"
+      ],
+      "source_type": "league_operator"
+    },
+    {
+      "field": "league_nights",
+      "key": "league_nights:sioux-falls-aa-division-2-music-service:wednesday",
+      "value": {
+        "league": "Sioux Falls AA Division 2 (Music Service)",
+        "weekday": "wednesday"
+      },
+      "source_url": "https://musicservice.com/pool-league/sioux-falls-aa-division-2/",
+      "evidence_url": "https://musicservice.com/wp-content/uploads/musicservice/pool_league/weeklystatistics/AA-DIV-2-WEEK-4-2.pdf",
+      "quote_snippet": "9 NICKEL GREASY BASTARDS 30 20 6.0 14.0 80 38 586 570 · results 2026-10-14",
+      "checked_at": "2026-10-26",
+      "confidence": "implied",
+      "flags": [
+        "from the league's team names",
+        "team 'NICKEL GREASY BASTARDS' matched on its first word only"
+      ],
+      "seen_on": [
+        "https://musicservice.com/pool-league/sioux-falls-aa-division-2/"
+      ],
+      "source_type": "league_operator"
+    },
+    {
+      "field": "league_nights",
+      "key": "league_nights:sioux-falls-aa-division-3-music-service:wednesday",
+      "value": {
+        "league": "Sioux Falls AA Division 3 (Music Service)",
+        "weekday": "wednesday"
+      },
+      "source_url": "https://musicservice.com/pool-league/sioux-falls-aa-division-3/",
+      "evidence_url": "https://musicservice.com/wp-content/uploads/musicservice/pool_league/weeklystatistics/AA-DIV-3-WEEK-4.pdf",
+      "quote_snippet": "9 NICKEL NO NAME NO OFFENSE 26.67 15 4.0 11.0 60 22 405 405 · results 2026-10-14",
+      "checked_at": "2026-10-26",
+      "confidence": "implied",
+      "flags": [
+        "from the league's team names",
+        "team 'NICKEL NO NAME NO OFFENSE' matched on its first word only"
+      ],
+      "seen_on": [
+        "https://musicservice.com/pool-league/sioux-falls-aa-division-3/"
+      ],
+      "source_type": "league_operator"
+    },
+    {
+      "field": "league_nights",
+      "key": "league_nights:sioux-falls-b-1-music-service:thursday",
+      "value": {
+        "league": "Sioux Falls B-1 (Music Service)",
+        "weekday": "thursday"
+      },
+      "source_url": "https://musicservice.com/pool-league/sioux-falls-b-1/",
+      "evidence_url": "https://musicservice.com/wp-content/uploads/musicservice/pool_league/weeklystatistics/B-1-WEEK-4-2.pdf",
+      "quote_snippet": "7 NICKEL FELT SO GOOD 33.33 12 4.0 8.0 45 15 346 298 · results 2026-10-15",
+      "checked_at": "2026-10-26",
+      "confidence": "implied",
+      "flags": [
+        "from the league's team names",
+        "team 'NICKEL FELT SO GOOD' matched on its first word only"
+      ],
+      "seen_on": [
+        "https://musicservice.com/pool-league/sioux-falls-b-1/"
+      ],
+      "source_type": "league_operator"
+    },
+    {
+      "field": "league_nights",
+      "key": "league_nights:sioux-falls-summer-8-ball-tuesday-music-service:tuesday",
+      "value": {
+        "league": "Sioux Falls Summer 8-ball Tuesday (Music Service)",
+        "weekday": "tuesday"
+      },
+      "source_url": "https://musicservice.com/pool-league/sioux-falls-summer-8-ball-tuesday/",
+      "evidence_url": "https://musicservice.com/wp-content/uploads/musicservice/pool_league/weeklystatistics/TUES-SUM-WEEK-9-2.pdf",
+      "quote_snippet": "2 NICKEL SPOT FAB 3 63.89 36 23.0 13.0 81 48 636 636 · results 2026-08-11",
+      "checked_at": "2026-10-26",
+      "confidence": "implied",
+      "flags": [
+        "from the league's team names",
+        "no results since 2026-08-11 (off-season?)"
+      ],
+      "seen_on": [
+        "https://musicservice.com/pool-league/sioux-falls-summer-8-ball-tuesday/"
+      ],
+      "source_type": "league_operator"
+    },
+    {
+      "field": "league_nights",
+      "key": "league_nights:sioux-falls-summer-8-ball-wednesday-music-service:wednesday",
+      "value": {
+        "league": "Sioux Falls Summer 8-ball Wednesday (Music Service)",
+        "weekday": "wednesday"
+      },
+      "source_url": "https://musicservice.com/pool-league/sioux-falls-summer-8-ball-wednesday/",
+      "evidence_url": "https://musicservice.com/wp-content/uploads/musicservice/pool_league/weeklystatistics/WED-SUM-WEEK-9-2.pdf",
+      "quote_snippet": "4 NICKEL NO NAME NO OFFENSE 58.33 36 21.0 15.0 81 49 650 635 · results 2026-08-12",
+      "checked_at": "2026-10-26",
+      "confidence": "implied",
+      "flags": [
+        "from the league's team names",
+        "team 'NICKEL NO NAME NO OFFENSE' matched on its first word only",
+        "no results since 2026-08-12 (off-season?)"
+      ],
+      "seen_on": [
+        "https://musicservice.com/pool-league/sioux-falls-summer-8-ball-wednesday/"
+      ],
+      "source_type": "league_operator"
+    },
+    {
+      "field": "league_nights",
+      "key": "league_nights:sioux-falls-summer-9-ball-music-service:thursday",
+      "value": {
+        "league": "Sioux Falls Summer 9-ball (Music Service)",
+        "weekday": "thursday"
+      },
+      "source_url": "https://musicservice.com/pool-league/sioux-falls-summer-9-ball/",
+      "evidence_url": "https://musicservice.com/wp-content/uploads/musicservice/pool_league/weeklystatistics/SF-9-BALL-WEEK-9.pdf",
+      "quote_snippet": "6 NICKEL SPOT CUE THE CHAOS 47.62 63 30.0 33.0 162 71 852 702 · results 2026-08-13",
+      "checked_at": "2026-10-26",
+      "confidence": "implied",
+      "flags": [
+        "from the league's team names",
+        "no results since 2026-08-13 (off-season?)"
+      ],
+      "seen_on": [
+        "https://musicservice.com/pool-league/sioux-falls-summer-9-ball/"
+      ],
+      "source_type": "league_operator"
+    },
+    {
+      "field": "league_nights",
+      "key": "league_nights:sioux-falls-tuesday-a-division-1-music-service:tuesday",
+      "value": {
+        "league": "Sioux Falls Tuesday A Division 1 (Music Service)",
+        "weekday": "tuesday"
+      },
+      "source_url": "https://musicservice.com/pool-league/sioux-falls-tuesday-a-division-1/",
+      "evidence_url": "https://musicservice.com/wp-content/uploads/musicservice/pool_league/weeklystatistics/TUES-A-DIV-1-WEEK-4-2.pdf",
+      "quote_snippet": "5 NICKEL SPOT SHAKE N BREAK 57.5 20 11.5 8.5 64 37 519 519 · results 2026-10-13",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [
+        "from the league's team names"
+      ],
+      "seen_on": [
+        "https://musicservice.com/pool-league/sioux-falls-tuesday-a-division-1/"
+      ],
+      "source_type": "league_operator"
     },
     {
       "field": "food",
@@ -99,7 +361,7 @@
       "value": true,
       "source_url": "https://www.thenickelspot.com/index.cfm/page/ptype=results/category_id=1/mode=cat/cat1.htm",
       "quote_snippet": "Appetizers",
-      "checked_at": "2026-10-25",
+      "checked_at": "2026-10-26",
       "confidence": "stated",
       "flags": [],
       "seen_on": [
@@ -114,7 +376,7 @@
       "value": true,
       "source_url": "https://www.thenickelspot.com/index.cfm",
       "quote_snippet": "LIQUOR",
-      "checked_at": "2026-10-25",
+      "checked_at": "2026-10-26",
       "confidence": "implied",
       "flags": [],
       "seen_on": [
@@ -129,6 +391,25 @@
         "https://www.thenickelspot.com/index.cfm/page/ptype=results/category_id=6/mode=cat/cat6.htm"
       ],
       "source_type": "official_website"
+    },
+    {
+      "field": "table_sizes",
+      "key": "table_sizes:7ft",
+      "value": {
+        "size": "7ft",
+        "count": null
+      },
+      "source_url": "https://playpoolnation.com/place/nickel-spot-sioux-falls-sd/",
+      "quote_snippet": "Listed as a place to play pool; no table size stated anywhere.",
+      "checked_at": "2026-10-26",
+      "confidence": "implied",
+      "flags": [
+        "size not stated, 7 ft by default"
+      ],
+      "source_type": "default",
+      "seen_on": [
+        "https://playpoolnation.com/place/nickel-spot-sioux-falls-sd/"
+      ]
     }
   ],
   "missing": [

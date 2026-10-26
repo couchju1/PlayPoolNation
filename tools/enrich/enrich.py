@@ -92,7 +92,12 @@ def do_enrich(city: dict, listings: list[dict], fetcher: Fetcher, *, recheck: bo
         if limit and done_now >= limit:
             print(f"Stopped after --limit {limit}; run again to continue.")
             return
+    removed = store.prune(slug, {v["slug"] for v in venues})
     state = store.load_state(slug)
+    for gone in removed:
+        state.get("venues", {}).pop(gone, None)
+    if removed:
+        print(f"Removed {len(removed)} venue file(s) no longer in the list: {', '.join(removed)}")
     pending = state.get("discovery", {}).get("osm_pending")
     if recheck:
         state["recheck"]["_finished"] = dt.date.today().isoformat()
@@ -136,6 +141,7 @@ def run_city(slug: str, args) -> None:
                 s["discovery"] = {}
                 store.save_state(slug, s)
                 store.write_json(slug, "_candidates.json", [])
+                store.write_json(slug, "league-facts.json", {})
             print("Discovery…")
             res = discover.run(city, listings, fetcher)
             s = store.load_state(slug)
@@ -155,16 +161,11 @@ def run_city(slug: str, args) -> None:
 
 
 def verify(slug: str, args) -> None:
-    import glob
     import json
-    from ppn_enrich.paths import city_dir
 
     fetcher = Fetcher(delay=args.delay)
     urls = {}
-    for path in glob.glob(os.path.join(city_dir(slug), "*.json")):
-        name = os.path.basename(path)
-        if name.startswith("_") or name in ("new-venues.json", "listings.json", "league-facts.json", "osm-listing-links.json"):
-            continue
+    for path in store.venue_files(slug):
         for f in json.load(open(path, encoding="utf-8"))["facts"]:
             urls.setdefault(f["source_url"], 0)
             urls[f["source_url"]] += 1

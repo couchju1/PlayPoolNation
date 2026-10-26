@@ -1,1 +1,1864 @@
-{}
+{
+  "bigs-bar-sioux-falls-sd": [
+    {
+      "field": "league_nights",
+      "key": "league_nights:sioux-falls-masters-music-service:wednesday",
+      "value": {
+        "league": "Sioux Falls Masters (Music Service)",
+        "weekday": "wednesday"
+      },
+      "source_url": "https://musicservice.com/pool-league/sioux-falls-masters/",
+      "evidence_url": "https://musicservice.com/wp-content/uploads/musicservice/pool_league/weeklystatistics/MASTERS-WEEK-4-2.pdf",
+      "quote_snippet": "1 BIGS GRAVY TRAIN 83.33 18 15.0 3.0 75 48 581 581 · results 2026-10-14",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [
+        "from the league's team names"
+      ]
+    },
+    {
+      "field": "league_nights",
+      "key": "league_nights:sioux-falls-aa-division-1-music-service:wednesday",
+      "value": {
+        "league": "Sioux Falls AA Division 1 (Music Service)",
+        "weekday": "wednesday"
+      },
+      "source_url": "https://musicservice.com/pool-league/sioux-falls-aa-division-1/",
+      "evidence_url": "https://musicservice.com/wp-content/uploads/musicservice/pool_league/weeklystatistics/AA-DIV-1-WEEK-4-2.pdf",
+      "quote_snippet": "3 BIGS SKID ERO 62.5 24 15.0 9.0 100 60 776 776 · results 2026-10-14",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [
+        "from the league's team names"
+      ]
+    },
+    {
+      "field": "league_nights",
+      "key": "league_nights:sioux-falls-aa-division-2-music-service:wednesday",
+      "value": {
+        "league": "Sioux Falls AA Division 2 (Music Service)",
+        "weekday": "wednesday"
+      },
+      "source_url": "https://musicservice.com/pool-league/sioux-falls-aa-division-2/",
+      "evidence_url": "https://musicservice.com/wp-content/uploads/musicservice/pool_league/weeklystatistics/AA-DIV-2-WEEK-4-2.pdf",
+      "quote_snippet": "4 BIGS ALZHEIMERS 55 20 11.0 9.0 80 45 622 622 · results 2026-10-14",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [
+        "from the league's team names"
+      ]
+    },
+    {
+      "field": "league_nights",
+      "key": "league_nights:sioux-falls-aa-division-3-music-service:wednesday",
+      "value": {
+        "league": "Sioux Falls AA Division 3 (Music Service)",
+        "weekday": "wednesday"
+      },
+      "source_url": "https://musicservice.com/pool-league/sioux-falls-aa-division-3/",
+      "evidence_url": "https://musicservice.com/wp-content/uploads/musicservice/pool_league/weeklystatistics/AA-DIV-3-WEEK-4.pdf",
+      "quote_snippet": "1 BIGS EAZY MONEY 73.33 15 11.0 4.0 60 32 492 436 · results 2026-10-14",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [
+        "from the league's team names"
+      ]
+    },
+    {
+      "field": "league_nights",
+      "key": "league_nights:sioux-falls-a-2-music-service:monday",
+      "value": {
+        "league": "Sioux Falls A-2 (Music Service)",
+        "weekday": "monday"
+      },
+      "source_url": "https://musicservice.com/pool-league/sioux-falls-a-2/",
+      "evidence_url": "https://musicservice.com/wp-content/uploads/musicservice/pool_league/weeklystatistics/A-2-WEEK-5-2.pdf",
+      "quote_snippet": "1 BIGS IV 60 25 15.0 10.0 100 68 838 838 · results 2026-10-19",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [
+        "from the league's team names"
+      ]
+    },
+    {
+      "field": "league_nights",
+      "key": "league_nights:sioux-falls-a-3-division-1-music-service:thursday",
+      "value": {
+        "league": "Sioux Falls A-3 Division 1 (Music Service)",
+        "weekday": "thursday"
+      },
+      "source_url": "https://musicservice.com/pool-league/sioux-falls-a-3-division-1/",
+      "evidence_url": "https://musicservice.com/wp-content/uploads/musicservice/pool_league/weeklystatistics/A-3-DIV-1-WEEK-4-2.pdf",
+      "quote_snippet": "2 BIGS TITO'S HEROS 60 20 12.0 8.0 80 43 638 638 · results 2026-10-15",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [
+        "from the league's team names"
+      ]
+    },
+    {
+      "field": "league_nights",
+      "key": "league_nights:sioux-falls-a-3-division-2-music-service:thursday",
+      "value": {
+        "league": "Sioux Falls A-3 Division 2 (Music Service)",
+        "weekday": "thursday"
+      },
+      "source_url": "https://musicservice.com/pool-league/sioux-falls-a-3-division-2/",
+      "evidence_url": "https://musicservice.com/wp-content/uploads/musicservice/pool_league/weeklystatistics/A-3-DIV-2-WEEK-4-2.pdf",
+      "quote_snippet": "4 BIGS POCKET POUNDERS 55 20 11.0 9.0 80 44 626 626 · results 2026-10-15",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [
+        "from the league's team names"
+      ]
+    },
+    {
+      "field": "league_nights",
+      "key": "league_nights:sioux-falls-a-3-division-3-music-service:thursday",
+      "value": {
+        "league": "Sioux Falls A-3 Division 3 (Music Service)",
+        "weekday": "thursday"
+      },
+      "source_url": "https://musicservice.com/pool-league/sioux-falls-a-3-division-3/",
+      "evidence_url": "https://musicservice.com/wp-content/uploads/musicservice/pool_league/weeklystatistics/A-3-DIV-3-WEEK-4-2.pdf",
+      "quote_snippet": "5 BIGS PLAN B 50 20 10.0 10.0 80 44 629 625 · results 2026-10-15",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [
+        "from the league's team names"
+      ]
+    },
+    {
+      "field": "league_nights",
+      "key": "league_nights:sioux-falls-summer-8-ball-tuesday-music-service:tuesday",
+      "value": {
+        "league": "Sioux Falls Summer 8-ball Tuesday (Music Service)",
+        "weekday": "tuesday"
+      },
+      "source_url": "https://musicservice.com/pool-league/sioux-falls-summer-8-ball-tuesday/",
+      "evidence_url": "https://musicservice.com/wp-content/uploads/musicservice/pool_league/weeklystatistics/TUES-SUM-WEEK-9-2.pdf",
+      "quote_snippet": "3 BIGS 1 OUTTA THE MONEY 55.56 36 20.0 16.0 81 46 654 639 · results 2026-08-11",
+      "checked_at": "2026-10-26",
+      "confidence": "implied",
+      "flags": [
+        "from the league's team names",
+        "no results since 2026-08-11 (off-season?)"
+      ]
+    },
+    {
+      "field": "league_nights",
+      "key": "league_nights:sioux-falls-tuesday-a-division-1-music-service:tuesday",
+      "value": {
+        "league": "Sioux Falls Tuesday A Division 1 (Music Service)",
+        "weekday": "tuesday"
+      },
+      "source_url": "https://musicservice.com/pool-league/sioux-falls-tuesday-a-division-1/",
+      "evidence_url": "https://musicservice.com/wp-content/uploads/musicservice/pool_league/weeklystatistics/TUES-A-DIV-1-WEEK-4-2.pdf",
+      "quote_snippet": "9 BIGS SCRATCH N SNIFF 45 20 9.0 11.0 64 25 460 432 · results 2026-10-13",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [
+        "from the league's team names"
+      ]
+    },
+    {
+      "field": "league_nights",
+      "key": "league_nights:sioux-falls-tuesday-a-division-2-music-service:tuesday",
+      "value": {
+        "league": "Sioux Falls Tuesday A Division 2 (Music Service)",
+        "weekday": "tuesday"
+      },
+      "source_url": "https://musicservice.com/pool-league/sioux-falls-tuesday-a-division-2/",
+      "evidence_url": "https://musicservice.com/wp-content/uploads/musicservice/pool_league/weeklystatistics/TUES-A-DIV-2-WEEK-4-2.pdf",
+      "quote_snippet": "1 BIGS GOT LUCKY 75 20 15.0 5.0 64 41 541 537 · results 2026-10-13",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [
+        "from the league's team names"
+      ]
+    }
+  ],
+  "rack-city-billiards-sioux-falls-sd": [
+    {
+      "field": "league_nights",
+      "key": "league_nights:sioux-falls-masters-music-service:wednesday",
+      "value": {
+        "league": "Sioux Falls Masters (Music Service)",
+        "weekday": "wednesday"
+      },
+      "source_url": "https://musicservice.com/pool-league/sioux-falls-masters/",
+      "evidence_url": "https://musicservice.com/wp-content/uploads/musicservice/pool_league/weeklystatistics/MASTERS-WEEK-4-2.pdf",
+      "quote_snippet": "7 RACK CITY BECKY STRONG 37.5 24 9.0 15.0 100 41 665 665 · results 2026-10-14",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [
+        "from the league's team names"
+      ]
+    },
+    {
+      "field": "league_nights",
+      "key": "league_nights:sioux-falls-aa-division-1-music-service:wednesday",
+      "value": {
+        "league": "Sioux Falls AA Division 1 (Music Service)",
+        "weekday": "wednesday"
+      },
+      "source_url": "https://musicservice.com/pool-league/sioux-falls-aa-division-1/",
+      "evidence_url": "https://musicservice.com/wp-content/uploads/musicservice/pool_league/weeklystatistics/AA-DIV-1-WEEK-4-2.pdf",
+      "quote_snippet": "6 RACK CITY BANK ROLLERZ 54.17 24 13.0 11.0 100 49 726 726 · results 2026-10-14",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [
+        "from the league's team names"
+      ]
+    },
+    {
+      "field": "league_nights",
+      "key": "league_nights:sioux-falls-aa-division-2-music-service:wednesday",
+      "value": {
+        "league": "Sioux Falls AA Division 2 (Music Service)",
+        "weekday": "wednesday"
+      },
+      "source_url": "https://musicservice.com/pool-league/sioux-falls-aa-division-2/",
+      "evidence_url": "https://musicservice.com/wp-content/uploads/musicservice/pool_league/weeklystatistics/AA-DIV-2-WEEK-4-2.pdf",
+      "quote_snippet": "2 RACK CITY CUES BROTHERS 70 20 14.0 6.0 80 45 641 621 · results 2026-10-14",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [
+        "from the league's team names"
+      ]
+    },
+    {
+      "field": "league_nights",
+      "key": "league_nights:sioux-falls-aa-division-3-music-service:wednesday",
+      "value": {
+        "league": "Sioux Falls AA Division 3 (Music Service)",
+        "weekday": "wednesday"
+      },
+      "source_url": "https://musicservice.com/pool-league/sioux-falls-aa-division-3/",
+      "evidence_url": "https://musicservice.com/wp-content/uploads/musicservice/pool_league/weeklystatistics/AA-DIV-3-WEEK-4.pdf",
+      "quote_snippet": "7 RACK CITY BREAKING BAD 33.33 15 5.0 10.0 60 26 460 440 · results 2026-10-14",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [
+        "from the league's team names"
+      ]
+    },
+    {
+      "field": "league_nights",
+      "key": "league_nights:sioux-falls-a-3-division-3-music-service:thursday",
+      "value": {
+        "league": "Sioux Falls A-3 Division 3 (Music Service)",
+        "weekday": "thursday"
+      },
+      "source_url": "https://musicservice.com/pool-league/sioux-falls-a-3-division-3/",
+      "evidence_url": "https://musicservice.com/wp-content/uploads/musicservice/pool_league/weeklystatistics/A-3-DIV-3-WEEK-4-2.pdf",
+      "quote_snippet": "10 RACK CITY ELEPHANT RIDERS 10 20 2.0 18.0 80 35 592 584 · results 2026-10-15",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [
+        "from the league's team names"
+      ]
+    },
+    {
+      "field": "league_nights",
+      "key": "league_nights:sioux-falls-b-1-music-service:thursday",
+      "value": {
+        "league": "Sioux Falls B-1 (Music Service)",
+        "weekday": "thursday"
+      },
+      "source_url": "https://musicservice.com/pool-league/sioux-falls-b-1/",
+      "evidence_url": "https://musicservice.com/wp-content/uploads/musicservice/pool_league/weeklystatistics/B-1-WEEK-4-2.pdf",
+      "quote_snippet": "5 RACK CITY MISFITS 50 16 8.0 8.0 60 29 487 466 · results 2026-10-15",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [
+        "from the league's team names"
+      ]
+    },
+    {
+      "field": "league_nights",
+      "key": "league_nights:sioux-falls-summer-8-ball-tuesday-music-service:tuesday",
+      "value": {
+        "league": "Sioux Falls Summer 8-ball Tuesday (Music Service)",
+        "weekday": "tuesday"
+      },
+      "source_url": "https://musicservice.com/pool-league/sioux-falls-summer-8-ball-tuesday/",
+      "evidence_url": "https://musicservice.com/wp-content/uploads/musicservice/pool_league/weeklystatistics/TUES-SUM-WEEK-9-2.pdf",
+      "quote_snippet": "4 RACK CITY 1 GOOD ONE 47.22 36 17.0 19.0 81 39 624 597 · results 2026-08-11",
+      "checked_at": "2026-10-26",
+      "confidence": "implied",
+      "flags": [
+        "from the league's team names",
+        "no results since 2026-08-11 (off-season?)"
+      ]
+    },
+    {
+      "field": "league_nights",
+      "key": "league_nights:sioux-falls-summer-8-ball-wednesday-music-service:wednesday",
+      "value": {
+        "league": "Sioux Falls Summer 8-ball Wednesday (Music Service)",
+        "weekday": "wednesday"
+      },
+      "source_url": "https://musicservice.com/pool-league/sioux-falls-summer-8-ball-wednesday/",
+      "evidence_url": "https://musicservice.com/wp-content/uploads/musicservice/pool_league/weeklystatistics/WED-SUM-WEEK-9-2.pdf",
+      "quote_snippet": "3 RACK CITY HAWKEYES 61.11 36 22.0 14.0 81 43 657 633 · results 2026-08-12",
+      "checked_at": "2026-10-26",
+      "confidence": "implied",
+      "flags": [
+        "from the league's team names",
+        "no results since 2026-08-12 (off-season?)"
+      ]
+    },
+    {
+      "field": "league_nights",
+      "key": "league_nights:sioux-falls-summer-9-ball-music-service:thursday",
+      "value": {
+        "league": "Sioux Falls Summer 9-ball (Music Service)",
+        "weekday": "thursday"
+      },
+      "source_url": "https://musicservice.com/pool-league/sioux-falls-summer-9-ball/",
+      "evidence_url": "https://musicservice.com/wp-content/uploads/musicservice/pool_league/weeklystatistics/SF-9-BALL-WEEK-9.pdf",
+      "quote_snippet": "2 RACK CITY Q'S THE BOSS 52.38 63 33.0 30.0 162 90 869 821 · results 2026-08-13",
+      "checked_at": "2026-10-26",
+      "confidence": "implied",
+      "flags": [
+        "from the league's team names",
+        "no results since 2026-08-13 (off-season?)"
+      ]
+    },
+    {
+      "field": "league_nights",
+      "key": "league_nights:sioux-falls-tuesday-a-division-1-music-service:tuesday",
+      "value": {
+        "league": "Sioux Falls Tuesday A Division 1 (Music Service)",
+        "weekday": "tuesday"
+      },
+      "source_url": "https://musicservice.com/pool-league/sioux-falls-tuesday-a-division-1/",
+      "evidence_url": "https://musicservice.com/wp-content/uploads/musicservice/pool_league/weeklystatistics/TUES-A-DIV-1-WEEK-4-2.pdf",
+      "quote_snippet": "2 RACK CITY 1 GOOD ONE 65 20 13.0 7.0 64 43 538 538 · results 2026-10-13",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [
+        "from the league's team names"
+      ]
+    },
+    {
+      "field": "league_nights",
+      "key": "league_nights:sioux-falls-tuesday-a-division-2-music-service:tuesday",
+      "value": {
+        "league": "Sioux Falls Tuesday A Division 2 (Music Service)",
+        "weekday": "tuesday"
+      },
+      "source_url": "https://musicservice.com/pool-league/sioux-falls-tuesday-a-division-2/",
+      "evidence_url": "https://musicservice.com/wp-content/uploads/musicservice/pool_league/weeklystatistics/TUES-A-DIV-2-WEEK-4-2.pdf",
+      "quote_snippet": "11 RACK CITY POCKET QUEENS 37.5 20 7.5 12.5 64 35 531 515 · results 2026-10-13",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [
+        "from the league's team names"
+      ]
+    }
+  ],
+  "jjs-billiards-and-darts-sioux-falls-sd": [
+    {
+      "field": "league_nights",
+      "key": "league_nights:sioux-falls-masters-music-service:wednesday",
+      "value": {
+        "league": "Sioux Falls Masters (Music Service)",
+        "weekday": "wednesday"
+      },
+      "source_url": "https://musicservice.com/pool-league/sioux-falls-masters/",
+      "evidence_url": "https://musicservice.com/wp-content/uploads/musicservice/pool_league/weeklystatistics/MASTERS-WEEK-4-2.pdf",
+      "quote_snippet": "8 JJ'S GET'N LUCKY 33.33 24 8.0 16.0 100 43 668 668 · results 2026-10-14",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [
+        "from the league's team names"
+      ]
+    },
+    {
+      "field": "league_nights",
+      "key": "league_nights:sioux-falls-aa-division-1-music-service:wednesday",
+      "value": {
+        "league": "Sioux Falls AA Division 1 (Music Service)",
+        "weekday": "wednesday"
+      },
+      "source_url": "https://musicservice.com/pool-league/sioux-falls-aa-division-1/",
+      "evidence_url": "https://musicservice.com/wp-content/uploads/musicservice/pool_league/weeklystatistics/AA-DIV-1-WEEK-4-2.pdf",
+      "quote_snippet": "2 JJ'S SCRATCH ADDICTS 66.67 24 16.0 8.0 100 52 734 734 · results 2026-10-14",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [
+        "from the league's team names"
+      ]
+    },
+    {
+      "field": "league_nights",
+      "key": "league_nights:sioux-falls-aa-division-2-music-service:wednesday",
+      "value": {
+        "league": "Sioux Falls AA Division 2 (Music Service)",
+        "weekday": "wednesday"
+      },
+      "source_url": "https://musicservice.com/pool-league/sioux-falls-aa-division-2/",
+      "evidence_url": "https://musicservice.com/wp-content/uploads/musicservice/pool_league/weeklystatistics/AA-DIV-2-WEEK-4-2.pdf",
+      "quote_snippet": "1 JJ'S POCKET HOBOS 75 20 15.0 5.0 80 44 640 628 · results 2026-10-14",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [
+        "from the league's team names"
+      ]
+    },
+    {
+      "field": "league_nights",
+      "key": "league_nights:sioux-falls-aa-division-3-music-service:wednesday",
+      "value": {
+        "league": "Sioux Falls AA Division 3 (Music Service)",
+        "weekday": "wednesday"
+      },
+      "source_url": "https://musicservice.com/pool-league/sioux-falls-aa-division-3/",
+      "evidence_url": "https://musicservice.com/wp-content/uploads/musicservice/pool_league/weeklystatistics/AA-DIV-3-WEEK-4.pdf",
+      "quote_snippet": "5 JJ'S TEAM OOPS 50 20 10.0 10.0 80 35 617 577 · results 2026-10-14",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [
+        "from the league's team names"
+      ]
+    },
+    {
+      "field": "league_nights",
+      "key": "league_nights:sioux-falls-a-3-division-1-music-service:thursday",
+      "value": {
+        "league": "Sioux Falls A-3 Division 1 (Music Service)",
+        "weekday": "thursday"
+      },
+      "source_url": "https://musicservice.com/pool-league/sioux-falls-a-3-division-1/",
+      "evidence_url": "https://musicservice.com/wp-content/uploads/musicservice/pool_league/weeklystatistics/A-3-DIV-1-WEEK-4-2.pdf",
+      "quote_snippet": "1 JJ'S 101 BOYS 66.67 15 10.0 5.0 60 31 473 457 · results 2026-10-15",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [
+        "from the league's team names"
+      ]
+    },
+    {
+      "field": "league_nights",
+      "key": "league_nights:sioux-falls-a-3-division-2-music-service:thursday",
+      "value": {
+        "league": "Sioux Falls A-3 Division 2 (Music Service)",
+        "weekday": "thursday"
+      },
+      "source_url": "https://musicservice.com/pool-league/sioux-falls-a-3-division-2/",
+      "evidence_url": "https://musicservice.com/wp-content/uploads/musicservice/pool_league/weeklystatistics/A-3-DIV-2-WEEK-4-2.pdf",
+      "quote_snippet": "6 JJ'S 3 POLEZ & 2 HOLEZ 45 20 9.0 11.0 80 37 613 609 · results …",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [
+        "from the league's team names"
+      ]
+    },
+    {
+      "field": "league_nights",
+      "key": "league_nights:sioux-falls-a-3-division-3-music-service:thursday",
+      "value": {
+        "league": "Sioux Falls A-3 Division 3 (Music Service)",
+        "weekday": "thursday"
+      },
+      "source_url": "https://musicservice.com/pool-league/sioux-falls-a-3-division-3/",
+      "evidence_url": "https://musicservice.com/wp-content/uploads/musicservice/pool_league/weeklystatistics/A-3-DIV-3-WEEK-4-2.pdf",
+      "quote_snippet": "2 JJ'S WORK IT OUT 70 20 14.0 6.0 80 38 660 596 · results 2026-10-15",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [
+        "from the league's team names"
+      ]
+    },
+    {
+      "field": "league_nights",
+      "key": "league_nights:sioux-falls-b-1-music-service:thursday",
+      "value": {
+        "league": "Sioux Falls B-1 (Music Service)",
+        "weekday": "thursday"
+      },
+      "source_url": "https://musicservice.com/pool-league/sioux-falls-b-1/",
+      "evidence_url": "https://musicservice.com/wp-content/uploads/musicservice/pool_league/weeklystatistics/B-1-WEEK-4-2.pdf",
+      "quote_snippet": "6 JJ'S 8 BALLS 50 12 6.0 6.0 45 26 360 360 · results 2026-10-15",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [
+        "from the league's team names"
+      ]
+    },
+    {
+      "field": "league_nights",
+      "key": "league_nights:sioux-falls-summer-8-ball-tuesday-music-service:tuesday",
+      "value": {
+        "league": "Sioux Falls Summer 8-ball Tuesday (Music Service)",
+        "weekday": "tuesday"
+      },
+      "source_url": "https://musicservice.com/pool-league/sioux-falls-summer-8-ball-tuesday/",
+      "evidence_url": "https://musicservice.com/wp-content/uploads/musicservice/pool_league/weeklystatistics/TUES-SUM-WEEK-9-2.pdf",
+      "quote_snippet": "1 JJ'S BONZAI BOYS 77.78 36 28.0 8.0 81 57 682 682 · results 2026-08-11",
+      "checked_at": "2026-10-26",
+      "confidence": "implied",
+      "flags": [
+        "from the league's team names",
+        "no results since 2026-08-11 (off-season?)"
+      ]
+    },
+    {
+      "field": "league_nights",
+      "key": "league_nights:sioux-falls-summer-8-ball-wednesday-music-service:wednesday",
+      "value": {
+        "league": "Sioux Falls Summer 8-ball Wednesday (Music Service)",
+        "weekday": "wednesday"
+      },
+      "source_url": "https://musicservice.com/pool-league/sioux-falls-summer-8-ball-wednesday/",
+      "evidence_url": "https://musicservice.com/wp-content/uploads/musicservice/pool_league/weeklystatistics/WED-SUM-WEEK-9-2.pdf",
+      "quote_snippet": "2 JJ'S KLOCKWERKS 66.67 36 24.0 12.0 81 55 700 700 · results 2026-08-12",
+      "checked_at": "2026-10-26",
+      "confidence": "implied",
+      "flags": [
+        "from the league's team names",
+        "no results since 2026-08-12 (off-season?)"
+      ]
+    },
+    {
+      "field": "league_nights",
+      "key": "league_nights:sioux-falls-summer-9-ball-music-service:thursday",
+      "value": {
+        "league": "Sioux Falls Summer 9-ball (Music Service)",
+        "weekday": "thursday"
+      },
+      "source_url": "https://musicservice.com/pool-league/sioux-falls-summer-9-ball/",
+      "evidence_url": "https://musicservice.com/wp-content/uploads/musicservice/pool_league/weeklystatistics/SF-9-BALL-WEEK-9.pdf",
+      "quote_snippet": "4 JJ'S ALL IN 49.21 63 31.0 32.0 162 72 834 714 · results 2026-08-13",
+      "checked_at": "2026-10-26",
+      "confidence": "implied",
+      "flags": [
+        "from the league's team names",
+        "no results since 2026-08-13 (off-season?)"
+      ]
+    },
+    {
+      "field": "league_nights",
+      "key": "league_nights:sioux-falls-tuesday-a-division-1-music-service:tuesday",
+      "value": {
+        "league": "Sioux Falls Tuesday A Division 1 (Music Service)",
+        "weekday": "tuesday"
+      },
+      "source_url": "https://musicservice.com/pool-league/sioux-falls-tuesday-a-division-1/",
+      "evidence_url": "https://musicservice.com/wp-content/uploads/musicservice/pool_league/weeklystatistics/TUES-A-DIV-1-WEEK-4-2.pdf",
+      "quote_snippet": "7 JJ'S BONZAI BOYS 52.5 20 10.5 9.5 64 37 512 512 · results 2026-10-13",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [
+        "from the league's team names"
+      ]
+    },
+    {
+      "field": "league_nights",
+      "key": "league_nights:sioux-falls-tuesday-a-division-2-music-service:tuesday",
+      "value": {
+        "league": "Sioux Falls Tuesday A Division 2 (Music Service)",
+        "weekday": "tuesday"
+      },
+      "source_url": "https://musicservice.com/pool-league/sioux-falls-tuesday-a-division-2/",
+      "evidence_url": "https://musicservice.com/wp-content/uploads/musicservice/pool_league/weeklystatistics/TUES-A-DIV-2-WEEK-4-2.pdf",
+      "quote_snippet": "4 JJ'S DEADLY AIM 60 20 12.0 8.0 64 41 525 525 · results 2026-10-13",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [
+        "from the league's team names"
+      ]
+    }
+  ],
+  "luckys-sioux-falls-sd": [
+    {
+      "field": "league_nights",
+      "key": "league_nights:sioux-falls-masters-music-service:wednesday",
+      "value": {
+        "league": "Sioux Falls Masters (Music Service)",
+        "weekday": "wednesday"
+      },
+      "source_url": "https://musicservice.com/pool-league/sioux-falls-masters/",
+      "evidence_url": "https://musicservice.com/wp-content/uploads/musicservice/pool_league/weeklystatistics/MASTERS-WEEK-4-2.pdf",
+      "quote_snippet": "10 LUCKYS GOPHER COUGH 12.5 24 3.0 21.0 100 33 608 608 · results 2026-10-14",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [
+        "from the league's team names"
+      ]
+    },
+    {
+      "field": "league_nights",
+      "key": "league_nights:sioux-falls-a-1-division-2-music-service:wednesday",
+      "value": {
+        "league": "Sioux Falls A-1 Division 2 (Music Service)",
+        "weekday": "wednesday"
+      },
+      "source_url": "https://musicservice.com/pool-league/sioux-falls-a-1-division-2/",
+      "evidence_url": "https://musicservice.com/wp-content/uploads/musicservice/pool_league/weeklystatistics/A-1-DIV-2-WEEK-4-2.pdf",
+      "quote_snippet": "6 LUCKYS SHORT BUS 45 20 9.0 11.0 80 31 596 568 · results 2026-10-14",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [
+        "from the league's team names"
+      ]
+    },
+    {
+      "field": "league_nights",
+      "key": "league_nights:sioux-falls-a-2-music-service:monday",
+      "value": {
+        "league": "Sioux Falls A-2 (Music Service)",
+        "weekday": "monday"
+      },
+      "source_url": "https://musicservice.com/pool-league/sioux-falls-a-2/",
+      "evidence_url": "https://musicservice.com/wp-content/uploads/musicservice/pool_league/weeklystatistics/A-2-WEEK-5-2.pdf",
+      "quote_snippet": "8 LUCKYS SOUTH PEN15 44 25 11.0 14.0 100 37 750 638 · results 2026-10-19",
+      "checked_at": "2026-10-26",
+      "confidence": "implied",
+      "flags": [
+        "from the league's team names",
+        "team 'LUCKYS SOUTH PEN15' may be another location"
+      ]
+    },
+    {
+      "field": "league_nights",
+      "key": "league_nights:sioux-falls-a-3-division-3-music-service:thursday",
+      "value": {
+        "league": "Sioux Falls A-3 Division 3 (Music Service)",
+        "weekday": "thursday"
+      },
+      "source_url": "https://musicservice.com/pool-league/sioux-falls-a-3-division-3/",
+      "evidence_url": "https://musicservice.com/wp-content/uploads/musicservice/pool_league/weeklystatistics/A-3-DIV-3-WEEK-4-2.pdf",
+      "quote_snippet": "3 LUCKYS SOUTH SHAKE IT OFF 65 20 13.0 7.0 80 45 652 648 · results 2026-10-15",
+      "checked_at": "2026-10-26",
+      "confidence": "implied",
+      "flags": [
+        "from the league's team names",
+        "team 'LUCKYS SOUTH SHAKE IT OFF' may be another location"
+      ]
+    },
+    {
+      "field": "league_nights",
+      "key": "league_nights:sioux-falls-b-1-music-service:thursday",
+      "value": {
+        "league": "Sioux Falls B-1 (Music Service)",
+        "weekday": "thursday"
+      },
+      "source_url": "https://musicservice.com/pool-league/sioux-falls-b-1/",
+      "evidence_url": "https://musicservice.com/wp-content/uploads/musicservice/pool_league/weeklystatistics/B-1-WEEK-4-2.pdf",
+      "quote_snippet": "8 LUCKYS LUCKY BREAKS 31.25 16 5.0 11.0 60 27 455 446 · results 2026-10-15",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [
+        "from the league's team names"
+      ]
+    }
+  ],
+  "nickel-spot-sioux-falls-sd": [
+    {
+      "field": "league_nights",
+      "key": "league_nights:sioux-falls-aa-division-1-music-service:wednesday",
+      "value": {
+        "league": "Sioux Falls AA Division 1 (Music Service)",
+        "weekday": "wednesday"
+      },
+      "source_url": "https://musicservice.com/pool-league/sioux-falls-aa-division-1/",
+      "evidence_url": "https://musicservice.com/wp-content/uploads/musicservice/pool_league/weeklystatistics/AA-DIV-1-WEEK-4-2.pdf",
+      "quote_snippet": "1 NICKEL SPOT MONEY SHOT 70.83 24 17.0 7.0 100 60 781 781 · results 2026-10-14",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [
+        "from the league's team names"
+      ]
+    },
+    {
+      "field": "league_nights",
+      "key": "league_nights:sioux-falls-aa-division-2-music-service:wednesday",
+      "value": {
+        "league": "Sioux Falls AA Division 2 (Music Service)",
+        "weekday": "wednesday"
+      },
+      "source_url": "https://musicservice.com/pool-league/sioux-falls-aa-division-2/",
+      "evidence_url": "https://musicservice.com/wp-content/uploads/musicservice/pool_league/weeklystatistics/AA-DIV-2-WEEK-4-2.pdf",
+      "quote_snippet": "9 NICKEL GREASY BASTARDS 30 20 6.0 14.0 80 38 586 570 · results 2026-10-14",
+      "checked_at": "2026-10-26",
+      "confidence": "implied",
+      "flags": [
+        "from the league's team names",
+        "team 'NICKEL GREASY BASTARDS' matched on its first word only"
+      ]
+    },
+    {
+      "field": "league_nights",
+      "key": "league_nights:sioux-falls-aa-division-3-music-service:wednesday",
+      "value": {
+        "league": "Sioux Falls AA Division 3 (Music Service)",
+        "weekday": "wednesday"
+      },
+      "source_url": "https://musicservice.com/pool-league/sioux-falls-aa-division-3/",
+      "evidence_url": "https://musicservice.com/wp-content/uploads/musicservice/pool_league/weeklystatistics/AA-DIV-3-WEEK-4.pdf",
+      "quote_snippet": "9 NICKEL NO NAME NO OFFENSE 26.67 15 4.0 11.0 60 22 405 405 · results 2026-10-14",
+      "checked_at": "2026-10-26",
+      "confidence": "implied",
+      "flags": [
+        "from the league's team names",
+        "team 'NICKEL NO NAME NO OFFENSE' matched on its first word only"
+      ]
+    },
+    {
+      "field": "league_nights",
+      "key": "league_nights:sioux-falls-a-1-division-1-music-service:wednesday",
+      "value": {
+        "league": "Sioux Falls A-1 Division 1 (Music Service)",
+        "weekday": "wednesday"
+      },
+      "source_url": "https://musicservice.com/pool-league/sioux-falls-a-1-division-1/",
+      "evidence_url": "https://musicservice.com/wp-content/uploads/musicservice/pool_league/weeklystatistics/A-1-DIV-1-WEEK-4-2.pdf",
+      "quote_snippet": "1 NICKEL 8-BALL CRUSHERS 73.33 15 11.0 4.0 60 38 502 502 · results 2026-10-14",
+      "checked_at": "2026-10-26",
+      "confidence": "implied",
+      "flags": [
+        "from the league's team names",
+        "team 'NICKEL 8-BALL CRUSHERS' matched on its first word only"
+      ]
+    },
+    {
+      "field": "league_nights",
+      "key": "league_nights:sioux-falls-a-1-division-2-music-service:wednesday",
+      "value": {
+        "league": "Sioux Falls A-1 Division 2 (Music Service)",
+        "weekday": "wednesday"
+      },
+      "source_url": "https://musicservice.com/pool-league/sioux-falls-a-1-division-2/",
+      "evidence_url": "https://musicservice.com/wp-content/uploads/musicservice/pool_league/weeklystatistics/A-1-DIV-2-WEEK-4-2.pdf",
+      "quote_snippet": "4 NICKEL SPOT THE LEFTIES 66.67 15 10.0 5.0 60 36 488 484 · results 2026-10-14",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [
+        "from the league's team names"
+      ]
+    },
+    {
+      "field": "league_nights",
+      "key": "league_nights:sioux-falls-a-2-music-service:monday",
+      "value": {
+        "league": "Sioux Falls A-2 (Music Service)",
+        "weekday": "monday"
+      },
+      "source_url": "https://musicservice.com/pool-league/sioux-falls-a-2/",
+      "evidence_url": "https://musicservice.com/wp-content/uploads/musicservice/pool_league/weeklystatistics/A-2-WEEK-5-2.pdf",
+      "quote_snippet": "2 NICKEL SPOT I 60 25 15.0 10.0 100 65 831 831 · results 2026-10-19",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [
+        "from the league's team names"
+      ]
+    },
+    {
+      "field": "league_nights",
+      "key": "league_nights:sioux-falls-a-3-division-1-music-service:thursday",
+      "value": {
+        "league": "Sioux Falls A-3 Division 1 (Music Service)",
+        "weekday": "thursday"
+      },
+      "source_url": "https://musicservice.com/pool-league/sioux-falls-a-3-division-1/",
+      "evidence_url": "https://musicservice.com/wp-content/uploads/musicservice/pool_league/weeklystatistics/A-3-DIV-1-WEEK-4-2.pdf",
+      "quote_snippet": "3 NICKEL SPOT CUE THE CHAOS 60 15 9.0 6.0 60 24 503 423 · results 2026-10-15",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [
+        "from the league's team names"
+      ]
+    },
+    {
+      "field": "league_nights",
+      "key": "league_nights:sioux-falls-a-3-division-2-music-service:thursday",
+      "value": {
+        "league": "Sioux Falls A-3 Division 2 (Music Service)",
+        "weekday": "thursday"
+      },
+      "source_url": "https://musicservice.com/pool-league/sioux-falls-a-3-division-2/",
+      "evidence_url": "https://musicservice.com/wp-content/uploads/musicservice/pool_league/weeklystatistics/A-3-DIV-2-WEEK-4-2.pdf",
+      "quote_snippet": "3 NICKEL SPOT WOODEN NICKELS 60 20 12.0 8.0 80 40 646 610 · results 2026-10-15",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [
+        "from the league's team names"
+      ]
+    },
+    {
+      "field": "league_nights",
+      "key": "league_nights:sioux-falls-a-3-division-3-music-service:thursday",
+      "value": {
+        "league": "Sioux Falls A-3 Division 3 (Music Service)",
+        "weekday": "thursday"
+      },
+      "source_url": "https://musicservice.com/pool-league/sioux-falls-a-3-division-3/",
+      "evidence_url": "https://musicservice.com/wp-content/uploads/musicservice/pool_league/weeklystatistics/A-3-DIV-3-WEEK-4-2.pdf",
+      "quote_snippet": "1 NICKEL WILL DRINK FOR POOL 90 20 18.0 2.0 80 54 685 685 · results 2026-10-15",
+      "checked_at": "2026-10-26",
+      "confidence": "implied",
+      "flags": [
+        "from the league's team names",
+        "team 'NICKEL WILL DRINK FOR POOL' matched on its first word only"
+      ]
+    },
+    {
+      "field": "league_nights",
+      "key": "league_nights:sioux-falls-b-1-music-service:thursday",
+      "value": {
+        "league": "Sioux Falls B-1 (Music Service)",
+        "weekday": "thursday"
+      },
+      "source_url": "https://musicservice.com/pool-league/sioux-falls-b-1/",
+      "evidence_url": "https://musicservice.com/wp-content/uploads/musicservice/pool_league/weeklystatistics/B-1-WEEK-4-2.pdf",
+      "quote_snippet": "7 NICKEL FELT SO GOOD 33.33 12 4.0 8.0 45 15 346 298 · results 2026-10-15",
+      "checked_at": "2026-10-26",
+      "confidence": "implied",
+      "flags": [
+        "from the league's team names",
+        "team 'NICKEL FELT SO GOOD' matched on its first word only"
+      ]
+    },
+    {
+      "field": "league_nights",
+      "key": "league_nights:sioux-falls-summer-8-ball-tuesday-music-service:tuesday",
+      "value": {
+        "league": "Sioux Falls Summer 8-ball Tuesday (Music Service)",
+        "weekday": "tuesday"
+      },
+      "source_url": "https://musicservice.com/pool-league/sioux-falls-summer-8-ball-tuesday/",
+      "evidence_url": "https://musicservice.com/wp-content/uploads/musicservice/pool_league/weeklystatistics/TUES-SUM-WEEK-9-2.pdf",
+      "quote_snippet": "2 NICKEL SPOT FAB 3 63.89 36 23.0 13.0 81 48 636 636 · results 2026-08-11",
+      "checked_at": "2026-10-26",
+      "confidence": "implied",
+      "flags": [
+        "from the league's team names",
+        "no results since 2026-08-11 (off-season?)"
+      ]
+    },
+    {
+      "field": "league_nights",
+      "key": "league_nights:sioux-falls-summer-8-ball-wednesday-music-service:wednesday",
+      "value": {
+        "league": "Sioux Falls Summer 8-ball Wednesday (Music Service)",
+        "weekday": "wednesday"
+      },
+      "source_url": "https://musicservice.com/pool-league/sioux-falls-summer-8-ball-wednesday/",
+      "evidence_url": "https://musicservice.com/wp-content/uploads/musicservice/pool_league/weeklystatistics/WED-SUM-WEEK-9-2.pdf",
+      "quote_snippet": "4 NICKEL NO NAME NO OFFENSE 58.33 36 21.0 15.0 81 49 650 635 · results 2026-08-12",
+      "checked_at": "2026-10-26",
+      "confidence": "implied",
+      "flags": [
+        "from the league's team names",
+        "team 'NICKEL NO NAME NO OFFENSE' matched on its first word only",
+        "no results since 2026-08-12 (off-season?)"
+      ]
+    },
+    {
+      "field": "league_nights",
+      "key": "league_nights:sioux-falls-summer-9-ball-music-service:thursday",
+      "value": {
+        "league": "Sioux Falls Summer 9-ball (Music Service)",
+        "weekday": "thursday"
+      },
+      "source_url": "https://musicservice.com/pool-league/sioux-falls-summer-9-ball/",
+      "evidence_url": "https://musicservice.com/wp-content/uploads/musicservice/pool_league/weeklystatistics/SF-9-BALL-WEEK-9.pdf",
+      "quote_snippet": "6 NICKEL SPOT CUE THE CHAOS 47.62 63 30.0 33.0 162 71 852 702 · results 2026-08-13",
+      "checked_at": "2026-10-26",
+      "confidence": "implied",
+      "flags": [
+        "from the league's team names",
+        "no results since 2026-08-13 (off-season?)"
+      ]
+    },
+    {
+      "field": "league_nights",
+      "key": "league_nights:sioux-falls-tuesday-a-division-1-music-service:tuesday",
+      "value": {
+        "league": "Sioux Falls Tuesday A Division 1 (Music Service)",
+        "weekday": "tuesday"
+      },
+      "source_url": "https://musicservice.com/pool-league/sioux-falls-tuesday-a-division-1/",
+      "evidence_url": "https://musicservice.com/wp-content/uploads/musicservice/pool_league/weeklystatistics/TUES-A-DIV-1-WEEK-4-2.pdf",
+      "quote_snippet": "5 NICKEL SPOT SHAKE N BREAK 57.5 20 11.5 8.5 64 37 519 519 · results 2026-10-13",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [
+        "from the league's team names"
+      ]
+    }
+  ],
+  "thirsty-duck-sioux-falls-sd": [
+    {
+      "field": "league_nights",
+      "key": "league_nights:sioux-falls-aa-division-1-music-service:wednesday",
+      "value": {
+        "league": "Sioux Falls AA Division 1 (Music Service)",
+        "weekday": "wednesday"
+      },
+      "source_url": "https://musicservice.com/pool-league/sioux-falls-aa-division-1/",
+      "evidence_url": "https://musicservice.com/wp-content/uploads/musicservice/pool_league/weeklystatistics/AA-DIV-1-WEEK-4-2.pdf",
+      "quote_snippet": "8 THIRSTY DUCK GUN SLINGERS 45.83 24 11.0 13.0 100 49 717 717 · results 2026-10-14",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [
+        "from the league's team names"
+      ]
+    },
+    {
+      "field": "league_nights",
+      "key": "league_nights:sioux-falls-a-3-division-3-music-service:thursday",
+      "value": {
+        "league": "Sioux Falls A-3 Division 3 (Music Service)",
+        "weekday": "thursday"
+      },
+      "source_url": "https://musicservice.com/pool-league/sioux-falls-a-3-division-3/",
+      "evidence_url": "https://musicservice.com/wp-content/uploads/musicservice/pool_league/weeklystatistics/A-3-DIV-3-WEEK-4-2.pdf",
+      "quote_snippet": "4 THIRSTY DUCK MAMA & PAPAS 60 20 12.0 8.0 80 45 638 622 · results 2026-10-15",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [
+        "from the league's team names"
+      ]
+    },
+    {
+      "field": "league_nights",
+      "key": "league_nights:sioux-falls-summer-9-ball-music-service:thursday",
+      "value": {
+        "league": "Sioux Falls Summer 9-ball (Music Service)",
+        "weekday": "thursday"
+      },
+      "source_url": "https://musicservice.com/pool-league/sioux-falls-summer-9-ball/",
+      "evidence_url": "https://musicservice.com/wp-content/uploads/musicservice/pool_league/weeklystatistics/SF-9-BALL-WEEK-9.pdf",
+      "quote_snippet": "1 THIRSTY DUCK GUN SLINGERS 63.49 63 40.0 23.0 162 95 908 908 · results 2026-08-13",
+      "checked_at": "2026-10-26",
+      "confidence": "implied",
+      "flags": [
+        "from the league's team names",
+        "no results since 2026-08-13 (off-season?)"
+      ]
+    },
+    {
+      "field": "league_nights",
+      "key": "league_nights:sioux-falls-wednesday-b-music-service:wednesday",
+      "value": {
+        "league": "Sioux Falls Wednesday B (Music Service)",
+        "weekday": "wednesday"
+      },
+      "source_url": "https://musicservice.com/pool-league/sioux-falls-wednesday-b/",
+      "evidence_url": "https://musicservice.com/wp-content/uploads/musicservice/pool_league/weeklystatistics/WED-B-WEEK-4-2.pdf",
+      "quote_snippet": "9 THIRSTY DUCK BREAK N RUN 23.33 15 3.5 11.5 48 18 344 332 · results 2026-10-14",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [
+        "from the league's team names"
+      ]
+    }
+  ],
+  "chasers-sioux-falls-sd": [
+    {
+      "field": "league_nights",
+      "key": "league_nights:sioux-falls-masters-music-service:wednesday",
+      "value": {
+        "league": "Sioux Falls Masters (Music Service)",
+        "weekday": "wednesday"
+      },
+      "source_url": "https://musicservice.com/pool-league/sioux-falls-masters/",
+      "evidence_url": "https://musicservice.com/wp-content/uploads/musicservice/pool_league/weeklystatistics/MASTERS-WEEK-4-2.pdf",
+      "quote_snippet": "3 CHASERS SNIPER GANG 77.78 18 14.0 4.0 75 47 601 601 · results 2026-10-14",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [
+        "from the league's team names"
+      ]
+    },
+    {
+      "field": "league_nights",
+      "key": "league_nights:sioux-falls-a-2-music-service:monday",
+      "value": {
+        "league": "Sioux Falls A-2 (Music Service)",
+        "weekday": "monday"
+      },
+      "source_url": "https://musicservice.com/pool-league/sioux-falls-a-2/",
+      "evidence_url": "https://musicservice.com/wp-content/uploads/musicservice/pool_league/weeklystatistics/A-2-WEEK-5-2.pdf",
+      "quote_snippet": "9 CHASERS CUE SLINGERS 40 25 10.0 15.0 100 42 735 703 · results 2026-10-19",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [
+        "from the league's team names"
+      ]
+    },
+    {
+      "field": "league_nights",
+      "key": "league_nights:sioux-falls-tuesday-a-division-1-music-service:tuesday",
+      "value": {
+        "league": "Sioux Falls Tuesday A Division 1 (Music Service)",
+        "weekday": "tuesday"
+      },
+      "source_url": "https://musicservice.com/pool-league/sioux-falls-tuesday-a-division-1/",
+      "evidence_url": "https://musicservice.com/wp-content/uploads/musicservice/pool_league/weeklystatistics/TUES-A-DIV-1-WEEK-4-2.pdf",
+      "quote_snippet": "3 CHASERS SANDBAGGERS 65 20 13.0 7.0 64 33 519 499 · results 2026-10-13",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [
+        "from the league's team names"
+      ]
+    },
+    {
+      "field": "league_nights",
+      "key": "league_nights:sioux-falls-wednesday-b-music-service:wednesday",
+      "value": {
+        "league": "Sioux Falls Wednesday B (Music Service)",
+        "weekday": "wednesday"
+      },
+      "source_url": "https://musicservice.com/pool-league/sioux-falls-wednesday-b/",
+      "evidence_url": "https://musicservice.com/wp-content/uploads/musicservice/pool_league/weeklystatistics/WED-B-WEEK-4-2.pdf",
+      "quote_snippet": "7 CHASERS SONOMA SHOOTERS 35 20 7.0 13.0 64 31 508 480 · results 2026-10-14",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [
+        "from the league's team names"
+      ]
+    }
+  ],
+  "luckys-south-sioux-falls-sd": [
+    {
+      "field": "league_nights",
+      "key": "league_nights:sioux-falls-a-2-music-service:monday",
+      "value": {
+        "league": "Sioux Falls A-2 (Music Service)",
+        "weekday": "monday"
+      },
+      "source_url": "https://musicservice.com/pool-league/sioux-falls-a-2/",
+      "evidence_url": "https://musicservice.com/wp-content/uploads/musicservice/pool_league/weeklystatistics/A-2-WEEK-5-2.pdf",
+      "quote_snippet": "8 LUCKYS SOUTH PEN15 44 25 11.0 14.0 100 37 750 638 · results 2026-10-19",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [
+        "from the league's team names"
+      ]
+    },
+    {
+      "field": "league_nights",
+      "key": "league_nights:sioux-falls-a-3-division-3-music-service:thursday",
+      "value": {
+        "league": "Sioux Falls A-3 Division 3 (Music Service)",
+        "weekday": "thursday"
+      },
+      "source_url": "https://musicservice.com/pool-league/sioux-falls-a-3-division-3/",
+      "evidence_url": "https://musicservice.com/wp-content/uploads/musicservice/pool_league/weeklystatistics/A-3-DIV-3-WEEK-4-2.pdf",
+      "quote_snippet": "3 LUCKYS SOUTH SHAKE IT OFF 65 20 13.0 7.0 80 45 652 648 · results 2026-10-15",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [
+        "from the league's team names"
+      ]
+    }
+  ],
+  "red-eye-sioux-falls-sd": [
+    {
+      "field": "league_nights",
+      "key": "league_nights:sioux-falls-aa-division-1-music-service:wednesday",
+      "value": {
+        "league": "Sioux Falls AA Division 1 (Music Service)",
+        "weekday": "wednesday"
+      },
+      "source_url": "https://musicservice.com/pool-league/sioux-falls-aa-division-1/",
+      "evidence_url": "https://musicservice.com/wp-content/uploads/musicservice/pool_league/weeklystatistics/AA-DIV-1-WEEK-4-2.pdf",
+      "quote_snippet": "7 RED EYE CUE FORCE 50 24 12.0 12.0 100 53 743 743 · results 2026-10-14",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [
+        "from the league's team names"
+      ]
+    },
+    {
+      "field": "league_nights",
+      "key": "league_nights:sioux-falls-a-1-division-1-music-service:wednesday",
+      "value": {
+        "league": "Sioux Falls A-1 Division 1 (Music Service)",
+        "weekday": "wednesday"
+      },
+      "source_url": "https://musicservice.com/pool-league/sioux-falls-a-1-division-1/",
+      "evidence_url": "https://musicservice.com/wp-content/uploads/musicservice/pool_league/weeklystatistics/A-1-DIV-1-WEEK-4-2.pdf",
+      "quote_snippet": "4 RED EYE 8-BALL BRIGADE 53.33 15 8.0 7.0 60 29 459 459 · results 2026-10-14",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [
+        "from the league's team names"
+      ]
+    },
+    {
+      "field": "league_nights",
+      "key": "league_nights:sioux-falls-a-1-division-2-music-service:wednesday",
+      "value": {
+        "league": "Sioux Falls A-1 Division 2 (Music Service)",
+        "weekday": "wednesday"
+      },
+      "source_url": "https://musicservice.com/pool-league/sioux-falls-a-1-division-2/",
+      "evidence_url": "https://musicservice.com/wp-content/uploads/musicservice/pool_league/weeklystatistics/A-1-DIV-2-WEEK-4-2.pdf",
+      "quote_snippet": "7 RED EYE ON FIRE 35 20 7.0 13.0 80 36 598 594 · results 2026-10-14",
+      "checked_at": "2026-10-26",
+      "confidence": "implied",
+      "flags": [
+        "from the league's team names",
+        "team 'RED EYE ON FIRE' may be another location"
+      ]
+    },
+    {
+      "field": "league_nights",
+      "key": "league_nights:sioux-falls-summer-8-ball-wednesday-music-service:wednesday",
+      "value": {
+        "league": "Sioux Falls Summer 8-ball Wednesday (Music Service)",
+        "weekday": "wednesday"
+      },
+      "source_url": "https://musicservice.com/pool-league/sioux-falls-summer-8-ball-wednesday/",
+      "evidence_url": "https://musicservice.com/wp-content/uploads/musicservice/pool_league/weeklystatistics/WED-SUM-WEEK-9-2.pdf",
+      "quote_snippet": "5 RED EYE HAVOC 55.56 36 20.0 16.0 81 56 688 685 · results 2026-08-12",
+      "checked_at": "2026-10-26",
+      "confidence": "implied",
+      "flags": [
+        "from the league's team names",
+        "no results since 2026-08-12 (off-season?)"
+      ]
+    },
+    {
+      "field": "league_nights",
+      "key": "league_nights:sioux-falls-tuesday-a-division-1-music-service:tuesday",
+      "value": {
+        "league": "Sioux Falls Tuesday A Division 1 (Music Service)",
+        "weekday": "tuesday"
+      },
+      "source_url": "https://musicservice.com/pool-league/sioux-falls-tuesday-a-division-1/",
+      "evidence_url": "https://musicservice.com/wp-content/uploads/musicservice/pool_league/weeklystatistics/TUES-A-DIV-1-WEEK-4-2.pdf",
+      "quote_snippet": "8 RED EYE BLURRED VISION 52.5 20 10.5 9.5 64 27 500 440 · results 2026-10-13",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [
+        "from the league's team names"
+      ]
+    },
+    {
+      "field": "league_nights",
+      "key": "league_nights:sioux-falls-tuesday-a-division-2-music-service:tuesday",
+      "value": {
+        "league": "Sioux Falls Tuesday A Division 2 (Music Service)",
+        "weekday": "tuesday"
+      },
+      "source_url": "https://musicservice.com/pool-league/sioux-falls-tuesday-a-division-2/",
+      "evidence_url": "https://musicservice.com/wp-content/uploads/musicservice/pool_league/weeklystatistics/TUES-A-DIV-2-WEEK-4-2.pdf",
+      "quote_snippet": "3 RED EYE OFF A LITTLE BIT 65 20 13.0 7.0 64 43 536 536 · results …",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [
+        "from the league's team names"
+      ]
+    },
+    {
+      "field": "league_nights",
+      "key": "league_nights:sioux-falls-wednesday-b-music-service:wednesday",
+      "value": {
+        "league": "Sioux Falls Wednesday B (Music Service)",
+        "weekday": "wednesday"
+      },
+      "source_url": "https://musicservice.com/pool-league/sioux-falls-wednesday-b/",
+      "evidence_url": "https://musicservice.com/wp-content/uploads/musicservice/pool_league/weeklystatistics/WED-B-WEEK-4-2.pdf",
+      "quote_snippet": "5 RED EYE I 53.33 15 8.0 7.0 48 31 416 416 · results 2026-10-14",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [
+        "from the league's team names"
+      ]
+    }
+  ],
+  "crow-bar-sioux-falls-sd": [
+    {
+      "field": "league_nights",
+      "key": "league_nights:sioux-falls-aa-division-1-music-service:wednesday",
+      "value": {
+        "league": "Sioux Falls AA Division 1 (Music Service)",
+        "weekday": "wednesday"
+      },
+      "source_url": "https://musicservice.com/pool-league/sioux-falls-aa-division-1/",
+      "evidence_url": "https://musicservice.com/wp-content/uploads/musicservice/pool_league/weeklystatistics/AA-DIV-1-WEEK-4-2.pdf",
+      "quote_snippet": "10 CROW BAR ERO SPEEDWAGON 41.67 24 10.0 14.0 100 47 691 691 · results 2026-10-14",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [
+        "from the league's team names"
+      ]
+    },
+    {
+      "field": "league_nights",
+      "key": "league_nights:sioux-falls-aa-division-2-music-service:wednesday",
+      "value": {
+        "league": "Sioux Falls AA Division 2 (Music Service)",
+        "weekday": "wednesday"
+      },
+      "source_url": "https://musicservice.com/pool-league/sioux-falls-aa-division-2/",
+      "evidence_url": "https://musicservice.com/wp-content/uploads/musicservice/pool_league/weeklystatistics/AA-DIV-2-WEEK-4-2.pdf",
+      "quote_snippet": "3 CROW BAR MISFITS 65 20 13.0 7.0 80 40 674 602 · results 2026-10-14",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [
+        "from the league's team names"
+      ]
+    },
+    {
+      "field": "league_nights",
+      "key": "league_nights:sioux-falls-a-2-music-service:monday",
+      "value": {
+        "league": "Sioux Falls A-2 (Music Service)",
+        "weekday": "monday"
+      },
+      "source_url": "https://musicservice.com/pool-league/sioux-falls-a-2/",
+      "evidence_url": "https://musicservice.com/wp-content/uploads/musicservice/pool_league/weeklystatistics/A-2-WEEK-5-2.pdf",
+      "quote_snippet": "6 CROW BAR CHAIN STROKERS 52 25 13.0 12.0 100 49 789 737 · results 2026-10-19",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [
+        "from the league's team names"
+      ]
+    },
+    {
+      "field": "league_nights",
+      "key": "league_nights:sioux-falls-b-1-music-service:thursday",
+      "value": {
+        "league": "Sioux Falls B-1 (Music Service)",
+        "weekday": "thursday"
+      },
+      "source_url": "https://musicservice.com/pool-league/sioux-falls-b-1/",
+      "evidence_url": "https://musicservice.com/wp-content/uploads/musicservice/pool_league/weeklystatistics/B-1-WEEK-4-2.pdf",
+      "quote_snippet": "4 CROW BAR DOLLAR BIN CUES 56.25 16 9.0 7.0 60 33 461 461 · results 2026-10-15",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [
+        "from the league's team names"
+      ]
+    },
+    {
+      "field": "league_nights",
+      "key": "league_nights:sioux-falls-summer-8-ball-wednesday-music-service:wednesday",
+      "value": {
+        "league": "Sioux Falls Summer 8-ball Wednesday (Music Service)",
+        "weekday": "wednesday"
+      },
+      "source_url": "https://musicservice.com/pool-league/sioux-falls-summer-8-ball-wednesday/",
+      "evidence_url": "https://musicservice.com/wp-content/uploads/musicservice/pool_league/weeklystatistics/WED-SUM-WEEK-9-2.pdf",
+      "quote_snippet": "7 CROW BAR DOLLAR BIN CUES 33.33 36 12.0 24.0 81 31 624 555 · results 2026-08-12",
+      "checked_at": "2026-10-26",
+      "confidence": "implied",
+      "flags": [
+        "from the league's team names",
+        "no results since 2026-08-12 (off-season?)"
+      ]
+    },
+    {
+      "field": "league_nights",
+      "key": "league_nights:sioux-falls-summer-9-ball-music-service:thursday",
+      "value": {
+        "league": "Sioux Falls Summer 9-ball (Music Service)",
+        "weekday": "thursday"
+      },
+      "source_url": "https://musicservice.com/pool-league/sioux-falls-summer-9-ball/",
+      "evidence_url": "https://musicservice.com/wp-content/uploads/musicservice/pool_league/weeklystatistics/SF-9-BALL-WEEK-9.pdf",
+      "quote_snippet": "5 CROW BAR 8-BALLERS 47.62 63 30.0 33.0 162 83 838 784 · results 2026-08-13",
+      "checked_at": "2026-10-26",
+      "confidence": "implied",
+      "flags": [
+        "from the league's team names",
+        "no results since 2026-08-13 (off-season?)"
+      ]
+    }
+  ],
+  "bbs-sioux-falls-sd": [
+    {
+      "field": "league_nights",
+      "key": "league_nights:sioux-falls-aa-division-1-music-service:wednesday",
+      "value": {
+        "league": "Sioux Falls AA Division 1 (Music Service)",
+        "weekday": "wednesday"
+      },
+      "source_url": "https://musicservice.com/pool-league/sioux-falls-aa-division-1/",
+      "evidence_url": "https://musicservice.com/wp-content/uploads/musicservice/pool_league/weeklystatistics/AA-DIV-1-WEEK-4-2.pdf",
+      "quote_snippet": "14 BB'S X 33.33 24 8.0 16.0 100 45 682 682 · results 2026-10-14",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [
+        "from the league's team names"
+      ]
+    },
+    {
+      "field": "league_nights",
+      "key": "league_nights:sioux-falls-aa-division-2-music-service:wednesday",
+      "value": {
+        "league": "Sioux Falls AA Division 2 (Music Service)",
+        "weekday": "wednesday"
+      },
+      "source_url": "https://musicservice.com/pool-league/sioux-falls-aa-division-2/",
+      "evidence_url": "https://musicservice.com/wp-content/uploads/musicservice/pool_league/weeklystatistics/AA-DIV-2-WEEK-4-2.pdf",
+      "quote_snippet": "10 BB'S THAT JUST HAPPENED 20 20 4.0 16.0 80 32 575 547 · results 2026-10-14",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [
+        "from the league's team names"
+      ]
+    },
+    {
+      "field": "league_nights",
+      "key": "league_nights:sioux-falls-b-1-music-service:thursday",
+      "value": {
+        "league": "Sioux Falls B-1 (Music Service)",
+        "weekday": "thursday"
+      },
+      "source_url": "https://musicservice.com/pool-league/sioux-falls-b-1/",
+      "evidence_url": "https://musicservice.com/wp-content/uploads/musicservice/pool_league/weeklystatistics/B-1-WEEK-4-2.pdf",
+      "quote_snippet": "1 BB'S QUEEN B'S 81.25 16 13.0 3.0 60 34 522 489 · results 2026-10-15",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [
+        "from the league's team names"
+      ]
+    },
+    {
+      "field": "league_nights",
+      "key": "league_nights:sioux-falls-summer-8-ball-wednesday-music-service:wednesday",
+      "value": {
+        "league": "Sioux Falls Summer 8-ball Wednesday (Music Service)",
+        "weekday": "wednesday"
+      },
+      "source_url": "https://musicservice.com/pool-league/sioux-falls-summer-8-ball-wednesday/",
+      "evidence_url": "https://musicservice.com/wp-content/uploads/musicservice/pool_league/weeklystatistics/WED-SUM-WEEK-9-2.pdf",
+      "quote_snippet": "6 BB'S QUEEN B'S 38.89 36 14.0 22.0 81 25 645 516 · results 2026-08-12",
+      "checked_at": "2026-10-26",
+      "confidence": "implied",
+      "flags": [
+        "from the league's team names",
+        "no results since 2026-08-12 (off-season?)"
+      ]
+    }
+  ],
+  "wileys-sioux-falls-sd": [
+    {
+      "field": "league_nights",
+      "key": "league_nights:sioux-falls-aa-division-2-music-service:wednesday",
+      "value": {
+        "league": "Sioux Falls AA Division 2 (Music Service)",
+        "weekday": "wednesday"
+      },
+      "source_url": "https://musicservice.com/pool-league/sioux-falls-aa-division-2/",
+      "evidence_url": "https://musicservice.com/wp-content/uploads/musicservice/pool_league/weeklystatistics/AA-DIV-2-WEEK-4-2.pdf",
+      "quote_snippet": "7 WILEYS HIGH FIVE 40 20 8.0 12.0 80 39 600 568 · results 2026-10-14",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [
+        "from the league's team names"
+      ]
+    },
+    {
+      "field": "league_nights",
+      "key": "league_nights:sioux-falls-a-1-division-2-music-service:wednesday",
+      "value": {
+        "league": "Sioux Falls A-1 Division 2 (Music Service)",
+        "weekday": "wednesday"
+      },
+      "source_url": "https://musicservice.com/pool-league/sioux-falls-a-1-division-2/",
+      "evidence_url": "https://musicservice.com/wp-content/uploads/musicservice/pool_league/weeklystatistics/A-1-DIV-2-WEEK-4-2.pdf",
+      "quote_snippet": "2 WILEYS DREAM TEAM 80 15 12.0 3.0 60 32 473 465 · results 2026-10-14",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [
+        "from the league's team names"
+      ]
+    },
+    {
+      "field": "league_nights",
+      "key": "league_nights:sioux-falls-a-3-division-1-music-service:thursday",
+      "value": {
+        "league": "Sioux Falls A-3 Division 1 (Music Service)",
+        "weekday": "thursday"
+      },
+      "source_url": "https://musicservice.com/pool-league/sioux-falls-a-3-division-1/",
+      "evidence_url": "https://musicservice.com/wp-content/uploads/musicservice/pool_league/weeklystatistics/A-3-DIV-1-WEEK-4-2.pdf",
+      "quote_snippet": "5 WILEYS III 40 20 8.0 12.0 80 45 627 627 · results 2026-10-15",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [
+        "from the league's team names"
+      ]
+    },
+    {
+      "field": "league_nights",
+      "key": "league_nights:sioux-falls-a-3-division-2-music-service:thursday",
+      "value": {
+        "league": "Sioux Falls A-3 Division 2 (Music Service)",
+        "weekday": "thursday"
+      },
+      "source_url": "https://musicservice.com/pool-league/sioux-falls-a-3-division-2/",
+      "evidence_url": "https://musicservice.com/wp-content/uploads/musicservice/pool_league/weeklystatistics/A-3-DIV-2-WEEK-4-2.pdf",
+      "quote_snippet": "8 WILEYS THEY GONE 25 20 5.0 15.0 80 31 570 562 · results 2026-10-15",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [
+        "from the league's team names"
+      ]
+    }
+  ],
+  "phoenix-sioux-falls-sd": [
+    {
+      "field": "league_nights",
+      "key": "league_nights:sioux-falls-a-1-division-1-music-service:wednesday",
+      "value": {
+        "league": "Sioux Falls A-1 Division 1 (Music Service)",
+        "weekday": "wednesday"
+      },
+      "source_url": "https://musicservice.com/pool-league/sioux-falls-a-1-division-1/",
+      "evidence_url": "https://musicservice.com/wp-content/uploads/musicservice/pool_league/weeklystatistics/A-1-DIV-1-WEEK-4-2.pdf",
+      "quote_snippet": "2 PHOENIX EAGLE EYES 73.33 15 11.0 4.0 60 35 484 484 · results 2026-10-14",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [
+        "from the league's team names"
+      ]
+    },
+    {
+      "field": "league_nights",
+      "key": "league_nights:sioux-falls-a-1-division-2-music-service:wednesday",
+      "value": {
+        "league": "Sioux Falls A-1 Division 2 (Music Service)",
+        "weekday": "wednesday"
+      },
+      "source_url": "https://musicservice.com/pool-league/sioux-falls-a-1-division-2/",
+      "evidence_url": "https://musicservice.com/wp-content/uploads/musicservice/pool_league/weeklystatistics/A-1-DIV-2-WEEK-4-2.pdf",
+      "quote_snippet": "3 PHOENIX XXX 73.33 15 11.0 4.0 60 39 500 500 · results 2026-10-14",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [
+        "from the league's team names"
+      ]
+    },
+    {
+      "field": "league_nights",
+      "key": "league_nights:sioux-falls-tuesday-a-division-2-music-service:tuesday",
+      "value": {
+        "league": "Sioux Falls Tuesday A Division 2 (Music Service)",
+        "weekday": "tuesday"
+      },
+      "source_url": "https://musicservice.com/pool-league/sioux-falls-tuesday-a-division-2/",
+      "evidence_url": "https://musicservice.com/wp-content/uploads/musicservice/pool_league/weeklystatistics/TUES-A-DIV-2-WEEK-4-2.pdf",
+      "quote_snippet": "2 PHOENIX SHOCKERZ 72.5 20 14.5 5.5 64 34 530 518 · results 2026-10-13",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [
+        "from the league's team names"
+      ]
+    }
+  ],
+  "pave-sioux-falls-sd": [
+    {
+      "field": "league_nights",
+      "key": "league_nights:sioux-falls-a-1-division-1-music-service:wednesday",
+      "value": {
+        "league": "Sioux Falls A-1 Division 1 (Music Service)",
+        "weekday": "wednesday"
+      },
+      "source_url": "https://musicservice.com/pool-league/sioux-falls-a-1-division-1/",
+      "evidence_url": "https://musicservice.com/wp-content/uploads/musicservice/pool_league/weeklystatistics/A-1-DIV-1-WEEK-4-2.pdf",
+      "quote_snippet": "6 PAVE RACK STARZ 46.67 15 7.0 8.0 60 31 446 446 · results 2026-10-14",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [
+        "from the league's team names"
+      ]
+    },
+    {
+      "field": "league_nights",
+      "key": "league_nights:sioux-falls-a-3-division-2-music-service:thursday",
+      "value": {
+        "league": "Sioux Falls A-3 Division 2 (Music Service)",
+        "weekday": "thursday"
+      },
+      "source_url": "https://musicservice.com/pool-league/sioux-falls-a-3-division-2/",
+      "evidence_url": "https://musicservice.com/wp-content/uploads/musicservice/pool_league/weeklystatistics/A-3-DIV-2-WEEK-4-2.pdf",
+      "quote_snippet": "5 PAVE POUNDERS 45 20 9.0 11.0 80 39 630 610 · results 2026-10-15",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [
+        "from the league's team names"
+      ]
+    }
+  ],
+  "axes-and-ales-sioux-falls-sd": [
+    {
+      "field": "league_nights",
+      "key": "league_nights:sioux-falls-a-1-division-2-music-service:wednesday",
+      "value": {
+        "league": "Sioux Falls A-1 Division 2 (Music Service)",
+        "weekday": "wednesday"
+      },
+      "source_url": "https://musicservice.com/pool-league/sioux-falls-a-1-division-2/",
+      "evidence_url": "https://musicservice.com/wp-content/uploads/musicservice/pool_league/weeklystatistics/A-1-DIV-2-WEEK-4-2.pdf",
+      "quote_snippet": "9 AXES & ALES BREAK DANCERS 15 20 3.0 17.0 80 28 595 547 · results 2026-10-14",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [
+        "from the league's team names"
+      ]
+    },
+    {
+      "field": "league_nights",
+      "key": "league_nights:sioux-falls-a-3-division-2-music-service:thursday",
+      "value": {
+        "league": "Sioux Falls A-3 Division 2 (Music Service)",
+        "weekday": "thursday"
+      },
+      "source_url": "https://musicservice.com/pool-league/sioux-falls-a-3-division-2/",
+      "evidence_url": "https://musicservice.com/wp-content/uploads/musicservice/pool_league/weeklystatistics/A-3-DIV-2-WEEK-4-2.pdf",
+      "quote_snippet": "2 AXES & ALES I 60 20 12.0 8.0 80 44 643 643 · results 2026-10-15",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [
+        "from the league's team names"
+      ]
+    },
+    {
+      "field": "league_nights",
+      "key": "league_nights:sioux-falls-tuesday-a-division-1-music-service:tuesday",
+      "value": {
+        "league": "Sioux Falls Tuesday A Division 1 (Music Service)",
+        "weekday": "tuesday"
+      },
+      "source_url": "https://musicservice.com/pool-league/sioux-falls-tuesday-a-division-1/",
+      "evidence_url": "https://musicservice.com/wp-content/uploads/musicservice/pool_league/weeklystatistics/TUES-A-DIV-1-WEEK-4-2.pdf",
+      "quote_snippet": "4 AXES & ALES GAUNTLET 62.5 20 12.5 7.5 64 33 526 490 · results 2026-10-13",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [
+        "from the league's team names"
+      ]
+    },
+    {
+      "field": "league_nights",
+      "key": "league_nights:sioux-falls-tuesday-a-division-2-music-service:tuesday",
+      "value": {
+        "league": "Sioux Falls Tuesday A Division 2 (Music Service)",
+        "weekday": "tuesday"
+      },
+      "source_url": "https://musicservice.com/pool-league/sioux-falls-tuesday-a-division-2/",
+      "evidence_url": "https://musicservice.com/wp-content/uploads/musicservice/pool_league/weeklystatistics/TUES-A-DIV-2-WEEK-4-2.pdf",
+      "quote_snippet": "6 AXES & ALES CUE-TASTROPHE 57.5 20 11.5 8.5 64 36 506 506 · results 2026-10-13",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [
+        "from the league's team names"
+      ]
+    }
+  ],
+  "the-den-sioux-falls-sd": [
+    {
+      "field": "league_nights",
+      "key": "league_nights:sioux-falls-a-1-division-2-music-service:wednesday",
+      "value": {
+        "league": "Sioux Falls A-1 Division 2 (Music Service)",
+        "weekday": "wednesday"
+      },
+      "source_url": "https://musicservice.com/pool-league/sioux-falls-a-1-division-2/",
+      "evidence_url": "https://musicservice.com/wp-content/uploads/musicservice/pool_league/weeklystatistics/A-1-DIV-2-WEEK-4-2.pdf",
+      "quote_snippet": "1 THE DEN HAPPY HOOKERS 86.67 15 13.0 2.0 60 39 501 501 · results 2026-10-14",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [
+        "from the league's team names"
+      ]
+    },
+    {
+      "field": "league_nights",
+      "key": "league_nights:sioux-falls-b-1-music-service:thursday",
+      "value": {
+        "league": "Sioux Falls B-1 (Music Service)",
+        "weekday": "thursday"
+      },
+      "source_url": "https://musicservice.com/pool-league/sioux-falls-b-1/",
+      "evidence_url": "https://musicservice.com/wp-content/uploads/musicservice/pool_league/weeklystatistics/B-1-WEEK-4-2.pdf",
+      "quote_snippet": "2 THE DEN DAD BODS 75 12 9.0 3.0 45 26 373 373 · results 2026-10-15",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [
+        "from the league's team names"
+      ]
+    }
+  ],
+  "double-d-sioux-falls-sd": [
+    {
+      "field": "league_nights",
+      "key": "league_nights:sioux-falls-a-1-division-2-music-service:wednesday",
+      "value": {
+        "league": "Sioux Falls A-1 Division 2 (Music Service)",
+        "weekday": "wednesday"
+      },
+      "source_url": "https://musicservice.com/pool-league/sioux-falls-a-1-division-2/",
+      "evidence_url": "https://musicservice.com/wp-content/uploads/musicservice/pool_league/weeklystatistics/A-1-DIV-2-WEEK-4-2.pdf",
+      "quote_snippet": "8 DOUBLE D RACKSTARS 20 20 4.0 16.0 80 35 602 582 · results 2026-10-14",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [
+        "from the league's team names"
+      ]
+    },
+    {
+      "field": "league_nights",
+      "key": "league_nights:sioux-falls-a-2-music-service:monday",
+      "value": {
+        "league": "Sioux Falls A-2 (Music Service)",
+        "weekday": "monday"
+      },
+      "source_url": "https://musicservice.com/pool-league/sioux-falls-a-2/",
+      "evidence_url": "https://musicservice.com/wp-content/uploads/musicservice/pool_league/weeklystatistics/A-2-WEEK-5-2.pdf",
+      "quote_snippet": "3 DOUBLE D SALOON TRAVELERS 60 25 15.0 10.0 100 54 792 764 · results 2026-10-19",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [
+        "from the league's team names"
+      ]
+    },
+    {
+      "field": "league_nights",
+      "key": "league_nights:sioux-falls-a-3-division-1-music-service:thursday",
+      "value": {
+        "league": "Sioux Falls A-3 Division 1 (Music Service)",
+        "weekday": "thursday"
+      },
+      "source_url": "https://musicservice.com/pool-league/sioux-falls-a-3-division-1/",
+      "evidence_url": "https://musicservice.com/wp-content/uploads/musicservice/pool_league/weeklystatistics/A-3-DIV-1-WEEK-4-2.pdf",
+      "quote_snippet": "6 DOUBLE D SKOL SHOOTERS 40 20 8.0 12.0 80 41 626 626 · results 2026-10-15",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [
+        "from the league's team names"
+      ]
+    },
+    {
+      "field": "league_nights",
+      "key": "league_nights:sioux-falls-b-1-music-service:thursday",
+      "value": {
+        "league": "Sioux Falls B-1 (Music Service)",
+        "weekday": "thursday"
+      },
+      "source_url": "https://musicservice.com/pool-league/sioux-falls-b-1/",
+      "evidence_url": "https://musicservice.com/wp-content/uploads/musicservice/pool_league/weeklystatistics/B-1-WEEK-4-2.pdf",
+      "quote_snippet": "3 DOUBLE D SALOON I 56.25 16 9.0 7.0 60 34 485 485 · results 2026-10-15",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [
+        "from the league's team names"
+      ]
+    },
+    {
+      "field": "league_nights",
+      "key": "league_nights:sioux-falls-summer-8-ball-wednesday-music-service:wednesday",
+      "value": {
+        "league": "Sioux Falls Summer 8-ball Wednesday (Music Service)",
+        "weekday": "wednesday"
+      },
+      "source_url": "https://musicservice.com/pool-league/sioux-falls-summer-8-ball-wednesday/",
+      "evidence_url": "https://musicservice.com/wp-content/uploads/musicservice/pool_league/weeklystatistics/WED-SUM-WEEK-9-2.pdf",
+      "quote_snippet": "1 DOUBLE D SKOL 77.78 36 28.0 8.0 81 49 730 652 · results 2026-08-12",
+      "checked_at": "2026-10-26",
+      "confidence": "implied",
+      "flags": [
+        "from the league's team names",
+        "no results since 2026-08-12 (off-season?)"
+      ]
+    },
+    {
+      "field": "league_nights",
+      "key": "league_nights:sioux-falls-tuesday-a-division-1-music-service:tuesday",
+      "value": {
+        "league": "Sioux Falls Tuesday A Division 1 (Music Service)",
+        "weekday": "tuesday"
+      },
+      "source_url": "https://musicservice.com/pool-league/sioux-falls-tuesday-a-division-1/",
+      "evidence_url": "https://musicservice.com/wp-content/uploads/musicservice/pool_league/weeklystatistics/TUES-A-DIV-1-WEEK-4-2.pdf",
+      "quote_snippet": "10 DOUBLE D SALOON RACK EM 40 20 8.0 12.0 64 34 507 499 · results 2026-10-13",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [
+        "from the league's team names"
+      ]
+    }
+  ],
+  "liebrary-sioux-falls-sd": [
+    {
+      "field": "league_nights",
+      "key": "league_nights:sioux-falls-a-2-music-service:monday",
+      "value": {
+        "league": "Sioux Falls A-2 (Music Service)",
+        "weekday": "monday"
+      },
+      "source_url": "https://musicservice.com/pool-league/sioux-falls-a-2/",
+      "evidence_url": "https://musicservice.com/wp-content/uploads/musicservice/pool_league/weeklystatistics/A-2-WEEK-5-2.pdf",
+      "quote_snippet": "5 LIEBRARY SAFETY FIRST 56 25 14.0 11.0 100 46 774 690 · results 2026-10-19",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [
+        "from the league's team names"
+      ]
+    },
+    {
+      "field": "league_nights",
+      "key": "league_nights:sioux-falls-a-3-division-2-music-service:thursday",
+      "value": {
+        "league": "Sioux Falls A-3 Division 2 (Music Service)",
+        "weekday": "thursday"
+      },
+      "source_url": "https://musicservice.com/pool-league/sioux-falls-a-3-division-2/",
+      "evidence_url": "https://musicservice.com/wp-content/uploads/musicservice/pool_league/weeklystatistics/A-3-DIV-2-WEEK-4-2.pdf",
+      "quote_snippet": "1 LIEBRARY RIGHT ON CUE 75 20 15.0 5.0 80 51 663 655 · results 2026-10-15",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [
+        "from the league's team names"
+      ]
+    },
+    {
+      "field": "league_nights",
+      "key": "league_nights:sioux-falls-wednesday-b-music-service:wednesday",
+      "value": {
+        "league": "Sioux Falls Wednesday B (Music Service)",
+        "weekday": "wednesday"
+      },
+      "source_url": "https://musicservice.com/pool-league/sioux-falls-wednesday-b/",
+      "evidence_url": "https://musicservice.com/wp-content/uploads/musicservice/pool_league/weeklystatistics/WED-B-WEEK-4-2.pdf",
+      "quote_snippet": "4 LIEBRARY EXCUSE TO DRINK 60 20 12.0 8.0 64 32 499 499 · results 2026-10-14",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [
+        "from the league's team names"
+      ]
+    }
+  ],
+  "the-gulch-sioux-falls-sd": [
+    {
+      "field": "league_nights",
+      "key": "league_nights:sioux-falls-a-3-division-3-music-service:thursday",
+      "value": {
+        "league": "Sioux Falls A-3 Division 3 (Music Service)",
+        "weekday": "thursday"
+      },
+      "source_url": "https://musicservice.com/pool-league/sioux-falls-a-3-division-3/",
+      "evidence_url": "https://musicservice.com/wp-content/uploads/musicservice/pool_league/weeklystatistics/A-3-DIV-3-WEEK-4-2.pdf",
+      "quote_snippet": "6 THE GULCH RENEGADES 50 20 10.0 10.0 80 35 620 588 · results 2026-10-15",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [
+        "from the league's team names"
+      ]
+    },
+    {
+      "field": "league_nights",
+      "key": "league_nights:sioux-falls-tuesday-a-division-2-music-service:tuesday",
+      "value": {
+        "league": "Sioux Falls Tuesday A Division 2 (Music Service)",
+        "weekday": "tuesday"
+      },
+      "source_url": "https://musicservice.com/pool-league/sioux-falls-tuesday-a-division-2/",
+      "evidence_url": "https://musicservice.com/wp-content/uploads/musicservice/pool_league/weeklystatistics/TUES-A-DIV-2-WEEK-4-2.pdf",
+      "quote_snippet": "12 THE GULCH OUTLAWS 30 20 6.0 14.0 64 25 475 475 · results 2026-10-13",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [
+        "from the league's team names"
+      ]
+    }
+  ],
+  "garage-sioux-falls-sd": [
+    {
+      "field": "league_nights",
+      "key": "league_nights:sioux-falls-summer-9-ball-music-service:thursday",
+      "value": {
+        "league": "Sioux Falls Summer 9-ball (Music Service)",
+        "weekday": "thursday"
+      },
+      "source_url": "https://musicservice.com/pool-league/sioux-falls-summer-9-ball/",
+      "evidence_url": "https://musicservice.com/wp-content/uploads/musicservice/pool_league/weeklystatistics/SF-9-BALL-WEEK-9.pdf",
+      "quote_snippet": "3 GARAGE 9 MORE SHOTS 52.38 63 33.0 30.0 162 78 912 762 · results 2026-08-13",
+      "checked_at": "2026-10-26",
+      "confidence": "implied",
+      "flags": [
+        "from the league's team names",
+        "no results since 2026-08-13 (off-season?)"
+      ]
+    },
+    {
+      "field": "league_nights",
+      "key": "league_nights:sioux-falls-wednesday-b-music-service:wednesday",
+      "value": {
+        "league": "Sioux Falls Wednesday B (Music Service)",
+        "weekday": "wednesday"
+      },
+      "source_url": "https://musicservice.com/pool-league/sioux-falls-wednesday-b/",
+      "evidence_url": "https://musicservice.com/wp-content/uploads/musicservice/pool_league/weeklystatistics/WED-B-WEEK-4-2.pdf",
+      "quote_snippet": "2 GARAGE 5 MORE SHOTS 65 20 13.0 7.0 64 39 524 524 · results 2026-10-14",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [
+        "from the league's team names"
+      ]
+    }
+  ],
+  "billy-frogs-sioux-falls-sd": [
+    {
+      "field": "league_nights",
+      "key": "league_nights:sioux-falls-tuesday-a-division-1-music-service:tuesday",
+      "value": {
+        "league": "Sioux Falls Tuesday A Division 1 (Music Service)",
+        "weekday": "tuesday"
+      },
+      "source_url": "https://musicservice.com/pool-league/sioux-falls-tuesday-a-division-1/",
+      "evidence_url": "https://musicservice.com/wp-content/uploads/musicservice/pool_league/weeklystatistics/TUES-A-DIV-1-WEEK-4-2.pdf",
+      "quote_snippet": "1 BILLY FROGS X 70 20 14.0 6.0 64 36 511 495 · results 2026-10-13",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [
+        "from the league's team names"
+      ]
+    },
+    {
+      "field": "league_nights",
+      "key": "league_nights:sioux-falls-wednesday-b-music-service:wednesday",
+      "value": {
+        "league": "Sioux Falls Wednesday B (Music Service)",
+        "weekday": "wednesday"
+      },
+      "source_url": "https://musicservice.com/pool-league/sioux-falls-wednesday-b/",
+      "evidence_url": "https://musicservice.com/wp-content/uploads/musicservice/pool_league/weeklystatistics/WED-B-WEEK-4-2.pdf",
+      "quote_snippet": "6 BILLY FROGS WITTY BITTIES 40 20 8.0 12.0 64 27 481 461 · results 2026-10-14",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [
+        "from the league's team names"
+      ]
+    }
+  ],
+  "18th-sioux-falls-sd": [
+    {
+      "field": "league_nights",
+      "key": "league_nights:sioux-falls-wednesday-b-music-service:wednesday",
+      "value": {
+        "league": "Sioux Falls Wednesday B (Music Service)",
+        "weekday": "wednesday"
+      },
+      "source_url": "https://musicservice.com/pool-league/sioux-falls-wednesday-b/",
+      "evidence_url": "https://musicservice.com/wp-content/uploads/musicservice/pool_league/weeklystatistics/WED-B-WEEK-4-2.pdf",
+      "quote_snippet": "1 18TH CUE THE CHAOS 83.33 15 12.5 2.5 48 29 392 392 · results 2026-10-14",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [
+        "from the league's team names"
+      ]
+    }
+  ]
+}

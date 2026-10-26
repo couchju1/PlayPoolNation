@@ -17,7 +17,7 @@
     "lat": 43.54611,
     "lng": -96.68967
   },
-  "checked_at": "2026-10-25",
+  "checked_at": "2026-10-26",
   "sources_checked": [
     {
       "url": "https://www.uppercut605.com/",
@@ -37,7 +37,7 @@
       "value": true,
       "source_url": "https://www.uppercut605.com/",
       "quote_snippet": "Ventures - Upper Cut located in Sioux Falls SD, your source for Bar, cocktails, beer, and wines.",
-      "checked_at": "2026-10-25",
+      "checked_at": "2026-10-26",
       "confidence": "implied",
       "flags": [],
       "seen_on": [
@@ -45,6 +45,25 @@
         "https://www.uppercut605.com/upcoming-events"
       ],
       "source_type": "official_website"
+    },
+    {
+      "field": "table_sizes",
+      "key": "table_sizes:7ft",
+      "value": {
+        "size": "7ft",
+        "count": null
+      },
+      "source_url": "https://playpoolnation.com/place/upper-cut-bar-and-grill-sioux-falls-sd/",
+      "quote_snippet": "Listed as a place to play pool; no table size stated anywhere.",
+      "checked_at": "2026-10-26",
+      "confidence": "implied",
+      "flags": [
+        "size not stated, 7 ft by default"
+      ],
+      "source_type": "default",
+      "seen_on": [
+        "https://playpoolnation.com/place/upper-cut-bar-and-grill-sioux-falls-sd/"
+      ]
     }
   ],
   "missing": [

@@ -1,0 +1,84 @@
+{
+  "schema": 1,
+  "slug": "the-gulch-sioux-falls-sd",
+  "city": "sioux-falls",
+  "kind": "new",
+  "listing": {
+    "name": "The Gulch",
+    "city": "Sioux Falls",
+    "state": "SD",
+    "venue_type": "bars-with-pool-tables"
+  },
+  "checked_at": "2026-10-26",
+  "sources_checked": [],
+  "facts": [
+    {
+      "field": "league_nights",
+      "key": "league_nights:sioux-falls-a-3-division-3-music-service:thursday",
+      "value": {
+        "league": "Sioux Falls A-3 Division 3 (Music Service)",
+        "weekday": "thursday"
+      },
+      "source_url": "https://musicservice.com/pool-league/sioux-falls-a-3-division-3/",
+      "evidence_url": "https://musicservice.com/wp-content/uploads/musicservice/pool_league/weeklystatistics/A-3-DIV-3-WEEK-4-2.pdf",
+      "quote_snippet": "6 THE GULCH RENEGADES 50 20 10.0 10.0 80 35 620 588 · results 2026-10-15",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [
+        "from the league's team names"
+      ],
+      "seen_on": [
+        "https://musicservice.com/pool-league/sioux-falls-a-3-division-3/"
+      ],
+      "source_type": "league_operator"
+    },
+    {
+      "field": "league_nights",
+      "key": "league_nights:sioux-falls-tuesday-a-division-2-music-service:tuesday",
+      "value": {
+        "league": "Sioux Falls Tuesday A Division 2 (Music Service)",
+        "weekday": "tuesday"
+      },
+      "source_url": "https://musicservice.com/pool-league/sioux-falls-tuesday-a-division-2/",
+      "evidence_url": "https://musicservice.com/wp-content/uploads/musicservice/pool_league/weeklystatistics/TUES-A-DIV-2-WEEK-4-2.pdf",
+      "quote_snippet": "12 THE GULCH OUTLAWS 30 20 6.0 14.0 64 25 475 475 · results 2026-10-13",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [
+        "from the league's team names"
+      ],
+      "seen_on": [
+        "https://musicservice.com/pool-league/sioux-falls-tuesday-a-division-2/"
+      ],
+      "source_type": "league_operator"
+    },
+    {
+      "field": "table_sizes",
+      "key": "table_sizes:7ft",
+      "value": {
+        "size": "7ft",
+        "count": null
+      },
+      "source_url": "https://musicservice.com/pool-league/sioux-falls-a-3-division-3/",
+      "quote_snippet": "Listed as a place to play pool; no table size stated anywhere.",
+      "checked_at": "2026-10-26",
+      "confidence": "implied",
+      "flags": [
+        "size not stated, 7 ft by default"
+      ],
+      "source_type": "default",
+      "seen_on": [
+        "https://musicservice.com/pool-league/sioux-falls-a-3-division-3/"
+      ]
+    }
+  ],
+  "missing": [
+    "table_count",
+    "table_sizes",
+    "table_brands",
+    "pricing_model",
+    "age_policy",
+    "food",
+    "full_bar"
+  ]
+}

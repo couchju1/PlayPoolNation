@@ -18,7 +18,8 @@ from . import store
 from .extract import extract
 from .http import Fetcher, UsageLimit
 from .listings import split_links
-from .match import best_match, normalize_name
+from .leagues import league_facts, music_service, team_hosts
+from .match import best_match, name_similarity, normalize_name
 from .paths import ROOT, REPO
 from .text import parse_html, plain_lines
 
@@ -208,6 +209,45 @@ def league_page(fetcher: Fetcher, city: dict, page: dict, listings: list[dict], 
     return venues, facts
 
 
+def music_service_page(fetcher: Fetcher, city: dict, page: dict, listings: list[dict], checked_at: str) -> tuple[list[dict], dict]:
+    """League nights at our venues, and bars named by teams that we don't list."""
+    operator = page.get("operator", "Music Service")
+    leagues = music_service(fetcher, page, city)
+    facts = league_facts(leagues, listings, operator, checked_at)
+    osm_bars = store.read_json(city["slug"], "osm-bars.json", [])
+    venues = []
+    for host in team_hosts(leagues, listings):
+        flags = ["name taken from league team names" + (" (one word; the bar's full name may be longer)" if host["guessed"] else "")]
+        c = {
+            "name": host["name"],
+            "street": "", "city": city["name"], "state": city["state"], "zip": "",
+            "lat": None, "lng": None, "phone": "", "website": "", "facebook": "",
+            "venue_type": "bars-with-pool-tables",
+            "flags": flags,
+            "sources": [{
+                "source": "league",
+                "id": host["league_urls"][0],
+                "url": host["league_urls"][0],
+                "evidence": f"{operator} teams: " + ", ".join(host["teams"][:6]) + f" ({', '.join(host['leagues'][:4])})",
+            }],
+        }
+        osm = max(osm_bars, key=lambda b: name_similarity(b["name"], c["name"]), default=None)
+        if osm and name_similarity(osm["name"], c["name"]) >= 0.85:
+            for k in ("street", "zip", "lat", "lng", "phone", "website", "facebook"):
+                c[k] = c[k] or osm.get(k)
+            c["sources"] += osm["sources"]
+        else:
+            c["flags"].append("no address found; add it when approving")
+        venues.append(c)
+        # Its league nights, for review once the venue is approved.
+        slug = store.venue_slug(c["name"], city)
+        pseudo = [{"slug": slug, "name": c["name"]}]
+        for s, fs in league_facts([dict(lg, teams=[t for t in lg["teams"] if t[0] in host["teams"]]) for lg in leagues], pseudo, operator, checked_at).items():
+            have = {f["key"] for f in facts.setdefault(s, [])}
+            facts[s].extend(f for f in fs if f["key"] not in have)
+    return venues, facts
+
+
 def run(city: dict, listings: list[dict], fetcher: Fetcher) -> dict:
     state = store.load_state(city["slug"])
     disc = state.setdefault("discovery", {})
@@ -235,6 +275,8 @@ def run(city: dict, listings: list[dict], fetcher: Fetcher) -> dict:
                 fills[m["slug"]] = {"website": b["website"], "facebook": b["facebook"], "phone": b["phone"], "osm": b["sources"][0]["id"]}
         store.write_json(city["slug"], "_candidates.json", candidates)
         store.write_json(city["slug"], "osm-listing-links.json", fills)
+        # Names and addresses of every bar OSM knows here (ODbL), to place bars named by league teams.
+        store.write_json(city["slug"], "osm-bars.json", [{k: b[k] for k in ("name", "street", "zip", "lat", "lng", "phone", "website", "facebook", "sources")} for b in bars])
         disc["osm"] = {"at": checked_at, "pool_tagged": len(pool), "bars": len(bars)}
         store.save_state(city["slug"], state)
 
@@ -253,10 +295,14 @@ def run(city: dict, listings: list[dict], fetcher: Fetcher) -> dict:
         if page["url"] in disc.get("league_pages", {}):
             continue
         print(f"  League page {page['url']}…")
-        venues, facts = league_page(fetcher, city, page, listings, checked_at)
+        if page.get("parser") == "musicservice":
+            venues, facts = music_service_page(fetcher, city, page, listings, checked_at)
+        else:
+            venues, facts = league_page(fetcher, city, page, listings, checked_at)
         candidates += venues
         for slug, fs in facts.items():
-            league_facts.setdefault(slug, []).extend(fs)
+            have = {f["key"] for f in league_facts.setdefault(slug, [])}
+            league_facts[slug].extend(f for f in fs if f["key"] not in have)
         store.write_json(city["slug"], "_candidates.json", candidates)
         store.write_json(city["slug"], "league-facts.json", league_facts)
         disc.setdefault("league_pages", {})[page["url"]] = {"at": checked_at, "venues": len(venues), "listings_with_league_facts": len(facts)}
@@ -271,6 +317,7 @@ def run(city: dict, listings: list[dict], fetcher: Fetcher) -> dict:
             for k in ("street", "zip", "phone", "website", "facebook", "lat", "lng", "venue_type"):
                 if not same.get(k) and c.get(k):
                     same[k] = c[k]
+            same["flags"] = sorted(set(same.get("flags", []) + c.get("flags", [])))
         else:
             merged.append(dict(c))
     new, matched = [], []

@@ -6,6 +6,12 @@
     "listings_page": "https://playpoolnation.com/places/south-dakota/sioux-falls/",
     "league_pages": [
       {
+        "operator": "Music Service",
+        "url": "https://musicservice.com/pool/pool-leagues/",
+        "parser": "musicservice",
+        "league_filter": "Sioux Falls"
+      },
+      {
         "operator": "Sioux Empire Pride Sports Association",
         "league": "SEPSA pool league",
         "url": "https://siouxempirepsa.org/leagues/pool"

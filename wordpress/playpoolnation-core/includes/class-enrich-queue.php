@@ -23,7 +23,7 @@ final class Enrich_Queue {
 	public const PAGE = 'ppn-enrich-review';
 	private const NONCE = 'ppn_enrich_review';
 	/** Files in out/<city>/ that are not venue files. */
-	private const NOT_VENUES = [ 'new-venues.json', 'listings.json', 'league-facts.json', 'osm-listing-links.json' ];
+	private const NOT_VENUES = [ 'new-venues.json', 'listings.json', 'league-facts.json', 'osm-listing-links.json', 'osm-bars.json' ];
 
 	public static function boot(): void {
 		add_action( 'admin_menu', [ __CLASS__, 'menu' ], 15 );
@@ -97,10 +97,10 @@ final class Enrich_Queue {
 		$sum = [ 'inserted' => 0, 'updated' => 0, 'unchanged' => 0, 'reopened' => 0, 'invalid' => 0, 'unresolved' => [], 'new_venues' => 0 ];
 		$order = 0;
 
-		// Venues in the order the tool worked them (pool halls first).
+		// Venues in the order the tool worked them (pool halls first); every file only without a state file.
 		$state = self::read( $dir . '/_state.json' ) ?: [];
 		$slugs = array_keys( (array) ( $state['venues'] ?? [] ) );
-		foreach ( glob( $dir . '/*.json' ) ?: [] as $file ) {
+		foreach ( $slugs ? [] : ( glob( $dir . '/*.json' ) ?: [] ) as $file ) {
 			$name = basename( $file, '.json' );
 			if ( ! str_starts_with( $name, '_' ) && ! in_array( basename( $file ), self::NOT_VENUES, true ) && ! in_array( $name, $slugs, true ) ) {
 				$slugs[] = $name;
@@ -114,6 +114,10 @@ final class Enrich_Queue {
 			}
 			$new_slugs[] = $venue['slug'];
 			$payload = array_intersect_key( $venue, array_flip( [ 'name', 'street', 'city', 'state', 'zip', 'lat', 'lng', 'phone', 'website', 'facebook', 'venue_type', 'sources', 'match', 'places_expires' ] ) );
+			$flags = array_map( 'strval', (array) ( $venue['flags'] ?? [] ) );
+			if ( 'possible' === ( $venue['match']['class'] ?? '' ) ) {
+				array_unshift( $flags, 'may already be listed: ' . ( $venue['match']['slug'] ?? '' ) . ' (' . implode( ', ', (array) ( $venue['match']['reasons'] ?? [] ) ) . ')' );
+			}
 			$source = (array) ( $venue['sources'][0] ?? [] );
 			$row = [
 				'kind'        => 'new_venue',
@@ -124,7 +128,7 @@ final class Enrich_Queue {
 				'source_type' => sanitize_key( (string) ( $source['source'] ?? '' ) ),
 				'quote'       => sanitize_text_field( (string) ( $source['evidence'] ?? '' ) ),
 				'confidence'  => 'stated',
-				'flags'       => wp_json_encode( 'possible' === ( $venue['match']['class'] ?? '' ) ? [ 'may already be listed: ' . ( $venue['match']['slug'] ?? '' ) . ' (' . implode( ', ', (array) ( $venue['match']['reasons'] ?? [] ) ) . ')' ] : [] ),
+				'flags'       => wp_json_encode( $flags ),
 				'payload'     => wp_json_encode( $payload ),
 				'checked_at'  => self::date( (string) ( $venue['discovered_at'] ?? '' ) ),
 			];
@@ -163,7 +167,7 @@ final class Enrich_Queue {
 					'quote'       => $fact['quote'],
 					'confidence'  => $fact['confidence'],
 					'flags'       => wp_json_encode( $flags ),
-					'payload'     => wp_json_encode( [ 'conflicts' => $fact['conflicts'] ] ),
+					'payload'     => wp_json_encode( [ 'conflicts' => $fact['conflicts'], 'evidence' => $fact['evidence'] ] ),
 					'checked_at'  => $fact['checked_at'],
 				];
 				$sum[ self::upsert( $city, $slug, $venue_id, $row, $order ) ]++;
@@ -257,6 +261,15 @@ final class Enrich_Queue {
 		}
 
 		if ( 'new_venue' === $item->kind ) {
+			if ( null !== $edited && '' !== trim( $edited ) ) {
+				$payload = json_decode( $item->payload, true ) ?: [];
+				$payload['street'] = trim( $edited );
+				$item->payload = (string) wp_json_encode( $payload );
+				$wpdb->update( self::table(), [ 'payload' => $item->payload ], [ 'id' => $id ] );
+			}
+			if ( '' === trim( (string) ( json_decode( $item->payload, true )['street'] ?? '' ) ) ) {
+				return [ 'ok' => false, 'message' => 'No street address yet. Press e (Edit), type it, then Enter.' ];
+			}
 			$venue_id = self::create_venue( $item );
 			if ( ! $venue_id ) {
 				return [ 'ok' => false, 'message' => 'Could not create the listing.' ];
@@ -277,7 +290,7 @@ final class Enrich_Queue {
 				return [ 'ok' => false, 'message' => 'Could not read that value. Example: ' . Enrich_Fact::to_text( $item->field, json_decode( $item->value, true ) ) ];
 			}
 		}
-		$source = 'official_website' === $item->source_type ? 'official_website' : 'web_research';
+		$source = in_array( $item->source_type, [ 'official_website', 'default' ], true ) ? $item->source_type : 'web_research';
 		Pool_Data::apply_fact( (int) $item->venue_id, $item->field, $value, $source, (string) $item->source_url );
 		$wpdb->update( self::table(), [ 'status' => 'approved', 'decided_value' => wp_json_encode( $value ) ] + $done, [ 'id' => $id ] );
 		Stats::flush();
@@ -472,7 +485,7 @@ final class Enrich_Queue {
 			$found .= ! empty( $payload['website'] ) ? '<br><a href="' . esc_url( $payload['website'] ) . '" target="_blank" rel="noopener">' . esc_html( $payload['website'] ) . '</a>' : '';
 			$found .= '<br><span class="ppn-small">Type: ' . esc_html( Pool_Schema::VENUE_TYPES[ $payload['venue_type'] ?? '' ] ?? 'not known' ) . '</span>';
 			$now = 'Not listed';
-			$editable = '';
+			$editable = (string) ( $payload['street'] ?? '' );
 		} else {
 			$field = Enrich_Fact::FIELDS[ $r->field ] ?? $r->field;
 			$found = '<strong>' . esc_html( Enrich_Fact::label( $r->field, $value ) ) . '</strong>';
@@ -493,11 +506,12 @@ final class Enrich_Queue {
 			$conf .= '<br><span class="ppn-flag ppn-flag-note">' . esc_html( $r->note ) . '</span>';
 		}
 		$source = $r->source_url ? '<a href="' . esc_url( $r->source_url ) . '" target="_blank" rel="noopener">' . esc_html( mb_strimwidth( preg_replace( '#^https?://(www\.)?#', '', $r->source_url ), 0, 48, '…' ) ) . '</a>' : '';
+		$source .= ! empty( $payload['evidence'] ) ? ' · <a href="' . esc_url( $payload['evidence'] ) . '" target="_blank" rel="noopener">evidence</a>' : '';
 		$source .= $r->quote ? '<blockquote>' . esc_html( $r->quote ) . '</blockquote>' : '';
 		$source .= '<span class="ppn-small">Checked ' . esc_html( (string) $r->checked_at ) . '</span>';
 		$same = 'fact' === $r->kind && 'pending' === $r->status && self::matches_current( $now, Enrich_Fact::label( $r->field, $value ) );
 		printf(
-			'<tr class="ppn-item ppn-status-%1$s" data-id="%2$d" data-edit="%3$s" tabindex="-1"><td>%4$s</td><td>%5$s%6$s</td><td>%7$s<div class="ppn-conf-wrap">%8$s</div></td><td class="ppn-source">%9$s</td><td class="ppn-actions">%10$s</td></tr>',
+			'<tr class="ppn-item ppn-status-%1$s" data-id="%2$d" data-kind="%11$s" data-edit="%3$s" tabindex="-1"><td>%4$s</td><td>%5$s%6$s</td><td>%7$s<div class="ppn-conf-wrap">%8$s</div></td><td class="ppn-source">%9$s</td><td class="ppn-actions">%10$s</td></tr>',
 			esc_attr( $r->status ),
 			(int) $r->id,
 			esc_attr( $editable ),
@@ -508,8 +522,9 @@ final class Enrich_Queue {
 			$conf,
 			$source,
 			'pending' === $r->status
-				? '<button type="button" class="button button-primary" data-do="approve">Approve</button> <button type="button" class="button" data-do="reject">Reject</button>' . ( '' !== $editable ? ' <button type="button" class="button-link" data-do="edit">Edit</button>' : '' ) . '<div class="ppn-msg"></div>'
-				: '<span class="ppn-decided">' . esc_html( ucfirst( $r->status ) ) . '</span>'
+				? '<button type="button" class="button button-primary" data-do="approve">Approve</button> <button type="button" class="button" data-do="reject">Reject</button>' . ( '' !== $editable || 'new_venue' === $r->kind ? ' <button type="button" class="button-link" data-do="edit">' . ( 'new_venue' === $r->kind ? 'Edit address' : 'Edit' ) . '</button>' : '' ) . '<div class="ppn-msg"></div>'
+				: '<span class="ppn-decided">' . esc_html( ucfirst( $r->status ) ) . '</span>',
+			esc_attr( $r->kind )
 		);
 	}
 
@@ -583,11 +598,12 @@ final class Enrich_Queue {
 				}).catch(function () { msg.className = 'ppn-msg err'; msg.textContent = 'Network error.'; });
 			}
 			function edit(row) {
-				if (!row.dataset.edit) return;
+				if (!row.dataset.edit && row.dataset.kind !== 'new_venue') return;
 				var cell = row.querySelector('.ppn-actions');
 				if (cell.querySelector('input')) { cell.querySelector('input').focus(); return; }
 				var input = document.createElement('input');
 				input.type = 'text'; input.className = 'ppn-edit-input'; input.value = row.dataset.edit;
+				if (row.dataset.kind === 'new_venue') input.placeholder = 'Street address, e.g. 123 S Main Ave';
 				input.title = 'Enter saves and approves, Esc cancels';
 				cell.appendChild(input); input.focus(); input.select();
 				input.addEventListener('keydown', function (e) {

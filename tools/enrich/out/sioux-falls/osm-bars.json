@@ -1,0 +1,380 @@
+[
+  {
+    "name": "Club David",
+    "street": "214 West 10th Street",
+    "zip": "57104",
+    "lat": 43.5461734,
+    "lng": -96.7291685,
+    "phone": "+1-605-274-0700",
+    "website": "",
+    "facebook": "",
+    "sources": [
+      {
+        "source": "openstreetmap",
+        "id": "node/2160441898",
+        "url": "https://www.openstreetmap.org/node/2160441898",
+        "evidence": "amenity=nightclub"
+      }
+    ]
+  },
+  {
+    "name": "Stogeez Copper Lounge",
+    "street": "201 East 11th Street",
+    "zip": "57104",
+    "lat": 43.5443846,
+    "lng": -96.724839,
+    "phone": "",
+    "website": "",
+    "facebook": "",
+    "sources": [
+      {
+        "source": "openstreetmap",
+        "id": "node/4064598818",
+        "url": "https://www.openstreetmap.org/node/4064598818",
+        "evidence": "amenity=bar"
+      }
+    ]
+  },
+  {
+    "name": "Stogeez Cigar Lounge",
+    "street": "215 South Phillips Avenue",
+    "zip": "57104",
+    "lat": 43.5454605,
+    "lng": -96.727018,
+    "phone": "",
+    "website": "",
+    "facebook": "",
+    "sources": [
+      {
+        "source": "openstreetmap",
+        "id": "node/4064623246",
+        "url": "https://www.openstreetmap.org/node/4064623246",
+        "evidence": "amenity=bar"
+      }
+    ]
+  },
+  {
+    "name": "Crawford's Bar & Grill",
+    "street": "214 South Phillips Avenue",
+    "zip": "57104",
+    "lat": 43.5454396,
+    "lng": -96.7266027,
+    "phone": "",
+    "website": "https://crawfordssf.com/",
+    "facebook": "",
+    "sources": [
+      {
+        "source": "openstreetmap",
+        "id": "node/4064623247",
+        "url": "https://www.openstreetmap.org/node/4064623247",
+        "evidence": "amenity=bar"
+      }
+    ]
+  },
+  {
+    "name": "Lucky's",
+    "street": "224 South Phillips Avenue",
+    "zip": "57104",
+    "lat": 43.5450991,
+    "lng": -96.72657,
+    "phone": "",
+    "website": "",
+    "facebook": "",
+    "sources": [
+      {
+        "source": "openstreetmap",
+        "id": "node/4064623254",
+        "url": "https://www.openstreetmap.org/node/4064623254",
+        "evidence": "amenity=bar"
+      }
+    ]
+  },
+  {
+    "name": "Paramount Studio Cocktails & Food",
+    "street": "307 South Phillips Avenue",
+    "zip": "57104",
+    "lat": 43.5444082,
+    "lng": -96.7270961,
+    "phone": "+1-605-332-5681",
+    "website": "https://www.minervas.net/paramount-studio-sioux-falls/",
+    "facebook": "",
+    "sources": [
+      {
+        "source": "openstreetmap",
+        "id": "node/4064662880",
+        "url": "https://www.openstreetmap.org/node/4064662880",
+        "evidence": "amenity=bar"
+      }
+    ]
+  },
+  {
+    "name": "Wiley's Tavern",
+    "street": "330 North Main Avenue",
+    "zip": "57104",
+    "lat": 43.551057,
+    "lng": -96.7279936,
+    "phone": "",
+    "website": "",
+    "facebook": "",
+    "sources": [
+      {
+        "source": "openstreetmap",
+        "id": "node/4065575093",
+        "url": "https://www.openstreetmap.org/node/4065575093",
+        "evidence": "amenity=bar"
+      }
+    ]
+  },
+  {
+    "name": "PAve Bar",
+    "street": "130 South Phillips Avenue",
+    "zip": "57104",
+    "lat": 43.5462332,
+    "lng": -96.7265619,
+    "phone": "",
+    "website": "",
+    "facebook": "",
+    "sources": [
+      {
+        "source": "openstreetmap",
+        "id": "node/4065704558",
+        "url": "https://www.openstreetmap.org/node/4065704558",
+        "evidence": "amenity=bar"
+      }
+    ]
+  },
+  {
+    "name": "Latitude 44",
+    "street": "201 North Weber Avenue",
+    "zip": "57103",
+    "lat": 43.548797,
+    "lng": -96.7200943,
+    "phone": "",
+    "website": "",
+    "facebook": "",
+    "sources": [
+      {
+        "source": "openstreetmap",
+        "id": "node/4067671506",
+        "url": "https://www.openstreetmap.org/node/4067671506",
+        "evidence": "amenity=bar"
+      }
+    ]
+  },
+  {
+    "name": "Old Skoolz",
+    "street": "921 East 8th Street",
+    "zip": "57103",
+    "lat": 43.5484454,
+    "lng": -96.7146445,
+    "phone": "",
+    "website": "",
+    "facebook": "",
+    "sources": [
+      {
+        "source": "openstreetmap",
+        "id": "node/4067816613",
+        "url": "https://www.openstreetmap.org/node/4067816613",
+        "evidence": "amenity=pub"
+      }
+    ]
+  },
+  {
+    "name": "JL Beers",
+    "street": "323 South Phillips Avenue",
+    "zip": "57104",
+    "lat": 43.5438571,
+    "lng": -96.7270044,
+    "phone": "+1 605-275-2012",
+    "website": "https://jlbeers.com/323/location/",
+    "facebook": "",
+    "sources": [
+      {
+        "source": "openstreetmap",
+        "id": "node/4072827576",
+        "url": "https://www.openstreetmap.org/node/4072827576",
+        "evidence": "amenity=bar"
+      }
+    ]
+  },
+  {
+    "name": "Icon Lounge & Events",
+    "street": "402 North Main Avenue",
+    "zip": "57104",
+    "lat": 43.5517919,
+    "lng": -96.7277561,
+    "phone": "",
+    "website": "https://iconsiouxfalls.com/",
+    "facebook": "",
+    "sources": [
+      {
+        "source": "openstreetmap",
+        "id": "node/4073929695",
+        "url": "https://www.openstreetmap.org/node/4073929695",
+        "evidence": "amenity=bar"
+      }
+    ]
+  },
+  {
+    "name": "Party Bike Sioux Falls",
+    "street": "330 North Main Avenue",
+    "zip": "57104",
+    "lat": 43.5510582,
+    "lng": -96.7276867,
+    "phone": "",
+    "website": "https://www.partybikesf.com/",
+    "facebook": "",
+    "sources": [
+      {
+        "source": "openstreetmap",
+        "id": "node/4073929696",
+        "url": "https://www.openstreetmap.org/node/4073929696",
+        "evidence": "amenity=pub"
+      }
+    ]
+  },
+  {
+    "name": "Bin201",
+    "street": "201 East 11th Street",
+    "zip": "57104",
+    "lat": 43.5443869,
+    "lng": -96.7250338,
+    "phone": "+1-605-271-6933",
+    "website": "https://www.bin201sf.com/",
+    "facebook": "",
+    "sources": [
+      {
+        "source": "openstreetmap",
+        "id": "node/4909750250",
+        "url": "https://www.openstreetmap.org/node/4909750250",
+        "evidence": "amenity=bar"
+      }
+    ]
+  },
+  {
+    "name": "Taphouse41",
+    "street": "",
+    "zip": "",
+    "lat": 43.5135686,
+    "lng": -96.7534385,
+    "phone": "",
+    "website": "",
+    "facebook": "",
+    "sources": [
+      {
+        "source": "openstreetmap",
+        "id": "node/5408238330",
+        "url": "https://www.openstreetmap.org/node/5408238330",
+        "evidence": "amenity=pub"
+      }
+    ]
+  },
+  {
+    "name": "Bigs Bar",
+    "street": "3110 West 12th Street",
+    "zip": "57104",
+    "lat": 43.5453801,
+    "lng": -96.7683712,
+    "phone": "",
+    "website": "",
+    "facebook": "",
+    "sources": [
+      {
+        "source": "openstreetmap",
+        "id": "node/12033107584",
+        "url": "https://www.openstreetmap.org/node/12033107584",
+        "evidence": "amenity=bar"
+      }
+    ]
+  },
+  {
+    "name": "The Club",
+    "street": "3301 East 26th Street",
+    "zip": "57103",
+    "lat": 43.5287674,
+    "lng": -96.6855832,
+    "phone": "",
+    "website": "",
+    "facebook": "",
+    "sources": [
+      {
+        "source": "openstreetmap",
+        "id": "node/12048960311",
+        "url": "https://www.openstreetmap.org/node/12048960311",
+        "evidence": "amenity=bar"
+      }
+    ]
+  },
+  {
+    "name": "Tommy Jack's Pub",
+    "street": "214 East 12th Street",
+    "zip": "57104",
+    "lat": 43.5436874,
+    "lng": -96.7243723,
+    "phone": "+1-605-367-9706",
+    "website": "https://www.tommyjacks605.com/",
+    "facebook": "",
+    "sources": [
+      {
+        "source": "openstreetmap",
+        "id": "node/12076613009",
+        "url": "https://www.openstreetmap.org/node/12076613009",
+        "evidence": "amenity=bar"
+      }
+    ]
+  },
+  {
+    "name": "Gateway Casino & Lounge",
+    "street": "",
+    "zip": "",
+    "lat": 43.5135117,
+    "lng": -96.7823055,
+    "phone": "",
+    "website": "",
+    "facebook": "",
+    "sources": [
+      {
+        "source": "openstreetmap",
+        "id": "way/332735834",
+        "url": "https://www.openstreetmap.org/way/332735834",
+        "evidence": "amenity=bar"
+      }
+    ]
+  },
+  {
+    "name": "Alpine Inn",
+    "street": "212 South Sneve Avenue",
+    "zip": "57103",
+    "lat": 43.5458663,
+    "lng": -96.6852084,
+    "phone": "",
+    "website": "",
+    "facebook": "",
+    "sources": [
+      {
+        "source": "openstreetmap",
+        "id": "way/407098854",
+        "url": "https://www.openstreetmap.org/way/407098854",
+        "evidence": "amenity=bar"
+      }
+    ]
+  },
+  {
+    "name": "Obscure Brewing Co.",
+    "street": "",
+    "zip": "",
+    "lat": 43.5451649,
+    "lng": -96.6620283,
+    "phone": "",
+    "website": "",
+    "facebook": "",
+    "sources": [
+      {
+        "source": "openstreetmap",
+        "id": "way/1116168614",
+        "url": "https://www.openstreetmap.org/way/1116168614",
+        "evidence": "amenity=pub"
+      }
+    ]
+  }
+]

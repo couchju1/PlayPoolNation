@@ -1,0 +1,85 @@
+{
+  "schema": 1,
+  "slug": "garage-sioux-falls-sd",
+  "city": "sioux-falls",
+  "kind": "new",
+  "listing": {
+    "name": "Garage",
+    "city": "Sioux Falls",
+    "state": "SD",
+    "venue_type": "bars-with-pool-tables"
+  },
+  "checked_at": "2026-10-26",
+  "sources_checked": [],
+  "facts": [
+    {
+      "field": "league_nights",
+      "key": "league_nights:sioux-falls-summer-9-ball-music-service:thursday",
+      "value": {
+        "league": "Sioux Falls Summer 9-ball (Music Service)",
+        "weekday": "thursday"
+      },
+      "source_url": "https://musicservice.com/pool-league/sioux-falls-summer-9-ball/",
+      "evidence_url": "https://musicservice.com/wp-content/uploads/musicservice/pool_league/weeklystatistics/SF-9-BALL-WEEK-9.pdf",
+      "quote_snippet": "3 GARAGE 9 MORE SHOTS 52.38 63 33.0 30.0 162 78 912 762 · results 2026-08-13",
+      "checked_at": "2026-10-26",
+      "confidence": "implied",
+      "flags": [
+        "from the league's team names",
+        "no results since 2026-08-13 (off-season?)"
+      ],
+      "seen_on": [
+        "https://musicservice.com/pool-league/sioux-falls-summer-9-ball/"
+      ],
+      "source_type": "league_operator"
+    },
+    {
+      "field": "league_nights",
+      "key": "league_nights:sioux-falls-wednesday-b-music-service:wednesday",
+      "value": {
+        "league": "Sioux Falls Wednesday B (Music Service)",
+        "weekday": "wednesday"
+      },
+      "source_url": "https://musicservice.com/pool-league/sioux-falls-wednesday-b/",
+      "evidence_url": "https://musicservice.com/wp-content/uploads/musicservice/pool_league/weeklystatistics/WED-B-WEEK-4-2.pdf",
+      "quote_snippet": "2 GARAGE 5 MORE SHOTS 65 20 13.0 7.0 64 39 524 524 · results 2026-10-14",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [
+        "from the league's team names"
+      ],
+      "seen_on": [
+        "https://musicservice.com/pool-league/sioux-falls-wednesday-b/"
+      ],
+      "source_type": "league_operator"
+    },
+    {
+      "field": "table_sizes",
+      "key": "table_sizes:7ft",
+      "value": {
+        "size": "7ft",
+        "count": null
+      },
+      "source_url": "https://musicservice.com/pool-league/sioux-falls-summer-9-ball/",
+      "quote_snippet": "Listed as a place to play pool; no table size stated anywhere.",
+      "checked_at": "2026-10-26",
+      "confidence": "implied",
+      "flags": [
+        "size not stated, 7 ft by default"
+      ],
+      "source_type": "default",
+      "seen_on": [
+        "https://musicservice.com/pool-league/sioux-falls-summer-9-ball/"
+      ]
+    }
+  ],
+  "missing": [
+    "table_count",
+    "table_sizes",
+    "table_brands",
+    "pricing_model",
+    "age_policy",
+    "food",
+    "full_bar"
+  ]
+}

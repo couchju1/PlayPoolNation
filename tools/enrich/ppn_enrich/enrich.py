@@ -111,13 +111,16 @@ def enrich_venue(venue: dict, city: dict, fetcher: Fetcher, league_facts: list[d
         return 2
 
     facts = merge(candidates, rank)
+    facts += default_size(venue, facts, checked_at)
     shared = venue.get("_shared_with", [])
     for f in facts:
+        if f.get("source_type") == "default":
+            continue
         f["source_type"] = ("official_website", "facebook", "league_operator")[rank(f["source_url"])]
         if shared and f["source_type"] == "official_website":
             # One site for several locations: the page may be about another one.
             f["flags"].append("website shared with " + ", ".join(shared))
-    found = {f["field"] for f in facts}
+    found = {f["field"] for f in facts if f.get("source_type") != "default"}
     return {
         "schema": 1,
         "slug": venue["slug"],
@@ -129,6 +132,44 @@ def enrich_venue(venue: dict, city: dict, fetcher: Fetcher, league_facts: list[d
         "facts": facts,
         "missing": [f for f in FIELDS if f not in found and f != "venue_status"],
     }
+
+
+DEFAULT_SIZE = "7ft"
+SIZE_KEYS = re.compile(r"^(7|8|9)' tables$|^snooker tables$", re.I)
+
+
+def has_known_size(venue: dict) -> bool:
+    """Whether our listing already says which table sizes the venue has."""
+    current = venue.get("current") or {}
+    return bool(current.get("sizes")) or any(SIZE_KEYS.match(k) and v for k, v in current.items())
+
+
+def default_size(venue: dict, facts: list[dict], checked_at: str) -> list[dict]:
+    """A place listed with pool tables but no stated size gets 7 ft tables, flagged for review.
+
+    The count is the stated table count when there is one. The fact points at the
+    page with the table count, else at our own listing (which lists the tables).
+    """
+    if any(f["field"] == "table_sizes" for f in facts) or has_known_size(venue):
+        return []
+    count = next((f for f in facts if f["field"] == "table_count" and f["confidence"] == "stated"), None)
+    current_count = (venue.get("current") or {}).get("Pool tables") or (venue.get("current") or {}).get("tables")
+    sources = venue.get("sources") or [{}]
+    url = count["source_url"] if count else (venue.get("url") or venue.get("website") or sources[0].get("url") or "")
+    if not url:
+        return []
+    return [{
+        "field": "table_sizes",
+        "key": "table_sizes:" + DEFAULT_SIZE,
+        "value": {"size": DEFAULT_SIZE, "count": count["value"] if count else (current_count if isinstance(current_count, int) else None)},
+        "source_url": url,
+        "quote_snippet": count["quote_snippet"] if count else "Listed as a place to play pool; no table size stated anywhere.",
+        "checked_at": checked_at,
+        "confidence": "implied",
+        "flags": ["size not stated, 7 ft by default"],
+        "source_type": "default",
+        "seen_on": [url],
+    }]
 
 
 def changes(old: dict | None, new: dict) -> list[dict]:

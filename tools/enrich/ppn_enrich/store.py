@@ -71,3 +71,24 @@ def dir_size(city: str) -> int:
     for root, _, files in os.walk(city_dir(city)):
         total += sum(os.path.getsize(os.path.join(root, f)) for f in files)
     return total
+
+
+# Files in out/<city>/ that are not one venue's facts.
+NOT_VENUES = {"new-venues.json", "listings.json", "league-facts.json", "osm-listing-links.json", "osm-bars.json"}
+
+
+def venue_files(city: str) -> list[str]:
+    """Paths of the venue files this city's state knows about."""
+    state = load_state(city)
+    return [os.path.join(city_dir(city), slug + ".json") for slug in state.get("venues", {}) if os.path.exists(os.path.join(city_dir(city), slug + ".json"))]
+
+
+def prune(city: str, keep: set[str]) -> list[str]:
+    """Remove venue files of venues no longer in the city's list (e.g. after rediscovery)."""
+    removed = []
+    for name in os.listdir(city_dir(city)):
+        slug = name[:-5]
+        if name.endswith(".json") and not name.startswith((".", "_")) and name not in NOT_VENUES and slug not in keep:
+            os.unlink(os.path.join(city_dir(city), name))
+            removed.append(slug)
+    return removed

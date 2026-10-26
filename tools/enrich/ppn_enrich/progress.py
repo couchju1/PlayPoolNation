@@ -3,7 +3,6 @@
 from __future__ import annotations
 
 import datetime as dt
-import glob
 import json
 import os
 
@@ -30,7 +29,7 @@ def city_stats(slug: str) -> dict | None:
     if not os.path.isdir(folder):
         return None
     state = store.load_state(slug)
-    files = [f for f in glob.glob(os.path.join(folder, "*.json")) if not os.path.basename(f).startswith("_") and os.path.basename(f) not in ("new-venues.json", "listings.json", "league-facts.json", "osm-listing-links.json")]
+    files = store.venue_files(slug)
     records = [json.load(open(f, encoding="utf-8")) for f in sorted(files)]
     per_field = {f: {"stated": 0, "implied": 0} for f in FIELDS}
     facts_total = stated_total = 0

@@ -1,0 +1,124 @@
+{
+  "schema": 1,
+  "slug": "chasers-sioux-falls-sd",
+  "city": "sioux-falls",
+  "kind": "new",
+  "listing": {
+    "name": "Chasers",
+    "city": "Sioux Falls",
+    "state": "SD",
+    "venue_type": "bars-with-pool-tables"
+  },
+  "checked_at": "2026-10-26",
+  "sources_checked": [],
+  "facts": [
+    {
+      "field": "league_nights",
+      "key": "league_nights:sioux-falls-a-2-music-service:monday",
+      "value": {
+        "league": "Sioux Falls A-2 (Music Service)",
+        "weekday": "monday"
+      },
+      "source_url": "https://musicservice.com/pool-league/sioux-falls-a-2/",
+      "evidence_url": "https://musicservice.com/wp-content/uploads/musicservice/pool_league/weeklystatistics/A-2-WEEK-5-2.pdf",
+      "quote_snippet": "9 CHASERS CUE SLINGERS 40 25 10.0 15.0 100 42 735 703 · results 2026-10-19",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [
+        "from the league's team names"
+      ],
+      "seen_on": [
+        "https://musicservice.com/pool-league/sioux-falls-a-2/"
+      ],
+      "source_type": "league_operator"
+    },
+    {
+      "field": "league_nights",
+      "key": "league_nights:sioux-falls-masters-music-service:wednesday",
+      "value": {
+        "league": "Sioux Falls Masters (Music Service)",
+        "weekday": "wednesday"
+      },
+      "source_url": "https://musicservice.com/pool-league/sioux-falls-masters/",
+      "evidence_url": "https://musicservice.com/wp-content/uploads/musicservice/pool_league/weeklystatistics/MASTERS-WEEK-4-2.pdf",
+      "quote_snippet": "3 CHASERS SNIPER GANG 77.78 18 14.0 4.0 75 47 601 601 · results 2026-10-14",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [
+        "from the league's team names"
+      ],
+      "seen_on": [
+        "https://musicservice.com/pool-league/sioux-falls-masters/"
+      ],
+      "source_type": "league_operator"
+    },
+    {
+      "field": "league_nights",
+      "key": "league_nights:sioux-falls-tuesday-a-division-1-music-service:tuesday",
+      "value": {
+        "league": "Sioux Falls Tuesday A Division 1 (Music Service)",
+        "weekday": "tuesday"
+      },
+      "source_url": "https://musicservice.com/pool-league/sioux-falls-tuesday-a-division-1/",
+      "evidence_url": "https://musicservice.com/wp-content/uploads/musicservice/pool_league/weeklystatistics/TUES-A-DIV-1-WEEK-4-2.pdf",
+      "quote_snippet": "3 CHASERS SANDBAGGERS 65 20 13.0 7.0 64 33 519 499 · results 2026-10-13",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [
+        "from the league's team names"
+      ],
+      "seen_on": [
+        "https://musicservice.com/pool-league/sioux-falls-tuesday-a-division-1/"
+      ],
+      "source_type": "league_operator"
+    },
+    {
+      "field": "league_nights",
+      "key": "league_nights:sioux-falls-wednesday-b-music-service:wednesday",
+      "value": {
+        "league": "Sioux Falls Wednesday B (Music Service)",
+        "weekday": "wednesday"
+      },
+      "source_url": "https://musicservice.com/pool-league/sioux-falls-wednesday-b/",
+      "evidence_url": "https://musicservice.com/wp-content/uploads/musicservice/pool_league/weeklystatistics/WED-B-WEEK-4-2.pdf",
+      "quote_snippet": "7 CHASERS SONOMA SHOOTERS 35 20 7.0 13.0 64 31 508 480 · results 2026-10-14",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [
+        "from the league's team names"
+      ],
+      "seen_on": [
+        "https://musicservice.com/pool-league/sioux-falls-wednesday-b/"
+      ],
+      "source_type": "league_operator"
+    },
+    {
+      "field": "table_sizes",
+      "key": "table_sizes:7ft",
+      "value": {
+        "size": "7ft",
+        "count": null
+      },
+      "source_url": "https://musicservice.com/pool-league/sioux-falls-a-2/",
+      "quote_snippet": "Listed as a place to play pool; no table size stated anywhere.",
+      "checked_at": "2026-10-26",
+      "confidence": "implied",
+      "flags": [
+        "size not stated, 7 ft by default"
+      ],
+      "source_type": "default",
+      "seen_on": [
+        "https://musicservice.com/pool-league/sioux-falls-a-2/"
+      ]
+    }
+  ],
+  "missing": [
+    "table_count",
+    "table_sizes",
+    "table_brands",
+    "pricing_model",
+    "age_policy",
+    "food",
+    "full_bar"
+  ]
+}

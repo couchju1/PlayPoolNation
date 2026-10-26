@@ -113,7 +113,7 @@ final class Enrich_Command {
 				'links'   => is_array( $links ) ? array_values( array_filter( array_map( static fn( $l ) => is_array( $l ) ? (string) ( $l['url'] ?? '' ) : '', $links ) ) ) : [],
 				'lat'     => $loc ? (float) $loc->lat : null,
 				'lng'     => $loc ? (float) $loc->lng : null,
-				'current' => [ 'tables' => $v->total_tables(), 'sources' => array_keys( Provenance::field_sources( $id ) ) ],
+				'current' => [ 'tables' => $v->total_tables(), 'sizes' => $v->size_slugs(), 'sources' => array_keys( Provenance::field_sources( $id ) ) ],
 			];
 		}
 		\WP_CLI::line( (string) wp_json_encode( $out, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE ) );

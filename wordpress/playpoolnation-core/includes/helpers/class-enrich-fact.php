@@ -69,12 +69,13 @@ final class Enrich_Fact {
 			'key'         => substr( preg_replace( '/[^a-z0-9_:\-]/', '', strtolower( (string) ( $fact['key'] ?? $field ) ) ), 0, 120 ),
 			'value'       => $value,
 			'source_url'  => $url,
-			'source_type' => in_array( $fact['source_type'] ?? '', [ 'official_website', 'facebook', 'league_operator' ], true ) ? $fact['source_type'] : 'web_research',
+			'source_type' => in_array( $fact['source_type'] ?? '', [ 'official_website', 'facebook', 'league_operator', 'default' ], true ) ? $fact['source_type'] : 'web_research',
 			'quote'       => self::short_quote( (string) ( $fact['quote_snippet'] ?? '' ) ),
 			'checked_at'  => preg_match( '/^\d{4}-\d{2}-\d{2}$/', $date ) ? $date : gmdate( 'Y-m-d' ),
 			'confidence'  => $confidence,
 			'flags'       => array_values( array_map( 'strval', (array) ( $fact['flags'] ?? [] ) ) ),
 			'conflicts'   => array_values( (array) ( $fact['conflicts'] ?? [] ) ),
+			'evidence'    => preg_match( '#^https?://[^\s]+$#i', (string) ( $fact['evidence_url'] ?? '' ) ) ? (string) $fact['evidence_url'] : '',
 		];
 	}
 

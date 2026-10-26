@@ -17,7 +17,7 @@
     "lat": 43.54365,
     "lng": -96.72436
   },
-  "checked_at": "2026-10-25",
+  "checked_at": "2026-10-26",
   "sources_checked": [
     {
       "url": "https://www.tommyjacks605.com/",
@@ -45,7 +45,7 @@
       },
       "source_url": "https://www.tommyjacks605.com/",
       "quote_snippet": "… located in Sioux Falls SD.offering downtown bar, pool and dart leagues,wine and spirits and outdoor patio seating",
-      "checked_at": "2026-10-25",
+      "checked_at": "2026-10-26",
       "confidence": "implied",
       "flags": [
         "no weekday given"
@@ -61,7 +61,7 @@
       "value": true,
       "source_url": "https://www.tommyjacks605.com/",
       "quote_snippet": "… located in Sioux Falls SD.offering downtown bar, pool and dart leagues,wine and spirits and outdoor patio seating",
-      "checked_at": "2026-10-25",
+      "checked_at": "2026-10-26",
       "confidence": "implied",
       "flags": [],
       "seen_on": [
@@ -70,6 +70,25 @@
         "https://www.tommyjacks605.com/weekly-events"
       ],
       "source_type": "official_website"
+    },
+    {
+      "field": "table_sizes",
+      "key": "table_sizes:7ft",
+      "value": {
+        "size": "7ft",
+        "count": null
+      },
+      "source_url": "https://playpoolnation.com/place/tommy-jacks-pub-sioux-falls-sd/",
+      "quote_snippet": "Listed as a place to play pool; no table size stated anywhere.",
+      "checked_at": "2026-10-26",
+      "confidence": "implied",
+      "flags": [
+        "size not stated, 7 ft by default"
+      ],
+      "source_type": "default",
+      "seen_on": [
+        "https://playpoolnation.com/place/tommy-jacks-pub-sioux-falls-sd/"
+      ]
     }
   ],
   "missing": [
