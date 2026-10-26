@@ -351,3 +351,6 @@ body a.ppn-button, body a.ppn-button:visited, body a.ppn-button:hover { color: #
 	.ppn-city-facts > div { grid-template-columns: 90px 1fr; }
 	.ppn-city-map { height: 300px; }
 }
+
+/* Find Places banner: racked pool balls on a transparent background, where the drawn rack was (Install::m_places_rack_photo). */
+.elementor .ppn-rack-balls { display: block; width: 100%; max-width: 400px; height: auto; margin: 0 auto; filter: drop-shadow(0 16px 18px rgba(0, 0, 0, .35)); }
