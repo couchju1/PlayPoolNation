@@ -91,16 +91,7 @@
       "quote_snippet": "Fun for All Ages",
       "checked_at": "2026-10-26",
       "confidence": "stated",
-      "flags": [
-        "sources disagree"
-      ],
-      "conflicts": [
-        {
-          "value": "21-plus",
-          "source_url": "https://www.cuebarbayside.com/",
-          "quote_snippet": "* 21 and over after 9 p.m*"
-        }
-      ],
+      "flags": [],
       "seen_on": [
         "https://www.cuebarbayside.com/",
         "https://www.cuebarbayside.com/about",

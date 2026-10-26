@@ -1,0 +1,56 @@
+{
+  "schema": 1,
+  "slug": "aunt-ginnys-new-york-ny",
+  "city": "new-york",
+  "kind": "new",
+  "listing": {
+    "name": "Aunt Ginny's",
+    "street": "652 Woodward Avenue",
+    "city": "Ridgewood",
+    "state": "NY",
+    "zip": "11385",
+    "website": "http://auntginnys.com/",
+    "venue_type": "bars-with-pool-tables",
+    "lat": 40.7055595,
+    "lng": -73.9070695
+  },
+  "checked_at": "2026-10-26",
+  "sources_checked": [
+    {
+      "url": "http://auntginnys.com/",
+      "result": "read",
+      "note": ""
+    }
+  ],
+  "facts": [
+    {
+      "field": "table_sizes",
+      "key": "table_sizes:7ft",
+      "value": {
+        "size": "7ft",
+        "count": null
+      },
+      "source_url": "http://auntginnys.com/",
+      "quote_snippet": "Listed as a place to play pool; no table size stated anywhere.",
+      "checked_at": "2026-10-26",
+      "confidence": "implied",
+      "flags": [
+        "size not stated, 7 ft by default"
+      ],
+      "source_type": "default",
+      "seen_on": [
+        "http://auntginnys.com/"
+      ]
+    }
+  ],
+  "missing": [
+    "table_count",
+    "table_sizes",
+    "table_brands",
+    "pricing_model",
+    "league_nights",
+    "age_policy",
+    "food",
+    "full_bar"
+  ]
+}

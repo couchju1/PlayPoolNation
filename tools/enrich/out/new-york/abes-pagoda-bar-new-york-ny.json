@@ -1,0 +1,104 @@
+{
+  "schema": 1,
+  "slug": "abes-pagoda-bar-new-york-ny",
+  "city": "new-york",
+  "kind": "new",
+  "listing": {
+    "name": "Abe's Pagoda Bar",
+    "street": "108 Wyckoff Avenue",
+    "city": "New York",
+    "state": "NY",
+    "phone": "+1-718-366-6913",
+    "website": "https://www.abespagodabar.com/",
+    "venue_type": "bars-with-pool-tables",
+    "lat": 40.7038877,
+    "lng": -73.9188896
+  },
+  "checked_at": "2026-10-26",
+  "sources_checked": [
+    {
+      "url": "https://www.abespagodabar.com/",
+      "result": "read",
+      "note": ""
+    },
+    {
+      "url": "https://www.abespagodabar.com/abes-calendar/",
+      "result": "read",
+      "note": ""
+    },
+    {
+      "url": "https://www.abespagodabar.com/delivery-menu/",
+      "result": "read",
+      "note": ""
+    },
+    {
+      "url": "https://www.abespagodabar.com/table-reservations/",
+      "result": "read",
+      "note": ""
+    },
+    {
+      "url": "https://www.abespagodabar.com/filming---events/",
+      "result": "read",
+      "note": ""
+    }
+  ],
+  "facts": [
+    {
+      "field": "food",
+      "key": "food",
+      "value": true,
+      "source_url": "https://www.abespagodabar.com/abes-calendar/",
+      "quote_snippet": "Check out our lineup for upcoming DJ's, food & drink specials.",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [],
+      "seen_on": [
+        "https://www.abespagodabar.com/abes-calendar/",
+        "https://www.abespagodabar.com/delivery-menu/"
+      ],
+      "source_type": "official_website"
+    },
+    {
+      "field": "full_bar",
+      "key": "full_bar",
+      "value": true,
+      "source_url": "https://www.abespagodabar.com/",
+      "quote_snippet": "Come try our imported craft beers, curious cocktails and adventurous cuisine.",
+      "checked_at": "2026-10-26",
+      "confidence": "implied",
+      "flags": [],
+      "seen_on": [
+        "https://www.abespagodabar.com/",
+        "https://www.abespagodabar.com/delivery-menu/"
+      ],
+      "source_type": "official_website"
+    },
+    {
+      "field": "table_sizes",
+      "key": "table_sizes:7ft",
+      "value": {
+        "size": "7ft",
+        "count": null
+      },
+      "source_url": "https://www.abespagodabar.com/",
+      "quote_snippet": "Listed as a place to play pool; no table size stated anywhere.",
+      "checked_at": "2026-10-26",
+      "confidence": "implied",
+      "flags": [
+        "size not stated, 7 ft by default"
+      ],
+      "source_type": "default",
+      "seen_on": [
+        "https://www.abespagodabar.com/"
+      ]
+    }
+  ],
+  "missing": [
+    "table_count",
+    "table_sizes",
+    "table_brands",
+    "pricing_model",
+    "league_nights",
+    "age_policy"
+  ]
+}

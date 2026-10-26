@@ -1,0 +1,102 @@
+{
+  "schema": 1,
+  "slug": "halyards-new-york-ny",
+  "city": "new-york",
+  "kind": "new",
+  "listing": {
+    "name": "Halyards",
+    "street": "406 3rd Avenue",
+    "city": "New York",
+    "state": "NY",
+    "zip": "11215",
+    "website": "https://www.barhalyards.com/",
+    "venue_type": "bars-with-pool-tables",
+    "lat": 40.6732561,
+    "lng": -73.9897416
+  },
+  "checked_at": "2026-10-26",
+  "sources_checked": [
+    {
+      "url": "https://www.barhalyards.com/",
+      "result": "read",
+      "note": ""
+    },
+    {
+      "url": "https://www.barhalyards.com/brooklyn-gowanus-halyards-drink-menu/",
+      "result": "read",
+      "note": ""
+    },
+    {
+      "url": "https://www.barhalyards.com/brooklyn-gowanus-halyards-food-menu/",
+      "result": "read",
+      "note": ""
+    },
+    {
+      "url": "https://www.barhalyards.com/brooklyn-gowanus-halyards-about/",
+      "result": "read",
+      "note": ""
+    }
+  ],
+  "facts": [
+    {
+      "field": "food",
+      "key": "food",
+      "value": true,
+      "source_url": "https://www.barhalyards.com/",
+      "quote_snippet": "Come by for local beers, classic cocktails, and toasted cheese sandwiches.",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [],
+      "seen_on": [
+        "https://www.barhalyards.com/",
+        "https://www.barhalyards.com/brooklyn-gowanus-halyards-about/",
+        "https://www.barhalyards.com/brooklyn-gowanus-halyards-food-menu/"
+      ],
+      "source_type": "official_website"
+    },
+    {
+      "field": "full_bar",
+      "key": "full_bar",
+      "value": true,
+      "source_url": "https://www.barhalyards.com/",
+      "quote_snippet": "Welcome to Halyards, your neighborhood cocktail bar and oasis among the gritty Gowanus industrial streets.",
+      "checked_at": "2026-10-26",
+      "confidence": "implied",
+      "flags": [],
+      "seen_on": [
+        "https://www.barhalyards.com/",
+        "https://www.barhalyards.com/brooklyn-gowanus-halyards-about/",
+        "https://www.barhalyards.com/brooklyn-gowanus-halyards-drink-menu/",
+        "https://www.barhalyards.com/brooklyn-gowanus-halyards-food-menu/"
+      ],
+      "source_type": "official_website"
+    },
+    {
+      "field": "table_sizes",
+      "key": "table_sizes:7ft",
+      "value": {
+        "size": "7ft",
+        "count": null
+      },
+      "source_url": "https://www.barhalyards.com/",
+      "quote_snippet": "Listed as a place to play pool; no table size stated anywhere.",
+      "checked_at": "2026-10-26",
+      "confidence": "implied",
+      "flags": [
+        "size not stated, 7 ft by default"
+      ],
+      "source_type": "default",
+      "seen_on": [
+        "https://www.barhalyards.com/"
+      ]
+    }
+  ],
+  "missing": [
+    "table_count",
+    "table_sizes",
+    "table_brands",
+    "pricing_model",
+    "league_nights",
+    "age_policy"
+  ]
+}

@@ -1,0 +1,117 @@
+{
+  "schema": 1,
+  "slug": "queens-brewery-new-york-ny",
+  "city": "new-york",
+  "kind": "new",
+  "listing": {
+    "name": "Queens Brewery",
+    "street": "15-39 Covert Street",
+    "city": "New York",
+    "state": "NY",
+    "website": "https://www.queensbrewery.com/",
+    "venue_type": "pool-halls",
+    "lat": 40.6949358,
+    "lng": -73.9040723
+  },
+  "checked_at": "2026-10-26",
+  "sources_checked": [
+    {
+      "url": "https://www.queensbrewery.com/",
+      "result": "read",
+      "note": ""
+    },
+    {
+      "url": "https://www.queensbrewery.com/menu",
+      "result": "read",
+      "note": ""
+    },
+    {
+      "url": "https://www.queensbrewery.com/events",
+      "result": "read",
+      "note": ""
+    },
+    {
+      "url": "https://www.queensbrewery.com/beer",
+      "result": "read",
+      "note": ""
+    },
+    {
+      "url": "https://www.queensbrewery.com/about",
+      "result": "read",
+      "note": ""
+    }
+  ],
+  "facts": [
+    {
+      "field": "age_policy",
+      "key": "age_policy",
+      "value": "21-plus",
+      "source_url": "https://www.queensbrewery.com/",
+      "quote_snippet": "Are you 21 or older?",
+      "checked_at": "2026-10-26",
+      "confidence": "implied",
+      "flags": [
+        "from a question (age gate or FAQ)"
+      ],
+      "seen_on": [
+        "https://www.queensbrewery.com/"
+      ],
+      "source_type": "official_website"
+    },
+    {
+      "field": "food",
+      "key": "food",
+      "value": true,
+      "source_url": "https://www.queensbrewery.com/menu",
+      "quote_snippet": "Gotham Burger",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [],
+      "seen_on": [
+        "https://www.queensbrewery.com/menu"
+      ],
+      "source_type": "official_website"
+    },
+    {
+      "field": "full_bar",
+      "key": "full_bar",
+      "value": true,
+      "source_url": "https://www.queensbrewery.com/",
+      "quote_snippet": "Seasonal custom cocktails",
+      "checked_at": "2026-10-26",
+      "confidence": "implied",
+      "flags": [],
+      "seen_on": [
+        "https://www.queensbrewery.com/",
+        "https://www.queensbrewery.com/menu"
+      ],
+      "source_type": "official_website"
+    },
+    {
+      "field": "table_sizes",
+      "key": "table_sizes:7ft",
+      "value": {
+        "size": "7ft",
+        "count": null
+      },
+      "source_url": "https://www.queensbrewery.com/",
+      "quote_snippet": "Listed as a place to play pool; no table size stated anywhere.",
+      "checked_at": "2026-10-26",
+      "confidence": "implied",
+      "flags": [
+        "size not stated, 7 ft by default"
+      ],
+      "source_type": "default",
+      "seen_on": [
+        "https://www.queensbrewery.com/"
+      ]
+    }
+  ],
+  "missing": [
+    "table_count",
+    "table_sizes",
+    "table_brands",
+    "pricing_model",
+    "league_nights"
+  ]
+}

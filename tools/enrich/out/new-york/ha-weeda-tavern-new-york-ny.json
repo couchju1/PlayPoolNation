@@ -1,0 +1,56 @@
+{
+  "schema": 1,
+  "slug": "ha-weeda-tavern-new-york-ny",
+  "city": "new-york",
+  "kind": "new",
+  "listing": {
+    "name": "Ha-Weeda Tavern",
+    "street": "4575 2nd Avenue",
+    "city": "New York",
+    "state": "NY",
+    "zip": "11220",
+    "website": "https://www.haweedatavern.com",
+    "venue_type": "bars-with-pool-tables",
+    "lat": 40.6514815,
+    "lng": -74.014222
+  },
+  "checked_at": "2026-10-26",
+  "sources_checked": [
+    {
+      "url": "https://www.haweedatavern.com",
+      "result": "error",
+      "note": "HTTP 404"
+    }
+  ],
+  "facts": [
+    {
+      "field": "table_sizes",
+      "key": "table_sizes:7ft",
+      "value": {
+        "size": "7ft",
+        "count": null
+      },
+      "source_url": "https://www.haweedatavern.com",
+      "quote_snippet": "Listed as a place to play pool; no table size stated anywhere.",
+      "checked_at": "2026-10-26",
+      "confidence": "implied",
+      "flags": [
+        "size not stated, 7 ft by default"
+      ],
+      "source_type": "default",
+      "seen_on": [
+        "https://www.haweedatavern.com"
+      ]
+    }
+  ],
+  "missing": [
+    "table_count",
+    "table_sizes",
+    "table_brands",
+    "pricing_model",
+    "league_nights",
+    "age_policy",
+    "food",
+    "full_bar"
+  ]
+}

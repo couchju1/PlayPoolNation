@@ -1,0 +1,57 @@
+{
+  "schema": 1,
+  "slug": "tru-by-hilton-new-york-ny",
+  "city": "new-york",
+  "kind": "new",
+  "listing": {
+    "name": "Tru by Hilton",
+    "street": "545 President Street",
+    "city": "New York",
+    "state": "NY",
+    "zip": "11215",
+    "phone": "+1-718-524-9000",
+    "website": "https://www.hilton.com/en/hotels/jfkibru-tru-brooklyn/",
+    "venue_type": "other-venue",
+    "lat": 40.6775916,
+    "lng": -73.9851205
+  },
+  "checked_at": "2026-10-26",
+  "sources_checked": [
+    {
+      "url": "https://www.hilton.com/en/hotels/jfkibru-tru-brooklyn/",
+      "result": "error",
+      "note": "HTTP 403"
+    }
+  ],
+  "facts": [
+    {
+      "field": "table_sizes",
+      "key": "table_sizes:7ft",
+      "value": {
+        "size": "7ft",
+        "count": null
+      },
+      "source_url": "https://www.hilton.com/en/hotels/jfkibru-tru-brooklyn/",
+      "quote_snippet": "Listed as a place to play pool; no table size stated anywhere.",
+      "checked_at": "2026-10-26",
+      "confidence": "implied",
+      "flags": [
+        "size not stated, 7 ft by default"
+      ],
+      "source_type": "default",
+      "seen_on": [
+        "https://www.hilton.com/en/hotels/jfkibru-tru-brooklyn/"
+      ]
+    }
+  ],
+  "missing": [
+    "table_count",
+    "table_sizes",
+    "table_brands",
+    "pricing_model",
+    "league_nights",
+    "age_policy",
+    "food",
+    "full_bar"
+  ]
+}

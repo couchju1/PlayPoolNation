@@ -1,0 +1,94 @@
+{
+  "schema": 1,
+  "slug": "brooklyn-safehouse-new-york-ny",
+  "city": "new-york",
+  "kind": "new",
+  "listing": {
+    "name": "Brooklyn Safehouse",
+    "street": "120 Franklin Street",
+    "city": "Brooklyn",
+    "state": "NY",
+    "zip": "11222",
+    "phone": "+1-718-349-6895",
+    "website": "https://brooklynsafehouse.com",
+    "venue_type": "bars-with-pool-tables",
+    "lat": 40.7288633,
+    "lng": -73.9572833
+  },
+  "checked_at": "2026-10-26",
+  "sources_checked": [
+    {
+      "url": "https://brooklynsafehouse.com",
+      "result": "read",
+      "note": ""
+    }
+  ],
+  "facts": [
+    {
+      "field": "pricing_model",
+      "key": "pricing_model:free-pool",
+      "value": {
+        "model": "free-pool",
+        "days": [
+          "monday",
+          "tuesday",
+          "wednesday",
+          "thursday",
+          "friday",
+          "saturday",
+          "sunday"
+        ]
+      },
+      "source_url": "https://brooklynsafehouse.com",
+      "quote_snippet": "Daily Happy Hour with Free Wi-Fi and Free Pool",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [],
+      "seen_on": [
+        "https://brooklynsafehouse.com"
+      ],
+      "source_type": "official_website"
+    },
+    {
+      "field": "full_bar",
+      "key": "full_bar",
+      "value": true,
+      "source_url": "https://brooklynsafehouse.com",
+      "quote_snippet": "Alcohol prices range from $7-$11 (Cocktail prices vary)",
+      "checked_at": "2026-10-26",
+      "confidence": "implied",
+      "flags": [],
+      "seen_on": [
+        "https://brooklynsafehouse.com"
+      ],
+      "source_type": "official_website"
+    },
+    {
+      "field": "table_sizes",
+      "key": "table_sizes:7ft",
+      "value": {
+        "size": "7ft",
+        "count": null
+      },
+      "source_url": "https://brooklynsafehouse.com",
+      "quote_snippet": "Listed as a place to play pool; no table size stated anywhere.",
+      "checked_at": "2026-10-26",
+      "confidence": "implied",
+      "flags": [
+        "size not stated, 7 ft by default"
+      ],
+      "source_type": "default",
+      "seen_on": [
+        "https://brooklynsafehouse.com"
+      ]
+    }
+  ],
+  "missing": [
+    "table_count",
+    "table_sizes",
+    "table_brands",
+    "league_nights",
+    "age_policy",
+    "food"
+  ]
+}

@@ -46,24 +46,16 @@
       "key": "pricing_model:hourly",
       "value": {
         "model": "hourly",
-        "rate": 5.0
+        "rate": 30.0
       },
       "source_url": "https://spacebilliard.com/",
-      "quote_snippet": "Additional guests +$5/hour each.",
+      "quote_snippet": "$30/hour",
       "checked_at": "2026-10-26",
       "confidence": "stated",
       "flags": [
         "sources disagree"
       ],
       "conflicts": [
-        {
-          "value": {
-            "model": "hourly",
-            "rate": 30.0
-          },
-          "source_url": "https://spacebilliard.com/",
-          "quote_snippet": "$30/hour"
-        },
         {
           "value": {
             "model": "hourly",

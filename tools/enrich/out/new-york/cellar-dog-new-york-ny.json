@@ -62,8 +62,10 @@
       "source_url": "https://www.cellardog.net/visit/",
       "quote_snippet": "Is the venue 21+?",
       "checked_at": "2026-10-26",
-      "confidence": "stated",
-      "flags": [],
+      "confidence": "implied",
+      "flags": [
+        "from a question (age gate or FAQ)"
+      ],
       "seen_on": [
         "https://www.cellardog.net/visit/"
       ],

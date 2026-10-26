@@ -1,0 +1,80 @@
+{
+  "schema": 1,
+  "slug": "nowhere-new-york-ny",
+  "city": "new-york",
+  "kind": "new",
+  "listing": {
+    "name": "Nowhere",
+    "street": "322 East 14th Street",
+    "city": "New York",
+    "state": "NY",
+    "zip": "10003",
+    "phone": "+1-212-477-4744",
+    "website": "https://www.nowherebarnyc.com/",
+    "venue_type": "bars-with-pool-tables",
+    "lat": 40.7318045,
+    "lng": -73.9840953
+  },
+  "checked_at": "2026-10-26",
+  "sources_checked": [
+    {
+      "url": "https://www.nowherebarnyc.com/",
+      "result": "read",
+      "note": ""
+    },
+    {
+      "url": "https://www.nowherebarnyc.com/new-events/",
+      "result": "read",
+      "note": ""
+    }
+  ],
+  "facts": [
+    {
+      "field": "pricing_model",
+      "key": "pricing_model:free-pool",
+      "value": {
+        "model": "free-pool",
+        "days": [
+          "sunday"
+        ]
+      },
+      "source_url": "https://www.nowherebarnyc.com/new-events/",
+      "quote_snippet": "HAPPY HOUR ALL DAY AND NIGHT SUNDAYS, FREE POOL (with purchase of drink)",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [],
+      "seen_on": [
+        "https://www.nowherebarnyc.com/new-events/"
+      ],
+      "source_type": "official_website"
+    },
+    {
+      "field": "table_sizes",
+      "key": "table_sizes:7ft",
+      "value": {
+        "size": "7ft",
+        "count": null
+      },
+      "source_url": "https://www.nowherebarnyc.com/",
+      "quote_snippet": "Listed as a place to play pool; no table size stated anywhere.",
+      "checked_at": "2026-10-26",
+      "confidence": "implied",
+      "flags": [
+        "size not stated, 7 ft by default"
+      ],
+      "source_type": "default",
+      "seen_on": [
+        "https://www.nowherebarnyc.com/"
+      ]
+    }
+  ],
+  "missing": [
+    "table_count",
+    "table_sizes",
+    "table_brands",
+    "league_nights",
+    "age_policy",
+    "food",
+    "full_bar"
+  ]
+}

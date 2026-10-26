@@ -41,6 +41,19 @@ STREET = re.compile(
 HOTEL = re.compile(r"\bhotels?\b|\bmotel\b|\bhostel\b|\baloft\b|\bhilton\b|marriott|\bhyatt\b|\bsheraton\b|\bresort\b", re.I)
 
 
+def osm_venue_type(t: dict, hint: bool) -> str:
+    """Our venue type from OSM tags. Only a place whose main use is billiards is a pool hall."""
+    if t.get("leisure") == "bowling_alley" or "10pin" in t.get("sport", ""):
+        return "bowling-center"
+    if t.get("amenity") in ("bar", "pub", "nightclub", "biergarten"):
+        return "sports-bar" if t.get("sport") and "billiards" not in t.get("sport", "") else "bars-with-pool-tables"
+    if t.get("amenity") in ("community_centre", "social_centre") or (t.get("leisure") == "sports_centre" and len(t.get("sport", "").split(";")) > 2):
+        return "recreation"
+    if t.get("amenity") in ("restaurant", "cafe", "events_venue", "fast_food"):
+        return "other-venue"
+    return "pool-halls" if hint else "bars-with-pool-tables"
+
+
 def mark_hotel(c: dict, tags: dict | None = None) -> dict:
     """A hotel with a pool table is not a place people go to play: type Other, flagged."""
     tags = tags or {}
@@ -123,7 +136,7 @@ def osm_candidates(fetcher: Fetcher, city: dict) -> tuple[list[dict], list[dict]
             "phone": t.get("phone", t.get("contact:phone", "")),
             "website": website,
             "facebook": facebook,
-            "venue_type": "pool-halls" if hint and t.get("amenity") not in ("bar", "pub", "nightclub", "restaurant") else "bars-with-pool-tables",
+            "venue_type": osm_venue_type(t, hint),
             "sources": [{
                 "source": "openstreetmap",
                 "id": key,
@@ -297,8 +310,12 @@ def run(city: dict, listings: list[dict], fetcher: Fetcher) -> dict:
                 fills[m["slug"]] = {"website": b["website"], "facebook": b["facebook"], "phone": b["phone"], "osm": b["sources"][0]["id"]}
         store.write_json(city["slug"], "_candidates.json", candidates)
         store.write_json(city["slug"], "osm-listing-links.json", fills)
-        # Names and addresses of every bar OSM knows here (ODbL), to place bars named by league teams.
-        store.write_json(city["slug"], "osm-bars.json", [{k: b[k] for k in ("name", "street", "zip", "lat", "lng", "phone", "website", "facebook", "sources")} for b in bars])
+        # Names and addresses of the city's bars (ODbL), to place bars named by league teams.
+        # Only cities with league pages use it, so others don't keep it.
+        if city.get("league_pages"):
+            store.write_json(city["slug"], "osm-bars.json", [
+                {k: b[k] for k in ("name", "street", "zip", "lat", "lng", "phone", "website", "facebook", "sources") if b.get(k)} for b in bars
+            ])
         disc["osm"] = {"at": checked_at, "pool_tagged": len(pool), "bars": len(bars)}
         store.save_state(city["slug"], state)
 

@@ -1,0 +1,94 @@
+{
+  "schema": 1,
+  "slug": "heavy-woods-new-york-ny",
+  "city": "new-york",
+  "kind": "new",
+  "listing": {
+    "name": "Heavy Woods",
+    "street": "50 Wyckoff Avenue",
+    "city": "New York",
+    "state": "NY",
+    "zip": "11237",
+    "phone": "+1-929-234-3500",
+    "website": "https://www.heavywoodsbar.com/",
+    "venue_type": "bars-with-pool-tables",
+    "lat": 40.7056487,
+    "lng": -73.9216186
+  },
+  "checked_at": "2026-10-26",
+  "sources_checked": [
+    {
+      "url": "https://www.heavywoodsbar.com/",
+      "result": "read",
+      "note": ""
+    },
+    {
+      "url": "https://www.heavywoodsbar.com/food/",
+      "result": "read",
+      "note": ""
+    },
+    {
+      "url": "https://heavywoodsbar.com/cocktails-2/",
+      "result": "error",
+      "note": "HTTP 404"
+    }
+  ],
+  "facts": [
+    {
+      "field": "food",
+      "key": "food",
+      "value": true,
+      "source_url": "https://www.heavywoodsbar.com/food/",
+      "quote_snippet": "6 jumbo wings in crystal buffalo with old bay ranch (GF)",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [],
+      "seen_on": [
+        "https://www.heavywoodsbar.com/food/"
+      ],
+      "source_type": "official_website"
+    },
+    {
+      "field": "full_bar",
+      "key": "full_bar",
+      "value": true,
+      "source_url": "https://www.heavywoodsbar.com/",
+      "quote_snippet": "Cocktails",
+      "checked_at": "2026-10-26",
+      "confidence": "implied",
+      "flags": [],
+      "seen_on": [
+        "https://www.heavywoodsbar.com/",
+        "https://www.heavywoodsbar.com/food/"
+      ],
+      "source_type": "official_website"
+    },
+    {
+      "field": "table_sizes",
+      "key": "table_sizes:7ft",
+      "value": {
+        "size": "7ft",
+        "count": null
+      },
+      "source_url": "https://www.heavywoodsbar.com/",
+      "quote_snippet": "Listed as a place to play pool; no table size stated anywhere.",
+      "checked_at": "2026-10-26",
+      "confidence": "implied",
+      "flags": [
+        "size not stated, 7 ft by default"
+      ],
+      "source_type": "default",
+      "seen_on": [
+        "https://www.heavywoodsbar.com/"
+      ]
+    }
+  ],
+  "missing": [
+    "table_count",
+    "table_sizes",
+    "table_brands",
+    "pricing_model",
+    "league_nights",
+    "age_policy"
+  ]
+}

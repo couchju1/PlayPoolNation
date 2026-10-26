@@ -1,0 +1,98 @@
+{
+  "schema": 1,
+  "slug": "bleecker-street-bar-new-york-ny",
+  "city": "new-york",
+  "kind": "new",
+  "listing": {
+    "name": "Bleecker Street Bar",
+    "street": "648 Broadway",
+    "city": "New York",
+    "state": "NY",
+    "phone": "+1-212-466-6482",
+    "website": "https://bleeckerstreetbarnyc.com/",
+    "venue_type": "bars-with-pool-tables",
+    "lat": 40.7265973,
+    "lng": -73.9953567
+  },
+  "checked_at": "2026-10-26",
+  "sources_checked": [
+    {
+      "url": "https://bleeckerstreetbarnyc.com/",
+      "result": "read",
+      "note": ""
+    },
+    {
+      "url": "https://bleeckerstreetbarnyc.com/happy-hour/",
+      "result": "read",
+      "note": ""
+    },
+    {
+      "url": "https://bleeckerstreetbarnyc.com/menu/",
+      "result": "read",
+      "note": ""
+    },
+    {
+      "url": "https://bleeckerstreetbarnyc.com/about/",
+      "result": "read",
+      "note": ""
+    }
+  ],
+  "facts": [
+    {
+      "field": "food",
+      "key": "food",
+      "value": true,
+      "source_url": "https://bleeckerstreetbarnyc.com/happy-hour/",
+      "quote_snippet": "MARGHERITA PAN PIZZA (v)",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [],
+      "seen_on": [
+        "https://bleeckerstreetbarnyc.com/happy-hour/"
+      ],
+      "source_type": "official_website"
+    },
+    {
+      "field": "full_bar",
+      "key": "full_bar",
+      "value": true,
+      "source_url": "https://bleeckerstreetbarnyc.com/happy-hour/",
+      "quote_snippet": "‍ ‍CRAFT COCKTAILS | $10",
+      "checked_at": "2026-10-26",
+      "confidence": "implied",
+      "flags": [],
+      "seen_on": [
+        "https://bleeckerstreetbarnyc.com/about/",
+        "https://bleeckerstreetbarnyc.com/happy-hour/"
+      ],
+      "source_type": "official_website"
+    },
+    {
+      "field": "table_sizes",
+      "key": "table_sizes:7ft",
+      "value": {
+        "size": "7ft",
+        "count": null
+      },
+      "source_url": "https://bleeckerstreetbarnyc.com/",
+      "quote_snippet": "Listed as a place to play pool; no table size stated anywhere.",
+      "checked_at": "2026-10-26",
+      "confidence": "implied",
+      "flags": [
+        "size not stated, 7 ft by default"
+      ],
+      "source_type": "default",
+      "seen_on": [
+        "https://bleeckerstreetbarnyc.com/"
+      ]
+    }
+  ],
+  "missing": [
+    "table_count",
+    "table_sizes",
+    "table_brands",
+    "pricing_model",
+    "league_nights",
+    "age_policy"
+  ]
+}

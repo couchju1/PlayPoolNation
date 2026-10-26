@@ -104,6 +104,7 @@ AGE = [
     ("all-ages", re.compile(r"\bfamily[- ]friendly\b|\bkids'?\s+menu\b|\bchildren'?s\s+menu\b", re.I), "implied"),
 ]
 AGE_NOISE = re.compile(r"\b(events?|shows?|concerts?|live|tour|presents?|doors|dj|band|night only|tournament|party|tickets?|id required for alcohol|to drink|to purchase alcohol|alcohol)\b|\bw/", re.I)
+AGE_SOMETIMES = re.compile(r"\b(after|before|until|from)\s+\d{1,2}(?::\d\d)?\s*(?:pm|am|p\.m\.)?|\b\d{1,2}\s*(?:pm|p\.m\.)\b|\b(?:mon|tues?|wed|thur?s?|fri|sat|sun)[a-z]*\s*(?:-|–|to|through)\s*(?:mon|tues?|wed|thur?s?|fri|sat|sun)", re.I)
 # Pages listing shows: an "All ages" or "21+" there is about one show, not the venue.
 EVENT_PAGE = re.compile(r"event|calendar|show|concert|ticket|music", re.I)
 
@@ -324,7 +325,12 @@ def _amenities(s, url, at):
         for value, rx, conf in AGE:
             m = rx.search(s)
             if m:
-                out.append(_fact("age_policy", "age_policy", value, s, m.start(), m.end(), url, at, conf))
+                flags = []
+                if s.rstrip().endswith("?"):
+                    conf, flags = "implied", ["from a question (age gate or FAQ)"]
+                elif AGE_SOMETIMES.search(s):
+                    conf, flags = "implied", ["only at certain times"]
+                out.append(_fact("age_policy", "age_policy", value, s, m.start(), m.end(), url, at, conf, flags))
                 break
     for rx, value, conf in ((FOOD_NO, False, "stated"), (FOOD_YES, True, "stated"), (FOOD_IMPLIED, True, "implied")):
         m = rx.search(s)

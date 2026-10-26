@@ -124,6 +124,13 @@ class FalsePositives(unittest.TestCase):
         self.assertEqual(by_field(facts("BROTHER ALI Live at BIGS w/DJ Abilities - All Ages"), "age_policy"), [])
         self.assertEqual(by_field(merge(extract(["Must be 21 or older."], "https://x.com/current-events", AT), lambda u: 0), "age_policy"), [])
 
+    def test_age_question_and_part_time(self):
+        q = by_field(facts("Is the venue 21+?"), "age_policy")[0]
+        self.assertEqual((q["confidence"], q["flags"]), ("implied", ["from a question (age gate or FAQ)"]))
+        t = by_field(facts("Only 21+ Thursday - Saturday after 8PM"), "age_policy")[0]
+        self.assertEqual((t["value"], t["confidence"]), ("21-plus", "implied"))
+        self.assertEqual(by_field(facts("We are a 21+ venue, 24/7."), "age_policy")[0]["confidence"], "stated")
+
     def test_coin_op_foosball(self):
         self.assertEqual(by_field(facts("We have 25 pool tables and one coin-operated foosball table near the bar!"), "pricing_model"), [])
 

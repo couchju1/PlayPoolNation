@@ -1,0 +1,109 @@
+{
+  "schema": 1,
+  "slug": "ryans-daughter-new-york-ny",
+  "city": "new-york",
+  "kind": "new",
+  "listing": {
+    "name": "Ryan's Daughter",
+    "street": "350 East 85th Street",
+    "city": "New York",
+    "state": "NY",
+    "zip": "10028",
+    "phone": "+1 212-628-2613",
+    "website": "https://ryansdaughter.nyc",
+    "venue_type": "bars-with-pool-tables",
+    "lat": 40.7762991,
+    "lng": -73.9504574
+  },
+  "checked_at": "2026-10-26",
+  "sources_checked": [
+    {
+      "url": "https://ryansdaughter.nyc",
+      "result": "read",
+      "note": ""
+    },
+    {
+      "url": "https://ryansdaughter.nyc/new-york-upper-east-side-ryans-daughter-about/",
+      "result": "read",
+      "note": ""
+    },
+    {
+      "url": "https://ryansdaughter.nyc/new-york-upper-east-side-ryans-daughter-food-menu/",
+      "result": "read",
+      "note": ""
+    },
+    {
+      "url": "https://ryansdaughter.nyc/new-york-upper-east-side-ryans-daughter-happy-hours-specials/",
+      "result": "read",
+      "note": ""
+    },
+    {
+      "url": "https://ryansdaughter.nyc/new-york-upper-east-side-ryans-daughter-drink-menu/",
+      "result": "read",
+      "note": ""
+    },
+    {
+      "url": "https://ryansdaughter.nyc/new-york-upper-east-side-ryans-daughter-party-custom/",
+      "result": "read",
+      "note": ""
+    }
+  ],
+  "facts": [
+    {
+      "field": "food",
+      "key": "food",
+      "value": true,
+      "source_url": "https://ryansdaughter.nyc/new-york-upper-east-side-ryans-daughter-food-menu/",
+      "quote_snippet": "Our Menu",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [],
+      "seen_on": [
+        "https://ryansdaughter.nyc",
+        "https://ryansdaughter.nyc/new-york-upper-east-side-ryans-daughter-food-menu/"
+      ],
+      "source_type": "official_website"
+    },
+    {
+      "field": "full_bar",
+      "key": "full_bar",
+      "value": true,
+      "source_url": "https://ryansdaughter.nyc/new-york-upper-east-side-ryans-daughter-drink-menu/",
+      "quote_snippet": "Winter House Cocktails",
+      "checked_at": "2026-10-26",
+      "confidence": "implied",
+      "flags": [],
+      "seen_on": [
+        "https://ryansdaughter.nyc/new-york-upper-east-side-ryans-daughter-drink-menu/"
+      ],
+      "source_type": "official_website"
+    },
+    {
+      "field": "table_sizes",
+      "key": "table_sizes:7ft",
+      "value": {
+        "size": "7ft",
+        "count": null
+      },
+      "source_url": "https://ryansdaughter.nyc",
+      "quote_snippet": "Listed as a place to play pool; no table size stated anywhere.",
+      "checked_at": "2026-10-26",
+      "confidence": "implied",
+      "flags": [
+        "size not stated, 7 ft by default"
+      ],
+      "source_type": "default",
+      "seen_on": [
+        "https://ryansdaughter.nyc"
+      ]
+    }
+  ],
+  "missing": [
+    "table_count",
+    "table_sizes",
+    "table_brands",
+    "pricing_model",
+    "league_nights",
+    "age_policy"
+  ]
+}

@@ -1,0 +1,128 @@
+{
+  "schema": 1,
+  "slug": "rays-new-york-ny",
+  "city": "new-york",
+  "kind": "new",
+  "listing": {
+    "name": "Ray's",
+    "street": "177 Chrystie Street",
+    "city": "New York",
+    "state": "NY",
+    "zip": "10002-2825",
+    "website": "https://www.raysbarnyc.com/location/les/",
+    "venue_type": "bars-with-pool-tables",
+    "lat": 40.7212215,
+    "lng": -73.9924426
+  },
+  "checked_at": "2026-10-26",
+  "sources_checked": [
+    {
+      "url": "https://www.raysbarnyc.com/location/les/",
+      "result": "read",
+      "note": ""
+    },
+    {
+      "url": "https://www.raysbarnyc.com/les/",
+      "result": "read",
+      "note": ""
+    },
+    {
+      "url": "https://www.raysbarnyc.com/les-private-events/",
+      "result": "read",
+      "note": ""
+    },
+    {
+      "url": "https://www.raysbarnyc.com/location/brooklyn/",
+      "result": "read",
+      "note": ""
+    },
+    {
+      "url": "https://www.raysbarnyc.com/brooklyn/",
+      "result": "read",
+      "note": ""
+    },
+    {
+      "url": "https://www.raysbarnyc.com/brooklyn-private-events/",
+      "result": "read",
+      "note": ""
+    },
+    {
+      "url": "https://www.raysbarnyc.com/location/miami/",
+      "result": "read",
+      "note": ""
+    },
+    {
+      "url": "https://www.raysbarnyc.com/miami-menus/",
+      "result": "read",
+      "note": ""
+    },
+    {
+      "url": "https://www.raysbarnyc.com/miami-private-events/",
+      "result": "read",
+      "note": ""
+    }
+  ],
+  "facts": [
+    {
+      "field": "food",
+      "key": "food",
+      "value": true,
+      "source_url": "https://www.raysbarnyc.com/location/les/",
+      "quote_snippet": "a burger sitting on top of a table",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [],
+      "seen_on": [
+        "https://www.raysbarnyc.com/brooklyn/",
+        "https://www.raysbarnyc.com/les/",
+        "https://www.raysbarnyc.com/location/les/",
+        "https://www.raysbarnyc.com/miami-menus/"
+      ],
+      "source_type": "official_website"
+    },
+    {
+      "field": "full_bar",
+      "key": "full_bar",
+      "value": true,
+      "source_url": "https://www.raysbarnyc.com/les-private-events/",
+      "quote_snippet": "Private party room or full bar available.",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [],
+      "seen_on": [
+        "https://www.raysbarnyc.com/brooklyn/",
+        "https://www.raysbarnyc.com/les-private-events/",
+        "https://www.raysbarnyc.com/les/",
+        "https://www.raysbarnyc.com/miami-menus/"
+      ],
+      "source_type": "official_website"
+    },
+    {
+      "field": "table_sizes",
+      "key": "table_sizes:7ft",
+      "value": {
+        "size": "7ft",
+        "count": null
+      },
+      "source_url": "https://www.raysbarnyc.com/location/les/",
+      "quote_snippet": "Listed as a place to play pool; no table size stated anywhere.",
+      "checked_at": "2026-10-26",
+      "confidence": "implied",
+      "flags": [
+        "size not stated, 7 ft by default"
+      ],
+      "source_type": "default",
+      "seen_on": [
+        "https://www.raysbarnyc.com/location/les/"
+      ]
+    }
+  ],
+  "missing": [
+    "table_count",
+    "table_sizes",
+    "table_brands",
+    "pricing_model",
+    "league_nights",
+    "age_policy"
+  ]
+}

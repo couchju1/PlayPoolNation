@@ -1,0 +1,80 @@
+{
+  "schema": 1,
+  "slug": "phoenix-bar-new-york-ny",
+  "city": "new-york",
+  "kind": "new",
+  "listing": {
+    "name": "Phoenix Bar",
+    "street": "447 East 13th Street",
+    "city": "New York",
+    "state": "NY",
+    "zip": "10009",
+    "phone": "+1-212-477-9979",
+    "website": "https://www.phoenixbarnyc.com/",
+    "venue_type": "bars-with-pool-tables",
+    "lat": 40.7299744,
+    "lng": -73.9811697
+  },
+  "checked_at": "2026-10-26",
+  "sources_checked": [
+    {
+      "url": "https://phoenixbarnyc.com/",
+      "result": "read",
+      "note": ""
+    },
+    {
+      "url": "https://phoenixbarnyc.com/events/",
+      "result": "read",
+      "note": ""
+    },
+    {
+      "url": "https://phoenixbarnyc.com/reserve/",
+      "result": "read",
+      "note": ""
+    }
+  ],
+  "facts": [
+    {
+      "field": "full_bar",
+      "key": "full_bar",
+      "value": true,
+      "source_url": "https://phoenixbarnyc.com/",
+      "quote_snippet": "Cocktails, books, and Sunday conversation...",
+      "checked_at": "2026-10-26",
+      "confidence": "implied",
+      "flags": [],
+      "seen_on": [
+        "https://phoenixbarnyc.com/"
+      ],
+      "source_type": "official_website"
+    },
+    {
+      "field": "table_sizes",
+      "key": "table_sizes:7ft",
+      "value": {
+        "size": "7ft",
+        "count": null
+      },
+      "source_url": "https://www.phoenixbarnyc.com/",
+      "quote_snippet": "Listed as a place to play pool; no table size stated anywhere.",
+      "checked_at": "2026-10-26",
+      "confidence": "implied",
+      "flags": [
+        "size not stated, 7 ft by default"
+      ],
+      "source_type": "default",
+      "seen_on": [
+        "https://www.phoenixbarnyc.com/"
+      ]
+    }
+  ],
+  "missing": [
+    "table_count",
+    "table_sizes",
+    "table_brands",
+    "pricing_model",
+    "league_nights",
+    "age_policy",
+    "food"
+  ]
+}

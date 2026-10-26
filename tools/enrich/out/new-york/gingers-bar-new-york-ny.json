@@ -1,0 +1,102 @@
+{
+  "schema": 1,
+  "slug": "gingers-bar-new-york-ny",
+  "city": "new-york",
+  "kind": "new",
+  "listing": {
+    "name": "Ginger's Bar",
+    "street": "363 5th Avenue",
+    "city": "Brooklyn",
+    "state": "NY",
+    "zip": "11215",
+    "website": "https://www.gingersbarbk.com/",
+    "venue_type": "bars-with-pool-tables",
+    "lat": 40.6713308,
+    "lng": -73.9843022
+  },
+  "checked_at": "2026-10-26",
+  "sources_checked": [
+    {
+      "url": "https://www.gingersbarbk.com/",
+      "result": "read",
+      "note": ""
+    },
+    {
+      "url": "https://www.gingersbarbk.com/menu/",
+      "result": "read",
+      "note": ""
+    },
+    {
+      "url": "https://www.gingersbarbk.com/events/",
+      "result": "read",
+      "note": ""
+    },
+    {
+      "url": "https://www.gingersbarbk.com/menu/",
+      "result": "read",
+      "note": ""
+    },
+    {
+      "url": "https://www.gingersbarbk.com/events/",
+      "result": "read",
+      "note": ""
+    }
+  ],
+  "facts": [
+    {
+      "field": "food",
+      "key": "food",
+      "value": true,
+      "source_url": "https://www.gingersbarbk.com/menu/",
+      "quote_snippet": "Ask us about getting on our menu!",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [],
+      "seen_on": [
+        "https://www.gingersbarbk.com/menu/"
+      ],
+      "source_type": "official_website"
+    },
+    {
+      "field": "full_bar",
+      "key": "full_bar",
+      "value": true,
+      "source_url": "https://www.gingersbarbk.com/menu/",
+      "quote_snippet": "COCKTAILS",
+      "checked_at": "2026-10-26",
+      "confidence": "implied",
+      "flags": [],
+      "seen_on": [
+        "https://www.gingersbarbk.com/menu/"
+      ],
+      "source_type": "official_website"
+    },
+    {
+      "field": "table_sizes",
+      "key": "table_sizes:7ft",
+      "value": {
+        "size": "7ft",
+        "count": null
+      },
+      "source_url": "https://www.gingersbarbk.com/",
+      "quote_snippet": "Listed as a place to play pool; no table size stated anywhere.",
+      "checked_at": "2026-10-26",
+      "confidence": "implied",
+      "flags": [
+        "size not stated, 7 ft by default"
+      ],
+      "source_type": "default",
+      "seen_on": [
+        "https://www.gingersbarbk.com/"
+      ]
+    }
+  ],
+  "missing": [
+    "table_count",
+    "table_sizes",
+    "table_brands",
+    "pricing_model",
+    "league_nights",
+    "age_policy"
+  ]
+}

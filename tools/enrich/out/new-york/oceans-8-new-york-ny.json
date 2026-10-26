@@ -1,0 +1,125 @@
+{
+  "schema": 1,
+  "slug": "oceans-8-new-york-ny",
+  "city": "new-york",
+  "kind": "new",
+  "listing": {
+    "name": "Ocean's 8",
+    "street": "308 Flatbush Avenue",
+    "city": "New York",
+    "state": "NY",
+    "zip": "11238",
+    "phone": "+1-718-857-5555",
+    "website": "https://www.oceans8ny.com",
+    "venue_type": "bars-with-pool-tables",
+    "lat": 40.6773707,
+    "lng": -73.9730851
+  },
+  "checked_at": "2026-10-26",
+  "sources_checked": [
+    {
+      "url": "https://www.oceans8ny.com",
+      "result": "read",
+      "note": ""
+    },
+    {
+      "url": "https://www.oceans8ny.com/events/",
+      "result": "read",
+      "note": ""
+    },
+    {
+      "url": "https://www.oceans8ny.com/delicious-food-and-drinks/",
+      "result": "read",
+      "note": ""
+    }
+  ],
+  "facts": [
+    {
+      "field": "table_count",
+      "key": "table_count",
+      "value": 30,
+      "source_url": "https://www.oceans8ny.com/events/",
+      "quote_snippet": "Test your skills on 30 billiards tables or 6 tournament-grade ping pong tables",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [],
+      "seen_on": [
+        "https://www.oceans8ny.com/events/"
+      ],
+      "source_type": "official_website"
+    },
+    {
+      "field": "league_nights",
+      "key": "league_nights:pool-league:",
+      "value": {
+        "league": "Pool league",
+        "weekday": null
+      },
+      "source_url": "https://www.oceans8ny.com",
+      "quote_snippet": "From casual games to competitive league nights, our billiards room is the heart of Ocean’s 8.",
+      "checked_at": "2026-10-26",
+      "confidence": "implied",
+      "flags": [
+        "no weekday given"
+      ],
+      "seen_on": [
+        "https://www.oceans8ny.com"
+      ],
+      "source_type": "official_website"
+    },
+    {
+      "field": "food",
+      "key": "food",
+      "value": true,
+      "source_url": "https://www.oceans8ny.com",
+      "quote_snippet": "Try our famous wings or our delicious the Angus beef burger.",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [],
+      "seen_on": [
+        "https://www.oceans8ny.com",
+        "https://www.oceans8ny.com/delicious-food-and-drinks/"
+      ],
+      "source_type": "official_website"
+    },
+    {
+      "field": "full_bar",
+      "key": "full_bar",
+      "value": true,
+      "source_url": "https://www.oceans8ny.com",
+      "quote_snippet": "Serving great food with large selection of alcohol and liquor",
+      "checked_at": "2026-10-26",
+      "confidence": "implied",
+      "flags": [],
+      "seen_on": [
+        "https://www.oceans8ny.com"
+      ],
+      "source_type": "official_website"
+    },
+    {
+      "field": "table_sizes",
+      "key": "table_sizes:7ft",
+      "value": {
+        "size": "7ft",
+        "count": 30
+      },
+      "source_url": "https://www.oceans8ny.com/events/",
+      "quote_snippet": "Test your skills on 30 billiards tables or 6 tournament-grade ping pong tables",
+      "checked_at": "2026-10-26",
+      "confidence": "implied",
+      "flags": [
+        "size not stated, 7 ft by default"
+      ],
+      "source_type": "default",
+      "seen_on": [
+        "https://www.oceans8ny.com/events/"
+      ]
+    }
+  ],
+  "missing": [
+    "table_sizes",
+    "table_brands",
+    "pricing_model",
+    "age_policy"
+  ]
+}

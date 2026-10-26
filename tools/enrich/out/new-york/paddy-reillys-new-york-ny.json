@@ -1,0 +1,62 @@
+{
+  "schema": 1,
+  "slug": "paddy-reillys-new-york-ny",
+  "city": "new-york",
+  "kind": "new",
+  "listing": {
+    "name": "Paddy Reilly's",
+    "street": "519 2nd Avenue",
+    "city": "New York",
+    "state": "NY",
+    "zip": "10016",
+    "phone": "+1-212-686-1210",
+    "website": "https://paddyreillysmusicbar.us",
+    "venue_type": "bars-with-pool-tables",
+    "lat": 40.7416176,
+    "lng": -73.9784219
+  },
+  "checked_at": "2026-10-26",
+  "sources_checked": [
+    {
+      "url": "https://paddyreillysmusicbar.us",
+      "result": "read",
+      "note": ""
+    },
+    {
+      "url": "https://paddyreillysmusicbar.us/about/",
+      "result": "read",
+      "note": ""
+    }
+  ],
+  "facts": [
+    {
+      "field": "table_sizes",
+      "key": "table_sizes:7ft",
+      "value": {
+        "size": "7ft",
+        "count": null
+      },
+      "source_url": "https://paddyreillysmusicbar.us",
+      "quote_snippet": "Listed as a place to play pool; no table size stated anywhere.",
+      "checked_at": "2026-10-26",
+      "confidence": "implied",
+      "flags": [
+        "size not stated, 7 ft by default"
+      ],
+      "source_type": "default",
+      "seen_on": [
+        "https://paddyreillysmusicbar.us"
+      ]
+    }
+  ],
+  "missing": [
+    "table_count",
+    "table_sizes",
+    "table_brands",
+    "pricing_model",
+    "league_nights",
+    "age_policy",
+    "food",
+    "full_bar"
+  ]
+}

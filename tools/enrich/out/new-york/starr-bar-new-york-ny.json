@@ -1,0 +1,110 @@
+{
+  "schema": 1,
+  "slug": "starr-bar-new-york-ny",
+  "city": "new-york",
+  "kind": "new",
+  "listing": {
+    "name": "Starr Bar",
+    "street": "214 Starr Street",
+    "city": "Brooklyn",
+    "state": "NY",
+    "zip": "11237",
+    "phone": "+1-718-821-1100",
+    "website": "https://starrbar.com/",
+    "facebook": "https://www.facebook.com/StarrBarBK",
+    "venue_type": "bars-with-pool-tables",
+    "lat": 40.7050054,
+    "lng": -73.9230385
+  },
+  "checked_at": "2026-10-26",
+  "sources_checked": [
+    {
+      "url": "https://www.starrbar.com/",
+      "result": "read",
+      "note": ""
+    },
+    {
+      "url": "https://www.starrbar.com/events/",
+      "result": "read",
+      "note": ""
+    },
+    {
+      "url": "https://www.starrbar.com/menu/",
+      "result": "read",
+      "note": ""
+    },
+    {
+      "url": "https://www.starrbar.com/aboutus/",
+      "result": "read",
+      "note": ""
+    },
+    {
+      "url": "https://www.starrbar.com/bookings/",
+      "result": "read",
+      "note": ""
+    },
+    {
+      "url": "https://www.facebook.com/StarrBarBK",
+      "result": "skipped",
+      "note": "robots.txt disallows"
+    }
+  ],
+  "facts": [
+    {
+      "field": "food",
+      "key": "food",
+      "value": true,
+      "source_url": "https://www.starrbar.com/",
+      "quote_snippet": "KITCHEN OPEN:",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [],
+      "seen_on": [
+        "https://www.starrbar.com/",
+        "https://www.starrbar.com/events/"
+      ],
+      "source_type": "official_website"
+    },
+    {
+      "field": "full_bar",
+      "key": "full_bar",
+      "value": true,
+      "source_url": "https://www.starrbar.com/bookings/",
+      "quote_snippet": "… 2100 square foot event space, featuring a full bar, multiple seating areas, a large dance floor, 8x14 …",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [],
+      "seen_on": [
+        "https://www.starrbar.com/bookings/"
+      ],
+      "source_type": "official_website"
+    },
+    {
+      "field": "table_sizes",
+      "key": "table_sizes:7ft",
+      "value": {
+        "size": "7ft",
+        "count": null
+      },
+      "source_url": "https://starrbar.com/",
+      "quote_snippet": "Listed as a place to play pool; no table size stated anywhere.",
+      "checked_at": "2026-10-26",
+      "confidence": "implied",
+      "flags": [
+        "size not stated, 7 ft by default"
+      ],
+      "source_type": "default",
+      "seen_on": [
+        "https://starrbar.com/"
+      ]
+    }
+  ],
+  "missing": [
+    "table_count",
+    "table_sizes",
+    "table_brands",
+    "pricing_model",
+    "league_nights",
+    "age_policy"
+  ]
+}

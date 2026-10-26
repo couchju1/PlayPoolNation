@@ -1,0 +1,180 @@
+{
+  "schema": 1,
+  "slug": "sour-mouse-new-york-ny",
+  "city": "new-york",
+  "kind": "new",
+  "listing": {
+    "name": "Sour Mouse",
+    "street": "110 Delaney Street",
+    "city": "New York",
+    "state": "NY",
+    "website": "https://www.sourmousenyc.com/",
+    "venue_type": "bars-with-pool-tables",
+    "lat": 40.7188557,
+    "lng": -73.9883675
+  },
+  "checked_at": "2026-10-26",
+  "sources_checked": [
+    {
+      "url": "https://www.sourmousenyc.com/",
+      "result": "read",
+      "note": ""
+    },
+    {
+      "url": "https://www.sourmousenyc.com/events",
+      "result": "read",
+      "note": ""
+    },
+    {
+      "url": "https://www.sourmousenyc.com/corporate",
+      "result": "read",
+      "note": ""
+    },
+    {
+      "url": "https://www.sourmousenyc.com/music",
+      "result": "read",
+      "note": ""
+    },
+    {
+      "url": "https://www.sourmousenyc.com/about",
+      "result": "read",
+      "note": ""
+    },
+    {
+      "url": "https://www.sourmousenyc.com/book-an-event",
+      "result": "read",
+      "note": ""
+    },
+    {
+      "url": "https://6919ba0b-d7e4-492b-9bb7-e961bfee1207.filesusr.com/ugd/9e661e_32807b2765b845b5a18407e65810ea08.pdf",
+      "result": "read",
+      "note": "pdf"
+    },
+    {
+      "url": "https://6919ba0b-d7e4-492b-9bb7-e961bfee1207.filesusr.com/ugd/9e661e_dda789252b734a03bb337188c6f8f9d6.pdf",
+      "result": "read",
+      "note": "pdf"
+    }
+  ],
+  "facts": [
+    {
+      "field": "table_count",
+      "key": "table_count",
+      "value": 8,
+      "source_url": "https://www.sourmousenyc.com/about",
+      "quote_snippet": "8 Competition-Standard Pool Tables",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [],
+      "seen_on": [
+        "https://www.sourmousenyc.com/about"
+      ],
+      "source_type": "official_website"
+    },
+    {
+      "field": "pricing_model",
+      "key": "pricing_model:hourly",
+      "value": {
+        "model": "hourly",
+        "rate": 35.0
+      },
+      "source_url": "https://www.sourmousenyc.com/about",
+      "quote_snippet": "$35 an hour per table – Friday & Saturday (9 PM to closing, peak rate for pool …",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [
+        "sources disagree"
+      ],
+      "conflicts": [
+        {
+          "value": {
+            "model": "hourly",
+            "rate": 25.0
+          },
+          "source_url": "https://6919ba0b-d7e4-492b-9bb7-e961bfee1207.filesusr.com/ugd/9e661e_32807b2765b845b5a18407e65810ea08.pdf",
+          "quote_snippet": "skip the wait lines for games when you purchase BILLIARDS MONDAY - SUNDAY $25/HOUR"
+        }
+      ],
+      "seen_on": [
+        "https://www.sourmousenyc.com/about"
+      ],
+      "source_type": "official_website"
+    },
+    {
+      "field": "age_policy",
+      "key": "age_policy",
+      "value": "21-plus",
+      "source_url": "https://www.sourmousenyc.com/",
+      "quote_snippet": "Only 21+ Thursday- Saturday after 8pm",
+      "checked_at": "2026-10-26",
+      "confidence": "implied",
+      "flags": [
+        "only at certain times"
+      ],
+      "seen_on": [
+        "https://www.sourmousenyc.com/",
+        "https://www.sourmousenyc.com/about",
+        "https://www.sourmousenyc.com/corporate"
+      ],
+      "source_type": "official_website"
+    },
+    {
+      "field": "food",
+      "key": "food",
+      "value": true,
+      "source_url": "https://www.sourmousenyc.com/",
+      "quote_snippet": "Enjoy our selection of specialty cocktails and delicious, piping-hot pizzas.",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [],
+      "seen_on": [
+        "https://6919ba0b-d7e4-492b-9bb7-e961bfee1207.filesusr.com/ugd/9e661e_32807b2765b845b5a18407e65810ea08.pdf",
+        "https://6919ba0b-d7e4-492b-9bb7-e961bfee1207.filesusr.com/ugd/9e661e_dda789252b734a03bb337188c6f8f9d6.pdf",
+        "https://www.sourmousenyc.com/"
+      ],
+      "source_type": "official_website"
+    },
+    {
+      "field": "full_bar",
+      "key": "full_bar",
+      "value": true,
+      "source_url": "https://www.sourmousenyc.com/",
+      "quote_snippet": "Enjoy our selection of specialty cocktails and delicious, piping-hot pizzas.",
+      "checked_at": "2026-10-26",
+      "confidence": "implied",
+      "flags": [],
+      "seen_on": [
+        "https://6919ba0b-d7e4-492b-9bb7-e961bfee1207.filesusr.com/ugd/9e661e_32807b2765b845b5a18407e65810ea08.pdf",
+        "https://6919ba0b-d7e4-492b-9bb7-e961bfee1207.filesusr.com/ugd/9e661e_dda789252b734a03bb337188c6f8f9d6.pdf",
+        "https://www.sourmousenyc.com/",
+        "https://www.sourmousenyc.com/corporate",
+        "https://www.sourmousenyc.com/music"
+      ],
+      "source_type": "official_website"
+    },
+    {
+      "field": "table_sizes",
+      "key": "table_sizes:7ft",
+      "value": {
+        "size": "7ft",
+        "count": 8
+      },
+      "source_url": "https://www.sourmousenyc.com/about",
+      "quote_snippet": "8 Competition-Standard Pool Tables",
+      "checked_at": "2026-10-26",
+      "confidence": "implied",
+      "flags": [
+        "size not stated, 7 ft by default"
+      ],
+      "source_type": "default",
+      "seen_on": [
+        "https://www.sourmousenyc.com/about"
+      ]
+    }
+  ],
+  "missing": [
+    "table_sizes",
+    "table_brands",
+    "league_nights"
+  ]
+}

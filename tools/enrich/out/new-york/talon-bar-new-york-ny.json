@@ -1,0 +1,94 @@
+{
+  "schema": 1,
+  "slug": "talon-bar-new-york-ny",
+  "city": "new-york",
+  "kind": "new",
+  "listing": {
+    "name": "Talon Bar",
+    "street": "220 Wyckoff Avenue",
+    "city": "New York",
+    "state": "NY",
+    "phone": "+1-718-366-3192",
+    "website": "https://www.talonbar.com/",
+    "venue_type": "bars-with-pool-tables",
+    "lat": 40.701142,
+    "lng": -73.9143303
+  },
+  "checked_at": "2026-10-26",
+  "sources_checked": [
+    {
+      "url": "https://www.talonbar.com/",
+      "result": "read",
+      "note": ""
+    },
+    {
+      "url": "https://www.talonbar.com/about-us/",
+      "result": "read",
+      "note": ""
+    },
+    {
+      "url": "https://www.talonbar.com/events/",
+      "result": "read",
+      "note": ""
+    }
+  ],
+  "facts": [
+    {
+      "field": "food",
+      "key": "food",
+      "value": true,
+      "source_url": "https://www.talonbar.com/about-us/",
+      "quote_snippet": "TALON offers a full menu with a reputation for exceptional gastro pub fare.",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [],
+      "seen_on": [
+        "https://www.talonbar.com/about-us/"
+      ],
+      "source_type": "official_website"
+    },
+    {
+      "field": "full_bar",
+      "key": "full_bar",
+      "value": true,
+      "source_url": "https://www.talonbar.com/",
+      "quote_snippet": "— 7 Well mixed drinks —",
+      "checked_at": "2026-10-26",
+      "confidence": "implied",
+      "flags": [],
+      "seen_on": [
+        "https://www.talonbar.com/",
+        "https://www.talonbar.com/about-us/",
+        "https://www.talonbar.com/events/"
+      ],
+      "source_type": "official_website"
+    },
+    {
+      "field": "table_sizes",
+      "key": "table_sizes:7ft",
+      "value": {
+        "size": "7ft",
+        "count": null
+      },
+      "source_url": "https://www.talonbar.com/",
+      "quote_snippet": "Listed as a place to play pool; no table size stated anywhere.",
+      "checked_at": "2026-10-26",
+      "confidence": "implied",
+      "flags": [
+        "size not stated, 7 ft by default"
+      ],
+      "source_type": "default",
+      "seen_on": [
+        "https://www.talonbar.com/"
+      ]
+    }
+  ],
+  "missing": [
+    "table_count",
+    "table_sizes",
+    "table_brands",
+    "pricing_model",
+    "league_nights",
+    "age_policy"
+  ]
+}

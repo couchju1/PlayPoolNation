@@ -1,0 +1,122 @@
+{
+  "schema": 1,
+  "slug": "fort-hamilton-bowling-center-new-york-ny",
+  "city": "new-york",
+  "kind": "new",
+  "listing": {
+    "name": "Fort Hamilton Bowling Center",
+    "street": "124 Wainwright Drive",
+    "city": "New York",
+    "state": "NY",
+    "zip": "11209",
+    "website": "https://hamilton.armymwr.com/programs/hamilton-bowling",
+    "venue_type": "bowling-center",
+    "lat": 40.608581,
+    "lng": -74.0270159
+  },
+  "checked_at": "2026-10-26",
+  "sources_checked": [
+    {
+      "url": "https://hamilton.armymwr.com/programs/bowling",
+      "result": "read",
+      "note": ""
+    },
+    {
+      "url": "https://hamilton.armymwr.com/calendar",
+      "result": "read",
+      "note": ""
+    },
+    {
+      "url": "https://hamilton.armymwr.com/categories/recreation-and-activities",
+      "result": "read",
+      "note": ""
+    },
+    {
+      "url": "https://hamilton.armymwr.com/categories/recreation-and-activities",
+      "result": "read",
+      "note": ""
+    },
+    {
+      "url": "https://hamilton.armymwr.com/programs/bowling",
+      "result": "read",
+      "note": ""
+    },
+    {
+      "url": "https://hamilton.armymwr.com/programs/fort-hamilton-catering-and-event-planning",
+      "result": "read",
+      "note": ""
+    },
+    {
+      "url": "https://hamilton.armymwr.com/categories/food-and-social",
+      "result": "read",
+      "note": ""
+    },
+    {
+      "url": "https://hamilton.armymwr.com/calendar/event/halloween-costume-party-21-plus/7445167/113919",
+      "result": "read",
+      "note": ""
+    },
+    {
+      "url": "https://hamilton.armymwr.com/calendar/event/thanksgiving-brunch/7517734/115231",
+      "result": "read",
+      "note": ""
+    }
+  ],
+  "facts": [
+    {
+      "field": "age_policy",
+      "key": "age_policy",
+      "value": "all-ages",
+      "source_url": "https://hamilton.armymwr.com/programs/bowling",
+      "quote_snippet": "… you’re bowling with family, friends, or coworkers, bowling is easy to learn and fun for all ages.",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [],
+      "seen_on": [
+        "https://hamilton.armymwr.com/programs/bowling"
+      ],
+      "source_type": "official_website"
+    },
+    {
+      "field": "food",
+      "key": "food",
+      "value": false,
+      "source_url": "https://hamilton.armymwr.com/programs/fort-hamilton-catering-and-event-planning",
+      "quote_snippet": "No food or beverages intended for the function may be brought into or removed from Fort Hamilton …",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [],
+      "seen_on": [
+        "https://hamilton.armymwr.com/programs/fort-hamilton-catering-and-event-planning"
+      ],
+      "source_type": "official_website"
+    },
+    {
+      "field": "table_sizes",
+      "key": "table_sizes:7ft",
+      "value": {
+        "size": "7ft",
+        "count": null
+      },
+      "source_url": "https://hamilton.armymwr.com/programs/hamilton-bowling",
+      "quote_snippet": "Listed as a place to play pool; no table size stated anywhere.",
+      "checked_at": "2026-10-26",
+      "confidence": "implied",
+      "flags": [
+        "size not stated, 7 ft by default"
+      ],
+      "source_type": "default",
+      "seen_on": [
+        "https://hamilton.armymwr.com/programs/hamilton-bowling"
+      ]
+    }
+  ],
+  "missing": [
+    "table_count",
+    "table_sizes",
+    "table_brands",
+    "pricing_model",
+    "league_nights",
+    "full_bar"
+  ]
+}

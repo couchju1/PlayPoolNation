@@ -1,0 +1,57 @@
+{
+  "schema": 1,
+  "slug": "st-johns-recreation-center-new-york-ny",
+  "city": "new-york",
+  "kind": "new",
+  "listing": {
+    "name": "St. John’s Recreation Center",
+    "street": "1251 Prospect Place",
+    "city": "Brooklyn",
+    "state": "NY",
+    "zip": "11213",
+    "phone": "+1-718-771-2787",
+    "website": "https://www.nycgovparks.org/facilities/recreationcenters/B245",
+    "venue_type": "recreation",
+    "lat": 40.6738862,
+    "lng": -73.9349053
+  },
+  "checked_at": "2026-10-26",
+  "sources_checked": [
+    {
+      "url": "https://www.nycgovparks.org/facilities/recreationcenters/B245",
+      "result": "error",
+      "note": "HTTP 403"
+    }
+  ],
+  "facts": [
+    {
+      "field": "table_sizes",
+      "key": "table_sizes:7ft",
+      "value": {
+        "size": "7ft",
+        "count": null
+      },
+      "source_url": "https://www.nycgovparks.org/facilities/recreationcenters/B245",
+      "quote_snippet": "Listed as a place to play pool; no table size stated anywhere.",
+      "checked_at": "2026-10-26",
+      "confidence": "implied",
+      "flags": [
+        "size not stated, 7 ft by default"
+      ],
+      "source_type": "default",
+      "seen_on": [
+        "https://www.nycgovparks.org/facilities/recreationcenters/B245"
+      ]
+    }
+  ],
+  "missing": [
+    "table_count",
+    "table_sizes",
+    "table_brands",
+    "pricing_model",
+    "league_nights",
+    "age_policy",
+    "food",
+    "full_bar"
+  ]
+}

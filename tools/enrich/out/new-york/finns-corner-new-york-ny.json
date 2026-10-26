@@ -1,0 +1,80 @@
+{
+  "schema": 1,
+  "slug": "finns-corner-new-york-ny",
+  "city": "new-york",
+  "kind": "new",
+  "listing": {
+    "name": "Finn's Corner",
+    "street": "660 Washington Avenue",
+    "city": "Brooklyn",
+    "state": "NY",
+    "zip": "11238",
+    "phone": "+1-347-663-9316",
+    "website": "https://www.finnscornernyc.com",
+    "venue_type": "bars-with-pool-tables",
+    "lat": 40.6784339,
+    "lng": -73.9640584
+  },
+  "checked_at": "2026-10-26",
+  "sources_checked": [
+    {
+      "url": "https://www.finnscornernyc.com",
+      "result": "read",
+      "note": ""
+    },
+    {
+      "url": "https://www.finnscornernyc.com/menu",
+      "result": "read",
+      "note": ""
+    },
+    {
+      "url": "https://www.finnscornernyc.com/food",
+      "result": "read",
+      "note": ""
+    }
+  ],
+  "facts": [
+    {
+      "field": "full_bar",
+      "key": "full_bar",
+      "value": true,
+      "source_url": "https://www.finnscornernyc.com/menu",
+      "quote_snippet": "Jalapeño Margaritas",
+      "checked_at": "2026-10-26",
+      "confidence": "implied",
+      "flags": [],
+      "seen_on": [
+        "https://www.finnscornernyc.com/menu"
+      ],
+      "source_type": "official_website"
+    },
+    {
+      "field": "table_sizes",
+      "key": "table_sizes:7ft",
+      "value": {
+        "size": "7ft",
+        "count": null
+      },
+      "source_url": "https://www.finnscornernyc.com",
+      "quote_snippet": "Listed as a place to play pool; no table size stated anywhere.",
+      "checked_at": "2026-10-26",
+      "confidence": "implied",
+      "flags": [
+        "size not stated, 7 ft by default"
+      ],
+      "source_type": "default",
+      "seen_on": [
+        "https://www.finnscornernyc.com"
+      ]
+    }
+  ],
+  "missing": [
+    "table_count",
+    "table_sizes",
+    "table_brands",
+    "pricing_model",
+    "league_nights",
+    "age_policy",
+    "food"
+  ]
+}

@@ -1,0 +1,57 @@
+{
+  "schema": 1,
+  "slug": "one-and-one-new-york-ny",
+  "city": "new-york",
+  "kind": "new",
+  "listing": {
+    "name": "One and One",
+    "street": "76 East 1st Street",
+    "city": "New York",
+    "state": "NY",
+    "zip": "10009",
+    "phone": "+1-212-598-9126",
+    "website": "https://www.oneandonenyc.com",
+    "venue_type": "bars-with-pool-tables",
+    "lat": 40.7232877,
+    "lng": -73.9882234
+  },
+  "checked_at": "2026-10-26",
+  "sources_checked": [
+    {
+      "url": "https://www.oneandonenyc.com",
+      "result": "error",
+      "note": "HTTP 404"
+    }
+  ],
+  "facts": [
+    {
+      "field": "table_sizes",
+      "key": "table_sizes:7ft",
+      "value": {
+        "size": "7ft",
+        "count": null
+      },
+      "source_url": "https://www.oneandonenyc.com",
+      "quote_snippet": "Listed as a place to play pool; no table size stated anywhere.",
+      "checked_at": "2026-10-26",
+      "confidence": "implied",
+      "flags": [
+        "size not stated, 7 ft by default"
+      ],
+      "source_type": "default",
+      "seen_on": [
+        "https://www.oneandonenyc.com"
+      ]
+    }
+  ],
+  "missing": [
+    "table_count",
+    "table_sizes",
+    "table_brands",
+    "pricing_model",
+    "league_nights",
+    "age_policy",
+    "food",
+    "full_bar"
+  ]
+}

@@ -1,0 +1,86 @@
+{
+  "schema": 1,
+  "slug": "the-whiskey-new-york-ny",
+  "city": "new-york",
+  "kind": "new",
+  "listing": {
+    "name": "The Whiskey",
+    "city": "New York",
+    "state": "NY",
+    "website": "https://thewhiskeyog.com",
+    "venue_type": "bars-with-pool-tables",
+    "lat": 40.7108928,
+    "lng": -73.9503704
+  },
+  "checked_at": "2026-10-26",
+  "sources_checked": [
+    {
+      "url": "https://thewhiskeyog.com",
+      "result": "read",
+      "note": ""
+    },
+    {
+      "url": "https://thewhiskeyog.com/menu/",
+      "result": "read",
+      "note": ""
+    }
+  ],
+  "facts": [
+    {
+      "field": "food",
+      "key": "food",
+      "value": true,
+      "source_url": "https://thewhiskeyog.com/menu/",
+      "quote_snippet": "$12 wings",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [],
+      "seen_on": [
+        "https://thewhiskeyog.com/menu/"
+      ],
+      "source_type": "official_website"
+    },
+    {
+      "field": "full_bar",
+      "key": "full_bar",
+      "value": true,
+      "source_url": "https://thewhiskeyog.com",
+      "quote_snippet": "The Whiskey on Grand’s philosophy is simple: well poured drinks, tasty food, good music, a comfortable setting …",
+      "checked_at": "2026-10-26",
+      "confidence": "implied",
+      "flags": [],
+      "seen_on": [
+        "https://thewhiskeyog.com",
+        "https://thewhiskeyog.com/menu/"
+      ],
+      "source_type": "official_website"
+    },
+    {
+      "field": "table_sizes",
+      "key": "table_sizes:7ft",
+      "value": {
+        "size": "7ft",
+        "count": null
+      },
+      "source_url": "https://thewhiskeyog.com",
+      "quote_snippet": "Listed as a place to play pool; no table size stated anywhere.",
+      "checked_at": "2026-10-26",
+      "confidence": "implied",
+      "flags": [
+        "size not stated, 7 ft by default"
+      ],
+      "source_type": "default",
+      "seen_on": [
+        "https://thewhiskeyog.com"
+      ]
+    }
+  ],
+  "missing": [
+    "table_count",
+    "table_sizes",
+    "table_brands",
+    "pricing_model",
+    "league_nights",
+    "age_policy"
+  ]
+}

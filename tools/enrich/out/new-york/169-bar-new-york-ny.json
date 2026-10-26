@@ -1,0 +1,99 @@
+{
+  "schema": 1,
+  "slug": "169-bar-new-york-ny",
+  "city": "new-york",
+  "kind": "new",
+  "listing": {
+    "name": "169 Bar",
+    "street": "169 East Broadway",
+    "city": "New York",
+    "state": "NY",
+    "zip": "10002",
+    "phone": "+1-516-986-7938",
+    "website": "https://169barnyc.com",
+    "venue_type": "bars-with-pool-tables",
+    "lat": 40.7139326,
+    "lng": -73.9897603
+  },
+  "checked_at": "2026-10-26",
+  "sources_checked": [
+    {
+      "url": "https://169barnyc.com",
+      "result": "read",
+      "note": ""
+    },
+    {
+      "url": "https://169barnyc.com/table-party-reservations/",
+      "result": "read",
+      "note": ""
+    },
+    {
+      "url": "https://169barnyc.com/menu/",
+      "result": "read",
+      "note": ""
+    },
+    {
+      "url": "https://169barnyc.com/calendar/",
+      "result": "read",
+      "note": ""
+    }
+  ],
+  "facts": [
+    {
+      "field": "food",
+      "key": "food",
+      "value": true,
+      "source_url": "https://169barnyc.com/menu/",
+      "quote_snippet": "Pizza (Tomato & Cheese)",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [],
+      "seen_on": [
+        "https://169barnyc.com/menu/"
+      ],
+      "source_type": "official_website"
+    },
+    {
+      "field": "full_bar",
+      "key": "full_bar",
+      "value": true,
+      "source_url": "https://169barnyc.com",
+      "quote_snippet": "Home to THE ORIGINAL PICKLE MARTINI!!",
+      "checked_at": "2026-10-26",
+      "confidence": "implied",
+      "flags": [],
+      "seen_on": [
+        "https://169barnyc.com",
+        "https://169barnyc.com/menu/"
+      ],
+      "source_type": "official_website"
+    },
+    {
+      "field": "table_sizes",
+      "key": "table_sizes:7ft",
+      "value": {
+        "size": "7ft",
+        "count": null
+      },
+      "source_url": "https://169barnyc.com",
+      "quote_snippet": "Listed as a place to play pool; no table size stated anywhere.",
+      "checked_at": "2026-10-26",
+      "confidence": "implied",
+      "flags": [
+        "size not stated, 7 ft by default"
+      ],
+      "source_type": "default",
+      "seen_on": [
+        "https://169barnyc.com"
+      ]
+    }
+  ],
+  "missing": [
+    "table_count",
+    "table_sizes",
+    "table_brands",
+    "pricing_model",
+    "league_nights",
+    "age_policy"
+  ]
+}

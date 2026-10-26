@@ -1,0 +1,57 @@
+{
+  "schema": 1,
+  "slug": "superfine-new-york-ny",
+  "city": "new-york",
+  "kind": "new",
+  "listing": {
+    "name": "Superfine",
+    "street": "126 Front Street",
+    "city": "New York",
+    "state": "NY",
+    "zip": "11201",
+    "phone": "+1-718-243-9005",
+    "website": "https://superfine.nyc/",
+    "venue_type": "other-venue",
+    "lat": 40.7023397,
+    "lng": -73.9874667
+  },
+  "checked_at": "2026-10-26",
+  "sources_checked": [
+    {
+      "url": "https://superfine.nyc/",
+      "result": "skipped",
+      "note": "robots.txt unreachable"
+    }
+  ],
+  "facts": [
+    {
+      "field": "table_sizes",
+      "key": "table_sizes:7ft",
+      "value": {
+        "size": "7ft",
+        "count": null
+      },
+      "source_url": "https://superfine.nyc/",
+      "quote_snippet": "Listed as a place to play pool; no table size stated anywhere.",
+      "checked_at": "2026-10-26",
+      "confidence": "implied",
+      "flags": [
+        "size not stated, 7 ft by default"
+      ],
+      "source_type": "default",
+      "seen_on": [
+        "https://superfine.nyc/"
+      ]
+    }
+  ],
+  "missing": [
+    "table_count",
+    "table_sizes",
+    "table_brands",
+    "pricing_model",
+    "league_nights",
+    "age_policy",
+    "food",
+    "full_bar"
+  ]
+}

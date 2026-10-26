@@ -1,0 +1,130 @@
+{
+  "schema": 1,
+  "slug": "stonewall-inn-new-york-ny",
+  "city": "new-york",
+  "kind": "new",
+  "listing": {
+    "name": "Stonewall Inn",
+    "street": "53 Christopher Street",
+    "city": "New York",
+    "state": "NY",
+    "zip": "10014",
+    "website": "https://thestonewallinnnyc.com/",
+    "venue_type": "bars-with-pool-tables",
+    "lat": 40.7338163,
+    "lng": -74.0021613
+  },
+  "checked_at": "2026-10-26",
+  "sources_checked": [
+    {
+      "url": "https://thestonewallinnnyc.com/",
+      "result": "read",
+      "note": ""
+    },
+    {
+      "url": "https://thestonewallinnnyc.com/weekly-events/#itemId=6395b6c65ce88704568c80fa",
+      "result": "read",
+      "note": ""
+    },
+    {
+      "url": "https://thestonewallinnnyc.com/weekly-events/#itemId=60412001e3cb237c207460de",
+      "result": "read",
+      "note": ""
+    },
+    {
+      "url": "https://thestonewallinnnyc.com/weekly-events/#itemId=61d3d7d4ce56ef4726336a9a",
+      "result": "read",
+      "note": ""
+    },
+    {
+      "url": "https://thestonewallinnnyc.com/weekly-events/#itemId=6782e29807d732239a723ab8",
+      "result": "read",
+      "note": ""
+    },
+    {
+      "url": "https://thestonewallinnnyc.com/weekly-events/#itemId=66b28624a8552326857872d4",
+      "result": "read",
+      "note": ""
+    },
+    {
+      "url": "https://thestonewallinnnyc.com/weekly-events/#itemId=6180c163ad2b023f0bafa880",
+      "result": "read",
+      "note": ""
+    },
+    {
+      "url": "https://thestonewallinnnyc.com/weekly-events/#itemId=697bcbb8de949c571cf6f873",
+      "result": "read",
+      "note": ""
+    },
+    {
+      "url": "https://thestonewallinnnyc.com/weekly-events/#itemId=68ffe0f9a4b637792b4c128f",
+      "result": "read",
+      "note": ""
+    }
+  ],
+  "facts": [
+    {
+      "field": "age_policy",
+      "key": "age_policy",
+      "value": "21-plus",
+      "source_url": "https://thestonewallinnnyc.com/",
+      "quote_snippet": "You must be 21 and a proper - physical ID is required.",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [],
+      "seen_on": [
+        "https://thestonewallinnnyc.com/"
+      ],
+      "source_type": "official_website"
+    },
+    {
+      "field": "food",
+      "key": "food",
+      "value": true,
+      "source_url": "https://thestonewallinnnyc.com/",
+      "quote_snippet": "FRIENDS, FUN, GREAT PRIZES, O69 Shots & Buttered Popcorn with M&M’s",
+      "checked_at": "2026-10-26",
+      "confidence": "implied",
+      "flags": [],
+      "seen_on": [
+        "https://thestonewallinnnyc.com/",
+        "https://thestonewallinnnyc.com/weekly-events/#itemId=60412001e3cb237c207460de",
+        "https://thestonewallinnnyc.com/weekly-events/#itemId=6180c163ad2b023f0bafa880",
+        "https://thestonewallinnnyc.com/weekly-events/#itemId=61d3d7d4ce56ef4726336a9a",
+        "https://thestonewallinnnyc.com/weekly-events/#itemId=6395b6c65ce88704568c80fa",
+        "https://thestonewallinnnyc.com/weekly-events/#itemId=66b28624a8552326857872d4",
+        "https://thestonewallinnnyc.com/weekly-events/#itemId=6782e29807d732239a723ab8",
+        "https://thestonewallinnnyc.com/weekly-events/#itemId=68ffe0f9a4b637792b4c128f",
+        "https://thestonewallinnnyc.com/weekly-events/#itemId=697bcbb8de949c571cf6f873"
+      ],
+      "source_type": "official_website"
+    },
+    {
+      "field": "table_sizes",
+      "key": "table_sizes:7ft",
+      "value": {
+        "size": "7ft",
+        "count": null
+      },
+      "source_url": "https://thestonewallinnnyc.com/",
+      "quote_snippet": "Listed as a place to play pool; no table size stated anywhere.",
+      "checked_at": "2026-10-26",
+      "confidence": "implied",
+      "flags": [
+        "size not stated, 7 ft by default"
+      ],
+      "source_type": "default",
+      "seen_on": [
+        "https://thestonewallinnnyc.com/"
+      ]
+    }
+  ],
+  "missing": [
+    "table_count",
+    "table_sizes",
+    "table_brands",
+    "pricing_model",
+    "league_nights",
+    "full_bar"
+  ]
+}

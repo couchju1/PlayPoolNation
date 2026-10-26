@@ -1,0 +1,130 @@
+{
+  "schema": 1,
+  "slug": "roxy-hotel-new-york-ny",
+  "city": "new-york",
+  "kind": "new",
+  "listing": {
+    "name": "Roxy Hotel",
+    "street": "2 Avenue of the Americas",
+    "city": "New York",
+    "state": "NY",
+    "zip": "10013",
+    "website": "https://www.roxyhotelnyc.com/",
+    "venue_type": "other-venue",
+    "lat": 40.7193706,
+    "lng": -74.0047857
+  },
+  "checked_at": "2026-10-26",
+  "sources_checked": [
+    {
+      "url": "https://www.roxyhotelnyc.com/",
+      "result": "read",
+      "note": ""
+    },
+    {
+      "url": "https://www.roxyhotelnyc.com/event-spaces/",
+      "result": "read",
+      "note": ""
+    },
+    {
+      "url": "https://www.roxyhotelnyc.com/special-offers/",
+      "result": "read",
+      "note": ""
+    },
+    {
+      "url": "https://www.roxyhotelnyc.com/about/",
+      "result": "read",
+      "note": ""
+    },
+    {
+      "url": "https://www.roxyhotelnyc.com/amenities/",
+      "result": "read",
+      "note": ""
+    },
+    {
+      "url": "https://www.roxyhotelnyc.com/faqs/",
+      "result": "read",
+      "note": ""
+    },
+    {
+      "url": "https://www.roxyhotelnyc.com/dining/roxy-bar/",
+      "result": "read",
+      "note": ""
+    },
+    {
+      "url": "https://www.roxyhotelnyc.com/dining/the-oyster-bar-at-the-roxy-hotel/",
+      "result": "read",
+      "note": ""
+    },
+    {
+      "url": "https://www.roxyhotelnyc.com/stories/downtown-nyc-restaurants-walk-in/",
+      "result": "read",
+      "note": ""
+    }
+  ],
+  "facts": [
+    {
+      "field": "food",
+      "key": "food",
+      "value": true,
+      "source_url": "https://www.roxyhotelnyc.com/",
+      "quote_snippet": "Thanksgiving Dinner entrees set on a table at Roxy Bar in Roxy Hotel.",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [],
+      "seen_on": [
+        "https://www.roxyhotelnyc.com/",
+        "https://www.roxyhotelnyc.com/dining/roxy-bar/",
+        "https://www.roxyhotelnyc.com/faqs/"
+      ],
+      "source_type": "official_website"
+    },
+    {
+      "field": "full_bar",
+      "key": "full_bar",
+      "value": true,
+      "source_url": "https://www.roxyhotelnyc.com/",
+      "quote_snippet": "There are shelves of liquor bottles, a menu board and oysters over ice on display.",
+      "checked_at": "2026-10-26",
+      "confidence": "implied",
+      "flags": [],
+      "seen_on": [
+        "https://www.roxyhotelnyc.com/",
+        "https://www.roxyhotelnyc.com/about/",
+        "https://www.roxyhotelnyc.com/dining/roxy-bar/",
+        "https://www.roxyhotelnyc.com/dining/the-oyster-bar-at-the-roxy-hotel/",
+        "https://www.roxyhotelnyc.com/event-spaces/",
+        "https://www.roxyhotelnyc.com/faqs/",
+        "https://www.roxyhotelnyc.com/stories/downtown-nyc-restaurants-walk-in/"
+      ],
+      "source_type": "official_website"
+    },
+    {
+      "field": "table_sizes",
+      "key": "table_sizes:7ft",
+      "value": {
+        "size": "7ft",
+        "count": null
+      },
+      "source_url": "https://www.roxyhotelnyc.com/",
+      "quote_snippet": "Listed as a place to play pool; no table size stated anywhere.",
+      "checked_at": "2026-10-26",
+      "confidence": "implied",
+      "flags": [
+        "size not stated, 7 ft by default"
+      ],
+      "source_type": "default",
+      "seen_on": [
+        "https://www.roxyhotelnyc.com/"
+      ]
+    }
+  ],
+  "missing": [
+    "table_count",
+    "table_sizes",
+    "table_brands",
+    "pricing_model",
+    "league_nights",
+    "age_policy"
+  ]
+}

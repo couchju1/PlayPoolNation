@@ -1,0 +1,125 @@
+{
+  "schema": 1,
+  "slug": "social-cues-new-york-ny",
+  "city": "new-york",
+  "kind": "new",
+  "listing": {
+    "name": "Social Cues",
+    "city": "New York",
+    "state": "NY",
+    "phone": "+1-718-550-3553",
+    "website": "https://socialcues.com",
+    "venue_type": "other-venue",
+    "lat": 40.69097,
+    "lng": -73.9558672
+  },
+  "checked_at": "2026-10-26",
+  "sources_checked": [
+    {
+      "url": "https://socialcues.com",
+      "result": "read",
+      "note": ""
+    },
+    {
+      "url": "https://socialcues.com/pricing/",
+      "result": "read",
+      "note": ""
+    },
+    {
+      "url": "https://socialcues.com/pricing/",
+      "result": "read",
+      "note": ""
+    },
+    {
+      "url": "https://socialcues.com/faqs/",
+      "result": "read",
+      "note": ""
+    }
+  ],
+  "facts": [
+    {
+      "field": "pricing_model",
+      "key": "pricing_model:hourly",
+      "value": {
+        "model": "hourly",
+        "rate": null
+      },
+      "source_url": "https://socialcues.com",
+      "quote_snippet": "Simply reserve by the hour, access your lounge with a digital code, and enjoy complete control over …",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [],
+      "seen_on": [
+        "https://socialcues.com",
+        "https://socialcues.com/faqs/"
+      ],
+      "source_type": "official_website"
+    },
+    {
+      "field": "age_policy",
+      "key": "age_policy",
+      "value": "21-plus",
+      "source_url": "https://socialcues.com/pricing/",
+      "quote_snippet": "Booking client must be 21+ and complete ID verification.",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [],
+      "seen_on": [
+        "https://socialcues.com/faqs/",
+        "https://socialcues.com/pricing/"
+      ],
+      "source_type": "official_website"
+    },
+    {
+      "field": "food",
+      "key": "food",
+      "value": false,
+      "source_url": "https://socialcues.com",
+      "quote_snippet": "All venues are BYO (Bring Your Own Food and Drinks) and come equipped with the same hosting …",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [
+        "sources disagree"
+      ],
+      "conflicts": [
+        {
+          "value": true,
+          "source_url": "https://socialcues.com",
+          "quote_snippet": "… a vibe, I was allowed to bring my own food & drinks which was a major PLUS."
+        }
+      ],
+      "seen_on": [
+        "https://socialcues.com",
+        "https://socialcues.com/faqs/",
+        "https://socialcues.com/pricing/"
+      ],
+      "source_type": "official_website"
+    },
+    {
+      "field": "table_sizes",
+      "key": "table_sizes:7ft",
+      "value": {
+        "size": "7ft",
+        "count": null
+      },
+      "source_url": "https://socialcues.com",
+      "quote_snippet": "Listed as a place to play pool; no table size stated anywhere.",
+      "checked_at": "2026-10-26",
+      "confidence": "implied",
+      "flags": [
+        "size not stated, 7 ft by default"
+      ],
+      "source_type": "default",
+      "seen_on": [
+        "https://socialcues.com"
+      ]
+    }
+  ],
+  "missing": [
+    "table_count",
+    "table_sizes",
+    "table_brands",
+    "league_nights",
+    "full_bar"
+  ]
+}

@@ -1,0 +1,143 @@
+{
+  "schema": 1,
+  "slug": "pioneers-bar-nyc-new-york-ny",
+  "city": "new-york",
+  "kind": "new",
+  "listing": {
+    "name": "Pioneers Bar NYC",
+    "street": "138 West 29th Street",
+    "city": "New York",
+    "state": "NY",
+    "phone": "+1-212-714-2222",
+    "website": "https://www.pioneersbar.com/",
+    "venue_type": "bars-with-pool-tables",
+    "lat": 40.7472543,
+    "lng": -73.9918207
+  },
+  "checked_at": "2026-10-26",
+  "sources_checked": [
+    {
+      "url": "https://www.pioneersbar.com/",
+      "result": "read",
+      "note": ""
+    },
+    {
+      "url": "https://www.pioneersbar.com/drinks/",
+      "result": "read",
+      "note": ""
+    },
+    {
+      "url": "https://www.pioneersbar.com/food/",
+      "result": "read",
+      "note": ""
+    },
+    {
+      "url": "https://www.pioneersbar.com/games/",
+      "result": "read",
+      "note": ""
+    },
+    {
+      "url": "https://www.pioneersbar.com/events/",
+      "result": "error",
+      "note": "HTTP 404"
+    }
+  ],
+  "facts": [
+    {
+      "field": "league_nights",
+      "key": "league_nights:apa:",
+      "value": {
+        "league": "APA",
+        "weekday": null
+      },
+      "source_url": "https://www.pioneersbar.com/",
+      "quote_snippet": "with APA NEW YORK CITY",
+      "checked_at": "2026-10-26",
+      "confidence": "implied",
+      "flags": [
+        "no weekday given"
+      ],
+      "seen_on": [
+        "https://www.pioneersbar.com/"
+      ],
+      "source_type": "official_website"
+    },
+    {
+      "field": "league_nights",
+      "key": "league_nights:pool-league:wednesday",
+      "value": {
+        "league": "Pool league",
+        "weekday": "wednesday"
+      },
+      "source_url": "https://www.pioneersbar.com/",
+      "quote_snippet": "WEDNESDAY NIGHT POOL LEAGUE",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [
+        "league name not given"
+      ],
+      "seen_on": [
+        "https://www.pioneersbar.com/"
+      ],
+      "source_type": "official_website"
+    },
+    {
+      "field": "food",
+      "key": "food",
+      "value": true,
+      "source_url": "https://www.pioneersbar.com/",
+      "quote_snippet": "Food Menu",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [],
+      "seen_on": [
+        "https://www.pioneersbar.com/",
+        "https://www.pioneersbar.com/drinks/",
+        "https://www.pioneersbar.com/food/",
+        "https://www.pioneersbar.com/games/"
+      ],
+      "source_type": "official_website"
+    },
+    {
+      "field": "full_bar",
+      "key": "full_bar",
+      "value": true,
+      "source_url": "https://www.pioneersbar.com/",
+      "quote_snippet": "FROZEN MARGARITA",
+      "checked_at": "2026-10-26",
+      "confidence": "implied",
+      "flags": [],
+      "seen_on": [
+        "https://www.pioneersbar.com/",
+        "https://www.pioneersbar.com/drinks/"
+      ],
+      "source_type": "official_website"
+    },
+    {
+      "field": "table_sizes",
+      "key": "table_sizes:7ft",
+      "value": {
+        "size": "7ft",
+        "count": null
+      },
+      "source_url": "https://www.pioneersbar.com/",
+      "quote_snippet": "Listed as a place to play pool; no table size stated anywhere.",
+      "checked_at": "2026-10-26",
+      "confidence": "implied",
+      "flags": [
+        "size not stated, 7 ft by default"
+      ],
+      "source_type": "default",
+      "seen_on": [
+        "https://www.pioneersbar.com/"
+      ]
+    }
+  ],
+  "missing": [
+    "table_count",
+    "table_sizes",
+    "table_brands",
+    "pricing_model",
+    "age_policy"
+  ]
+}

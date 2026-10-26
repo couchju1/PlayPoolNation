@@ -1,0 +1,113 @@
+{
+  "schema": 1,
+  "slug": "barfly-new-york-ny",
+  "city": "new-york",
+  "kind": "new",
+  "listing": {
+    "name": "Barfly",
+    "street": "244 3rd Avenue",
+    "city": "New York",
+    "state": "NY",
+    "zip": "10010",
+    "phone": "+1-212-473-9660",
+    "website": "https://barfly.nyc",
+    "venue_type": "bars-with-pool-tables",
+    "lat": 40.7371351,
+    "lng": -73.9846154
+  },
+  "checked_at": "2026-10-26",
+  "sources_checked": [
+    {
+      "url": "https://barfly.nyc",
+      "result": "read",
+      "note": ""
+    },
+    {
+      "url": "https://barfly.nyc/-reservations/",
+      "result": "read",
+      "note": ""
+    },
+    {
+      "url": "https://barfly.nyc/food-menu/",
+      "result": "read",
+      "note": ""
+    },
+    {
+      "url": "https://barfly.nyc/drink-menu/",
+      "result": "read",
+      "note": ""
+    },
+    {
+      "url": "https://barfly.nyc/specials/",
+      "result": "read",
+      "note": ""
+    },
+    {
+      "url": "https://barfly.nyc/events/",
+      "result": "read",
+      "note": ""
+    }
+  ],
+  "facts": [
+    {
+      "field": "food",
+      "key": "food",
+      "value": true,
+      "source_url": "https://barfly.nyc",
+      "quote_snippet": "Our Menu",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [],
+      "seen_on": [
+        "https://barfly.nyc",
+        "https://barfly.nyc/food-menu/",
+        "https://barfly.nyc/specials/"
+      ],
+      "source_type": "official_website"
+    },
+    {
+      "field": "full_bar",
+      "key": "full_bar",
+      "value": true,
+      "source_url": "https://barfly.nyc",
+      "quote_snippet": "beer + Spirits",
+      "checked_at": "2026-10-26",
+      "confidence": "implied",
+      "flags": [],
+      "seen_on": [
+        "https://barfly.nyc",
+        "https://barfly.nyc/drink-menu/",
+        "https://barfly.nyc/food-menu/",
+        "https://barfly.nyc/specials/"
+      ],
+      "source_type": "official_website"
+    },
+    {
+      "field": "table_sizes",
+      "key": "table_sizes:7ft",
+      "value": {
+        "size": "7ft",
+        "count": null
+      },
+      "source_url": "https://barfly.nyc",
+      "quote_snippet": "Listed as a place to play pool; no table size stated anywhere.",
+      "checked_at": "2026-10-26",
+      "confidence": "implied",
+      "flags": [
+        "size not stated, 7 ft by default"
+      ],
+      "source_type": "default",
+      "seen_on": [
+        "https://barfly.nyc"
+      ]
+    }
+  ],
+  "missing": [
+    "table_count",
+    "table_sizes",
+    "table_brands",
+    "pricing_model",
+    "league_nights",
+    "age_policy"
+  ]
+}

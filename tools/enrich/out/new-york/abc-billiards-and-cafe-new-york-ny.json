@@ -7,7 +7,7 @@
     "name": "ABC Billiards & Cafe",
     "city": "New York",
     "state": "NY",
-    "venue_type": "pool-halls",
+    "venue_type": "other-venue",
     "lat": 40.7538244,
     "lng": -73.804193
   },

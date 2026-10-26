@@ -1,0 +1,62 @@
+{
+  "schema": 1,
+  "slug": "carlow-east-new-york-ny",
+  "city": "new-york",
+  "kind": "new",
+  "listing": {
+    "name": "Carlow East",
+    "street": "1254 Lexington Avenue",
+    "city": "New York",
+    "state": "NY",
+    "phone": "+1 212-744-6397",
+    "website": "https://www.carloweastbar.com",
+    "facebook": "https://www.facebook.com/pages/Carlow-East/118044641542044",
+    "venue_type": "bars-with-pool-tables",
+    "lat": 40.7786314,
+    "lng": -73.9564131
+  },
+  "checked_at": "2026-10-26",
+  "sources_checked": [
+    {
+      "url": "https://www.carloweastbar.com",
+      "result": "error",
+      "note": "network error: [Errno 104] Connection reset by peer"
+    },
+    {
+      "url": "https://www.facebook.com/pages/Carlow-East/118044641542044",
+      "result": "skipped",
+      "note": "robots.txt disallows"
+    }
+  ],
+  "facts": [
+    {
+      "field": "table_sizes",
+      "key": "table_sizes:7ft",
+      "value": {
+        "size": "7ft",
+        "count": null
+      },
+      "source_url": "https://www.carloweastbar.com",
+      "quote_snippet": "Listed as a place to play pool; no table size stated anywhere.",
+      "checked_at": "2026-10-26",
+      "confidence": "implied",
+      "flags": [
+        "size not stated, 7 ft by default"
+      ],
+      "source_type": "default",
+      "seen_on": [
+        "https://www.carloweastbar.com"
+      ]
+    }
+  ],
+  "missing": [
+    "table_count",
+    "table_sizes",
+    "table_brands",
+    "pricing_model",
+    "league_nights",
+    "age_policy",
+    "food",
+    "full_bar"
+  ]
+}

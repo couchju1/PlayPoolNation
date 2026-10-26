@@ -10,7 +10,7 @@
     "phone": "",
     "website": "",
     "facebook": "",
-    "venue_type": "pool-halls",
+    "venue_type": "other-venue",
     "sources": [
       {
         "source": "openstreetmap",
@@ -167,7 +167,7 @@
     "phone": "+1-718-366-1520",
     "website": "https://angenoircafe.com/",
     "facebook": "",
-    "venue_type": "pool-halls",
+    "venue_type": "other-venue",
     "sources": [
       {
         "source": "openstreetmap",
@@ -225,7 +225,7 @@
     "phone": "+1-917-909-0908",
     "website": "https://www.bkbackyard.com/southslope",
     "facebook": "",
-    "venue_type": "pool-halls",
+    "venue_type": "bars-with-pool-tables",
     "sources": [
       {
         "source": "openstreetmap",
@@ -341,7 +341,7 @@
     "phone": "",
     "website": "",
     "facebook": "",
-    "venue_type": "pool-halls",
+    "venue_type": "bowling-center",
     "sources": [
       {
         "source": "openstreetmap",
@@ -457,7 +457,7 @@
     "phone": "",
     "website": "https://hamilton.armymwr.com/programs/hamilton-bowling",
     "facebook": "",
-    "venue_type": "pool-halls",
+    "venue_type": "bowling-center",
     "sources": [
       {
         "source": "openstreetmap",
@@ -486,7 +486,7 @@
     "phone": "",
     "website": "https://www.framesnyc.com",
     "facebook": "",
-    "venue_type": "pool-halls",
+    "venue_type": "bowling-center",
     "sources": [
       {
         "source": "openstreetmap",
@@ -515,7 +515,7 @@
     "phone": "",
     "website": "",
     "facebook": "",
-    "venue_type": "pool-halls",
+    "venue_type": "other-venue",
     "sources": [
       {
         "source": "openstreetmap",
@@ -669,7 +669,7 @@
     "phone": "",
     "website": "",
     "facebook": "",
-    "venue_type": "pool-halls",
+    "venue_type": "recreation",
     "sources": [
       {
         "source": "openstreetmap",
@@ -698,7 +698,7 @@
     "phone": "",
     "website": "",
     "facebook": "",
-    "venue_type": "pool-halls",
+    "venue_type": "bowling-center",
     "sources": [
       {
         "source": "openstreetmap",
@@ -756,7 +756,7 @@
     "phone": "+1-718-550-3553",
     "website": "https://socialcues.com",
     "facebook": "",
-    "venue_type": "pool-halls",
+    "venue_type": "other-venue",
     "sources": [
       {
         "source": "openstreetmap",
@@ -785,7 +785,7 @@
     "phone": "+1-718-771-2787",
     "website": "https://www.nycgovparks.org/facilities/recreationcenters/B245",
     "facebook": "",
-    "venue_type": "pool-halls",
+    "venue_type": "recreation",
     "sources": [
       {
         "source": "openstreetmap",
@@ -1136,7 +1136,7 @@
     "phone": "+1-718-643-5400",
     "website": "https://www.almabk.com",
     "facebook": "",
-    "venue_type": "bars-with-pool-tables",
+    "venue_type": "other-venue",
     "sources": [
       {
         "source": "openstreetmap",
@@ -2905,7 +2905,7 @@
     "phone": "+1-212-673-6270",
     "website": "https://www.parksidelounge.net/",
     "facebook": "",
-    "venue_type": "bars-with-pool-tables",
+    "venue_type": "other-venue",
     "sources": [
       {
         "source": "openstreetmap",
@@ -3434,7 +3434,7 @@
     "phone": "+1-718-243-9005",
     "website": "https://superfine.nyc/",
     "facebook": "",
-    "venue_type": "bars-with-pool-tables",
+    "venue_type": "other-venue",
     "sources": [
       {
         "source": "openstreetmap",
@@ -3668,7 +3668,7 @@
     "phone": "+1-212-257-4072",
     "website": "https://www.theflowershopnyc.com",
     "facebook": "",
-    "venue_type": "bars-with-pool-tables",
+    "venue_type": "other-venue",
     "sources": [
       {
         "source": "openstreetmap",

@@ -1,0 +1,101 @@
+{
+  "schema": 1,
+  "slug": "alma-new-york-ny",
+  "city": "new-york",
+  "kind": "new",
+  "listing": {
+    "name": "Alma",
+    "street": "187 Columbia Street",
+    "city": "New York",
+    "state": "NY",
+    "zip": "11231",
+    "phone": "+1-718-643-5400",
+    "website": "https://www.almabk.com",
+    "venue_type": "other-venue",
+    "lat": 40.6855582,
+    "lng": -74.0021356
+  },
+  "checked_at": "2026-10-26",
+  "sources_checked": [
+    {
+      "url": "https://www.almabk.com",
+      "result": "read",
+      "note": ""
+    },
+    {
+      "url": "https://www.almabk.com/location/alma/",
+      "result": "read",
+      "note": ""
+    },
+    {
+      "url": "https://www.almabk.com/menus/",
+      "result": "read",
+      "note": ""
+    },
+    {
+      "url": "https://www.almabk.com/private-events/",
+      "result": "read",
+      "note": ""
+    }
+  ],
+  "facts": [
+    {
+      "field": "food",
+      "key": "food",
+      "value": true,
+      "source_url": "https://www.almabk.com",
+      "quote_snippet": "… and mirror-lined walls, you can enjoy authentic Mexican entrees and an expanded beverage program featuring a curated …",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [],
+      "seen_on": [
+        "https://www.almabk.com",
+        "https://www.almabk.com/menus/"
+      ],
+      "source_type": "official_website"
+    },
+    {
+      "field": "full_bar",
+      "key": "full_bar",
+      "value": true,
+      "source_url": "https://www.almabk.com",
+      "quote_snippet": "Featuring a full bar and a menu of artisan Mexican tapas, the Cantina is designed for lively …",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [],
+      "seen_on": [
+        "https://www.almabk.com",
+        "https://www.almabk.com/menus/",
+        "https://www.almabk.com/private-events/"
+      ],
+      "source_type": "official_website"
+    },
+    {
+      "field": "table_sizes",
+      "key": "table_sizes:7ft",
+      "value": {
+        "size": "7ft",
+        "count": null
+      },
+      "source_url": "https://www.almabk.com",
+      "quote_snippet": "Listed as a place to play pool; no table size stated anywhere.",
+      "checked_at": "2026-10-26",
+      "confidence": "implied",
+      "flags": [
+        "size not stated, 7 ft by default"
+      ],
+      "source_type": "default",
+      "seen_on": [
+        "https://www.almabk.com"
+      ]
+    }
+  ],
+  "missing": [
+    "table_count",
+    "table_sizes",
+    "table_brands",
+    "pricing_model",
+    "league_nights",
+    "age_policy"
+  ]
+}

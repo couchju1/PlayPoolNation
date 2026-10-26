@@ -77,7 +77,8 @@ def do_enrich(city: dict, listings: list[dict], fetcher: Fetcher, *, recheck: bo
         stated = sum(1 for f in record["facts"] if f["confidence"] == "stated")
         note = "" if record["listing"].get("website") or record["listing"].get("facebook") else "no website"
         state = store.load_state(slug)
-        state.setdefault(key, {})[v["slug"]] = {"status": "done", "name": v["name"], "kind": v["_kind"], "at": record["checked_at"], "stated": stated, "note": note}
+        limited = any(c["result"] == "rate_limited" for c in record["sources_checked"])
+        state.setdefault(key, {})[v["slug"]] = {"status": "retry" if limited else "done", "name": v["name"], "kind": v["_kind"], "at": record["checked_at"], "stated": stated, "note": "site rate-limited us; retried next run" if limited else note}
         if recheck:
             state.setdefault("venues", {}).setdefault(v["slug"], {}).update(status="done", name=v["name"], kind=v["_kind"], at=record["checked_at"], stated=stated, note=note)
         store.save_state(slug, state)
@@ -98,14 +99,16 @@ def do_enrich(city: dict, listings: list[dict], fetcher: Fetcher, *, recheck: bo
         state.get("venues", {}).pop(gone, None)
     if removed:
         print(f"Removed {len(removed)} venue file(s) no longer in the list: {', '.join(removed)}")
-    pending = state.get("discovery", {}).get("osm_pending")
+    pending = state.get("discovery", {}).get("osm_pending") or any(v.get("status") == "retry" for v in state.get(key, {}).values())
     if recheck:
         state["recheck"]["_finished"] = dt.date.today().isoformat()
     elif not pending:
         state["finished_at"] = dt.date.today().isoformat()
+    else:
+        state.pop("finished_at", None)
     state.pop("paused", None)
     store.save_state(slug, state)
-    progress.log(slug, ("re-check" if recheck else "enrichment") + f" finished: {len(venues)} venues" + ("; OpenStreetMap discovery still to do, run again" if pending else ""))
+    progress.log(slug, ("re-check" if recheck else "enrichment") + f" finished: {len(venues)} venues" + ("; some steps still to do (OpenStreetMap or rate-limited sites), run again" if pending else ""))
     progress.write()
 
 
@@ -116,6 +119,12 @@ def run_city(slug: str, args) -> None:
     if purged:
         print(f"Removed expired Google Places details from {purged} candidate(s).")
     state = store.load_state(slug)
+    if args.only and args.cmd == "run":
+        for one in args.only.split(","):
+            state.get("venues", {}).pop(one.strip(), None)
+        store.save_state(slug, state)
+        progress.log(slug, f"redo: {args.only}")
+        state = store.load_state(slug)
     if args.redo and args.cmd == "run":
         state["venues"] = {}
         state.pop("finished_at", None)
@@ -188,6 +197,7 @@ def main() -> None:
     p.add_argument("--rediscover", action="store_true", help="run Step A again")
     p.add_argument("--redo", action="store_true", help="run: enrich every venue again (e.g. after improving the extraction rules)")
     p.add_argument("--limit", type=int, default=0, help="stop after this many venues")
+    p.add_argument("--only", default="", help="run: enrich just these venue slugs again (comma-separated)")
     p.add_argument("--delay", type=float, default=4.0, help="seconds between requests to one domain (default 4)")
     args = p.parse_args()
 

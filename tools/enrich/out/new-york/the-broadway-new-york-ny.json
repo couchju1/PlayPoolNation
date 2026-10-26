@@ -1,0 +1,130 @@
+{
+  "schema": 1,
+  "slug": "the-broadway-new-york-ny",
+  "city": "new-york",
+  "kind": "new",
+  "listing": {
+    "name": "The Broadway",
+    "street": "1272 Broadway",
+    "city": "New York",
+    "state": "NY",
+    "phone": "+1-347-365-9861",
+    "website": "https://www.thebroadway.nyc/",
+    "venue_type": "bars-with-pool-tables",
+    "lat": 40.6909367,
+    "lng": -73.9249072
+  },
+  "checked_at": "2026-10-26",
+  "sources_checked": [
+    {
+      "url": "https://www.thebroadway.nyc/",
+      "result": "read",
+      "note": ""
+    },
+    {
+      "url": "https://www.thebroadway.nyc/shoots-special-events/",
+      "result": "read",
+      "note": ""
+    },
+    {
+      "url": "https://www.thebroadway.nyc/showcalendar/",
+      "result": "read",
+      "note": ""
+    },
+    {
+      "url": "https://www.thebroadway.nyc/menu/",
+      "result": "read",
+      "note": ""
+    },
+    {
+      "url": "https://www.thebroadway.nyc/showcalendar/wiring-w-fib-kitchen-nat-shaheen/",
+      "result": "read",
+      "note": ""
+    },
+    {
+      "url": "https://www.thebroadway.nyc/showcalendar/liam-finn-w-big-kiss/",
+      "result": "read",
+      "note": ""
+    },
+    {
+      "url": "https://www.thebroadway.nyc/showcalendar/cover-show-ft-title-fight-distillers-oasis-boygenius-sufjan-stevens/",
+      "result": "read",
+      "note": ""
+    },
+    {
+      "url": "https://www.thebroadway.nyc/showcalendar/girliecurse-w-leone-head-level-pipe-fed-ish/",
+      "result": "read",
+      "note": ""
+    },
+    {
+      "url": "https://www.thebroadway.nyc/showcalendar/balloween-strange-neighbors-teddy-hold-on-atrophy-wife-justin-pussylake/",
+      "result": "read",
+      "note": ""
+    }
+  ],
+  "facts": [
+    {
+      "field": "food",
+      "key": "food",
+      "value": true,
+      "source_url": "https://www.thebroadway.nyc/",
+      "quote_snippet": "… bingo, The Broadway features a large, comfortable ground floor bar and burger shack on the lower level.",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [],
+      "seen_on": [
+        "https://www.thebroadway.nyc/",
+        "https://www.thebroadway.nyc/menu/",
+        "https://www.thebroadway.nyc/shoots-special-events/",
+        "https://www.thebroadway.nyc/showcalendar/",
+        "https://www.thebroadway.nyc/showcalendar/balloween-strange-neighbors-teddy-hold-on-atrophy-wife-justin-pussylake/",
+        "https://www.thebroadway.nyc/showcalendar/cover-show-ft-title-fight-distillers-oasis-boygenius-sufjan-stevens/",
+        "https://www.thebroadway.nyc/showcalendar/girliecurse-w-leone-head-level-pipe-fed-ish/",
+        "https://www.thebroadway.nyc/showcalendar/liam-finn-w-big-kiss/",
+        "https://www.thebroadway.nyc/showcalendar/wiring-w-fib-kitchen-nat-shaheen/"
+      ],
+      "source_type": "official_website"
+    },
+    {
+      "field": "full_bar",
+      "key": "full_bar",
+      "value": true,
+      "source_url": "https://www.thebroadway.nyc/showcalendar/",
+      "quote_snippet": "… and Darkest Hour across the western U.S., including back-to-back shows at the legendary Whisky-A-Go-Go in Los Angeles.",
+      "checked_at": "2026-10-26",
+      "confidence": "implied",
+      "flags": [],
+      "seen_on": [
+        "https://www.thebroadway.nyc/showcalendar/"
+      ],
+      "source_type": "official_website"
+    },
+    {
+      "field": "table_sizes",
+      "key": "table_sizes:7ft",
+      "value": {
+        "size": "7ft",
+        "count": null
+      },
+      "source_url": "https://www.thebroadway.nyc/",
+      "quote_snippet": "Listed as a place to play pool; no table size stated anywhere.",
+      "checked_at": "2026-10-26",
+      "confidence": "implied",
+      "flags": [
+        "size not stated, 7 ft by default"
+      ],
+      "source_type": "default",
+      "seen_on": [
+        "https://www.thebroadway.nyc/"
+      ]
+    }
+  ],
+  "missing": [
+    "table_count",
+    "table_sizes",
+    "table_brands",
+    "pricing_model",
+    "league_nights",
+    "age_policy"
+  ]
+}

@@ -14,7 +14,7 @@ import urllib.parse
 
 from . import store
 from .extract import FIELDS, extract, merge
-from .http import Fetcher
+from .http import Fetcher, UsageLimit
 from .listings import host, is_pool_hall
 from .text import parse_html, plain_lines
 
@@ -52,7 +52,12 @@ def _pick_links(links: list[tuple[str, str]], home: str) -> list[str]:
 
 
 def _read(fetcher: Fetcher, url: str, checked: list) -> tuple[list[str], list[tuple[str, str]], str] | None:
-    r = fetcher.get(url)
+    try:
+        r = fetcher.get(url)
+    except UsageLimit as e:
+        # One venue's site asking us to slow down: leave this venue for the next run.
+        checked.append({"url": url, "result": "rate_limited", "note": str(e)})
+        return None
     if not r.ok:
         checked.append({"url": url, "result": "skipped" if "robots" in r.error else "error", "note": r.error})
         return None

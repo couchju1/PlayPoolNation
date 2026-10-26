@@ -1,0 +1,81 @@
+{
+  "schema": 1,
+  "slug": "brooklyn-social-new-york-ny",
+  "city": "new-york",
+  "kind": "new",
+  "listing": {
+    "name": "Brooklyn Social",
+    "city": "New York",
+    "state": "NY",
+    "phone": "+1-718-858-7758",
+    "website": "https://brooklynsocialbar.com/",
+    "venue_type": "bars-with-pool-tables",
+    "lat": 40.6804846,
+    "lng": -73.9945351
+  },
+  "checked_at": "2026-10-26",
+  "sources_checked": [
+    {
+      "url": "https://brooklynsocialbar.com/",
+      "result": "read",
+      "note": ""
+    }
+  ],
+  "facts": [
+    {
+      "field": "food",
+      "key": "food",
+      "value": true,
+      "source_url": "https://brooklynsocialbar.com/",
+      "quote_snippet": "HOT PRESSED SANDWICHES - $12",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [],
+      "seen_on": [
+        "https://brooklynsocialbar.com/"
+      ],
+      "source_type": "official_website"
+    },
+    {
+      "field": "full_bar",
+      "key": "full_bar",
+      "value": true,
+      "source_url": "https://brooklynsocialbar.com/",
+      "quote_snippet": "COCKTAILS & FOOD",
+      "checked_at": "2026-10-26",
+      "confidence": "implied",
+      "flags": [],
+      "seen_on": [
+        "https://brooklynsocialbar.com/"
+      ],
+      "source_type": "official_website"
+    },
+    {
+      "field": "table_sizes",
+      "key": "table_sizes:7ft",
+      "value": {
+        "size": "7ft",
+        "count": null
+      },
+      "source_url": "https://brooklynsocialbar.com/",
+      "quote_snippet": "Listed as a place to play pool; no table size stated anywhere.",
+      "checked_at": "2026-10-26",
+      "confidence": "implied",
+      "flags": [
+        "size not stated, 7 ft by default"
+      ],
+      "source_type": "default",
+      "seen_on": [
+        "https://brooklynsocialbar.com/"
+      ]
+    }
+  ],
+  "missing": [
+    "table_count",
+    "table_sizes",
+    "table_brands",
+    "pricing_model",
+    "league_nights",
+    "age_policy"
+  ]
+}

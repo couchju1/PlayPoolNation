@@ -1,0 +1,103 @@
+{
+  "schema": 1,
+  "slug": "3-dollar-bill-new-york-ny",
+  "city": "new-york",
+  "kind": "new",
+  "listing": {
+    "name": "3 Dollar Bill",
+    "street": "260 Meserole Street",
+    "city": "New York",
+    "state": "NY",
+    "phone": "+1-718-366-3031",
+    "website": "https://www.3dollarbillbk.com/",
+    "facebook": "https://www.facebook.com/3dollarbillbk/",
+    "venue_type": "bars-with-pool-tables",
+    "lat": 40.7084122,
+    "lng": -73.9381164
+  },
+  "checked_at": "2026-10-26",
+  "sources_checked": [
+    {
+      "url": "https://www.3dollarbillbk.com/",
+      "result": "read",
+      "note": ""
+    },
+    {
+      "url": "https://www.3dollarbillbk.com/rsvp/",
+      "result": "read",
+      "note": ""
+    },
+    {
+      "url": "https://www.3dollarbillbk.com/private-events/",
+      "result": "read",
+      "note": ""
+    },
+    {
+      "url": "https://www.3dollarbillbk.com/menu-aviator/",
+      "result": "error",
+      "note": "HTTP 404"
+    },
+    {
+      "url": "https://www.facebook.com/3dollarbillbk/",
+      "result": "skipped",
+      "note": "robots.txt disallows"
+    }
+  ],
+  "facts": [
+    {
+      "field": "age_policy",
+      "key": "age_policy",
+      "value": "21-plus",
+      "source_url": "https://www.3dollarbillbk.com/rsvp/",
+      "quote_snippet": "21+ ONLY",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [],
+      "seen_on": [
+        "https://www.3dollarbillbk.com/rsvp/"
+      ],
+      "source_type": "official_website"
+    },
+    {
+      "field": "full_bar",
+      "key": "full_bar",
+      "value": true,
+      "source_url": "https://www.3dollarbillbk.com/rsvp/",
+      "quote_snippet": "This event is a celebration of Mexican cuisine, entertainment, culture, and cocktails!",
+      "checked_at": "2026-10-26",
+      "confidence": "implied",
+      "flags": [],
+      "seen_on": [
+        "https://www.3dollarbillbk.com/rsvp/"
+      ],
+      "source_type": "official_website"
+    },
+    {
+      "field": "table_sizes",
+      "key": "table_sizes:7ft",
+      "value": {
+        "size": "7ft",
+        "count": null
+      },
+      "source_url": "https://www.3dollarbillbk.com/",
+      "quote_snippet": "Listed as a place to play pool; no table size stated anywhere.",
+      "checked_at": "2026-10-26",
+      "confidence": "implied",
+      "flags": [
+        "size not stated, 7 ft by default"
+      ],
+      "source_type": "default",
+      "seen_on": [
+        "https://www.3dollarbillbk.com/"
+      ]
+    }
+  ],
+  "missing": [
+    "table_count",
+    "table_sizes",
+    "table_brands",
+    "pricing_model",
+    "league_nights",
+    "food"
+  ]
+}
