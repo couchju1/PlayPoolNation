@@ -1,0 +1,113 @@
+{
+  "schema": 1,
+  "slug": "las-vegas-cue-club-las-vegas-nv",
+  "city": "las-vegas",
+  "kind": "listing",
+  "listing": {
+    "id": 1748,
+    "url": "https://playpoolnation.com/place/las-vegas-cue-club-las-vegas-nv/",
+    "name": "Las Vegas Cue Club",
+    "street": "953 E Sahara Ave Suite 15A",
+    "city": "Las Vegas",
+    "state": "NV",
+    "zip": "89104",
+    "phone": "(702) 735-2884",
+    "website": "https://lasvegascueclub.com/",
+    "type": "Pool Hall",
+    "lat": 36.14341,
+    "lng": -115.1438
+  },
+  "checked_at": "2026-10-26",
+  "sources_checked": [
+    {
+      "url": "https://lasvegascueclub.com/",
+      "result": "read",
+      "note": ""
+    },
+    {
+      "url": "https://lasvegascueclub.com/rates-and-hours/",
+      "result": "error",
+      "note": "HTTP 404"
+    },
+    {
+      "url": "https://lasvegascueclub.com/leagues-and-tournaments/",
+      "result": "error",
+      "note": "HTTP 404"
+    }
+  ],
+  "facts": [
+    {
+      "field": "league_nights",
+      "key": "league_nights:pool-league:",
+      "value": {
+        "league": "Pool league",
+        "weekday": null
+      },
+      "source_url": "https://lasvegascueclub.com/",
+      "quote_snippet": "Leagues & Tournaments",
+      "checked_at": "2026-10-26",
+      "confidence": "implied",
+      "flags": [
+        "no weekday given"
+      ],
+      "seen_on": [
+        "https://lasvegascueclub.com/"
+      ],
+      "source_type": "official_website"
+    },
+    {
+      "field": "age_policy",
+      "key": "age_policy",
+      "value": "18-plus",
+      "source_url": "https://lasvegascueclub.com/",
+      "quote_snippet": "18+ After Dark.",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [],
+      "seen_on": [
+        "https://lasvegascueclub.com/"
+      ],
+      "source_type": "official_website"
+    },
+    {
+      "field": "food",
+      "key": "food",
+      "value": true,
+      "source_url": "https://lasvegascueclub.com/",
+      "quote_snippet": "… meals, making us the perfect spot to relax and enjoy great food and drinks with great company.",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [],
+      "seen_on": [
+        "https://lasvegascueclub.com/"
+      ],
+      "source_type": "official_website"
+    },
+    {
+      "field": "table_sizes",
+      "key": "table_sizes:7ft",
+      "value": {
+        "size": "7ft",
+        "count": null
+      },
+      "source_url": "https://playpoolnation.com/place/las-vegas-cue-club-las-vegas-nv/",
+      "quote_snippet": "Listed as a place to play pool; no table size stated anywhere.",
+      "checked_at": "2026-10-26",
+      "confidence": "implied",
+      "flags": [
+        "size not stated, 7 ft by default"
+      ],
+      "source_type": "default",
+      "seen_on": [
+        "https://playpoolnation.com/place/las-vegas-cue-club-las-vegas-nv/"
+      ]
+    }
+  ],
+  "missing": [
+    "table_count",
+    "table_sizes",
+    "table_brands",
+    "pricing_model",
+    "full_bar"
+  ]
+}

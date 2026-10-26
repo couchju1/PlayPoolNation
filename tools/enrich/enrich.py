@@ -152,8 +152,7 @@ def run_city(slug: str, args) -> None:
                 s = store.load_state(slug)
                 s["discovery"] = {}
                 store.save_state(slug, s)
-                store.write_json(slug, "_candidates.json", [])
-                store.write_json(slug, "league-facts.json", {})
+                # Each source replaces its own results when it answers; nothing is wiped up front.
             print("Discovery…")
             res = discover.run(city, listings, fetcher)
             s = store.load_state(slug)

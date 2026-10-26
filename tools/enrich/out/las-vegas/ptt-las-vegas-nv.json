@@ -1,0 +1,48 @@
+{
+  "schema": 1,
+  "slug": "ptt-las-vegas-nv",
+  "city": "las-vegas",
+  "kind": "new",
+  "listing": {
+    "name": "PTT",
+    "street": "4424 West Spring Mountain Road",
+    "city": "Las Vegas",
+    "state": "NV",
+    "venue_type": "pool-halls",
+    "lat": 36.1266445,
+    "lng": -115.1995735
+  },
+  "checked_at": "2026-10-26",
+  "sources_checked": [],
+  "facts": [
+    {
+      "field": "table_sizes",
+      "key": "table_sizes:7ft",
+      "value": {
+        "size": "7ft",
+        "count": null
+      },
+      "source_url": "https://www.openstreetmap.org/way/1018430273",
+      "quote_snippet": "Listed as a place to play pool; no table size stated anywhere.",
+      "checked_at": "2026-10-26",
+      "confidence": "implied",
+      "flags": [
+        "size not stated, 7 ft by default"
+      ],
+      "source_type": "default",
+      "seen_on": [
+        "https://www.openstreetmap.org/way/1018430273"
+      ]
+    }
+  ],
+  "missing": [
+    "table_count",
+    "table_sizes",
+    "table_brands",
+    "pricing_model",
+    "league_nights",
+    "age_policy",
+    "food",
+    "full_bar"
+  ]
+}

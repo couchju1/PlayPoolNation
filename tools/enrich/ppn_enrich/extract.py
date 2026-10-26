@@ -73,6 +73,11 @@ SIZE_COUNT = re.compile(
     r"(?:[\w\-]+\s+){0,2}?(?:pool\s+|billiards?\s+)?tables?\b" % NUM,
     re.I,
 )
+_SIZE = r"(?:(?:7|8|9|10|12)\s*(?:-|\s)?(?:ft\.?|foot|feet|'|’|′)|(?:seven|eight|nine)[- ]f(?:oo)?t)"
+SIZE_LIST = re.compile(
+    r"\b(?P<items>%s\s+%s(?:\s*(?:,|and|&|plus)\s*%s\s+%s)+)\s+(?:pool\s+|billiards?\s+)?tables?\b" % (NUM, _SIZE, NUM, _SIZE), re.I
+)
+SIZE_ITEM = re.compile(r"(?P<n>%s)\s+(?P<size>%s)" % (NUM, _SIZE), re.I)
 SIZE_ONLY = re.compile(
     r"\b(?P<size>(?:7|8|9|10|12)\s*(?:-|\s)?(?:ft\.?|foot|feet|'|’|′)|(?:seven|eight|nine)[- ]f(?:oo)?t)\s*(?:[\w\-]+\s+){0,2}?(?:pool\s+|billiards?\s+)?tables?\b",
     re.I,
@@ -104,7 +109,7 @@ AGE = [
     ("all-ages", re.compile(r"\bfamily[- ]friendly\b|\bkids'?\s+menu\b|\bchildren'?s\s+menu\b", re.I), "implied"),
 ]
 AGE_NOISE = re.compile(r"\b(events?|shows?|concerts?|live|tour|presents?|doors|dj|band|night only|tournament|party|tickets?|id required for alcohol|to drink|to purchase alcohol|alcohol)\b|\bw/", re.I)
-AGE_SOMETIMES = re.compile(r"\b(after|before|until|from)\s+\d{1,2}(?::\d\d)?\s*(?:pm|am|p\.m\.)?|\b\d{1,2}\s*(?:pm|p\.m\.)\b|\b(?:mon|tues?|wed|thur?s?|fri|sat|sun)[a-z]*\s*(?:-|–|to|through)\s*(?:mon|tues?|wed|thur?s?|fri|sat|sun)", re.I)
+AGE_SOMETIMES = re.compile(r"\bafter\s+dark\b|\bat\s+night\b|\b(after|before|until|from)\s+\d{1,2}(?::\d\d)?\s*(?:pm|am|p\.m\.)?|\b\d{1,2}\s*(?:pm|p\.m\.)\b|\b(?:mon|tues?|wed|thur?s?|fri|sat|sun)[a-z]*\s*(?:-|–|to|through)\s*(?:mon|tues?|wed|thur?s?|fri|sat|sun)", re.I)
 # Pages listing shows: an "All ages" or "21+" there is about one show, not the venue.
 EVENT_PAGE = re.compile(r"event|calendar|show|concert|ticket|music", re.I)
 
@@ -206,11 +211,19 @@ def _tables(s, url, at, pool):
     if not (pool or re.search(r"\btables?\b", s, re.I)):
         return out
     seen = set()
+    for lm in SIZE_LIST.finditer(s):
+        if not pool:
+            continue
+        for m in SIZE_ITEM.finditer(lm.group("items")):
+            n, size = number(m.group("n")), size_key(m.group("size"))
+            if size in ("7ft", "8ft", "9ft", "10ft", "12ft") and n and n <= 60 and size not in seen:
+                seen.add(size)
+                out.append(_fact("table_sizes", "table_sizes:" + size, {"size": size, "count": n}, s, lm.start(), lm.end(), url, at, "stated"))
     for m in SIZE_COUNT.finditer(s):
         if not pool:
             continue
         n, size = number(m.group("n")), size_key(m.group("size"))
-        if size in ("7ft", "8ft", "9ft", "10ft", "12ft") and n and n <= 60:
+        if size in ("7ft", "8ft", "9ft", "10ft", "12ft") and n and n <= 60 and size not in seen:
             seen.add(size)
             out.append(_fact("table_sizes", "table_sizes:" + size, {"size": size, "count": n}, s, m.start(), m.end(), url, at, "stated"))
     for m in SIZE_ONLY.finditer(s):

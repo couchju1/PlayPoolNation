@@ -1,0 +1,83 @@
+{
+  "schema": 1,
+  "slug": "jakes-bar-las-vegas-nv",
+  "city": "las-vegas",
+  "kind": "new",
+  "listing": {
+    "name": "Jake's Bar",
+    "street": "2301 s eastern ave",
+    "city": "Las Vegas",
+    "state": "NV",
+    "zip": "89104-4111",
+    "phone": "+1-702-457-0053",
+    "website": "https://jakesbarvegas.com/",
+    "venue_type": "bars-with-pool-tables",
+    "lat": 36.145674,
+    "lng": -115.1185145
+  },
+  "checked_at": "2026-10-26",
+  "sources_checked": [
+    {
+      "url": "https://jakesbarvegas.com/",
+      "result": "read",
+      "note": ""
+    }
+  ],
+  "facts": [
+    {
+      "field": "table_count",
+      "key": "table_count",
+      "value": 50,
+      "source_url": "https://jakesbarvegas.com/",
+      "quote_snippet": "$ .50 Pool Tables",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [],
+      "seen_on": [
+        "https://jakesbarvegas.com/"
+      ],
+      "source_type": "official_website"
+    },
+    {
+      "field": "age_policy",
+      "key": "age_policy",
+      "value": "21-plus",
+      "source_url": "https://jakesbarvegas.com/",
+      "quote_snippet": "**Must be 21 or older to enter**",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [],
+      "seen_on": [
+        "https://jakesbarvegas.com/"
+      ],
+      "source_type": "official_website"
+    },
+    {
+      "field": "table_sizes",
+      "key": "table_sizes:7ft",
+      "value": {
+        "size": "7ft",
+        "count": 50
+      },
+      "source_url": "https://jakesbarvegas.com/",
+      "quote_snippet": "$ .50 Pool Tables",
+      "checked_at": "2026-10-26",
+      "confidence": "implied",
+      "flags": [
+        "size not stated, 7 ft by default"
+      ],
+      "source_type": "default",
+      "seen_on": [
+        "https://jakesbarvegas.com/"
+      ]
+    }
+  ],
+  "missing": [
+    "table_sizes",
+    "table_brands",
+    "pricing_model",
+    "league_nights",
+    "food",
+    "full_bar"
+  ]
+}

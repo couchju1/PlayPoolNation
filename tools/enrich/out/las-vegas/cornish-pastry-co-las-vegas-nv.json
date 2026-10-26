@@ -1,0 +1,67 @@
+{
+  "schema": 1,
+  "slug": "cornish-pastry-co-las-vegas-nv",
+  "city": "las-vegas",
+  "kind": "new",
+  "listing": {
+    "name": "Cornish Pastry Co.",
+    "street": "10 East Charleston Boulevard",
+    "city": "Las Vegas",
+    "state": "NV",
+    "zip": "89104",
+    "phone": "+1 702-862-4538",
+    "website": "https://www.cornishpastyco.com/",
+    "venue_type": "other-venue",
+    "lat": 36.1584895,
+    "lng": -115.1529536
+  },
+  "checked_at": "2026-10-26",
+  "sources_checked": [
+    {
+      "url": "https://www.cornishpastyco.com/",
+      "result": "read",
+      "note": ""
+    },
+    {
+      "url": "https://www.cornishpastyco.com/locations/",
+      "result": "read",
+      "note": ""
+    },
+    {
+      "url": "https://www.cornishpastyco.com/menu/",
+      "result": "read",
+      "note": ""
+    }
+  ],
+  "facts": [
+    {
+      "field": "table_sizes",
+      "key": "table_sizes:7ft",
+      "value": {
+        "size": "7ft",
+        "count": null
+      },
+      "source_url": "https://www.cornishpastyco.com/",
+      "quote_snippet": "Listed as a place to play pool; no table size stated anywhere.",
+      "checked_at": "2026-10-26",
+      "confidence": "implied",
+      "flags": [
+        "size not stated, 7 ft by default"
+      ],
+      "source_type": "default",
+      "seen_on": [
+        "https://www.cornishpastyco.com/"
+      ]
+    }
+  ],
+  "missing": [
+    "table_count",
+    "table_sizes",
+    "table_brands",
+    "pricing_model",
+    "league_nights",
+    "age_policy",
+    "food",
+    "full_bar"
+  ]
+}

@@ -1,0 +1,162 @@
+{
+  "venues": {
+    "bangin-ballz-billiards-bar-las-vegas-nv": {
+      "status": "done",
+      "name": "Bangin Ballz Billiards Bar",
+      "kind": "listing",
+      "at": "2026-10-26",
+      "stated": 6,
+      "note": ""
+    },
+    "good-timez-billiards-las-vegas-nv": {
+      "status": "done",
+      "name": "Good Timez Billiards",
+      "kind": "listing",
+      "at": "2026-10-26",
+      "stated": 3,
+      "note": ""
+    },
+    "griffs-bar-and-billiards-las-vegas-nv": {
+      "status": "done",
+      "name": "Griff’s Bar & Billiards",
+      "kind": "listing",
+      "at": "2026-10-26",
+      "stated": 0,
+      "note": ""
+    },
+    "las-vegas-cue-club-las-vegas-nv": {
+      "status": "done",
+      "name": "Las Vegas Cue Club",
+      "kind": "listing",
+      "at": "2026-10-26",
+      "stated": 2,
+      "note": ""
+    },
+    "backstage-and-billiards-lounge-las-vegas-nv": {
+      "status": "done",
+      "name": "Backstage & Billiards Lounge",
+      "kind": "new",
+      "at": "2026-10-26",
+      "stated": 1,
+      "note": ""
+    },
+    "cornish-pastry-co-las-vegas-nv": {
+      "status": "done",
+      "name": "Cornish Pastry Co.",
+      "kind": "new",
+      "at": "2026-10-26",
+      "stated": 0,
+      "note": ""
+    },
+    "jakes-bar-las-vegas-nv": {
+      "status": "done",
+      "name": "Jake's Bar",
+      "kind": "new",
+      "at": "2026-10-26",
+      "stated": 2,
+      "note": ""
+    },
+    "the-charleston-tavern-las-vegas-nv": {
+      "status": "done",
+      "name": "The Charleston Tavern",
+      "kind": "new",
+      "at": "2026-10-26",
+      "stated": 1,
+      "note": ""
+    },
+    "the-phoenix-bar-and-lounge-las-vegas-nv": {
+      "status": "done",
+      "name": "The Phoenix Bar & Lounge",
+      "kind": "new",
+      "at": "2026-10-26",
+      "stated": 0,
+      "note": ""
+    },
+    "cue-billiards-las-vegas-nv": {
+      "status": "done",
+      "name": "Cue Billiards",
+      "kind": "new",
+      "at": "2026-10-26",
+      "stated": 0,
+      "note": "no website"
+    },
+    "ptt-las-vegas-nv": {
+      "status": "done",
+      "name": "PTT",
+      "kind": "new",
+      "at": "2026-10-26",
+      "stated": 0,
+      "note": "no website"
+    },
+    "dust-las-vegas-las-vegas-nv": {
+      "status": "done",
+      "name": "Dust Las Vegas",
+      "kind": "new",
+      "at": "2026-10-26",
+      "stated": 0,
+      "note": "no website"
+    },
+    "flowing-tide-las-vegas-nv": {
+      "status": "done",
+      "name": "Flowing Tide",
+      "kind": "new",
+      "at": "2026-10-26",
+      "stated": 0,
+      "note": "no website"
+    },
+    "parkway-tavern-las-vegas-nv": {
+      "status": "done",
+      "name": "Parkway Tavern",
+      "kind": "new",
+      "at": "2026-10-26",
+      "stated": 0,
+      "note": "no website"
+    },
+    "quadz-las-vegas-las-vegas-nv": {
+      "status": "done",
+      "name": "QUADZ Las Vegas",
+      "kind": "new",
+      "at": "2026-10-26",
+      "stated": 0,
+      "note": "no website"
+    },
+    "the-sand-dollar-lounge-las-vegas-nv": {
+      "status": "done",
+      "name": "The Sand Dollar Lounge",
+      "kind": "new",
+      "at": "2026-10-26",
+      "stated": 0,
+      "note": "no website"
+    },
+    "west-side-charlies-las-vegas-nv": {
+      "status": "done",
+      "name": "West Side Charlies",
+      "kind": "new",
+      "at": "2026-10-26",
+      "stated": 0,
+      "note": "no website"
+    }
+  },
+  "discovery": {
+    "osm": {
+      "at": "2026-10-26",
+      "pool_tagged": 15,
+      "bars": 413
+    },
+    "places": {
+      "skipped": "GOOGLE_PLACES_API_KEY not set"
+    },
+    "done": "2026-10-26",
+    "new": 14,
+    "matched_existing": 1
+  },
+  "log": [
+    "2026-10-26 01:47 run started",
+    "2026-10-26 01:54 enrichment finished: 9 venues",
+    "2026-10-26 01:54 run started",
+    "2026-10-26 02:00 enrichment finished: 18 venues"
+  ],
+  "updated_at": "2026-10-26T02:00:38+00:00",
+  "total_venues": 18,
+  "finished_at": "2026-10-26"
+}

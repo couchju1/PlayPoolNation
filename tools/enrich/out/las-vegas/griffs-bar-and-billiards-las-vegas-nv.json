@@ -1,0 +1,59 @@
+{
+  "schema": 1,
+  "slug": "griffs-bar-and-billiards-las-vegas-nv",
+  "city": "las-vegas",
+  "kind": "listing",
+  "listing": {
+    "id": 1746,
+    "url": "https://playpoolnation.com/place/griffs-bar-and-billiards-las-vegas-nv/",
+    "name": "Griff’s Bar & Billiards",
+    "street": "3650 S Decatur Blvd Ste 12",
+    "city": "Las Vegas",
+    "state": "NV",
+    "zip": "89103",
+    "phone": "(702) 222-1011",
+    "website": "https://www.griffslv.com/",
+    "type": "Pool Hall",
+    "lat": 36.12371,
+    "lng": -115.20735
+  },
+  "checked_at": "2026-10-26",
+  "sources_checked": [
+    {
+      "url": "https://www.griffslv.com/",
+      "result": "error",
+      "note": "HTTP 403"
+    }
+  ],
+  "facts": [
+    {
+      "field": "table_sizes",
+      "key": "table_sizes:7ft",
+      "value": {
+        "size": "7ft",
+        "count": null
+      },
+      "source_url": "https://playpoolnation.com/place/griffs-bar-and-billiards-las-vegas-nv/",
+      "quote_snippet": "Listed as a place to play pool; no table size stated anywhere.",
+      "checked_at": "2026-10-26",
+      "confidence": "implied",
+      "flags": [
+        "size not stated, 7 ft by default"
+      ],
+      "source_type": "default",
+      "seen_on": [
+        "https://playpoolnation.com/place/griffs-bar-and-billiards-las-vegas-nv/"
+      ]
+    }
+  ],
+  "missing": [
+    "table_count",
+    "table_sizes",
+    "table_brands",
+    "pricing_model",
+    "league_nights",
+    "age_policy",
+    "food",
+    "full_bar"
+  ]
+}

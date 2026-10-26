@@ -1,12 +1,13 @@
 # Venue enrichment progress
 
-Updated 2026-10-26 01:47. Rebuilt by `python3 tools/enrich/enrich.py progress` and after every venue.
+Updated 2026-10-26 02:15. Rebuilt by `python3 tools/enrich/enrich.py progress` and after every venue.
 
 Cities are worked in the order of the latest keyword report; a city is finished before the next starts. A *hit* is a venue with at least one **stated** fact for that field (implied facts are counted separately and go to review flagged).
 
 | City | Venues done | Facts (stated) | Venues with a stated fact | With a table fact | New venues found | Disk |
 |---|--:|--:|--:|--:|--:|--:|
 | new-york (done) | 147/147 | 254 (69) | 38 (26%) | 7 (5%) | 142 | 448 KB |
+| las-vegas (done) | 17/18 | 35 (15) | 6 (35%) | 3 (18%) | 14 | 54 KB |
 | sioux-falls (done) | 26/26 | 157 (98) | 24 (92%) | 2 (8%) | 16 | 268 KB |
 
 ## new-york
@@ -194,6 +195,51 @@ Run log:
 - 2026-10-26 01:44 enrichment finished: 147 venues; some steps still to do (OpenStreetMap or rate-limited sites), run again
 - 2026-10-26 01:45 resumed: 146 venues already done, skipping them
 - 2026-10-26 01:46 enrichment finished: 147 venues
+
+## las-vegas
+
+Discovery: OpenStreetMap 15 pool-tagged places and 413 other bars; Google Places skipped (GOOGLE_PLACES_API_KEY not set); 0 league page(s); 1 matched our listings, 14 new.
+
+Pages read 19, skipped by robots.txt or login 1, errors 3.
+
+| Field | Venues with stated fact | Hit rate | Implied only |
+|---|--:|--:|--:|
+| Table count | 2 | 12% | 0 |
+| Table sizes | 2 | 12% | 15 |
+| Table brands | 1 | 6% | 0 |
+| Pricing | 1 | 6% | 0 |
+| League nights | 1 | 6% | 2 |
+| Age policy | 3 | 18% | 0 |
+| Food | 2 | 12% | 0 |
+| Full bar | 0 | 0% | 2 |
+| Closed notice | 0 | 0% | 0 |
+
+| Venue | Status | Stated facts | Implied | Sources read |
+|---|---|--:|--:|--:|
+| Bangin Ballz Billiards Bar | done | 6 | 2 | 3 |
+| Good Timez Billiards | done | 3 | 1 | 7 |
+| Griff’s Bar & Billiards | done | 0 | 1 | 0 |
+| Las Vegas Cue Club | done | 2 | 2 | 1 |
+| Backstage & Billiards Lounge | done | 1 | 1 | 2 |
+| Cornish Pastry Co. | done | 0 | 1 | 3 |
+| Jake's Bar | done | 2 | 1 | 1 |
+| The Charleston Tavern | done | 1 | 2 | 1 |
+| The Phoenix Bar & Lounge | done | 0 | 1 | 1 |
+| Cue Billiards | done – no website | 0 | 1 | 0 |
+| PTT | done – no website | 0 | 1 | 0 |
+| Dust Las Vegas | done – no website | 0 | 1 | 0 |
+| Flowing Tide | done – no website | 0 | 1 | 0 |
+| Parkway Tavern | done – no website | 0 | 1 | 0 |
+| QUADZ Las Vegas | done – no website | 0 | 1 | 0 |
+| The Sand Dollar Lounge | done – no website | 0 | 1 | 0 |
+| West Side Charlies | done – no website | 0 | 1 | 0 |
+
+Run log:
+
+- 2026-10-26 01:47 run started
+- 2026-10-26 01:54 enrichment finished: 9 venues
+- 2026-10-26 01:54 run started
+- 2026-10-26 02:00 enrichment finished: 18 venues
 
 ## sioux-falls
 

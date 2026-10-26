@@ -1,0 +1,183 @@
+{
+  "schema": 1,
+  "slug": "bangin-ballz-billiards-bar-las-vegas-nv",
+  "city": "las-vegas",
+  "kind": "listing",
+  "listing": {
+    "id": 1747,
+    "url": "https://playpoolnation.com/place/bangin-ballz-billiards-bar-las-vegas-nv/",
+    "name": "Bangin Ballz Billiards Bar",
+    "street": "9155 S Las Vegas Blvd",
+    "city": "Las Vegas",
+    "state": "NV",
+    "zip": "89123",
+    "phone": "(702) 449-5395",
+    "website": "https://banginballzbilliards.com/",
+    "type": "Pool Hall",
+    "lat": 36.0222,
+    "lng": -115.17614
+  },
+  "checked_at": "2026-10-26",
+  "sources_checked": [
+    {
+      "url": "https://banginballzbilliards.com/",
+      "result": "read",
+      "note": ""
+    },
+    {
+      "url": "https://banginballzbilliards.com/menu/",
+      "result": "read",
+      "note": ""
+    },
+    {
+      "url": "https://banginballzbilliards.com/rasson-pool-tables/",
+      "result": "read",
+      "note": ""
+    }
+  ],
+  "facts": [
+    {
+      "field": "table_count",
+      "key": "table_count",
+      "value": 30,
+      "source_url": "https://banginballzbilliards.com/",
+      "quote_snippet": "We offer a total of 30 Rasson Billiards tables, including 24 seven-foot and 6 nine-foot tables available …",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [],
+      "seen_on": [
+        "https://banginballzbilliards.com/"
+      ],
+      "source_type": "official_website"
+    },
+    {
+      "field": "table_sizes",
+      "key": "table_sizes:7ft",
+      "value": {
+        "size": "7ft",
+        "count": null
+      },
+      "source_url": "https://banginballzbilliards.com/",
+      "quote_snippet": "7ft Rasson Pool Table Rates",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [],
+      "seen_on": [
+        "https://banginballzbilliards.com/"
+      ],
+      "source_type": "official_website"
+    },
+    {
+      "field": "table_sizes",
+      "key": "table_sizes:9ft",
+      "value": {
+        "size": "9ft",
+        "count": 6
+      },
+      "source_url": "https://banginballzbilliards.com/",
+      "quote_snippet": "… Rasson Billiards tables, including 24 seven-foot and 6 nine-foot tables available for rent at competitive rates, which …",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [
+        "sources disagree"
+      ],
+      "conflicts": [
+        {
+          "value": {
+            "size": "9ft",
+            "count": null
+          },
+          "source_url": "https://banginballzbilliards.com/",
+          "quote_snippet": "9ft Rasson Pool Table Rates"
+        }
+      ],
+      "seen_on": [
+        "https://banginballzbilliards.com/"
+      ],
+      "source_type": "official_website"
+    },
+    {
+      "field": "table_brands",
+      "key": "table_brands:diamond",
+      "value": "Diamond",
+      "source_url": "https://banginballzbilliards.com/",
+      "quote_snippet": "9ft Diamond Pool Table Rates",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [],
+      "seen_on": [
+        "https://banginballzbilliards.com/"
+      ],
+      "source_type": "official_website"
+    },
+    {
+      "field": "table_brands",
+      "key": "table_brands:rasson",
+      "value": "Rasson",
+      "source_url": "https://banginballzbilliards.com/",
+      "quote_snippet": "Rasson Pool Tables.",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [],
+      "seen_on": [
+        "https://banginballzbilliards.com/",
+        "https://banginballzbilliards.com/rasson-pool-tables/"
+      ],
+      "source_type": "official_website"
+    },
+    {
+      "field": "pricing_model",
+      "key": "pricing_model:hourly",
+      "value": {
+        "model": "hourly",
+        "rate": 12.0
+      },
+      "source_url": "https://banginballzbilliards.com/",
+      "quote_snippet": "$12 Per Hour/Per Table",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [],
+      "seen_on": [
+        "https://banginballzbilliards.com/"
+      ],
+      "source_type": "official_website"
+    },
+    {
+      "field": "league_nights",
+      "key": "league_nights:pool-league:",
+      "value": {
+        "league": "Pool league",
+        "weekday": null
+      },
+      "source_url": "https://banginballzbilliards.com/",
+      "quote_snippet": "Our ample parking space is perfect for large tournaments and league nights.",
+      "checked_at": "2026-10-26",
+      "confidence": "implied",
+      "flags": [
+        "no weekday given"
+      ],
+      "seen_on": [
+        "https://banginballzbilliards.com/"
+      ],
+      "source_type": "official_website"
+    },
+    {
+      "field": "full_bar",
+      "key": "full_bar",
+      "value": true,
+      "source_url": "https://banginballzbilliards.com/",
+      "quote_snippet": "Ready-To-Drink Cocktails.",
+      "checked_at": "2026-10-26",
+      "confidence": "implied",
+      "flags": [],
+      "seen_on": [
+        "https://banginballzbilliards.com/"
+      ],
+      "source_type": "official_website"
+    }
+  ],
+  "missing": [
+    "age_policy",
+    "food"
+  ]
+}

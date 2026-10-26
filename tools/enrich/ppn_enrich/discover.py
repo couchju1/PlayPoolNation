@@ -13,6 +13,7 @@ import datetime as dt
 import json
 import os
 import re
+import urllib.parse
 
 from . import store
 from .extract import extract
@@ -78,9 +79,18 @@ def env(key: str) -> str:
 def overpass_query(city: dict) -> str:
     # Set osm_admin_level when the name alone is ambiguous ("New York" is the state at 4, the city at 5).
     level = f'["admin_level"="{city["osm_admin_level"]}"]' if city.get("osm_admin_level") else ""
+    # osm_extra_areas: places that share the city's mailing address but not its boundary
+    # (the Strip is in unincorporated Paradise, not the City of Las Vegas).
+    # Boundary relations inside the state, turned into areas: a name filter on areas alone
+    # does not keep them inside the state (it found Paradise, Newfoundland).
+    rels = f'  rel["name"="{city["osm_name"]}"]["boundary"="administrative"]{level}(area.st);\n'
+    for extra in city.get("osm_extra_areas", []):
+        rels += f'  rel["name"="{extra}"]["boundary"~"administrative|census"](area.st);\n'
     return f"""[out:json][timeout:120];
 area["ISO3166-2"="US-{city['state']}"]["admin_level"="4"]->.st;
-area["name"="{city['osm_name']}"]["boundary"="administrative"]{level}(area.st)->.a;
+(
+{rels});
+map_to_area->.a;
 (
   nwr["sport"~"billiards|pool|snooker",i](area.a);
   nwr["billiards"~"^(yes|[0-9]+)$"](area.a);
@@ -301,7 +311,8 @@ def run(city: dict, listings: list[dict], fetcher: Fetcher) -> dict:
                 pool = None
     if not disc.get("osm") and pool is not None:
         disc.pop("osm_pending", None)
-        candidates += pool
+        # Replace what OpenStreetMap gave last time; other sources' candidates stay.
+        candidates = [c for c in candidates if c["sources"][0]["source"] != "openstreetmap"] + pool
         # Plain bars only fill in missing websites/phones on listings we already have.
         fills = {}
         for b in bars:
@@ -338,7 +349,11 @@ def run(city: dict, listings: list[dict], fetcher: Fetcher) -> dict:
             venues, facts = music_service_page(fetcher, city, page, listings, checked_at)
         else:
             venues, facts = league_page(fetcher, city, page, listings, checked_at)
-        candidates += venues
+        # Replace this page's candidates and facts from last time.
+        site = urllib.parse.urlsplit(page["url"]).netloc
+        candidates = [c for c in candidates if urllib.parse.urlsplit(c["sources"][0].get("url", "")).netloc != site] + venues
+        for slug in list(league_facts):
+            league_facts[slug] = [f for f in league_facts[slug] if urllib.parse.urlsplit(f["source_url"]).netloc != site]
         for slug, fs in facts.items():
             have = {f["key"] for f in league_facts.setdefault(slug, [])}
             league_facts[slug].extend(f for f in fs if f["key"] not in have)

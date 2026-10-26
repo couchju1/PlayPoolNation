@@ -1,0 +1,142 @@
+{
+  "schema": 1,
+  "slug": "good-timez-billiards-las-vegas-nv",
+  "city": "las-vegas",
+  "kind": "listing",
+  "listing": {
+    "id": 1749,
+    "url": "https://playpoolnation.com/place/good-timez-billiards-las-vegas-nv/",
+    "name": "Good Timez Billiards",
+    "street": "5740 W Charleston Blvd",
+    "city": "Las Vegas",
+    "state": "NV",
+    "zip": "89146",
+    "phone": "(702) 431-0358",
+    "website": "https://goodtimezbilliards.wixsite.com/goodtimezbilliardslv",
+    "type": "Pool Hall",
+    "lat": 36.15941,
+    "lng": -115.22038
+  },
+  "checked_at": "2026-10-26",
+  "sources_checked": [
+    {
+      "url": "https://goodtimezbilliards.wixsite.com/goodtimezbilliardslv",
+      "result": "read",
+      "note": ""
+    },
+    {
+      "url": "https://goodtimezbilliards.wixsite.com/goodtimezbilliardslv/venue",
+      "result": "read",
+      "note": ""
+    },
+    {
+      "url": "https://goodtimezbilliards.wixsite.com/goodtimezbilliardslv/form",
+      "result": "read",
+      "note": ""
+    },
+    {
+      "url": "https://goodtimezbilliards.wixsite.com/goodtimezbilliardslv/events",
+      "result": "read",
+      "note": ""
+    },
+    {
+      "url": "https://goodtimezbilliards.wixsite.com/goodtimezbilliardslv/gallery",
+      "result": "read",
+      "note": ""
+    },
+    {
+      "url": "https://goodtimezbilliards.wixsite.com/goodtimezbilliardslv/retail",
+      "result": "read",
+      "note": ""
+    },
+    {
+      "url": "https://goodtimezbilliards.wixsite.com/goodtimezbilliardslv/contact",
+      "result": "read",
+      "note": ""
+    }
+  ],
+  "facts": [
+    {
+      "field": "table_sizes",
+      "key": "table_sizes:snooker",
+      "value": {
+        "size": "snooker",
+        "count": null
+      },
+      "source_url": "https://goodtimezbilliards.wixsite.com/goodtimezbilliardslv",
+      "quote_snippet": "… per person from 10am to 6pm excludes Pro and snooker tables (locals only must have Nevada ID)",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [],
+      "seen_on": [
+        "https://goodtimezbilliards.wixsite.com/goodtimezbilliardslv"
+      ],
+      "source_type": "official_website"
+    },
+    {
+      "field": "league_nights",
+      "key": "league_nights:apa:",
+      "value": {
+        "league": "APA",
+        "weekday": null
+      },
+      "source_url": "https://goodtimezbilliards.wixsite.com/goodtimezbilliardslv/venue",
+      "quote_snippet": "Leagues include APA, UPA , and TAP",
+      "checked_at": "2026-10-26",
+      "confidence": "implied",
+      "flags": [
+        "no weekday given"
+      ],
+      "seen_on": [
+        "https://goodtimezbilliards.wixsite.com/goodtimezbilliardslv/venue"
+      ],
+      "source_type": "official_website"
+    },
+    {
+      "field": "league_nights",
+      "key": "league_nights:pool-league:friday",
+      "value": {
+        "league": "Pool league",
+        "weekday": "friday"
+      },
+      "source_url": "https://goodtimezbilliards.wixsite.com/goodtimezbilliardslv/venue",
+      "quote_snippet": "For you pool players that love competition we have Pool leagues Monday through Friday.",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [
+        "league name not given"
+      ],
+      "seen_on": [
+        "https://goodtimezbilliards.wixsite.com/goodtimezbilliardslv/venue"
+      ],
+      "source_type": "official_website"
+    },
+    {
+      "field": "league_nights",
+      "key": "league_nights:pool-league:monday",
+      "value": {
+        "league": "Pool league",
+        "weekday": "monday"
+      },
+      "source_url": "https://goodtimezbilliards.wixsite.com/goodtimezbilliardslv/venue",
+      "quote_snippet": "For you pool players that love competition we have Pool leagues Monday through Friday.",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [
+        "league name not given"
+      ],
+      "seen_on": [
+        "https://goodtimezbilliards.wixsite.com/goodtimezbilliardslv/venue"
+      ],
+      "source_type": "official_website"
+    }
+  ],
+  "missing": [
+    "table_count",
+    "table_brands",
+    "pricing_model",
+    "age_policy",
+    "food",
+    "full_bar"
+  ]
+}

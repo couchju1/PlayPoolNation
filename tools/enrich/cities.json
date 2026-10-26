@@ -25,5 +25,19 @@
     "listings_page": "https://playpoolnation.com/places/new-york/new-york-ny/",
     "league_pages": [],
     "osm_admin_level": "5"
+  },
+  "las-vegas": {
+    "name": "Las Vegas",
+    "state": "NV",
+    "listings_page": "https://playpoolnation.com/places/nevada/las-vegas/",
+    "osm_extra_areas": [
+      "Paradise",
+      "Spring Valley",
+      "Enterprise",
+      "Winchester",
+      "Sunrise Manor",
+      "Whitney"
+    ],
+    "league_pages": []
   }
 }

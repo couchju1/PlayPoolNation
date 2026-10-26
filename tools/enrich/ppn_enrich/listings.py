@@ -75,6 +75,9 @@ def _jsonld(html: str) -> list:
 
 def from_site(fetcher: Fetcher, city_page: str) -> list[dict]:
     page = fetcher.get(city_page, accept_pdf=False)
+    if page.status == 404:
+        print(f"  No city page at {city_page} yet: starting with no listings.")
+        return []
     if not page.ok:
         raise SystemExit(f"Could not read {city_page}: {page.error}")
     urls = []

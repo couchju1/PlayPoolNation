@@ -15,6 +15,11 @@ def facts(*lines, **kw):
     return merge(extract(list(lines), URL, AT, **kw), lambda u: 0)
 
 
+def json_v(f):
+    import json
+    return json.dumps(f["value"], sort_keys=True)
+
+
 def by_field(fs, field):
     return [f for f in fs if f["field"] == field]
 
@@ -40,6 +45,11 @@ class TableCounts(unittest.TestCase):
         fs = facts("We have two 9-foot pool tables.")
         self.assertEqual(by_field(fs, "table_count"), [])
         self.assertEqual(by_field(fs, "table_sizes")[0]["value"], {"size": "9ft", "count": 2})
+
+    def test_size_list(self):
+        fs = facts("We offer a total of 30 Rasson Billiards tables, including 24 seven-foot and 6 nine-foot tables.")
+        self.assertEqual(sorted(json_v(f) for f in by_field(fs, "table_sizes")), ['{"count": 24, "size": "7ft"}', '{"count": 6, "size": "9ft"}'])
+        self.assertEqual(by_field(fs, "table_count")[0]["value"], 30)
 
     def test_size_without_count(self):
         fs = facts("All of our 7 ft pool tables are Valley tables.")
@@ -130,6 +140,7 @@ class FalsePositives(unittest.TestCase):
         t = by_field(facts("Only 21+ Thursday - Saturday after 8PM"), "age_policy")[0]
         self.assertEqual((t["value"], t["confidence"]), ("21-plus", "implied"))
         self.assertEqual(by_field(facts("We are a 21+ venue, 24/7."), "age_policy")[0]["confidence"], "stated")
+        self.assertEqual(by_field(facts("18+ After Dark."), "age_policy")[0]["confidence"], "implied")
 
     def test_coin_op_foosball(self):
         self.assertEqual(by_field(facts("We have 25 pool tables and one coin-operated foosball table near the bar!"), "pricing_model"), [])

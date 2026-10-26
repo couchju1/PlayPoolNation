@@ -1,0 +1,413 @@
+[
+  {
+    "name": "Cue Billiards",
+    "street": "",
+    "city": "Las Vegas",
+    "state": "NV",
+    "zip": "",
+    "lat": 36.1435821,
+    "lng": -115.1436364,
+    "phone": "",
+    "website": "",
+    "facebook": "",
+    "venue_type": "pool-halls",
+    "sources": [
+      {
+        "source": "openstreetmap",
+        "id": "way/1395434448",
+        "url": "https://www.openstreetmap.org/way/1395434448",
+        "evidence": "sport=billiards"
+      }
+    ],
+    "match": {
+      "score": 51,
+      "class": "possible",
+      "reasons": [
+        "within 60 m"
+      ],
+      "slug": "las-vegas-cue-club-las-vegas-nv"
+    },
+    "slug": "cue-billiards-las-vegas-nv",
+    "discovered_at": "2026-10-26"
+  },
+  {
+    "name": "PTT",
+    "street": "4424 West Spring Mountain Road",
+    "city": "Las Vegas",
+    "state": "NV",
+    "zip": "",
+    "lat": 36.1266445,
+    "lng": -115.1995735,
+    "phone": "",
+    "website": "",
+    "facebook": "",
+    "venue_type": "pool-halls",
+    "sources": [
+      {
+        "source": "openstreetmap",
+        "id": "way/1018430273",
+        "url": "https://www.openstreetmap.org/way/1018430273",
+        "evidence": "sport=billiards"
+      }
+    ],
+    "match": {
+      "score": 0,
+      "class": "distinct",
+      "reasons": [],
+      "slug": ""
+    },
+    "slug": "ptt-las-vegas-nv",
+    "discovered_at": "2026-10-26"
+  },
+  {
+    "name": "Backstage & Billiards Lounge",
+    "street": "601 Fremont Street",
+    "city": "Las Vegas",
+    "state": "NV",
+    "zip": "89101",
+    "lat": 36.1683684,
+    "lng": -115.139398,
+    "phone": "",
+    "website": "https://www.backstagebarandbilliards.com/",
+    "facebook": "",
+    "venue_type": "bars-with-pool-tables",
+    "sources": [
+      {
+        "source": "openstreetmap",
+        "id": "way/204346646",
+        "url": "https://www.openstreetmap.org/way/204346646",
+        "evidence": "sport=billiards, amenity=bar"
+      }
+    ],
+    "match": {
+      "score": 0,
+      "class": "distinct",
+      "reasons": [],
+      "slug": ""
+    },
+    "slug": "backstage-and-billiards-lounge-las-vegas-nv",
+    "discovered_at": "2026-10-26"
+  },
+  {
+    "name": "Cornish Pastry Co.",
+    "street": "10 East Charleston Boulevard",
+    "city": "Las Vegas",
+    "state": "NV",
+    "zip": "89104",
+    "lat": 36.1584895,
+    "lng": -115.1529536,
+    "phone": "+1 702-862-4538",
+    "website": "https://www.cornishpastyco.com/",
+    "facebook": "",
+    "venue_type": "other-venue",
+    "sources": [
+      {
+        "source": "openstreetmap",
+        "id": "way/751365197",
+        "url": "https://www.openstreetmap.org/way/751365197",
+        "evidence": "sport=billiards, amenity=restaurant"
+      }
+    ],
+    "match": {
+      "score": 0,
+      "class": "distinct",
+      "reasons": [],
+      "slug": ""
+    },
+    "slug": "cornish-pastry-co-las-vegas-nv",
+    "discovered_at": "2026-10-26"
+  },
+  {
+    "name": "Dust Las Vegas",
+    "street": "855 E Twain ave",
+    "city": "Las Vegas",
+    "state": "NV",
+    "zip": "",
+    "lat": 36.1213962,
+    "lng": -115.145091,
+    "phone": "",
+    "website": "",
+    "facebook": "",
+    "venue_type": "bars-with-pool-tables",
+    "sources": [
+      {
+        "source": "openstreetmap",
+        "id": "node/12560710288",
+        "url": "https://www.openstreetmap.org/node/12560710288",
+        "evidence": "sport=billiards, amenity=bar"
+      }
+    ],
+    "match": {
+      "score": 12,
+      "class": "distinct",
+      "reasons": [],
+      "slug": "las-vegas-cue-club-las-vegas-nv"
+    },
+    "slug": "dust-las-vegas-las-vegas-nv",
+    "discovered_at": "2026-10-26"
+  },
+  {
+    "name": "Flowing Tide",
+    "street": "",
+    "city": "Las Vegas",
+    "state": "NV",
+    "zip": "",
+    "lat": 36.1045657,
+    "lng": -115.207481,
+    "phone": "",
+    "website": "",
+    "facebook": "",
+    "venue_type": "bars-with-pool-tables",
+    "sources": [
+      {
+        "source": "openstreetmap",
+        "id": "way/156497815",
+        "url": "https://www.openstreetmap.org/way/156497815",
+        "evidence": "sport=billiards, amenity=pub"
+      }
+    ],
+    "match": {
+      "score": 4,
+      "class": "distinct",
+      "reasons": [],
+      "slug": "griffs-bar-and-billiards-las-vegas-nv"
+    },
+    "slug": "flowing-tide-las-vegas-nv",
+    "discovered_at": "2026-10-26"
+  },
+  {
+    "name": "Griffs Bar and Billiards",
+    "street": "",
+    "city": "Las Vegas",
+    "state": "NV",
+    "zip": "",
+    "lat": 36.1236931,
+    "lng": -115.2073868,
+    "phone": "",
+    "website": "",
+    "facebook": "",
+    "venue_type": "bars-with-pool-tables",
+    "sources": [
+      {
+        "source": "openstreetmap",
+        "id": "node/12553240021",
+        "url": "https://www.openstreetmap.org/node/12553240021",
+        "evidence": "sport=billiards, amenity=bar"
+      }
+    ],
+    "match": {
+      "score": 70,
+      "class": "possible",
+      "reasons": [
+        "similar name",
+        "within 60 m"
+      ],
+      "slug": "griffs-bar-and-billiards-las-vegas-nv"
+    },
+    "slug": "griffs-bar-and-billiards-las-vegas-nv",
+    "discovered_at": "2026-10-26"
+  },
+  {
+    "name": "Jake's Bar",
+    "street": "2301 s eastern ave",
+    "city": "Las Vegas",
+    "state": "NV",
+    "zip": "89104-4111",
+    "lat": 36.145674,
+    "lng": -115.1185145,
+    "phone": "+1-702-457-0053",
+    "website": "https://jakesbarvegas.com/",
+    "facebook": "",
+    "venue_type": "bars-with-pool-tables",
+    "sources": [
+      {
+        "source": "openstreetmap",
+        "id": "way/1064753373",
+        "url": "https://www.openstreetmap.org/way/1064753373",
+        "evidence": "sport=billiards, amenity=bar"
+      }
+    ],
+    "match": {
+      "score": 0,
+      "class": "distinct",
+      "reasons": [],
+      "slug": ""
+    },
+    "slug": "jakes-bar-las-vegas-nv",
+    "discovered_at": "2026-10-26"
+  },
+  {
+    "name": "Parkway Tavern",
+    "street": "4930 West Flamingo Road",
+    "city": "Las Vegas",
+    "state": "NV",
+    "zip": "89103",
+    "lat": 36.1158712,
+    "lng": -115.2084971,
+    "phone": "+1 702-227-9100",
+    "website": "",
+    "facebook": "",
+    "venue_type": "bars-with-pool-tables",
+    "sources": [
+      {
+        "source": "openstreetmap",
+        "id": "way/1235237668",
+        "url": "https://www.openstreetmap.org/way/1235237668",
+        "evidence": "sport=billiards, amenity=bar"
+      }
+    ],
+    "match": {
+      "score": 0,
+      "class": "distinct",
+      "reasons": [],
+      "slug": ""
+    },
+    "slug": "parkway-tavern-las-vegas-nv",
+    "discovered_at": "2026-10-26"
+  },
+  {
+    "name": "QUADZ Las Vegas",
+    "street": "4640 Paradise Road",
+    "city": "Las Vegas",
+    "state": "NV",
+    "zip": "",
+    "lat": 36.1053862,
+    "lng": -115.150928,
+    "phone": "",
+    "website": "",
+    "facebook": "",
+    "venue_type": "bars-with-pool-tables",
+    "sources": [
+      {
+        "source": "openstreetmap",
+        "id": "way/1382446128",
+        "url": "https://www.openstreetmap.org/way/1382446128",
+        "evidence": "sport=billiards, leisure=sports_centre, amenity=bar"
+      }
+    ],
+    "match": {
+      "score": 11,
+      "class": "distinct",
+      "reasons": [],
+      "slug": "las-vegas-cue-club-las-vegas-nv"
+    },
+    "slug": "quadz-las-vegas-las-vegas-nv",
+    "discovered_at": "2026-10-26"
+  },
+  {
+    "name": "The Charleston Tavern",
+    "street": "906 South 6th Street",
+    "city": "Las Vegas",
+    "state": "NV",
+    "zip": "89101",
+    "lat": 36.1592685,
+    "lng": -115.1463035,
+    "phone": "+1-702-385-5000",
+    "website": "https://thecharlestontavern.com/",
+    "facebook": "",
+    "venue_type": "bars-with-pool-tables",
+    "sources": [
+      {
+        "source": "openstreetmap",
+        "id": "way/1394064581",
+        "url": "https://www.openstreetmap.org/way/1394064581",
+        "evidence": "sport=billiards, amenity=bar"
+      }
+    ],
+    "match": {
+      "score": 0,
+      "class": "distinct",
+      "reasons": [],
+      "slug": ""
+    },
+    "slug": "the-charleston-tavern-las-vegas-nv",
+    "discovered_at": "2026-10-26"
+  },
+  {
+    "name": "The Phoenix Bar & Lounge",
+    "street": "4213 West Sahara Avenue",
+    "city": "Las Vegas",
+    "state": "NV",
+    "zip": "89102-3704",
+    "lat": 36.1439809,
+    "lng": -115.1975935,
+    "phone": "+1-702-826-2422",
+    "website": "https://www.thephoenixlv.com",
+    "facebook": "",
+    "venue_type": "bars-with-pool-tables",
+    "sources": [
+      {
+        "source": "openstreetmap",
+        "id": "node/7139782852",
+        "url": "https://www.openstreetmap.org/node/7139782852",
+        "evidence": "sport=billiards, amenity=bar"
+      }
+    ],
+    "match": {
+      "score": 0,
+      "class": "distinct",
+      "reasons": [],
+      "slug": ""
+    },
+    "slug": "the-phoenix-bar-and-lounge-las-vegas-nv",
+    "discovered_at": "2026-10-26"
+  },
+  {
+    "name": "The Sand Dollar Lounge",
+    "street": "",
+    "city": "Las Vegas",
+    "state": "NV",
+    "zip": "",
+    "lat": 36.1260148,
+    "lng": -115.1850924,
+    "phone": "",
+    "website": "",
+    "facebook": "",
+    "venue_type": "bars-with-pool-tables",
+    "sources": [
+      {
+        "source": "openstreetmap",
+        "id": "way/1385404385",
+        "url": "https://www.openstreetmap.org/way/1385404385",
+        "evidence": "sport=billiards, amenity=bar"
+      }
+    ],
+    "match": {
+      "score": 8,
+      "class": "distinct",
+      "reasons": [],
+      "slug": "good-timez-billiards-las-vegas-nv"
+    },
+    "slug": "the-sand-dollar-lounge-las-vegas-nv",
+    "discovered_at": "2026-10-26"
+  },
+  {
+    "name": "West Side Charlies",
+    "street": "1294 Topsail Road",
+    "city": "Paradise",
+    "state": "NV",
+    "zip": "A1L 1N8",
+    "lat": 47.5337618,
+    "lng": -52.8390291,
+    "phone": "+1-709-782-3378",
+    "website": "",
+    "facebook": "",
+    "venue_type": "bars-with-pool-tables",
+    "sources": [
+      {
+        "source": "openstreetmap",
+        "id": "node/11276305264",
+        "url": "https://www.openstreetmap.org/node/11276305264",
+        "evidence": "sport=billiards, amenity=bar"
+      }
+    ],
+    "match": {
+      "score": 0,
+      "class": "distinct",
+      "reasons": [],
+      "slug": ""
+    },
+    "slug": "west-side-charlies-las-vegas-nv",
+    "discovered_at": "2026-10-26"
+  }
+]

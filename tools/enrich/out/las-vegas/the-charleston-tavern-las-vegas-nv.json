@@ -1,0 +1,83 @@
+{
+  "schema": 1,
+  "slug": "the-charleston-tavern-las-vegas-nv",
+  "city": "las-vegas",
+  "kind": "new",
+  "listing": {
+    "name": "The Charleston Tavern",
+    "street": "906 South 6th Street",
+    "city": "Las Vegas",
+    "state": "NV",
+    "zip": "89101",
+    "phone": "+1-702-385-5000",
+    "website": "https://thecharlestontavern.com/",
+    "venue_type": "bars-with-pool-tables",
+    "lat": 36.1592685,
+    "lng": -115.1463035
+  },
+  "checked_at": "2026-10-26",
+  "sources_checked": [
+    {
+      "url": "https://thecharlestontavern.com/",
+      "result": "read",
+      "note": ""
+    }
+  ],
+  "facts": [
+    {
+      "field": "food",
+      "key": "food",
+      "value": true,
+      "source_url": "https://thecharlestontavern.com/",
+      "quote_snippet": "About Gaming Food & Drinks Local Art Gallery",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [],
+      "seen_on": [
+        "https://thecharlestontavern.com/"
+      ],
+      "source_type": "official_website"
+    },
+    {
+      "field": "full_bar",
+      "key": "full_bar",
+      "value": true,
+      "source_url": "https://thecharlestontavern.com/",
+      "quote_snippet": "Tequila Tuesday",
+      "checked_at": "2026-10-26",
+      "confidence": "implied",
+      "flags": [],
+      "seen_on": [
+        "https://thecharlestontavern.com/"
+      ],
+      "source_type": "official_website"
+    },
+    {
+      "field": "table_sizes",
+      "key": "table_sizes:7ft",
+      "value": {
+        "size": "7ft",
+        "count": null
+      },
+      "source_url": "https://thecharlestontavern.com/",
+      "quote_snippet": "Listed as a place to play pool; no table size stated anywhere.",
+      "checked_at": "2026-10-26",
+      "confidence": "implied",
+      "flags": [
+        "size not stated, 7 ft by default"
+      ],
+      "source_type": "default",
+      "seen_on": [
+        "https://thecharlestontavern.com/"
+      ]
+    }
+  ],
+  "missing": [
+    "table_count",
+    "table_sizes",
+    "table_brands",
+    "pricing_model",
+    "league_nights",
+    "age_policy"
+  ]
+}

@@ -1,0 +1,74 @@
+{
+  "schema": 1,
+  "slug": "backstage-and-billiards-lounge-las-vegas-nv",
+  "city": "las-vegas",
+  "kind": "new",
+  "listing": {
+    "name": "Backstage & Billiards Lounge",
+    "street": "601 Fremont Street",
+    "city": "Las Vegas",
+    "state": "NV",
+    "zip": "89101",
+    "website": "https://www.backstagebarandbilliards.com/",
+    "venue_type": "bars-with-pool-tables",
+    "lat": 36.1683684,
+    "lng": -115.139398
+  },
+  "checked_at": "2026-10-26",
+  "sources_checked": [
+    {
+      "url": "https://www.601fremont.com/",
+      "result": "read",
+      "note": ""
+    },
+    {
+      "url": "https://www.601fremont.com/blogs/forms/book-your-event/",
+      "result": "read",
+      "note": ""
+    }
+  ],
+  "facts": [
+    {
+      "field": "age_policy",
+      "key": "age_policy",
+      "value": "21-plus",
+      "source_url": "https://www.601fremont.com/",
+      "quote_snippet": "Backstage Bar is 21+ and you MUST have a Valid Government ID with a photo and birth …",
+      "checked_at": "2026-10-26",
+      "confidence": "stated",
+      "flags": [],
+      "seen_on": [
+        "https://www.601fremont.com/"
+      ],
+      "source_type": "official_website"
+    },
+    {
+      "field": "table_sizes",
+      "key": "table_sizes:7ft",
+      "value": {
+        "size": "7ft",
+        "count": null
+      },
+      "source_url": "https://www.backstagebarandbilliards.com/",
+      "quote_snippet": "Listed as a place to play pool; no table size stated anywhere.",
+      "checked_at": "2026-10-26",
+      "confidence": "implied",
+      "flags": [
+        "size not stated, 7 ft by default"
+      ],
+      "source_type": "default",
+      "seen_on": [
+        "https://www.backstagebarandbilliards.com/"
+      ]
+    }
+  ],
+  "missing": [
+    "table_count",
+    "table_sizes",
+    "table_brands",
+    "pricing_model",
+    "league_nights",
+    "food",
+    "full_bar"
+  ]
+}

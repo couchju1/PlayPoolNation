@@ -1,0 +1,62 @@
+{
+  "schema": 1,
+  "slug": "the-phoenix-bar-and-lounge-las-vegas-nv",
+  "city": "las-vegas",
+  "kind": "new",
+  "listing": {
+    "name": "The Phoenix Bar & Lounge",
+    "street": "4213 West Sahara Avenue",
+    "city": "Las Vegas",
+    "state": "NV",
+    "zip": "89102-3704",
+    "phone": "+1-702-826-2422",
+    "website": "https://www.thephoenixlv.com",
+    "venue_type": "bars-with-pool-tables",
+    "lat": 36.1439809,
+    "lng": -115.1975935
+  },
+  "checked_at": "2026-10-26",
+  "sources_checked": [
+    {
+      "url": "https://www.facebook.com/login/?next=https%3A%2F%2Fwww.facebook.com%2Fthephoenixlv",
+      "result": "read",
+      "note": ""
+    },
+    {
+      "url": "https://www.facebook.com/about/",
+      "result": "skipped",
+      "note": "robots.txt disallows"
+    }
+  ],
+  "facts": [
+    {
+      "field": "table_sizes",
+      "key": "table_sizes:7ft",
+      "value": {
+        "size": "7ft",
+        "count": null
+      },
+      "source_url": "https://www.thephoenixlv.com",
+      "quote_snippet": "Listed as a place to play pool; no table size stated anywhere.",
+      "checked_at": "2026-10-26",
+      "confidence": "implied",
+      "flags": [
+        "size not stated, 7 ft by default"
+      ],
+      "source_type": "default",
+      "seen_on": [
+        "https://www.thephoenixlv.com"
+      ]
+    }
+  ],
+  "missing": [
+    "table_count",
+    "table_sizes",
+    "table_brands",
+    "pricing_model",
+    "league_nights",
+    "age_policy",
+    "food",
+    "full_bar"
+  ]
+}
