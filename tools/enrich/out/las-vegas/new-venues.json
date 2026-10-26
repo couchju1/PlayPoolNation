@@ -380,34 +380,5 @@
     },
     "slug": "the-sand-dollar-lounge-las-vegas-nv",
     "discovered_at": "2026-10-26"
-  },
-  {
-    "name": "West Side Charlies",
-    "street": "1294 Topsail Road",
-    "city": "Paradise",
-    "state": "NV",
-    "zip": "A1L 1N8",
-    "lat": 47.5337618,
-    "lng": -52.8390291,
-    "phone": "+1-709-782-3378",
-    "website": "",
-    "facebook": "",
-    "venue_type": "bars-with-pool-tables",
-    "sources": [
-      {
-        "source": "openstreetmap",
-        "id": "node/11276305264",
-        "url": "https://www.openstreetmap.org/node/11276305264",
-        "evidence": "sport=billiards, amenity=bar"
-      }
-    ],
-    "match": {
-      "score": 0,
-      "class": "distinct",
-      "reasons": [],
-      "slug": ""
-    },
-    "slug": "west-side-charlies-las-vegas-nv",
-    "discovered_at": "2026-10-26"
   }
 ]

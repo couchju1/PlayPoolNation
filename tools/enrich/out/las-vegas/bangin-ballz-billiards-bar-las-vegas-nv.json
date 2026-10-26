@@ -55,13 +55,25 @@
       "key": "table_sizes:7ft",
       "value": {
         "size": "7ft",
-        "count": null
+        "count": 24
       },
       "source_url": "https://banginballzbilliards.com/",
-      "quote_snippet": "7ft Rasson Pool Table Rates",
+      "quote_snippet": "… 30 Rasson Billiards tables, including 24 seven-foot and 6 nine-foot tables available for rent at competitive rates, …",
       "checked_at": "2026-10-26",
       "confidence": "stated",
-      "flags": [],
+      "flags": [
+        "sources disagree"
+      ],
+      "conflicts": [
+        {
+          "value": {
+            "size": "7ft",
+            "count": null
+          },
+          "source_url": "https://banginballzbilliards.com/",
+          "quote_snippet": "7ft Rasson Pool Table Rates"
+        }
+      ],
       "seen_on": [
         "https://banginballzbilliards.com/"
       ],
@@ -75,7 +87,7 @@
         "count": 6
       },
       "source_url": "https://banginballzbilliards.com/",
-      "quote_snippet": "… Rasson Billiards tables, including 24 seven-foot and 6 nine-foot tables available for rent at competitive rates, which …",
+      "quote_snippet": "… 30 Rasson Billiards tables, including 24 seven-foot and 6 nine-foot tables available for rent at competitive rates, …",
       "checked_at": "2026-10-26",
       "confidence": "stated",
       "flags": [

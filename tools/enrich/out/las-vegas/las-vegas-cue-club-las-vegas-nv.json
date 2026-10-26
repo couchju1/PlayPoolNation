@@ -58,12 +58,14 @@
     {
       "field": "age_policy",
       "key": "age_policy",
-      "value": "18-plus",
+      "value": "all-ages",
       "source_url": "https://lasvegascueclub.com/",
-      "quote_snippet": "18+ After Dark.",
+      "quote_snippet": "All Ages Welcome Before 10 PM.",
       "checked_at": "2026-10-26",
-      "confidence": "stated",
-      "flags": [],
+      "confidence": "implied",
+      "flags": [
+        "only at certain times"
+      ],
       "seen_on": [
         "https://lasvegascueclub.com/"
       ],
