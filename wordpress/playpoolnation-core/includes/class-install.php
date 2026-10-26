@@ -600,11 +600,10 @@ final class Install {
 	}
 
 	/**
-	 * Find Places banner: the drawn rack (an SVG in an Elementor HTML widget) becomes a
-	 * photo of a real rack, with the credit its licence asks for. The photo ships with
-	 * the plugin (assets/img/ppn-places-rack.jpg: "Billiard Balls" by Tony Webster,
-	 * CC BY 2.0) and is added to the Media Library once. The page's Elementor data is
-	 * backed up first.
+	 * Find Places banner: the drawn rack (an SVG in an Elementor HTML widget) becomes
+	 * a photo of racked balls cut out on a transparent background, in the same place
+	 * (assets/img/ppn-places-balls.webp, supplied by the site owner). It is added to
+	 * the Media Library once. The page's Elementor data is backed up first.
 	 */
 	public static function m_places_rack_photo(): string {
 		$page = (int) get_option( 'options_general_explore_listings_page' );
@@ -613,18 +612,18 @@ final class Install {
 		if ( ! is_array( $data ) || ! str_contains( $raw, 'class=\\"ppn-rack\\"' ) ) {
 			return 'no drawn rack on the Find Places page (already a photo?); nothing changed';
 		}
-		$image_id = self::photo_attachment( 'ppn-places-rack.jpg', 'A rack of pool balls on a pool table, seen from table level', 'Photo: "Billiard Balls" by Tony Webster, CC BY 2.0. https://www.flickr.com/photos/diversey/15676345487/' );
+		$image_id = self::photo_attachment( 'ppn-places-balls.webp', 'A rack of pool balls', 'Racked pool balls on a transparent background, supplied by the site owner for the Find Places banner.' );
 		if ( ! $image_id ) {
-			return 'could not add the rack photo to the Media Library; nothing changed';
+			return 'could not add the pool balls photo to the Media Library; nothing changed';
 		}
 		$img = wp_get_attachment_image( $image_id, 'full', false, [
-			'class'    => 'ppn-rack-photo',
+			'class'    => 'ppn-rack-balls',
 			'loading'  => 'lazy', // The banner column is hidden on phones; lazy keeps them from downloading it.
 			'decoding' => 'async',
-			'sizes'    => '(min-width: 1025px) 440px, 100vw',
+			'sizes'    => '(min-width: 1025px) 400px, 100vw',
 		] );
 		// Sizing is ppn.css's; some themes add an inline style to attachment images.
-		$html = (string) preg_replace( '# style="[^"]*"#', '', $img ) . '<p class="ppn-photo-credit">Photo: <a href="https://www.flickr.com/photos/diversey/15676345487/" rel="nofollow noopener" target="_blank">Tony Webster</a>, <a href="https://creativecommons.org/licenses/by/2.0/" rel="license nofollow noopener" target="_blank">CC BY 2.0</a></p>';
+		$html = (string) preg_replace( '# style="[^"]*"#', '', $img );
 		$replaced = 0;
 		self::walk_elements( $data, static function ( array &$el ) use ( $html, &$replaced ): void {
 			$current = $el['settings']['html'] ?? null;
@@ -637,7 +636,7 @@ final class Install {
 			return 'drawn rack not found in an HTML widget; nothing changed';
 		}
 		self::save_elementor( $page, $raw, $data );
-		return sprintf( 'rack photo (attachment %d) in %d widget', $image_id, $replaced );
+		return sprintf( 'pool balls photo (attachment %d) in %d widget', $image_id, $replaced );
 	}
 
 	/**
