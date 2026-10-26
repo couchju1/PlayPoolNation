@@ -77,6 +77,7 @@ final class Install {
 			'2026_10_25_drop_domain_log'  => [ __CLASS__, 'm_drop_domain_log' ],
 			'2026_10_26_enrich_queue'     => [ Enrich_Queue::class, 'install' ],
 			'2026_10_26_places_rack_photo' => [ __CLASS__, 'm_places_rack_photo' ],
+			'2026_10_26_home_rack_hero'   => [ __CLASS__, 'm_home_rack_hero' ],
 		];
 	}
 
@@ -600,9 +601,10 @@ final class Install {
 
 	/**
 	 * Find Places banner: the drawn rack (an SVG in an Elementor HTML widget) becomes a
-	 * photo of a real rack. The photo ships with the plugin (assets/img/ppn-pool-rack.jpg,
-	 * CC0 by MarkBuckawicki on Wikimedia Commons, "Billiards Rack.JPG") and is added to
-	 * the Media Library once. The page's Elementor data is backed up first.
+	 * photo of a real rack, with the credit its licence asks for. The photo ships with
+	 * the plugin (assets/img/ppn-places-rack.jpg: "Billiard Balls" by Tony Webster,
+	 * CC BY 2.0) and is added to the Media Library once. The page's Elementor data is
+	 * backed up first.
 	 */
 	public static function m_places_rack_photo(): string {
 		$page = (int) get_option( 'options_general_explore_listings_page' );
@@ -611,65 +613,116 @@ final class Install {
 		if ( ! is_array( $data ) || ! str_contains( $raw, 'class=\\"ppn-rack\\"' ) ) {
 			return 'no drawn rack on the Find Places page (already a photo?); nothing changed';
 		}
-		$image_id = self::rack_photo_attachment();
+		$image_id = self::photo_attachment( 'ppn-places-rack.jpg', 'A rack of pool balls on a pool table, seen from table level', 'Photo: "Billiard Balls" by Tony Webster, CC BY 2.0. https://www.flickr.com/photos/diversey/15676345487/' );
 		if ( ! $image_id ) {
 			return 'could not add the rack photo to the Media Library; nothing changed';
 		}
 		$img = wp_get_attachment_image( $image_id, 'full', false, [
 			'class'    => 'ppn-rack-photo',
-			'alt'      => 'A rack of pool balls on a green pool table',
 			'loading'  => 'lazy', // The banner column is hidden on phones; lazy keeps them from downloading it.
 			'decoding' => 'async',
 			'sizes'    => '(min-width: 1025px) 440px, 100vw',
 		] );
+		// Sizing is ppn.css's; some themes add an inline style to attachment images.
+		$html = (string) preg_replace( '# style="[^"]*"#', '', $img ) . '<p class="ppn-photo-credit">Photo: <a href="https://www.flickr.com/photos/diversey/15676345487/" rel="nofollow noopener" target="_blank">Tony Webster</a>, <a href="https://creativecommons.org/licenses/by/2.0/" rel="license nofollow noopener" target="_blank">CC BY 2.0</a></p>';
 		$replaced = 0;
-		$walk = static function ( array &$elements ) use ( &$walk, $img, &$replaced ): void {
-			foreach ( $elements as &$el ) {
-				$html = $el['settings']['html'] ?? null;
-				if ( 'html' === ( $el['widgetType'] ?? '' ) && is_string( $html ) && str_contains( $html, 'class="ppn-rack"' ) ) {
-					$el['settings']['html'] = $img;
-					++$replaced;
-				}
-				if ( ! empty( $el['elements'] ) ) {
-					$walk( $el['elements'] );
-				}
+		self::walk_elements( $data, static function ( array &$el ) use ( $html, &$replaced ): void {
+			$current = $el['settings']['html'] ?? null;
+			if ( 'html' === ( $el['widgetType'] ?? '' ) && is_string( $current ) && str_contains( $current, 'class="ppn-rack"' ) ) {
+				$el['settings']['html'] = $html;
+				++$replaced;
 			}
-			unset( $el );
-		};
-		$walk( $data );
+		} );
 		if ( ! $replaced ) {
 			return 'drawn rack not found in an HTML widget; nothing changed';
 		}
+		self::save_elementor( $page, $raw, $data );
+		return sprintf( 'rack photo (attachment %d) in %d widget', $image_id, $replaced );
+	}
+
+	/**
+	 * Homepage banner: the pool hall at night behind "Every pool table worth the drive."
+	 * becomes a rack of pool balls on green felt ("Billiards Rack" by MarkBuckawicki, CC0).
+	 * Wide screens get a 2:1 version with the rack on the right, clear of the headline;
+	 * phones a portrait crop centred on the balls. The page's Elementor data is backed up first.
+	 */
+	public static function m_home_rack_hero(): string {
+		$page = (int) get_option( 'page_on_front' );
+		$raw = $page ? (string) get_post_meta( $page, '_elementor_data', true ) : '';
+		$data = json_decode( $raw, true );
+		if ( ! is_array( $data ) || ! str_contains( $raw, 'ppn-hero-pool-hall-night' ) ) {
+			return 'homepage banner is not the pool hall photo (already changed?); nothing changed';
+		}
+		$credit = 'Photo: "Billiards Rack" by MarkBuckawicki, Wikimedia Commons, CC0 (public domain dedication). https://commons.wikimedia.org/wiki/File:Billiards_Rack.JPG';
+		$alt = 'A rack of pool balls on a green pool table';
+		$wide = self::photo_attachment( 'ppn-hero-rack.jpg', $alt, $credit );
+		$phone = self::photo_attachment( 'ppn-hero-rack-mobile.jpg', $alt, $credit );
+		if ( ! $wide || ! $phone ) {
+			return 'could not add the rack photos to the Media Library; nothing changed';
+		}
+		$image = static fn( int $id ): array => [ 'url' => (string) wp_get_attachment_url( $id ), 'id' => $id, 'size' => '', 'alt' => $alt, 'source' => 'library' ];
+		$replaced = 0;
+		self::walk_elements( $data, static function ( array &$el ) use ( $image, $wide, $phone, &$replaced ): void {
+			$url = $el['settings']['background_image']['url'] ?? '';
+			if ( is_string( $url ) && str_contains( $url, 'ppn-hero-pool-hall-night' ) ) {
+				$el['settings']['background_image'] = $image( $wide );
+				$el['settings']['background_position'] = 'center right';
+				$el['settings']['background_image_mobile'] = $image( $phone );
+				$el['settings']['background_position_mobile'] = 'center center';
+				++$replaced;
+			}
+		} );
+		if ( ! $replaced ) {
+			return 'pool hall photo not found as a background; nothing changed';
+		}
+		self::save_elementor( $page, $raw, $data );
+		return sprintf( 'rack banner (attachments %d and %d) on %d element', $wide, $phone, $replaced );
+	}
+
+	/** Run $visit on every Elementor element, depth first. */
+	private static function walk_elements( array &$elements, callable $visit ): void {
+		foreach ( $elements as &$el ) {
+			$visit( $el );
+			if ( ! empty( $el['elements'] ) ) {
+				self::walk_elements( $el['elements'], $visit );
+			}
+		}
+		unset( $el );
+	}
+
+	/** Save a page's Elementor data, keeping the first version replaced in `_ppn_backup__elementor_data`. */
+	private static function save_elementor( int $page, string $raw, array $data ): void {
 		if ( '' === (string) get_post_meta( $page, '_ppn_backup__elementor_data', true ) ) {
 			update_post_meta( $page, '_ppn_backup__elementor_data', wp_slash( $raw ) );
 		}
 		update_post_meta( $page, '_elementor_data', wp_slash( (string) wp_json_encode( $data ) ) );
 		Live_Domain::clear_page_caches();
-		return sprintf( 'rack photo (attachment %d) in %d widget', $image_id, $replaced );
 	}
 
-	/** The rack photo's attachment ID, adding it to the Media Library the first time. */
-	private static function rack_photo_attachment(): int {
-		$existing = (int) get_option( 'ppn_rack_photo_id' );
-		if ( $existing && wp_attachment_is_image( $existing ) ) {
-			return $existing;
+	/**
+	 * A photo shipped in assets/img as a Media Library attachment, added the first
+	 * time it is needed, with alt text and its credit in the description.
+	 */
+	private static function photo_attachment( string $file, string $alt, string $credit ): int {
+		$ids = (array) get_option( 'ppn_photo_ids', [] );
+		if ( ! empty( $ids[ $file ] ) && wp_attachment_is_image( (int) $ids[ $file ] ) ) {
+			return (int) $ids[ $file ];
 		}
 		require_once ABSPATH . 'wp-admin/includes/file.php';
 		require_once ABSPATH . 'wp-admin/includes/media.php';
 		require_once ABSPATH . 'wp-admin/includes/image.php';
-		$tmp = wp_tempnam( 'ppn-pool-rack.jpg' );
-		if ( ! $tmp || ! copy( PPN_CORE_DIR . '/assets/img/ppn-pool-rack.jpg', $tmp ) ) {
+		$tmp = wp_tempnam( $file );
+		if ( ! $tmp || ! copy( PPN_CORE_DIR . '/assets/img/' . $file, $tmp ) ) {
 			return 0;
 		}
-		$id = media_handle_sideload( [ 'name' => 'ppn-pool-rack.jpg', 'tmp_name' => $tmp ], 0, 'A rack of pool balls on a green pool table', [
-			'post_content' => 'Photo: "Billiards Rack" by MarkBuckawicki, Wikimedia Commons, CC0 (public domain dedication). https://commons.wikimedia.org/wiki/File:Billiards_Rack.JPG',
-		] );
+		$id = media_handle_sideload( [ 'name' => $file, 'tmp_name' => $tmp ], 0, $alt, [ 'post_content' => $credit ] );
 		if ( is_wp_error( $id ) ) {
 			wp_delete_file( $tmp );
 			return 0;
 		}
-		update_post_meta( $id, '_wp_attachment_image_alt', 'A rack of pool balls on a green pool table' );
-		update_option( 'ppn_rack_photo_id', (int) $id, false );
+		update_post_meta( $id, '_wp_attachment_image_alt', $alt );
+		$ids[ $file ] = (int) $id;
+		update_option( 'ppn_photo_ids', $ids, false );
 		return (int) $id;
 	}
 
