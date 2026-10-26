@@ -76,6 +76,7 @@ final class Install {
 			'2026_10_24_live_domain'      => [ __CLASS__, 'm_live_domain' ],
 			'2026_10_25_drop_domain_log'  => [ __CLASS__, 'm_drop_domain_log' ],
 			'2026_10_26_enrich_queue'     => [ Enrich_Queue::class, 'install' ],
+			'2026_10_26_places_rack_photo' => [ __CLASS__, 'm_places_rack_photo' ],
 		];
 	}
 
@@ -595,6 +596,81 @@ final class Install {
 			'metro pages' => array_keys( Metros::with_pages() ),
 			'sitemap' => $metros < 0 ? 'no flat sitemap.xml' : $metros . ' metro URLs',
 		] );
+	}
+
+	/**
+	 * Find Places banner: the drawn rack (an SVG in an Elementor HTML widget) becomes a
+	 * photo of a real rack. The photo ships with the plugin (assets/img/ppn-pool-rack.jpg,
+	 * CC0 by MarkBuckawicki on Wikimedia Commons, "Billiards Rack.JPG") and is added to
+	 * the Media Library once. The page's Elementor data is backed up first.
+	 */
+	public static function m_places_rack_photo(): string {
+		$page = (int) get_option( 'options_general_explore_listings_page' );
+		$raw = $page ? (string) get_post_meta( $page, '_elementor_data', true ) : '';
+		$data = json_decode( $raw, true );
+		if ( ! is_array( $data ) || ! str_contains( $raw, 'class=\\"ppn-rack\\"' ) ) {
+			return 'no drawn rack on the Find Places page (already a photo?); nothing changed';
+		}
+		$image_id = self::rack_photo_attachment();
+		if ( ! $image_id ) {
+			return 'could not add the rack photo to the Media Library; nothing changed';
+		}
+		$img = wp_get_attachment_image( $image_id, 'full', false, [
+			'class'    => 'ppn-rack-photo',
+			'alt'      => 'A rack of pool balls on a green pool table',
+			'loading'  => 'lazy', // The banner column is hidden on phones; lazy keeps them from downloading it.
+			'decoding' => 'async',
+			'sizes'    => '(min-width: 1025px) 440px, 100vw',
+		] );
+		$replaced = 0;
+		$walk = static function ( array &$elements ) use ( &$walk, $img, &$replaced ): void {
+			foreach ( $elements as &$el ) {
+				$html = $el['settings']['html'] ?? null;
+				if ( 'html' === ( $el['widgetType'] ?? '' ) && is_string( $html ) && str_contains( $html, 'class="ppn-rack"' ) ) {
+					$el['settings']['html'] = $img;
+					++$replaced;
+				}
+				if ( ! empty( $el['elements'] ) ) {
+					$walk( $el['elements'] );
+				}
+			}
+			unset( $el );
+		};
+		$walk( $data );
+		if ( ! $replaced ) {
+			return 'drawn rack not found in an HTML widget; nothing changed';
+		}
+		if ( '' === (string) get_post_meta( $page, '_ppn_backup__elementor_data', true ) ) {
+			update_post_meta( $page, '_ppn_backup__elementor_data', wp_slash( $raw ) );
+		}
+		update_post_meta( $page, '_elementor_data', wp_slash( (string) wp_json_encode( $data ) ) );
+		Live_Domain::clear_page_caches();
+		return sprintf( 'rack photo (attachment %d) in %d widget', $image_id, $replaced );
+	}
+
+	/** The rack photo's attachment ID, adding it to the Media Library the first time. */
+	private static function rack_photo_attachment(): int {
+		$existing = (int) get_option( 'ppn_rack_photo_id' );
+		if ( $existing && wp_attachment_is_image( $existing ) ) {
+			return $existing;
+		}
+		require_once ABSPATH . 'wp-admin/includes/file.php';
+		require_once ABSPATH . 'wp-admin/includes/media.php';
+		require_once ABSPATH . 'wp-admin/includes/image.php';
+		$tmp = wp_tempnam( 'ppn-pool-rack.jpg' );
+		if ( ! $tmp || ! copy( PPN_CORE_DIR . '/assets/img/ppn-pool-rack.jpg', $tmp ) ) {
+			return 0;
+		}
+		$id = media_handle_sideload( [ 'name' => 'ppn-pool-rack.jpg', 'tmp_name' => $tmp ], 0, 'A rack of pool balls on a green pool table', [
+			'post_content' => 'Photo: "Billiards Rack" by MarkBuckawicki, Wikimedia Commons, CC0 (public domain dedication). https://commons.wikimedia.org/wiki/File:Billiards_Rack.JPG',
+		] );
+		if ( is_wp_error( $id ) ) {
+			wp_delete_file( $tmp );
+			return 0;
+		}
+		update_post_meta( $id, '_wp_attachment_image_alt', 'A rack of pool balls on a green pool table' );
+		update_option( 'ppn_rack_photo_id', (int) $id, false );
+		return (int) $id;
 	}
 
 	/** The render-time temporary-domain rewrite is gone, and with it the option it logged to. */

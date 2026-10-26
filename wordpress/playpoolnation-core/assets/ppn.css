@@ -351,3 +351,6 @@ body a.ppn-button, body a.ppn-button:visited, body a.ppn-button:hover { color: #
 	.ppn-city-facts > div { grid-template-columns: 90px 1fr; }
 	.ppn-city-map { height: 300px; }
 }
+
+/* Find Places banner: photo of a rack (Install::m_places_rack_photo). Elementor resets image corners and shadows, hence the .elementor scope. */
+.elementor .ppn-rack-photo { display: block; width: 100%; max-width: 440px; height: auto; margin-left: auto; border-radius: 14px; box-shadow: 0 18px 40px rgba(0, 0, 0, .35); outline: 1px solid rgba(242, 244, 241, .18); outline-offset: -1px; }
