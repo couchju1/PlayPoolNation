@@ -38,6 +38,18 @@ STREET = re.compile(
 )
 
 
+HOTEL = re.compile(r"\bhotels?\b|\bmotel\b|\bhostel\b|\baloft\b|\bhilton\b|marriott|\bhyatt\b|\bsheraton\b|\bresort\b", re.I)
+
+
+def mark_hotel(c: dict, tags: dict | None = None) -> dict:
+    """A hotel with a pool table is not a place people go to play: type Other, flagged."""
+    tags = tags or {}
+    if tags.get("tourism") in ("hotel", "motel", "hostel", "guest_house") or HOTEL.search(c.get("name", "") + " " + c.get("website", "")):
+        c["venue_type"] = "other-venue"
+        c["flags"] = sorted(set(c.get("flags", []) + ["hotel: a pool table for guests, probably not a place to play"]))
+    return c
+
+
 def env(key: str) -> str:
     if os.environ.get(key):
         return os.environ[key]
@@ -51,9 +63,11 @@ def env(key: str) -> str:
 
 
 def overpass_query(city: dict) -> str:
+    # Set osm_admin_level when the name alone is ambiguous ("New York" is the state at 4, the city at 5).
+    level = f'["admin_level"="{city["osm_admin_level"]}"]' if city.get("osm_admin_level") else ""
     return f"""[out:json][timeout:120];
 area["ISO3166-2"="US-{city['state']}"]["admin_level"="4"]->.st;
-area["name"="{city['osm_name']}"]["boundary"="administrative"](area.st)->.a;
+area["name"="{city['osm_name']}"]["boundary"="administrative"]{level}(area.st)->.a;
 (
   nwr["sport"~"billiards|pool|snooker",i](area.a);
   nwr["billiards"~"^(yes|[0-9]+)$"](area.a);
@@ -117,7 +131,7 @@ def osm_candidates(fetcher: Fetcher, city: dict) -> tuple[list[dict], list[dict]
                 "evidence": ", ".join(f"{k}={t[k]}" for k in ("sport", "billiards", "leisure", "amenity") if t.get(k)),
             }],
         }
-        (pool if hint else bars).append(c)
+        (pool if hint else bars).append(mark_hotel(c, t))
     return pool, bars
 
 
@@ -264,6 +278,14 @@ def run(city: dict, listings: list[dict], fetcher: Fetcher) -> dict:
             disc["osm_pending"] = str(e)[:300]
             store.save_state(city["slug"], state)
             pool = None
+        else:
+            if not pool and not bars:
+                # Not one bar in a city means the boundary name didn't match, not an empty city.
+                msg = f"no OpenStreetMap boundary named '{city['osm_name']}' in {city['state']} (set osm_name / osm_admin_level in cities.json)"
+                print(f"  {msg}; continuing without it.")
+                disc["osm_pending"] = msg
+                store.save_state(city["slug"], state)
+                pool = None
     if not disc.get("osm") and pool is not None:
         disc.pop("osm_pending", None)
         candidates += pool

@@ -1,5 +1,5 @@
 {
-  "_comment": "Per-city settings. Cities from the keyword report work without an entry; add one to name league operators' public host-location pages, or a different OpenStreetMap boundary name.",
+  "_comment": "Per-city settings. Cities from the keyword report work without an entry; add one to name league operators' public host-location pages, or to pin the OpenStreetMap boundary (osm_name, and osm_admin_level when the name alone is ambiguous, e.g. New York: state 4, city 5).",
   "sioux-falls": {
     "name": "Sioux Falls",
     "state": "SD",
@@ -17,5 +17,13 @@
         "url": "https://siouxempirepsa.org/leagues/pool"
       }
     ]
+  },
+  "new-york": {
+    "name": "New York",
+    "state": "NY",
+    "osm_name": "New York",
+    "listings_page": "https://playpoolnation.com/places/new-york/new-york-ny/",
+    "league_pages": [],
+    "osm_admin_level": "5"
   }
 }

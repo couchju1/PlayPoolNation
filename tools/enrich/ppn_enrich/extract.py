@@ -83,6 +83,8 @@ BARBOX = re.compile(r"\bbar[- ]?(?:size|box)\s+(?:pool\s+)?tables?\b", re.I)
 HOURLY = re.compile(r"\$\s?(?P<rate>\d{1,3}(?:\.\d{2})?)\s*(?:/|per|an|a|each)\s*(?:hour|hr)\b|\b(?:by the hour|hourly (?:rate|table|pool)|per hour)\b", re.I)
 PER_GAME = re.compile(r"(?:\$\s?(?P<rate>\d{1,2}(?:\.\d{2})?)|(?P<cents>\d{2})\s?(?:¢|cents))\s*(?:/|per|a)\s*(?:game|rack)\b", re.I)
 COIN_OP = re.compile(r"\bcoin[- ]?op(?:erated)?\b|\bquarters?\s+(?:a|per)\s+(?:game|rack)\b", re.I)
+NOT_POOL_COIN = re.compile(r"\b(foosball|air\s*hockey|arcade|jukebox|video\s+games?|darts?|pinball|skee)\b", re.I)
+PER_PERSON = re.compile(r"\b(per\s+(?:person|player|guest|head)|each|additional\s+(?:guests?|players?|people)|extra\s+(?:guests?|players?))\b|\+\s*\$", re.I)
 FREE_POOL = re.compile(r"\bfree\s+(?:pool|billiards)\b", re.I)
 
 LEAGUE_ORGS = {
@@ -250,8 +252,11 @@ def _pricing(s, url, at, pool):
             rate = float(m.group("rate")) if m.group("rate") else None
             if rate is not None and not (1 <= rate <= 60):
                 continue
+            flags = []
+            if rate is not None and PER_PERSON.search(s[max(0, m.start() - 40): m.end() + 25]):
+                rate, flags = None, ["rate is per person or an add-on, not per table"]
             val = {"model": "hourly", "rate": rate}
-            out.append(_fact("pricing_model", "pricing_model:hourly", val, s, m.start(), m.end(), url, at, "stated"))
+            out.append(_fact("pricing_model", "pricing_model:hourly", val, s, m.start(), m.end(), url, at, "implied" if flags else "stated", flags))
             break
         for m in PER_GAME.finditer(s):
             rate = float(m.group("rate")) if m.group("rate") else (int(m.group("cents")) / 100 if m.group("cents") else None)
@@ -260,6 +265,8 @@ def _pricing(s, url, at, pool):
             out.append(_fact("pricing_model", "pricing_model:per-game", {"model": "per-game", "rate": rate}, s, m.start(), m.end(), url, at, "stated"))
             break
         for m in COIN_OP.finditer(s):
+            if NOT_POOL_COIN.search(s[m.start(): m.end() + 40]) and not re.search(r"pool|billiard", s[m.start(): m.end() + 40], re.I):
+                continue  # "coin-operated foosball table"
             out.append(_fact("pricing_model", "pricing_model:coin-op", {"model": "coin-op"}, s, m.start(), m.end(), url, at, "stated"))
             break
     for m in FREE_POOL.finditer(s):

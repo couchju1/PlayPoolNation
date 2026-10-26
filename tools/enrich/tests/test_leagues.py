@@ -85,6 +85,14 @@ class MusicService(unittest.TestCase):
         self.assertEqual((listing["slug"], clear), ("nickel-spot", False))
 
 
+class Hotels(unittest.TestCase):
+    def test_hotels_flagged_bars_not(self):
+        from ppn_enrich.discover import mark_hotel
+        self.assertEqual(mark_hotel({"name": "Aloft Manhattan Downtown", "venue_type": "pool-halls"})["venue_type"], "other-venue")
+        self.assertEqual(mark_hotel({"name": "Stonewall Inn", "venue_type": "bars-with-pool-tables"})["venue_type"], "bars-with-pool-tables")
+        self.assertEqual(mark_hotel({"name": "Q4", "venue_type": "pool-halls"}, {"tourism": "hotel"})["venue_type"], "other-venue")
+
+
 class DefaultSize(unittest.TestCase):
     def test_seven_foot_default_uses_the_count(self):
         count = {"field": "table_count", "value": 12, "confidence": "stated", "source_url": "https://bigsbar.com/", "quote_snippet": "12 pool tables"}
