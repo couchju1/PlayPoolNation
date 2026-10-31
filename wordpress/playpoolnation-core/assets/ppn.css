@@ -354,3 +354,99 @@ body a.ppn-button, body a.ppn-button:visited, body a.ppn-button:hover { color: #
 
 /* Find Places banner: racked pool balls on a transparent background, where the drawn rack was (Install::m_places_rack_photo). */
 .elementor .ppn-rack-balls { display: block; width: 100%; max-width: 400px; height: auto; margin: 0 auto; filter: drop-shadow(0 16px 18px rgba(0, 0, 0, .35)); }
+
+/* Homepage "Play tonight" panel (Tonight). A felt card with a brass rail; picks are numbered with pool balls. */
+.ppn-tn {
+	--tn-felt: #0E3B2D;
+	--tn-rail: #B8893A;
+	--tn-chalk: #F2F4F1;
+	--tn-dim: #B9C8BF;
+	--tn-open: #7FE0A8;
+	position: relative;
+	margin: 22px 0 6px;
+	padding: 20px 20px 18px;
+	max-width: 640px;
+	border-top: 5px solid var(--tn-rail);
+	border-radius: 4px 4px var(--ppn-radius, 10px) var(--ppn-radius, 10px);
+	background: var(--tn-felt);
+	box-shadow: 0 18px 40px rgba(0, 0, 0, .35);
+	color: var(--tn-chalk);
+	font-family: Figtree, sans-serif;
+	text-align: left;
+}
+.ppn-tn-live { display: flex; align-items: center; gap: 8px; margin: 0 0 6px; font-size: 14px; color: var(--tn-dim); font-variant-numeric: tabular-nums; }
+.ppn-tn-live strong { color: var(--tn-open); font-size: 16px; }
+.ppn-tn-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--tn-open); box-shadow: 0 0 0 0 rgba(127, 224, 168, .6); animation: ppn-tn-pulse 2.4s ease-out infinite; }
+@keyframes ppn-tn-pulse { 70% { box-shadow: 0 0 0 7px rgba(127, 224, 168, 0); } 100% { box-shadow: 0 0 0 0 rgba(127, 224, 168, 0); } }
+.ppn-tn-title { margin: 0 0 14px; font: 800 clamp(21px, 2.4vw, 26px)/1.15 Archivo, sans-serif; letter-spacing: -.01em; color: #fff; }
+.ppn-tn-controls { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 12px; }
+.ppn-tn-controls[hidden] { display: none; }
+.ppn-tn-go {
+	display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+	min-height: 50px; padding: 0 22px; border: 0; border-radius: 999px;
+	background: var(--ppn-accent, #2F6FE4); color: #fff !important;
+	font: 700 17px/1 Figtree, sans-serif; text-decoration: none; cursor: pointer;
+}
+.ppn-tn-go::before { content: ""; width: 14px; height: 14px; border-radius: 50%; background: #fff; box-shadow: inset -3px -3px 0 rgba(20, 32, 27, .18); }
+.ppn-tn-go:hover { background: var(--ppn-accent-hover, #245BC2); }
+.ppn-tn-go[aria-busy="true"] { opacity: .75; cursor: progress; }
+.ppn-tn-or { color: var(--tn-dim); font-size: 14px; }
+.ppn-tn-city select {
+	min-height: 50px; min-width: 200px; padding: 0 40px 0 16px;
+	border: 1px solid rgba(242, 244, 241, .35); border-radius: 999px;
+	background: transparent url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%23F2F4F1' stroke-width='2'/%3E%3C/svg%3E") no-repeat right 16px center;
+	color: var(--tn-chalk); font: 600 16px Figtree, sans-serif; appearance: none; cursor: pointer;
+}
+.ppn-tn-city select option { color: var(--ppn-ink, #14201B); }
+.ppn-tn-go:focus-visible, .ppn-tn-city select:focus-visible, .ppn-tn a:focus-visible { outline: 3px solid #fff; outline-offset: 3px; }
+.ppn-tn .screen-reader-text { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.ppn-tn-msg { margin: 12px 0 0; font-size: 15px; color: var(--tn-dim); }
+.ppn-tn-msg:empty { display: none; }
+.ppn-tn-list { list-style: none; margin: 14px 0 0; padding: 0; border-top: 1px solid rgba(242, 244, 241, .14); }
+.ppn-tn-list[hidden], .ppn-tn-more[hidden] { display: none; }
+.ppn-tn-row { display: grid; grid-template-columns: 40px 1fr auto; align-items: center; gap: 4px 14px; padding: 14px 0; border-bottom: 1px solid rgba(242, 244, 241, .14); }
+.ppn-tn-ball {
+	position: relative; display: grid; place-items: center; width: 36px; height: 36px; border-radius: 50%;
+	font: 800 13px/1 Archivo, sans-serif; color: var(--ppn-ink, #14201B);
+	box-shadow: inset -4px -5px 0 rgba(0, 0, 0, .22);
+	isolation: isolate;
+}
+.ppn-tn-ball::before { content: ""; position: absolute; inset: 9px; border-radius: 50%; background: #fff; z-index: -1; }
+.ppn-tn-ball--1 { background: #F2B705; }
+.ppn-tn-ball--2 { background: #1F4FD1; }
+.ppn-tn-ball--3 { background: #C8252C; }
+.ppn-tn-body { min-width: 0; }
+.ppn-tn-name { color: #fff !important; font: 700 17px/1.25 Archivo, sans-serif; text-decoration: none; }
+.ppn-tn-name:hover { text-decoration: underline; }
+.ppn-tn-meta, .ppn-tn-facts { margin: 3px 0 0; font-size: 14px; line-height: 1.4; color: var(--tn-dim); }
+.ppn-tn-meta > span + span::before { content: "·"; margin: 0 6px; }
+.ppn-tn-status--open { color: var(--tn-open); font-weight: 700; }
+.ppn-tn-league { display: inline-block; margin-left: 8px; padding: 1px 8px; border-radius: 999px; background: var(--tn-rail); color: #14201B; font-size: 12px; font-weight: 700; }
+.ppn-tn-facts:empty { display: none; }
+.ppn-tn-facts > .ppn-tn-league:first-child { margin-left: 0; }
+.ppn-tn-actions { display: flex; gap: 8px; margin: 0; }
+.ppn-tn-btn {
+	display: inline-flex; align-items: center; min-height: 44px; padding: 0 16px; border-radius: 999px;
+	background: #fff; color: var(--ppn-felt, #0E3B2D) !important; font: 700 15px/1 Figtree, sans-serif; text-decoration: none;
+}
+.ppn-tn-btn--ghost { background: transparent; color: #fff !important; border: 1px solid rgba(242, 244, 241, .5); }
+.ppn-tn-btn:hover { background: var(--tn-chalk); }
+.ppn-tn-btn--ghost:hover { background: rgba(242, 244, 241, .1); }
+.ppn-tn-more { margin: 14px 0 0; }
+.ppn-tn-all { color: #fff !important; font-weight: 700; text-decoration: underline; text-underline-offset: 3px; }
+.ppn-tn-noscript { margin: 0; }
+/* Once the panel works it replaces the theme's search form in the hero. */
+.ppn-tn-ready .ppn-hero-search { display: none !important; }
+
+@media (max-width: 600px) {
+	.ppn-tn { margin-left: -4px; margin-right: -4px; padding: 18px 16px 14px; }
+	.ppn-tn-controls { flex-direction: column; align-items: stretch; }
+	.ppn-tn-or { text-align: center; }
+	.ppn-tn-city select { width: 100%; }
+	.ppn-tn-row { grid-template-columns: 36px 1fr; }
+	.ppn-tn-actions { grid-column: 2; margin-top: 8px; }
+	.ppn-tn-btn { flex: 1; justify-content: center; }
+}
+@media (prefers-reduced-motion: reduce) {
+	.ppn-tn-dot { animation: none; }
+}

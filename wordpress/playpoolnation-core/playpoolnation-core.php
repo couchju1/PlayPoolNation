@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       PlayPoolNation Core
  * Description:       Pool-specific data, trust, community and SEO features for PlayPoolNation, built on the My Listing theme.
- * Version:     1.11.0
+ * Version:     1.12.0
  * Requires at least: 6.4
  * Requires PHP:      8.1
  * Author:            PlayPoolNation
@@ -19,7 +19,7 @@ if ( defined( 'PPN_CORE_VERSION' ) ) {
 	return;
 }
 
-define( 'PPN_CORE_VERSION', '1.11.1' );
+define( 'PPN_CORE_VERSION', '1.12.0' );
 define( 'PPN_CORE_DB_VERSION', 4 );
 define( 'PPN_CORE_FILE', __FILE__ );
 define( 'PPN_CORE_DIR', __DIR__ );
@@ -66,6 +66,7 @@ require_once PPN_CORE_DIR . '/includes/class-seo-meta.php';
 require_once PPN_CORE_DIR . '/includes/class-stats.php';
 require_once PPN_CORE_DIR . '/includes/class-metros.php';
 require_once PPN_CORE_DIR . '/includes/class-city-page.php';
+require_once PPN_CORE_DIR . '/includes/class-tonight.php';
 require_once PPN_CORE_DIR . '/includes/class-geocoder.php';
 require_once PPN_CORE_DIR . '/includes/class-forms.php';
 require_once PPN_CORE_DIR . '/includes/class-moderation.php';
@@ -106,6 +107,7 @@ PlayPoolNation\Core\Seo_Meta::boot();
 PlayPoolNation\Core\Stats::boot();
 PlayPoolNation\Core\Metros::boot();
 PlayPoolNation\Core\City_Page::boot();
+PlayPoolNation\Core\Tonight::boot();
 PlayPoolNation\Core\Forms::boot();
 PlayPoolNation\Core\Moderation::boot();
 PlayPoolNation\Core\Claims::boot();
