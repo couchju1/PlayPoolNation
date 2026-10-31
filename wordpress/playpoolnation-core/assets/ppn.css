@@ -450,3 +450,46 @@ body a.ppn-button, body a.ppn-button:visited, body a.ppn-button:hover { color: #
 @media (prefers-reduced-motion: reduce) {
 	.ppn-tn-dot { animation: none; }
 }
+
+/* Venue page "the room": tables drawn to scale from above (Helpers\Table_Room).
+   Width is the playing surface length: 7' 78", 8' 88", 9' 100", carom 112", snooker 144". */
+.ppn-room { --u: .62px; margin: 18px 0 6px; padding: 18px 18px 12px; border-radius: var(--ppn-radius); background: #2A1F17 repeating-linear-gradient(90deg, rgba(255, 255, 255, .025) 0 2px, transparent 2px 46px); color: #F2F4F1; }
+.ppn-room-defs { position: absolute; width: 0; height: 0; overflow: hidden; }
+.ppn-room-group + .ppn-room-group { margin-top: 14px; }
+.ppn-room-cap { margin: 0 0 8px; font: 700 12px/1.2 Figtree, sans-serif; letter-spacing: .06em; text-transform: uppercase; color: #D9C29A; }
+.ppn-room-row { display: flex; flex-wrap: wrap; gap: 10px 12px; align-items: center; }
+.ppn-room-t { display: block; height: auto; width: calc(78 * var(--u) * 120 / 104); overflow: visible; }
+.ppn-room-t--8-foot { width: calc(88 * var(--u) * 120 / 104); }
+.ppn-room-t--9-foot { width: calc(100 * var(--u) * 120 / 104); }
+.ppn-room-t--carom { width: calc(112 * var(--u) * 120 / 104); }
+.ppn-room-t--snooker { width: calc(144 * var(--u) * 120 / 104); }
+.ppn-room-rail { fill: #6B4426; }
+.ppn-room-felt { fill: #1F7A55; }
+.ppn-room-pocket { fill: #0B0F0D; }
+.ppn-room-spot { fill: rgba(255, 255, 255, .7); }
+.ppn-room-t--carom .ppn-room-pocket { display: none; }
+.ppn-room-t--snooker .ppn-room-felt { fill: #1C6B3A; }
+.ppn-room-t--unknown .ppn-room-rail { fill: none; stroke: #D9C29A; stroke-width: 2; stroke-dasharray: 6 5; }
+.ppn-room-t--unknown .ppn-room-felt, .ppn-room-t--unknown .ppn-room-pocket, .ppn-room-t--unknown .ppn-room-spot { fill: transparent; }
+.ppn-room-more { margin: 12px 0 0; font-weight: 700; color: #D9C29A; }
+.ppn-room-note { margin: 12px 0 0; font-size: 12px; color: rgba(242, 244, 241, .6); }
+@media (prefers-reduced-motion: no-preference) {
+	.ppn-room-t { animation: ppn-room-in .45s cubic-bezier(.2, .7, .2, 1) both; animation-delay: calc(var(--i, 0) * 28ms); }
+	@keyframes ppn-room-in { from { opacity: 0; transform: translateY(6px) scale(.96); } }
+}
+@media (max-width: 600px) {
+	.ppn-room { --u: .5px; padding: 14px 12px 10px; }
+	.ppn-room-row { gap: 8px 9px; }
+}
+
+/* No table facts yet: an empty table and a direct ask. */
+.ppn-room-ask { display: flex; align-items: center; gap: 18px; padding: 16px 18px; border: 2px dashed var(--ppn-line); border-radius: var(--ppn-radius); }
+.ppn-room-ask .ppn-room-t--ask { flex: none; width: 104px; }
+.ppn-room-ask .ppn-room-felt { fill: #2C5A47; }
+.ppn-room-ask text { fill: rgba(255, 255, 255, .85); font: 800 24px Archivo, sans-serif; }
+.ppn-room-ask-title { margin: 0; font: 700 17px/1.3 Archivo, sans-serif; color: var(--ppn-ink); }
+.ppn-room-ask-text { margin: 4px 0 0; font-size: 15px; line-height: 1.5; color: var(--ppn-muted); }
+.ppn-room-ask-text a { font-weight: 700; color: var(--ppn-accent); }
+@media (max-width: 480px) {
+	.ppn-room-ask { flex-direction: column; align-items: flex-start; }
+}

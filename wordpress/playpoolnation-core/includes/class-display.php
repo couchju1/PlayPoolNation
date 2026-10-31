@@ -184,6 +184,8 @@ final class Display {
 			$html .= '</div>';
 		}
 
+		$html .= self::room( $v );
+
 		$details = '';
 		$brands = $v->term_names( 'table-brand' );
 		if ( $brands ) {
@@ -226,7 +228,28 @@ final class Display {
 			$html .= '<h6 class="ppn-subhead">' . esc_html__( 'Pricing', 'playpoolnation-core' ) . '</h6>' . $pricing;
 		}
 
+		if ( '' === $html ) {
+			$html = self::room_unknown();
+		}
 		return self::section( 'ppn-tables', $html );
+	}
+
+	/** The tables drawn to scale, from sourced counts only (Helpers\Table_Room). */
+	private static function room( Venue $v ): string {
+		$facts = About::facts( $v );
+		$sources = Provenance::field_sources( $v->id() );
+		$models = isset( $sources['table-models'] ) ? $v->field( 'table-models' ) : '';
+		$groups = Helpers\Table_Room::groups( (array) $facts['size_counts'], null === $facts['tables'] ? null : (int) $facts['tables'], $models );
+		return Helpers\Table_Room::html( $groups );
+	}
+
+	/** No table facts yet: an empty table and a direct ask, which opens Suggest an edit. */
+	private static function room_unknown(): string {
+		return '<div class="ppn-room-ask">'
+			. '<svg class="ppn-room-t ppn-room-t--ask" viewBox="0 0 120 64" aria-hidden="true" focusable="false"><rect class="ppn-room-rail" x="1" y="1" width="118" height="62" rx="7"/><rect class="ppn-room-felt" x="8" y="8" width="104" height="48" rx="2"/><text x="60" y="38" text-anchor="middle">?</text></svg>'
+			. '<div><p class="ppn-room-ask-title">We don\'t know the tables here yet.</p>'
+			. '<p class="ppn-room-ask-text">How many are there, and what size? <a href="#suggest-edit" data-ppn-suggest="table-count" data-ppn-event="suggest_edit">Tell us</a> and we\'ll add it for the next player.</p></div>'
+			. '</div>';
 	}
 
 	public static function amenities( $atts = [] ): string {

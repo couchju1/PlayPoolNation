@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       PlayPoolNation Core
  * Description:       Pool-specific data, trust, community and SEO features for PlayPoolNation, built on the My Listing theme.
- * Version:     1.12.0
+ * Version:     1.13.0
  * Requires at least: 6.4
  * Requires PHP:      8.1
  * Author:            PlayPoolNation
@@ -19,7 +19,7 @@ if ( defined( 'PPN_CORE_VERSION' ) ) {
 	return;
 }
 
-define( 'PPN_CORE_VERSION', '1.12.0' );
+define( 'PPN_CORE_VERSION', '1.13.0' );
 define( 'PPN_CORE_DB_VERSION', 4 );
 define( 'PPN_CORE_FILE', __FILE__ );
 define( 'PPN_CORE_DIR', __DIR__ );
@@ -32,6 +32,7 @@ require_once PPN_CORE_DIR . '/includes/helpers/class-format.php';
 require_once PPN_CORE_DIR . '/includes/helpers/class-og-card.php';
 require_once PPN_CORE_DIR . '/includes/helpers/class-about-text.php';
 require_once PPN_CORE_DIR . '/includes/helpers/class-tri-state.php';
+require_once PPN_CORE_DIR . '/includes/helpers/class-table-room.php';
 require_once PPN_CORE_DIR . '/includes/helpers/class-html-fix.php';
 require_once PPN_CORE_DIR . '/includes/helpers/class-event-data.php';
 require_once PPN_CORE_DIR . '/includes/helpers/class-city-text.php';
