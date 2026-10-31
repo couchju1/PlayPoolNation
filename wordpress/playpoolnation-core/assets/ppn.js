@@ -106,8 +106,53 @@
 		} ).join( ', ' );
 	}
 
+	/* Miles between two points (haversine). */
+	function miles( lat1, lng1, lat2, lng2 ) {
+		var rad = Math.PI / 180;
+		var dLat = ( lat2 - lat1 ) * rad;
+		var dLng = ( lng2 - lng1 ) * rad;
+		var a = Math.sin( dLat / 2 ) * Math.sin( dLat / 2 ) + Math.cos( lat1 * rad ) * Math.cos( lat2 * rad ) * Math.sin( dLng / 2 ) * Math.sin( dLng / 2 );
+		return 3958.8 * 2 * Math.atan2( Math.sqrt( a ), Math.sqrt( 1 - a ) );
+	}
+
+	/*
+	 * "Play tonight" picks (Tonight). Open rooms first, then rooms with unknown hours,
+	 * then closed ones. Near a point: nearest first, within opts.radius miles. In a
+	 * city: most tables first. Each pick carries its status, distance and whether a
+	 * league plays there today (in the venue's own timezone).
+	 */
+	function ppnTonightRank( venues, opts ) {
+		var now = opts.now || new Date();
+		var geo = typeof opts.lat === 'number' && typeof opts.lng === 'number';
+		var rank = { open: 0, unknown: 1, closed: 2 };
+		var picks = [];
+		venues.forEach( function ( v ) {
+			if ( ! geo && v.k !== opts.city ) {
+				return;
+			}
+			var dist = geo ? miles( opts.lat, opts.lng, v.a, v.o ) : null;
+			if ( geo && dist > ( opts.radius || 50 ) ) {
+				return;
+			}
+			var status = ppnOpenStatus( v.h || {}, now );
+			var day = v.h && v.h.tz ? Math.floor( weekMinute( v.h.tz, now ) / 1440 ) : -1;
+			picks.push( { v: v, miles: dist, status: status, league: ( v.l || [] ).indexOf( day ) !== -1 && status.state !== 'closed' } );
+		} );
+		picks.sort( function ( a, b ) {
+			return ( rank[ a.status.state ] - rank[ b.status.state ] ) ||
+				( geo ? a.miles - b.miles : ( b.v.t || 0 ) - ( a.v.t || 0 ) ) ||
+				a.v.n.localeCompare( b.v.n );
+		} );
+		return picks.slice( 0, opts.limit || 3 );
+	}
+
+	/* How many of the venues are open at this moment. */
+	function ppnOpenCount( venues, now ) {
+		return venues.filter( function ( v ) { return ppnOpenStatus( v.h || {}, now ).state === 'open'; } ).length;
+	}
+
 	if ( typeof module !== 'undefined' && module.exports ) {
-		module.exports = { ppnOpenStatus: ppnOpenStatus, todaysHours: todaysHours };
+		module.exports = { ppnOpenStatus: ppnOpenStatus, todaysHours: todaysHours, miles: miles, ppnTonightRank: ppnTonightRank, ppnOpenCount: ppnOpenCount };
 	}
 	if ( typeof document === 'undefined' ) {
 		return;
@@ -834,6 +879,240 @@
 	}() );
 
 	/*
+	 * Homepage "Play tonight" panel (Tonight). Loads every venue's hours and place in
+	 * one cached request, shows how many rooms are open now, and lists the best three
+	 * picks near the visitor or in a chosen city. Once it works, the theme's search
+	 * form in the hero is hidden; without JavaScript that form stays.
+	 */
+	( function () {
+		var panel = document.querySelector( '[data-ppn-tonight]' );
+		if ( ! panel || ! window.fetch || ! window.Intl ) {
+			return;
+		}
+		var RADIUS = 50;
+		var BALLS = 3;
+		var $ = function ( sel ) { return panel.querySelector( sel ); };
+		var live = $( '[data-ppn-tn-live]' );
+		var count = $( '[data-ppn-tn-count]' );
+		var controls = $( '[data-ppn-tn-controls]' );
+		var locate = $( '[data-ppn-tn-locate]' );
+		var select = $( '[data-ppn-tn-city]' );
+		var msg = $( '[data-ppn-tn-msg]' );
+		var list = $( '[data-ppn-tn-list]' );
+		var more = $( '[data-ppn-tn-more]' );
+		var data = null;
+		var last = null;
+
+		function el( tag, cls, text ) {
+			var n = document.createElement( tag );
+			if ( cls ) {
+				n.className = cls;
+			}
+			if ( text ) {
+				n.textContent = text;
+			}
+			return n;
+		}
+		function link( href, cls, text, event ) {
+			var a = el( 'a', cls, text );
+			a.href = href;
+			if ( event ) {
+				a.setAttribute( 'data-ppn-event', event );
+			}
+			if ( event === 'directions' ) {
+				a.target = '_blank';
+				a.rel = 'noopener';
+			}
+			return a;
+		}
+		function say( text ) {
+			msg.textContent = text || '';
+		}
+		function cityOf( key ) {
+			for ( var i = 0; i < data.c.length; i++ ) {
+				if ( data.c[ i ].k === key ) {
+					return data.c[ i ];
+				}
+			}
+			return null;
+		}
+		function distance( m ) {
+			return m < 0.95 ? 'Under a mile' : ( m < 10 ? m.toFixed( 1 ) : Math.round( m ) ) + ' mi';
+		}
+
+		function updateCount() {
+			var n = ppnOpenCount( data.v, new Date() );
+			count.innerHTML = '';
+			count.appendChild( el( 'strong', '', String( n ) ) );
+			count.appendChild( document.createTextNode( ' of ' + data.v.length + ( n === 1 ? ' room is' : ' rooms are' ) + ' open right now' ) );
+			live.hidden = false;
+		}
+
+		function row( pick, i ) {
+			var v = pick.v;
+			var li = el( 'li', 'ppn-tn-row' );
+			li.setAttribute( 'data-listing-id', String( v.i ) );
+			li.appendChild( el( 'span', 'ppn-tn-ball ppn-tn-ball--' + ( i + 1 ), String( i + 1 ) ) ).setAttribute( 'aria-hidden', 'true' );
+			var body = el( 'div', 'ppn-tn-body' );
+			body.appendChild( link( v.u, 'ppn-tn-name', v.n ) );
+			var meta = el( 'p', 'ppn-tn-meta' );
+			if ( pick.status.label ) {
+				meta.appendChild( el( 'span', 'ppn-tn-status ppn-tn-status--' + pick.status.state, pick.status.label ) );
+			}
+			if ( pick.miles !== null ) {
+				meta.appendChild( el( 'span', 'ppn-tn-dist', distance( pick.miles ) ) );
+			}
+			body.appendChild( meta );
+			var facts = [];
+			if ( v.t ) {
+				facts.push( v.t + ( v.t === 1 ? ' table' : ' tables' ) );
+			}
+			if ( v.z ) {
+				facts.push( v.z );
+			}
+			if ( facts.length || pick.league ) {
+				var f = el( 'p', 'ppn-tn-facts', facts.join( ', ' ) );
+				if ( pick.league ) {
+					f.appendChild( el( 'span', 'ppn-tn-league', 'League night tonight' ) );
+				}
+				body.appendChild( f );
+			}
+			li.appendChild( body );
+			var actions = el( 'p', 'ppn-tn-actions' );
+			if ( v.p ) {
+				actions.appendChild( link( 'tel:' + v.p, 'ppn-tn-btn', 'Call', 'call' ) ).setAttribute( 'aria-label', 'Call ' + v.n );
+			}
+			if ( v.d ) {
+				actions.appendChild( link( v.d, 'ppn-tn-btn ppn-tn-btn--ghost', 'Directions', 'directions' ) ).setAttribute( 'aria-label', 'Directions to ' + v.n );
+			}
+			if ( actions.childNodes.length ) {
+				li.appendChild( actions );
+			}
+			return li;
+		}
+
+		function show( picks, footer ) {
+			list.innerHTML = '';
+			picks.forEach( function ( p, i ) { list.appendChild( row( p, i ) ); } );
+			list.hidden = ! picks.length;
+			more.innerHTML = '';
+			if ( footer ) {
+				more.appendChild( footer );
+			}
+			more.hidden = ! footer;
+		}
+
+		function render() {
+			if ( ! last ) {
+				return;
+			}
+			var now = new Date();
+			if ( last.city ) {
+				var c = cityOf( last.city );
+				var picks = ppnTonightRank( data.v, { city: last.city, now: now, limit: BALLS } );
+				var total = data.v.filter( function ( v ) { return v.k === last.city; } ).length;
+				say( picks.length && picks[ 0 ].status.state === 'closed' ? 'Everything in ' + c.n + ' is closed right now. Here is who opens first.' : '' );
+				show( picks, c && c.u ? link( c.u, 'ppn-tn-all', total > picks.length ? 'See all ' + total + ' places in ' + c.n : 'More about playing pool in ' + c.n ) : null );
+				return;
+			}
+			var near = ppnTonightRank( data.v, { lat: last.lat, lng: last.lng, now: now, radius: RADIUS, limit: BALLS } );
+			if ( ! near.length ) {
+				var closest = null;
+				data.v.forEach( function ( v ) {
+					var m = miles( last.lat, last.lng, v.a, v.o );
+					if ( ! closest || m < closest.m ) {
+						closest = { v: v, m: m };
+					}
+				} );
+				var where = closest ? cityOf( closest.v.k ) : null;
+				say( 'Nothing on our map within ' + RADIUS + ' miles of you yet.' + ( closest ? ' The closest is ' + closest.v.n + ', ' + Math.round( closest.m ) + ' miles away' + ( where ? ' in ' + where.n : '' ) + '.' : '' ) );
+				show( [], link( '/add-a-venue/', 'ppn-tn-all', 'Know a place near you? Add it' ) );
+				return;
+			}
+			say( near[ 0 ].status.state === 'closed' ? 'Nothing near you is open right now. Here is who opens first.' : '' );
+			var map = new URL( cfg.exploreUrl || '/', location.href );
+			map.searchParams.set( 'type', 'place' );
+			map.searchParams.set( 'search_location', 'Current location' );
+			map.searchParams.set( 'lat', last.lat.toFixed( 5 ) );
+			map.searchParams.set( 'lng', last.lng.toFixed( 5 ) );
+			map.searchParams.set( 'proximity', String( RADIUS ) );
+			map.searchParams.set( 'sort', 'nearby' );
+			show( near, link( map.toString(), 'ppn-tn-all', 'See everything near you on the map' ) );
+		}
+
+		function findMe( quiet ) {
+			if ( ! navigator.geolocation ) {
+				say( 'Your browser can\'t share a location. Pick a city instead.' );
+				return;
+			}
+			locate.setAttribute( 'aria-busy', 'true' );
+			if ( ! quiet ) {
+				say( 'Finding tables near you…' );
+			}
+			navigator.geolocation.getCurrentPosition( function ( pos ) {
+				locate.removeAttribute( 'aria-busy' );
+				select.value = '';
+				last = { lat: pos.coords.latitude, lng: pos.coords.longitude };
+				render();
+			}, function ( err ) {
+				locate.removeAttribute( 'aria-busy' );
+				if ( ! quiet ) {
+					say( err && err.code === 1 ? 'Location sharing is off. Pick a city instead.' : 'We couldn\'t get your location. Pick a city instead.' );
+				}
+			}, { enableHighAccuracy: false, timeout: 10000, maximumAge: 300000 } );
+		}
+
+		function start( json ) {
+			if ( ! json || ! Array.isArray( json.v ) || ! json.v.length ) {
+				return;
+			}
+			data = json;
+			var counts = {};
+			data.v.forEach( function ( v ) { counts[ v.k ] = ( counts[ v.k ] || 0 ) + 1; } );
+			data.c.forEach( function ( c ) {
+				if ( counts[ c.k ] ) {
+					var opt = el( 'option', '', c.n + ' (' + counts[ c.k ] + ')' );
+					opt.value = String( c.k );
+					select.appendChild( opt );
+				}
+			} );
+			controls.hidden = false;
+			var hero = panel.closest( '.ppn-home-hero' );
+			if ( hero ) {
+				hero.classList.add( 'ppn-tn-ready' );
+			}
+			updateCount();
+			setInterval( function () {
+				if ( ! document.hidden ) {
+					updateCount();
+					render();
+				}
+			}, 60000 );
+			locate.addEventListener( 'click', function () { findMe( false ); } );
+			select.addEventListener( 'change', function () {
+				var key = parseInt( select.value, 10 );
+				if ( key ) {
+					last = { city: key };
+					render();
+				}
+			} );
+			if ( navigator.permissions && navigator.permissions.query ) {
+				navigator.permissions.query( { name: 'geolocation' } ).then( function ( p ) {
+					if ( p.state === 'granted' && ! last ) {
+						findMe( true );
+					}
+				} ).catch( function () {} );
+			}
+		}
+
+		panel.setAttribute( 'data-ppn-where', 'tonight' );
+		fetch( panel.getAttribute( 'data-ppn-tonight' ), { credentials: 'omit' } )
+			.then( function ( r ) { return r.ok ? r.json() : null; } )
+			.then( start )
+			.catch( function () {} );
+	}() );
+
+	/*
 	 * Listing clicks and venue page views (Tracking). Links carry data-ppn-event; the
 	 * theme's Save buttons are matched by class because cards from "Load more" are
 	 * built outside the page markup. One beacon per click, no cookies. The landing
@@ -885,6 +1164,10 @@
 			return claim ? parseInt( claim[ 1 ], 10 ) : track.venue;
 		}
 		function whereOf( el, venue ) {
+			var zone = el.closest( '[data-ppn-where]' );
+			if ( zone ) {
+				return zone.getAttribute( 'data-ppn-where' );
+			}
 			if ( track.page === 'my_pool' ) {
 				return 'my_pool';
 			}

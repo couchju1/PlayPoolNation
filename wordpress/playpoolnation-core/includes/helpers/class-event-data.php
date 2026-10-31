@@ -17,7 +17,7 @@ defined( 'ABSPATH' ) || exit;
 final class Event_Data {
 
 	public const EVENTS   = [ 'call', 'directions', 'website', 'save', 'share', 'suggest_edit', 'claim' ];
-	public const CONTEXTS = [ 'venue_page', 'city_page', 'hub_page', 'card', 'my_pool' ];
+	public const CONTEXTS = [ 'venue_page', 'city_page', 'hub_page', 'card', 'my_pool', 'tonight' ];
 	public const DEVICES  = [ 'mobile', 'desktop' ];
 	public const SOURCES  = [ 'google', 'bing', 'facebook', 'reddit', 'direct', 'other' ];
 
