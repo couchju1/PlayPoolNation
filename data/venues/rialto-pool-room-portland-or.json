@@ -1,0 +1,77 @@
+{
+  "schema": 1,
+  "slug": "rialto-pool-room-portland-or",
+  "wp_id": 1771,
+  "name": "Rialto Pool Room",
+  "type": "pool-halls",
+  "status": "open",
+  "address": {
+    "street": "529 SW 4th Ave",
+    "city": "Portland",
+    "state": "OR",
+    "postal_code": "97204",
+    "country": "US"
+  },
+  "geo": {
+    "lat": 45.51943,
+    "lng": -122.67643
+  },
+  "region": {
+    "state": "oregon",
+    "state_name": "Oregon",
+    "city": "portland",
+    "city_name": "Portland"
+  },
+  "phone": "(503) 228-7605",
+  "website": "https://rialtopoolroom.com/",
+  "hours": {
+    "tz": "America/Los_Angeles",
+    "ranges": [
+      [
+        0,
+        150
+      ],
+      [
+        660,
+        1590
+      ],
+      [
+        2100,
+        3030
+      ],
+      [
+        3540,
+        4470
+      ],
+      [
+        4980,
+        5910
+      ],
+      [
+        6420,
+        7350
+      ],
+      [
+        7860,
+        8790
+      ],
+      [
+        9300,
+        10080
+      ]
+    ]
+  },
+  "listing_source": {
+    "source": "google_places",
+    "url": "https://maps.google.com/?cid=8943913840764666641",
+    "checked_at": "2026-10-03",
+    "place_id": "ChIJydhmyAUKlVQREUN6VEAqH3w",
+    "osm_id": ""
+  },
+  "claimed": false,
+  "verification": "unverified",
+  "photo": null,
+  "created_at": "2026-10-03",
+  "updated_at": "2026-10-03",
+  "facts": []
+}

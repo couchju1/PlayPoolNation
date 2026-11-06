@@ -1,0 +1,73 @@
+{
+  "schema": 1,
+  "slug": "the-independent-atlanta-ga",
+  "wp_id": 1742,
+  "name": "The Independent",
+  "type": "bars-with-pool-tables",
+  "status": "open",
+  "address": {
+    "street": "931 Monroe Dr NE Ste c-205",
+    "city": "Atlanta",
+    "state": "GA",
+    "postal_code": "30308",
+    "country": "US"
+  },
+  "geo": {
+    "lat": 33.77923,
+    "lng": -84.3672
+  },
+  "region": {
+    "state": "georgia",
+    "state_name": "Georgia",
+    "city": "atlanta",
+    "city_name": "Atlanta"
+  },
+  "phone": "(404) 249-9869",
+  "website": "http://theindiebar.com/",
+  "hours": {
+    "tz": "America/New_York",
+    "ranges": [
+      [
+        1020,
+        1500
+      ],
+      [
+        2460,
+        2940
+      ],
+      [
+        3900,
+        4380
+      ],
+      [
+        5340,
+        5820
+      ],
+      [
+        6780,
+        7290
+      ],
+      [
+        7920,
+        8730
+      ],
+      [
+        9360,
+        10080
+      ]
+    ]
+  },
+  "listing_source": {
+    "source": "google_places",
+    "url": "https://maps.google.com/?cid=13343532970948473010",
+    "checked_at": "2026-10-03",
+    "place_id": "ChIJM_BtKBYE9YgRsrAYPorALbk",
+    "osm_id": ""
+  },
+  "claimed": false,
+  "verification": "unverified",
+  "photo": null,
+  "created_at": "2026-10-03",
+  "updated_at": "2026-10-03",
+  "facts": []
+}

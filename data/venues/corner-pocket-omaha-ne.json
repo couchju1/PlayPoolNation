@@ -1,0 +1,77 @@
+{
+  "schema": 1,
+  "slug": "corner-pocket-omaha-ne",
+  "wp_id": 1780,
+  "name": "Corner Pocket",
+  "type": "bars-with-pool-tables",
+  "status": "open",
+  "address": {
+    "street": "4201 S 38th St",
+    "city": "Omaha",
+    "state": "NE",
+    "postal_code": "68107",
+    "country": "US"
+  },
+  "geo": {
+    "lat": 41.21838,
+    "lng": -95.9698
+  },
+  "region": {
+    "state": "nebraska",
+    "state_name": "Nebraska",
+    "city": "omaha",
+    "city_name": "Omaha"
+  },
+  "phone": "(402) 505-7377",
+  "website": "",
+  "hours": {
+    "tz": "America/Chicago",
+    "ranges": [
+      [
+        0,
+        120
+      ],
+      [
+        600,
+        1560
+      ],
+      [
+        2040,
+        3000
+      ],
+      [
+        3480,
+        4440
+      ],
+      [
+        4920,
+        5880
+      ],
+      [
+        6360,
+        7320
+      ],
+      [
+        7800,
+        8760
+      ],
+      [
+        9240,
+        10080
+      ]
+    ]
+  },
+  "listing_source": {
+    "source": "google_places",
+    "url": "https://maps.google.com/?cid=93646684660867352",
+    "checked_at": "2026-10-03",
+    "place_id": "ChIJOVG3W7qOk4cRGKGa3SmzTAE",
+    "osm_id": ""
+  },
+  "claimed": false,
+  "verification": "unverified",
+  "photo": null,
+  "created_at": "2026-10-03",
+  "updated_at": "2026-10-03",
+  "facts": []
+}

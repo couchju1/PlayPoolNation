@@ -1,0 +1,100 @@
+{
+  "_comment": "City pillar pages that are launched (indexed). A city with 2+ venues gets a page either way; until it is listed here the page and its hubs are noindex. Launch a city when its data is complete, then watch Search Console for 3 to 4 weeks before the next wave.",
+  "cities": {
+    "arizona/phoenix": {
+      "launched": "2026-10-03",
+      "note": "indexed on the WordPress site before the move"
+    },
+    "california/los-angeles": {
+      "launched": "2026-10-03",
+      "note": "indexed on the WordPress site before the move"
+    },
+    "california/san-diego": {
+      "launched": "2026-10-03",
+      "note": "indexed on the WordPress site before the move"
+    },
+    "california/san-francisco": {
+      "launched": "2026-10-03",
+      "note": "indexed on the WordPress site before the move"
+    },
+    "colorado/denver": {
+      "launched": "2026-10-03",
+      "note": "indexed on the WordPress site before the move"
+    },
+    "florida/miami": {
+      "launched": "2026-10-03",
+      "note": "indexed on the WordPress site before the move"
+    },
+    "georgia/atlanta": {
+      "launched": "2026-10-03",
+      "note": "indexed on the WordPress site before the move"
+    },
+    "illinois/chicago": {
+      "launched": "2026-10-03",
+      "note": "indexed on the WordPress site before the move"
+    },
+    "nebraska/omaha": {
+      "launched": "2026-10-03",
+      "note": "indexed on the WordPress site before the move"
+    },
+    "nevada/las-vegas": {
+      "launched": "2026-10-03",
+      "note": "indexed on the WordPress site before the move"
+    },
+    "new-york/new-york-ny": {
+      "launched": "2026-10-03",
+      "note": "indexed on the WordPress site before the move"
+    },
+    "oregon/portland": {
+      "launched": "2026-10-03",
+      "note": "indexed on the WordPress site before the move"
+    },
+    "pennsylvania/philadelphia": {
+      "launched": "2026-10-03",
+      "note": "indexed on the WordPress site before the move"
+    },
+    "south-dakota/sioux-falls": {
+      "launched": "2026-10-03",
+      "note": "indexed on the WordPress site before the move"
+    },
+    "tennessee/nashville": {
+      "launched": "2026-10-03",
+      "note": "indexed on the WordPress site before the move"
+    },
+    "texas/austin": {
+      "launched": "2026-10-03",
+      "note": "indexed on the WordPress site before the move"
+    },
+    "texas/dallas": {
+      "launched": "2026-10-03",
+      "note": "indexed on the WordPress site before the move"
+    },
+    "texas/fort-worth": {
+      "launched": "2026-10-03",
+      "note": "indexed on the WordPress site before the move"
+    },
+    "texas/houston": {
+      "launched": "2026-10-03",
+      "note": "indexed on the WordPress site before the move"
+    },
+    "washington-d-c/washington-dc": {
+      "launched": "2026-10-03",
+      "note": "indexed on the WordPress site before the move"
+    },
+    "washington/seattle": {
+      "launched": "2026-10-03",
+      "note": "indexed on the WordPress site before the move"
+    }
+  },
+  "metros": {
+    "minneapolis-st-paul": {
+      "launched": "2026-10-03"
+    },
+    "boston": {
+      "launched": "2026-10-03"
+    },
+    "detroit": {
+      "launched": "2026-10-03"
+    }
+  }
+}

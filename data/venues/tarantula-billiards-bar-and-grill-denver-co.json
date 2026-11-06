@@ -1,0 +1,77 @@
+{
+  "schema": 1,
+  "slug": "tarantula-billiards-bar-and-grill-denver-co",
+  "wp_id": 1737,
+  "name": "Tarantula Billiards Bar & Grill",
+  "type": "pool-halls",
+  "status": "open",
+  "address": {
+    "street": "1520 Stout St",
+    "city": "Denver",
+    "state": "CO",
+    "postal_code": "80202",
+    "country": "US"
+  },
+  "geo": {
+    "lat": 39.74492,
+    "lng": -104.99399
+  },
+  "region": {
+    "state": "colorado",
+    "state_name": "Colorado",
+    "city": "denver",
+    "city_name": "Denver"
+  },
+  "phone": "(720) 932-6666",
+  "website": "https://tarantulabilliards.com/",
+  "hours": {
+    "tz": "America/Denver",
+    "ranges": [
+      [
+        0,
+        120
+      ],
+      [
+        660,
+        1560
+      ],
+      [
+        2100,
+        3000
+      ],
+      [
+        3540,
+        4440
+      ],
+      [
+        4980,
+        5880
+      ],
+      [
+        6420,
+        7320
+      ],
+      [
+        7860,
+        8760
+      ],
+      [
+        9300,
+        10080
+      ]
+    ]
+  },
+  "listing_source": {
+    "source": "google_places",
+    "url": "https://maps.google.com/?cid=558675435061402677",
+    "checked_at": "2026-10-03",
+    "place_id": "ChIJH4HjWtB4bIcRNVySI1nQwAc",
+    "osm_id": ""
+  },
+  "claimed": false,
+  "verification": "unverified",
+  "photo": null,
+  "created_at": "2026-10-03",
+  "updated_at": "2026-10-03",
+  "facts": []
+}

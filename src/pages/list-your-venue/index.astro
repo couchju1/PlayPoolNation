@@ -1,0 +1,12 @@
+---
+import Base from '../../layouts/Base.astro';
+import SubmitForm from '../../components/SubmitForm.astro';
+import { BRAND } from '../../lib/data.ts';
+---
+<Base title={`List or Claim Your Venue, Free | ${BRAND}`} description="Own or run a pool hall or a bar with pool tables? Claim your free listing to add tables, rates and league nights, and see the calls we send you." crumbs={[['Home', '/'], ['List your venue', '']]} pageType="form">
+  <h1>List or claim your venue</h1>
+  <p class="lede">It's free. Claim your listing to add your tables, rates and league nights. Owner facts are marked as yours, and we'll show you how many people called or asked for directions.</p>
+  <p>Not listed yet? <a href="/add-a-venue/">Add your venue</a> first.</p>
+  <SubmitForm kind="claim" />
+</Base>
+<script>import '../../scripts/forms.ts';</script>

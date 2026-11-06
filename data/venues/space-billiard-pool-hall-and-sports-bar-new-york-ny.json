@@ -1,0 +1,77 @@
+{
+  "schema": 1,
+  "slug": "space-billiard-pool-hall-and-sports-bar-new-york-ny",
+  "wp_id": 1694,
+  "name": "Space Billiard Pool Hall & Sports Bar",
+  "type": "pool-halls",
+  "status": "open",
+  "address": {
+    "street": "34 W 32nd St Fl 12",
+    "city": "New York",
+    "state": "NY",
+    "postal_code": "10001",
+    "country": "US"
+  },
+  "geo": {
+    "lat": 40.74766,
+    "lng": -73.98736
+  },
+  "region": {
+    "state": "new-york",
+    "state_name": "New York",
+    "city": "new-york-ny",
+    "city_name": "New York"
+  },
+  "phone": "(212) 239-4166",
+  "website": "https://spacebilliard.com/",
+  "hours": {
+    "tz": "America/New_York",
+    "ranges": [
+      [
+        0,
+        180
+      ],
+      [
+        1020,
+        1620
+      ],
+      [
+        2460,
+        3060
+      ],
+      [
+        3900,
+        4500
+      ],
+      [
+        5340,
+        6000
+      ],
+      [
+        6780,
+        7470
+      ],
+      [
+        8070,
+        8910
+      ],
+      [
+        9660,
+        10080
+      ]
+    ]
+  },
+  "listing_source": {
+    "source": "google_places",
+    "url": "https://maps.google.com/?cid=3988255418684898561",
+    "checked_at": "2026-10-03",
+    "place_id": "ChIJz_3Q3qhZwokRAX09MCwhWTc",
+    "osm_id": ""
+  },
+  "claimed": false,
+  "verification": "unverified",
+  "photo": null,
+  "created_at": "2026-10-03",
+  "updated_at": "2026-10-03",
+  "facts": []
+}

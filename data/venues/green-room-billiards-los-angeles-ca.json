@@ -1,0 +1,77 @@
+{
+  "schema": 1,
+  "slug": "green-room-billiards-los-angeles-ca",
+  "wp_id": 1699,
+  "name": "Green Room Billiards",
+  "type": "pool-halls",
+  "status": "open",
+  "address": {
+    "street": "3458 N San Fernando Rd",
+    "city": "Los Angeles",
+    "state": "CA",
+    "postal_code": "90065",
+    "country": "US"
+  },
+  "geo": {
+    "lat": 34.12022,
+    "lng": -118.25141
+  },
+  "region": {
+    "state": "california",
+    "state_name": "California",
+    "city": "los-angeles",
+    "city_name": "Los Angeles"
+  },
+  "phone": "(323) 344-7448",
+  "website": "http://www.greenroombilliard.com/",
+  "hours": {
+    "tz": "America/Los_Angeles",
+    "ranges": [
+      [
+        0,
+        60
+      ],
+      [
+        960,
+        1500
+      ],
+      [
+        2400,
+        2940
+      ],
+      [
+        3840,
+        4380
+      ],
+      [
+        5280,
+        5820
+      ],
+      [
+        6720,
+        7260
+      ],
+      [
+        8160,
+        8640
+      ],
+      [
+        9600,
+        10080
+      ]
+    ]
+  },
+  "listing_source": {
+    "source": "google_places",
+    "url": "https://maps.google.com/?cid=2637495951460512434",
+    "checked_at": "2026-10-03",
+    "place_id": "ChIJEWx5cifBwoARsrJVA5hEmiQ",
+    "osm_id": ""
+  },
+  "claimed": false,
+  "verification": "unverified",
+  "photo": null,
+  "created_at": "2026-10-03",
+  "updated_at": "2026-10-03",
+  "facts": []
+}

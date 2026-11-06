@@ -1,0 +1,73 @@
+{
+  "schema": 1,
+  "slug": "the-pool-turtle-decatur-ga",
+  "wp_id": 1741,
+  "name": "The Pool Turtle",
+  "type": "pool-halls",
+  "status": "open",
+  "address": {
+    "street": "3409 Covington Hwy",
+    "city": "Decatur",
+    "state": "GA",
+    "postal_code": "30032",
+    "country": "US"
+  },
+  "geo": {
+    "lat": 33.76993,
+    "lng": -84.2531
+  },
+  "region": {
+    "state": "georgia",
+    "state_name": "Georgia",
+    "city": "decatur",
+    "city_name": "Decatur"
+  },
+  "phone": "(404) 981-5656",
+  "website": "https://www.thepoolturtle.com/",
+  "hours": {
+    "tz": "America/New_York",
+    "ranges": [
+      [
+        660,
+        1560
+      ],
+      [
+        2100,
+        3000
+      ],
+      [
+        3540,
+        4440
+      ],
+      [
+        4980,
+        5880
+      ],
+      [
+        6420,
+        7320
+      ],
+      [
+        7860,
+        8760
+      ],
+      [
+        9300,
+        10080
+      ]
+    ]
+  },
+  "listing_source": {
+    "source": "google_places",
+    "url": "https://maps.google.com/?cid=725682905612462906",
+    "checked_at": "2026-10-03",
+    "place_id": "ChIJO4N2sEup9YgROquaAMIkEgo",
+    "osm_id": ""
+  },
+  "claimed": false,
+  "verification": "unverified",
+  "photo": null,
+  "created_at": "2026-10-03",
+  "updated_at": "2026-10-03",
+  "facts": []
+}

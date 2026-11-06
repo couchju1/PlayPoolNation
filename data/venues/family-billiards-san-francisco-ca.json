@@ -1,0 +1,73 @@
+{
+  "schema": 1,
+  "slug": "family-billiards-san-francisco-ca",
+  "wp_id": 1727,
+  "name": "Family Billiards",
+  "type": "pool-halls",
+  "status": "open",
+  "address": {
+    "street": "2807 Geary Blvd",
+    "city": "San Francisco",
+    "state": "CA",
+    "postal_code": "94118",
+    "country": "US"
+  },
+  "geo": {
+    "lat": 37.782,
+    "lng": -122.44939
+  },
+  "region": {
+    "state": "california",
+    "state_name": "California",
+    "city": "san-francisco",
+    "city_name": "San Francisco"
+  },
+  "phone": "(415) 931-1115",
+  "website": "http://www.familybilliards-sf.com/",
+  "hours": {
+    "tz": "America/Los_Angeles",
+    "ranges": [
+      [
+        690,
+        1440
+      ],
+      [
+        2130,
+        2880
+      ],
+      [
+        3570,
+        4320
+      ],
+      [
+        5010,
+        5760
+      ],
+      [
+        6450,
+        7320
+      ],
+      [
+        7890,
+        8760
+      ],
+      [
+        9330,
+        10080
+      ]
+    ]
+  },
+  "listing_source": {
+    "source": "google_places",
+    "url": "https://maps.google.com/?cid=18148057272821249124",
+    "checked_at": "2026-10-03",
+    "place_id": "ChIJJY1CfjWHhYARZHT05e_Z2vs",
+    "osm_id": ""
+  },
+  "claimed": false,
+  "verification": "unverified",
+  "photo": null,
+  "created_at": "2026-10-03",
+  "updated_at": "2026-10-03",
+  "facts": []
+}

@@ -1,0 +1,11 @@
+---
+import Base from '../../layouts/Base.astro';
+import SubmitForm from '../../components/SubmitForm.astro';
+import { BRAND } from '../../lib/data.ts';
+---
+<Base title={`Add a Pool Hall or Bar | ${BRAND}`} description="Know a pool hall or a bar with pool tables we're missing? Tell us. A person checks every venue before it goes on the map." crumbs={[['Home', '/'], ['Add a venue', '']]} pageType="form">
+  <h1>Add a venue</h1>
+  <p class="lede">Know a place to play that isn't on the map? Tell us where it is. We confirm it's open before it goes live.</p>
+  <SubmitForm kind="add" />
+</Base>
+<script>import '../../scripts/forms.ts';</script>

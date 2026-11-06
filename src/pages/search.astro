@@ -1,0 +1,27 @@
+---
+/** Search and filters. Always noindex and out of the sitemap: the city pages are what should rank. */
+import Base from '../layouts/Base.astro';
+import { BRAND } from '../lib/data.ts';
+---
+<Base title={`Search Pool Halls and Bars | ${BRAND}`} description="Search every pool hall and bar with pool tables by name or city, and filter to open now, 9-foot tables, leagues, free pool or food." noindex crumbs={[['Home', '/'], ['Search', '']]} pageType="search">
+  <h1>Search</h1>
+  <form class="search-bar" data-search role="search" action="/search/">
+    <label class="visually-hidden" for="q">Name or city</label>
+    <input id="q" name="q" type="search" placeholder="Name or city, like Rack City or Austin" autocomplete="off" />
+    <button class="btn" type="button" data-search-near>Near me</button>
+  </form>
+  <div class="chips" role="group" aria-label="Filters" style="margin-top:14px">
+    <button type="button" class="chip" aria-pressed="false" data-f="open">Open now</button>
+    <button type="button" class="chip" aria-pressed="false" data-f="nine">9-foot tables</button>
+    <button type="button" class="chip" aria-pressed="false" data-f="leagues">Leagues</button>
+    <button type="button" class="chip" aria-pressed="false" data-f="free">Free pool</button>
+    <button type="button" class="chip" aria-pressed="false" data-f="food">Food</button>
+    <button type="button" class="chip" aria-pressed="false" data-f="hall">Pool halls only</button>
+  </div>
+  <p class="filter-count" aria-live="polite" data-search-count>Loading places…</p>
+  <ol class="results" data-search-results></ol>
+  <noscript><p>Search needs JavaScript. <a href="/places/">Browse every city and state</a> instead.</p></noscript>
+</Base>
+<script>
+  import '../scripts/search.ts';
+</script>

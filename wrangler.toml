@@ -1,0 +1,5 @@
+# Cloudflare Pages. Build command: npm run build. Output: dist.
+# Set SUPABASE_URL and SUPABASE_SERVICE_KEY (secret) in the Pages project settings.
+name = "playpoolnation"
+compatibility_date = "2026-10-20"
+pages_build_output_dir = "dist"

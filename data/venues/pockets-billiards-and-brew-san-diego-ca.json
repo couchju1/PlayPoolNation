@@ -1,0 +1,101 @@
+{
+  "schema": 1,
+  "slug": "pockets-billiards-and-brew-san-diego-ca",
+  "wp_id": 1773,
+  "name": "Pockets Billiards & Brew",
+  "type": "pool-halls",
+  "status": "open",
+  "address": {
+    "street": "5610 Kearny Mesa Rd Ste e",
+    "city": "San Diego",
+    "state": "CA",
+    "postal_code": "92111",
+    "country": "US"
+  },
+  "geo": {
+    "lat": 32.83631,
+    "lng": -117.13944
+  },
+  "region": {
+    "state": "california",
+    "state_name": "California",
+    "city": "san-diego",
+    "city_name": "San Diego"
+  },
+  "phone": "(858) 876-5452",
+  "website": "http://www.pocketsbilliardsandbrew.com/",
+  "hours": {
+    "tz": "America/Los_Angeles",
+    "ranges": [
+      [
+        780,
+        1440
+      ],
+      [
+        2220,
+        2880
+      ],
+      [
+        3660,
+        4320
+      ],
+      [
+        5100,
+        5760
+      ],
+      [
+        6540,
+        7200
+      ],
+      [
+        7980,
+        8640
+      ],
+      [
+        9420,
+        9960
+      ]
+    ]
+  },
+  "listing_source": {
+    "source": "google_places",
+    "url": "https://maps.google.com/?cid=6690893542817539534",
+    "checked_at": "2026-10-03",
+    "place_id": "ChIJVw8taaX_24ARziWYMTrU2lw",
+    "osm_id": ""
+  },
+  "claimed": false,
+  "verification": "unverified",
+  "photo": null,
+  "created_at": "2026-10-03",
+  "updated_at": "2026-10-03",
+  "facts": [
+    {
+      "field": "pricing_model",
+      "key": "pricing_model:hourly",
+      "value": {
+        "model": "hourly",
+        "rate": null
+      },
+      "source_url": "https://www.pocketsbilliardsandbrew.com/",
+      "source_type": "web_research",
+      "checked_at": "2026-10-03",
+      "confidence": "stated",
+      "flags": [],
+      "approved_at": "2026-10-03",
+      "approved_by": "wordpress-import"
+    },
+    {
+      "field": "pricing_notes",
+      "key": "pricing_notes",
+      "value": "From $9 an hour; rates vary by table and time of day.",
+      "source_url": "https://www.pocketsbilliardsandbrew.com/",
+      "source_type": "web_research",
+      "checked_at": "2026-10-03",
+      "confidence": "stated",
+      "flags": [],
+      "approved_at": "2026-10-03",
+      "approved_by": "wordpress-import"
+    }
+  ]
+}

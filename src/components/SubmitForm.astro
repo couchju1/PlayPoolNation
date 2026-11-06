@@ -1,0 +1,33 @@
+---
+/**
+ * Add a venue, claim a venue, or suggest an edit. Posts to /api/submit, which
+ * stores it for review. Nothing goes live until a person approves it.
+ */
+interface Props { kind: 'add' | 'claim' | 'edit' }
+const { kind } = Astro.props;
+---
+<form class="form panel" data-submit={kind} method="post" action="/api/submit">
+  <input type="hidden" name="kind" value={kind} />
+  <input type="hidden" name="venue" value="" data-venue-field />
+  <p class="muted" data-venue-name hidden></p>
+  {kind === 'add' && (<>
+    <label>Venue name <input name="name" required maxlength="120" /></label>
+    <label>Street address <input name="street" required maxlength="160" /></label>
+    <label>City and state <input name="city" required maxlength="80" placeholder="Sioux Falls, SD" /></label>
+    <label>Phone or website <input name="contact" maxlength="200" /></label>
+  </>)}
+  {kind === 'claim' && (<>
+    <label>Your name <input name="person" required maxlength="100" /></label>
+    <label>Your role <select name="role"><option>Owner</option><option>Manager</option><option>Staff</option></select></label>
+    <label>Phone at the venue, so we can confirm <input name="contact" required maxlength="40" /></label>
+  </>)}
+  <label>{kind === 'edit' ? "What's wrong or missing?" : 'Tables, sizes, rates, league nights (optional)'}
+    <textarea name="details" maxlength="4000" required={kind === 'edit'} placeholder={kind === 'edit' ? 'For example: they have 2 nine-foot Diamond tables now. Free pool on Sundays.' : '12 tables, ten 7-foot and two 9-foot. APA on Tuesdays.'}></textarea>
+  </label>
+  <label>Where did you see this? A link helps us approve it faster (optional) <input name="source" type="url" maxlength="300" placeholder="https://" /></label>
+  <label>Your email, if we may follow up {kind !== 'claim' && '(optional)'} <input name="email" type="email" maxlength="160" required={kind === 'claim'} /></label>
+  <label class="hp" aria-hidden="true">Leave this empty <input name="website_url" tabindex="-1" autocomplete="off" /></label>
+  <p><button class="btn" type="submit">Send</button></p>
+  <p class="form-msg" role="status" data-form-msg hidden></p>
+  <p class="muted" style="font-size:14px">A person reviews every submission before anything changes on the site. If the form doesn't work, email <a href="mailto:info@playpoolnation.com">info@playpoolnation.com</a>.</p>
+</form>

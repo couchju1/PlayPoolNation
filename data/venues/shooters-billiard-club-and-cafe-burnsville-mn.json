@@ -1,0 +1,77 @@
+{
+  "schema": 1,
+  "slug": "shooters-billiard-club-and-cafe-burnsville-mn",
+  "wp_id": 1767,
+  "name": "Shooters Billiard Club & Café",
+  "type": "pool-halls",
+  "status": "open",
+  "address": {
+    "street": "1934 State Hwy 13",
+    "city": "Burnsville",
+    "state": "MN",
+    "postal_code": "55337",
+    "country": "US"
+  },
+  "geo": {
+    "lat": 44.78925,
+    "lng": -93.24722
+  },
+  "region": {
+    "state": "minnesota",
+    "state_name": "Minnesota",
+    "city": "burnsville",
+    "city_name": "Burnsville"
+  },
+  "phone": "(952) 894-1100",
+  "website": "http://www.shootersbilliardclub.com/",
+  "hours": {
+    "tz": "America/Chicago",
+    "ranges": [
+      [
+        0,
+        60
+      ],
+      [
+        600,
+        1500
+      ],
+      [
+        2040,
+        2940
+      ],
+      [
+        3480,
+        4380
+      ],
+      [
+        4920,
+        5820
+      ],
+      [
+        6360,
+        7260
+      ],
+      [
+        7800,
+        8700
+      ],
+      [
+        9240,
+        10080
+      ]
+    ]
+  },
+  "listing_source": {
+    "source": "google_places",
+    "url": "https://maps.google.com/?cid=4665766495226802979",
+    "checked_at": "2026-10-03",
+    "place_id": "ChIJ7z-cZxIw9ocRI7PpOOghwEA",
+    "osm_id": ""
+  },
+  "claimed": false,
+  "verification": "unverified",
+  "photo": null,
+  "created_at": "2026-10-03",
+  "updated_at": "2026-10-03",
+  "facts": []
+}

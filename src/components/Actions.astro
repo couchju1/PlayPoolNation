@@ -1,0 +1,14 @@
+---
+/** Call, Directions and Website, each counted (first-party, no cookies) as a lead for the venue. */
+import type { Venue } from '../lib/types.ts';
+import { directionsUrl, e164 } from '../lib/format.ts';
+const { v, where = 'venue_page' } = Astro.props as { v: Venue; where?: string };
+const tel = e164(v.phone);
+const dest = [v.address.street, v.address.city, v.address.state, v.address.postal_code].filter(Boolean).join(', ');
+const track = { 'data-venue': v.slug, 'data-where': where };
+---
+<p class="actions">
+  {tel && <a class="btn" href={`tel:${tel}`} data-ppn-event="call" {...track}>Call {v.phone}</a>}
+  {dest && <a class="btn btn--ghost" href={directionsUrl(dest)} target="_blank" rel="noopener" data-ppn-event="directions" {...track}>Directions</a>}
+  {v.website && <a class="btn btn--ghost" href={v.website} target="_blank" rel="nofollow noopener" data-ppn-event="website" {...track}>Website</a>}
+</p>

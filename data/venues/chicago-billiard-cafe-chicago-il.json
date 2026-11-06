@@ -1,0 +1,73 @@
+{
+  "schema": 1,
+  "slug": "chicago-billiard-cafe-chicago-il",
+  "wp_id": 1703,
+  "name": "Chicago Billiard Cafe",
+  "type": "pool-halls",
+  "status": "open",
+  "address": {
+    "street": "5935 W Irving Park Rd",
+    "city": "Chicago",
+    "state": "IL",
+    "postal_code": "60634",
+    "country": "US"
+  },
+  "geo": {
+    "lat": 41.95283,
+    "lng": -87.77576
+  },
+  "region": {
+    "state": "illinois",
+    "state_name": "Illinois",
+    "city": "chicago",
+    "city_name": "Chicago"
+  },
+  "phone": "(773) 545-5102",
+  "website": "https://www.thechicagobilliardcafe.com/",
+  "hours": {
+    "tz": "America/Chicago",
+    "ranges": [
+      [
+        720,
+        1440
+      ],
+      [
+        2160,
+        2880
+      ],
+      [
+        3600,
+        4320
+      ],
+      [
+        5040,
+        5760
+      ],
+      [
+        6480,
+        7260
+      ],
+      [
+        7920,
+        8700
+      ],
+      [
+        9360,
+        10080
+      ]
+    ]
+  },
+  "listing_source": {
+    "source": "google_places",
+    "url": "https://maps.google.com/?cid=15624739647949204169",
+    "checked_at": "2026-10-03",
+    "place_id": "ChIJqYBd-3XMD4gRyWr5J-051tg",
+    "osm_id": ""
+  },
+  "claimed": false,
+  "verification": "unverified",
+  "photo": null,
+  "created_at": "2026-10-03",
+  "updated_at": "2026-10-03",
+  "facts": []
+}

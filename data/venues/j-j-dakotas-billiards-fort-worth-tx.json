@@ -1,0 +1,77 @@
+{
+  "schema": 1,
+  "slug": "j-j-dakotas-billiards-fort-worth-tx",
+  "wp_id": 1716,
+  "name": "J.J. Dakota’s Billiards",
+  "type": "pool-halls",
+  "status": "open",
+  "address": {
+    "street": "9112 Camp Bowie W Blvd #100",
+    "city": "Fort Worth",
+    "state": "TX",
+    "postal_code": "76116",
+    "country": "US"
+  },
+  "geo": {
+    "lat": 32.72537,
+    "lng": -97.47699
+  },
+  "region": {
+    "state": "texas",
+    "state_name": "Texas",
+    "city": "fort-worth",
+    "city_name": "Fort Worth"
+  },
+  "phone": "(817) 244-9000",
+  "website": "https://www.facebook.com/JJDakotas",
+  "hours": {
+    "tz": "America/Chicago",
+    "ranges": [
+      [
+        0,
+        120
+      ],
+      [
+        720,
+        1560
+      ],
+      [
+        2160,
+        3000
+      ],
+      [
+        3600,
+        4440
+      ],
+      [
+        5040,
+        5880
+      ],
+      [
+        6480,
+        7320
+      ],
+      [
+        7920,
+        8760
+      ],
+      [
+        9360,
+        10080
+      ]
+    ]
+  },
+  "listing_source": {
+    "source": "google_places",
+    "url": "https://maps.google.com/?cid=5246953997742699124",
+    "checked_at": "2026-10-03",
+    "place_id": "ChIJp1CEJ_wMToYRdPJEhNzs0Eg",
+    "osm_id": ""
+  },
+  "claimed": false,
+  "verification": "unverified",
+  "photo": null,
+  "created_at": "2026-10-03",
+  "updated_at": "2026-10-03",
+  "facts": []
+}

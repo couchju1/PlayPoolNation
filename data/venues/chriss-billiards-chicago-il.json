@@ -1,0 +1,77 @@
+{
+  "schema": 1,
+  "slug": "chriss-billiards-chicago-il",
+  "wp_id": 1701,
+  "name": "Chris’s Billiards",
+  "type": "pool-halls",
+  "status": "open",
+  "address": {
+    "street": "4637 N Milwaukee Ave",
+    "city": "Chicago",
+    "state": "IL",
+    "postal_code": "60630",
+    "country": "US"
+  },
+  "geo": {
+    "lat": 41.96503,
+    "lng": -87.75809
+  },
+  "region": {
+    "state": "illinois",
+    "state_name": "Illinois",
+    "city": "chicago",
+    "city_name": "Chicago"
+  },
+  "phone": "(773) 286-4714",
+  "website": "",
+  "hours": {
+    "tz": "America/Chicago",
+    "ranges": [
+      [
+        0,
+        120
+      ],
+      [
+        540,
+        1560
+      ],
+      [
+        1980,
+        3000
+      ],
+      [
+        3420,
+        4440
+      ],
+      [
+        4860,
+        5880
+      ],
+      [
+        6300,
+        7320
+      ],
+      [
+        7740,
+        8760
+      ],
+      [
+        9180,
+        10080
+      ]
+    ]
+  },
+  "listing_source": {
+    "source": "google_places",
+    "url": "https://maps.google.com/?cid=12586966103802023506",
+    "checked_at": "2026-10-03",
+    "place_id": "ChIJu1J1tBfMD4gRUo4Amfvira4",
+    "osm_id": ""
+  },
+  "claimed": false,
+  "verification": "unverified",
+  "photo": null,
+  "created_at": "2026-10-03",
+  "updated_at": "2026-10-03",
+  "facts": []
+}

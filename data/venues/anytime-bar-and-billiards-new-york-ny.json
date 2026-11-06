@@ -1,0 +1,77 @@
+{
+  "schema": 1,
+  "slug": "anytime-bar-and-billiards-new-york-ny",
+  "wp_id": 1695,
+  "name": "Anytime Bar & Billiards",
+  "type": "pool-halls",
+  "status": "open",
+  "address": {
+    "street": "112 W 30th St",
+    "city": "New York",
+    "state": "NY",
+    "postal_code": "10001",
+    "country": "US"
+  },
+  "geo": {
+    "lat": 40.74737,
+    "lng": -73.99042
+  },
+  "region": {
+    "state": "new-york",
+    "state_name": "New York",
+    "city": "new-york-ny",
+    "city_name": "New York"
+  },
+  "phone": "(646) 666-0144",
+  "website": "http://anytimebilliardsnyc.com/",
+  "hours": {
+    "tz": "America/New_York",
+    "ranges": [
+      [
+        0,
+        60
+      ],
+      [
+        660,
+        1500
+      ],
+      [
+        2100,
+        2940
+      ],
+      [
+        3540,
+        4380
+      ],
+      [
+        4980,
+        5880
+      ],
+      [
+        6420,
+        7320
+      ],
+      [
+        7860,
+        8760
+      ],
+      [
+        9300,
+        10080
+      ]
+    ]
+  },
+  "listing_source": {
+    "source": "google_places",
+    "url": "https://maps.google.com/?cid=932205939192040574",
+    "checked_at": "2026-10-03",
+    "place_id": "ChIJ2YSC9nBZwokRfgwN11zc7ww",
+    "osm_id": ""
+  },
+  "claimed": false,
+  "verification": "unverified",
+  "photo": null,
+  "created_at": "2026-10-03",
+  "updated_at": "2026-10-03",
+  "facts": []
+}

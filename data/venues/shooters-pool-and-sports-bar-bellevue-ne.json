@@ -1,0 +1,73 @@
+{
+  "schema": 1,
+  "slug": "shooters-pool-and-sports-bar-bellevue-ne",
+  "wp_id": 1782,
+  "name": "Shooters Pool and Sports Bar",
+  "type": "pool-halls",
+  "status": "open",
+  "address": {
+    "street": "908 Fort Crook Rd S",
+    "city": "Bellevue",
+    "state": "NE",
+    "postal_code": "68005",
+    "country": "US"
+  },
+  "geo": {
+    "lat": 41.15133,
+    "lng": -95.92807
+  },
+  "region": {
+    "state": "nebraska",
+    "state_name": "Nebraska",
+    "city": "bellevue",
+    "city_name": "Bellevue"
+  },
+  "phone": "(402) 291-7665",
+  "website": "https://www.facebook.com/shooterspoolandsportsbar/",
+  "hours": {
+    "tz": "America/Chicago",
+    "ranges": [
+      [
+        960,
+        1440
+      ],
+      [
+        2400,
+        2940
+      ],
+      [
+        3840,
+        4380
+      ],
+      [
+        5280,
+        5820
+      ],
+      [
+        6720,
+        7320
+      ],
+      [
+        8160,
+        8760
+      ],
+      [
+        9600,
+        10080
+      ]
+    ]
+  },
+  "listing_source": {
+    "source": "google_places",
+    "url": "https://maps.google.com/?cid=3111040750450334797",
+    "checked_at": "2026-10-03",
+    "place_id": "ChIJ6zB8VEaIk4cRTVxbXBSjLCs",
+    "osm_id": ""
+  },
+  "claimed": false,
+  "verification": "unverified",
+  "photo": null,
+  "created_at": "2026-10-03",
+  "updated_at": "2026-10-03",
+  "facts": []
+}

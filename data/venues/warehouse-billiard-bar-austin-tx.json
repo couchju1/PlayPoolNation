@@ -1,0 +1,77 @@
+{
+  "schema": 1,
+  "slug": "warehouse-billiard-bar-austin-tx",
+  "wp_id": 1724,
+  "name": "Warehouse Billiard Bar",
+  "type": "pool-halls",
+  "status": "open",
+  "address": {
+    "street": "509 E Ben White Blvd",
+    "city": "Austin",
+    "state": "TX",
+    "postal_code": "78704",
+    "country": "US"
+  },
+  "geo": {
+    "lat": 30.21841,
+    "lng": -97.75777
+  },
+  "region": {
+    "state": "texas",
+    "state_name": "Texas",
+    "city": "austin",
+    "city_name": "Austin"
+  },
+  "phone": "(512) 443-8799",
+  "website": "https://www.warehousebilliardbar.com/",
+  "hours": {
+    "tz": "America/Chicago",
+    "ranges": [
+      [
+        0,
+        120
+      ],
+      [
+        720,
+        1560
+      ],
+      [
+        2160,
+        3000
+      ],
+      [
+        3600,
+        4440
+      ],
+      [
+        5040,
+        5880
+      ],
+      [
+        6480,
+        7320
+      ],
+      [
+        7860,
+        8760
+      ],
+      [
+        9300,
+        10080
+      ]
+    ]
+  },
+  "listing_source": {
+    "source": "google_places",
+    "url": "https://maps.google.com/?cid=9872671234782662542",
+    "checked_at": "2026-10-03",
+    "place_id": "ChIJf8u3y5C0RIYRjg9wLS7GAok",
+    "osm_id": ""
+  },
+  "claimed": false,
+  "verification": "unverified",
+  "photo": null,
+  "created_at": "2026-10-03",
+  "updated_at": "2026-10-03",
+  "facts": []
+}

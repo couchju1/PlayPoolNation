@@ -1,0 +1,25 @@
+---
+import Base from '../../layouts/Base.astro';
+import { BRAND } from '../../lib/data.ts';
+---
+<Base title={`Privacy Policy | ${BRAND}`} description="What PlayPoolNation collects, how it's used, and how to reach us." crumbs={[['Home', '/'], ['Privacy policy', '']]} pageType="page">
+  <div class="prose">
+    <h1>Privacy policy</h1>
+    <p class="muted">Last updated: November 2026</p>
+    <h2>What we collect</h2>
+    <ul>
+      <li><b>Things you send us:</b> venues, claim requests and edit suggestions, plus an email if you give one so we can follow up.</li>
+      <li><b>Counts of clicks:</b> when someone taps Call, Directions or Website on a venue, we count it for that venue, with the page, the city, phone or desktop, a broad traffic source (such as "google" or "direct") and the hour. We don't store IP addresses, cookies, user IDs or full referrer addresses with these counts.</li>
+      <li><b>Your location, only if you ask:</b> "Near me" uses your browser's location to sort places. It stays in your browser and is not sent to us.</li>
+    </ul>
+    <h2>How we use it</h2>
+    <p>To review and publish submissions, follow up when you asked us to, show venue owners how many people we sent them, and prevent abuse. We do not sell your personal information.</p>
+    <h2>Who we share it with</h2>
+    <p>Service providers that run the site: our host and content delivery network (Cloudflare), our database (Supabase), and map tiles from OpenStreetMap-based providers, which load only when you press "Show map".</p>
+    <h2>Cookies</h2>
+    <p>The site doesn't set cookies.</p>
+    <h2>Your choices</h2>
+    <p>To have anything you sent us deleted, email info@playpoolnation.com.</p>
+    <p>Contact: Justin Couch, Sioux Falls, SD, info@playpoolnation.com.</p>
+  </div>
+</Base>

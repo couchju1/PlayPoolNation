@@ -1,0 +1,77 @@
+{
+  "schema": 1,
+  "slug": "society-billiards-and-bar-new-york-ny",
+  "wp_id": 1692,
+  "name": "Society Billiards + Bar",
+  "type": "pool-halls",
+  "status": "open",
+  "address": {
+    "street": "10 E 21st St",
+    "city": "New York",
+    "state": "NY",
+    "postal_code": "10010",
+    "country": "US"
+  },
+  "geo": {
+    "lat": 40.73996,
+    "lng": -73.99007
+  },
+  "region": {
+    "state": "new-york",
+    "state_name": "New York",
+    "city": "new-york-ny",
+    "city_name": "New York"
+  },
+  "phone": "(212) 420-1000",
+  "website": "http://societybilliards.com/",
+  "hours": {
+    "tz": "America/New_York",
+    "ranges": [
+      [
+        0,
+        240
+      ],
+      [
+        780,
+        1620
+      ],
+      [
+        2220,
+        3060
+      ],
+      [
+        3660,
+        4500
+      ],
+      [
+        5100,
+        5940
+      ],
+      [
+        6540,
+        7440
+      ],
+      [
+        7920,
+        8880
+      ],
+      [
+        9360,
+        10080
+      ]
+    ]
+  },
+  "listing_source": {
+    "source": "google_places",
+    "url": "https://maps.google.com/?cid=1638133024343421309",
+    "checked_at": "2026-10-03",
+    "place_id": "ChIJzU-IwaNZwokRfXHTck7RuxY",
+    "osm_id": ""
+  },
+  "claimed": false,
+  "verification": "unverified",
+  "photo": null,
+  "created_at": "2026-10-03",
+  "updated_at": "2026-10-03",
+  "facts": []
+}

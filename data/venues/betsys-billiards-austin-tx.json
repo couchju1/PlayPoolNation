@@ -1,0 +1,77 @@
+{
+  "schema": 1,
+  "slug": "betsys-billiards-austin-tx",
+  "wp_id": 1722,
+  "name": "Betsy’s Billiards",
+  "type": "pool-halls",
+  "status": "open",
+  "address": {
+    "street": "1901 W William Cannon Dr #147",
+    "city": "Austin",
+    "state": "TX",
+    "postal_code": "78745",
+    "country": "US"
+  },
+  "geo": {
+    "lat": 30.20153,
+    "lng": -97.80666
+  },
+  "region": {
+    "state": "texas",
+    "state_name": "Texas",
+    "city": "austin",
+    "city_name": "Austin"
+  },
+  "phone": "(512) 660-5185",
+  "website": "http://betsysbilliards.com/",
+  "hours": {
+    "tz": "America/Chicago",
+    "ranges": [
+      [
+        0,
+        120
+      ],
+      [
+        690,
+        1560
+      ],
+      [
+        2130,
+        3000
+      ],
+      [
+        3570,
+        4440
+      ],
+      [
+        5010,
+        5880
+      ],
+      [
+        6450,
+        7320
+      ],
+      [
+        7890,
+        8760
+      ],
+      [
+        9330,
+        10080
+      ]
+    ]
+  },
+  "listing_source": {
+    "source": "google_places",
+    "url": "https://maps.google.com/?cid=8183301127514746010",
+    "checked_at": "2026-10-03",
+    "place_id": "ChIJUzrTUTZNW4YRmuyRuwTtkHE",
+    "osm_id": ""
+  },
+  "claimed": false,
+  "verification": "unverified",
+  "photo": null,
+  "created_at": "2026-10-03",
+  "updated_at": "2026-10-03",
+  "facts": []
+}

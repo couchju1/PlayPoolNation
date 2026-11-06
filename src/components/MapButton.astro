@@ -1,0 +1,12 @@
+---
+/** "Show map": nothing map-related loads until it's pressed (MapLibre + OpenStreetMap tiles). */
+import type { Venue } from '../lib/types.ts';
+const { venues, label = 'Show map' } = Astro.props as { venues: Venue[]; label?: string };
+const points = venues.filter((v) => v.geo).map((v) => ({ n: v.name, u: v.url, lat: +v.geo!.lat.toFixed(5), lng: +v.geo!.lng.toFixed(5) }));
+---
+{points.length > 0 && (
+  <div class="mapbox">
+    <button type="button" class="btn btn--ghost" data-show-map aria-expanded="false">{label}</button>
+    <div class="map" data-map hidden data-points={JSON.stringify(points)}></div>
+  </div>
+)}

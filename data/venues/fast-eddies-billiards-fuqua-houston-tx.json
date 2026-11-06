@@ -1,0 +1,77 @@
+{
+  "schema": 1,
+  "slug": "fast-eddies-billiards-fuqua-houston-tx",
+  "wp_id": 1709,
+  "name": "Fast Eddie’s Billiards (Fuqua)",
+  "type": "pool-halls",
+  "status": "open",
+  "address": {
+    "street": "12344 Gulf Fwy Ste A&B",
+    "city": "Houston",
+    "state": "TX",
+    "postal_code": "77034",
+    "country": "US"
+  },
+  "geo": {
+    "lat": 29.61795,
+    "lng": -95.22003
+  },
+  "region": {
+    "state": "texas",
+    "state_name": "Texas",
+    "city": "houston",
+    "city_name": "Houston"
+  },
+  "phone": "(281) 533-3058",
+  "website": "https://eddiestavernsocialclub.com/fuqua/",
+  "hours": {
+    "tz": "America/Chicago",
+    "ranges": [
+      [
+        0,
+        120
+      ],
+      [
+        780,
+        1560
+      ],
+      [
+        2220,
+        3000
+      ],
+      [
+        3660,
+        4440
+      ],
+      [
+        5100,
+        5880
+      ],
+      [
+        6540,
+        7320
+      ],
+      [
+        7860,
+        8760
+      ],
+      [
+        9420,
+        10080
+      ]
+    ]
+  },
+  "listing_source": {
+    "source": "google_places",
+    "url": "https://maps.google.com/?cid=13044766428003588950",
+    "checked_at": "2026-10-03",
+    "place_id": "ChIJnaTY7t2ZQIYRVlsYv_NRCLU",
+    "osm_id": ""
+  },
+  "claimed": false,
+  "verification": "unverified",
+  "photo": null,
+  "created_at": "2026-10-03",
+  "updated_at": "2026-10-03",
+  "facts": []
+}

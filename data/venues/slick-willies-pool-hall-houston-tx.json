@@ -1,0 +1,77 @@
+{
+  "schema": 1,
+  "slug": "slick-willies-pool-hall-houston-tx",
+  "wp_id": 1707,
+  "name": "Slick Willie’s Pool Hall",
+  "type": "pool-halls",
+  "status": "open",
+  "address": {
+    "street": "1200 Westheimer Rd",
+    "city": "Houston",
+    "state": "TX",
+    "postal_code": "77006",
+    "country": "US"
+  },
+  "geo": {
+    "lat": 29.74485,
+    "lng": -95.39355
+  },
+  "region": {
+    "state": "texas",
+    "state_name": "Texas",
+    "city": "houston",
+    "city_name": "Houston"
+  },
+  "phone": "(713) 522-2525",
+  "website": "",
+  "hours": {
+    "tz": "America/Chicago",
+    "ranges": [
+      [
+        0,
+        120
+      ],
+      [
+        660,
+        1560
+      ],
+      [
+        2100,
+        3000
+      ],
+      [
+        3540,
+        4440
+      ],
+      [
+        4980,
+        5880
+      ],
+      [
+        6420,
+        7320
+      ],
+      [
+        7860,
+        8760
+      ],
+      [
+        9360,
+        10080
+      ]
+    ]
+  },
+  "listing_source": {
+    "source": "google_places",
+    "url": "https://maps.google.com/?cid=1890773892825966893",
+    "checked_at": "2026-10-03",
+    "place_id": "ChIJxdC_22G_QIYRLWl5eNZgPRo",
+    "osm_id": ""
+  },
+  "claimed": false,
+  "verification": "unverified",
+  "photo": null,
+  "created_at": "2026-10-03",
+  "updated_at": "2026-10-03",
+  "facts": []
+}

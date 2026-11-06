@@ -1,0 +1,73 @@
+{
+  "schema": 1,
+  "slug": "the-hall-sf-san-francisco-ca",
+  "wp_id": 1728,
+  "name": "The Hall SF",
+  "type": "pool-halls",
+  "status": "open",
+  "address": {
+    "street": "2565 Mission St",
+    "city": "San Francisco",
+    "state": "CA",
+    "postal_code": "94110",
+    "country": "US"
+  },
+  "geo": {
+    "lat": 37.7561,
+    "lng": -122.41849
+  },
+  "region": {
+    "state": "california",
+    "state_name": "California",
+    "city": "san-francisco",
+    "city_name": "San Francisco"
+  },
+  "phone": "(415) 612-6292",
+  "website": "https://www.thehallmission.com/",
+  "hours": {
+    "tz": "America/Los_Angeles",
+    "ranges": [
+      [
+        1020,
+        1440
+      ],
+      [
+        2460,
+        2880
+      ],
+      [
+        3900,
+        4320
+      ],
+      [
+        5340,
+        5760
+      ],
+      [
+        6780,
+        7200
+      ],
+      [
+        7860,
+        8700
+      ],
+      [
+        9300,
+        10080
+      ]
+    ]
+  },
+  "listing_source": {
+    "source": "google_places",
+    "url": "https://maps.google.com/?cid=297311673283470325",
+    "checked_at": "2026-10-03",
+    "place_id": "ChIJ18luhgN_j4AR9WOjQWRDIAQ",
+    "osm_id": ""
+  },
+  "claimed": false,
+  "verification": "unverified",
+  "photo": null,
+  "created_at": "2026-10-03",
+  "updated_at": "2026-10-03",
+  "facts": []
+}

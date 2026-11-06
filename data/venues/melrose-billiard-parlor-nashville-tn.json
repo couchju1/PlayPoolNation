@@ -1,0 +1,77 @@
+{
+  "schema": 1,
+  "slug": "melrose-billiard-parlor-nashville-tn",
+  "wp_id": 1760,
+  "name": "Melrose Billiard Parlor",
+  "type": "pool-halls",
+  "status": "open",
+  "address": {
+    "street": "2600 8th Ave S #108",
+    "city": "Nashville",
+    "state": "TN",
+    "postal_code": "37204",
+    "country": "US"
+  },
+  "geo": {
+    "lat": 36.12203,
+    "lng": -86.77526
+  },
+  "region": {
+    "state": "tennessee",
+    "state_name": "Tennessee",
+    "city": "nashville",
+    "city_name": "Nashville"
+  },
+  "phone": "",
+  "website": "https://www.dirtymelrose.com/",
+  "hours": {
+    "tz": "America/Chicago",
+    "ranges": [
+      [
+        0,
+        120
+      ],
+      [
+        960,
+        1560
+      ],
+      [
+        2400,
+        3000
+      ],
+      [
+        3840,
+        4440
+      ],
+      [
+        5280,
+        5880
+      ],
+      [
+        6720,
+        7320
+      ],
+      [
+        8160,
+        8760
+      ],
+      [
+        9600,
+        10080
+      ]
+    ]
+  },
+  "listing_source": {
+    "source": "google_places",
+    "url": "https://maps.google.com/?cid=5557239541332884197",
+    "checked_at": "2026-10-03",
+    "place_id": "ChIJ6Z65IM5lZIgR5brmWOtHH00",
+    "osm_id": ""
+  },
+  "claimed": false,
+  "verification": "unverified",
+  "photo": null,
+  "created_at": "2026-10-03",
+  "updated_at": "2026-10-03",
+  "facts": []
+}

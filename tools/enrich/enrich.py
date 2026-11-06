@@ -24,14 +24,18 @@ from ppn_enrich import discover, progress, store  # noqa: E402
 from ppn_enrich.cities import city as load_city, priority  # noqa: E402
 from ppn_enrich.enrich import changes, enrich_venue, venues_for  # noqa: E402
 from ppn_enrich.http import Fetcher, UsageLimit  # noqa: E402
-from ppn_enrich.listings import from_export, from_site  # noqa: E402
+from ppn_enrich.listings import from_data, from_export, from_site  # noqa: E402
+from ppn_enrich.paths import REPO  # noqa: E402
 
 EXIT_PAUSED = 75  # EX_TEMPFAIL: run the same command again later to resume.
 
 
 def get_listings(city: dict, fetcher: Fetcher, export: str | None, refresh: bool) -> list[dict]:
+    data = None if export else from_data(city["slug"], os.path.join(REPO, "data", "venues"))
     if export:
         rows = from_export(export)
+    elif data is not None:
+        rows = data
     else:
         rows = store.read_json(city["slug"], "listings.json", None)
         if rows is not None and not refresh:

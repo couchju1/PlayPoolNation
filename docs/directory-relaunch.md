@@ -1,5 +1,7 @@
 # Directory relaunch (October 2026)
 
+> **Moved off WordPress (November 2026).** The site is now a static Astro site; see [astro-cutover.md](astro-cutover.md). The notes below describe the WordPress site it replaces.
+>
 > **Platform upgrade (3 October 2026).** Most custom behaviour now lives in the
 > `playpoolnation-core` plugin. See `wordpress/playpoolnation-core/README.md`.
 > Several URLs below changed, and each old URL 301-redirects to its new one:

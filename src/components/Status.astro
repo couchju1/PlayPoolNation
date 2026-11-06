@@ -1,0 +1,7 @@
+---
+/** Open/closed chip. Empty in the HTML; the browser fills it from the venue's hours and time zone. */
+import type { Venue } from '../lib/types.ts';
+const { v } = Astro.props as { v: Venue };
+const data = v.hours?.ranges?.length || v.status !== 'open' ? JSON.stringify({ tz: v.hours?.tz ?? 'America/Chicago', r: v.hours?.ranges ?? [], s: v.status }) : '';
+---
+{data && <span class="status" data-hours={data} aria-live="polite"></span>}

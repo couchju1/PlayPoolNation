@@ -1,0 +1,27 @@
+---
+/** One venue's section on a city or hub page: its facts, hours, and Call / Directions / Website. */
+import Status from './Status.astro';
+import Actions from './Actions.astro';
+import { textFacts } from '../lib/data.ts';
+import { factLines, freePool, hasSize, leagueDays, weekHours } from '../lib/text.ts';
+import type { Venue } from '../lib/types.ts';
+const { v, where = 'city_page', heading = 'h2' } = Astro.props as { v: Venue; where?: string; heading?: 'h2' | 'h3' };
+const H = heading;
+const tags = [hasSize(v, '9ft') && 'nine', freePool(v) && 'free', v.food && 'food'].filter(Boolean).join(' ');
+const week = v.hours && v.status === 'open' ? weekHours(v.hours.ranges) : [];
+---
+<section class="venue-block" id={v.anchor} data-venue={v.anchor} data-tags={tags} data-league-days={leagueDays(v).join(' ')} data-has-hours={v.hours ? '1' : ''}>
+  <H>{v.name}</H>
+  <Status v={v} />
+  <dl class="facts">
+    {factLines(textFacts(v)).map(([label, value]) => (<><dt>{label}</dt><dd>{value}</dd></>))}
+  </dl>
+  {week.length > 0 && (
+    <details>
+      <summary>Hours</summary>
+      <table class="hours-table"><tbody>{week.map((r) => <tr><th scope="row">{r.day}</th><td>{r.hours}</td></tr>)}</tbody></table>
+    </details>
+  )}
+  <Actions v={v} where={where} />
+  <p><a href={v.url}>More about {v.name}</a></p>
+</section>

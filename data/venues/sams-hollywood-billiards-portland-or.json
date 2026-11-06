@@ -1,0 +1,73 @@
+{
+  "schema": 1,
+  "slug": "sams-hollywood-billiards-portland-or",
+  "wp_id": 1768,
+  "name": "Sam’s Hollywood Billiards",
+  "type": "pool-halls",
+  "status": "open",
+  "address": {
+    "street": "1845 NE 41st Ave",
+    "city": "Portland",
+    "state": "OR",
+    "postal_code": "97212",
+    "country": "US"
+  },
+  "geo": {
+    "lat": 45.53633,
+    "lng": -122.62129
+  },
+  "region": {
+    "state": "oregon",
+    "state_name": "Oregon",
+    "city": "portland",
+    "city_name": "Portland"
+  },
+  "phone": "(503) 282-8266",
+  "website": "https://samsbilliards.net/",
+  "hours": {
+    "tz": "America/Los_Angeles",
+    "ranges": [
+      [
+        540,
+        1470
+      ],
+      [
+        1980,
+        2910
+      ],
+      [
+        3420,
+        4350
+      ],
+      [
+        4860,
+        5790
+      ],
+      [
+        6300,
+        7290
+      ],
+      [
+        7740,
+        8730
+      ],
+      [
+        9180,
+        10050
+      ]
+    ]
+  },
+  "listing_source": {
+    "source": "google_places",
+    "url": "https://maps.google.com/?cid=15934588784624791925",
+    "checked_at": "2026-10-03",
+    "place_id": "ChIJM6rhP9eglVQRdfF7FRMII90",
+    "osm_id": ""
+  },
+  "claimed": false,
+  "verification": "unverified",
+  "photo": null,
+  "created_at": "2026-10-03",
+  "updated_at": "2026-10-03",
+  "facts": []
+}

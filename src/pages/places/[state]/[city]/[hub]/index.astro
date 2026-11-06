@@ -1,0 +1,28 @@
+---
+/** City + attribute hub. Built only when 2+ venues qualify; any other hub URL is a 404. */
+import Base from '../../../../../layouts/Base.astro';
+import CityBody from '../../../../../components/CityBody.astro';
+import { BRAND, cityPages, hubsFor, type City, type Hub } from '../../../../../lib/data.ts';
+import { clip, TITLE_LIMIT } from '../../../../../lib/text.ts';
+import { itemList } from '../../../../../lib/schema.ts';
+import type { Venue } from '../../../../../lib/types.ts';
+
+export function getStaticPaths() {
+  return cityPages().flatMap((city) => hubsFor(city).map((h) => ({ params: { state: city.state, city: city.slug, hub: h.hub.slug }, props: { city, hub: h.hub, venues: h.venues, url: h.url } })));
+}
+const { city, hub, venues, url } = Astro.props as { city: City; hub: Hub; venues: Venue[]; url: string };
+const h1 = hub.h1(city.where);
+const title = `${h1} | ${BRAND}`.length <= TITLE_LIMIT ? `${h1} | ${BRAND}` : h1;
+const others = hubsFor(city).filter((h) => h.hub.slug !== hub.slug).map((h) => ({ label: `${h.hub.label} in ${city.name}`, url: h.url }));
+---
+<Base
+  title={title}
+  description={clip(`${hub.lead(city.where, venues.map((v) => v.name))} With addresses, hours and who's open now.`)}
+  noindex={!city.launched}
+  crumbs={[['Home', '/'], ['Places', '/places/'], [city.stateName, `/places/${city.state}/`], [city.name, city.url], [hub.label, '']]}
+  schema={[itemList(h1, url, venues)]}
+  pageType="hub_page"
+  city={city.key}
+>
+  <CityBody h1={h1} name={city.name} where={city.where} venues={venues} lead={hub.lead(city.where, venues.map((v) => v.name))} hubs={[{ label: `All places in ${city.name}`, url: city.url }, ...others]} where_clicked="hub_page" showFaq={false} />
+</Base>

@@ -1,0 +1,77 @@
+{
+  "schema": 1,
+  "slug": "coppertank-pool-hall-austin-tx",
+  "wp_id": 1726,
+  "name": "Coppertank Pool Hall",
+  "type": "pool-halls",
+  "status": "open",
+  "address": {
+    "street": "504 Trinity St",
+    "city": "Austin",
+    "state": "TX",
+    "postal_code": "78701",
+    "country": "US"
+  },
+  "geo": {
+    "lat": 30.26647,
+    "lng": -97.73989
+  },
+  "region": {
+    "state": "texas",
+    "state_name": "Texas",
+    "city": "austin",
+    "city_name": "Austin"
+  },
+  "phone": "(512) 913-5966",
+  "website": "https://coppertankpoolhall.com/",
+  "hours": {
+    "tz": "America/Chicago",
+    "ranges": [
+      [
+        0,
+        120
+      ],
+      [
+        1080,
+        1560
+      ],
+      [
+        2520,
+        3000
+      ],
+      [
+        3960,
+        4440
+      ],
+      [
+        5400,
+        5880
+      ],
+      [
+        6720,
+        7320
+      ],
+      [
+        7920,
+        8760
+      ],
+      [
+        9360,
+        10080
+      ]
+    ]
+  },
+  "listing_source": {
+    "source": "google_places",
+    "url": "https://maps.google.com/?cid=3537574985242397572",
+    "checked_at": "2026-10-03",
+    "place_id": "ChIJA49ADJK1RIYRhEuuybT9FzE",
+    "osm_id": ""
+  },
+  "claimed": false,
+  "verification": "unverified",
+  "photo": null,
+  "created_at": "2026-10-03",
+  "updated_at": "2026-10-03",
+  "facts": []
+}

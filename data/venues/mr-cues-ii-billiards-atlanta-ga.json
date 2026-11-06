@@ -1,0 +1,77 @@
+{
+  "schema": 1,
+  "slug": "mr-cues-ii-billiards-atlanta-ga",
+  "wp_id": 1743,
+  "name": "Mr. Cue’s II Billiards",
+  "type": "pool-halls",
+  "status": "open",
+  "address": {
+    "street": "3541 Chamblee Tucker Rd",
+    "city": "Atlanta",
+    "state": "GA",
+    "postal_code": "30341",
+    "country": "US"
+  },
+  "geo": {
+    "lat": 33.88467,
+    "lng": -84.24825
+  },
+  "region": {
+    "state": "georgia",
+    "state_name": "Georgia",
+    "city": "atlanta",
+    "city_name": "Atlanta"
+  },
+  "phone": "(770) 454-7665",
+  "website": "https://mrcues2.com/",
+  "hours": {
+    "tz": "America/New_York",
+    "ranges": [
+      [
+        0,
+        150
+      ],
+      [
+        690,
+        1590
+      ],
+      [
+        2130,
+        3030
+      ],
+      [
+        3570,
+        4470
+      ],
+      [
+        5010,
+        5940
+      ],
+      [
+        6450,
+        7380
+      ],
+      [
+        7920,
+        8820
+      ],
+      [
+        9360,
+        10080
+      ]
+    ]
+  },
+  "listing_source": {
+    "source": "google_places",
+    "url": "https://maps.google.com/?cid=3863566358494677488",
+    "checked_at": "2026-10-03",
+    "place_id": "ChIJ4wjd_Z-n9YgR8Ik5DCIlnjU",
+    "osm_id": ""
+  },
+  "claimed": false,
+  "verification": "unverified",
+  "photo": null,
+  "created_at": "2026-10-03",
+  "updated_at": "2026-10-03",
+  "facts": []
+}

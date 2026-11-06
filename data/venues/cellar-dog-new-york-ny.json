@@ -1,0 +1,77 @@
+{
+  "schema": 1,
+  "slug": "cellar-dog-new-york-ny",
+  "wp_id": 1693,
+  "name": "Cellar Dog",
+  "type": "bars-with-pool-tables",
+  "status": "open",
+  "address": {
+    "street": "75 Christopher St",
+    "city": "New York",
+    "state": "NY",
+    "postal_code": "10014",
+    "country": "US"
+  },
+  "geo": {
+    "lat": 40.73364,
+    "lng": -74.0032
+  },
+  "region": {
+    "state": "new-york",
+    "state_name": "New York",
+    "city": "new-york-ny",
+    "city_name": "New York"
+  },
+  "phone": "(212) 675-6056",
+  "website": "http://cellar.dog/",
+  "hours": {
+    "tz": "America/New_York",
+    "ranges": [
+      [
+        0,
+        60
+      ],
+      [
+        960,
+        1500
+      ],
+      [
+        2400,
+        2940
+      ],
+      [
+        3840,
+        4380
+      ],
+      [
+        5280,
+        5820
+      ],
+      [
+        6720,
+        7440
+      ],
+      [
+        8040,
+        8880
+      ],
+      [
+        9480,
+        10080
+      ]
+    ]
+  },
+  "listing_source": {
+    "source": "google_places",
+    "url": "https://maps.google.com/?cid=2833138632967514298",
+    "checked_at": "2026-10-03",
+    "place_id": "ChIJhWENSQ1ZwokRuuh2eZNUUSc",
+    "osm_id": ""
+  },
+  "claimed": false,
+  "verification": "unverified",
+  "photo": null,
+  "created_at": "2026-10-03",
+  "updated_at": "2026-10-03",
+  "facts": []
+}

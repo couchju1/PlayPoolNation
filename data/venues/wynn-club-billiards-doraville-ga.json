@@ -1,0 +1,77 @@
+{
+  "schema": 1,
+  "slug": "wynn-club-billiards-doraville-ga",
+  "wp_id": 1744,
+  "name": "Wynn Club Billiards",
+  "type": "pool-halls",
+  "status": "open",
+  "address": {
+    "street": "5090 Buford Hwy NE Ste 201",
+    "city": "Doraville",
+    "state": "GA",
+    "postal_code": "30340",
+    "country": "US"
+  },
+  "geo": {
+    "lat": 33.8914,
+    "lng": -84.28585
+  },
+  "region": {
+    "state": "georgia",
+    "state_name": "Georgia",
+    "city": "doraville",
+    "city_name": "Doraville"
+  },
+  "phone": "(470) 679-4066",
+  "website": "http://www.wynnclub41319.com/",
+  "hours": {
+    "tz": "America/New_York",
+    "ranges": [
+      [
+        0,
+        120
+      ],
+      [
+        900,
+        1560
+      ],
+      [
+        2340,
+        3000
+      ],
+      [
+        3780,
+        4440
+      ],
+      [
+        5220,
+        5880
+      ],
+      [
+        6660,
+        7320
+      ],
+      [
+        8100,
+        8760
+      ],
+      [
+        9540,
+        10080
+      ]
+    ]
+  },
+  "listing_source": {
+    "source": "google_places",
+    "url": "https://maps.google.com/?cid=1766074742432958380",
+    "checked_at": "2026-10-03",
+    "place_id": "ChIJQwQZNwAJ9YgRrIeBBZ9bghg",
+    "osm_id": ""
+  },
+  "claimed": false,
+  "verification": "unverified",
+  "photo": null,
+  "created_at": "2026-10-03",
+  "updated_at": "2026-10-03",
+  "facts": []
+}

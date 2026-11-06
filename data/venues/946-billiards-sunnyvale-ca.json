@@ -1,0 +1,77 @@
+{
+  "schema": 1,
+  "slug": "946-billiards-sunnyvale-ca",
+  "wp_id": 1732,
+  "name": "946 Billiards",
+  "type": "pool-halls",
+  "status": "open",
+  "address": {
+    "street": "946 W El Camino Real",
+    "city": "Sunnyvale",
+    "state": "CA",
+    "postal_code": "94087",
+    "country": "US"
+  },
+  "geo": {
+    "lat": 37.3711,
+    "lng": -122.04666
+  },
+  "region": {
+    "state": "california",
+    "state_name": "California",
+    "city": "sunnyvale",
+    "city_name": "Sunnyvale"
+  },
+  "phone": "(408) 542-9690",
+  "website": "https://946billiards.com/",
+  "hours": {
+    "tz": "America/Los_Angeles",
+    "ranges": [
+      [
+        0,
+        60
+      ],
+      [
+        720,
+        1500
+      ],
+      [
+        2160,
+        2940
+      ],
+      [
+        3600,
+        4380
+      ],
+      [
+        5040,
+        5820
+      ],
+      [
+        6480,
+        7320
+      ],
+      [
+        7920,
+        8760
+      ],
+      [
+        9360,
+        10080
+      ]
+    ]
+  },
+  "listing_source": {
+    "source": "google_places",
+    "url": "https://maps.google.com/?cid=3609040986080907699",
+    "checked_at": "2026-10-03",
+    "place_id": "ChIJPyL9r0-3j4ARs5Etw6fjFTI",
+    "osm_id": ""
+  },
+  "claimed": false,
+  "verification": "unverified",
+  "photo": null,
+  "created_at": "2026-10-03",
+  "updated_at": "2026-10-03",
+  "facts": []
+}

@@ -1,0 +1,77 @@
+{
+  "schema": 1,
+  "slug": "0-zone-billiard-cafe-san-diego-ca",
+  "wp_id": 1772,
+  "name": "0 Zone Billiard Cafe",
+  "type": "pool-halls",
+  "status": "open",
+  "address": {
+    "street": "4887 Convoy St",
+    "city": "San Diego",
+    "state": "CA",
+    "postal_code": "92111",
+    "country": "US"
+  },
+  "geo": {
+    "lat": 32.83011,
+    "lng": -117.15282
+  },
+  "region": {
+    "state": "california",
+    "state_name": "California",
+    "city": "san-diego",
+    "city_name": "San Diego"
+  },
+  "phone": "(858) 268-0688",
+  "website": "",
+  "hours": {
+    "tz": "America/Los_Angeles",
+    "ranges": [
+      [
+        0,
+        60
+      ],
+      [
+        660,
+        1500
+      ],
+      [
+        2100,
+        2940
+      ],
+      [
+        3540,
+        4380
+      ],
+      [
+        4980,
+        5820
+      ],
+      [
+        6420,
+        7260
+      ],
+      [
+        7860,
+        8700
+      ],
+      [
+        9300,
+        10080
+      ]
+    ]
+  },
+  "listing_source": {
+    "source": "google_places",
+    "url": "https://maps.google.com/?cid=8409228539672276498",
+    "checked_at": "2026-10-03",
+    "place_id": "ChIJ7RQ9dJf_24AREi4-hs2Us3Q",
+    "osm_id": ""
+  },
+  "claimed": false,
+  "verification": "unverified",
+  "photo": null,
+  "created_at": "2026-10-03",
+  "updated_at": "2026-10-03",
+  "facts": []
+}

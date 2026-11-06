@@ -1,0 +1,73 @@
+{
+  "schema": 1,
+  "slug": "sunnys-houston-tx",
+  "wp_id": 1706,
+  "name": "Sunny’s",
+  "type": "bars-with-pool-tables",
+  "status": "open",
+  "address": {
+    "street": "902 Capitol St",
+    "city": "Houston",
+    "state": "TX",
+    "postal_code": "77002",
+    "country": "US"
+  },
+  "geo": {
+    "lat": 29.75925,
+    "lng": -95.36354
+  },
+  "region": {
+    "state": "texas",
+    "state_name": "Texas",
+    "city": "houston",
+    "city_name": "Houston"
+  },
+  "phone": "",
+  "website": "",
+  "hours": {
+    "tz": "America/Chicago",
+    "ranges": [
+      [
+        960,
+        1440
+      ],
+      [
+        2280,
+        3000
+      ],
+      [
+        3720,
+        4440
+      ],
+      [
+        5160,
+        5880
+      ],
+      [
+        6600,
+        7320
+      ],
+      [
+        8220,
+        8760
+      ],
+      [
+        9480,
+        10080
+      ]
+    ]
+  },
+  "listing_source": {
+    "source": "google_places",
+    "url": "https://maps.google.com/?cid=10799454632505922077",
+    "checked_at": "2026-10-03",
+    "place_id": "ChIJ0a4r6jq_QIYRHVJ2MsVe35U",
+    "osm_id": ""
+  },
+  "claimed": false,
+  "verification": "unverified",
+  "photo": null,
+  "created_at": "2026-10-03",
+  "updated_at": "2026-10-03",
+  "facts": []
+}

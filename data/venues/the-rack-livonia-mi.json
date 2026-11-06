@@ -1,0 +1,77 @@
+{
+  "schema": 1,
+  "slug": "the-rack-livonia-mi",
+  "wp_id": 1786,
+  "name": "The Rack",
+  "type": "pool-halls",
+  "status": "open",
+  "address": {
+    "street": "28410 Joy Rd",
+    "city": "Livonia",
+    "state": "MI",
+    "postal_code": "48150",
+    "country": "US"
+  },
+  "geo": {
+    "lat": 42.35581,
+    "lng": -83.32159
+  },
+  "region": {
+    "state": "michigan",
+    "state_name": "Michigan",
+    "city": "livonia",
+    "city_name": "Livonia"
+  },
+  "phone": "(734) 422-7665",
+  "website": "http://www.therackpool.com/",
+  "hours": {
+    "tz": "America/Detroit",
+    "ranges": [
+      [
+        0,
+        120
+      ],
+      [
+        840,
+        1560
+      ],
+      [
+        2280,
+        3000
+      ],
+      [
+        3720,
+        4440
+      ],
+      [
+        5160,
+        5880
+      ],
+      [
+        6600,
+        7320
+      ],
+      [
+        8040,
+        8760
+      ],
+      [
+        9480,
+        10080
+      ]
+    ]
+  },
+  "listing_source": {
+    "source": "google_places",
+    "url": "https://maps.google.com/?cid=13902241800933834465",
+    "checked_at": "2026-10-03",
+    "place_id": "ChIJEyhvwExLO4gR4X4_vkKv7sA",
+    "osm_id": ""
+  },
+  "claimed": false,
+  "verification": "unverified",
+  "photo": null,
+  "created_at": "2026-10-03",
+  "updated_at": "2026-10-03",
+  "facts": []
+}

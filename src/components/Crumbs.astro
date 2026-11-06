@@ -1,0 +1,9 @@
+---
+import type { Crumb } from '../lib/schema.ts';
+const { crumbs } = Astro.props as { crumbs: Crumb[] };
+---
+<nav class="crumbs" aria-label="Breadcrumb">
+  <ol>
+    {crumbs.map(([name, url]) => <li>{url ? <a href={url}>{name}</a> : <span aria-current="page">{name}</span>}</li>)}
+  </ol>
+</nav>

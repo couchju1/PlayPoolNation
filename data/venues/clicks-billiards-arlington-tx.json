@@ -1,0 +1,77 @@
+{
+  "schema": 1,
+  "slug": "clicks-billiards-arlington-tx",
+  "wp_id": 1717,
+  "name": "Clicks Billiards Arlington",
+  "type": "pool-halls",
+  "status": "open",
+  "address": {
+    "street": "2800 Forestwood Dr #148",
+    "city": "Arlington",
+    "state": "TX",
+    "postal_code": "76006",
+    "country": "US"
+  },
+  "geo": {
+    "lat": 32.78601,
+    "lng": -97.06572
+  },
+  "region": {
+    "state": "texas",
+    "state_name": "Texas",
+    "city": "arlington",
+    "city_name": "Arlington"
+  },
+  "phone": "(817) 649-7665",
+  "website": "https://www.clicks.com/",
+  "hours": {
+    "tz": "America/Chicago",
+    "ranges": [
+      [
+        0,
+        120
+      ],
+      [
+        660,
+        1560
+      ],
+      [
+        2100,
+        3000
+      ],
+      [
+        3540,
+        4440
+      ],
+      [
+        4980,
+        5880
+      ],
+      [
+        6420,
+        7320
+      ],
+      [
+        7860,
+        8760
+      ],
+      [
+        9300,
+        10080
+      ]
+    ]
+  },
+  "listing_source": {
+    "source": "google_places",
+    "url": "https://maps.google.com/?cid=1037199861970165571",
+    "checked_at": "2026-10-03",
+    "place_id": "ChIJa7YkkjOHToYRQ9_QdcffZA4",
+    "osm_id": ""
+  },
+  "claimed": false,
+  "verification": "unverified",
+  "photo": null,
+  "created_at": "2026-10-03",
+  "updated_at": "2026-10-03",
+  "facts": []
+}

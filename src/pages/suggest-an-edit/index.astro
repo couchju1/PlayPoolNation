@@ -1,0 +1,11 @@
+---
+import Base from '../../layouts/Base.astro';
+import SubmitForm from '../../components/SubmitForm.astro';
+import { BRAND } from '../../lib/data.ts';
+---
+<Base title={`Suggest an Edit | ${BRAND}`} description="Tell us what changed at a pool hall or bar: tables, hours, prices, league nights or a closure." noindex crumbs={[['Home', '/'], ['Suggest an edit', '']]} pageType="form">
+  <h1>Suggest an edit</h1>
+  <p class="lede">Corrections keep the map honest. Tell us what you saw, and a link if you have one.</p>
+  <SubmitForm kind="edit" />
+</Base>
+<script>import '../../scripts/forms.ts';</script>

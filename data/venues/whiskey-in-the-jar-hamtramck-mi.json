@@ -1,0 +1,77 @@
+{
+  "schema": 1,
+  "slug": "whiskey-in-the-jar-hamtramck-mi",
+  "wp_id": 1787,
+  "name": "Whiskey In the Jar",
+  "type": "bars-with-pool-tables",
+  "status": "open",
+  "address": {
+    "street": "2741 Yemans St",
+    "city": "Hamtramck",
+    "state": "MI",
+    "postal_code": "48212",
+    "country": "US"
+  },
+  "geo": {
+    "lat": 42.39772,
+    "lng": -83.05915
+  },
+  "region": {
+    "state": "michigan",
+    "state_name": "Michigan",
+    "city": "hamtramck",
+    "city_name": "Hamtramck"
+  },
+  "phone": "(313) 873-4154",
+  "website": "",
+  "hours": {
+    "tz": "America/Detroit",
+    "ranges": [
+      [
+        0,
+        120
+      ],
+      [
+        960,
+        1560
+      ],
+      [
+        2400,
+        3000
+      ],
+      [
+        3840,
+        4440
+      ],
+      [
+        5280,
+        5880
+      ],
+      [
+        6720,
+        7320
+      ],
+      [
+        8160,
+        8760
+      ],
+      [
+        9600,
+        10080
+      ]
+    ]
+  },
+  "listing_source": {
+    "source": "google_places",
+    "url": "https://maps.google.com/?cid=2683829437831357846",
+    "checked_at": "2026-10-03",
+    "place_id": "ChIJSzKM9GrSJIgRlqWsd6fgPiU",
+    "osm_id": ""
+  },
+  "claimed": false,
+  "verification": "unverified",
+  "photo": null,
+  "created_at": "2026-10-03",
+  "updated_at": "2026-10-03",
+  "facts": []
+}

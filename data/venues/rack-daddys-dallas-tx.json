@@ -1,0 +1,77 @@
+{
+  "schema": 1,
+  "slug": "rack-daddys-dallas-tx",
+  "wp_id": 1719,
+  "name": "Rack Daddy’s",
+  "type": "pool-halls",
+  "status": "open",
+  "address": {
+    "street": "17509 Coit Rd A",
+    "city": "Dallas",
+    "state": "TX",
+    "postal_code": "75252",
+    "country": "US"
+  },
+  "geo": {
+    "lat": 32.98978,
+    "lng": -96.76846
+  },
+  "region": {
+    "state": "texas",
+    "state_name": "Texas",
+    "city": "dallas",
+    "city_name": "Dallas"
+  },
+  "phone": "(972) 930-0134",
+  "website": "",
+  "hours": {
+    "tz": "America/Chicago",
+    "ranges": [
+      [
+        0,
+        120
+      ],
+      [
+        660,
+        1560
+      ],
+      [
+        2100,
+        3000
+      ],
+      [
+        3540,
+        4440
+      ],
+      [
+        4980,
+        5880
+      ],
+      [
+        6420,
+        7320
+      ],
+      [
+        7860,
+        8760
+      ],
+      [
+        9360,
+        10080
+      ]
+    ]
+  },
+  "listing_source": {
+    "source": "google_places",
+    "url": "https://maps.google.com/?cid=8849091703398098787",
+    "checked_at": "2026-10-03",
+    "place_id": "ChIJja73GB8iTIYRY2fmDQVKzno",
+    "osm_id": ""
+  },
+  "claimed": false,
+  "verification": "unverified",
+  "photo": null,
+  "created_at": "2026-10-03",
+  "updated_at": "2026-10-03",
+  "facts": []
+}

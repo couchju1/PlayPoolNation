@@ -1,0 +1,49 @@
+{
+  "schema": 1,
+  "slug": "las-vegas-cue-club-las-vegas-nv",
+  "wp_id": 1748,
+  "name": "Las Vegas Cue Club",
+  "type": "pool-halls",
+  "status": "open",
+  "address": {
+    "street": "953 E Sahara Ave Suite 15A",
+    "city": "Las Vegas",
+    "state": "NV",
+    "postal_code": "89104",
+    "country": "US"
+  },
+  "geo": {
+    "lat": 36.14341,
+    "lng": -115.1438
+  },
+  "region": {
+    "state": "nevada",
+    "state_name": "Nevada",
+    "city": "las-vegas",
+    "city_name": "Las Vegas"
+  },
+  "phone": "(702) 735-2884",
+  "website": "https://lasvegascueclub.com/",
+  "hours": {
+    "tz": "America/Los_Angeles",
+    "ranges": [
+      [
+        0,
+        10080
+      ]
+    ]
+  },
+  "listing_source": {
+    "source": "google_places",
+    "url": "https://maps.google.com/?cid=13533272767731159722",
+    "checked_at": "2026-10-03",
+    "place_id": "ChIJGazTX4fEyIARqlIVQeHXz7s",
+    "osm_id": ""
+  },
+  "claimed": false,
+  "verification": "unverified",
+  "photo": null,
+  "created_at": "2026-10-03",
+  "updated_at": "2026-10-03",
+  "facts": []
+}

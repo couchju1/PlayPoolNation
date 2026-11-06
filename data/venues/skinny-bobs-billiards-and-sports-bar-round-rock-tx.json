@@ -1,0 +1,73 @@
+{
+  "schema": 1,
+  "slug": "skinny-bobs-billiards-and-sports-bar-round-rock-tx",
+  "wp_id": 1725,
+  "name": "Skinny Bob’s Billiards & Sports Bar",
+  "type": "pool-halls",
+  "status": "open",
+  "address": {
+    "street": "300 Hesters Crossing Rd Ste A1",
+    "city": "Round Rock",
+    "state": "TX",
+    "postal_code": "78681",
+    "country": "US"
+  },
+  "geo": {
+    "lat": 30.4879,
+    "lng": -97.68019
+  },
+  "region": {
+    "state": "texas",
+    "state_name": "Texas",
+    "city": "round-rock",
+    "city_name": "Round Rock"
+  },
+  "phone": "(512) 733-1111",
+  "website": "http://skinnybobs.com/",
+  "hours": {
+    "tz": "America/Chicago",
+    "ranges": [
+      [
+        660,
+        1440
+      ],
+      [
+        2100,
+        2880
+      ],
+      [
+        3540,
+        4320
+      ],
+      [
+        4980,
+        5880
+      ],
+      [
+        6420,
+        7320
+      ],
+      [
+        7860,
+        8760
+      ],
+      [
+        9360,
+        10080
+      ]
+    ]
+  },
+  "listing_source": {
+    "source": "google_places",
+    "url": "https://maps.google.com/?cid=7709081971302377165",
+    "checked_at": "2026-10-03",
+    "place_id": "ChIJ05dEuuHRRIYRzabYWzUp_Go",
+    "osm_id": ""
+  },
+  "claimed": false,
+  "verification": "unverified",
+  "photo": null,
+  "created_at": "2026-10-03",
+  "updated_at": "2026-10-03",
+  "facts": []
+}

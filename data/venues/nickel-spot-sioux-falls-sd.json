@@ -1,0 +1,77 @@
+{
+  "schema": 1,
+  "slug": "nickel-spot-sioux-falls-sd",
+  "wp_id": 1827,
+  "name": "Nickel Spot",
+  "type": "bars-with-pool-tables",
+  "status": "open",
+  "address": {
+    "street": "2918 S Minnesota Ave",
+    "city": "Sioux Falls",
+    "state": "SD",
+    "postal_code": "57105",
+    "country": "US"
+  },
+  "geo": {
+    "lat": 43.51776,
+    "lng": -96.73056
+  },
+  "region": {
+    "state": "south-dakota",
+    "state_name": "South Dakota",
+    "city": "sioux-falls",
+    "city_name": "Sioux Falls"
+  },
+  "phone": "(605) 335-3180",
+  "website": "http://www.thenickelspot.com/",
+  "hours": {
+    "tz": "America/Chicago",
+    "ranges": [
+      [
+        0,
+        120
+      ],
+      [
+        840,
+        1560
+      ],
+      [
+        2280,
+        3000
+      ],
+      [
+        3720,
+        4440
+      ],
+      [
+        5160,
+        5880
+      ],
+      [
+        6420,
+        7320
+      ],
+      [
+        7920,
+        8760
+      ],
+      [
+        9360,
+        10080
+      ]
+    ]
+  },
+  "listing_source": {
+    "source": "google_places",
+    "url": "https://maps.google.com/?cid=15246756859042340346",
+    "checked_at": "2026-10-03",
+    "place_id": "ChIJDakbr-G1jocR-h34H5Vcl9M",
+    "osm_id": ""
+  },
+  "claimed": false,
+  "verification": "unverified",
+  "photo": null,
+  "created_at": "2026-10-03",
+  "updated_at": "2026-10-03",
+  "facts": []
+}

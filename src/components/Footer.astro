@@ -1,0 +1,31 @@
+---
+import { cityPages } from '../lib/data.ts';
+const top = cityPages().filter((c) => c.launched).slice(0, 8);
+const year = new Date().getFullYear();
+---
+<footer class="site-foot">
+  <div class="wrap">
+    <div class="cols">
+      <div>
+        <img src="/brand/playpoolnation-logo-reversed.svg" alt="PlayPoolNation" width="190" height="34" loading="lazy" />
+        <p>Pool halls and bars with pool tables across the U.S., with table counts, sizes and league nights from sources you can check.</p>
+      </div>
+      <div>
+        <p><b>Cities</b></p>
+        <ul>{top.map((c) => <li><a href={c.url}>{c.where}</a></li>)}<li><a href="/places/">All places</a></li></ul>
+      </div>
+      <div>
+        <p><b>PlayPoolNation</b></p>
+        <ul>
+          <li><a href="/add-a-venue/">Add a venue</a></li>
+          <li><a href="/list-your-venue/">Own a venue?</a></li>
+          <li><a href="/how-we-check/">How we check facts</a></li>
+          <li><a href="/practice/">Practice</a></li>
+          <li><a href="/privacy-policy/">Privacy</a></li>
+          <li><a href="/terms-of-service/">Terms</a></li>
+        </ul>
+      </div>
+    </div>
+    <p class="fine">© {year} PlayPoolNation. Details change. Call ahead before you drive.</p>
+  </div>
+</footer>
