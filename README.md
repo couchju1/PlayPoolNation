@@ -15,8 +15,9 @@ The idea: Google already answers "pool hall near me". It doesn't answer "where's
 | Fact finding | `tools/enrich` (Python): OpenStreetMap, league operators, venue sites | `tools/enrich/` |
 | Maps | MapLibre + OpenStreetMap tiles, loaded only on "Show map" | `src/scripts/site.ts` |
 | Search | In the browser over `/data/venues.json` (move to Typesense past a few thousand venues) | `src/scripts/search.ts` |
-| Hosting | Cloudflare Pages, with Pages Functions for `/api/event` and `/api/submit` | `functions/`, `wrangler.toml` |
-| Analytics | First-party click table (calls, directions, website taps), optional Plausible | `functions/api/event.ts` |
+| Hosting | Hostinger web hosting: static files, `.htaccess` (generated), two PHP scripts for `/api/event` and `/api/submit` | `public/api/`, `scripts/redirects.mjs` |
+| Deploys | GitHub Action builds on push to `main` and commits the result to the `deploy` branch, which Hostinger's Git deployment pulls | `.github/workflows/deploy.yml` |
+| Analytics | First-party click table (calls, directions, website taps), optional Plausible | `public/api/event.php` |
 
 ## Commands
 
@@ -36,7 +37,7 @@ npm test
 npm run build
 ```
 
-`npm run build` builds every page, writes `dist/_redirects` (every old WordPress URL to its new page), then crawls the result and fails on duplicate titles or H1s, broken internal links, pages without exactly one H1, and sitemap URLs that are noindex or redirect.
+`npm run build` builds every page, writes `dist/.htaccess` (every old WordPress URL to its new page, https and www, the `/api/` routes), then crawls the result and fails on duplicate titles or H1s, broken internal links, pages without exactly one H1, and sitemap URLs that are noindex or redirect.
 
 ```bash
 npm run review
@@ -67,7 +68,7 @@ Sitemaps are split by type (`/sitemap-cities.xml`, `-hubs`, `-listings`, `-state
 1. `python3 tools/enrich/enrich.py run <city>`. It reads our listings from `data/venues/`, discovers venues and reads their sites.
 2. `npm run review`. Approve or reject every fact and new venue.
 3. When the city's data is complete, add it to `data/launch.json`.
-4. `npm run build`, commit, push. After the deploy, `npm run indexnow -- /places/<state>/<city>/`.
+4. `npm run build`, commit, push to `main` (it deploys itself). Then `npm run indexnow -- /places/<state>/<city>/`.
 5. Watch Search Console for 3 to 4 weeks before the next wave of 5 to 10 cities.
 
 Monthly: `python3 tools/enrich/enrich.py recheck <city>`, then `npm run review` for whatever changed.
@@ -79,7 +80,7 @@ src/lib/          data rules, text from facts, open/closed, schema.org, sitemaps
 src/pages/        routes
 src/components/   page parts
 src/scripts/      what the browser adds: open status, click counts, filters, map, Tonight panel, search
-functions/api/    Cloudflare Pages Functions: /api/event, /api/submit
+public/api/       PHP for Hostinger: /api/event, /api/submit (Supabase key in ppn-secrets.php above public_html)
 data/venues/      the venues, one file each
 data/launch.json  launched (indexed) cities
 db/               Supabase schema and generated seed
@@ -89,4 +90,4 @@ wordpress/        the old site's plugin, kept until the cutover is done
 docs/             cutover plan and history
 ```
 
-See [docs/astro-cutover.md](docs/astro-cutover.md) for moving the domain off WordPress.
+See [docs/astro-cutover.md](docs/astro-cutover.md) for the move from WordPress to the static site on Hostinger.
