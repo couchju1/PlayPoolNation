@@ -1,27 +1,20 @@
-# Builds the site and uploads it to Cloudflare Pages (project "playpoolnation").
-# Pushes to main go live at playpoolnation.pages.dev (and playpoolnation.com once
-# the domain is attached); pull requests get a preview URL.
-# Needs the repository secret CLOUDFLARE_API_TOKEN (Account → Cloudflare Pages → Edit).
+# Builds the site and commits the result to the `deploy` branch. Hostinger's Git
+# deployment (hPanel → Advanced → Git) pulls that branch into public_html for
+# playpoolnation.com, either from its webhook or the Deploy button.
+# The branch only ever moves forward (no force-push), so Hostinger's pull always works.
 name: Deploy
 on:
   push:
     branches: [main]
-  pull_request:
   workflow_dispatch:
 concurrency:
-  group: deploy-${{ github.ref }}
-  cancel-in-progress: true
+  group: deploy
+  cancel-in-progress: false
+permissions:
+  contents: write
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    # Fork pull requests can't read the secret; skip them instead of failing.
-    if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository
-    permissions:
-      contents: read
-      deployments: write
-    env:
-      CLOUDFLARE_ACCOUNT_ID: 0ec40776b8b72ddcea8da4a57339fb43
-      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -30,5 +23,26 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npm run build
-      - name: Upload to Cloudflare Pages
-        run: npx wrangler pages deploy dist --project-name playpoolnation --branch "${{ github.head_ref || github.ref_name }}" --commit-hash "${{ github.sha }}"
+      - name: Commit the built site to the deploy branch
+        env:
+          SHA: ${{ github.sha }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if git ls-remote --exit-code --heads origin deploy >/dev/null; then
+            git fetch --depth=1 origin deploy
+            git worktree add ../site deploy
+          else
+            git worktree add --orphan -b deploy ../site
+          fi
+          # Replace everything with the new build, keeping the worktree's .git file.
+          find ../site -mindepth 1 -maxdepth 1 ! -name .git -exec rm -rf {} +
+          cp -a dist/. ../site/
+          cd ../site
+          git add -A
+          if git diff --cached --quiet; then
+            echo "No changes to deploy."
+          else
+            git commit -q -m "Build ${SHA::7}"
+            git push origin deploy
+          fi

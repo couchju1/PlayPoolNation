@@ -28,9 +28,10 @@ const urlOf = (f) => '/' + path.relative(dist, f).replace(/index\.html$/, '').re
 const decode = (s) => s.replace(/&amp;/g, '&').replace(/&quot;/g, '"').replace(/&#39;/g, "'").replace(/&lt;/g, '<').replace(/&gt;/g, '>');
 const text = (s) => decode(s.replace(/<[^>]+>/g, '')).replace(/\s+/g, ' ').trim();
 
+// Redirect sources, from the "#R <from> <to>" lines scripts/redirects.mjs writes into .htaccess.
 const redirects = new Set(
-  fs.existsSync(path.join(dist, '_redirects'))
-    ? fs.readFileSync(path.join(dist, '_redirects'), 'utf8').split('\n').filter((l) => l && !l.startsWith('#')).map((l) => l.split(' ')[0])
+  fs.existsSync(path.join(dist, '.htaccess'))
+    ? fs.readFileSync(path.join(dist, '.htaccess'), 'utf8').split('\n').filter((l) => l.startsWith('#R ')).map((l) => l.split(' ')[1])
     : [],
 );
 const pages = new Map();
