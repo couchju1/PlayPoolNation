@@ -22,20 +22,49 @@ const stateCount = states().length;
         <h1>Every pool table <em>worth the drive.</em></h1>
         <p>{all.length} pool halls and bars with pool tables in {stateCount} states. See who's open right now, how many tables they have, and when the leagues play.</p>
       </div>
-      <div class="tonight" id="tonight" data-tonight>
-        <h2>Play tonight</h2>
-        <p class="count" data-tonight-count>Find a table that's open right now.</p>
-        <div class="row">
-          <button type="button" class="btn" data-tonight-near hidden>Find an open table near me</button>
-          <label class="visually-hidden" for="tonight-city">Pick a city</label>
-          <select id="tonight-city" data-tonight-city hidden>
-            <option value="">Or pick a city</option>
-            {cityList.map((c) => <option value={c.key}>{c.where}</option>)}
+      <form class="ask" id="tonight" data-ask action="/search/" onsubmit="return false">
+        <p class="ask-eyebrow">Ask it like you'd ask a friend</p>
+        <p class="ask-line">
+          Find me
+          <label class="visually-hidden" for="ask-table">Table</label>
+          <select id="ask-table" name="table" data-slot>
+            <option value="">any table</option>
+            <option value="nine">a 9-foot table</option>
+            <option value="many">a room with 6+ tables</option>
           </select>
-          <a class="btn btn--ghost" href="/places/" data-tonight-fallback>Browse every city</a>
+          at
+          <label class="visually-hidden" for="ask-kind">Kind of place</label>
+          <select id="ask-kind" name="kind" data-slot>
+            <option value="">any spot</option>
+            <option value="hall">a real pool hall</option>
+            <option value="bar">a bar</option>
+          </select>
+          <label class="visually-hidden" for="ask-where">Where</label>
+          <select id="ask-where" name="where" data-slot>
+            <option value="">anywhere</option>
+            <option value="near" data-near hidden>near me</option>
+            {cityList.map((c) => <option value={c.key}>in {c.where}</option>)}
+          </select>
+          that's
+          <label class="visually-hidden" for="ask-when">When</label>
+          <select id="ask-when" name="when" data-slot>
+            <option value="open">open right now</option>
+            <option value="late">open past midnight tonight</option>
+            <option value="league">running a league tonight</option>
+            <option value="free">got free pool</option>
+            <option value="food">serving food</option>
+            <option value="">open whenever</option>
+          </select>.
+        </p>
+        <div class="answer" aria-live="polite" data-ask-answer>
+          <p class="answer-count" data-ask-count>Pick anything above and the answer shows up here.</p>
+          <ol class="picks" data-ask-picks></ol>
+          <p class="answer-more">
+            <button type="button" class="btn btn--ghost" data-ask-more hidden></button>
+            <a class="btn btn--ghost" href="/places/" data-ask-fallback>Browse every city</a>
+          </p>
         </div>
-        <ol class="picks" data-tonight-picks></ol>
-      </div>
+      </form>
     </div>
   </section>
 
