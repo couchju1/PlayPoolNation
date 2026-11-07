@@ -17,8 +17,8 @@ Accounts and My Pool, WooCommerce, the paid promotions (they were never switched
 
 ## Before the switch
 
-1. **Supabase.** Create a project, run `db/schema.sql` in the SQL editor, then `npm run db:seed-sql` and run `db/seed.sql`.
-2. **Cloudflare Pages.** Connect the GitHub repo. Build command `npm run build`, output `dist`, Node 22. Add the environment variables `SUPABASE_URL` and `SUPABASE_SERVICE_KEY` (as a secret). Optionally `PUBLIC_PLAUSIBLE_DOMAIN`.
+1. **Supabase.** Done: project `fynwiiivlhpbsvclecmk` has the schema and the 107 venues and 22 facts from `db/seed.sql`. Free projects pause after a week without traffic; launch traffic keeps it awake, or restore it from the dashboard.
+2. **Cloudflare Pages.** Done: the project `playpoolnation` (playpoolnation.pages.dev) has `SUPABASE_URL` and `SUPABASE_SERVICE_KEY` (secret) set. `.github/workflows/deploy.yml` builds and uploads on every push to `main`, and gives pull requests a preview URL. It needs the repository secret `CLOUDFLARE_API_TOKEN` (Account → Cloudflare Pages → Edit).
 3. **Rate limit** `/api/submit` and `/api/event` with a Cloudflare rate-limiting rule (for example 20 requests a minute per IP).
 4. **Check the preview URL.** Open a city page, a venue page, "Show map", the Tonight panel, and send yourself a test "Suggest an edit". It should appear in the `submissions` table.
 5. **Review the legal pages.** `/privacy-policy/` and `/terms-of-service/` were rewritten for a site with no accounts, no cookies and no shop. They name Cloudflare and Supabase as providers, so keep them true.
