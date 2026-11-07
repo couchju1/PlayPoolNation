@@ -1,0 +1,126 @@
+---
+/**
+ * A venue page. Built for every venue so links never break, but noindex until
+ * it passes the data threshold (address, phone or website, hours, and 2 of the
+ * 3 table facts), then indexed on the next build with nothing to switch on.
+ */
+import Base from '../../../layouts/Base.astro';
+import Status from '../../../components/Status.astro';
+import Actions from '../../../components/Actions.astro';
+import Room from '../../../components/Room.astro';
+import MapButton from '../../../components/MapButton.astro';
+import { BRAND, cityOf, nearbyVenues, textFacts, venues } from '../../../lib/data.ts';
+import { about, brands, clip, factLines, leagueLines, typeLabel, weekHours } from '../../../lib/text.ts';
+import { host, shortDate } from '../../../lib/format.ts';
+import { venueSchema } from '../../../lib/schema.ts';
+import type { Fact, Venue } from '../../../lib/types.ts';
+
+export function getStaticPaths() {
+  return venues().map((v) => ({ params: { slug: v.slug }, props: { v } }));
+}
+const { v } = Astro.props as { v: Venue };
+const tf = textFacts(v);
+const text = about(tf);
+const city = cityOf(v);
+const week = v.hours ? weekHours(v.hours.ranges) : [];
+const near = nearbyVenues(v);
+const cityState = `${v.address.city}, ${v.address.state}`;
+const title = (() => {
+  for (const t of [`${v.name}, ${cityState}: Tables & Hours | ${BRAND}`, `${v.name}, ${cityState} | ${BRAND}`, `${v.name}, ${cityState}`, v.name]) if (t.length <= 60) return t;
+  return v.name.slice(0, 60);
+})();
+const description = clip(text.sentences.join(' '));
+const crumbs: [string, string][] = [['Home', '/'], ['Places', '/places/'], [v.region.state_name, `/places/${v.region.state}/`]];
+if (city) crumbs.push([city.name, city.url]);
+crumbs.push([v.name, '']);
+
+// Sources shown on the page: each fact's own source link and check date.
+const LABEL: Record<string, string> = { table_count: 'Table count', table_sizes: 'Table sizes', table_brands: 'Table brands', table_models: 'Table models', pricing_model: 'Pricing', pricing_notes: 'Prices', league_nights: 'League nights', food: 'Food', full_bar: 'Full bar', games: 'Other games', age_policy: 'Age policy', venue_status: 'Status' };
+const bySource = new Map<string, { url: string; fields: Set<string>; at: string }>();
+for (const f of v.facts as Fact[]) {
+  if (f.source_type === 'default' || !f.source_url) continue;
+  const e = bySource.get(f.source_url) ?? { url: f.source_url, fields: new Set(), at: f.checked_at };
+  e.fields.add(LABEL[f.field] ?? f.field);
+  if (f.checked_at > e.at) e.at = f.checked_at;
+  bySource.set(f.source_url, e);
+}
+const defaults = v.facts.filter((f) => f.source_type === 'default');
+const lines = factLines(tf).filter(([label]) => label !== 'Type' && label !== 'Address' && label !== 'Leagues');
+const leagues = leagueLines(tf);
+const listingFrom = v.listing_source?.source === 'google_places' ? 'Google Places' : v.listing_source?.source === 'openstreetmap' ? 'OpenStreetMap' : '';
+---
+<Base title={title} description={description} noindex={!v.indexable} crumbs={crumbs} schema={[venueSchema(v)]} image={v.photo || undefined} pageType="venue_page" city={v.cityKey}>
+  <header class="venue-head">
+    <p class="type">{typeLabel(v.type)} in {cityState}</p>
+    <h1>{v.name}</h1>
+    <div><Status v={v} /></div>
+    <Actions v={v} />
+  </header>
+
+  <div class="venue-cols">
+    <div>
+      <section class="panel">
+        <h2>About</h2>
+        <p>{text.sentences.join(' ')}</p>
+        {text.claim && <p class="claim-line">{text.claim.lead} <a href={`/list-your-venue/?v=${v.slug}`} data-ppn-event="claim" data-venue={v.slug} data-where="venue_page">Claim it</a>{text.claim.rest}</p>}
+      </section>
+
+      <section class="panel section">
+        <h2>The tables</h2>
+        {lines.length > 0 ? (
+          <dl class="facts">{lines.map(([label, value]) => (<><dt>{label}</dt><dd>{value}</dd></>))}
+            {v.models && (<><dt>Models</dt><dd>{v.models}</dd></>)}
+            {v.pricingNotes && (<><dt>Prices</dt><dd>{v.pricingNotes}</dd></>)}
+          </dl>
+        ) : <p class="muted">We don't have table details for {v.name} yet. If you've played here, <a href={`/suggest-an-edit/?v=${v.slug}`}>tell us what you saw</a>.</p>}
+        <Room v={v} />
+        {defaults.length > 0 && <p class="muted" style="font-size:14px">Table size not stated by any source yet. Shown as 7-foot, the usual bar size.</p>}
+      </section>
+
+      {leagues.length > 0 && (
+        <section class="panel section">
+          <h2>League nights</h2>
+          <ul>{leagues.map((l) => <li>{l}</li>)}</ul>
+        </section>
+      )}
+
+      {near.length > 0 && (
+        <section class="section">
+          <h2>Nearby</h2>
+          <div class="grid">{near.map((n) => (
+            <a class="card" href={n.url}><h3>{n.name}</h3><p>{typeLabel(n.type)}, {n.miles < 1 ? 'under a mile' : `${n.miles.toFixed(1)} miles`} away</p><Status v={n} /></a>
+          ))}</div>
+        </section>
+      )}
+    </div>
+
+    <aside>
+      <section class="panel">
+        <h2>Where and when</h2>
+        <dl class="facts">
+          {v.address.street && (<><dt>Address</dt><dd>{v.address.street}<br />{cityState} {v.address.postal_code}</dd></>)}
+          {v.phone && (<><dt>Phone</dt><dd>{v.phone}</dd></>)}
+          {v.website && (<><dt>Website</dt><dd><a href={v.website} rel="nofollow noopener" target="_blank" data-ppn-event="website" data-venue={v.slug} data-where="venue_page">{host(v.website)}</a></dd></>)}
+        </dl>
+        {week.length > 0 && v.status === 'open' && (
+          <table class="hours-table" aria-label="Opening hours"><tbody>{week.map((r) => <tr><th scope="row">{r.day}</th><td>{r.hours}</td></tr>)}</tbody></table>
+        )}
+        <MapButton venues={[v]} />
+      </section>
+
+      <section class="panel section sources">
+        <h2 style="font-size:20px">Sources</h2>
+        {bySource.size > 0 && (
+          <ul>{[...bySource.values()].map((s) => <li>{[...s.fields].join(', ')}: <a href={s.url} rel="nofollow noopener" target="_blank">{host(s.url)}</a>, checked {shortDate(s.at)}</li>)}</ul>
+        )}
+        {v.listing_source?.checked_at && <p style="margin-top:8px">Address, phone and hours{listingFrom ? ` from ${listingFrom}` : ''}, confirmed open {shortDate(v.listing_source.checked_at)}.</p>}
+        <p>Every fact here was approved by a person. Unknown details stay blank. <a href="/how-we-check/">How we check</a>.</p>
+        <p class="actions">
+          <a class="btn btn--ghost" href={`/suggest-an-edit/?v=${v.slug}`} data-ppn-event="suggest_edit" data-venue={v.slug} data-where="venue_page">Suggest an edit</a>
+          {!v.claimed && <a class="btn btn--ghost" href={`/list-your-venue/?v=${v.slug}`} data-ppn-event="claim" data-venue={v.slug} data-where="venue_page">Own it? Claim it</a>}
+        </p>
+      </section>
+      {city && <p><a href={city.url}>All places to play pool in {city.where}</a></p>}
+    </aside>
+  </div>
+</Base>

@@ -1,0 +1,164 @@
+{
+  "schema": 1,
+  "slug": "rack-city-billiards-sioux-falls-sd",
+  "wp_id": 1824,
+  "name": "Rack City Billiards",
+  "type": "pool-halls",
+  "status": "open",
+  "address": {
+    "street": "309 S Bahnson Ave",
+    "city": "Sioux Falls",
+    "state": "SD",
+    "postal_code": "57103",
+    "country": "US"
+  },
+  "geo": {
+    "lat": 43.54556,
+    "lng": -96.68301
+  },
+  "region": {
+    "state": "south-dakota",
+    "state_name": "South Dakota",
+    "city": "sioux-falls",
+    "city_name": "Sioux Falls"
+  },
+  "phone": "(605) 271-2951",
+  "website": "http://rackcitybilliards.com/",
+  "hours": {
+    "tz": "America/Chicago",
+    "ranges": [
+      [
+        840,
+        1440
+      ],
+      [
+        2100,
+        2880
+      ],
+      [
+        3720,
+        4320
+      ],
+      [
+        5160,
+        5760
+      ],
+      [
+        6600,
+        7320
+      ],
+      [
+        7860,
+        8760
+      ],
+      [
+        9300,
+        10080
+      ]
+    ]
+  },
+  "listing_source": {
+    "source": "google_places",
+    "url": "https://maps.google.com/?cid=12482176986975748615",
+    "checked_at": "2026-10-02",
+    "place_id": "ChIJJb2XOI21jocRB8I-FNaZOa0",
+    "osm_id": ""
+  },
+  "claimed": false,
+  "verification": "unverified",
+  "photo": null,
+  "created_at": "2026-10-03",
+  "updated_at": "2026-10-03",
+  "facts": [
+    {
+      "field": "table_count",
+      "key": "table_count",
+      "value": 18,
+      "source_url": "https://www.findtourneys.com/poolhall.php?id=2137",
+      "source_type": "web_research",
+      "checked_at": "2026-10-03",
+      "confidence": "stated",
+      "flags": [],
+      "approved_at": "2026-10-03",
+      "approved_by": "wordpress-import"
+    },
+    {
+      "field": "table_sizes",
+      "key": "table_sizes:7ft",
+      "value": {
+        "size": "7ft",
+        "count": 16
+      },
+      "source_url": "https://www.findtourneys.com/poolhall.php?id=2137",
+      "source_type": "web_research",
+      "checked_at": "2026-10-03",
+      "confidence": "stated",
+      "flags": [],
+      "approved_at": "2026-10-03",
+      "approved_by": "wordpress-import"
+    },
+    {
+      "field": "table_sizes",
+      "key": "table_sizes:9ft",
+      "value": {
+        "size": "9ft",
+        "count": 2
+      },
+      "source_url": "https://www.findtourneys.com/poolhall.php?id=2137",
+      "source_type": "web_research",
+      "checked_at": "2026-10-03",
+      "confidence": "stated",
+      "flags": [],
+      "approved_at": "2026-10-03",
+      "approved_by": "wordpress-import"
+    },
+    {
+      "field": "table_brands",
+      "key": "table_brands:diamond",
+      "value": "Diamond",
+      "source_url": "https://www.findtourneys.com/poolhall.php?id=2137",
+      "source_type": "web_research",
+      "checked_at": "2026-10-03",
+      "confidence": "stated",
+      "flags": [],
+      "approved_at": "2026-10-03",
+      "approved_by": "wordpress-import"
+    },
+    {
+      "field": "table_brands",
+      "key": "table_brands:valley",
+      "value": "Valley",
+      "source_url": "https://www.findtourneys.com/poolhall.php?id=2137",
+      "source_type": "web_research",
+      "checked_at": "2026-10-03",
+      "confidence": "stated",
+      "flags": [],
+      "approved_at": "2026-10-03",
+      "approved_by": "wordpress-import"
+    },
+    {
+      "field": "table_models",
+      "key": "table_models",
+      "value": "12 Diamond 7', 2 Diamond 9', 4 Valley bar box 7'",
+      "source_url": "https://www.findtourneys.com/poolhall.php?id=2137",
+      "source_type": "web_research",
+      "checked_at": "2026-10-03",
+      "confidence": "stated",
+      "flags": [],
+      "approved_at": "2026-10-03",
+      "approved_by": "wordpress-import"
+    },
+    {
+      "field": "games",
+      "key": "games:darts",
+      "value": "Darts",
+      "source_url": "https://www.findtourneys.com/poolhall.php?id=2137",
+      "source_type": "web_research",
+      "checked_at": "2026-10-03",
+      "confidence": "stated",
+      "flags": [],
+      "approved_at": "2026-10-03",
+      "approved_by": "wordpress-import"
+    }
+  ]
+}

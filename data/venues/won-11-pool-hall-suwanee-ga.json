@@ -1,0 +1,77 @@
+{
+  "schema": 1,
+  "slug": "won-11-pool-hall-suwanee-ga",
+  "wp_id": 1745,
+  "name": "Won 11 Pool Hall",
+  "type": "pool-halls",
+  "status": "open",
+  "address": {
+    "street": "2790 Lawrenceville-Suwanee Rd Ste 250",
+    "city": "Suwanee",
+    "state": "GA",
+    "postal_code": "30024",
+    "country": "US"
+  },
+  "geo": {
+    "lat": 34.02333,
+    "lng": -84.04513
+  },
+  "region": {
+    "state": "georgia",
+    "state_name": "Georgia",
+    "city": "suwanee",
+    "city_name": "Suwanee"
+  },
+  "phone": "(678) 926-3779",
+  "website": "",
+  "hours": {
+    "tz": "America/New_York",
+    "ranges": [
+      [
+        0,
+        60
+      ],
+      [
+        720,
+        1500
+      ],
+      [
+        2160,
+        2940
+      ],
+      [
+        3600,
+        4380
+      ],
+      [
+        5040,
+        5820
+      ],
+      [
+        6480,
+        7320
+      ],
+      [
+        7920,
+        8760
+      ],
+      [
+        9360,
+        10080
+      ]
+    ]
+  },
+  "listing_source": {
+    "source": "google_places",
+    "url": "https://maps.google.com/?cid=8646381381743703857",
+    "checked_at": "2026-10-03",
+    "place_id": "ChIJxQeCpzuW9YgRMXdiYw4e_nc",
+    "osm_id": ""
+  },
+  "claimed": false,
+  "verification": "unverified",
+  "photo": null,
+  "created_at": "2026-10-03",
+  "updated_at": "2026-10-03",
+  "facts": []
+}

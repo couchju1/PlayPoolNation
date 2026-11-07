@@ -1,0 +1,77 @@
+{
+  "schema": 1,
+  "slug": "sharkys-bar-grill-and-games-dallas-tx",
+  "wp_id": 1720,
+  "name": "Sharky’s Bar, Grill & Games",
+  "type": "bars-with-pool-tables",
+  "status": "open",
+  "address": {
+    "street": "17453 Preston Rd",
+    "city": "Dallas",
+    "state": "TX",
+    "postal_code": "75252",
+    "country": "US"
+  },
+  "geo": {
+    "lat": 32.99093,
+    "lng": -96.8027
+  },
+  "region": {
+    "state": "texas",
+    "state_name": "Texas",
+    "city": "dallas",
+    "city_name": "Dallas"
+  },
+  "phone": "(972) 713-0201",
+  "website": "http://www.sharkysdallas.com/",
+  "hours": {
+    "tz": "America/Chicago",
+    "ranges": [
+      [
+        0,
+        120
+      ],
+      [
+        690,
+        1560
+      ],
+      [
+        2130,
+        3000
+      ],
+      [
+        3570,
+        4440
+      ],
+      [
+        5010,
+        5880
+      ],
+      [
+        6450,
+        7320
+      ],
+      [
+        7860,
+        8760
+      ],
+      [
+        9300,
+        10080
+      ]
+    ]
+  },
+  "listing_source": {
+    "source": "google_places",
+    "url": "https://maps.google.com/?cid=2893828053450545360",
+    "checked_at": "2026-10-03",
+    "place_id": "ChIJj6yjUdcjTIYR0Nj6TkjxKCg",
+    "osm_id": ""
+  },
+  "claimed": false,
+  "verification": "unverified",
+  "photo": null,
+  "created_at": "2026-10-03",
+  "updated_at": "2026-10-03",
+  "facts": []
+}

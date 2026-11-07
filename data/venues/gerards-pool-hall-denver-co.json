@@ -1,0 +1,77 @@
+{
+  "schema": 1,
+  "slug": "gerards-pool-hall-denver-co",
+  "wp_id": 1738,
+  "name": "Gerard’s Pool Hall",
+  "type": "pool-halls",
+  "status": "open",
+  "address": {
+    "street": "1305 26th St",
+    "city": "Denver",
+    "state": "CO",
+    "postal_code": "80205",
+    "country": "US"
+  },
+  "geo": {
+    "lat": 39.75911,
+    "lng": -104.98532
+  },
+  "region": {
+    "state": "colorado",
+    "state_name": "Colorado",
+    "city": "denver",
+    "city_name": "Denver"
+  },
+  "phone": "(720) 638-2190",
+  "website": "http://gerardspoolhall.com/",
+  "hours": {
+    "tz": "America/Denver",
+    "ranges": [
+      [
+        0,
+        60
+      ],
+      [
+        900,
+        1500
+      ],
+      [
+        2340,
+        2940
+      ],
+      [
+        3780,
+        4380
+      ],
+      [
+        5220,
+        5820
+      ],
+      [
+        6660,
+        7260
+      ],
+      [
+        8040,
+        8700
+      ],
+      [
+        9480,
+        10080
+      ]
+    ]
+  },
+  "listing_source": {
+    "source": "google_places",
+    "url": "https://maps.google.com/?cid=162222836498051428",
+    "checked_at": "2026-10-03",
+    "place_id": "ChIJgaOj_x95bIcRZDHsb89UQAI",
+    "osm_id": ""
+  },
+  "claimed": false,
+  "verification": "unverified",
+  "photo": null,
+  "created_at": "2026-10-03",
+  "updated_at": "2026-10-03",
+  "facts": []
+}

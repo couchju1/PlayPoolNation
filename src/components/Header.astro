@@ -1,0 +1,17 @@
+---
+const path = Astro.url.pathname;
+const links = [
+  ['/places/', 'Find a table'],
+  ['/search/', 'Search'],
+  ['/practice/', 'Practice'],
+  ['/list-your-venue/', 'List your venue'],
+];
+---
+<header class="site-head">
+  <div class="wrap">
+    <a class="logo" href="/" aria-label="PlayPoolNation home"><img src="/brand/playpoolnation-logo.svg" alt="PlayPoolNation" width="190" height="34" /></a>
+    <nav class="nav" aria-label="Main">
+      {links.map(([href, label]) => <a href={href} aria-current={path.startsWith(href) ? 'page' : undefined}>{label}</a>)}
+    </nav>
+  </div>
+</header>

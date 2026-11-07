@@ -1,0 +1,73 @@
+{
+  "schema": 1,
+  "slug": "on-cue-billiards-la-mesa-ca",
+  "wp_id": 1774,
+  "name": "On Cue Billiards",
+  "type": "pool-halls",
+  "status": "open",
+  "address": {
+    "street": "8308 Parkway Dr",
+    "city": "La Mesa",
+    "state": "CA",
+    "postal_code": "91942",
+    "country": "US"
+  },
+  "geo": {
+    "lat": 32.7788,
+    "lng": -117.01768
+  },
+  "region": {
+    "state": "california",
+    "state_name": "California",
+    "city": "la-mesa",
+    "city_name": "La Mesa"
+  },
+  "phone": "(619) 463-8759",
+  "website": "",
+  "hours": {
+    "tz": "America/Los_Angeles",
+    "ranges": [
+      [
+        720,
+        1440
+      ],
+      [
+        2160,
+        2880
+      ],
+      [
+        3600,
+        4320
+      ],
+      [
+        5040,
+        5760
+      ],
+      [
+        6480,
+        7320
+      ],
+      [
+        7920,
+        8760
+      ],
+      [
+        9360,
+        10080
+      ]
+    ]
+  },
+  "listing_source": {
+    "source": "google_places",
+    "url": "https://maps.google.com/?cid=11368057948659488703",
+    "checked_at": "2026-10-03",
+    "place_id": "ChIJg27czxFX2YARv5fnR3l0w50",
+    "osm_id": ""
+  },
+  "claimed": false,
+  "verification": "unverified",
+  "photo": null,
+  "created_at": "2026-10-03",
+  "updated_at": "2026-10-03",
+  "facts": []
+}

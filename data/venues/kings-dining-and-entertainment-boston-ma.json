@@ -1,0 +1,73 @@
+{
+  "schema": 1,
+  "slug": "kings-dining-and-entertainment-boston-ma",
+  "wp_id": 1752,
+  "name": "Kings Dining & Entertainment",
+  "type": "bars-with-pool-tables",
+  "status": "open",
+  "address": {
+    "street": "50 Dalton St",
+    "city": "Boston",
+    "state": "MA",
+    "postal_code": "02115",
+    "country": "US"
+  },
+  "geo": {
+    "lat": 42.34711,
+    "lng": -71.08552
+  },
+  "region": {
+    "state": "massachusetts",
+    "state_name": "Massachusetts",
+    "city": "boston",
+    "city_name": "Boston"
+  },
+  "phone": "(617) 266-2695",
+  "website": "https://www.playatkings.com/location/boston-back-bay/",
+  "hours": {
+    "tz": "America/New_York",
+    "ranges": [
+      [
+        900,
+        1440
+      ],
+      [
+        2340,
+        2880
+      ],
+      [
+        3780,
+        4320
+      ],
+      [
+        5220,
+        5760
+      ],
+      [
+        6450,
+        7260
+      ],
+      [
+        7890,
+        8700
+      ],
+      [
+        9330,
+        10080
+      ]
+    ]
+  },
+  "listing_source": {
+    "source": "google_places",
+    "url": "https://maps.google.com/?cid=14941244039847528586",
+    "checked_at": "2026-10-03",
+    "place_id": "ChIJNRQDqRp644kRisiIyUr2Wc8",
+    "osm_id": ""
+  },
+  "claimed": false,
+  "verification": "unverified",
+  "photo": null,
+  "created_at": "2026-10-03",
+  "updated_at": "2026-10-03",
+  "facts": []
+}

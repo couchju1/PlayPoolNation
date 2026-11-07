@@ -1,0 +1,66 @@
+---
+/** State pages (/places/texas/) and metro pages (/places/boston/) share this route. */
+import Base from '../../../layouts/Base.astro';
+import CityBody from '../../../components/CityBody.astro';
+import Status from '../../../components/Status.astro';
+import { BRAND, MIN_CITY_VENUES, metroPages, nearbyPlaces, states, type Metro, type State } from '../../../lib/data.ts';
+import { clip, cityDescription, cityTitle, typeLabel } from '../../../lib/text.ts';
+import { itemList } from '../../../lib/schema.ts';
+
+export function getStaticPaths() {
+  return [
+    ...states().map((state) => ({ params: { state: state.slug }, props: { kind: 'state', state } })),
+    ...metroPages().map((metro) => ({ params: { state: metro.slug }, props: { kind: 'metro', metro } })),
+  ];
+}
+const props = Astro.props as { kind: 'state'; state: State } | { kind: 'metro'; metro: Metro };
+---
+{props.kind === 'metro' ? (
+  <Base
+    title={cityTitle(`the ${props.metro.label} Area`, props.metro.venues.length, BRAND)}
+    description={cityDescription(`the ${props.metro.label} area`, props.metro.venues)}
+    noindex={!props.metro.launched}
+    crumbs={[['Home', '/'], ['Places', '/places/'], [`${props.metro.label} area`, '']]}
+    schema={[itemList(`Places to play pool in the ${props.metro.label} area`, props.metro.url, props.metro.venues)]}
+    pageType="city_page"
+  >
+    <CityBody
+      h1={`Pool halls and bars with pool tables in the ${props.metro.label} area`}
+      name={`the ${props.metro.label} area`}
+      where={`the ${props.metro.label} area`}
+      venues={props.metro.venues}
+      nearby={nearbyPlaces({ lat: props.metro.lat, lng: props.metro.lng }, props.metro.url)}
+      showFaq={false}
+    />
+  </Base>
+) : (
+  <Base
+    title={`Pool Halls & Bars in ${props.state.name} | ${BRAND}`}
+    description={clip(`${props.state.venues.length} places to play pool in ${props.state.name}${props.state.cities.length ? `, in ${props.state.cities.map((c) => c.name).join(', ')} and more` : ''}. Table counts, sizes, league nights and who's open now.`)}
+    noindex={props.state.venues.length < MIN_CITY_VENUES}
+    crumbs={[['Home', '/'], ['Places', '/places/'], [props.state.name, '']]}
+    schema={[itemList(`Places to play pool in ${props.state.name}`, props.state.url, props.state.venues)]}
+    pageType="state_page"
+  >
+    <h1>Places to play pool in {props.state.name}</h1>
+    <p class="lede">{props.state.venues.length === 1 ? 'One place' : `${props.state.venues.length} places`} on our map so far. Pick a city for table counts, league nights and who's open now.</p>
+    {props.state.cities.length > 0 && (
+      <section class="section">
+        <h2>Cities</h2>
+        <ul class="chips">{props.state.cities.map((c) => <li><a class="chip" href={c.url}>{c.name} <span class="n">{c.venues.length}</span></a></li>)}</ul>
+      </section>
+    )}
+    <section class="section">
+      <h2>Every place in {props.state.name}</h2>
+      <div class="grid">
+        {props.state.venues.map((v) => (
+          <a class="card" href={v.url}>
+            <h3>{v.name}</h3>
+            <p>{typeLabel(v.type)} in {v.address.city}</p>
+            <Status v={v} />
+          </a>
+        ))}
+      </div>
+    </section>
+  </Base>
+)}

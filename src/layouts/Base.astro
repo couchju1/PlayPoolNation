@@ -1,0 +1,68 @@
+---
+/**
+ * Every page: one H1 (the page's own), its title and description, a canonical,
+ * robots, JSON-LD and breadcrumbs. Pages that haven't earned indexing pass noindex.
+ */
+import '@fontsource-variable/figtree';
+import '@fontsource/archivo/latin-800.css';
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Crumbs from '../components/Crumbs.astro';
+import { SITE, BRAND } from '../lib/data.ts';
+import { breadcrumb, graph, type Crumb } from '../lib/schema.ts';
+
+interface Props {
+  title: string;
+  description: string;
+  noindex?: boolean;
+  crumbs?: Crumb[];
+  schema?: object[];
+  image?: string;
+  pageType?: string;
+  city?: string;
+}
+const { title, description, noindex = false, crumbs = [], schema = [], image = '/brand/og-default.jpg', pageType = 'page', city = '' } = Astro.props;
+const path = Astro.url.pathname;
+const canonical = SITE + path;
+const nodes = [...schema, ...(crumbs.length ? [breadcrumb(crumbs, path)] : [])];
+const plausible = import.meta.env.PUBLIC_PLAUSIBLE_DOMAIN;
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <meta name="robots" content={noindex ? 'noindex, follow' : 'index, follow, max-image-preview:large'} />
+    <link rel="icon" href="/brand/playpoolnation-icon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/brand/playpoolnation-icon-512.png" />
+    <meta name="theme-color" content="#0e3b2d" />
+    <meta property="og:site_name" content={BRAND} />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={SITE + image} />
+    <meta name="twitter:card" content="summary_large_image" />
+    {nodes.length > 0 && <script type="application/ld+json" set:html={graph(nodes)} />}
+    {plausible && <script defer data-domain={plausible} src="https://plausible.io/js/script.js"></script>}
+  </head>
+  <body data-page-type={pageType} data-city={city}>
+    <a class="skip" href="#main">Skip to content</a>
+    <Header />
+    <main id="main">
+      <slot name="hero" />
+      <div class="wrap">
+        {crumbs.length > 0 && <Crumbs crumbs={crumbs} />}
+        <slot />
+      </div>
+    </main>
+    <Footer />
+    <script>
+      import '../scripts/site.ts';
+    </script>
+  </body>
+</html>

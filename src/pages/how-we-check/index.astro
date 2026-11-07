@@ -1,0 +1,28 @@
+---
+import Base from '../../layouts/Base.astro';
+import { BRAND } from '../../lib/data.ts';
+---
+<Base title={`How We Check Facts | ${BRAND}`} description="Where PlayPoolNation's table counts, sizes and league nights come from, how a person approves each one, and why unknown details stay blank." crumbs={[['Home', '/'], ['How we check facts', '']]} pageType="page">
+  <div class="prose">
+    <h1>How we check facts</h1>
+    <p class="lede">Every pool fact on PlayPoolNation has a source you can click and a date it was checked. A person approves each one before it goes live. If we don't know something, we leave it blank.</p>
+    <h2>Where facts come from</h2>
+    <ul>
+      <li><b>The venue's own website.</b> Table counts, sizes, brands, prices and specials, read from the venue's pages and menus. We follow each site's robots.txt and go slowly.</li>
+      <li><b>League operators.</b> League nights come from the operators' own schedules and standings.</li>
+      <li><b>Owners.</b> Owners who claim a listing can add and correct details. Their facts are marked as owner-supplied.</li>
+      <li><b>Players.</b> Corrections sent with "Suggest an edit" are checked before they change anything.</li>
+      <li><b>Maps data.</b> New venues are found through OpenStreetMap and league pages, and we confirm each one is open.</li>
+    </ul>
+    <h2>What we never do</h2>
+    <ul>
+      <li>We don't guess. "Lots of tables" is not a number, so the count stays blank.</li>
+      <li>We don't copy Google Maps or review sites.</li>
+      <li>We don't publish a fact a person hasn't approved.</li>
+    </ul>
+    <h2>One exception</h2>
+    <p>When a bar lists pool but no source gives a table size, the page may show 7-foot, the usual bar size, and says so. Any real source replaces it.</p>
+    <h2>Keeping it current</h2>
+    <p>We re-read every source each month and flag changes and closures. Each venue page shows when its facts were last checked. Seen something out of date? <a href="/suggest-an-edit/">Suggest an edit</a>.</p>
+  </div>
+</Base>

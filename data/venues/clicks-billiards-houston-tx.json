@@ -1,0 +1,77 @@
+{
+  "schema": 1,
+  "slug": "clicks-billiards-houston-tx",
+  "wp_id": 1705,
+  "name": "Clicks Billiards",
+  "type": "pool-halls",
+  "status": "open",
+  "address": {
+    "street": "13380 Northwest Fwy",
+    "city": "Houston",
+    "state": "TX",
+    "postal_code": "77040",
+    "country": "US"
+  },
+  "geo": {
+    "lat": 29.85079,
+    "lng": -95.50636
+  },
+  "region": {
+    "state": "texas",
+    "state_name": "Texas",
+    "city": "houston",
+    "city_name": "Houston"
+  },
+  "phone": "(713) 895-9992",
+  "website": "https://www.clicks.com/houston-location",
+  "hours": {
+    "tz": "America/Chicago",
+    "ranges": [
+      [
+        0,
+        120
+      ],
+      [
+        660,
+        1560
+      ],
+      [
+        2100,
+        3000
+      ],
+      [
+        3540,
+        4440
+      ],
+      [
+        4980,
+        5880
+      ],
+      [
+        6420,
+        7320
+      ],
+      [
+        7860,
+        8760
+      ],
+      [
+        9300,
+        10080
+      ]
+    ]
+  },
+  "listing_source": {
+    "source": "google_places",
+    "url": "https://maps.google.com/?cid=1161582786907028830",
+    "checked_at": "2026-10-03",
+    "place_id": "ChIJ6XfZT47FQIYRXj3N7mPFHhA",
+    "osm_id": ""
+  },
+  "claimed": false,
+  "verification": "unverified",
+  "photo": null,
+  "created_at": "2026-10-03",
+  "updated_at": "2026-10-03",
+  "facts": []
+}

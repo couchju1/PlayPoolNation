@@ -1,0 +1,86 @@
+---
+import Base from '../layouts/Base.astro';
+import { cityPages, metroLink, metros, states, venues } from '../lib/data.ts';
+
+const all = venues();
+const cityList = cityPages();
+const metroList = metros().filter((m) => m.venues.length > 0);
+const stateCount = states().length;
+---
+<Base
+  title="PlayPoolNation: Pool Halls & Bars With Pool Tables Near You"
+  description={`${all.length} pool halls and bars with pool tables, with table counts, sizes, league nights and who's open right now. Every fact has a source.`}
+  pageType="home"
+>
+  <section class="hero" slot="hero">
+    <picture>
+      <source media="(max-width: 720px)" srcset="/img/ppn-hero-rack-mobile.jpg" />
+      <img src="/img/ppn-hero-rack.jpg" alt="" width="2048" height="1024" fetchpriority="high" />
+    </picture>
+    <div class="wrap">
+      <div>
+        <h1>Every pool table <em>worth the drive.</em></h1>
+        <p>{all.length} pool halls and bars with pool tables in {stateCount} states. See who's open right now, how many tables they have, and when the leagues play.</p>
+      </div>
+      <div class="tonight" id="tonight" data-tonight>
+        <h2>Play tonight</h2>
+        <p class="count" data-tonight-count>Find a table that's open right now.</p>
+        <div class="row">
+          <button type="button" class="btn" data-tonight-near hidden>Find an open table near me</button>
+          <label class="visually-hidden" for="tonight-city">Pick a city</label>
+          <select id="tonight-city" data-tonight-city hidden>
+            <option value="">Or pick a city</option>
+            {cityList.map((c) => <option value={c.key}>{c.where}</option>)}
+          </select>
+          <a class="btn btn--ghost" href="/places/" data-tonight-fallback>Browse every city</a>
+        </div>
+        <ol class="picks" data-tonight-picks></ol>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="split">
+      <img src="/img/ppn-places-balls.webp" alt="A rack of pool balls" width="1050" height="637" loading="lazy" />
+      <div>
+        <h2>Built for the night you want to play</h2>
+        <div class="stats">
+          <div><b>{all.length}</b><span>places</span></div>
+          <div><b>{cityList.length}</b><span>city guides</span></div>
+          <div><b>{stateCount}</b><span>states</span></div>
+        </div>
+        <ul class="points">
+          <li><b>Open now</b><span>Worked out from each place's posted hours in its own time zone.</span></li>
+          <li><b>The tables</b><span>Counts, sizes and brands, only when a source says so. Unknown stays blank.</span></li>
+          <li><b>League nights</b><span>From the league operators' own schedules.</span></li>
+          <li><b>One tap to go</b><span>Call or get directions right from the list.</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="band" aria-labelledby="pick-city">
+    <div class="wrap">
+      <h2 id="pick-city">Pick a city</h2>
+      <p>Each guide lists every place we know, with tables, league nights and who's open now.</p>
+      <ul class="chips">
+        {metroList.map((m) => <li><a class="chip" href={metroLink(m)}>{m.label} <span class="n">{m.venues.length}</span></a></li>)}
+      </ul>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="panel split">
+      <div>
+        <h2>Your hall belongs on the map</h2>
+        <p>Listing your venue is free. Already listed? Claim it to add your tables, rates and league nights, and see how many people call and get directions from PlayPoolNation.</p>
+        <p class="actions"><a class="btn" href="/list-your-venue/">Claim or add your venue</a></p>
+      </div>
+      <ul class="points">
+        <li><b>Free</b><span>No fee to be listed or to claim.</span></li>
+        <li><b>Your facts</b><span>Owner-supplied details are marked as yours.</span></li>
+        <li><b>Real leads</b><span>We count calls, directions and website taps for your venue.</span></li>
+      </ul>
+    </div>
+  </section>
+</Base>

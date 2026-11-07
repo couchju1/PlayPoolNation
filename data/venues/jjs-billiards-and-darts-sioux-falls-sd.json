@@ -1,0 +1,73 @@
+{
+  "schema": 1,
+  "slug": "jjs-billiards-and-darts-sioux-falls-sd",
+  "wp_id": 1825,
+  "name": "JJ’s Billiards & Darts",
+  "type": "pool-halls",
+  "status": "open",
+  "address": {
+    "street": "309 S Elmwood Ave",
+    "city": "Sioux Falls",
+    "state": "SD",
+    "postal_code": "57104",
+    "country": "US"
+  },
+  "geo": {
+    "lat": 43.5442,
+    "lng": -96.75629
+  },
+  "region": {
+    "state": "south-dakota",
+    "state_name": "South Dakota",
+    "city": "sioux-falls",
+    "city_name": "Sioux Falls"
+  },
+  "phone": "(605) 335-7637",
+  "website": "",
+  "hours": {
+    "tz": "America/Chicago",
+    "ranges": [
+      [
+        900,
+        1320
+      ],
+      [
+        2340,
+        2880
+      ],
+      [
+        3780,
+        4320
+      ],
+      [
+        5220,
+        5760
+      ],
+      [
+        6660,
+        7320
+      ],
+      [
+        7860,
+        8760
+      ],
+      [
+        9300,
+        9840
+      ]
+    ]
+  },
+  "listing_source": {
+    "source": "google_places",
+    "url": "https://maps.google.com/?cid=8602647214510863004",
+    "checked_at": "2026-10-03",
+    "place_id": "ChIJPeqTP3rKjocRnHLsFBC-Ync",
+    "osm_id": ""
+  },
+  "claimed": false,
+  "verification": "unverified",
+  "photo": null,
+  "created_at": "2026-10-03",
+  "updated_at": "2026-10-03",
+  "facts": []
+}

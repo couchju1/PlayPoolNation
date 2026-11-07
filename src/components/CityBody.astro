@@ -1,0 +1,117 @@
+---
+/**
+ * The city pillar page body (also used by metro pages): opening paragraph from
+ * the data, "Find a table" filters and jump list, an at-a-glance table, the map
+ * on tap, one section per venue, league nights, a FAQ the data answers, and
+ * links to hubs and nearby cities. Complete without JavaScript.
+ */
+import VenueBlock from './VenueBlock.astro';
+import Status from './Status.astro';
+import MapButton from './MapButton.astro';
+import { textFacts, type City } from '../lib/data.ts';
+import { DAY_SHORT, brands, faq as faqFor, freePool, hasSize, intro, leagueDays, leagueNights, sizes, tables, typeLabel } from '../lib/text.ts';
+import { joinList, sizesLabel } from '../lib/format.ts';
+import type { Venue } from '../lib/types.ts';
+
+interface Props {
+  h1: string;
+  name: string; // "Sioux Falls"
+  where: string; // "Sioux Falls, SD"
+  venues: Venue[];
+  lead?: string;
+  hubs?: { label: string; url: string }[];
+  nearby?: { name: string; url: string; miles: number }[];
+  where_clicked?: string;
+  showFaq?: boolean;
+}
+const { h1, name, where, venues, lead, hubs = [], nearby = [], where_clicked = 'city_page', showFaq = true } = Astro.props;
+const tv = venues.map(textFacts);
+const chips: [string, string, (v: Venue) => boolean][] = [
+  ['nine', '9-foot tables', (v) => hasSize(v, '9ft')],
+  ['open', 'Open now', (v) => !!v.hours],
+  ['tonight', 'Leagues tonight', (v) => leagueDays(v).length > 0],
+  ['free', 'Free pool', (v) => freePool(v)],
+  ['food', 'Food', (v) => v.food],
+];
+const shown = chips.filter(([, , test]) => venues.some(test));
+const nights = leagueNights(tv);
+const questions = showFaq ? faqFor(name, tv) : [];
+---
+<header>
+  <h1>{h1}</h1>
+  <p class="lede">{lead ?? intro(name, tv)}</p>
+</header>
+
+<section class="section" aria-labelledby="find">
+  <h2 id="find">Find a table</h2>
+  {shown.length > 0 && (
+    <div class="filters" data-filters hidden>
+      <div class="chips" role="group" aria-label="Filter places">
+        {shown.map(([key, label]) => <button type="button" class="chip" aria-pressed="false" data-filter={key}>{label}</button>)}
+      </div>
+      <p class="filter-count" aria-live="polite" data-filter-count></p>
+    </div>
+  )}
+  <nav class="jump" aria-label={`Places in ${where}`}>
+    <p class="muted" style="margin:12px 0 0">Jump to a place</p>
+    <ul>{venues.map((v) => <li data-venue={v.anchor}><a href={`#${v.anchor}`}>{v.name}</a></li>)}</ul>
+  </nav>
+</section>
+
+<section class="section" aria-labelledby="glance">
+  <h2 id="glance">At a glance</h2>
+  <table class="summary" data-summary>
+    <thead><tr>
+      <th scope="col">Place</th><th scope="col">Type</th>
+      <th scope="col" aria-sort="descending"><button type="button" data-sort hidden>Tables</button><span data-sort-label>Tables</span></th>
+      <th scope="col">Sizes</th><th scope="col">Brands</th><th scope="col">League nights</th><th scope="col">Now</th>
+    </tr></thead>
+    <tbody>
+      {venues.map((v, i) => {
+        const t = tables(v);
+        const cell = (label: string, value: string) => <td data-label={label} class={value ? undefined : 'empty'}>{value}</td>;
+        return (
+          <tr data-venue={v.anchor} data-tables={t ?? -1} data-order={i}>
+            <th scope="row" data-label="Place"><a href={`#${v.anchor}`}>{v.name}</a></th>
+            {cell('Type', typeLabel(v.type))}
+            {cell('Tables', t === null ? '' : String(t))}
+            {cell('Sizes', sizesLabel(sizes(v)))}
+            {cell('Brands', joinList(brands(v)))}
+            {cell('League nights', leagueDays(v).map((d) => DAY_SHORT[d]).join(', '))}
+            <td data-label="Now"><Status v={v} /></td>
+          </tr>
+        );
+      })}
+    </tbody>
+  </table>
+  <MapButton venues={venues} />
+</section>
+
+<div>{venues.map((v) => <VenueBlock v={v} where={where_clicked} />)}</div>
+
+{nights.length > 0 && (
+  <section class="section leagues panel" aria-labelledby="league-nights">
+    <h2 id="league-nights">League nights in {name}</h2>
+    <dl>{nights.map(([day, lines]) => <div><dt>{day}</dt>{lines.map((l) => <dd>{l}</dd>)}</div>)}</dl>
+  </section>
+)}
+
+{questions.length > 0 && (
+  <section class="section" aria-labelledby="questions">
+    <h2 id="questions">Questions</h2>
+    {questions.map((q) => (<><h3>{q.q}</h3><p>{q.a}</p></>))}
+  </section>
+)}
+
+{(hubs.length > 0 || nearby.length > 0) && (
+  <section class="section" aria-labelledby="more">
+    <h2 id="more">More pool near {name}</h2>
+    {hubs.length > 0 && <ul class="chips">{hubs.map((h) => <li><a class="chip" href={h.url}>{h.label}</a></li>)}</ul>}
+    {nearby.length > 0 && (<>
+      <h3 style="margin-top:20px">Nearby cities</h3>
+      <ul class="chips">{nearby.map((n) => <li><a class="chip" href={n.url}>{n.name} <span class="n">{n.miles} mi</span></a></li>)}</ul>
+    </>)}
+  </section>
+)}
+
+<p class="muted" style="font-size:14px">Facts on this page come from each venue's own site, league operators and owners, and are checked by a person before they go live. <a href="/how-we-check/">How we check facts</a>. Something wrong? Use "Suggest an edit" on the venue's page.</p>

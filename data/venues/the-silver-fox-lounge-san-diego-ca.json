@@ -1,0 +1,77 @@
+{
+  "schema": 1,
+  "slug": "the-silver-fox-lounge-san-diego-ca",
+  "wp_id": 1775,
+  "name": "The Silver Fox Lounge",
+  "type": "bars-with-pool-tables",
+  "status": "open",
+  "address": {
+    "street": "1833 Garnet Ave",
+    "city": "San Diego",
+    "state": "CA",
+    "postal_code": "92109",
+    "country": "US"
+  },
+  "geo": {
+    "lat": 32.80055,
+    "lng": -117.23629
+  },
+  "region": {
+    "state": "california",
+    "state_name": "California",
+    "city": "san-diego",
+    "city_name": "San Diego"
+  },
+  "phone": "(858) 270-1343",
+  "website": "https://silverfoxloungepb.com/",
+  "hours": {
+    "tz": "America/Los_Angeles",
+    "ranges": [
+      [
+        0,
+        120
+      ],
+      [
+        360,
+        1560
+      ],
+      [
+        1800,
+        3000
+      ],
+      [
+        3240,
+        4440
+      ],
+      [
+        4680,
+        5880
+      ],
+      [
+        6120,
+        7320
+      ],
+      [
+        7560,
+        8760
+      ],
+      [
+        9000,
+        10080
+      ]
+    ]
+  },
+  "listing_source": {
+    "source": "google_places",
+    "url": "https://maps.google.com/?cid=11789104073646506014",
+    "checked_at": "2026-10-03",
+    "place_id": "ChIJh4N0dMcB3IARHoDPkbFPm6M",
+    "osm_id": ""
+  },
+  "claimed": false,
+  "verification": "unverified",
+  "photo": null,
+  "created_at": "2026-10-03",
+  "updated_at": "2026-10-03",
+  "facts": []
+}

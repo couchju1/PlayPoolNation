@@ -1,0 +1,77 @@
+{
+  "schema": 1,
+  "slug": "college-billiards-san-diego-ca",
+  "wp_id": 1776,
+  "name": "College Billiards",
+  "type": "pool-halls",
+  "status": "open",
+  "address": {
+    "street": "5303 El Cajon Blvd",
+    "city": "San Diego",
+    "state": "CA",
+    "postal_code": "92115",
+    "country": "US"
+  },
+  "geo": {
+    "lat": 32.75739,
+    "lng": -117.08156
+  },
+  "region": {
+    "state": "california",
+    "state_name": "California",
+    "city": "san-diego",
+    "city_name": "San Diego"
+  },
+  "phone": "(619) 834-1766",
+  "website": "http://collegebilliards.com/",
+  "hours": {
+    "tz": "America/Los_Angeles",
+    "ranges": [
+      [
+        0,
+        120
+      ],
+      [
+        660,
+        1560
+      ],
+      [
+        2100,
+        3000
+      ],
+      [
+        3540,
+        4440
+      ],
+      [
+        4980,
+        5880
+      ],
+      [
+        6420,
+        7320
+      ],
+      [
+        7860,
+        8760
+      ],
+      [
+        9300,
+        10080
+      ]
+    ]
+  },
+  "listing_source": {
+    "source": "google_places",
+    "url": "https://maps.google.com/?cid=658191038757568418",
+    "checked_at": "2026-10-03",
+    "place_id": "ChIJLd6x8CBU2YARon99M0NdIgk",
+    "osm_id": ""
+  },
+  "claimed": false,
+  "verification": "unverified",
+  "photo": null,
+  "created_at": "2026-10-03",
+  "updated_at": "2026-10-03",
+  "facts": []
+}

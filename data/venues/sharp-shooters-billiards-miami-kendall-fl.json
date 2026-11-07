@@ -1,0 +1,77 @@
+{
+  "schema": 1,
+  "slug": "sharp-shooters-billiards-miami-kendall-fl",
+  "wp_id": 1754,
+  "name": "Sharp Shooters Billiards Miami",
+  "type": "pool-halls",
+  "status": "open",
+  "address": {
+    "street": "7200 SW 117th Ave",
+    "city": "Kendall",
+    "state": "FL",
+    "postal_code": "33183",
+    "country": "US"
+  },
+  "geo": {
+    "lat": 25.70024,
+    "lng": -80.3827
+  },
+  "region": {
+    "state": "florida",
+    "state_name": "Florida",
+    "city": "kendall",
+    "city_name": "Kendall"
+  },
+  "phone": "(305) 596-0588",
+  "website": "https://www.sharpshootersbilliards.net/",
+  "hours": {
+    "tz": "America/New_York",
+    "ranges": [
+      [
+        0,
+        120
+      ],
+      [
+        720,
+        1560
+      ],
+      [
+        2160,
+        3000
+      ],
+      [
+        3600,
+        4440
+      ],
+      [
+        5040,
+        5880
+      ],
+      [
+        6480,
+        7320
+      ],
+      [
+        7920,
+        8760
+      ],
+      [
+        9360,
+        10080
+      ]
+    ]
+  },
+  "listing_source": {
+    "source": "google_places",
+    "url": "https://maps.google.com/?cid=4655918727969355569",
+    "checked_at": "2026-10-03",
+    "place_id": "ChIJQR66trjA2YgRMbezO2olnUA",
+    "osm_id": ""
+  },
+  "claimed": false,
+  "verification": "unverified",
+  "photo": null,
+  "created_at": "2026-10-03",
+  "updated_at": "2026-10-03",
+  "facts": []
+}

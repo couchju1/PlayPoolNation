@@ -1,0 +1,65 @@
+{
+  "schema": 1,
+  "slug": "ox-billiards-seattle-wa",
+  "wp_id": 1733,
+  "name": "Ox Billiards",
+  "type": "pool-halls",
+  "status": "open",
+  "address": {
+    "street": "1432 Broadway",
+    "city": "Seattle",
+    "state": "WA",
+    "postal_code": "98122",
+    "country": "US"
+  },
+  "geo": {
+    "lat": 47.61387,
+    "lng": -122.3206
+  },
+  "region": {
+    "state": "washington",
+    "state_name": "Washington",
+    "city": "seattle",
+    "city_name": "Seattle"
+  },
+  "phone": "(206) 376-5763",
+  "website": "http://oxbilliards.com/",
+  "hours": {
+    "tz": "America/Los_Angeles",
+    "ranges": [
+      [
+        2340,
+        2880
+      ],
+      [
+        5220,
+        5760
+      ],
+      [
+        6660,
+        7200
+      ],
+      [
+        8040,
+        8580
+      ],
+      [
+        9480,
+        9900
+      ]
+    ]
+  },
+  "listing_source": {
+    "source": "google_places",
+    "url": "https://maps.google.com/?cid=7313703583843110053",
+    "checked_at": "2026-10-03",
+    "place_id": "ChIJe2qrhnNrkFQRpUx466h-f2U",
+    "osm_id": ""
+  },
+  "claimed": false,
+  "verification": "unverified",
+  "photo": null,
+  "created_at": "2026-10-03",
+  "updated_at": "2026-10-03",
+  "facts": []
+}

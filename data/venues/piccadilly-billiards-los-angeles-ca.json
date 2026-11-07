@@ -1,0 +1,77 @@
+{
+  "schema": 1,
+  "slug": "piccadilly-billiards-los-angeles-ca",
+  "wp_id": 1700,
+  "name": "Piccadilly Billiards",
+  "type": "pool-halls",
+  "status": "open",
+  "address": {
+    "street": "3324 W 6th St",
+    "city": "Los Angeles",
+    "state": "CA",
+    "postal_code": "90020",
+    "country": "US"
+  },
+  "geo": {
+    "lat": 34.06319,
+    "lng": -118.29503
+  },
+  "region": {
+    "state": "california",
+    "state_name": "California",
+    "city": "los-angeles",
+    "city_name": "Los Angeles"
+  },
+  "phone": "(213) 568-3087",
+  "website": "",
+  "hours": {
+    "tz": "America/Los_Angeles",
+    "ranges": [
+      [
+        0,
+        120
+      ],
+      [
+        720,
+        1560
+      ],
+      [
+        2160,
+        3000
+      ],
+      [
+        3600,
+        4440
+      ],
+      [
+        5040,
+        5880
+      ],
+      [
+        6480,
+        7320
+      ],
+      [
+        7920,
+        8760
+      ],
+      [
+        9360,
+        10080
+      ]
+    ]
+  },
+  "listing_source": {
+    "source": "google_places",
+    "url": "https://maps.google.com/?cid=11888201588468744936",
+    "checked_at": "2026-10-03",
+    "place_id": "ChIJCft8oiXHwoAR6ALqultg-6Q",
+    "osm_id": ""
+  },
+  "claimed": false,
+  "verification": "unverified",
+  "photo": null,
+  "created_at": "2026-10-03",
+  "updated_at": "2026-10-03",
+  "facts": []
+}

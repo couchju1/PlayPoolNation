@@ -1,0 +1,77 @@
+{
+  "schema": 1,
+  "slug": "thirsty-duck-sioux-falls-sd",
+  "wp_id": 1830,
+  "name": "Thirsty Duck",
+  "type": "bars-with-pool-tables",
+  "status": "open",
+  "address": {
+    "street": "945 S Marion Rd",
+    "city": "Sioux Falls",
+    "state": "SD",
+    "postal_code": "57106",
+    "country": "US"
+  },
+  "geo": {
+    "lat": 43.53845,
+    "lng": -96.79178
+  },
+  "region": {
+    "state": "south-dakota",
+    "state_name": "South Dakota",
+    "city": "sioux-falls",
+    "city_name": "Sioux Falls"
+  },
+  "phone": "(605) 334-0124",
+  "website": "http://www.thirstyducksiouxfalls.com/",
+  "hours": {
+    "tz": "America/Chicago",
+    "ranges": [
+      [
+        0,
+        120
+      ],
+      [
+        660,
+        1560
+      ],
+      [
+        2100,
+        3000
+      ],
+      [
+        3540,
+        4440
+      ],
+      [
+        4980,
+        5880
+      ],
+      [
+        6420,
+        7320
+      ],
+      [
+        7860,
+        8760
+      ],
+      [
+        9300,
+        10080
+      ]
+    ]
+  },
+  "listing_source": {
+    "source": "google_places",
+    "url": "https://maps.google.com/?cid=17122682615525476739",
+    "checked_at": "2026-10-03",
+    "place_id": "ChIJr3V23UzKjocRgwkndB79n-0",
+    "osm_id": ""
+  },
+  "claimed": false,
+  "verification": "unverified",
+  "photo": null,
+  "created_at": "2026-10-03",
+  "updated_at": "2026-10-03",
+  "facts": []
+}

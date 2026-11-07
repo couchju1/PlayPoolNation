@@ -1,0 +1,77 @@
+{
+  "schema": 1,
+  "slug": "beyond-billiards-davie-fl",
+  "wp_id": 1757,
+  "name": "Beyond Billiards",
+  "type": "pool-halls",
+  "status": "open",
+  "address": {
+    "street": "5705 S University Dr",
+    "city": "Davie",
+    "state": "FL",
+    "postal_code": "33328",
+    "country": "US"
+  },
+  "geo": {
+    "lat": 26.0497,
+    "lng": -80.25358
+  },
+  "region": {
+    "state": "florida",
+    "state_name": "Florida",
+    "city": "davie",
+    "city_name": "Davie"
+  },
+  "phone": "(954) 434-3487",
+  "website": "http://beyondbilliardsfl.com/",
+  "hours": {
+    "tz": "America/New_York",
+    "ranges": [
+      [
+        0,
+        120
+      ],
+      [
+        720,
+        1560
+      ],
+      [
+        2160,
+        3000
+      ],
+      [
+        3600,
+        4440
+      ],
+      [
+        5040,
+        5880
+      ],
+      [
+        6480,
+        7320
+      ],
+      [
+        7920,
+        8760
+      ],
+      [
+        9360,
+        10080
+      ]
+    ]
+  },
+  "listing_source": {
+    "source": "google_places",
+    "url": "https://maps.google.com/?cid=2500177154860568964",
+    "checked_at": "2026-10-03",
+    "place_id": "ChIJJ223s12o2YgRhNECN-BpsiI",
+    "osm_id": ""
+  },
+  "claimed": false,
+  "verification": "unverified",
+  "photo": null,
+  "created_at": "2026-10-03",
+  "updated_at": "2026-10-03",
+  "facts": []
+}

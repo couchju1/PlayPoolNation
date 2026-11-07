@@ -1,0 +1,77 @@
+{
+  "schema": 1,
+  "slug": "griffs-bar-and-billiards-las-vegas-nv",
+  "wp_id": 1746,
+  "name": "Griff’s Bar & Billiards",
+  "type": "pool-halls",
+  "status": "open",
+  "address": {
+    "street": "3650 S Decatur Blvd Ste 12",
+    "city": "Las Vegas",
+    "state": "NV",
+    "postal_code": "89103",
+    "country": "US"
+  },
+  "geo": {
+    "lat": 36.12371,
+    "lng": -115.20735
+  },
+  "region": {
+    "state": "nevada",
+    "state_name": "Nevada",
+    "city": "las-vegas",
+    "city_name": "Las Vegas"
+  },
+  "phone": "(702) 222-1011",
+  "website": "https://www.griffslv.com/",
+  "hours": {
+    "tz": "America/Los_Angeles",
+    "ranges": [
+      [
+        0,
+        240
+      ],
+      [
+        540,
+        1680
+      ],
+      [
+        1980,
+        3120
+      ],
+      [
+        3420,
+        4560
+      ],
+      [
+        4860,
+        6000
+      ],
+      [
+        6300,
+        7440
+      ],
+      [
+        7740,
+        8880
+      ],
+      [
+        9180,
+        10080
+      ]
+    ]
+  },
+  "listing_source": {
+    "source": "google_places",
+    "url": "https://maps.google.com/?cid=1622905543078412076",
+    "checked_at": "2026-10-03",
+    "place_id": "ChIJH2AfkrnGyIARLH8zL_63hRY",
+    "osm_id": ""
+  },
+  "claimed": false,
+  "verification": "unverified",
+  "photo": null,
+  "created_at": "2026-10-03",
+  "updated_at": "2026-10-03",
+  "facts": []
+}

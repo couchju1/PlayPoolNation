@@ -1,0 +1,77 @@
+{
+  "schema": 1,
+  "slug": "momentum-billiards-oakland-ca",
+  "wp_id": 1731,
+  "name": "Momentum Billiards",
+  "type": "pool-halls",
+  "status": "open",
+  "address": {
+    "street": "3815 Telegraph Ave",
+    "city": "Oakland",
+    "state": "CA",
+    "postal_code": "94609",
+    "country": "US"
+  },
+  "geo": {
+    "lat": 37.82708,
+    "lng": -122.26537
+  },
+  "region": {
+    "state": "california",
+    "state_name": "California",
+    "city": "oakland",
+    "city_name": "Oakland"
+  },
+  "phone": "(510) 290-5606",
+  "website": "",
+  "hours": {
+    "tz": "America/Los_Angeles",
+    "ranges": [
+      [
+        0,
+        60
+      ],
+      [
+        840,
+        1500
+      ],
+      [
+        2280,
+        2940
+      ],
+      [
+        3720,
+        4380
+      ],
+      [
+        5160,
+        5820
+      ],
+      [
+        6600,
+        7260
+      ],
+      [
+        8040,
+        8700
+      ],
+      [
+        9480,
+        10080
+      ]
+    ]
+  },
+  "listing_source": {
+    "source": "google_places",
+    "url": "https://maps.google.com/?cid=5549838883457423976",
+    "checked_at": "2026-10-03",
+    "place_id": "ChIJcz3kfod9hYARaFohaQ_9BE0",
+    "osm_id": ""
+  },
+  "claimed": false,
+  "verification": "unverified",
+  "photo": null,
+  "created_at": "2026-10-03",
+  "updated_at": "2026-10-03",
+  "facts": []
+}

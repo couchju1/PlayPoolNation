@@ -1,0 +1,77 @@
+{
+  "schema": 1,
+  "slug": "zanzibar-billiards-club-denver-co",
+  "wp_id": 1740,
+  "name": "Zanzibar Billiards Club",
+  "type": "pool-halls",
+  "status": "open",
+  "address": {
+    "street": "2046 Larimer St",
+    "city": "Denver",
+    "state": "CO",
+    "postal_code": "80205",
+    "country": "US"
+  },
+  "geo": {
+    "lat": 39.75351,
+    "lng": -104.99169
+  },
+  "region": {
+    "state": "colorado",
+    "state_name": "Colorado",
+    "city": "denver",
+    "city_name": "Denver"
+  },
+  "phone": "(303) 308-9999",
+  "website": "http://www.zanzibarbilliards.com/",
+  "hours": {
+    "tz": "America/Denver",
+    "ranges": [
+      [
+        0,
+        120
+      ],
+      [
+        960,
+        1560
+      ],
+      [
+        2400,
+        3000
+      ],
+      [
+        3840,
+        4440
+      ],
+      [
+        5160,
+        5880
+      ],
+      [
+        6480,
+        7320
+      ],
+      [
+        7920,
+        8760
+      ],
+      [
+        9360,
+        10080
+      ]
+    ]
+  },
+  "listing_source": {
+    "source": "google_places",
+    "url": "https://maps.google.com/?cid=11132563144085538115",
+    "checked_at": "2026-10-03",
+    "place_id": "ChIJdauGG9x4bIcRQwXTWjLPfpo",
+    "osm_id": ""
+  },
+  "claimed": false,
+  "verification": "unverified",
+  "photo": null,
+  "created_at": "2026-10-03",
+  "updated_at": "2026-10-03",
+  "facts": []
+}

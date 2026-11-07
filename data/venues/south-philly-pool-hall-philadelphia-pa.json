@@ -1,0 +1,77 @@
+{
+  "schema": 1,
+  "slug": "south-philly-pool-hall-philadelphia-pa",
+  "wp_id": 1711,
+  "name": "South Philly Pool Hall",
+  "type": "pool-halls",
+  "status": "open",
+  "address": {
+    "street": "600 Washington Ave",
+    "city": "Philadelphia",
+    "state": "PA",
+    "postal_code": "19147",
+    "country": "US"
+  },
+  "geo": {
+    "lat": 39.93456,
+    "lng": -75.15517
+  },
+  "region": {
+    "state": "pennsylvania",
+    "state_name": "Pennsylvania",
+    "city": "philadelphia",
+    "city_name": "Philadelphia"
+  },
+  "phone": "(215) 500-7056",
+  "website": "",
+  "hours": {
+    "tz": "America/New_York",
+    "ranges": [
+      [
+        0,
+        60
+      ],
+      [
+        660,
+        1500
+      ],
+      [
+        2100,
+        2940
+      ],
+      [
+        3540,
+        4380
+      ],
+      [
+        4980,
+        5820
+      ],
+      [
+        6420,
+        7260
+      ],
+      [
+        7860,
+        8700
+      ],
+      [
+        9300,
+        10080
+      ]
+    ]
+  },
+  "listing_source": {
+    "source": "google_places",
+    "url": "https://maps.google.com/?cid=10476731602029898428",
+    "checked_at": "2026-10-03",
+    "place_id": "ChIJ0xdhnqDIxokRvOoZSuLTZJE",
+    "osm_id": ""
+  },
+  "claimed": false,
+  "verification": "unverified",
+  "photo": null,
+  "created_at": "2026-10-03",
+  "updated_at": "2026-10-03",
+  "facts": []
+}

@@ -1,0 +1,77 @@
+{
+  "schema": 1,
+  "slug": "als-billiards-roseville-mn",
+  "wp_id": 1766,
+  "name": "Al’s Billiards",
+  "type": "pool-halls",
+  "status": "open",
+  "address": {
+    "street": "1319 Larpenteur Ave W",
+    "city": "Roseville",
+    "state": "MN",
+    "postal_code": "55113",
+    "country": "US"
+  },
+  "geo": {
+    "lat": 44.99228,
+    "lng": -93.15545
+  },
+  "region": {
+    "state": "minnesota",
+    "state_name": "Minnesota",
+    "city": "roseville",
+    "city_name": "Roseville"
+  },
+  "phone": "(651) 340-8845",
+  "website": "",
+  "hours": {
+    "tz": "America/Chicago",
+    "ranges": [
+      [
+        0,
+        60
+      ],
+      [
+        1020,
+        1500
+      ],
+      [
+        2460,
+        2940
+      ],
+      [
+        3900,
+        4380
+      ],
+      [
+        5340,
+        5820
+      ],
+      [
+        6780,
+        7260
+      ],
+      [
+        7980,
+        8700
+      ],
+      [
+        9420,
+        10080
+      ]
+    ]
+  },
+  "listing_source": {
+    "source": "google_places",
+    "url": "https://maps.google.com/?cid=14133029839637077492",
+    "checked_at": "2026-10-03",
+    "place_id": "ChIJaa_dogkrs1IR9F2QV8KbIsQ",
+    "osm_id": ""
+  },
+  "claimed": false,
+  "verification": "unverified",
+  "photo": null,
+  "created_at": "2026-10-03",
+  "updated_at": "2026-10-03",
+  "facts": []
+}

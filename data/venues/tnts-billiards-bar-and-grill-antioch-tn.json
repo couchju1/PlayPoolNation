@@ -1,0 +1,77 @@
+{
+  "schema": 1,
+  "slug": "tnts-billiards-bar-and-grill-antioch-tn",
+  "wp_id": 1761,
+  "name": "TNT’s Billiards Bar & Grill",
+  "type": "pool-halls",
+  "status": "open",
+  "address": {
+    "street": "1015 Bell Rd",
+    "city": "Antioch",
+    "state": "TN",
+    "postal_code": "37013",
+    "country": "US"
+  },
+  "geo": {
+    "lat": 36.04673,
+    "lng": -86.65948
+  },
+  "region": {
+    "state": "tennessee",
+    "state_name": "Tennessee",
+    "city": "antioch",
+    "city_name": "Antioch"
+  },
+  "phone": "(615) 315-5400",
+  "website": "http://www.tntsbilliards.com/",
+  "hours": {
+    "tz": "America/Chicago",
+    "ranges": [
+      [
+        0,
+        60
+      ],
+      [
+        600,
+        1500
+      ],
+      [
+        2040,
+        2940
+      ],
+      [
+        3480,
+        4380
+      ],
+      [
+        4920,
+        5820
+      ],
+      [
+        6360,
+        7320
+      ],
+      [
+        7800,
+        8760
+      ],
+      [
+        9240,
+        10080
+      ]
+    ]
+  },
+  "listing_source": {
+    "source": "google_places",
+    "url": "https://maps.google.com/?cid=16862716736345142030",
+    "checked_at": "2026-10-03",
+    "place_id": "ChIJm7sG0ZVvZIgRDvPieYdnBOo",
+    "osm_id": ""
+  },
+  "claimed": false,
+  "verification": "unverified",
+  "photo": null,
+  "created_at": "2026-10-03",
+  "updated_at": "2026-10-03",
+  "facts": []
+}

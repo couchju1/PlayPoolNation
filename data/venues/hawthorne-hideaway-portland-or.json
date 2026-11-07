@@ -1,0 +1,77 @@
+{
+  "schema": 1,
+  "slug": "hawthorne-hideaway-portland-or",
+  "wp_id": 1770,
+  "name": "Hawthorne Hideaway",
+  "type": "bars-with-pool-tables",
+  "status": "open",
+  "address": {
+    "street": "2221 SE Hawthorne Blvd",
+    "city": "Portland",
+    "state": "OR",
+    "postal_code": "97214",
+    "country": "US"
+  },
+  "geo": {
+    "lat": 45.5122,
+    "lng": -122.64294
+  },
+  "region": {
+    "state": "oregon",
+    "state_name": "Oregon",
+    "city": "portland",
+    "city_name": "Portland"
+  },
+  "phone": "(971) 420-2114",
+  "website": "http://www.hh2221.com/",
+  "hours": {
+    "tz": "America/Los_Angeles",
+    "ranges": [
+      [
+        0,
+        120
+      ],
+      [
+        870,
+        1590
+      ],
+      [
+        2310,
+        3000
+      ],
+      [
+        3750,
+        4440
+      ],
+      [
+        5190,
+        5880
+      ],
+      [
+        6630,
+        7320
+      ],
+      [
+        8070,
+        8760
+      ],
+      [
+        9510,
+        10080
+      ]
+    ]
+  },
+  "listing_source": {
+    "source": "google_places",
+    "url": "https://maps.google.com/?cid=14732617466365016728",
+    "checked_at": "2026-10-03",
+    "place_id": "ChIJ-1_S15uglVQRmPpmZofFdMw",
+    "osm_id": ""
+  },
+  "claimed": false,
+  "verification": "unverified",
+  "photo": null,
+  "created_at": "2026-10-03",
+  "updated_at": "2026-10-03",
+  "facts": []
+}

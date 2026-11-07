@@ -1,0 +1,77 @@
+{
+  "schema": 1,
+  "slug": "qs-billiard-club-and-restaurant-los-angeles-ca",
+  "wp_id": 1698,
+  "name": "Q’s Billiard Club & Restaurant",
+  "type": "pool-halls",
+  "status": "open",
+  "address": {
+    "street": "11835 Wilshire Blvd",
+    "city": "Los Angeles",
+    "state": "CA",
+    "postal_code": "90025",
+    "country": "US"
+  },
+  "geo": {
+    "lat": 34.04768,
+    "lng": -118.46349
+  },
+  "region": {
+    "state": "california",
+    "state_name": "California",
+    "city": "los-angeles",
+    "city_name": "Los Angeles"
+  },
+  "phone": "(310) 477-7550",
+  "website": "http://www.qsbilliardclub.com/",
+  "hours": {
+    "tz": "America/Los_Angeles",
+    "ranges": [
+      [
+        0,
+        120
+      ],
+      [
+        720,
+        1560
+      ],
+      [
+        2160,
+        3000
+      ],
+      [
+        3600,
+        4440
+      ],
+      [
+        5040,
+        5880
+      ],
+      [
+        6480,
+        7320
+      ],
+      [
+        7920,
+        8760
+      ],
+      [
+        9180,
+        10080
+      ]
+    ]
+  },
+  "listing_source": {
+    "source": "google_places",
+    "url": "https://maps.google.com/?cid=6049200821890325220",
+    "checked_at": "2026-10-03",
+    "place_id": "ChIJG10H9F27woAR5BrG8xgU81M",
+    "osm_id": ""
+  },
+  "claimed": false,
+  "verification": "unverified",
+  "photo": null,
+  "created_at": "2026-10-03",
+  "updated_at": "2026-10-03",
+  "facts": []
+}

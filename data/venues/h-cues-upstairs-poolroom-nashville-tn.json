@@ -1,0 +1,77 @@
+{
+  "schema": 1,
+  "slug": "h-cues-upstairs-poolroom-nashville-tn",
+  "wp_id": 1759,
+  "name": "H-Cue’s Upstairs Poolroom",
+  "type": "pool-halls",
+  "status": "open",
+  "address": {
+    "street": "1602 21st Ave S",
+    "city": "Nashville",
+    "state": "TN",
+    "postal_code": "37212",
+    "country": "US"
+  },
+  "geo": {
+    "lat": 36.1386,
+    "lng": -86.80036
+  },
+  "region": {
+    "state": "tennessee",
+    "state_name": "Tennessee",
+    "city": "nashville",
+    "city_name": "Nashville"
+  },
+  "phone": "(615) 329-0690",
+  "website": "http://h-cues.com/",
+  "hours": {
+    "tz": "America/Chicago",
+    "ranges": [
+      [
+        0,
+        30
+      ],
+      [
+        960,
+        1470
+      ],
+      [
+        2400,
+        2910
+      ],
+      [
+        3840,
+        4350
+      ],
+      [
+        5280,
+        5790
+      ],
+      [
+        6720,
+        7320
+      ],
+      [
+        7920,
+        8760
+      ],
+      [
+        9360,
+        10080
+      ]
+    ]
+  },
+  "listing_source": {
+    "source": "google_places",
+    "url": "https://maps.google.com/?cid=17098589639758516726",
+    "checked_at": "2026-10-03",
+    "place_id": "ChIJ5acuNJ9mZIgR9hH7Za9kSu0",
+    "osm_id": ""
+  },
+  "claimed": false,
+  "verification": "unverified",
+  "photo": null,
+  "created_at": "2026-10-03",
+  "updated_at": "2026-10-03",
+  "facts": []
+}

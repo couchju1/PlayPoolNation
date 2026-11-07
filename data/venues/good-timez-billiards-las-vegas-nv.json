@@ -1,0 +1,77 @@
+{
+  "schema": 1,
+  "slug": "good-timez-billiards-las-vegas-nv",
+  "wp_id": 1749,
+  "name": "Good Timez Billiards",
+  "type": "pool-halls",
+  "status": "open",
+  "address": {
+    "street": "5740 W Charleston Blvd",
+    "city": "Las Vegas",
+    "state": "NV",
+    "postal_code": "89146",
+    "country": "US"
+  },
+  "geo": {
+    "lat": 36.15941,
+    "lng": -115.22038
+  },
+  "region": {
+    "state": "nevada",
+    "state_name": "Nevada",
+    "city": "las-vegas",
+    "city_name": "Las Vegas"
+  },
+  "phone": "(702) 431-0358",
+  "website": "https://goodtimezbilliards.wixsite.com/goodtimezbilliardslv",
+  "hours": {
+    "tz": "America/Los_Angeles",
+    "ranges": [
+      [
+        0,
+        120
+      ],
+      [
+        600,
+        1560
+      ],
+      [
+        2040,
+        3000
+      ],
+      [
+        3480,
+        4440
+      ],
+      [
+        4920,
+        5880
+      ],
+      [
+        6360,
+        7380
+      ],
+      [
+        7800,
+        8820
+      ],
+      [
+        9240,
+        10080
+      ]
+    ]
+  },
+  "listing_source": {
+    "source": "google_places",
+    "url": "https://maps.google.com/?cid=35457061589668180",
+    "checked_at": "2026-10-03",
+    "place_id": "ChIJrZ-AFhHByIARVNHUeAL4fQA",
+    "osm_id": ""
+  },
+  "claimed": false,
+  "verification": "unverified",
+  "photo": null,
+  "created_at": "2026-10-03",
+  "updated_at": "2026-10-03",
+  "facts": []
+}

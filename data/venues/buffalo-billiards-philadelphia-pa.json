@@ -1,0 +1,105 @@
+{
+  "schema": 1,
+  "slug": "buffalo-billiards-philadelphia-pa",
+  "wp_id": 1710,
+  "name": "Buffalo Billiards",
+  "type": "pool-halls",
+  "status": "open",
+  "address": {
+    "street": "118 Chestnut St",
+    "city": "Philadelphia",
+    "state": "PA",
+    "postal_code": "19106",
+    "country": "US"
+  },
+  "geo": {
+    "lat": 39.94818,
+    "lng": -75.14328
+  },
+  "region": {
+    "state": "pennsylvania",
+    "state_name": "Pennsylvania",
+    "city": "philadelphia",
+    "city_name": "Philadelphia"
+  },
+  "phone": "(215) 574-7665",
+  "website": "https://www.buffalobilliardsphilly.com/",
+  "hours": {
+    "tz": "America/New_York",
+    "ranges": [
+      [
+        0,
+        120
+      ],
+      [
+        960,
+        1560
+      ],
+      [
+        2400,
+        3000
+      ],
+      [
+        3840,
+        4440
+      ],
+      [
+        5280,
+        5880
+      ],
+      [
+        6720,
+        7320
+      ],
+      [
+        7920,
+        8760
+      ],
+      [
+        9480,
+        10080
+      ]
+    ]
+  },
+  "listing_source": {
+    "source": "google_places",
+    "url": "https://maps.google.com/?cid=9338250709219899803",
+    "checked_at": "2026-10-03",
+    "place_id": "ChIJcbfnZoXIxokRm3mXOoshmIE",
+    "osm_id": ""
+  },
+  "claimed": false,
+  "verification": "unverified",
+  "photo": null,
+  "created_at": "2026-10-03",
+  "updated_at": "2026-10-03",
+  "facts": [
+    {
+      "field": "pricing_model",
+      "key": "pricing_model:hourly",
+      "value": {
+        "model": "hourly",
+        "rate": null
+      },
+      "source_url": "https://www.buffalobilliardsphilly.com/",
+      "source_type": "web_research",
+      "checked_at": "2026-10-03",
+      "confidence": "stated",
+      "flags": [],
+      "approved_at": "2026-10-03",
+      "approved_by": "wordpress-import"
+    },
+    {
+      "field": "pricing_notes",
+      "key": "pricing_notes",
+      "value": "Hourly, priced by number of players. Sunday to Wednesday: $6 for 1 player, $12 for 2, $15 for 3, $16 for 4. Higher rates Thursday to Saturday.",
+      "source_url": "https://www.buffalobilliardsphilly.com/",
+      "source_type": "web_research",
+      "checked_at": "2026-10-03",
+      "confidence": "stated",
+      "flags": [],
+      "approved_at": "2026-10-03",
+      "approved_by": "wordpress-import"
+    }
+  ]
+}

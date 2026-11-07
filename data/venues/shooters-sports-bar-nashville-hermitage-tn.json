@@ -1,0 +1,77 @@
+{
+  "schema": 1,
+  "slug": "shooters-sports-bar-nashville-hermitage-tn",
+  "wp_id": 1762,
+  "name": "Shooters Sports Bar Nashville",
+  "type": "bars-with-pool-tables",
+  "status": "open",
+  "address": {
+    "street": "5851 Old Hickory Blvd B",
+    "city": "Hermitage",
+    "state": "TN",
+    "postal_code": "37076",
+    "country": "US"
+  },
+  "geo": {
+    "lat": 36.16744,
+    "lng": -86.60043
+  },
+  "region": {
+    "state": "tennessee",
+    "state_name": "Tennessee",
+    "city": "hermitage",
+    "city_name": "Hermitage"
+  },
+  "phone": "(615) 669-9697",
+  "website": "http://shootersbar.net/",
+  "hours": {
+    "tz": "America/Chicago",
+    "ranges": [
+      [
+        0,
+        150
+      ],
+      [
+        720,
+        1590
+      ],
+      [
+        2160,
+        3030
+      ],
+      [
+        3600,
+        4470
+      ],
+      [
+        5040,
+        5910
+      ],
+      [
+        6480,
+        7350
+      ],
+      [
+        7860,
+        8790
+      ],
+      [
+        9300,
+        10080
+      ]
+    ]
+  },
+  "listing_source": {
+    "source": "google_places",
+    "url": "https://maps.google.com/?cid=2923346346246890609",
+    "checked_at": "2026-10-03",
+    "place_id": "ChIJn6hq5yFrZIgRcWR7awPQkSg",
+    "osm_id": ""
+  },
+  "claimed": false,
+  "verification": "unverified",
+  "photo": null,
+  "created_at": "2026-10-03",
+  "updated_at": "2026-10-03",
+  "facts": []
+}

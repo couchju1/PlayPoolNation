@@ -1,0 +1,28 @@
+---
+import Base from '../../../../layouts/Base.astro';
+import CityBody from '../../../../components/CityBody.astro';
+import { BRAND, cityPages, hubsFor, nearbyPlaces, textFacts, type City } from '../../../../lib/data.ts';
+import { cityDescription, cityTitle, faq } from '../../../../lib/text.ts';
+import { faqPage, itemList } from '../../../../lib/schema.ts';
+
+export function getStaticPaths() {
+  return cityPages().map((city) => ({ params: { state: city.state, city: city.slug }, props: { city } }));
+}
+const { city } = Astro.props as { city: City };
+const h1 = `Pool halls and bars with pool tables in ${city.where}`;
+const hubs = hubsFor(city).map((h) => ({ label: `${h.hub.label} in ${city.name}`, url: h.url }));
+const questions = faq(city.name, city.venues.map(textFacts));
+const schema: object[] = [itemList(`Places to play pool in ${city.where}`, city.url, city.venues)];
+if (questions.length >= 2) schema.push(faqPage(city.url, questions));
+---
+<Base
+  title={cityTitle(city.where, city.venues.length, BRAND)}
+  description={cityDescription(city.where, city.venues)}
+  noindex={!city.launched}
+  crumbs={[['Home', '/'], ['Places', '/places/'], [city.stateName, `/places/${city.state}/`], [city.name, '']]}
+  schema={schema}
+  pageType="city_page"
+  city={city.key}
+>
+  <CityBody h1={h1} name={city.name} where={city.where} venues={city.venues} hubs={hubs} nearby={nearbyPlaces(city.center, city.url)} />
+</Base>

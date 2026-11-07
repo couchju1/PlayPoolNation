@@ -1,0 +1,77 @@
+{
+  "schema": 1,
+  "slug": "jimmys-pro-billiards-columbia-heights-mn",
+  "wp_id": 1763,
+  "name": "Jimmy’s Pro Billiards",
+  "type": "pool-halls",
+  "status": "open",
+  "address": {
+    "street": "4040 Central Ave NE",
+    "city": "Columbia Heights",
+    "state": "MN",
+    "postal_code": "55421",
+    "country": "US"
+  },
+  "geo": {
+    "lat": 45.04212,
+    "lng": -93.24766
+  },
+  "region": {
+    "state": "minnesota",
+    "state_name": "Minnesota",
+    "city": "columbia-heights",
+    "city_name": "Columbia Heights"
+  },
+  "phone": "(763) 706-1904",
+  "website": "https://jimmys-pro-billiards.com/",
+  "hours": {
+    "tz": "America/Chicago",
+    "ranges": [
+      [
+        0,
+        60
+      ],
+      [
+        720,
+        1500
+      ],
+      [
+        2160,
+        2940
+      ],
+      [
+        3600,
+        4380
+      ],
+      [
+        5040,
+        5820
+      ],
+      [
+        6480,
+        7260
+      ],
+      [
+        7920,
+        8700
+      ],
+      [
+        9360,
+        10080
+      ]
+    ]
+  },
+  "listing_source": {
+    "source": "google_places",
+    "url": "https://maps.google.com/?cid=6279369688563038208",
+    "checked_at": "2026-10-03",
+    "place_id": "ChIJu4JMrmwus1IRALgnVHbNJFc",
+    "osm_id": ""
+  },
+  "claimed": false,
+  "verification": "unverified",
+  "photo": null,
+  "created_at": "2026-10-03",
+  "updated_at": "2026-10-03",
+  "facts": []
+}

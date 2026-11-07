@@ -1,0 +1,77 @@
+{
+  "schema": 1,
+  "slug": "upper-cut-bar-and-grill-sioux-falls-sd",
+  "wp_id": 1833,
+  "name": "Upper Cut Bar & Grill",
+  "type": "bars-with-pool-tables",
+  "status": "open",
+  "address": {
+    "street": "2819 E 10th St",
+    "city": "Sioux Falls",
+    "state": "SD",
+    "postal_code": "57103",
+    "country": "US"
+  },
+  "geo": {
+    "lat": 43.54611,
+    "lng": -96.68967
+  },
+  "region": {
+    "state": "south-dakota",
+    "state_name": "South Dakota",
+    "city": "sioux-falls",
+    "city_name": "Sioux Falls"
+  },
+  "phone": "(605) 336-0900",
+  "website": "http://www.uppercut605.com/",
+  "hours": {
+    "tz": "America/Chicago",
+    "ranges": [
+      [
+        0,
+        120
+      ],
+      [
+        660,
+        1560
+      ],
+      [
+        2100,
+        3000
+      ],
+      [
+        3540,
+        4440
+      ],
+      [
+        4980,
+        5880
+      ],
+      [
+        6420,
+        7320
+      ],
+      [
+        7860,
+        8760
+      ],
+      [
+        9300,
+        10080
+      ]
+    ]
+  },
+  "listing_source": {
+    "source": "google_places",
+    "url": "https://maps.google.com/?cid=654519865533811710",
+    "checked_at": "2026-10-03",
+    "place_id": "ChIJlastpUS0jocR_kuUk1lSFQk",
+    "osm_id": ""
+  },
+  "claimed": false,
+  "verification": "unverified",
+  "photo": null,
+  "created_at": "2026-10-03",
+  "updated_at": "2026-10-03",
+  "facts": []
+}

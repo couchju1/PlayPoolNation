@@ -1,0 +1,77 @@
+{
+  "schema": 1,
+  "slug": "big-johns-billiards-omaha-ne",
+  "wp_id": 1781,
+  "name": "Big John’s Billiards",
+  "type": "pool-halls",
+  "status": "open",
+  "address": {
+    "street": "9819 M St",
+    "city": "Omaha",
+    "state": "NE",
+    "postal_code": "68127",
+    "country": "US"
+  },
+  "geo": {
+    "lat": 41.2108,
+    "lng": -96.0669
+  },
+  "region": {
+    "state": "nebraska",
+    "state_name": "Nebraska",
+    "city": "omaha",
+    "city_name": "Omaha"
+  },
+  "phone": "(402) 592-3545",
+  "website": "http://bigjohnsbilliards.com/",
+  "hours": {
+    "tz": "America/Chicago",
+    "ranges": [
+      [
+        0,
+        120
+      ],
+      [
+        660,
+        1560
+      ],
+      [
+        2100,
+        3000
+      ],
+      [
+        3540,
+        4440
+      ],
+      [
+        4980,
+        5880
+      ],
+      [
+        6420,
+        7320
+      ],
+      [
+        7860,
+        8760
+      ],
+      [
+        9300,
+        10080
+      ]
+    ]
+  },
+  "listing_source": {
+    "source": "google_places",
+    "url": "https://maps.google.com/?cid=16966739839583902644",
+    "checked_at": "2026-10-03",
+    "place_id": "ChIJT79cRK2Mk4cRtNvdjv33des",
+    "osm_id": ""
+  },
+  "claimed": false,
+  "verification": "unverified",
+  "photo": null,
+  "created_at": "2026-10-03",
+  "updated_at": "2026-10-03",
+  "facts": []
+}

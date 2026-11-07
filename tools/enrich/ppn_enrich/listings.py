@@ -122,3 +122,56 @@ def from_site(fetcher: Fetcher, city_page: str) -> list[dict]:
 
 def is_pool_hall(listing: dict) -> bool:
     return listing.get("type", "").lower() in POOL_HALL_TYPES or bool(re.search(r"billiard|pool hall|cue", listing.get("name", ""), re.I))
+
+
+TYPE_LABELS = {"pool-halls": "Pool Hall", "billiards-lounge": "Billiards Lounge", "bars-with-pool-tables": "Bar", "sports-bar": "Sports Bar"}
+SIZE_LABELS = {"7ft": "7' tables", "8ft": "8' tables", "9ft": "9' tables", "snooker": "Snooker tables"}
+
+
+def from_data(city_slug: str, data_dir: str) -> list[dict] | None:
+    """Our listings for a city from the site's own database, data/venues/*.json.
+
+    Returns None when the folder doesn't exist (an old checkout), so the caller
+    can fall back to reading the public site.
+    """
+    import os
+
+    if not os.path.isdir(data_dir):
+        return None
+    out = []
+    for name in sorted(os.listdir(data_dir)):
+        if not name.endswith(".json"):
+            continue
+        with open(os.path.join(data_dir, name), encoding="utf-8") as f:
+            v = json.load(f)
+        if v.get("region", {}).get("city") != city_slug:
+            continue
+        current: dict = {}
+        for fact in v.get("facts", []):
+            if fact["field"] == "table_count":
+                current["Pool tables"] = fact["value"]
+            elif fact["field"] == "table_sizes" and fact.get("source_type") != "default":
+                current[SIZE_LABELS.get(fact["value"]["size"], fact["value"]["size"])] = True
+            elif fact["field"] == "table_brands":
+                current[f"{fact['value']} tables"] = True
+        website, facebook = split_links([v.get("website", "")])
+        a = v.get("address", {})
+        geo = v.get("geo") or {}
+        out.append({
+            "id": v.get("wp_id"),
+            "slug": v["slug"],
+            "url": f"https://playpoolnation.com/place/{v['slug']}/",
+            "name": v["name"],
+            "type": TYPE_LABELS.get(v.get("type", ""), v.get("type", "")),
+            "street": a.get("street", ""),
+            "city": a.get("city", ""),
+            "state": a.get("state", ""),
+            "zip": a.get("postal_code", ""),
+            "phone": v.get("phone", ""),
+            "lat": geo.get("lat"),
+            "lng": geo.get("lng"),
+            "website": website,
+            "facebook": facebook,
+            "current": current,
+        })
+    return out

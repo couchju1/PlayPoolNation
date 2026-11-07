@@ -1,0 +1,77 @@
+{
+  "schema": 1,
+  "slug": "bedrock-billiards-washington-dc",
+  "wp_id": 1779,
+  "name": "Bedrock Billiards",
+  "type": "pool-halls",
+  "status": "open",
+  "address": {
+    "street": "1841 Columbia Rd NW",
+    "city": "Washington",
+    "state": "DC",
+    "postal_code": "20009",
+    "country": "US"
+  },
+  "geo": {
+    "lat": 38.92153,
+    "lng": -77.04394
+  },
+  "region": {
+    "state": "washington-d-c",
+    "state_name": "Washington, D.C.",
+    "city": "washington-dc",
+    "city_name": "Washington"
+  },
+  "phone": "(202) 667-7665",
+  "website": "http://www.bedrockbilliards.com/",
+  "hours": {
+    "tz": "America/New_York",
+    "ranges": [
+      [
+        0,
+        120
+      ],
+      [
+        960,
+        1560
+      ],
+      [
+        2400,
+        3000
+      ],
+      [
+        3840,
+        4440
+      ],
+      [
+        5280,
+        5880
+      ],
+      [
+        6720,
+        7380
+      ],
+      [
+        7920,
+        8820
+      ],
+      [
+        9360,
+        10080
+      ]
+    ]
+  },
+  "listing_source": {
+    "source": "google_places",
+    "url": "https://maps.google.com/?cid=13238135875528219888",
+    "checked_at": "2026-10-03",
+    "place_id": "ChIJrZGZE9q3t4kR8Nw2rXBOt7c",
+    "osm_id": ""
+  },
+  "claimed": false,
+  "verification": "unverified",
+  "photo": null,
+  "created_at": "2026-10-03",
+  "updated_at": "2026-10-03",
+  "facts": []
+}

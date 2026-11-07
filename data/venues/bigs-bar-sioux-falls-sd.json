@@ -1,0 +1,129 @@
+{
+  "schema": 1,
+  "slug": "bigs-bar-sioux-falls-sd",
+  "wp_id": 1826,
+  "name": "Bigs Bar",
+  "type": "pool-halls",
+  "status": "open",
+  "address": {
+    "street": "3110 W 12th St",
+    "city": "Sioux Falls",
+    "state": "SD",
+    "postal_code": "57104",
+    "country": "US"
+  },
+  "geo": {
+    "lat": 43.54533,
+    "lng": -96.76828
+  },
+  "region": {
+    "state": "south-dakota",
+    "state_name": "South Dakota",
+    "city": "sioux-falls",
+    "city_name": "Sioux Falls"
+  },
+  "phone": "(605) 275-2447",
+  "website": "http://www.bigsbar.com/",
+  "hours": {
+    "tz": "America/Chicago",
+    "ranges": [
+      [
+        0,
+        120
+      ],
+      [
+        780,
+        1560
+      ],
+      [
+        2220,
+        3000
+      ],
+      [
+        3660,
+        4440
+      ],
+      [
+        5100,
+        5880
+      ],
+      [
+        6540,
+        7320
+      ],
+      [
+        7980,
+        8760
+      ],
+      [
+        9420,
+        10080
+      ]
+    ]
+  },
+  "listing_source": {
+    "source": "google_places",
+    "url": "https://maps.google.com/?cid=18420590241796413842",
+    "checked_at": "2026-10-02",
+    "place_id": "ChIJKTx2ymfKjocRkllNezoVo_8",
+    "osm_id": ""
+  },
+  "claimed": false,
+  "verification": "unverified",
+  "photo": null,
+  "created_at": "2026-10-03",
+  "updated_at": "2026-10-03",
+  "facts": [
+    {
+      "field": "table_count",
+      "key": "table_count",
+      "value": 12,
+      "source_url": "https://www.bigsbar.com/billiards-darts",
+      "source_type": "web_research",
+      "checked_at": "2026-10-03",
+      "confidence": "stated",
+      "flags": [],
+      "approved_at": "2026-10-03",
+      "approved_by": "wordpress-import"
+    },
+    {
+      "field": "pricing_model",
+      "key": "pricing_model:hourly",
+      "value": {
+        "model": "hourly",
+        "rate": null
+      },
+      "source_url": "https://www.bigsbar.com/billiards-darts",
+      "source_type": "web_research",
+      "checked_at": "2026-10-03",
+      "confidence": "stated",
+      "flags": [],
+      "approved_at": "2026-10-03",
+      "approved_by": "wordpress-import"
+    },
+    {
+      "field": "pricing_notes",
+      "key": "pricing_notes",
+      "value": "$8 for 1½ hours of pool",
+      "source_url": "https://www.bigsbar.com/billiards-darts",
+      "source_type": "web_research",
+      "checked_at": "2026-10-03",
+      "confidence": "stated",
+      "flags": [],
+      "approved_at": "2026-10-03",
+      "approved_by": "wordpress-import"
+    },
+    {
+      "field": "games",
+      "key": "games:darts",
+      "value": "Darts",
+      "source_url": "https://www.bigsbar.com/billiards-darts",
+      "source_type": "web_research",
+      "checked_at": "2026-10-03",
+      "confidence": "stated",
+      "flags": [],
+      "approved_at": "2026-10-03",
+      "approved_by": "wordpress-import"
+    }
+  ]
+}

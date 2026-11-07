@@ -1,0 +1,77 @@
+{
+  "schema": 1,
+  "slug": "new-wave-billiards-and-sports-bar-miami-fl",
+  "wp_id": 1756,
+  "name": "New Wave Billiards & Sports Bar",
+  "type": "pool-halls",
+  "status": "open",
+  "address": {
+    "street": "1403 SW 107th Ave",
+    "city": "Miami",
+    "state": "FL",
+    "postal_code": "33174",
+    "country": "US"
+  },
+  "geo": {
+    "lat": 25.75652,
+    "lng": -80.36686
+  },
+  "region": {
+    "state": "florida",
+    "state_name": "Florida",
+    "city": "miami",
+    "city_name": "Miami"
+  },
+  "phone": "(305) 220-4790",
+  "website": "http://www.newwavebilliards.com/",
+  "hours": {
+    "tz": "America/New_York",
+    "ranges": [
+      [
+        0,
+        180
+      ],
+      [
+        720,
+        1620
+      ],
+      [
+        2160,
+        3060
+      ],
+      [
+        3600,
+        4500
+      ],
+      [
+        5040,
+        5940
+      ],
+      [
+        6480,
+        7380
+      ],
+      [
+        7920,
+        8820
+      ],
+      [
+        9360,
+        10080
+      ]
+    ]
+  },
+  "listing_source": {
+    "source": "google_places",
+    "url": "https://maps.google.com/?cid=77414321655182629",
+    "checked_at": "2026-10-03",
+    "place_id": "ChIJIfUi8jK_2YgRJfXIVuoHEwE",
+    "osm_id": ""
+  },
+  "claimed": false,
+  "verification": "unverified",
+  "photo": null,
+  "created_at": "2026-10-03",
+  "updated_at": "2026-10-03",
+  "facts": []
+}

@@ -1,0 +1,77 @@
+{
+  "schema": 1,
+  "slug": "k-and-k-billiards-miami-fl",
+  "wp_id": 1753,
+  "name": "K&K Billiards Miami",
+  "type": "pool-halls",
+  "status": "open",
+  "address": {
+    "street": "1100 NE 79th St",
+    "city": "Miami",
+    "state": "FL",
+    "postal_code": "33138",
+    "country": "US"
+  },
+  "geo": {
+    "lat": 25.84788,
+    "lng": -80.17407
+  },
+  "region": {
+    "state": "florida",
+    "state_name": "Florida",
+    "city": "miami",
+    "city_name": "Miami"
+  },
+  "phone": "(305) 530-8805",
+  "website": "https://www.kkbilliardsmiamiorder.com/",
+  "hours": {
+    "tz": "America/New_York",
+    "ranges": [
+      [
+        0,
+        120
+      ],
+      [
+        780,
+        1560
+      ],
+      [
+        2220,
+        3000
+      ],
+      [
+        3660,
+        4440
+      ],
+      [
+        5100,
+        5880
+      ],
+      [
+        6540,
+        7320
+      ],
+      [
+        7980,
+        8760
+      ],
+      [
+        9420,
+        10080
+      ]
+    ]
+  },
+  "listing_source": {
+    "source": "google_places",
+    "url": "https://maps.google.com/?cid=10678189846150288246",
+    "checked_at": "2026-10-03",
+    "place_id": "ChIJA-jiGc2z2YgRdpP47xaNMJQ",
+    "osm_id": ""
+  },
+  "claimed": false,
+  "verification": "unverified",
+  "photo": null,
+  "created_at": "2026-10-03",
+  "updated_at": "2026-10-03",
+  "facts": []
+}

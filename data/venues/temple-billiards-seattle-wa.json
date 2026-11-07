@@ -1,0 +1,77 @@
+{
+  "schema": 1,
+  "slug": "temple-billiards-seattle-wa",
+  "wp_id": 1734,
+  "name": "Temple Billiards",
+  "type": "pool-halls",
+  "status": "open",
+  "address": {
+    "street": "126 S Jackson St",
+    "city": "Seattle",
+    "state": "WA",
+    "postal_code": "98104",
+    "country": "US"
+  },
+  "geo": {
+    "lat": 47.59934,
+    "lng": -122.33326
+  },
+  "region": {
+    "state": "washington",
+    "state_name": "Washington",
+    "city": "seattle",
+    "city_name": "Seattle"
+  },
+  "phone": "(206) 682-3242",
+  "website": "https://www.templebilliards.com/",
+  "hours": {
+    "tz": "America/Los_Angeles",
+    "ranges": [
+      [
+        0,
+        105
+      ],
+      [
+        660,
+        1545
+      ],
+      [
+        2100,
+        2985
+      ],
+      [
+        3540,
+        4425
+      ],
+      [
+        4980,
+        5865
+      ],
+      [
+        6420,
+        7305
+      ],
+      [
+        8100,
+        8745
+      ],
+      [
+        9540,
+        10080
+      ]
+    ]
+  },
+  "listing_source": {
+    "source": "google_places",
+    "url": "https://maps.google.com/?cid=1441194051033945996",
+    "checked_at": "2026-10-03",
+    "place_id": "ChIJe_vU2qRqkFQRjNdIiFomABQ",
+    "osm_id": ""
+  },
+  "claimed": false,
+  "verification": "unverified",
+  "photo": null,
+  "created_at": "2026-10-03",
+  "updated_at": "2026-10-03",
+  "facts": []
+}

@@ -1,0 +1,167 @@
+{
+  "schema": 1,
+  "slug": "bangin-ballz-billiards-bar-las-vegas-nv",
+  "wp_id": 1747,
+  "name": "Bangin Ballz Billiards Bar",
+  "type": "pool-halls",
+  "status": "open",
+  "address": {
+    "street": "9155 S Las Vegas Blvd",
+    "city": "Las Vegas",
+    "state": "NV",
+    "postal_code": "89123",
+    "country": "US"
+  },
+  "geo": {
+    "lat": 36.0222,
+    "lng": -115.17614
+  },
+  "region": {
+    "state": "nevada",
+    "state_name": "Nevada",
+    "city": "las-vegas",
+    "city_name": "Las Vegas"
+  },
+  "phone": "(702) 449-5395",
+  "website": "https://banginballzbilliards.com/",
+  "hours": {
+    "tz": "America/Los_Angeles",
+    "ranges": [
+      [
+        960,
+        1560
+      ],
+      [
+        2400,
+        3000
+      ],
+      [
+        3840,
+        4440
+      ],
+      [
+        5280,
+        5880
+      ],
+      [
+        6720,
+        7320
+      ],
+      [
+        7800,
+        8760
+      ],
+      [
+        9240,
+        10080
+      ]
+    ]
+  },
+  "listing_source": {
+    "source": "google_places",
+    "url": "https://maps.google.com/?cid=9171510227458729882",
+    "checked_at": "2026-10-03",
+    "place_id": "ChIJvXPV_TrPyIARmieKifW_R38",
+    "osm_id": ""
+  },
+  "claimed": false,
+  "verification": "unverified",
+  "photo": null,
+  "created_at": "2026-10-03",
+  "updated_at": "2026-10-03",
+  "facts": [
+    {
+      "field": "table_sizes",
+      "key": "table_sizes:7ft",
+      "value": {
+        "size": "7ft",
+        "count": null
+      },
+      "source_url": "https://banginballzbilliards.com/",
+      "source_type": "web_research",
+      "checked_at": "2026-10-03",
+      "confidence": "stated",
+      "flags": [],
+      "approved_at": "2026-10-03",
+      "approved_by": "wordpress-import"
+    },
+    {
+      "field": "table_sizes",
+      "key": "table_sizes:9ft",
+      "value": {
+        "size": "9ft",
+        "count": null
+      },
+      "source_url": "https://banginballzbilliards.com/",
+      "source_type": "web_research",
+      "checked_at": "2026-10-03",
+      "confidence": "stated",
+      "flags": [],
+      "approved_at": "2026-10-03",
+      "approved_by": "wordpress-import"
+    },
+    {
+      "field": "table_brands",
+      "key": "table_brands:diamond",
+      "value": "Diamond",
+      "source_url": "https://banginballzbilliards.com/",
+      "source_type": "web_research",
+      "checked_at": "2026-10-03",
+      "confidence": "stated",
+      "flags": [],
+      "approved_at": "2026-10-03",
+      "approved_by": "wordpress-import"
+    },
+    {
+      "field": "table_brands",
+      "key": "table_brands:rasson",
+      "value": "Rasson",
+      "source_url": "https://banginballzbilliards.com/",
+      "source_type": "web_research",
+      "checked_at": "2026-10-03",
+      "confidence": "stated",
+      "flags": [],
+      "approved_at": "2026-10-03",
+      "approved_by": "wordpress-import"
+    },
+    {
+      "field": "pricing_model",
+      "key": "pricing_model:hourly",
+      "value": {
+        "model": "hourly",
+        "rate": null
+      },
+      "source_url": "https://banginballzbilliards.com/",
+      "source_type": "web_research",
+      "checked_at": "2026-10-03",
+      "confidence": "stated",
+      "flags": [],
+      "approved_at": "2026-10-03",
+      "approved_by": "wordpress-import"
+    },
+    {
+      "field": "pricing_notes",
+      "key": "pricing_notes",
+      "value": "7' Rasson $12 per hour per table; 9' Rasson $14 per hour per player; 9' Diamond $16 per hour per player",
+      "source_url": "https://banginballzbilliards.com/",
+      "source_type": "web_research",
+      "checked_at": "2026-10-03",
+      "confidence": "stated",
+      "flags": [],
+      "approved_at": "2026-10-03",
+      "approved_by": "wordpress-import"
+    },
+    {
+      "field": "table_models",
+      "key": "table_models",
+      "value": "30 Rasson tables (24 at 7', 6 at 9'); the rate card also lists 9' Diamond tables",
+      "source_url": "https://banginballzbilliards.com/",
+      "source_type": "web_research",
+      "checked_at": "2026-10-03",
+      "confidence": "stated",
+      "flags": [],
+      "approved_at": "2026-10-03",
+      "approved_by": "wordpress-import"
+    }
+  ]
+}

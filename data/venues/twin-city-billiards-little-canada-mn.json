@@ -1,0 +1,73 @@
+{
+  "schema": 1,
+  "slug": "twin-city-billiards-little-canada-mn",
+  "wp_id": 1764,
+  "name": "Twin City Billiards",
+  "type": "pool-halls",
+  "status": "open",
+  "address": {
+    "street": "80 Little Canada Rd E Ste 1",
+    "city": "Little Canada",
+    "state": "MN",
+    "postal_code": "55117",
+    "country": "US"
+  },
+  "geo": {
+    "lat": 45.02454,
+    "lng": -93.09742
+  },
+  "region": {
+    "state": "minnesota",
+    "state_name": "Minnesota",
+    "city": "little-canada",
+    "city_name": "Little Canada"
+  },
+  "phone": "(651) 689-0236",
+  "website": "http://www.twincitybilliards.com/",
+  "hours": {
+    "tz": "America/Chicago",
+    "ranges": [
+      [
+        960,
+        1440
+      ],
+      [
+        2400,
+        2880
+      ],
+      [
+        3840,
+        4320
+      ],
+      [
+        5280,
+        5760
+      ],
+      [
+        6540,
+        7200
+      ],
+      [
+        7980,
+        8640
+      ],
+      [
+        9600,
+        9960
+      ]
+    ]
+  },
+  "listing_source": {
+    "source": "google_places",
+    "url": "https://maps.google.com/?cid=15907116292903146958",
+    "checked_at": "2026-10-03",
+    "place_id": "ChIJUb7sGwAq9ocRzhVSJ_1twdw",
+    "osm_id": ""
+  },
+  "claimed": false,
+  "verification": "unverified",
+  "photo": null,
+  "created_at": "2026-10-03",
+  "updated_at": "2026-10-03",
+  "facts": []
+}

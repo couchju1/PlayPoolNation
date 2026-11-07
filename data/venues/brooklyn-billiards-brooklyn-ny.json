@@ -1,0 +1,77 @@
+{
+  "schema": 1,
+  "slug": "brooklyn-billiards-brooklyn-ny",
+  "wp_id": 1697,
+  "name": "Brooklyn Billiards",
+  "type": "pool-halls",
+  "status": "open",
+  "address": {
+    "street": "90 N 11th St",
+    "city": "Brooklyn",
+    "state": "NY",
+    "postal_code": "11249",
+    "country": "US"
+  },
+  "geo": {
+    "lat": 40.72134,
+    "lng": -73.95759
+  },
+  "region": {
+    "state": "new-york",
+    "state_name": "New York",
+    "city": "brooklyn",
+    "city_name": "Brooklyn"
+  },
+  "phone": "(718) 599-2603",
+  "website": "http://www.bkbilliards.com/",
+  "hours": {
+    "tz": "America/New_York",
+    "ranges": [
+      [
+        0,
+        60
+      ],
+      [
+        960,
+        1500
+      ],
+      [
+        2400,
+        2940
+      ],
+      [
+        3840,
+        4380
+      ],
+      [
+        5280,
+        5820
+      ],
+      [
+        6720,
+        7380
+      ],
+      [
+        8160,
+        8820
+      ],
+      [
+        9600,
+        10080
+      ]
+    ]
+  },
+  "listing_source": {
+    "source": "google_places",
+    "url": "https://maps.google.com/?cid=14063038920824171388",
+    "checked_at": "2026-10-03",
+    "place_id": "ChIJD2mVAONZwokRfKs3qmPzKcM",
+    "osm_id": ""
+  },
+  "claimed": false,
+  "verification": "unverified",
+  "photo": null,
+  "created_at": "2026-10-03",
+  "updated_at": "2026-10-03",
+  "facts": []
+}

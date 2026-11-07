@@ -1,0 +1,77 @@
+{
+  "schema": 1,
+  "slug": "doral-billiards-and-sports-bar-doral-fl",
+  "wp_id": 1755,
+  "name": "Doral Billiards & Sports Bar",
+  "type": "pool-halls",
+  "status": "open",
+  "address": {
+    "street": "7800 NW 25th St",
+    "city": "Doral",
+    "state": "FL",
+    "postal_code": "33122",
+    "country": "US"
+  },
+  "geo": {
+    "lat": 25.79617,
+    "lng": -80.32387
+  },
+  "region": {
+    "state": "florida",
+    "state_name": "Florida",
+    "city": "doral",
+    "city_name": "Doral"
+  },
+  "phone": "(305) 592-8486",
+  "website": "http://www.doralbilliards.com/",
+  "hours": {
+    "tz": "America/New_York",
+    "ranges": [
+      [
+        0,
+        120
+      ],
+      [
+        720,
+        1560
+      ],
+      [
+        2160,
+        3000
+      ],
+      [
+        3600,
+        4440
+      ],
+      [
+        5040,
+        5880
+      ],
+      [
+        6480,
+        7320
+      ],
+      [
+        7920,
+        8760
+      ],
+      [
+        9360,
+        10080
+      ]
+    ]
+  },
+  "listing_source": {
+    "source": "google_places",
+    "url": "https://maps.google.com/?cid=15641616135066890941",
+    "checked_at": "2026-10-03",
+    "place_id": "ChIJa99GR3a52YgRvTKugwAvEtk",
+    "osm_id": ""
+  },
+  "claimed": false,
+  "verification": "unverified",
+  "photo": null,
+  "created_at": "2026-10-03",
+  "updated_at": "2026-10-03",
+  "facts": []
+}

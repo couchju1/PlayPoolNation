@@ -1,0 +1,77 @@
+{
+  "schema": 1,
+  "slug": "bogies-billiards-east-houston-tx",
+  "wp_id": 1708,
+  "name": "Bogie’s Billiards East",
+  "type": "pool-halls",
+  "status": "open",
+  "address": {
+    "street": "3040 Farm to Market 1960 Rd E #101",
+    "city": "Houston",
+    "state": "TX",
+    "postal_code": "77073",
+    "country": "US"
+  },
+  "geo": {
+    "lat": 30.0191,
+    "lng": -95.38016
+  },
+  "region": {
+    "state": "texas",
+    "state_name": "Texas",
+    "city": "houston",
+    "city_name": "Houston"
+  },
+  "phone": "(281) 869-4290",
+  "website": "https://bogiesbilliard.com/",
+  "hours": {
+    "tz": "America/Chicago",
+    "ranges": [
+      [
+        0,
+        120
+      ],
+      [
+        630,
+        1560
+      ],
+      [
+        2070,
+        3000
+      ],
+      [
+        3510,
+        4440
+      ],
+      [
+        4950,
+        5880
+      ],
+      [
+        6390,
+        7320
+      ],
+      [
+        7830,
+        8760
+      ],
+      [
+        9270,
+        10080
+      ]
+    ]
+  },
+  "listing_source": {
+    "source": "google_places",
+    "url": "https://maps.google.com/?cid=17039596813981297011",
+    "checked_at": "2026-10-03",
+    "place_id": "ChIJrSTpJW-1QIYRc6k7zQXPeOw",
+    "osm_id": ""
+  },
+  "claimed": false,
+  "verification": "unverified",
+  "photo": null,
+  "created_at": "2026-10-03",
+  "updated_at": "2026-10-03",
+  "facts": []
+}

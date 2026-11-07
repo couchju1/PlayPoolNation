@@ -1,0 +1,65 @@
+{
+  "schema": 1,
+  "slug": "g-cue-billiards-chicago-il",
+  "wp_id": 1704,
+  "name": "G-Cue Billiards",
+  "type": "pool-halls",
+  "status": "open",
+  "address": {
+    "street": "157 N Morgan St",
+    "city": "Chicago",
+    "state": "IL",
+    "postal_code": "60607",
+    "country": "US"
+  },
+  "geo": {
+    "lat": 41.88478,
+    "lng": -87.65196
+  },
+  "region": {
+    "state": "illinois",
+    "state_name": "Illinois",
+    "city": "chicago",
+    "city_name": "Chicago"
+  },
+  "phone": "(312) 850-3170",
+  "website": "http://www.g-cuechicago.com/",
+  "hours": {
+    "tz": "America/Chicago",
+    "ranges": [
+      [
+        2460,
+        2940
+      ],
+      [
+        3900,
+        4380
+      ],
+      [
+        5340,
+        5820
+      ],
+      [
+        6780,
+        7320
+      ],
+      [
+        8220,
+        8820
+      ]
+    ]
+  },
+  "listing_source": {
+    "source": "google_places",
+    "url": "https://maps.google.com/?cid=16048890858590858594",
+    "checked_at": "2026-10-03",
+    "place_id": "ChIJeYena9osDogRYm1SiTQdud4",
+    "osm_id": ""
+  },
+  "claimed": false,
+  "verification": "unverified",
+  "photo": null,
+  "created_at": "2026-10-03",
+  "updated_at": "2026-10-03",
+  "facts": []
+}

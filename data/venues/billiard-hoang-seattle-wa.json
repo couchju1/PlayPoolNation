@@ -1,0 +1,65 @@
+{
+  "schema": 1,
+  "slug": "billiard-hoang-seattle-wa",
+  "wp_id": 1735,
+  "name": "Billiard Hoang",
+  "type": "pool-halls",
+  "status": "open",
+  "address": {
+    "street": "3220 S Hudson St",
+    "city": "Seattle",
+    "state": "WA",
+    "postal_code": "98118",
+    "country": "US"
+  },
+  "geo": {
+    "lat": 47.55729,
+    "lng": -122.29038
+  },
+  "region": {
+    "state": "washington",
+    "state_name": "Washington",
+    "city": "seattle",
+    "city_name": "Seattle"
+  },
+  "phone": "(206) 723-2054",
+  "website": "",
+  "hours": {
+    "tz": "America/Los_Angeles",
+    "ranges": [
+      [
+        3510,
+        4140
+      ],
+      [
+        4950,
+        5580
+      ],
+      [
+        6390,
+        7020
+      ],
+      [
+        7830,
+        8460
+      ],
+      [
+        9270,
+        9900
+      ]
+    ]
+  },
+  "listing_source": {
+    "source": "google_places",
+    "url": "https://maps.google.com/?cid=13830895377369628583",
+    "checked_at": "2026-10-03",
+    "place_id": "ChIJYb7G6gtqkFQRp3-1BRE28b8",
+    "osm_id": ""
+  },
+  "claimed": false,
+  "verification": "unverified",
+  "photo": null,
+  "created_at": "2026-10-03",
+  "updated_at": "2026-10-03",
+  "facts": []
+}
