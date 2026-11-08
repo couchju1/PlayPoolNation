@@ -9,8 +9,9 @@ import Status from '../../../components/Status.astro';
 import Actions from '../../../components/Actions.astro';
 import Room from '../../../components/Room.astro';
 import MapButton from '../../../components/MapButton.astro';
-import PlanCard from '../../../components/PlanCard.astro';
 import Wall from '../../../components/Wall.astro';
+import Ratings from '../../../components/Ratings.astro';
+import Reviews from '../../../components/Reviews.astro';
 import { BRAND, cityOf, nearbyVenues, textFacts, venues } from '../../../lib/data.ts';
 import { about, brands, clip, factLines, leagueLines, typeLabel, weekHours } from '../../../lib/text.ts';
 import { host, shortDate } from '../../../lib/format.ts';
@@ -73,6 +74,8 @@ const listingFrom = v.listing_source?.source === 'google_places' ? 'Google Place
         {text.claim && <p class="claim-line">{text.claim.lead} <a href={`/list-your-venue/?v=${v.slug}`} data-ppn-event="claim" data-venue={v.slug} data-where="venue_page">Claim it</a>{text.claim.rest}</p>}
       </section>
 
+      <Reviews v={v} />
+
       <Wall v={v} />
 
       <section class="panel section">
@@ -105,7 +108,7 @@ const listingFrom = v.listing_source?.source === 'google_places' ? 'Google Place
     </div>
 
     <aside>
-      <PlanCard v={v} />
+      <Ratings v={v} />
       <section class="panel">
         <h2>Where and when</h2>
         <dl class="facts">

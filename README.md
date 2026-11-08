@@ -104,3 +104,21 @@ The `posts` table and the `post_react` function are in `db/schema.sql`; run that
 ## Pool Passport
 
 `/passport/` collects a stamp for every venue a player has played, grouped by city guide, with each city's poster turning from grey to full color once it has a stamp and a "Complete" seal when every hall is stamped. Stamps come from "I played here" on venue pages or a Wall check-in (any kind but a plain note). They live in the player's browser only (`localStorage` key `ppn_passport`, see `src/scripts/passport.ts`); nothing is sent to the server.
+
+## Accounts and reviews
+
+Players create an account at `/account/` (email and password through Supabase Auth, email confirmed by a link) and review venues: 1 to 5 stars and up to 2,000 characters, one review per player per venue, editable and deletable. Venue pages show a ratings card (average, count, spread) and the reviews; city pages show each venue's average. Display names are public; emails never are. Players can delete their account and reviews from `/account/`.
+
+**Sharing reviewer emails with venues.** Each review has a box, unticked by default: "Share my email with <venue> so they can contact me about events and offers." Players can untick it later on `/account/`. Only reviews with it ticked show up in:
+
+```sql
+select * from private.review_email_leads where venue_slug = 'rack-city-billiards-sioux-falls-sd';
+```
+
+Run that in the Supabase SQL editor and use "Export to CSV" to send a venue its list. The `private` schema isn't reachable through the public API. An owner with an approved claim can also fetch their own venue's list with `rpc('venue_review_leads', { p_slug })`. The privacy policy describes all of this.
+
+**Supabase settings this needs** (Authentication in the dashboard):
+- URL Configuration: Site URL `https://playpoolnation.com`, redirect URL `https://playpoolnation.com/account/**`.
+- SMTP: a real mailbox (for example `noreply@playpoolnation.com` on Hostinger: `smtp.hostinger.com`, port 465). Without it Supabase sends at most 2 emails an hour, which blocks sign-ups.
+
+The tables, policies and functions are in `db/schema.sql` (profiles, reviews, `private.review_email_leads`, `venue_review_leads`, `delete_my_account`). The browser uses the project's publishable key (`src/scripts/sb.ts`); row-level security decides what it can do.

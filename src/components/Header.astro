@@ -15,5 +15,6 @@ const links = [
     <nav class="nav" aria-label="Main">
       {links.map(([href, label]) => <a href={href} aria-current={path.startsWith(href) ? 'page' : undefined}>{label}</a>)}
     </nav>
+    <a class="account-link" href="/account/" data-account-link>Sign in</a>
   </div>
 </header>

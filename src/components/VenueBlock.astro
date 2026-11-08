@@ -12,7 +12,7 @@ const week = v.hours && v.status === 'open' ? weekHours(v.hours.ranges) : [];
 ---
 <section class="venue-block" id={v.anchor} data-venue={v.anchor} data-tags={tags} data-league-days={leagueDays(v).join(' ')} data-has-hours={v.hours ? '1' : ''}>
   <H>{v.name}</H>
-  <Status v={v} />
+  <div class="venue-line"><Status v={v} /><a class="venue-rating" href={`${v.url}#reviews`} data-rating-for={v.slug} hidden></a></div>
   <dl class="facts">
     {factLines(textFacts(v)).map(([label, value]) => (<><dt>{label}</dt><dd>{value}</dd></>))}
   </dl>
@@ -22,9 +22,6 @@ const week = v.hours && v.status === 'open' ? weekHours(v.hours.ranges) : [];
       <table class="hours-table"><tbody>{week.map((r) => <tr><th scope="row">{r.day}</th><td>{r.hours}</td></tr>)}</tbody></table>
     </details>
   )}
-  {v.hours?.ranges?.length && v.status === 'open' ? (
-    <div class="slots" data-slots data-url={v.url} data-tl-hours={JSON.stringify({ tz: v.hours.tz, r: v.hours.ranges, s: v.status })} hidden></div>
-  ) : null}
   <Actions v={v} where={where} />
   <p><a href={v.url}>More about {v.name}</a></p>
 </section>

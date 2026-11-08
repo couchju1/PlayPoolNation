@@ -1,0 +1,39 @@
+---
+/**
+ * Reviews on a venue page. Anyone can read them; writing one needs an account. The writer
+ * chooses, per review, whether to share their email with the venue (off by default).
+ * Filled in by src/scripts/reviews.ts.
+ */
+import type { Venue } from '../lib/types.ts';
+const { v } = Astro.props as { v: Venue };
+---
+<section class="reviews panel section" id="reviews" aria-labelledby="reviews-title" data-reviews data-venue={v.slug} data-name={v.name}>
+  <h2 id="reviews-title">Reviews</h2>
+  <div class="review-gate" data-review-gate>
+    <p>Played at {v.name}? Rate it for other players.</p>
+    <p class="actions"><a class="btn" href={`/account/?next=${encodeURIComponent(v.url + '#reviews')}`} data-review-signin>Sign in to write a review</a><a class="btn btn--ghost" href={`/account/?mode=join&next=${encodeURIComponent(v.url + '#reviews')}`}>Create an account</a></p>
+  </div>
+  <form class="review-form" data-review-form hidden>
+    <p class="review-me">Reviewing as <b data-review-name></b></p>
+    <fieldset class="star-pick">
+      <legend>Your rating</legend>
+      <span class="star-row">
+        {[5, 4, 3, 2, 1].map((n) => (
+          <><input type="radio" id={`star-${n}`} name="rating" value={n} required /><label for={`star-${n}`} title={`${n} star${n > 1 ? 's' : ''}`}><span class="visually-hidden">{n} star{n > 1 ? 's' : ''}</span></label></>
+        ))}
+      </span>
+    </fieldset>
+    <label class="visually-hidden" for="review-body">Your review</label>
+    <textarea id="review-body" name="body" rows="4" maxlength="2000" placeholder={`Tables, cloth, prices, crowd, staff… what should players know about ${v.name}?`}></textarea>
+    <label class="share-box">
+      <input type="checkbox" name="share" />
+      <span>Share my email (<b data-review-email></b>) with {v.name} so they can contact me about events and offers. Optional, and you can turn it off later.</span>
+    </label>
+    <div class="review-send">
+      <button class="btn" type="submit" data-review-submit>Post review</button>
+      <button class="btn btn--ghost" type="button" data-review-delete hidden>Delete my review</button>
+    </div>
+    <p class="review-msg" role="status" data-review-msg></p>
+  </form>
+  <ol class="review-list" data-review-list aria-live="polite"></ol>
+</section>

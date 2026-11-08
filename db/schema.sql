@@ -184,3 +184,101 @@ language sql as $$
     status  = case when p_action = 'report' and reports + 1 >= 3 then 'hidden' else status end
   where id = p_id and status = 'live';
 $$;
+
+-- Accounts and reviews. People sign up with Supabase Auth (email and password, email
+-- confirmed). A profile holds the public display name; emails stay in auth.users and are
+-- never readable through the public API. A review can share its writer's email with that
+-- venue only when they tick the box on that review (share_email, off by default).
+create table if not exists profiles (
+  id            uuid primary key references auth.users (id) on delete cascade,
+  display_name  text not null check (char_length(display_name) between 1 and 40),
+  created_at    timestamptz not null default now()
+);
+
+create table if not exists reviews (
+  id           bigint generated always as identity primary key,
+  venue_slug   text not null references venues (slug) on update cascade on delete cascade,
+  user_id      uuid not null references auth.users (id) on delete cascade,
+  rating       smallint not null check (rating between 1 and 5),
+  body         text not null default '' check (char_length(body) <= 2000),
+  share_email  boolean not null default false,
+  status       text not null default 'live' check (status in ('live', 'hidden')),
+  created_at   timestamptz not null default now(),
+  updated_at   timestamptz not null default now(),
+  unique (venue_slug, user_id)
+);
+create index if not exists reviews_venue on reviews (venue_slug, created_at desc);
+create index if not exists reviews_user on reviews (user_id);
+
+alter table profiles enable row level security;
+alter table reviews  enable row level security;
+
+-- A profile for every new account, named from the sign-up form.
+create or replace function public.handle_new_user() returns trigger
+language plpgsql security definer set search_path = public as $$
+begin
+  insert into public.profiles (id, display_name)
+  values (new.id, left(coalesce(nullif(trim(new.raw_user_meta_data->>'display_name'), ''), split_part(new.email, '@', 1)), 40))
+  on conflict (id) do nothing;
+  return new;
+end;
+$$;
+drop trigger if exists on_auth_user_created on auth.users;
+create trigger on_auth_user_created after insert on auth.users for each row execute function public.handle_new_user();
+
+-- Names and live reviews are public; you can change only your own.
+drop policy if exists profiles_read on profiles;
+create policy profiles_read on profiles for select using (true);
+drop policy if exists profiles_update_own on profiles;
+create policy profiles_update_own on profiles for update using (id = auth.uid()) with check (id = auth.uid());
+drop policy if exists reviews_read on reviews;
+create policy reviews_read on reviews for select using (status = 'live' or user_id = auth.uid());
+drop policy if exists reviews_insert_own on reviews;
+create policy reviews_insert_own on reviews for insert with check (user_id = auth.uid());
+drop policy if exists reviews_update_own on reviews;
+create policy reviews_update_own on reviews for update using (user_id = auth.uid()) with check (user_id = auth.uid());
+drop policy if exists reviews_delete_own on reviews;
+create policy reviews_delete_own on reviews for delete using (user_id = auth.uid());
+
+-- Column rights: visitors never see share_email, and nobody can set status or dates
+-- through the API (hiding a review is done by hand or with the service key).
+revoke all on profiles, reviews from anon, authenticated;
+grant select on profiles to anon, authenticated;
+grant update (display_name) on profiles to authenticated;
+grant select (id, venue_slug, user_id, rating, body, created_at, updated_at) on reviews to anon;
+grant select on reviews to authenticated;
+grant insert (venue_slug, user_id, rating, body, share_email) on reviews to authenticated;
+grant update (rating, body, share_email, updated_at) on reviews to authenticated;
+grant delete on reviews to authenticated;
+
+-- Emails reviewers agreed to share, by venue. In a schema the API doesn't expose, so only
+-- the dashboard (SQL editor / table view) reads it: select * from private.review_email_leads;
+create schema if not exists private;
+revoke all on schema private from anon, authenticated;
+create or replace view private.review_email_leads as
+select r.venue_slug, v.name as venue_name, u.email, p.display_name, r.rating, r.body, r.created_at
+from public.reviews r
+join auth.users u on u.id = r.user_id
+left join public.profiles p on p.id = r.user_id
+left join public.venues v on v.slug = r.venue_slug
+where r.share_email and r.status = 'live';
+
+-- An approved owner (see claims) can pull the shared emails for their own venue.
+create or replace function public.venue_review_leads(p_slug text)
+returns table (email text, display_name text, rating smallint, created_at timestamptz)
+language sql security definer set search_path = public as $$
+  select u.email::text, p.display_name, r.rating, r.created_at
+  from reviews r join auth.users u on u.id = r.user_id left join profiles p on p.id = r.user_id
+  where r.venue_slug = p_slug and r.share_email and r.status = 'live'
+    and exists (select 1 from claims c where c.venue_slug = p_slug and c.user_id = auth.uid() and c.status = 'approved');
+$$;
+revoke all on function public.venue_review_leads(text) from public, anon;
+grant execute on function public.venue_review_leads(text) to authenticated;
+
+-- "Delete my account" on /account/: removes the login, profile and reviews (they cascade).
+create or replace function public.delete_my_account() returns void
+language sql security definer set search_path = public as $$
+  delete from auth.users where id = auth.uid();
+$$;
+revoke all on function public.delete_my_account() from public, anon;
+grant execute on function public.delete_my_account() to authenticated;

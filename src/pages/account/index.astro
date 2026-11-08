@@ -1,0 +1,77 @@
+---
+/** Sign in, create an account, reset a password, and manage your reviews. Noindex. Run by src/scripts/account.ts. */
+import Base from '../../layouts/Base.astro';
+import { BRAND } from '../../lib/data.ts';
+---
+<Base title={`Your Account | ${BRAND}`} description="Sign in to PlayPoolNation to review the pool halls and bars you play." noindex crumbs={[['Home', '/'], ['Account', '']]} pageType="account">
+  <h1 class="visually-hidden">Your PlayPoolNation account</h1>
+  <div class="acct" data-account>
+    <section class="acct-card" data-view="signin" hidden>
+      <h2 class="acct-title">Sign in</h2>
+      <p class="muted">Review the halls you play. New here? <a href="?mode=join" data-go="join">Create an account</a>.</p>
+      <form class="form" data-form="signin">
+        <label>Email<input name="email" type="email" autocomplete="email" required /></label>
+        <label>Password<input name="password" type="password" autocomplete="current-password" required minlength="8" /></label>
+        <button class="btn" type="submit">Sign in</button>
+        <p><a href="?mode=forgot" data-go="forgot">Forgot your password?</a></p>
+      </form>
+    </section>
+
+    <section class="acct-card" data-view="join" hidden>
+      <h2 class="acct-title">Create an account</h2>
+      <p class="muted">Free. Your display name shows on your reviews; your email doesn't. Already have one? <a href="?mode=signin" data-go="signin">Sign in</a>.</p>
+      <form class="form" data-form="join">
+        <label>Display name<input name="name" maxlength="40" autocomplete="nickname" required placeholder="What players will see" /></label>
+        <label>Email<input name="email" type="email" autocomplete="email" required /></label>
+        <label>Password<input name="password" type="password" autocomplete="new-password" required minlength="8" placeholder="At least 8 characters" /></label>
+        <label class="check"><input name="terms" type="checkbox" required /><span>I agree to the <a href="/terms-of-service/" target="_blank">terms</a> and the <a href="/privacy-policy/" target="_blank">privacy policy</a>.</span></label>
+        <button class="btn" type="submit">Create account</button>
+      </form>
+    </section>
+
+    <section class="acct-card" data-view="forgot" hidden>
+      <h2 class="acct-title">Reset your password</h2>
+      <p class="muted">We'll email you a link to choose a new one. <a href="?mode=signin" data-go="signin">Back to sign in</a></p>
+      <form class="form" data-form="forgot">
+        <label>Email<input name="email" type="email" autocomplete="email" required /></label>
+        <button class="btn" type="submit">Email me a link</button>
+      </form>
+    </section>
+
+    <section class="acct-card" data-view="reset" hidden>
+      <h2 class="acct-title">Choose a new password</h2>
+      <form class="form" data-form="reset">
+        <label>New password<input name="password" type="password" autocomplete="new-password" required minlength="8" /></label>
+        <button class="btn" type="submit">Save password</button>
+      </form>
+    </section>
+
+    <section class="acct-card" data-view="sent" hidden>
+      <h2 class="acct-title">Check your email</h2>
+      <p data-sent-text>We sent you a link. Open it on this device to finish.</p>
+      <p class="muted">Nothing after a few minutes? Check spam, or <a href="?mode=join" data-go="join">try again</a>.</p>
+    </section>
+
+    <section class="acct-me" data-view="me" hidden>
+      <h2 class="acct-title">Hi, <span data-me-name></span></h2>
+      <p class="muted">Signed in as <b data-me-email></b>.</p>
+      <form class="form acct-name" data-form="name">
+        <label>Display name<input name="name" maxlength="40" required /></label>
+        <button class="btn btn--ghost" type="submit">Save name</button>
+      </form>
+      <h3>Your reviews</h3>
+      <ol class="my-reviews" data-my-reviews></ol>
+      <p class="muted" style="font-size:14px">"Share email" lets that venue see your email address so they can contact you. Turn it off any time.</p>
+      <p class="actions">
+        <button class="btn btn--ghost" type="button" data-signout>Sign out</button>
+        <button class="btn btn--ghost acct-danger" type="button" data-delete-account>Delete my account</button>
+      </p>
+    </section>
+
+    <p class="acct-msg" role="status" data-account-msg></p>
+    <noscript><p>Signing in needs JavaScript.</p></noscript>
+  </div>
+</Base>
+<script>
+  import '../../scripts/account.ts';
+</script>
