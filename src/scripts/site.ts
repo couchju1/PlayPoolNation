@@ -279,10 +279,10 @@ document.querySelectorAll<HTMLTableElement>('[data-summary]').forEach((table) =>
 });
 
 /* -------------------------------------------------------- map on request */
-const STYLE = import.meta.env.PUBLIC_MAP_STYLE || 'https://tiles.openfreemap.org/styles/liberty';
+export const STYLE = import.meta.env.PUBLIC_MAP_STYLE || 'https://tiles.openfreemap.org/styles/liberty';
 // Split into its own chunk by the bundler: nothing map-related downloads until "Show map".
 // Its web worker is copied to /vendor/ by scripts/copy-vendor.mjs (MapLibre 6 loads it as a separate file).
-const loadMaplibre = () =>
+export const loadMaplibre = () =>
   Promise.all([import('maplibre-gl'), import('maplibre-gl/dist/maplibre-gl.css')]).then(([m]) => {
     const gl = (m as any).default ?? m;
     gl.setWorkerUrl?.('/vendor/maplibre-gl-worker.mjs?v=' + gl.getVersion?.());

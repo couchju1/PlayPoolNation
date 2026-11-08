@@ -1,26 +1,49 @@
 ---
-/** Search and filters. Always noindex and out of the sitemap: the city pages are what should rank. */
+/**
+ * Search as a map-and-list explorer: results beside a live map, one-tap filters, sort, "Search
+ * this area", near me, and a URL that keeps the search so it can be shared. Always noindex and out
+ * of the sitemap: the city pages are what should rank. Run by src/scripts/search.ts; the map
+ * library loads after the list is up.
+ */
 import Base from '../layouts/Base.astro';
 import { BRAND } from '../lib/data.ts';
+
+const filters: [string, string][] = [['open', 'Open now'], ['nine', '9-foot tables'], ['hall', 'Pool halls'], ['leagues', 'Leagues'], ['free', 'Free pool'], ['food', 'Food']];
 ---
-<Base title={`Search Pool Halls and Bars | ${BRAND}`} description="Search every pool hall and bar with pool tables by name or city, and filter to open now, 9-foot tables, leagues, free pool or food." noindex crumbs={[['Home', '/'], ['Search', '']]} pageType="search">
-  <h1>Search</h1>
-  <form class="search-bar" data-search role="search" action="/search/">
-    <label class="visually-hidden" for="q">Name or city</label>
-    <input id="q" name="q" type="search" placeholder="Name or city, like Rack City or Austin" autocomplete="off" />
-    <button class="btn" type="button" data-search-near>Near me</button>
-  </form>
-  <div class="chips" role="group" aria-label="Filters" style="margin-top:14px">
-    <button type="button" class="chip" aria-pressed="false" data-f="open">Open now</button>
-    <button type="button" class="chip" aria-pressed="false" data-f="nine">9-foot tables</button>
-    <button type="button" class="chip" aria-pressed="false" data-f="leagues">Leagues</button>
-    <button type="button" class="chip" aria-pressed="false" data-f="free">Free pool</button>
-    <button type="button" class="chip" aria-pressed="false" data-f="food">Food</button>
-    <button type="button" class="chip" aria-pressed="false" data-f="hall">Pool halls only</button>
-  </div>
-  <p class="filter-count" aria-live="polite" data-search-count>Loading places…</p>
-  <ol class="results" data-search-results></ol>
-  <noscript><p>Search needs JavaScript. <a href="/places/">Browse every city and state</a> instead.</p></noscript>
+<Base title={`Search Pool Halls and Bars | ${BRAND}`} description="Search every pool hall and bar with pool tables on a map, and filter to open now, 9-foot tables, leagues, free pool or food." noindex pageType="search">
+  <section class="explore" slot="hero" data-explore>
+    <div class="ex-list">
+      <div class="ex-top">
+        <h1>Find a pool table</h1>
+        <form class="ex-search" role="search" action="/search/" data-ex-form>
+          <label class="visually-hidden" for="q">Name or city</label>
+          <input id="q" name="q" type="search" placeholder="City or name, like Austin or Rack City" autocomplete="off" data-ex-q />
+          <button class="btn btn--ghost ex-near" type="button" data-ex-near>Near me</button>
+        </form>
+        <div class="ex-filters" role="group" aria-label="Filters">
+          {filters.map(([k, label]) => <button type="button" class="chip" aria-pressed="false" data-f={k}>{label}</button>)}
+        </div>
+        <div class="ex-bar">
+          <p class="ex-count" aria-live="polite" data-ex-count>Loading places…</p>
+          <label class="ex-sort"><span class="visually-hidden">Sort</span>
+            <select data-ex-sort>
+              <option value="best">Best match</option>
+              <option value="near">Nearest</option>
+              <option value="tables">Most tables</option>
+              <option value="rating">Top rated</option>
+            </select>
+          </label>
+        </div>
+      </div>
+      <ol class="ex-results" data-ex-results></ol>
+      <noscript><p>Search needs JavaScript. <a href="/places/">Browse every city and state</a> instead.</p></noscript>
+    </div>
+    <div class="ex-map-wrap">
+      <div class="ex-map" data-ex-map aria-label="Map of results"></div>
+      <button type="button" class="ex-area" data-ex-area hidden>Search this area</button>
+    </div>
+    <button type="button" class="ex-toggle" data-ex-toggle aria-pressed="false">Map</button>
+  </section>
 </Base>
 <script>
   import '../scripts/search.ts';
