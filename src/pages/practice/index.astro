@@ -1,41 +1,122 @@
 ---
-/** The 3D pool game (tailuge/billiards, GPL-3.0). Its 2 MB of scripts load only when Play is pressed. */
+/**
+ * The 3D pool game (tailuge/billiards, GPL-3.0) on a dark felt page: settings in one row,
+ * the table under them. Its 2 MB of scripts load only when the table scrolls into view
+ * (or Play is pressed). Table speed and aim help reach the running game as a
+ * `settings` postMessage, which public/practice-game/index.js listens for.
+ */
 import Base from '../../layouts/Base.astro';
+import Crumbs from '../../components/Crumbs.astro';
 import { BRAND } from '../../lib/data.ts';
+import { breadcrumb } from '../../lib/schema.ts';
+
+// Breadcrumbs sit inside the dark band, so they're drawn here and only their JSON-LD goes to Base.
+const crumbs: [string, string][] = [['Home', '/'], ['Practice', '']];
 ---
-<Base title={`Practice Pool Online: Free 3D Pool Game | ${BRAND}`} description="Play a few racks of 8-ball, 9-ball or 10-ball in your browser. A free, open-source 3D pool game with real physics. No download, no account." crumbs={[['Home', '/'], ['Practice', '']]} pageType="practice">
-  <p class="eyebrow">Practice</p>
-  <h1>Play a few racks</h1>
-  <p class="lede">A free, open-source pool game with realistic 3D physics that runs right in your browser. No download, no account.</p>
-  <form class="chips" style="margin:16px 0" data-game-controls>
-    <label class="chip">Game
-      <select name="ruletype"><option value="eightball">8-ball</option><option value="nineball" selected>9-ball</option><option value="tenball">10-ball</option><option value="freeplay">Practice</option></select>
-    </label>
-    <label class="chip">Table
-      <select name="tableSize"><option value="7.83">7-foot</option><option value="8.86">8-foot</option><option value="10" selected>9-foot</option></select>
-    </label>
-  </form>
-  <div class="game-frame" data-game>
-    <button type="button" class="btn" data-game-play>Play</button>
-  </div>
-  <p class="muted" style="font-size:14px;margin-top:10px">Game by tailuge, adapted for this site. Free and open source under the <a href="/practice-game/LICENSE.txt">GPL-3.0 license</a>. <a href="/practice-game/source.zip">Download the source code</a>. <a href="/practice-game/index.html?ruletype=nineball&tableSize=10" data-game-full>Open the game full-screen</a>.</p>
+<Base title={`Practice Pool Online: Free 3D Pool Game | ${BRAND}`} description="Play 8-ball, 9-ball or 10-ball in your browser on a 7, 8 or 9-foot table, with adjustable table speed and aim help. Free 3D pool game, no download." schema={[breadcrumb(crumbs, '/practice/')]} pageType="practice">
+  <section class="practice" slot="hero">
+    <div class="wrap practice-head">
+      <Crumbs crumbs={crumbs} />
+      <h1>Play a few racks.</h1>
+      <p class="lede">A free, open-source pool game with realistic 3D physics that runs right in your browser. No download, no account.</p>
+    </div>
+    <div class="practice-body">
+      <div class="wrap">
+        <form class="practice-controls" data-game-controls onsubmit="return false">
+          <div class="field">
+            <label for="practice-game">Game</label>
+            <select id="practice-game" name="ruletype">
+              <option value="eightball">8-ball</option>
+              <option value="nineball" selected>9-ball</option>
+              <option value="tenball">10-ball</option>
+              <option value="freeplay">Practice</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="practice-table">Table</label>
+            <select id="practice-table" name="tableSize">
+              <option value="7.83">7-foot</option>
+              <option value="8.86">8-foot</option>
+              <option value="10" selected>9-foot</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="practice-speed">Table speed: <b data-speed-label>Medium</b></label>
+            <input id="practice-speed" type="range" min="0" max="100" step="5" value="50" aria-valuetext="Medium" data-speed />
+          </div>
+          <div class="field">
+            <label for="practice-aid">Aim help</label>
+            <select id="practice-aid" aria-describedby="practice-aid-hint" data-aid>
+              <option value="beginner">Beginner</option>
+              <option value="advanced" selected>Advanced</option>
+              <option value="pro">Pro</option>
+            </select>
+            <p class="hint" id="practice-aid-hint" data-aid-hint>Short aim line</p>
+          </div>
+        </form>
+        <div class="game-frame" data-game>
+          <button type="button" class="btn" data-game-play>Play</button>
+        </div>
+        <div class="practice-credit">
+          <p>Game by tailuge, adapted for this site. Free and open source under the <a href="/practice-game/LICENSE.txt">GPL-3.0 license</a>. <a href="/practice-game/source.zip">Download the source code</a>.</p>
+          <p><a href="/practice-game/index.html?ruletype=nineball&tableSize=10" data-game-full>Open the game full-screen</a></p>
+        </div>
+      </div>
+    </div>
+  </section>
 </Base>
 <script>
-  const box = document.querySelector<HTMLElement>('[data-game]');
-  const form = document.querySelector<HTMLFormElement>('[data-game-controls]');
-  const full = document.querySelector<HTMLAnchorElement>('[data-game-full]');
-  const src = () => '/practice-game/index.html?' + new URLSearchParams(new FormData(form!) as any).toString();
-  form?.addEventListener('change', () => {
-    if (full) full.href = src();
-    const frame = box?.querySelector('iframe');
-    if (frame) frame.src = src();
+  const box = document.querySelector<HTMLElement>('[data-game]')!;
+  const form = document.querySelector<HTMLFormElement>('[data-game-controls]')!;
+  const full = document.querySelector<HTMLAnchorElement>('[data-game-full]')!;
+  const speed = form.querySelector<HTMLInputElement>('[data-speed]')!;
+  const speedLabel = form.querySelector<HTMLElement>('[data-speed-label]')!;
+  const aid = form.querySelector<HTMLSelectElement>('[data-aid]')!;
+  const aidHint = form.querySelector<HTMLElement>('[data-aid-hint]')!;
+  const HINTS: Record<string, string> = { beginner: 'Long aim line', advanced: 'Short aim line', pro: 'No aim aids' };
+
+  const src = () => {
+    const p = new URLSearchParams();
+    p.set('ruletype', (form.elements.namedItem('ruletype') as HTMLSelectElement).value);
+    p.set('tableSize', (form.elements.namedItem('tableSize') as HTMLSelectElement).value);
+    return '/practice-game/index.html?' + p.toString();
+  };
+  const speedWord = (v: number) => (v < 34 ? 'Slow' : v < 67 ? 'Medium' : 'Fast');
+  // Rolling friction: slow cloth at 0 (0.02), fast cloth at 100 (0.005), 0.01 in the middle.
+  const mu = () => 0.01 * 2 ** ((50 - Number(speed.value)) / 50);
+  const frame = () => box.querySelector('iframe');
+  const sendSettings = () => frame()?.contentWindow?.postMessage({ type: 'settings', mu: mu(), aid: aid.value }, location.origin);
+
+  const load = () => {
+    if (frame()) return;
+    box.querySelector('[data-game-play]')?.remove();
+    const f = document.createElement('iframe');
+    f.title = 'Billiards game';
+    f.allow = 'fullscreen';
+    f.src = src();
+    f.addEventListener('load', () => { sendSettings(); setTimeout(sendSettings, 800); });
+    box.append(f);
+  };
+
+  speed.addEventListener('input', () => {
+    const w = speedWord(Number(speed.value));
+    speedLabel.textContent = w;
+    speed.setAttribute('aria-valuetext', w);
+    sendSettings();
   });
-  box?.querySelector('[data-game-play]')?.addEventListener('click', (e) => {
-    (e.currentTarget as HTMLElement).remove();
-    const frame = document.createElement('iframe');
-    frame.title = 'Billiards game';
-    frame.allow = 'fullscreen';
-    frame.src = src();
-    box.append(frame);
-  });
+  aid.addEventListener('change', () => { aidHint.textContent = HINTS[aid.value]; sendSettings(); });
+  form.querySelectorAll('select[name]').forEach((s) => s.addEventListener('change', () => {
+    full.href = src();
+    const f = frame();
+    if (f) f.src = src();
+  }));
+  box.querySelector('[data-game-play]')?.addEventListener('click', load);
+
+  // Load the table once it's on screen, like a game that's already racked.
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver((entries) => {
+      if (entries.some((e) => e.isIntersecting)) { io.disconnect(); load(); }
+    }, { rootMargin: '200px' });
+    io.observe(box);
+  }
 </script>
