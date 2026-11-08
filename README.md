@@ -134,3 +134,12 @@ Signed-in players can **Follow** any venue (venue page header, with a follower c
 - the venue's owner, once their row in `claims` is `approved`.
 
 Times are entered in the venue's own time zone. Owners and admins can mark an event cancelled or delete it. Tables, policies and functions: `admins`, `follows`, `events`, `can_manage_venue()`, `follower_count()` in `db/schema.sql`.
+
+## Photos
+
+- **Bar photos:** a venue's approved owner, or an admin, uses "Add photos" in the venue page's Photos section. They're stored in the public Supabase Storage bucket `venue-photos` (`<slug>/<file>`), listed in `venue_photos`, and show at once. Managers can delete them.
+- **Wall photos:** anyone posting on the Wall can attach one photo. `/api/post` re-encodes it (dropping GPS and camera data, at most 1600 px) into the private bucket `wall-pending` and marks the post `photo_status = 'pending'`. The text posts right away; the photo stays hidden (`/api/feed` only returns approved photos) and the owner gets an email.
+- **Approving:** admins approve or reject on `/admin/` (linked from `/me/` for admins). Approving moves the file to the public bucket `wall-photos`; the photo then shows on the post and under "From players" in the venue's Photos.
+- **Limits:** 6 MB per file, JPEG, PNG or WebP, and 5 Wall photos per visitor per day. The browser shrinks photos before uploading.
+
+Buckets, policies, `venue_photos`, `is_admin()` and the posts photo columns are in `db/schema.sql`.

@@ -11,6 +11,7 @@ import './wall.ts';
 import './passport.ts';
 import './reviews.ts';
 import './social.ts';
+import './photos.ts';
 
 const now = new Date();
 

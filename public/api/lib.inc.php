@@ -113,9 +113,59 @@ function ppn_venues(): array {
 	foreach (is_array($list) ? $list : [] as $v) {
 		if (isset($v['i'])) {
 			$map[$v['i']] = $v['k'] ?? null;
+			$GLOBALS['ppn_venue_names'][$v['i']] = (string) ($v['n'] ?? $v['i']);
 		}
 	}
 	return $map;
+}
+
+/**
+ * An uploaded image as a clean JPEG: re-encoded (which drops EXIF, so no GPS or camera data),
+ * at most 1600 px on the long side. Null if it can't be read. Needs GD; without it, only a
+ * JPEG with no EXIF block (the site's own uploader sends that) is accepted as it is.
+ */
+function ppn_clean_jpeg(string $path): ?string {
+	$raw = (string) @file_get_contents($path);
+	if ($raw === '') {
+		return null;
+	}
+	if (!function_exists('imagecreatefromstring')) {
+		return (str_starts_with($raw, "\xFF\xD8") && !str_contains(substr($raw, 0, 65536), "Exif\x00")) ? $raw : null;
+	}
+	$img = @imagecreatefromstring($raw);
+	if (!$img) {
+		return null;
+	}
+	$w = imagesx($img);
+	$h = imagesy($img);
+	$scale = min(1, 1600 / max($w, $h));
+	if ($scale < 1) {
+		$img = imagescale($img, (int) round($w * $scale), (int) round($h * $scale)) ?: $img;
+	}
+	ob_start();
+	imagejpeg($img, null, 82);
+	return (string) ob_get_clean() ?: null;
+}
+
+/** Put a file in Supabase Storage with the service key. */
+function ppn_storage_put(string $bucket, string $path, string $bytes, string $type = 'image/jpeg'): bool {
+	$c = ppn_config();
+	if (empty($c['SUPABASE_URL']) || empty($c['SUPABASE_SERVICE_KEY'])) {
+		return false;
+	}
+	$ch = curl_init(rtrim($c['SUPABASE_URL'], '/') . '/storage/v1/object/' . $bucket . '/' . $path);
+	curl_setopt_array($ch, [
+		CURLOPT_POST           => true,
+		CURLOPT_POSTFIELDS     => $bytes,
+		CURLOPT_HTTPHEADER     => ['apikey: ' . $c['SUPABASE_SERVICE_KEY'], 'Authorization: Bearer ' . $c['SUPABASE_SERVICE_KEY'], 'Content-Type: ' . $type, 'x-upsert: false'],
+		CURLOPT_RETURNTRANSFER => true,
+		CURLOPT_CONNECTTIMEOUT => 3,
+		CURLOPT_TIMEOUT        => 20,
+	]);
+	curl_exec($ch);
+	$status = (int) curl_getinfo($ch, CURLINFO_RESPONSE_CODE);
+	curl_close($ch);
+	return $status >= 200 && $status < 300;
 }
 
 function ppn_json(array $body, int $status = 200): never {

@@ -85,7 +85,11 @@ function eventCard(e: Ev, tz: string, venue: V | null, manage = false) {
       await c.from('events').delete().eq('id', e.id);
       document.dispatchEvent(new Event('ppn:events'));
     });
-    actions.append(toggle, del);
+    const edit = document.createElement('button');
+    edit.type = 'button';
+    edit.textContent = 'Edit';
+    edit.addEventListener('click', () => document.dispatchEvent(new CustomEvent('ppn:edit-event', { detail: e })));
+    actions.append(edit, toggle, del);
   } else actions.remove();
   return li;
 }
@@ -183,17 +187,38 @@ if (evBox) {
       await load();
     }).catch(() => {});
   }
-  newBtn.addEventListener('click', () => {
-    form.hidden = !form.hidden;
-    if (!form.hidden) {
-      const today = new Intl.DateTimeFormat('en-CA', { timeZone: tz }).format(new Date());
-      const d = form.elements.namedItem('date') as HTMLInputElement;
-      if (!d.value) d.value = today;
-      d.min = today;
-      (form.elements.namedItem('title') as HTMLInputElement).focus();
+  const field = (n: string) => form.elements.namedItem(n) as HTMLInputElement;
+  const submit = form.querySelector<HTMLButtonElement>('button[type=submit]')!;
+  let editing: Ev | null = null;
+  // The date starts empty on purpose, so it's always picked, never left on today by accident.
+  const openForm = (ev: Ev | null) => {
+    editing = ev;
+    form.reset();
+    msg.textContent = '';
+    field('date').min = new Intl.DateTimeFormat('en-CA', { timeZone: tz }).format(new Date());
+    if (ev) {
+      const local = (iso: string) => ({
+        date: new Intl.DateTimeFormat('en-CA', { timeZone: tz }).format(new Date(iso)),
+        time: new Intl.DateTimeFormat('en-GB', { timeZone: tz, hour: '2-digit', minute: '2-digit', hourCycle: 'h23' }).format(new Date(iso)),
+      });
+      (form.elements.namedItem('kind') as HTMLSelectElement).value = ev.kind;
+      field('title').value = ev.title;
+      (form.elements.namedItem('body') as HTMLTextAreaElement).value = ev.body;
+      field('date').value = local(ev.starts_at).date;
+      field('start').value = local(ev.starts_at).time;
+      field('end').value = ev.ends_at ? local(ev.ends_at).time : '';
+      field('date').min = '';
+    } else {
+      field('start').value = '';
     }
-  });
-  form.querySelector('[data-event-cancel]')!.addEventListener('click', () => { form.hidden = true; });
+    submit.textContent = ev ? 'Save changes' : 'Post event';
+    form.hidden = false;
+    form.scrollIntoView({ block: 'nearest' });
+    field(ev ? 'title' : 'date').focus();
+  };
+  newBtn.addEventListener('click', () => (form.hidden || editing ? openForm(null) : (form.hidden = true)));
+  document.addEventListener('ppn:edit-event', (e) => openForm((e as CustomEvent).detail));
+  form.querySelector('[data-event-cancel]')!.addEventListener('click', () => { form.hidden = true; editing = null; });
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
     const fd = new FormData(form);
@@ -204,17 +229,18 @@ if (evBox) {
     msg.textContent = 'Posting…';
     try {
       const c = await sb();
-      const { error } = await c.from('events').insert({
-        venue_slug: slug, kind: fd.get('kind'), title: String(fd.get('title')).trim(), body: String(fd.get('body') || '').trim(),
-        starts_at: starts.toISOString(), ends_at: ends ? ends.toISOString() : null, created_by: me!.id,
-      });
+      const row = { kind: fd.get('kind'), title: String(fd.get('title')).trim(), body: String(fd.get('body') || '').trim(), starts_at: starts.toISOString(), ends_at: ends ? ends.toISOString() : null };
+      const { error } = editing
+        ? await c.from('events').update(row).eq('id', editing.id)
+        : await c.from('events').insert({ ...row, venue_slug: slug, created_by: me!.id });
       if (error) throw error;
+      editing = null;
       form.reset();
       form.hidden = true;
       msg.textContent = '';
       await load();
     } catch {
-      msg.textContent = 'Not posted. Check the details and try again.';
+      msg.textContent = 'Not saved. Check the details and try again.';
     }
   });
 }
@@ -243,6 +269,7 @@ if (page) {
     page.querySelector('[data-me-following]')!.textContent = String(slugs.length);
     page.querySelector('[data-me-reviews]')!.textContent = String(mine?.length || 0);
     page.querySelector('[data-me-stamps]')!.textContent = String(Object.keys(stamps()).length);
+    c.rpc('is_admin').then(({ data }: any) => { page.querySelector<HTMLElement>('[data-me-admin]')!.hidden = !data; });
 
     const ul = page.querySelector<HTMLUListElement>('[data-me-list]')!;
     ul.replaceChildren(...slugs.map((s) => {

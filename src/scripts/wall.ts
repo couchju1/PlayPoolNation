@@ -4,9 +4,23 @@
  * No accounts: the name is kept in this browser only.
  */
 
-export interface Post { id: number; venue_slug: string; city_key: string | null; kind: string; name: string; body: string; cheers: number; created_at: string }
+export interface Post { id: number; venue_slug: string; city_key: string | null; kind: string; name: string; body: string; cheers: number; created_at: string; photo?: string | null }
 
 import { stamp } from './passport.ts';
+import { SUPABASE_URL } from './sb.ts';
+
+export const photoUrl = (bucket: string, path: string) => `${SUPABASE_URL}/storage/v1/object/public/${bucket}/${path}`;
+
+/** A picked image, re-drawn as a JPEG at most 1600 px wide: smaller, and without the GPS and camera data phones add. */
+export async function shrink(file: File): Promise<Blob> {
+  const bmp = await createImageBitmap(file);
+  const scale = Math.min(1, 1600 / Math.max(bmp.width, bmp.height));
+  const c = document.createElement('canvas');
+  c.width = Math.round(bmp.width * scale);
+  c.height = Math.round(bmp.height * scale);
+  c.getContext('2d')!.drawImage(bmp, 0, 0, c.width, c.height);
+  return new Promise((ok, bad) => c.toBlob((b) => (b ? ok(b) : bad(new Error('image'))), 'image/jpeg', 0.85));
+}
 
 const KIND: Record<string, string> = { checkin: 'Checked in', tables_open: 'Tables open', wait: 'Waiting for a table', league: 'League night', tournament: 'Tournament', note: 'Note' };
 const store = {
@@ -68,6 +82,17 @@ export function card(p: Post, showVenue: { n: string; u: string; c: string } | n
   const body = li.querySelector('.post-body')!;
   body.textContent = p.body;
   if (!p.body) body.remove();
+  if (p.photo) {
+    const a = document.createElement('a');
+    a.className = 'post-photo';
+    a.href = photoUrl('wall-photos', p.photo);
+    a.target = '_blank';
+    a.rel = 'noopener';
+    a.innerHTML = '<img alt="" loading="lazy" decoding="async" />';
+    a.querySelector('img')!.src = a.href;
+    a.querySelector('img')!.alt = `Photo from ${p.name}`;
+    li.querySelector('.post-tag')!.after(a);
+  }
   const cheer = li.querySelector<HTMLButtonElement>('.post-cheer')!;
   let count = p.cheers;
   const draw = () => {
@@ -115,6 +140,26 @@ if (wall) {
   const opened = Date.now();
   let posts: Post[] = [];
 
+  const photoIn = form.querySelector<HTMLInputElement>('[data-wall-photo]')!;
+  const preview = form.querySelector<HTMLElement>('[data-wall-preview]')!;
+  let photo: Blob | null = null;
+  photoIn.addEventListener('change', async () => {
+    const f = photoIn.files?.[0];
+    if (!f) return;
+    try {
+      photo = await shrink(f);
+      const img = preview.querySelector('img')!;
+      if (img.src) URL.revokeObjectURL(img.src);
+      img.src = URL.createObjectURL(photo);
+      preview.hidden = false;
+    } catch {
+      photo = null;
+      msg.textContent = "That photo couldn't be opened. Try a JPEG or PNG.";
+    }
+    photoIn.value = '';
+  });
+  form.querySelector('[data-wall-photo-clear]')!.addEventListener('click', () => { photo = null; preview.hidden = true; });
+
   nameIn.value = store.get('ppn_name') || '';
   paintBall(ball, nameIn.value);
   nameIn.addEventListener('input', () => paintBall(ball, nameIn.value));
@@ -139,7 +184,16 @@ if (wall) {
     btn.disabled = true;
     msg.textContent = '';
     try {
-      const res = await send('/api/post', { v: venue, n: fd.get('n'), k: fd.get('k'), b: fd.get('b'), hp: fd.get('hp'), elapsed_ms: Date.now() - opened });
+      const fields = { v: venue, n: String(fd.get('n') || ''), k: String(fd.get('k') || ''), b: String(fd.get('b') || ''), hp: String(fd.get('hp') || ''), elapsed_ms: String(Date.now() - opened) };
+      let res: Response;
+      if (photo) {
+        const mp = new FormData();
+        Object.entries(fields).forEach(([k, v]) => mp.append(k, v));
+        mp.append('photo', photo, 'photo.jpg');
+        res = await fetch('/api/post', { method: 'POST', body: mp });
+      } else {
+        res = await send('/api/post', fields);
+      }
       const out = await res.json().catch(() => ({}));
       if (!res.ok) throw new Error(out.error || 'Not posted. Try again.');
       store.set('ppn_name', String(fd.get('n')));
@@ -149,7 +203,9 @@ if (wall) {
       bodyIn.value = '';
       left.textContent = '280';
       render();
-      msg.textContent = 'Posted.';
+      msg.textContent = out.post?.photo_pending ? 'Posted. Your photo will show once it’s approved.' : 'Posted.';
+      photo = null;
+      preview.hidden = true;
     } catch (err) {
       msg.textContent = (err as Error).message;
     } finally {

@@ -9,7 +9,7 @@
 declare(strict_types=1);
 require __DIR__ . '/lib.inc.php';
 
-$q = ['select=id,venue_slug,city_key,kind,name,body,cheers,created_at', 'status=eq.live', 'order=created_at.desc', 'limit=40',
+$q = ['select=id,venue_slug,city_key,kind,name,body,cheers,created_at,photo_path,photo_status', 'status=eq.live', 'order=created_at.desc', 'limit=40',
 	'created_at=gte.' . rawurlencode(gmdate('Y-m-d\TH:i:s\Z', time() - 30 * 86400))];
 $v = (string) ($_GET['v'] ?? '');
 $c = (string) ($_GET['c'] ?? '');
@@ -38,4 +38,10 @@ http_response_code(200);
 header('Content-Type: application/json');
 // Never cached: the CDN or a browser holding an old copy would hide new posts.
 header('Cache-Control: no-store');
+// A photo shows only once an admin has approved it.
+$rows = array_map(function ($r) {
+	$r['photo'] = ($r['photo_status'] ?? null) === 'approved' ? $r['photo_path'] : null;
+	unset($r['photo_path'], $r['photo_status']);
+	return $r;
+}, $rows);
 echo json_encode(['posts' => $rows], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
