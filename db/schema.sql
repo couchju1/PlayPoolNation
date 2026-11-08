@@ -154,3 +154,33 @@ drop policy if exists claims_own on claims;
 create policy claims_own on claims for select using (user_id = auth.uid());
 
 -- fact_queue and submissions: no policies, so only the service key reaches them.
+
+-- The Wall: check-ins and updates players post on venue pages. No accounts, no IPs:
+-- a display name, the post, and counts. Three reports hide a post; set status to
+-- 'hidden' by hand to take one down. Only the service key (the PHP endpoints) reaches it.
+create table if not exists posts (
+  id          bigint generated always as identity primary key,
+  venue_slug  text not null,
+  city_key    text,
+  kind        text not null check (kind in ('checkin', 'tables_open', 'wait', 'league', 'tournament', 'note')),
+  name        text not null check (char_length(name) between 1 and 30),
+  body        text not null default '' check (char_length(body) <= 280),
+  cheers      integer not null default 0,
+  reports     integer not null default 0,
+  status      text not null default 'live' check (status in ('live', 'hidden')),
+  created_at  timestamptz not null default now()
+);
+create index if not exists posts_venue on posts (venue_slug, created_at desc);
+create index if not exists posts_city on posts (city_key, created_at desc);
+create index if not exists posts_recent on posts (created_at desc);
+alter table posts enable row level security;
+
+-- Cheer or report a post in one statement (no read-then-write race).
+create or replace function post_react(p_id bigint, p_action text) returns void
+language sql as $$
+  update posts set
+    cheers  = cheers  + (case when p_action = 'cheer'  then 1 else 0 end),
+    reports = reports + (case when p_action = 'report' then 1 else 0 end),
+    status  = case when p_action = 'report' and reports + 1 >= 3 then 'hidden' else status end
+  where id = p_id and status = 'live';
+$$;

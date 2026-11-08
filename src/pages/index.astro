@@ -1,6 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
 import PosterCard from '../components/PosterCard.astro';
+import Feed from '../components/Feed.astro';
 import { cityPages, metroLink, metros, states, venues } from '../lib/data.ts';
 
 const all = venues();
@@ -68,6 +69,8 @@ const stateCount = states().length;
       </form>
     </div>
   </section>
+
+  <div class="section"><Feed title="Live from the halls" limit={6} more="/live/" /></div>
 
   <section class="section">
     <div class="split">

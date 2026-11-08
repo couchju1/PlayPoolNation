@@ -1,0 +1,12 @@
+---
+/** Everything players are posting on venue Walls, newest first. Noindex: it's a live feed, the city pages are what should rank. */
+import Base from '../../layouts/Base.astro';
+import Feed from '../../components/Feed.astro';
+import { BRAND } from '../../lib/data.ts';
+---
+<Base title={`Live: What's Happening at Pool Halls | ${BRAND}`} description="Check-ins and updates from players at pool halls and bars with pool tables: who's playing, which tables are open, league nights and tournaments." noindex crumbs={[['Home', '/'], ['Live', '']]} pageType="live">
+  <h1>Live from the halls</h1>
+  <p class="lede">Check-ins and updates from players at pool halls and bars across the country. Playing somewhere tonight? Open its page and post on the Wall.</p>
+  <Feed title="Latest posts" limit={40} empty />
+  <noscript><p>The live feed needs JavaScript. <a href="/places/">Browse every city</a> instead.</p></noscript>
+</Base>

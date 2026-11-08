@@ -9,6 +9,7 @@ import VenueBlock from './VenueBlock.astro';
 import Status from './Status.astro';
 import MapButton from './MapButton.astro';
 import Tonight from './Tonight.astro';
+import Feed from './Feed.astro';
 import { posterFor } from '../lib/posters.ts';
 import { textFacts, type City } from '../lib/data.ts';
 import { DAY_SHORT, brands, faq as faqFor, freePool, hasSize, intro, leagueDays, leagueNights, sizes, tables, typeLabel } from '../lib/text.ts';
@@ -39,6 +40,8 @@ const shown = chips.filter(([, , test]) => venues.some(test));
 const nights = leagueNights(tv);
 const questions = showFaq ? faqFor(name, tv) : [];
 const poster = posterFor(Astro.url.pathname);
+// One city: ask the feed for that city. A metro spans several, so filter to its venues.
+const cityKeys = [...new Set(venues.map((v) => v.cityKey))];
 ---
 <header class:list={['city-head', { 'city-head--poster': poster }]}>
   <div>
@@ -51,6 +54,8 @@ const poster = posterFor(Astro.url.pathname);
 </header>
 
 <Tonight name={name} venues={venues} />
+
+<Feed title={`Live from ${name}`} city={cityKeys.length === 1 ? cityKeys[0] : ''} slugs={cityKeys.length === 1 ? [] : venues.map((v) => v.slug)} limit={5} more="/live/" />
 
 <section class="section" aria-labelledby="find">
   <h2 id="find">Find a table</h2>

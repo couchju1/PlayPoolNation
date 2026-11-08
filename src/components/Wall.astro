@@ -1,0 +1,38 @@
+---
+/**
+ * The Wall on a venue page: players check in and post what's happening (tables open, a wait,
+ * league night), and cheer each other's posts. Posts are players' words, not checked facts.
+ * Filled in by src/scripts/wall.ts from /api/feed; hidden without JavaScript.
+ */
+import type { Venue } from '../lib/types.ts';
+const { v } = Astro.props as { v: Venue };
+const kinds: [string, string][] = [['checkin', 'Checked in'], ['tables_open', 'Tables open'], ['wait', 'Waiting for a table'], ['league', 'League night'], ['tournament', 'Tournament'], ['note', 'Just a note']];
+---
+<section class="wall panel section" aria-labelledby="wall-title" data-wall data-venue={v.slug} data-name={v.name} hidden>
+  <div class="wall-head">
+    <h2 id="wall-title">The Wall</h2>
+    <p class="muted">What's happening at {v.name}, from the players who are there.</p>
+  </div>
+  <form class="wall-compose" data-wall-form>
+    <div class="wall-me">
+      <span class="ball" data-ball aria-hidden="true"></span>
+      <label class="visually-hidden" for="wall-name">Your name</label>
+      <input id="wall-name" name="n" maxlength="30" autocomplete="nickname" placeholder="Your name or nickname" required />
+    </div>
+    <div class="wall-kinds" role="radiogroup" aria-label="What are you posting?">
+      {kinds.map(([k, label], i) => (
+        <label class="wall-kind"><input type="radio" name="k" value={k} checked={i === 0} /><span>{label}</span></label>
+      ))}
+    </div>
+    <label class="visually-hidden" for="wall-body">Say something</label>
+    <textarea id="wall-body" name="b" maxlength="280" rows="2" placeholder={`How's it looking at ${v.name}? Tables, wait, specials, who's running the table…`}></textarea>
+    <input class="hp" name="hp" tabindex="-1" autocomplete="off" aria-hidden="true" />
+    <div class="wall-send">
+      <span class="muted" data-wall-left>280</span>
+      <button class="btn" type="submit">Post</button>
+    </div>
+    <p class="wall-msg" role="status" data-wall-msg></p>
+  </form>
+  <ol class="feed" data-feed aria-live="polite"></ol>
+  <p class="wall-note">Posted by players and not checked by PlayPoolNation. No links. Don't post anything private. Three reports hide a post.</p>
+</section>

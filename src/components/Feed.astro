@@ -1,0 +1,14 @@
+---
+/**
+ * A read-only feed of Wall posts for a city, a set of venues (metro pages), or everywhere. Stays hidden until there's at
+ * least one post, so a quiet city doesn't show an empty box. Filled by src/scripts/wall.ts.
+ */
+const { title, city = '', slugs = [], limit = 6, more = '', empty = false } = Astro.props as { title: string; city?: string; slugs?: string[]; limit?: number; more?: string; empty?: boolean };
+---
+<section class="feed-box" aria-label={title} data-feedbox data-city={city} data-slugs={slugs.length ? slugs.join(' ') : undefined} data-limit={limit} data-empty={empty ? '' : undefined} hidden>
+  <div class="feed-head">
+    <h2><span class="live-dot" aria-hidden="true"></span>{title}</h2>
+    {more && <a href={more}>See everything</a>}
+  </div>
+  <ol class="feed" data-feed></ol>
+</section>

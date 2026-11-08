@@ -4,7 +4,7 @@
  *  - every URL the old WordPress site had goes to its closest page here with a
  *    301, so links and rankings carry over
  *  - http and www go to https://playpoolnation.com
- *  - /api/event and /api/submit run the PHP scripts in /api/
+ *  - /api/event, /api/submit and the Wall (/api/post, /api/feed, /api/react) run the PHP scripts in /api/
  *  - 404 page, security headers and caching
  * Run by `npm run build`. scripts/check-build.mjs reads the "#R" lines.
  */
@@ -119,7 +119,7 @@ RewriteCond %{HTTP_HOST} ^playpoolnation\\.com$ [NC]
 RewriteRule ^ https://playpoolnation.com%{REQUEST_URI} [R=301,L]
 
 # Click counts and forms (PHP, writes to Supabase).
-RewriteRule ^api/(event|submit)/?$ api/$1.php [L]
+RewriteRule ^api/(event|submit|post|feed|react)/?$ api/$1.php [L]
 
 # Old WordPress URLs.
 ${rules.map((r) => `#R ${r[0]} ${r[1]}\n${rewrite(r)}`).join('\n')}
