@@ -1,5 +1,6 @@
 ---
 import Base from '../layouts/Base.astro';
+import PosterCard from '../components/PosterCard.astro';
 import { cityPages, metroLink, metros, states, venues } from '../lib/data.ts';
 
 const all = venues();
@@ -92,8 +93,8 @@ const stateCount = states().length;
     <div class="wrap">
       <h2 id="pick-city">Pick a city</h2>
       <p>Each guide lists every place we know, with tables, league nights and who's open now.</p>
-      <ul class="chips">
-        {metroList.map((m) => <li><a class="chip" href={metroLink(m)}>{m.label} <span class="n">{m.venues.length}</span></a></li>)}
+      <ul class="poster-rail">
+        {metroList.map((m) => <li><PosterCard url={metroLink(m)} name={m.label} count={m.venues.length} /></li>)}
       </ul>
     </div>
   </section>
