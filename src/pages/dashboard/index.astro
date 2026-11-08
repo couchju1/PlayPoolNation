@@ -1,0 +1,75 @@
+---
+/**
+ * The bar dashboard: what PlayPoolNation sends a venue (page views, calls, directions, website
+ * taps), its followers, rating, email leads, Wall activity and events. For the venue's approved
+ * owner and for admins; the database decides who may read what. Noindex. Run by src/scripts/dashboard.ts.
+ */
+import Base from '../../layouts/Base.astro';
+import { BRAND } from '../../lib/data.ts';
+---
+<Base title={`Bar Dashboard | ${BRAND}`} description="Leads, followers and reviews for your venue on PlayPoolNation." noindex crumbs={[['Home', '/'], ['Bar dashboard', '']]} pageType="dashboard">
+  <div class="dash" data-dash hidden>
+    <div class="dash-head">
+      <div>
+        <p class="eyebrow">Bar dashboard</p>
+        <h1 data-dash-name>Your venue</h1>
+        <p class="muted" data-dash-where></p>
+      </div>
+      <div class="dash-pick">
+        <label for="dash-venue">Venue</label>
+        <input id="dash-venue" list="dash-venues" placeholder="Search venues" autocomplete="off" />
+        <datalist id="dash-venues" data-dash-list></datalist>
+      </div>
+    </div>
+    <p class="dash-range">Last 30 days. ▲▼ show the change from the 30 days before.</p>
+
+    <ul class="tiles" data-tiles>
+      <li class="tile tile--hero"><span class="tile-label">Leads</span><b data-k="leads">0</b><span class="tile-delta" data-d="leads"></span><span class="tile-note">Calls, directions and website taps</span></li>
+      <li class="tile"><span class="tile-label">Page views</span><b data-k="view">0</b><span class="tile-delta" data-d="view"></span></li>
+      <li class="tile"><span class="tile-label">Calls</span><b data-k="call">0</b><span class="tile-delta" data-d="call"></span></li>
+      <li class="tile"><span class="tile-label">Directions</span><b data-k="directions">0</b><span class="tile-delta" data-d="directions"></span></li>
+      <li class="tile"><span class="tile-label">Website taps</span><b data-k="website">0</b><span class="tile-delta" data-d="website"></span></li>
+      <li class="tile"><span class="tile-label">Followers</span><b data-k="followers">0</b><span class="tile-note">See your events in their feed</span></li>
+      <li class="tile"><span class="tile-label">Rating</span><b data-k="rating">–</b><span class="tile-note" data-k="reviews">No reviews yet</span></li>
+      <li class="tile"><span class="tile-label">Email leads</span><b data-k="emails">0</b><span class="tile-note"><button type="button" class="linkish" data-csv hidden>Download CSV</button><span data-csv-none>Reviewers who chose to share their email</span></span></li>
+    </ul>
+
+    <section class="dash-card" aria-labelledby="chart-title">
+      <div class="dash-card-head">
+        <h2 id="chart-title">Leads per day</h2>
+        <ul class="legend" aria-label="Legend">
+          <li><i style="--c:#2a78d6"></i>Calls</li>
+          <li><i style="--c:#eb6834"></i>Directions</li>
+          <li><i style="--c:#1baf7a"></i>Website taps</li>
+        </ul>
+        <button type="button" class="linkish" data-chart-toggle aria-pressed="false">Show as table</button>
+      </div>
+      <div class="chart" data-chart role="img" aria-label="Leads per day for the last 30 days"></div>
+      <div class="chart-tip" data-chart-tip hidden></div>
+      <table class="summary chart-table" data-chart-table hidden><thead><tr><th scope="col">Day</th><th scope="col">Calls</th><th scope="col">Directions</th><th scope="col">Website taps</th><th scope="col">Page views</th></tr></thead><tbody></tbody></table>
+      <p class="muted chart-empty" data-chart-empty hidden>No calls, directions or website taps yet. They show up here as players tap them on your page.</p>
+    </section>
+
+    <div class="dash-cols">
+      <section class="dash-card" aria-labelledby="src-title">
+        <h2 id="src-title">Where visitors come from</h2>
+        <ol class="src-bars" data-sources></ol>
+        <p class="muted dash-small" data-devices></p>
+      </section>
+      <section class="dash-card" aria-labelledby="act-title">
+        <h2 id="act-title">Activity</h2>
+        <dl class="act">
+          <div><dt>Wall posts (30 days)</dt><dd data-k="wall">0</dd></div>
+          <div><dt>Upcoming events</dt><dd data-k="events">0</dd></div>
+          <div><dt>Photos</dt><dd data-k="photos">0</dd></div>
+        </dl>
+        <p class="actions"><a class="btn" data-go="events">Post an event</a><a class="btn btn--ghost" data-go="photos">Add photos</a><a class="btn btn--ghost" data-go="page">View your page</a></p>
+      </section>
+    </div>
+    <p class="muted dash-small">Counts come from taps on PlayPoolNation. We don't store visitors' IP addresses, cookies or identities with them.</p>
+  </div>
+  <p data-dash-msg>Loading…</p>
+</Base>
+<script>
+  import '../../scripts/dashboard.ts';
+</script>

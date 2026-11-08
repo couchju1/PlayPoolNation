@@ -143,3 +143,18 @@ Times are entered in the venue's own time zone. Owners and admins can mark an ev
 - **Limits:** 6 MB per file, JPEG, PNG or WebP, and 5 Wall photos per visitor per day. The browser shrinks photos before uploading.
 
 Buckets, policies, `venue_photos`, `is_admin()` and the posts photo columns are in `db/schema.sql`.
+
+## Bar dashboard
+
+`/dashboard/` shows a venue's last 30 days on PlayPoolNation, compared with the 30 before:
+- leads (calls, directions, website taps) and page views;
+- a leads-per-day chart, with a legend, hover and a table view;
+- where visitors came from, and the phone vs. computer split;
+- followers, rating, Wall posts, upcoming events and photos;
+- **email leads**, with a CSV download of reviewers who chose to share their email.
+
+A venue's approved owner sees their own venues; admins can pick any venue. It's linked from `/me/` and from the venue page (next to "Post an event") for the people who manage it.
+
+**Making owners:** on `/admin/` under Bar owners, claim requests from the "Own a venue? Claim it" form are listed. "Fill in form" copies the request into **Make owner**, which takes the email the owner signed up with. They need an account first. Remove an owner from the same list.
+
+Database: `my_venues()`, `venue_review_leads()` (owner or admin), `admin_set_owner()`, `admin_remove_owner()`, `admin_owners()`, and admin read policies on `click_events` and `submissions`, in `db/schema.sql`. The chart colors were checked with the dataviz palette validator (color-blind safe; the lightest series has a table view and legend).
