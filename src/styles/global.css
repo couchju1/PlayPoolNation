@@ -239,10 +239,39 @@ details > summary { cursor: pointer; font-weight: 700; color: var(--accent); min
 .results li { background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius); padding: 16px; }
 .results a.name { font: 800 18px/1.2 var(--head); color: var(--ink); text-decoration: none; }
 
-/* Practice */
-.game-frame { position: relative; aspect-ratio: 16 / 10; background: var(--felt-deep); border-radius: var(--radius); overflow: hidden; }
-.game-frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+/* Practice: one dark felt page, settings in a row, the table under them */
+.practice { --gold: #e2b65a; --cream: #f2ebdd; --cream-muted: #b9c6bf; --rule: rgba(242, 235, 221, .14); background: var(--felt-deep); color: var(--cream); }
+.practice a { color: var(--gold); text-decoration-color: rgba(226, 182, 90, .5); text-underline-offset: 3px; }
+.practice a:hover { color: #f0cd7f; }
+.practice :focus-visible { outline-color: var(--gold); }
+.practice-head { padding-bottom: 48px; }
+@media (min-width: 720px) { .practice-head { padding-bottom: 72px; } }
+.practice .crumbs ol { margin: 0 0 48px; padding-top: 20px; color: var(--cream-muted); }
+.practice .crumbs a { color: var(--cream-muted); }
+.practice h1 { color: var(--cream); font-size: clamp(40px, 6vw, 64px); letter-spacing: -0.03em; margin-bottom: 18px; }
+.practice .lede { color: var(--cream-muted); font-size: clamp(17px, 1.6vw, 20px); max-width: 52ch; margin: 0; }
+.practice-body { border-top: 1px solid var(--rule); padding: 40px 0 72px; }
+.practice-controls { display: grid; gap: 18px 16px; grid-template-columns: repeat(2, minmax(0, 1fr)); margin-bottom: 24px; }
+@media (min-width: 900px) { .practice-controls { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+.practice-controls .field { display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+.practice-controls label { font: 700 14px/1.3 var(--body); color: var(--cream-muted); }
+.practice-controls label b { color: var(--cream); }
+.practice-controls select { min-height: 44px; width: 100%; padding: 0 36px 0 14px; border: 1px solid rgba(242, 235, 221, .28); border-radius: 4px; color: var(--cream); font: 500 16px var(--body);
+  appearance: none; -webkit-appearance: none; cursor: pointer;
+  background: rgba(0, 0, 0, .18) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23f2ebdd' stroke-width='2' fill='none' stroke-linecap='round'/%3E%3C/svg%3E") no-repeat right 14px center / 12px 8px; }
+.practice-controls select:hover { border-color: rgba(242, 235, 221, .5); }
+.practice-controls select:focus { border-color: var(--gold); }
+.practice-controls select option { color: var(--ink); background: #fff; }
+.practice-controls input[type=range] { width: 100%; min-height: 44px; margin: 0; accent-color: var(--gold); cursor: pointer; }
+.practice-controls .hint { margin: 0; font-size: 14px; color: var(--cream-muted); }
+.game-frame { position: relative; aspect-ratio: 4 / 3; max-height: 80svh; width: 100%; background: #07201a; border: 1px solid var(--rule, var(--line)); border-radius: 4px; overflow: hidden; }
+@media (min-width: 720px) { .game-frame { aspect-ratio: 16 / 9; } }
+.game-frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; display: block; }
 .game-frame .btn { position: absolute; inset: 0; margin: auto; width: max-content; }
+.practice .game-frame .btn { background: var(--gold); border-color: var(--gold); color: var(--felt-deep); }
+.practice-credit { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 6px 24px; margin-top: 16px; font-size: 14px; color: var(--cream-muted); }
+.practice-credit p { margin: 0; }
+body[data-page-type='practice'] .site-foot { margin-top: 0; border-top: 1px solid rgba(242, 235, 221, .14); }
 .prose { max-width: 72ch; }
 .prose h2 { margin-top: 1.5em; }
 
