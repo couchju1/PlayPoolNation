@@ -1,0 +1,22 @@
+---
+/**
+ * Photos on a venue page: the bar's own (added by its approved owner or an admin, shown at once)
+ * and players' photos from the Wall once an admin has approved them. Hidden until there's a
+ * photo, or for the people who can add one. Filled in by src/scripts/photos.ts.
+ */
+import type { Venue } from '../lib/types.ts';
+const { v } = Astro.props as { v: Venue };
+---
+<section class="photos panel section" id="photos" aria-labelledby="photos-title" data-photos data-venue={v.slug} data-name={v.name} hidden>
+  <div class="events-head">
+    <h2 id="photos-title">Photos</h2>
+    <label class="btn btn--ghost" data-photo-add hidden><input type="file" accept="image/*" multiple hidden data-photo-input />Add photos</label>
+  </div>
+  <p class="review-msg" role="status" data-photo-msg></p>
+  <h3 class="photos-sub" data-photos-bar-title hidden>From {v.name}</h3>
+  <ul class="photo-grid" data-photos-bar></ul>
+  <h3 class="photos-sub" data-photos-players-title hidden>From players</h3>
+  <ul class="photo-grid" data-photos-players></ul>
+  <p class="muted photos-empty" data-photos-empty hidden>No photos yet. Add the room, the tables, the bar: players love to see where they're headed.</p>
+</section>
+<dialog class="lightbox" data-lightbox><button type="button" class="lightbox-close" aria-label="Close" data-lightbox-close>×</button><img alt="" /><p></p></dialog>

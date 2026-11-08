@@ -26,6 +26,11 @@ const kinds: [string, string][] = [['checkin', 'Checked in'], ['tables_open', 'T
     </div>
     <label class="visually-hidden" for="wall-body">Say something</label>
     <textarea id="wall-body" name="b" maxlength="280" rows="2" placeholder={`How's it looking at ${v.name}? Tables, wait, specials, who's running the table…`}></textarea>
+    <div class="wall-photo">
+      <label class="wall-photo-btn"><input type="file" accept="image/*" data-wall-photo hidden /><span>Add a photo</span></label>
+      <span class="wall-photo-preview" data-wall-preview hidden><img alt="" /><button type="button" data-wall-photo-clear aria-label="Remove photo">×</button></span>
+      <span class="muted wall-photo-note">Photos appear after a quick review.</span>
+    </div>
     <input class="hp" name="hp" tabindex="-1" autocomplete="off" aria-hidden="true" />
     <div class="wall-send">
       <span class="muted" data-wall-left>280</span>
@@ -34,5 +39,5 @@ const kinds: [string, string][] = [['checkin', 'Checked in'], ['tables_open', 'T
     <p class="wall-msg" role="status" data-wall-msg></p>
   </form>
   <ol class="feed" data-feed aria-live="polite"></ol>
-  <p class="wall-note">Posted by players and not checked by PlayPoolNation. No links. Don't post anything private. Three reports hide a post.</p>
+  <p class="wall-note">Posted by players and not checked by PlayPoolNation. No links. Don't post anything private. Photos show after we approve them. Three reports hide a post.</p>
 </section>

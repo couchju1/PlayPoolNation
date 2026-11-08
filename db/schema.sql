@@ -374,3 +374,68 @@ language sql stable security definer set search_path = public as $$
 $$;
 revoke all on function public.follower_count(text) from public;
 grant execute on function public.follower_count(text) to anon, authenticated;
+
+-- Photos. Bars (an admin, or the owner with an approved claim) add photos to their venue
+-- page in the public bucket venue-photos. Players can attach a photo to a Wall post: it's
+-- uploaded by /api/post into the private bucket wall-pending and stays hidden until an
+-- admin approves it on /admin/, which moves it to the public bucket wall-photos.
+create or replace function public.is_admin() returns boolean
+language sql stable security definer set search_path = public as $$
+  select exists (select 1 from admins where user_id = auth.uid());
+$$;
+revoke all on function public.is_admin() from public;
+grant execute on function public.is_admin() to anon, authenticated;
+
+create table if not exists venue_photos (
+  id          bigint generated always as identity primary key,
+  venue_slug  text not null references venues (slug) on update cascade on delete cascade,
+  path        text not null unique,
+  caption     text not null default '' check (char_length(caption) <= 140),
+  created_by  uuid references auth.users (id) on delete set null,
+  created_at  timestamptz not null default now()
+);
+create index if not exists venue_photos_venue on venue_photos (venue_slug, created_at desc);
+alter table venue_photos enable row level security;
+drop policy if exists venue_photos_read on venue_photos;
+create policy venue_photos_read on venue_photos for select using (true);
+drop policy if exists venue_photos_insert on venue_photos;
+create policy venue_photos_insert on venue_photos for insert with check (can_manage_venue(venue_slug) and created_by = auth.uid());
+drop policy if exists venue_photos_delete on venue_photos;
+create policy venue_photos_delete on venue_photos for delete using (can_manage_venue(venue_slug));
+revoke all on venue_photos from anon, authenticated;
+grant select on venue_photos to anon, authenticated;
+grant insert (venue_slug, path, caption, created_by) on venue_photos to authenticated;
+grant delete on venue_photos to authenticated;
+
+-- A Wall post can carry one photo, hidden until approved.
+alter table posts add column if not exists photo_path text;
+alter table posts add column if not exists photo_status text check (photo_status in ('pending', 'approved', 'rejected'));
+create index if not exists posts_photo_pending on posts (created_at) where photo_status = 'pending';
+-- Admins review photos from the browser; everyone else still reaches posts only through PHP.
+drop policy if exists posts_admin_read on posts;
+create policy posts_admin_read on posts for select using (is_admin());
+drop policy if exists posts_admin_update on posts;
+create policy posts_admin_update on posts for update using (is_admin()) with check (is_admin());
+grant select on posts to authenticated;
+grant update (photo_status, photo_path) on posts to authenticated;
+
+insert into storage.buckets (id, name, public, file_size_limit, allowed_mime_types) values
+  ('venue-photos', 'venue-photos', true, 6291456, array['image/jpeg', 'image/png', 'image/webp']),
+  ('wall-photos', 'wall-photos', true, 6291456, array['image/jpeg']),
+  ('wall-pending', 'wall-pending', false, 6291456, array['image/jpeg'])
+on conflict (id) do nothing;
+
+-- venue-photos/<venue slug>/<file>: the venue's managers add and remove their own.
+drop policy if exists venue_photos_upload on storage.objects;
+create policy venue_photos_upload on storage.objects for insert to authenticated
+  with check (bucket_id = 'venue-photos' and public.can_manage_venue((storage.foldername(name))[1]));
+drop policy if exists venue_photos_remove on storage.objects;
+create policy venue_photos_remove on storage.objects for delete to authenticated
+  using (bucket_id = 'venue-photos' and public.can_manage_venue((storage.foldername(name))[1]));
+-- wall-pending (private) and wall-photos (public): only admins move and remove files.
+drop policy if exists wall_pending_admin on storage.objects;
+create policy wall_pending_admin on storage.objects for all to authenticated
+  using (bucket_id = 'wall-pending' and public.is_admin()) with check (bucket_id = 'wall-pending' and public.is_admin());
+drop policy if exists wall_photos_admin on storage.objects;
+create policy wall_photos_admin on storage.objects for all to authenticated
+  using (bucket_id = 'wall-photos' and public.is_admin()) with check (bucket_id = 'wall-photos' and public.is_admin());

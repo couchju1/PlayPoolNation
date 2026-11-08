@@ -1,0 +1,14 @@
+---
+/** Admin: approve or reject photos players attached to Wall posts. Admins only (checked by the database). Noindex. */
+import Base from '../../layouts/Base.astro';
+import { BRAND } from '../../lib/data.ts';
+---
+<Base title={`Admin | ${BRAND}`} description="Review photos waiting for approval." noindex crumbs={[['Home', '/'], ['Admin', '']]} pageType="admin">
+  <h1>Photos waiting for approval</h1>
+  <p class="lede">Players' Wall photos stay hidden until you approve them. Approved photos show on the post and in the venue's Photos.</p>
+  <p class="acct-msg" role="status" data-admin-msg>Loading…</p>
+  <ol class="queue" data-queue></ol>
+</Base>
+<script>
+  import '../../scripts/admin.ts';
+</script>
