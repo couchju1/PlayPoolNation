@@ -505,3 +505,20 @@ end;
 $$;
 revoke all on function public.admin_set_owner(text, text), public.admin_remove_owner(text, text), public.admin_owners() from public, anon;
 grant execute on function public.admin_set_owner(text, text), public.admin_remove_owner(text, text), public.admin_owners() to authenticated;
+
+-- Google sign-in: name new profiles from the Google account (full_name or name) when there's
+-- no display name from our own sign-up form. Replaces the earlier handle_new_user.
+create or replace function public.handle_new_user() returns trigger
+language plpgsql security definer set search_path = public as $$
+begin
+  insert into public.profiles (id, display_name)
+  values (new.id, left(coalesce(
+    nullif(trim(new.raw_user_meta_data->>'display_name'), ''),
+    nullif(trim(new.raw_user_meta_data->>'full_name'), ''),
+    nullif(trim(new.raw_user_meta_data->>'name'), ''),
+    split_part(new.email, '@', 1)
+  ), 40))
+  on conflict (id) do nothing;
+  return new;
+end;
+$$;

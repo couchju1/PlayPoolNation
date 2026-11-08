@@ -119,6 +119,10 @@ Run that in the Supabase SQL editor and use "Export to CSV" to send a venue its 
 
 **Sign-up emails to the owner.** When someone confirms a new account, a database trigger (`notify_signup` in `db/schema.sql`, using `pg_net`) posts the user's id to `/api/notify-signup`. That script checks the id with Supabase (service key), so it can't be used to send fake emails, and mails one notice per new account to `info@playpoolnation.com` (set `NOTIFY_TO` in `ppn-secrets.php` to change it) with the player's name, email and the running total, Reply-To the player.
 
+**Signing in with Google.** `/account/` shows "Continue with Google" / "Sign up with Google" once Google is switched on in Supabase (Authentication → Sign In / Providers → Google, with a Google Cloud OAuth client). The button stays hidden until then. New Google accounts get their profile name from Google (`handle_new_user` in `db/schema.sql`), and the sign-up email says "signed up with Google".
+
+**Signing out:** the signed-in name in the header opens a menu (Your feed, Account settings, Pool Passport, Bar dashboard and Admin for those who have them, Sign out).
+
 **Supabase settings this needs** (Authentication in the dashboard):
 - URL Configuration: Site URL `https://playpoolnation.com`, redirect URL `https://playpoolnation.com/account/**`.
 - SMTP: a real mailbox (for example `noreply@playpoolnation.com` on Hostinger: `smtp.hostinger.com`, port 465). Without it Supabase sends at most 2 emails an hour, which blocks sign-ups.

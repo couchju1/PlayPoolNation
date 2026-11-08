@@ -1,5 +1,5 @@
 /** /account/: sign in, create an account, reset a password, and manage your reviews. */
-import { sb } from './sb.ts';
+import { SUPABASE_KEY, SUPABASE_URL, sb } from './sb.ts';
 import { starsText } from './reviews.ts';
 
 const root = document.querySelector<HTMLElement>('[data-account]')!;
@@ -59,7 +59,21 @@ async function showMe(c: any, user: any) {
   if (!reviews?.length) ol.innerHTML = '<li class="muted">No reviews yet. Open any venue page and rate it.</li>';
 }
 
+// "Continue with Google" shows only once Google is switched on in Supabase (Auth → Providers).
+fetch(`${SUPABASE_URL}/auth/v1/settings`, { headers: { apikey: SUPABASE_KEY } })
+  .then((r) => r.json())
+  .then((st) => { if (st?.external?.google) root.querySelectorAll<HTMLElement>('[data-oauth]').forEach((el) => (el.hidden = false)); })
+  .catch(() => {});
+// Coming back from Google with an error (cancelled, or the provider is off).
+if (q.get('error_description')) msg.textContent = /cancel|denied/i.test(q.get('error_description')!) ? 'Google sign-in was cancelled.' : 'Google sign-in didn\'t work. Try again, or use your email.';
+
 sb().then(async (c) => {
+  root.querySelectorAll<HTMLButtonElement>('[data-google]').forEach((b) => b.addEventListener('click', async () => {
+    b.disabled = true;
+    const redirectTo = `${location.origin}/account/${next ? `?next=${encodeURIComponent(next)}` : ''}`;
+    const { error } = await c.auth.signInWithOAuth({ provider: 'google', options: { redirectTo } });
+    if (error) { b.disabled = false; msg.textContent = 'Google sign-in isn\'t available right now. Use your email instead.'; }
+  }));
   // A password-reset link lands here signed in for recovery.
   c.auth.onAuthStateChange((event: string) => { if (event === 'PASSWORD_RECOVERY') show('reset'); });
   const { data: { session } } = await c.auth.getSession();

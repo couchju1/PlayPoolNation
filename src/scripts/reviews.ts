@@ -20,10 +20,39 @@ function paintStars(el: HTMLElement, r: number) {
 }
 const date = (iso: string) => new Date(iso).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
 
-/* Header: "Sign in" or the signed-in name */
-const link = document.querySelector<HTMLAnchorElement>('[data-account-link]');
+/* Header: "Sign in", or the signed-in name opening a menu with Sign out */
 const me = savedUser();
-if (link && me) { link.textContent = me.name; link.href = '/me/'; link.classList.add('is-in'); }
+const menu = document.querySelector<HTMLElement>('[data-account-menu]');
+if (menu && me) {
+  const btn = menu.querySelector<HTMLButtonElement>('[data-account-btn]')!;
+  const pop = menu.querySelector<HTMLElement>('[data-account-pop]')!;
+  menu.querySelector<HTMLElement>('[data-account-link]')!.hidden = true;
+  menu.querySelector('[data-account-name]')!.textContent = me.name;
+  btn.hidden = false;
+  const setOpen = (open: boolean) => { pop.hidden = !open; btn.setAttribute('aria-expanded', String(open)); };
+  let checked = false;
+  btn.addEventListener('click', () => {
+    setOpen(pop.hidden);
+    if (!pop.hidden) {
+      pop.querySelector<HTMLElement>('a, button')?.focus();
+      // Show Bar dashboard and Admin only to the people who have them (asked once).
+      if (!checked) {
+        checked = true;
+        sb().then((c) => Promise.all([c.rpc('is_admin'), c.rpc('my_venues')])).then(([a, o]: any[]) => {
+          pop.querySelector<HTMLElement>('[data-account-admin]')!.hidden = !a.data;
+          pop.querySelector<HTMLElement>('[data-account-dash]')!.hidden = !(a.data || o.data?.length);
+        }).catch(() => {});
+      }
+    }
+  });
+  document.addEventListener('click', (e) => { if (!menu.contains(e.target as Node)) setOpen(false); });
+  menu.addEventListener('keydown', (e) => { if (e.key === 'Escape') { setOpen(false); btn.focus(); } });
+  pop.querySelector('[data-account-signout]')!.addEventListener('click', async () => {
+    try { await (await sb()).auth.signOut(); } catch { /* signed out locally below either way */ }
+    try { Object.keys(localStorage).filter((k) => /^sb-.*-auth-token/.test(k)).forEach((k) => localStorage.removeItem(k)); } catch { /* private mode */ }
+    location.assign('/');
+  });
+}
 
 /* Venue page */
 const box = document.querySelector<HTMLElement>('[data-reviews]');
