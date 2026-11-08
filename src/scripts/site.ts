@@ -6,7 +6,7 @@
  *  - the map, loaded only when "Show map" is pressed
  *  - the homepage "Play tonight" panel
  */
-import { miles, openStatus, venueWeekday } from '../lib/open-status.js';
+import { WEEK, miles, openStatus, venueWeekday, weekMinute } from '../lib/open-status.js';
 
 const now = new Date();
 
@@ -199,64 +199,122 @@ export function rank(list: ClientVenue[], opts: { lat?: number; lng?: number; ci
       dist: opts.lat !== undefined && v.a !== null ? miles(opts.lat, opts.lng!, v.a, v.o!) : null,
       leagueToday: v.l.includes(venueWeekday(v.h.tz, now)),
     }))
-    .filter((x) => (opts.city ? x.v.k === opts.city : x.dist !== null && x.dist <= (opts.radius ?? 30)))
+    .filter((x) => (opts.city ? x.v.k === opts.city : opts.lat === undefined || (x.dist !== null && x.dist <= (opts.radius ?? 30))))
     .sort((a, b) => order[a.st.state] - order[b.st.state] || (a.dist !== null && b.dist !== null ? a.dist - b.dist : (b.v.t ?? -1) - (a.v.t ?? -1)));
 }
 
-const tonight = document.querySelector<HTMLElement>('[data-tonight]');
-if (tonight) {
-  const near = tonight.querySelector<HTMLButtonElement>('[data-tonight-near]')!;
-  const city = tonight.querySelector<HTMLSelectElement>('[data-tonight-city]')!;
-  const picks = tonight.querySelector<HTMLOListElement>('[data-tonight-picks]')!;
-  const count = tonight.querySelector<HTMLElement>('[data-tonight-count]')!;
-  const fallback = tonight.querySelector<HTMLElement>('[data-tonight-fallback]')!;
+/** Open at some point past midnight tonight, in the venue's own time zone. */
+export function lateTonight(v: ClientVenue, at: Date = now) {
+  if (v.h.s === 'temporarily-closed' || v.h.s === 'permanently-closed' || !v.h.r.length) return false;
+  const minute = weekMinute(v.h.tz, at);
+  const day = Math.floor(minute / 1440);
+  // "Tonight" before 5 AM still means the night that started yesterday.
+  const night = minute % 1440 < 300 ? (day + 6) % 7 : day;
+  const midnight = ((night + 1) % 7) * 1440;
+  return v.h.r.some(([s, e]) => {
+    if (e - s >= WEEK) return true;
+    for (const shift of [0, WEEK, -WEEK]) if (s + shift < midnight + 30 && e + shift > midnight + 30) return true;
+    return false;
+  });
+}
+
+/* ------------------------------------------------- Ask it (homepage hero) */
+const ask = document.querySelector<HTMLFormElement>('[data-ask]');
+if (ask) {
+  const slots = [...ask.querySelectorAll<HTMLSelectElement>('[data-slot]')];
+  const [table, kind, where, when] = slots;
+  const nearOpt = where.querySelector<HTMLOptionElement>('[data-near]')!;
+  const count = ask.querySelector<HTMLElement>('[data-ask-count]')!;
+  const picks = ask.querySelector<HTMLOListElement>('[data-ask-picks]')!;
+  const more = ask.querySelector<HTMLButtonElement>('[data-ask-more]')!;
+  const fallback = ask.querySelector<HTMLAnchorElement>('[data-ask-fallback]')!;
+  let here: { lat: number; lng: number } | null = null;
+  let shown = 3;
+
+  // Selects sized to their chosen words, so the sentence reads like a sentence.
+  const ruler = document.createElement('span');
+  ruler.className = 'ask-ruler';
+  ruler.setAttribute('aria-hidden', 'true');
+  ask.querySelector('.ask-line')!.append(ruler);
+  const fit = () => slots.forEach((s) => {
+    ruler.textContent = s.selectedOptions[0]?.textContent || '';
+    s.style.width = `${Math.ceil(ruler.getBoundingClientRect().width) + 40}px`;
+  });
+  fit();
+  document.fonts?.ready.then(fit);
+  addEventListener('resize', fit);
+
+  if ('geolocation' in navigator) nearOpt.hidden = false;
+
   loadVenues().then((list) => {
-    const open = list.filter((v) => openStatus(v.h, now).state === 'open').length;
-    count.textContent = `${open} of ${list.length} places are open right now.`;
-    near.hidden = !('geolocation' in navigator);
-    city.hidden = false;
-    fallback.hidden = true;
-    const show = (ranked: ReturnType<typeof rank>, empty: string) => {
-      picks.replaceChildren();
-      if (!ranked.length) {
-        picks.innerHTML = `<li>${empty} <a href="/places/">Browse every city</a>.</li>`;
+    const card = ({ v, st, dist, leagueToday }: ReturnType<typeof rank>[number]) => {
+      const li = document.createElement('li');
+      li.innerHTML = `<a class="name"></a><span class="status"></span><p class="meta"></p><p class="actions"></p>`;
+      const name = li.querySelector('a')!;
+      name.href = v.u;
+      name.textContent = v.n;
+      const chip = li.querySelector<HTMLElement>('.status')!;
+      chip.textContent = st.label;
+      if (st.state !== 'unknown') chip.classList.add(`status--${st.state}`);
+      li.querySelector('.meta')!.textContent = [v.c, dist !== null ? `${dist.toFixed(1)} mi` : '', v.t ? `${v.t} tables` : '', v.z.includes('9ft') ? '9-foot' : '', leagueToday ? 'League tonight' : ''].filter(Boolean).join(' · ');
+      const actions = li.querySelector('.actions')!;
+      const tel = v.p.replace(/\D/g, '');
+      if (tel.length >= 10) actions.insertAdjacentHTML('beforeend', `<a class="btn" href="tel:+1${tel.slice(-10)}" data-ppn-event="call" data-venue="${v.i}" data-where="home_ask">Call</a>`);
+      if (v.d) actions.insertAdjacentHTML('beforeend', `<a class="btn btn--ghost" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(v.d)}" data-ppn-event="directions" data-venue="${v.i}" data-where="home_ask">Directions</a>`);
+      return li;
+    };
+
+    const answer = () => {
+      const w = where.value;
+      let rows = w === 'near' && here
+        ? rank(list, { lat: here.lat, lng: here.lng, radius: 30 })
+        : w && w !== 'near'
+          ? rank(list, { city: w })
+          : rank(list, {});
+      rows = rows.filter(({ v, st, leagueToday }) => {
+        if (table.value === 'nine' && !v.z.includes('9ft')) return false;
+        if (table.value === 'many' && (v.t ?? 0) < 6) return false;
+        if (kind.value === 'hall' && v.y !== 'pool-halls') return false;
+        if (kind.value === 'bar' && v.y === 'pool-halls') return false;
+        if (when.value === 'open' && st.state !== 'open') return false;
+        if (when.value === 'late' && !lateTonight(v)) return false;
+        if (when.value === 'league' && !leagueToday) return false;
+        if ((when.value === 'free' || when.value === 'food') && !v.f.includes(when.value)) return false;
+        return true;
+      });
+
+      const area = w === 'near' ? 'within 30 miles of you' : w ? where.selectedOptions[0].textContent!.trim() : 'across the country';
+      if (!rows.length) {
+        count.innerHTML = `<b>No match</b> ${area} yet. Loosen one of the blanks above, or <a href="/places/">browse every city</a>.`;
+        picks.replaceChildren();
+        more.hidden = true;
         return;
       }
-      for (const { v, st, dist, leagueToday } of ranked.slice(0, 3)) {
-        const li = document.createElement('li');
-        const meta = [v.c, dist !== null ? `${dist.toFixed(1)} mi` : '', v.t ? `${v.t} tables` : '', leagueToday ? 'League night tonight' : ''].filter(Boolean).join(' · ');
-        li.innerHTML = `<a class="name"></a> <span class="status"></span><p class="meta"></p><p class="actions"></p>`;
-        const name = li.querySelector('a')!;
-        name.href = v.u;
-        name.textContent = v.n;
-        const chip = li.querySelector<HTMLElement>('.status')!;
-        chip.textContent = st.label;
-        if (st.state !== 'unknown') chip.classList.add(`status--${st.state}`);
-        li.querySelector('.meta')!.textContent = meta;
-        const actions = li.querySelector('.actions')!;
-        const tel = v.p.replace(/\D/g, '');
-        if (tel.length >= 10) actions.insertAdjacentHTML('beforeend', `<a class="btn" href="tel:+1${tel.slice(-10)}" data-ppn-event="call" data-venue="${v.i}" data-where="home_tonight">Call</a>`);
-        if (v.d) actions.insertAdjacentHTML('beforeend', `<a class="btn btn--ghost" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(v.d)}" data-ppn-event="directions" data-venue="${v.i}" data-where="home_tonight">Directions</a>`);
-        picks.append(li);
-      }
+      count.innerHTML = `<b>${rows.length} ${rows.length === 1 ? 'place' : 'places'}</b> ${area}.${rows.length > 1 ? ' Best first.' : ''}`;
+      picks.replaceChildren(...rows.slice(0, shown).map(card));
+      more.hidden = rows.length <= shown;
+      more.textContent = `Show all ${rows.length}`;
     };
-    city.addEventListener('change', () => city.value && show(rank(list, { city: city.value }), 'No places in that city yet.'));
-    near.addEventListener('click', () => {
-      near.disabled = true;
-      near.textContent = 'Finding you…';
+
+    const locate = () => {
+      count.textContent = 'Finding you…';
       navigator.geolocation.getCurrentPosition(
-        (pos) => {
-          near.disabled = false;
-          near.textContent = 'Find an open table near me';
-          show(rank(list, { lat: pos.coords.latitude, lng: pos.coords.longitude, radius: 30 }), "We don't list a place within 30 miles of you yet.");
-        },
-        () => {
-          near.disabled = false;
-          near.textContent = 'Find an open table near me';
-          count.textContent = "We couldn't get your location. Pick a city instead.";
-        },
+        (pos) => { here = { lat: pos.coords.latitude, lng: pos.coords.longitude }; answer(); },
+        () => { where.value = ''; fit(); count.textContent = "We couldn't get your location, so here's everywhere. Pick a city instead."; setTimeout(answer, 1800); },
         { timeout: 10000, maximumAge: 600000 },
       );
-    });
-  }).catch(() => {});
+    };
+
+    slots.forEach((s) => s.addEventListener('change', () => {
+      fit();
+      shown = 3;
+      if (s === where && where.value === 'near' && !here) return locate();
+      answer();
+    }));
+    more.addEventListener('click', () => { shown = 60; answer(); });
+    fallback.hidden = true;
+    answer();
+  }).catch(() => {
+    count.textContent = 'Live answers could not load.';
+  });
 }
