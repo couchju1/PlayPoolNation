@@ -21,7 +21,8 @@ export function savedUser(): { id: string; email: string; name: string } | null 
     const raw = JSON.parse(localStorage.getItem(STORAGE_KEY) || 'null');
     const u = raw?.user;
     if (!u?.id) return null;
-    return { id: u.id, email: u.email || '', name: u.user_metadata?.display_name || (u.email || '').split('@')[0] };
+    const m = u.user_metadata || {};
+    return { id: u.id, email: u.email || '', name: m.display_name || m.full_name || m.name || (u.email || '').split('@')[0] };
   } catch {
     return null;
   }

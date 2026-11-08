@@ -15,6 +15,17 @@ const links = [
     <nav class="nav" aria-label="Main">
       {links.map(([href, label]) => <a href={href} aria-current={path.startsWith(href) ? 'page' : undefined}>{label}</a>)}
     </nav>
-    <a class="account-link" href="/account/" data-account-link>Sign in</a>
+    <div class="account" data-account-menu>
+      <a class="account-link" href="/account/" data-account-link>Sign in</a>
+      <button type="button" class="account-link is-in" data-account-btn aria-haspopup="menu" aria-expanded="false" hidden><span data-account-name></span><span class="caret" aria-hidden="true"></span></button>
+      <div class="account-pop" role="menu" data-account-pop hidden>
+        <a role="menuitem" href="/me/">Your feed</a>
+        <a role="menuitem" href="/account/">Account settings</a>
+        <a role="menuitem" href="/passport/">Pool Passport</a>
+        <a role="menuitem" href="/dashboard/" data-account-dash hidden>Bar dashboard</a>
+        <a role="menuitem" href="/admin/" data-account-admin hidden>Admin</a>
+        <button type="button" role="menuitem" data-account-signout>Sign out</button>
+      </div>
+    </div>
   </div>
 </header>

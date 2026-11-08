@@ -609,6 +609,25 @@ aside > .reviews .review-form .review-send .btn { flex: 1 1 auto; }
 .claim-details { margin: 4px 0 0; font-size: 14px; color: var(--muted); }
 @media (max-width: 559px) { .tile--hero { grid-column: auto; } .src-bars li { grid-template-columns: 1fr auto; } .src-bar { grid-column: 1 / -1; grid-row: 2; } }
 
+/* Header account menu */
+.account { position: relative; margin-left: auto; order: 2; }
+.account .account-link { margin-left: 0; display: inline-flex; align-items: center; gap: 8px; cursor: pointer; font-family: var(--body); }
+.account .caret { width: 8px; height: 8px; border-right: 2px solid currentColor; border-bottom: 2px solid currentColor; transform: translateY(-2px) rotate(45deg); }
+.account-pop { position: absolute; right: 0; top: calc(100% + 8px); z-index: 20; min-width: 210px; display: grid; padding: 6px; background: var(--paper); border: 1px solid var(--line); border-radius: 12px; box-shadow: 0 16px 40px rgba(10, 42, 32, .18); }
+.account-pop a, .account-pop button { all: unset; box-sizing: border-box; display: block; width: 100%; padding: 10px 12px; border-radius: 8px; font: 600 15px/1.2 var(--body); color: var(--ink); cursor: pointer; }
+.account-pop a:hover, .account-pop button:hover, .account-pop a:focus-visible, .account-pop button:focus-visible { background: var(--bone); color: var(--accent); }
+.account-pop [data-account-signout] { border-top: 1px solid var(--line); margin-top: 4px; border-radius: 0 0 8px 8px; color: var(--closed); }
+
+/* Continue with Google */
+.oauth { margin: 16px 0 4px; }
+.btn-google { display: flex; align-items: center; justify-content: center; gap: 10px; width: 100%; min-height: 48px; border: 1px solid #dadce0; border-radius: 999px; background: #fff; color: #1f1f1f; font: 600 16px/1 var(--body); cursor: pointer; }
+.btn-google:hover { background: #f8f9fa; border-color: #c6c9cc; }
+.btn-google:disabled { opacity: .6; cursor: wait; }
+.btn-google:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+.or { display: flex; align-items: center; gap: 12px; margin: 16px 0 4px; color: var(--muted); font-size: 14px; }
+.or::before, .or::after { content: ''; flex: 1; height: 1px; background: var(--line); }
+.oauth-terms { font-size: 13px; margin: 10px 0 0; text-align: center; }
+
 /* Venue page */
 .venue-head { display: grid; gap: 8px; margin-bottom: 20px; }
 .venue-head .type { color: var(--muted); font-weight: 600; margin: 0; }

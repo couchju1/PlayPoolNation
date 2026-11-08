@@ -47,7 +47,9 @@ if ($status !== 200 || !is_array($user) || !$confirmed || time() - $confirmed > 
 }
 
 $email = (string) ($user['email'] ?? '');
-$name = ppn_clean($user['user_metadata']['display_name'] ?? '', 40);
+$meta = $user['user_metadata'] ?? [];
+$name = ppn_clean($meta['display_name'] ?? $meta['full_name'] ?? $meta['name'] ?? '', 40);
+$via = in_array('google', (array) ($user['app_metadata']['providers'] ?? []), true) ? 'Google' : 'email';
 // Accounts so far (one row each in profiles; fine at this size).
 [, $all] = ppn_rest('GET', 'profiles?select=id');
 $total = is_array($all) ? count($all) : 0;
@@ -58,7 +60,7 @@ $subject = 'New PlayPoolNation sign-up: ' . ($name !== '' ? $name : $email);
 $text = "A new player just confirmed their account.\n\n"
 	. "Name:   " . ($name !== '' ? $name : '(none)') . "\n"
 	. "Email:  $email\n"
-	. "Joined: $when\n\n"
+	. "Joined: $when (signed up with $via)\n\n"
 	. "Total accounts: $total\n\n"
 	. "Reply to this email to write to them.\n"
 	. "Their reviews (once they post one): open any venue page on https://playpoolnation.com\n";
