@@ -18,6 +18,7 @@ The idea: Google already answers "pool hall near me". It doesn't answer "where's
 | Hosting | Hostinger web hosting: static files, `.htaccess` (generated), two PHP scripts for `/api/event` and `/api/submit` | `public/api/`, `scripts/redirects.mjs` |
 | Deploys | GitHub Action builds on push to `main` and commits the result to the `deploy` branch, which Hostinger's Git deployment pulls | `.github/workflows/deploy.yml` |
 | Analytics | First-party click table (calls, directions, website taps), optional Plausible | `public/api/event.php` |
+| The Wall | Player check-ins and posts on venue pages, live feeds on city pages, the homepage and `/live/`. No accounts; posts table in Supabase, reached only through PHP | `public/api/post.php`, `feed.php`, `react.php`, `src/scripts/wall.ts` |
 
 ## Commands
 
@@ -80,7 +81,7 @@ src/lib/          data rules, text from facts, open/closed, schema.org, sitemaps
 src/pages/        routes
 src/components/   page parts
 src/scripts/      what the browser adds: open status, click counts, filters, map, Tonight panel, search
-public/api/       PHP for Hostinger: /api/event, /api/submit (Supabase key in ppn-secrets.php above public_html)
+public/api/       PHP for Hostinger: /api/event, /api/submit, and the Wall's /api/post, /api/feed, /api/react (Supabase key in ppn-secrets.php above public_html)
 data/venues/      the venues, one file each
 data/launch.json  launched (indexed) cities
 db/               Supabase schema and generated seed
@@ -91,3 +92,11 @@ docs/             cutover plan and history
 ```
 
 See [docs/astro-cutover.md](docs/astro-cutover.md) for the move from WordPress to the static site on Hostinger.
+
+## The Wall
+
+Players post check-ins and updates on venue pages ("Tables open", "League night", a note up to 280 characters), and can cheer each other's posts. City pages, the homepage and `/live/` show the latest posts. There are no accounts: a display name is kept in the visitor's browser.
+
+Guard rails, all in `public/api/post.php`: no links, a short blocklist, unknown venues refused, 3 posts per visitor per 10 minutes and 15 per day (counted under a salted hash, the address is never stored), a hidden field and a minimum time on the page for bots. Three reports hide a post. To take one down by hand, set its `status` to `hidden` in the `posts` table.
+
+The `posts` table and the `post_react` function are in `db/schema.sql`; run that part once in the Supabase SQL editor before the Wall goes live.

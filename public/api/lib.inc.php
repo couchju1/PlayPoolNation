@@ -58,6 +58,66 @@ function ppn_insert(string $table, array $row): bool {
 	return $status >= 200 && $status < 300;
 }
 
+/** One Supabase REST call with the service key. Returns [status, decoded body]. */
+function ppn_rest(string $method, string $path, ?array $body = null, array $headers = []): array {
+	$c = ppn_config();
+	if (empty($c['SUPABASE_URL']) || empty($c['SUPABASE_SERVICE_KEY'])) {
+		return [0, null];
+	}
+	$ch = curl_init(rtrim($c['SUPABASE_URL'], '/') . '/rest/v1/' . $path);
+	$opts = [
+		CURLOPT_CUSTOMREQUEST  => $method,
+		CURLOPT_HTTPHEADER     => array_merge([
+			'apikey: ' . $c['SUPABASE_SERVICE_KEY'],
+			'Authorization: Bearer ' . $c['SUPABASE_SERVICE_KEY'],
+			'Content-Type: application/json',
+		], $headers),
+		CURLOPT_RETURNTRANSFER => true,
+		CURLOPT_CONNECTTIMEOUT => 3,
+		CURLOPT_TIMEOUT        => 5,
+	];
+	if ($body !== null) {
+		$opts[CURLOPT_POSTFIELDS] = json_encode($body, JSON_UNESCAPED_SLASHES);
+	}
+	curl_setopt_array($ch, $opts);
+	$raw = curl_exec($ch);
+	$status = (int) curl_getinfo($ch, CURLINFO_RESPONSE_CODE);
+	curl_close($ch);
+	return [$status, is_string($raw) ? json_decode($raw, true) : null];
+}
+
+/**
+ * At most $max actions per visitor per window, counted in the system temp folder under a
+ * salted hash of the address and the window. The address itself is never stored.
+ */
+function ppn_rate_ok(string $name, int $max, int $windowSeconds): bool {
+	$secret = (string) (ppn_config()['SUPABASE_SERVICE_KEY'] ?? 'ppn');
+	$window = intdiv(time(), $windowSeconds);
+	$bucket = sys_get_temp_dir() . '/ppn-rl-' . $name . '-' . hash_hmac('sha256', ($_SERVER['REMOTE_ADDR'] ?? '') . $window, $secret);
+	$count = is_file($bucket) ? (int) file_get_contents($bucket) : 0;
+	if ($count >= $max) {
+		return false;
+	}
+	@file_put_contents($bucket, (string) ($count + 1), LOCK_EX);
+	return true;
+}
+
+/** Published venues as the site lists them (slug => city key), from the built /data/venues.json. */
+function ppn_venues(): array {
+	static $map = null;
+	if ($map !== null) {
+		return $map;
+	}
+	$map = [];
+	$list = json_decode((string) @file_get_contents(dirname(__DIR__) . '/data/venues.json'), true);
+	foreach (is_array($list) ? $list : [] as $v) {
+		if (isset($v['i'])) {
+			$map[$v['i']] = $v['k'] ?? null;
+		}
+	}
+	return $map;
+}
+
 function ppn_json(array $body, int $status = 200): never {
 	http_response_code($status);
 	header('Content-Type: application/json');
