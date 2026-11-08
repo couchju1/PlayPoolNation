@@ -307,16 +307,14 @@ RewriteRule ^post-an-event/?$ /places/ [R=301,L]
 RewriteRule ^instructors/?$ /places/ [R=301,L]
 #R /teach/ /places/
 RewriteRule ^teach/?$ /places/ [R=301,L]
-#R /sign-in/ /
-RewriteRule ^sign-in/?$ / [R=301,L]
-#R /join/ /
-RewriteRule ^join/?$ / [R=301,L]
-#R /login-2/ /
-RewriteRule ^login-2/?$ / [R=301,L]
-#R /register-2/ /
-RewriteRule ^register-2/?$ / [R=301,L]
-#R /dashboard/ /
-RewriteRule ^dashboard/?$ / [R=301,L]
+#R /sign-in/ /account/
+RewriteRule ^sign-in/?$ /account/ [R=301,L]
+#R /join/ /account/
+RewriteRule ^join/?$ /account/ [R=301,L]
+#R /login-2/ /account/
+RewriteRule ^login-2/?$ /account/ [R=301,L]
+#R /register-2/ /account/
+RewriteRule ^register-2/?$ /account/ [R=301,L]
 #R /home-2/ /
 RewriteRule ^home-2/?$ / [R=301,L]
 #R /blog/ /
@@ -341,10 +339,10 @@ RewriteRule ^event/(.*)$ /places/ [R=301,L]
 RewriteRule ^league/(.*)$ /places/ [R=301,L]
 #R /instructor/* /places/
 RewriteRule ^instructor/(.*)$ /places/ [R=301,L]
-#R /my-account/* /
-RewriteRule ^my-account/(.*)$ / [R=301,L]
-#R /my-account-2/* /
-RewriteRule ^my-account-2/(.*)$ / [R=301,L]
+#R /my-account/* /account/
+RewriteRule ^my-account/(.*)$ /account/ [R=301,L]
+#R /my-account-2/* /account/
+RewriteRule ^my-account-2/(.*)$ /account/ [R=301,L]
 #R /cart/* /
 RewriteRule ^cart/(.*)$ / [R=301,L]
 #R /cart-2/* /
