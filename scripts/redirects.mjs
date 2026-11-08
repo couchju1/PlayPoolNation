@@ -63,11 +63,10 @@ for (const [from, to] of [
   ['/post-an-event/', '/places/'],
   ['/instructors/', '/places/'],
   ['/teach/', '/places/'],
-  ['/sign-in/', '/'],
-  ['/join/', '/'],
-  ['/login-2/', '/'],
-  ['/register-2/', '/'],
-  ['/dashboard/', '/'],
+  ['/sign-in/', '/account/'],
+  ['/join/', '/account/'],
+  ['/login-2/', '/account/'],
+  ['/register-2/', '/account/'],
   ['/home-2/', '/'],
   ['/blog/', '/'],
   ['/blog-2/', '/'],
@@ -80,8 +79,8 @@ for (const [from, to] of [
   ['/event/*', '/places/'],
   ['/league/*', '/places/'],
   ['/instructor/*', '/places/'],
-  ['/my-account/*', '/'],
-  ['/my-account-2/*', '/'],
+  ['/my-account/*', '/account/'],
+  ['/my-account-2/*', '/account/'],
   ['/cart/*', '/'],
   ['/cart-2/*', '/'],
   ['/checkout/*', '/'],
@@ -90,6 +89,14 @@ for (const [from, to] of [
   ['/shop-2/*', '/'],
   ['/places/washington-2/*', '/places/washington/:splat'],
 ]) add(from, to);
+
+// An old-site redirect must never shadow a page this build makes (that's how /dashboard/ once
+// sent everyone home): fail the build instead.
+const shadowed = rules.filter(([from]) => !from.endsWith('/*') && exists(from)).map(([from]) => from);
+if (shadowed.length) {
+  console.error(`Redirects would hide real pages: ${shadowed.join(', ')}. Remove them from scripts/redirects.mjs.`);
+  process.exit(1);
+}
 
 const esc = (p) => p.replace(/^\//, '').replace(/[.+?^${}()|[\]\\]/g, '\\$&');
 const rewrite = ([from, to]) => {
