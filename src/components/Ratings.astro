@@ -1,0 +1,19 @@
+---
+/** The ratings card at the top of a venue's side column: average, count, the spread, and a way to write one. */
+import type { Venue } from '../lib/types.ts';
+const { v } = Astro.props as { v: Venue };
+---
+<section class="ratings" aria-labelledby="ratings-title" data-ratings>
+  <h2 id="ratings-title">Player ratings</h2>
+  <div class="ratings-top">
+    <p class="ratings-avg"><b data-ratings-avg>–</b><span class="stars" data-ratings-stars aria-hidden="true"></span></p>
+    <p class="ratings-count" data-ratings-count>No reviews yet</p>
+  </div>
+  <ol class="ratings-bars" aria-label="How players rated it">
+    {[5, 4, 3, 2, 1].map((n) => (
+      <li><span>{n}</span><i><b data-bar={n}></b></i><em data-bar-n={n}>0</em></li>
+    ))}
+  </ol>
+  <a class="btn ratings-cta" href="#reviews" data-ratings-cta>Rate {v.name}</a>
+  <p class="ratings-note">Reviews come from players with a PlayPoolNation account, one per player per venue.</p>
+</section>
