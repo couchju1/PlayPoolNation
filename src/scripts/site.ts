@@ -8,6 +8,7 @@
  */
 import { DAYS, WEEK, clock, miles, openStatus, venueWeekday, weekMinute } from '../lib/open-status.js';
 import './wall.ts';
+import './passport.ts';
 
 const now = new Date();
 

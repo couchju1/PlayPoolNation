@@ -6,6 +6,8 @@
 
 interface Post { id: number; venue_slug: string; city_key: string | null; kind: string; name: string; body: string; cheers: number; created_at: string }
 
+import { stamp } from './passport.ts';
+
 const KIND: Record<string, string> = { checkin: 'Checked in', tables_open: 'Tables open', wait: 'Waiting for a table', league: 'League night', tournament: 'Tournament', note: 'Note' };
 const store = {
   get(k: string) { try { return localStorage.getItem(k); } catch { return null; } },
@@ -142,6 +144,8 @@ if (wall) {
       if (!res.ok) throw new Error(out.error || 'Not posted. Try again.');
       store.set('ppn_name', String(fd.get('n')));
       if (out.post) posts = [out.post, ...posts];
+      // Being there counts toward the Pool Passport (a note alone doesn't).
+      if (out.post && fd.get('k') !== 'note') stamp(venue);
       bodyIn.value = '';
       left.textContent = '280';
       render();
