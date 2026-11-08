@@ -443,6 +443,79 @@ details > summary { cursor: pointer; font-weight: 700; color: var(--accent); min
 }
 @media (max-width: 559px) { .my-reviews li { grid-template-columns: 1fr auto; } .my-share { grid-column: 1 / -1; } }
 
+/* Following, events and the player page */
+.venue-title { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 20px; }
+.venue-title h1 { margin: 0; }
+.follow { display: flex; align-items: center; gap: 10px; }
+.follow-btn { min-width: 120px; }
+.follow-btn.is-on { background: var(--felt); border-color: var(--felt); }
+.follow-btn.is-on::before { content: '✓'; }
+.follow-count { font-size: 14px; color: var(--muted); }
+.events-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 10px; }
+.events-head h2 { margin: 0; }
+.event-form { display: grid; gap: 12px; margin: 16px 0 0; padding: 16px; border: 1px solid var(--line); border-radius: 12px; background: var(--bone); }
+.event-form label { display: grid; gap: 4px; font-weight: 600; font-size: 14px; }
+.event-form input, .event-form select, .event-form textarea { min-height: 44px; padding: 8px 12px; border: 1px solid var(--line); border-radius: 8px; font: 400 16px var(--body); background: #fff; color: var(--ink); width: 100%; }
+.event-grid { display: grid; gap: 10px; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); }
+.event-grid .event-title { grid-column: 1 / -1; }
+.event-tz { margin: 0; font-size: 13px; }
+.event-send { display: flex; gap: 8px; flex-wrap: wrap; }
+.event-list, .me-items { list-style: none; margin: 14px 0 0; padding: 0; display: grid; gap: 2px; }
+.event { display: grid; grid-template-columns: 64px 1fr; gap: 14px; padding: 14px 4px; border-bottom: 1px solid var(--line); animation: rise .25s ease-out both; }
+.event:last-child { border-bottom: 0; }
+.event-date { display: grid; justify-items: center; align-content: start; border-radius: 10px; overflow: hidden; border: 1px solid var(--line); background: #fff; text-align: center; height: max-content; }
+.event-date b { display: block; width: 100%; padding: 3px 0; background: #d12a2a; color: #fff; font: 800 11px/1.2 var(--body); letter-spacing: .1em; text-transform: uppercase; }
+.event-date span { font: 800 26px/1.1 var(--head); padding-top: 4px; }
+.event-date em { font: 600 11px/1 var(--body); font-style: normal; color: var(--muted); padding: 2px 0 6px; text-transform: uppercase; letter-spacing: .06em; }
+.event-top { margin: 0; display: flex; flex-wrap: wrap; gap: 6px 10px; align-items: center; }
+.event-top .post-tag { margin: 0; }
+.event-when { font-size: 13px; color: var(--muted); font-weight: 600; }
+.event-title { margin: 6px 0 2px; font-size: 19px; }
+.event-where { margin: 0; font-size: 14px; color: var(--muted); }
+.event-where a { font-weight: 700; color: var(--ink); }
+.event-body { margin: 6px 0 0; white-space: pre-wrap; overflow-wrap: anywhere; }
+.event-actions { display: flex; gap: 14px; margin: 8px 0 0; }
+.event-actions button { all: unset; cursor: pointer; font: 700 13px/1 var(--body); color: var(--muted); }
+.event-actions button:hover { color: var(--accent); }
+.event.is-cancelled .event-title { text-decoration: line-through; color: var(--muted); }
+.me { display: grid; gap: 20px; margin-top: 8px; }
+@media (min-width: 900px) { .me { grid-template-columns: 300px minmax(0, 1fr); align-items: start; } .me-side { position: sticky; top: 16px; } }
+.me-side { display: grid; gap: 16px; }
+.me-card { background: var(--paper); border: 1px solid var(--line); border-radius: 14px; padding: 18px; }
+.me-card h2 { font-size: 20px; margin: 8px 0 2px; }
+.me-card:first-child { text-align: center; }
+.me-ball { width: 72px; height: 72px; font-size: 18px; }
+.me-ball::before { inset: 20px; }
+.me-stats { display: flex; justify-content: center; gap: 24px; margin: 14px 0 10px; }
+.me-stats div { display: flex; flex-direction: column-reverse; }
+.me-stats dt { font-size: 12px; color: var(--muted); }
+.me-stats dd { margin: 0; font: 800 24px/1 var(--head); color: var(--felt); }
+.me-links { margin: 0; font-size: 14px; }
+.me-following { list-style: none; margin: 8px 0 0; padding: 0; display: grid; gap: 6px; }
+.me-following li { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+.me-following a { display: grid; text-decoration: none; color: var(--ink); min-width: 0; }
+.me-following a b { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.me-following a span { font-size: 12px; color: var(--muted); }
+.me-unfollow { all: unset; cursor: pointer; font-size: 12px; color: var(--muted); }
+.me-unfollow:hover { color: var(--closed); }
+.me-hint { margin: 8px 0 0; font-size: 14px; }
+.me-feed { background: var(--paper); border: 1px solid var(--line); border-radius: 14px; padding: 18px; min-width: 0; }
+.me-feed-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 10px; }
+.me-feed-head h2 { margin: 0; font-size: 24px; }
+.me-tabs { display: flex; gap: 4px; background: var(--bone); padding: 4px; border-radius: 999px; }
+.me-tabs button { all: unset; cursor: pointer; padding: 6px 14px; border-radius: 999px; font: 700 14px/1 var(--body); color: var(--muted); }
+.me-tabs button[aria-selected='true'] { background: var(--felt); color: #fff; }
+.me-tabs button:focus-visible { outline: 3px solid var(--accent); }
+.me-items .post, .me-items .event { border-bottom: 1px solid var(--line); }
+.me-suggest { margin-top: 20px; padding-top: 16px; border-top: 1px dashed var(--line); }
+.me-suggest h3 { margin: 0 0 8px; }
+.me-sugg-list { list-style: none; margin: 0 0 10px; padding: 0; display: grid; gap: 8px; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); }
+.me-sugg-list li { display: flex; justify-content: space-between; align-items: center; gap: 10px; padding: 10px 12px; border: 1px solid var(--line); border-radius: 10px; }
+.me-sugg-list a { display: grid; text-decoration: none; color: var(--ink); min-width: 0; }
+.me-sugg-list a span { font-size: 12px; color: var(--muted); }
+.me-sugg-list .btn { min-height: 36px; padding: 0 12px; font-size: 13px; }
+.feed-review .review-top { margin-top: 4px; }
+
 /* Venue page */
 .venue-head { display: grid; gap: 8px; margin-bottom: 20px; }
 .venue-head .type { color: var(--muted); font-weight: 600; margin: 0; }

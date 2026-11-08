@@ -23,7 +23,7 @@ const date = (iso: string) => new Date(iso).toLocaleDateString('en-US', { month:
 /* Header: "Sign in" or the signed-in name */
 const link = document.querySelector<HTMLAnchorElement>('[data-account-link]');
 const me = savedUser();
-if (link && me) { link.textContent = me.name; link.classList.add('is-in'); }
+if (link && me) { link.textContent = me.name; link.href = '/me/'; link.classList.add('is-in'); }
 
 /* Venue page */
 const box = document.querySelector<HTMLElement>('[data-reviews]');

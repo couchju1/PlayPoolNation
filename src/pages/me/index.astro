@@ -1,0 +1,61 @@
+---
+/**
+ * The player page: your profile, the bars you follow, and a news feed of their events, Wall
+ * posts and reviews. Signed-in only (the browser sends visitors who aren't to /account/).
+ * Noindex. Run by src/scripts/social.ts.
+ */
+import Base from '../../layouts/Base.astro';
+import { BRAND, venues } from '../../lib/data.ts';
+
+// Suggestions when you don't follow anyone yet: the biggest rooms.
+const suggest = venues().filter((v) => v.status === 'open').sort((a, b) => (b.tables ?? 0) - (a.tables ?? 0)).slice(0, 6)
+  .map((v) => ({ slug: v.slug, name: v.name, url: v.url, where: `${v.address.city}, ${v.address.state}` }));
+---
+<Base title={`Your Feed | ${BRAND}`} description="Events, check-ins and reviews from the pool halls and bars you follow." noindex crumbs={[['Home', '/'], ['Your feed', '']]} pageType="me">
+  <h1 class="visually-hidden">Your feed</h1>
+  <div class="me" data-me hidden>
+    <aside class="me-side">
+      <section class="me-card">
+        <span class="ball me-ball" data-me-ball aria-hidden="true"></span>
+        <h2 data-me-name></h2>
+        <p class="muted" data-me-since></p>
+        <dl class="me-stats">
+          <div><dt>Following</dt><dd data-me-following>0</dd></div>
+          <div><dt>Reviews</dt><dd data-me-reviews>0</dd></div>
+          <div><dt>Passport</dt><dd data-me-stamps>0</dd></div>
+        </dl>
+        <p class="me-links"><a href="/account/">Account settings</a> · <a href="/passport/">Passport</a></p>
+      </section>
+      <section class="me-card">
+        <h2>Following</h2>
+        <ul class="me-following" data-me-list></ul>
+        <p class="muted me-hint" data-me-hint>Tap <b>Follow</b> on any bar's page to see its events here.</p>
+      </section>
+    </aside>
+    <div class="me-feed">
+      <div class="me-feed-head">
+        <h2>News feed</h2>
+        <div class="me-tabs" role="tablist" aria-label="Show">
+          <button type="button" role="tab" aria-selected="true" data-tab="all">All</button>
+          <button type="button" role="tab" aria-selected="false" data-tab="event">Events</button>
+          <button type="button" role="tab" aria-selected="false" data-tab="wall">Wall</button>
+          <button type="button" role="tab" aria-selected="false" data-tab="review">Reviews</button>
+        </div>
+      </div>
+      <ol class="me-items" data-me-items aria-live="polite"></ol>
+      <section class="me-suggest" data-me-suggest hidden>
+        <h3>Bars to follow</h3>
+        <ul class="me-sugg-list">
+          {suggest.map((s) => (
+            <li><a href={s.url}><b>{s.name}</b><span>{s.where}</span></a><button type="button" class="btn btn--ghost" data-suggest-follow={s.slug}>Follow</button></li>
+          ))}
+        </ul>
+        <p class="muted"><a href="/places/">Browse every city</a> to find your spots.</p>
+      </section>
+    </div>
+  </div>
+  <p data-me-loading>Loading your feed…</p>
+</Base>
+<script>
+  import '../../scripts/social.ts';
+</script>

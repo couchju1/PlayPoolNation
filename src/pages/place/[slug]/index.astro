@@ -12,6 +12,7 @@ import MapButton from '../../../components/MapButton.astro';
 import Wall from '../../../components/Wall.astro';
 import Ratings from '../../../components/Ratings.astro';
 import Reviews from '../../../components/Reviews.astro';
+import Events from '../../../components/Events.astro';
 import { BRAND, cityOf, nearbyVenues, textFacts, venues } from '../../../lib/data.ts';
 import { about, brands, clip, factLines, leagueLines, typeLabel, weekHours } from '../../../lib/text.ts';
 import { host, shortDate } from '../../../lib/format.ts';
@@ -55,7 +56,13 @@ const listingFrom = v.listing_source?.source === 'google_places' ? 'Google Place
 <Base title={title} description={description} noindex={!v.indexable} crumbs={crumbs} schema={[venueSchema(v)]} image={v.photo || undefined} pageType="venue_page" city={v.cityKey}>
   <header class="venue-head">
     <p class="type">{typeLabel(v.type)} in {cityState}</p>
-    <h1>{v.name}</h1>
+    <div class="venue-title">
+      <h1>{v.name}</h1>
+      <div class="follow" data-follow={v.slug} data-name={v.name}>
+        <button type="button" class="btn follow-btn" data-follow-btn aria-pressed="false">Follow</button>
+        <span class="follow-count" data-follow-count></span>
+      </div>
+    </div>
     <div class="venue-live"><Status v={v} /><span class="live-chip" data-wall-today hidden></span></div>
     <Actions v={v} />
     <div class="played" data-played={v.slug} hidden>
@@ -73,6 +80,8 @@ const listingFrom = v.listing_source?.source === 'google_places' ? 'Google Place
         <p>{text.sentences.join(' ')}</p>
         {text.claim && <p class="claim-line">{text.claim.lead} <a href={`/list-your-venue/?v=${v.slug}`} data-ppn-event="claim" data-venue={v.slug} data-where="venue_page">Claim it</a>{text.claim.rest}</p>}
       </section>
+
+      <Events v={v} />
 
       <Reviews v={v} />
 

@@ -10,6 +10,7 @@ import { WEEK, miles, openStatus, venueWeekday, weekMinute } from '../lib/open-s
 import './wall.ts';
 import './passport.ts';
 import './reviews.ts';
+import './social.ts';
 
 const now = new Date();
 

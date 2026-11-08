@@ -4,7 +4,7 @@
  * No accounts: the name is kept in this browser only.
  */
 
-interface Post { id: number; venue_slug: string; city_key: string | null; kind: string; name: string; body: string; cheers: number; created_at: string }
+export interface Post { id: number; venue_slug: string; city_key: string | null; kind: string; name: string; body: string; cheers: number; created_at: string }
 
 import { stamp } from './passport.ts';
 
@@ -46,7 +46,7 @@ async function venueNames() {
   return names;
 }
 
-function card(p: Post, showVenue: { n: string; u: string; c: string } | null) {
+export function card(p: Post, showVenue: { n: string; u: string; c: string } | null) {
   const li = document.createElement('li');
   li.className = 'post';
   li.innerHTML = `<span class="ball" aria-hidden="true"></span><div class="post-main"><p class="post-top"><b class="post-name"></b><span class="post-where"></span> <span class="post-time"></span></p><p class="post-tag"></p><p class="post-body"></p><p class="post-foot"><button type="button" class="post-cheer"></button><button type="button" class="post-report">Report</button></p></div>`;
