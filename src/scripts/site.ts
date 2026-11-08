@@ -119,6 +119,53 @@ if (filters) {
   );
 }
 
+/* ------------------------------------------- homepage: The Nation, tonight */
+const nation = document.querySelector<HTMLElement>('[data-nation]');
+if (nation) {
+  const tip = nation.querySelector<HTMLElement>('[data-nation-tip]')!;
+  const box = tip.parentElement!;
+  const info = new Map<string, { n: string; c: string; label: string; open: boolean }>();
+  loadVenues().then((list) => {
+    let open = 0;
+    for (const v of list) {
+      const st = openStatus(v.h, now);
+      info.set(v.i, { n: v.n, c: v.c, label: st.label || 'Hours not listed', open: st.state === 'open' });
+      if (st.state === 'open') open++;
+    }
+    nation.querySelectorAll<SVGAElement>('.nation-dot').forEach((dot, i) => {
+      const o = info.get(dot.dataset.i!)?.open;
+      dot.classList.add(o ? 'is-open' : 'is-closed');
+      // Stagger the pulse so the map twinkles instead of blinking in unison.
+      if (o) dot.style.setProperty('--d', `${(i * 0.37) % 3}s`);
+    });
+    nation.querySelector('[data-nation-open]')!.textContent = String(open);
+    nation.querySelector('[data-nation-label]')!.textContent = `of ${list.length} places are open right now`;
+    nation.classList.add('is-live');
+  }).catch(() => {});
+  const fmt = new Intl.DateTimeFormat('en-US', { weekday: 'long', hour: 'numeric', minute: '2-digit' });
+  nation.querySelector('[data-nation-clock]')!.textContent = `${fmt.format(now).replace(' ', ' · ')} your time`;
+
+  const show = (dot: SVGAElement) => {
+    const d = info.get(dot.dataset.i!);
+    if (!d) return;
+    tip.innerHTML = '<b></b><span></span><em></em>';
+    tip.querySelector('b')!.textContent = d.n;
+    tip.querySelector('span')!.textContent = d.c;
+    tip.querySelector('em')!.textContent = d.label;
+    tip.classList.toggle('is-open', d.open);
+    const r = dot.getBoundingClientRect(), b = box.getBoundingClientRect();
+    tip.style.left = `${Math.min(Math.max(r.left + r.width / 2 - b.left, 90), b.width - 90)}px`;
+    tip.style.top = `${r.top - b.top}px`;
+    tip.hidden = false;
+  };
+  nation.querySelectorAll<SVGAElement>('.nation-dot').forEach((dot) => {
+    dot.addEventListener('mouseenter', () => show(dot));
+    dot.addEventListener('focus', () => show(dot));
+    dot.addEventListener('mouseleave', () => (tip.hidden = true));
+    dot.addEventListener('blur', () => (tip.hidden = true));
+  });
+}
+
 /* ------------------------------------------------- city page: Tonight bars */
 const timeline = document.querySelector<HTMLElement>('[data-timeline]');
 if (timeline) {

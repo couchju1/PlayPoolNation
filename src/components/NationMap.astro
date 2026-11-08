@@ -1,0 +1,115 @@
+---
+/**
+ * "The Nation, tonight": every venue as a dot on a night map of the US, drawn at build time
+ * (us-atlas states, Albers USA, so the map is one inline SVG with no tiles to load).
+ * The browser lights up the places that are open right now (src/scripts/site.ts).
+ * Dots link to venue pages; city labels link to city guides.
+ */
+import { readFileSync } from 'node:fs';
+import { geoAlbersUsa, geoPath } from 'd3-geo';
+import { feature, mesh } from 'topojson-client';
+import { cityPages, metroPages, states as stateList, venues } from '../lib/data.ts';
+
+// us-atlas ships the states already projected to 975x610 with this exact Albers USA setup.
+const topo = JSON.parse(readFileSync('node_modules/us-atlas/states-albers-10m.json', 'utf8'));
+// Whole-pixel precision is plenty at this size and keeps the inline SVG small.
+const path = geoPath().digits(0);
+const land = path(feature(topo, topo.objects.nation) as any) ?? '';
+const borders = path(mesh(topo, topo.objects.states, (a: any, b: any) => a !== b) as any) ?? '';
+const project = geoAlbersUsa().scale(1300).translate([487.5, 305]);
+
+const all = venues().filter((v) => v.status !== 'permanently-closed');
+const dots = all
+  .filter((v) => v.geo)
+  .map((v) => ({ v, xy: project([v.geo!.lng, v.geo!.lat]) }))
+  .filter((d): d is { v: (typeof all)[number]; xy: [number, number] } => !!d.xy);
+
+// City labels, biggest first, skipping any that would land on top of one already placed.
+const guides = [
+  ...cityPages().map((c) => ({ name: c.name, url: c.url, n: c.venues.length, at: c.center })),
+  ...metroPages().map((m) => ({ name: m.label, url: m.url, n: m.venues.length, at: { lat: m.lat, lng: m.lng } })),
+].filter((g) => g.at).sort((a, b) => b.n - a.n);
+type Spot = 'right' | 'left' | 'above' | 'below';
+const labels: { name: string; url: string; n: number; tx: number; ty: number; anchor: 'start' | 'end' | 'middle' }[] = [];
+const boxes: [number, number, number, number][] = [];
+const hits = (b: [number, number, number, number]) => boxes.some(([x1, y1, x2, y2]) => b[0] < x2 && b[2] > x1 && b[1] < y2 && b[3] > y1);
+for (const g of guides) {
+  const xy = project([g.at!.lng, g.at!.lat]);
+  if (!xy) continue;
+  const [x, y] = xy;
+  const w = (g.name.length + 3) * 7.2;
+  // Beside the dot first (left of it near the east coast), then the other side, then above or below.
+  const spots: Spot[] = x > 820 ? ['left', 'right', 'below', 'above'] : ['right', 'left', 'below', 'above'];
+  for (const spot of spots) {
+    const b: [number, number, number, number] =
+      spot === 'right' ? [x + 6, y - 9, x + 9 + w, y + 9] :
+      spot === 'left' ? [x - 9 - w, y - 9, x - 6, y + 9] :
+      spot === 'below' ? [x - w / 2, y + 7, x + w / 2, y + 25] : [x - w / 2, y - 25, x + w / 2, y - 7];
+    if (hits(b)) continue;
+    boxes.push(b);
+    labels.push({
+      name: g.name, url: g.url, n: g.n,
+      tx: spot === 'right' ? x + 9 : spot === 'left' ? x - 9 : x,
+      ty: spot === 'below' ? y + 21 : spot === 'above' ? y - 11 : y + 4,
+      anchor: spot === 'right' ? 'start' : spot === 'left' ? 'end' : 'middle',
+    });
+    break;
+  }
+}
+const cityCount = cityPages().length;
+const stateCount = stateList().length;
+---
+<section class="nation" aria-labelledby="nation-title" data-nation>
+  <div class="wrap">
+    <div class="nation-head">
+      <div>
+        <p class="nation-eyebrow" data-nation-clock>Right now</p>
+        <h2 id="nation-title">The Nation, tonight</h2>
+      </div>
+      <p class="nation-count" aria-live="polite"><b data-nation-open>{all.length}</b> <span data-nation-label>places to play pool on the map</span></p>
+    </div>
+    <div class="nation-map">
+      <svg viewBox="0 0 975 610" role="img" aria-labelledby="nation-title nation-desc">
+        <desc id="nation-desc">A map of the United States with a dot for each of the {all.length} pool halls and bars with pool tables we list. Dots that glow are open right now.</desc>
+        <defs>
+          <radialGradient id="nation-glow"><stop offset="0" stop-color="#ffd978" stop-opacity=".9" /><stop offset="1" stop-color="#e2b65a" stop-opacity="0" /></radialGradient>
+        </defs>
+        <path class="nation-land" d={land} />
+        <path class="nation-borders" d={borders} />
+        <g class="nation-dots">
+          {dots.map(({ v, xy }) => (
+            <a href={v.url} class="nation-dot" data-i={v.slug} aria-label={`${v.name}, ${v.address.city}, ${v.address.state}`}>
+              <circle class="halo" cx={xy[0].toFixed(1)} cy={xy[1].toFixed(1)} r="11" fill="url(#nation-glow)" />
+              <circle class="core" cx={xy[0].toFixed(1)} cy={xy[1].toFixed(1)} r="3.6" />
+            </a>
+          ))}
+        </g>
+        <g class="nation-labels">
+          {labels.map((l) => (
+            <a href={l.url} class="nation-label">
+              <text x={l.tx.toFixed(1)} y={l.ty.toFixed(1)} text-anchor={l.anchor}>{l.name}<tspan dx="5">{l.n}</tspan></text>
+            </a>
+          ))}
+        </g>
+      </svg>
+      <div class="nation-tip" role="tooltip" data-nation-tip hidden></div>
+    </div>
+    <div class="nation-foot">
+      <ul class="nation-key" aria-label="Map key">
+        <li><span class="k k--open"></span>Open now</li>
+        <li><span class="k k--closed"></span>Closed or hours unknown</li>
+      </ul>
+      <dl class="nation-stats">
+        <div><dt>Places</dt><dd>{all.length}</dd></div>
+        <div><dt>City guides</dt><dd>{cityCount}</dd></div>
+        <div><dt>States</dt><dd>{stateCount}</dd></div>
+      </dl>
+    </div>
+    <ul class="nation-points">
+      <li><b>Open now</b> worked out from each place's posted hours, in its own time zone.</li>
+      <li><b>The tables</b>: counts, sizes and brands only when a source says so. Unknown stays blank.</li>
+      <li><b>League nights</b> from the league operators' own schedules.</li>
+      <li><b>One tap to go</b>: call or get directions right from the list.</li>
+    </ul>
+  </div>
+</section>
