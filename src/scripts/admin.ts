@@ -1,4 +1,4 @@
-/** /admin/: the photo approval queue. The database lets only admins see pending photos or move them. */
+/** /admin/: the photo approval queue and bar owners (claim requests, make owner, remove). The database lets only admins do any of it. */
 import { savedUser, sb } from './sb.ts';
 
 const list = document.querySelector<HTMLOListElement>('[data-queue]')!;
@@ -59,4 +59,63 @@ const me = savedUser();
     }));
   };
   load();
+
+  /* Bar owners: claim requests, make owner, current owners. */
+  const box = document.querySelector<HTMLElement>('[data-owners]')!;
+  const form = box.querySelector<HTMLFormElement>('[data-owner-form]')!;
+  const omsg = box.querySelector<HTMLElement>('[data-owner-msg]')!;
+  const label = (v: { n: string; c: string }) => `${v.n} · ${v.c}`;
+  box.querySelector('[data-admin-venues]')!.replaceChildren(...venues.map((v) => { const o = document.createElement('option'); o.value = label(v); return o; }));
+  const venueIn = form.elements.namedItem('venue') as HTMLInputElement;
+  const emailIn = form.elements.namedItem('email') as HTMLInputElement;
+  const owners = async () => {
+    const { data } = await c.rpc('admin_owners');
+    const ol = box.querySelector<HTMLOListElement>('[data-owner-list]')!;
+    ol.replaceChildren(...(data || []).map((o: any) => {
+      const li = document.createElement('li');
+      li.innerHTML = '<div><b></b> <span class="muted"></span><br /><a></a></div><button type="button" class="btn btn--ghost acct-danger">Remove</button>';
+      const v = byId.get(o.venue_slug);
+      li.querySelector('b')!.textContent = o.display_name || o.email;
+      li.querySelector('span')!.textContent = o.email;
+      const a = li.querySelector('a')!;
+      a.href = `/dashboard/?v=${o.venue_slug}`;
+      a.textContent = v ? label(v) : o.venue_slug;
+      li.querySelector('button')!.addEventListener('click', async () => {
+        if (!confirm(`Remove ${o.email} as owner of ${a.textContent}?`)) return;
+        await c.rpc('admin_remove_owner', { p_email: o.email, p_slug: o.venue_slug });
+        owners();
+      });
+      return li;
+    }));
+    if (!data?.length) ol.innerHTML = '<li class="muted">No owners yet.</li>';
+  };
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const v = venues.find((x) => label(x) === venueIn.value.trim()) || venues.find((x) => x.i === venueIn.value.trim());
+    if (!v) { omsg.textContent = 'Pick the venue from the list.'; return; }
+    const { data, error } = await c.rpc('admin_set_owner', { p_email: emailIn.value.trim(), p_slug: v.i });
+    omsg.textContent = error ? 'Not saved. Try again.' : data === 'no-account' ? `There's no account for ${emailIn.value.trim()} yet. Ask them to create one at playpoolnation.com/account/, then try again.` : `${emailIn.value.trim()} now owns ${v.n}.`;
+    if (data === 'ok') { form.reset(); owners(); }
+  });
+  const { data: claims } = await c.from('submissions').select('id, venue_slug, payload, email, status, created_at').eq('kind', 'claim').order('created_at', { ascending: false }).limit(50);
+  const cl = box.querySelector<HTMLOListElement>('[data-claims]')!;
+  cl.replaceChildren(...(claims || []).map((r: any) => {
+    const v = r.venue_slug ? byId.get(r.venue_slug) : null;
+    const li = document.createElement('li');
+    li.innerHTML = '<div><b></b> <span class="muted"></span><br /><span class="claim-venue"></span><p class="claim-details"></p></div><button type="button" class="btn btn--ghost">Fill in form</button>';
+    li.querySelector('b')!.textContent = r.payload?.person || r.email || 'Someone';
+    li.querySelector('.muted')!.textContent = [r.email, r.payload?.role, new Date(r.created_at).toLocaleDateString()].filter(Boolean).join(' · ');
+    li.querySelector('.claim-venue')!.textContent = v ? label(v) : r.payload?.name || r.venue_slug || '';
+    li.querySelector('.claim-details')!.textContent = r.payload?.details || r.payload?.contact || '';
+    li.querySelector('button')!.addEventListener('click', () => {
+      emailIn.value = r.email || '';
+      if (v) venueIn.value = label(v);
+      form.scrollIntoView({ block: 'center' });
+      emailIn.focus();
+    });
+    return li;
+  }));
+  if (!claims?.length) cl.innerHTML = '<li class="muted">No claim requests yet. They come from the "Own a venue? Claim it" form.</li>';
+  owners();
+  box.hidden = false;
 })().catch(() => { msg.textContent = 'The queue could not load right now.'; });

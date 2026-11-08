@@ -4,10 +4,28 @@ import Base from '../../layouts/Base.astro';
 import { BRAND } from '../../lib/data.ts';
 ---
 <Base title={`Admin | ${BRAND}`} description="Review photos waiting for approval." noindex crumbs={[['Home', '/'], ['Admin', '']]} pageType="admin">
-  <h1>Photos waiting for approval</h1>
+  <h1>Admin</h1>
+  <nav class="chips admin-nav" aria-label="Sections"><a class="chip" href="#photos-q">Photos</a><a class="chip" href="#owners">Bar owners</a><a class="chip" href="/dashboard/">Bar dashboard</a></nav>
+  <h2 id="photos-q">Photos waiting for approval</h2>
   <p class="lede">Players' Wall photos stay hidden until you approve them. Approved photos show on the post and in the venue's Photos.</p>
   <p class="acct-msg" role="status" data-admin-msg>Loading…</p>
   <ol class="queue" data-queue></ol>
+
+  <section class="section" id="owners" aria-labelledby="owners-title" data-owners hidden>
+    <h2 id="owners-title">Bar owners</h2>
+    <p class="muted">An owner can post events, add photos and see their bar's dashboard. They need a PlayPoolNation account first; add them by the email they signed up with.</p>
+    <form class="form owner-form" data-owner-form>
+      <label>Owner's account email<input name="email" type="email" required placeholder="owner@theirbar.com" /></label>
+      <label>Venue<input name="venue" list="admin-venues" required placeholder="Start typing a venue" autocomplete="off" /></label>
+      <datalist id="admin-venues" data-admin-venues></datalist>
+      <button class="btn" type="submit">Make owner</button>
+    </form>
+    <p class="acct-msg" role="status" data-owner-msg></p>
+    <h3>Claim requests</h3>
+    <ol class="claims" data-claims></ol>
+    <h3>Current owners</h3>
+    <ol class="claims" data-owner-list></ol>
+  </section>
 </Base>
 <script>
   import '../../scripts/admin.ts';

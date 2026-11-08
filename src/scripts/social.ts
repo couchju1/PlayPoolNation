@@ -184,6 +184,11 @@ if (evBox) {
       if (!data) return;
       manage = true;
       newBtn.hidden = false;
+      const dash = document.createElement('a');
+      dash.className = 'btn btn--ghost';
+      dash.href = `/dashboard/?v=${slug}`;
+      dash.textContent = 'Dashboard';
+      newBtn.after(dash);
       await load();
     }).catch(() => {});
   }
@@ -269,7 +274,10 @@ if (page) {
     page.querySelector('[data-me-following]')!.textContent = String(slugs.length);
     page.querySelector('[data-me-reviews]')!.textContent = String(mine?.length || 0);
     page.querySelector('[data-me-stamps]')!.textContent = String(Object.keys(stamps()).length);
-    c.rpc('is_admin').then(({ data }: any) => { page.querySelector<HTMLElement>('[data-me-admin]')!.hidden = !data; });
+    Promise.all([c.rpc('is_admin'), c.rpc('my_venues')]).then(([a, o]: any[]) => {
+      page.querySelector<HTMLElement>('[data-me-admin]')!.hidden = !a.data;
+      page.querySelector<HTMLElement>('[data-me-dash]')!.hidden = !(a.data || o.data?.length);
+    });
 
     const ul = page.querySelector<HTMLUListElement>('[data-me-list]')!;
     ul.replaceChildren(...slugs.map((s) => {

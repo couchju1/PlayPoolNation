@@ -439,3 +439,69 @@ create policy wall_pending_admin on storage.objects for all to authenticated
 drop policy if exists wall_photos_admin on storage.objects;
 create policy wall_photos_admin on storage.objects for all to authenticated
   using (bucket_id = 'wall-photos' and public.is_admin()) with check (bucket_id = 'wall-photos' and public.is_admin());
+
+-- Bar dashboard (/dashboard/): leads, followers, ratings and email leads for a venue, for its
+-- approved owner and for admins. Admins also see claim requests and make owners on /admin/.
+drop policy if exists clicks_admin on click_events;
+create policy clicks_admin on click_events for select using (is_admin());
+grant select on click_events to authenticated;
+
+-- Claim requests sent from /list-your-venue/ (kind 'claim') are readable by admins.
+drop policy if exists submissions_admin on submissions;
+create policy submissions_admin on submissions for select using (is_admin());
+grant select on submissions to authenticated;
+
+-- The venues you own (approved claims).
+create or replace function public.my_venues() returns setof text
+language sql stable security definer set search_path = public as $$
+  select venue_slug from claims where user_id = auth.uid() and status = 'approved' order by created_at;
+$$;
+revoke all on function public.my_venues() from public;
+grant execute on function public.my_venues() to authenticated;
+
+-- Email leads for a venue: its owner, or an admin.
+create or replace function public.venue_review_leads(p_slug text)
+returns table (email text, display_name text, rating smallint, created_at timestamptz)
+language sql security definer set search_path = public as $$
+  select u.email::text, p.display_name, r.rating, r.created_at
+  from reviews r join auth.users u on u.id = r.user_id left join profiles p on p.id = r.user_id
+  where r.venue_slug = p_slug and r.share_email and r.status = 'live' and can_manage_venue(p_slug)
+  order by r.created_at desc;
+$$;
+revoke all on function public.venue_review_leads(text) from public, anon;
+grant execute on function public.venue_review_leads(text) to authenticated;
+
+-- Admins: make an account the owner of a venue (by the email they signed up with), remove
+-- an owner, and list owners. Each refuses anyone who isn't an admin.
+create or replace function public.admin_set_owner(p_email text, p_slug text) returns text
+language plpgsql security definer set search_path = public as $$
+declare uid uuid;
+begin
+  if not is_admin() then raise exception 'admins only'; end if;
+  select id into uid from auth.users where lower(email) = lower(trim(p_email));
+  if uid is null then return 'no-account'; end if;
+  if not exists (select 1 from venues where slug = p_slug) then return 'no-venue'; end if;
+  insert into claims (venue_slug, user_id, status) values (p_slug, uid, 'approved')
+  on conflict (venue_slug, user_id) do update set status = 'approved';
+  return 'ok';
+end;
+$$;
+create or replace function public.admin_remove_owner(p_email text, p_slug text) returns void
+language plpgsql security definer set search_path = public as $$
+begin
+  if not is_admin() then raise exception 'admins only'; end if;
+  delete from claims c using auth.users u where c.user_id = u.id and lower(u.email) = lower(p_email) and c.venue_slug = p_slug;
+end;
+$$;
+create or replace function public.admin_owners()
+returns table (venue_slug text, email text, display_name text, created_at timestamptz)
+language plpgsql stable security definer set search_path = public as $$
+begin
+  if not is_admin() then raise exception 'admins only'; end if;
+  return query select c.venue_slug, u.email::text, p.display_name, c.created_at
+    from claims c join auth.users u on u.id = c.user_id left join profiles p on p.id = c.user_id
+    where c.status = 'approved' order by c.created_at desc;
+end;
+$$;
+revoke all on function public.admin_set_owner(text, text), public.admin_remove_owner(text, text), public.admin_owners() from public, anon;
+grant execute on function public.admin_set_owner(text, text), public.admin_remove_owner(text, text), public.admin_owners() to authenticated;
