@@ -100,3 +100,7 @@ Players post check-ins and updates on venue pages ("Tables open", "League night"
 Guard rails, all in `public/api/post.php`: no links, a short blocklist, unknown venues refused, 3 posts per visitor per 10 minutes and 15 per day (counted under a salted hash, the address is never stored), a hidden field and a minimum time on the page for bots. Three reports hide a post. To take one down by hand, set its `status` to `hidden` in the `posts` table.
 
 The `posts` table and the `post_react` function are in `db/schema.sql`; run that part once in the Supabase SQL editor before the Wall goes live.
+
+## Pool Passport
+
+`/passport/` collects a stamp for every venue a player has played, grouped by city guide, with each city's poster turning from grey to full color once it has a stamp and a "Complete" seal when every hall is stamped. Stamps come from "I played here" on venue pages or a Wall check-in (any kind but a plain note). They live in the player's browser only (`localStorage` key `ppn_passport`, see `src/scripts/passport.ts`); nothing is sent to the server.

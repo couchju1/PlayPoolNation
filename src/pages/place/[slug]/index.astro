@@ -57,6 +57,12 @@ const listingFrom = v.listing_source?.source === 'google_places' ? 'Google Place
     <h1>{v.name}</h1>
     <div class="venue-live"><Status v={v} /><span class="live-chip" data-wall-today hidden></span></div>
     <Actions v={v} />
+    <div class="played" data-played={v.slug} hidden>
+      <button type="button" class="btn btn--ghost played-btn" data-played-btn>I played here</button>
+      <span class="played-mark" data-played-mark hidden><b>Played</b><span data-played-date></span></span>
+      <button type="button" class="played-undo" data-played-undo hidden>Remove stamp</button>
+      <a class="played-link" href="/passport/">Your Pool Passport</a>
+    </div>
   </header>
 
   <div class="venue-cols">

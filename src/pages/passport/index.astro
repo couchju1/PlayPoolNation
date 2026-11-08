@@ -1,0 +1,74 @@
+---
+/**
+ * The Pool Passport: every hall a player has played, collected by city. Stamps live in the
+ * player's own browser (localStorage, src/scripts/passport.ts); nothing is sent anywhere.
+ * The page is built with every city and venue; the browser marks the stamped ones.
+ * Noindex: it's different for everyone.
+ */
+import Base from '../../layouts/Base.astro';
+import { BRAND, cityPages, metroPages, venues } from '../../lib/data.ts';
+import { posterFor } from '../../lib/posters.ts';
+
+const live = venues().filter((v) => v.status !== 'permanently-closed');
+const taken = new Set<string>();
+const groups: { name: string; where: string; url: string; poster: string | null; venues: typeof live }[] = [];
+for (const c of cityPages()) {
+  const vs = c.venues.filter((v) => v.status !== 'permanently-closed');
+  vs.forEach((v) => taken.add(v.slug));
+  groups.push({ name: c.name, where: c.where, url: c.url, poster: posterFor(c.url)?.srcSm ?? null, venues: vs });
+}
+for (const m of metroPages()) {
+  const vs = m.venues.filter((v) => !taken.has(v.slug) && v.status !== 'permanently-closed');
+  if (!vs.length) continue;
+  vs.forEach((v) => taken.add(v.slug));
+  groups.push({ name: `${m.label} area`, where: `${m.label} area`, url: m.url, poster: posterFor(m.url)?.srcSm ?? null, venues: vs });
+}
+const rest = live.filter((v) => !taken.has(v.slug));
+if (rest.length) groups.push({ name: 'More places', where: 'Across the country', url: '/places/', poster: null, venues: rest });
+---
+<Base title={`Your Pool Passport | ${BRAND}`} description="Collect a stamp for every pool hall and bar you play. Fill your passport city by city." noindex crumbs={[['Home', '/'], ['Passport', '']]} pageType="passport">
+  <section class="pp-cover" data-passport-page>
+    <div class="pp-emblem" aria-hidden="true"><span>PPN</span></div>
+    <div class="pp-cover-text">
+      <p class="pp-kicker">PlayPoolNation</p>
+      <h1>Pool Passport</h1>
+      <p class="pp-lede">A stamp for every hall you play. Tap <b>I played here</b> on any venue page, or check in on its Wall.</p>
+      <dl class="pp-stats">
+        <div><dt>Halls</dt><dd data-pp-halls>0</dd></div>
+        <div><dt>Cities</dt><dd data-pp-cities>0</dd></div>
+        <div><dt>States</dt><dd data-pp-states>0</dd></div>
+      </dl>
+      <div class="pp-progress" aria-hidden="true"><i data-pp-bar></i></div>
+      <p class="pp-of"><span data-pp-of>0 of {live.length} halls on PlayPoolNation</span></p>
+      <p class="actions"><button type="button" class="btn btn--light" data-pp-share hidden>Share my passport</button><a class="btn btn--ghost pp-find" href="/places/">Find a hall to play</a></p>
+      <p class="pp-copied" role="status" data-pp-copied></p>
+    </div>
+  </section>
+
+  <p class="pp-empty" data-pp-empty hidden>Your passport is empty. Open any venue page and tap <b>I played here</b> to get your first stamp.</p>
+
+  <ol class="pp-pages">
+    {groups.map((g) => (
+      <li class="pp-page" data-pp-group data-total={g.venues.length}>
+        <a class="pp-stamp" href={g.url}>
+          {g.poster ? <img src={g.poster} alt="" width="480" height="600" loading="lazy" decoding="async" /> : <span class="pp-stamp-plain" aria-hidden="true">8</span>}
+          <span class="pp-seal" aria-hidden="true">Complete</span>
+        </a>
+        <div class="pp-page-body">
+          <h2><a href={g.url}>{g.name}</a></h2>
+          <p class="pp-count" data-pp-count>0 of {g.venues.length} {g.venues.length === 1 ? 'hall' : 'halls'}</p>
+          <ul class="pp-venues">
+            {g.venues.map((v) => (
+              <li data-pp-venue={v.slug} data-state={v.address.state} data-city={v.cityKey}>
+                <span class="pp-dot" aria-hidden="true"></span>
+                <a href={v.url}>{v.name}</a>
+                <span class="pp-when" data-pp-when></span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </li>
+    ))}
+  </ol>
+  <p class="muted" style="font-size:14px">Your stamps are saved in this browser only. Nothing is sent to PlayPoolNation, and clearing your browser data clears your passport.</p>
+</Base>
