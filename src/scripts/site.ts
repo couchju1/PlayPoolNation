@@ -118,6 +118,96 @@ if (filters) {
   );
 }
 
+/* ------------------------------------------------- city page: Tonight bars */
+const timeline = document.querySelector<HTMLElement>('[data-timeline]');
+if (timeline) {
+  const START = 600; // 10 AM
+  const SPAN = 1200; // to 6 AM
+  const rows = [...timeline.querySelectorAll<HTMLElement>('[data-tl-row]')];
+  const list = rows[0].parentElement!;
+  const axis = timeline.querySelector<HTMLElement>('[data-tl-axis]')!;
+  const sum = timeline.querySelector<HTMLElement>('[data-tl-sum]')!;
+  const clockEl = timeline.querySelector<HTMLElement>('[data-tl-clock]')!;
+  const pct = (x: number) => `${(Math.min(Math.max(x, 0), 1) * 100).toFixed(2)}%`;
+  const ticks: [number, string][] = [[720, 'Noon'], [900, '3 PM'], [1080, '6 PM'], [1260, '9 PM'], [1440, 'Midnight'], [1620, '3 AM'], [1800, '6 AM']];
+  axis.innerHTML = ticks.map(([t, l]) => `<span style="left:${pct((t - START) / SPAN)}">${l}</span>`).join('') + '<b class="tl-now-label" data-tl-nowlabel>Now</b>';
+  const nowLabel = axis.querySelector<HTMLElement>('[data-tl-nowlabel]')!;
+
+  const draw = () => {
+    const at = new Date();
+    const facts = rows.map((row) => {
+      const h = JSON.parse(row.dataset.tlHours!);
+      let m = weekMinute(h.tz, at);
+      let night = Math.floor(m / 1440);
+      if (m % 1440 < 360) night = (night + 6) % 7;
+      const w0 = night * 1440 + START;
+      if (m < w0) m += WEEK;
+      const segs: [number, number][] = [];
+      for (const [s, e] of h.r as number[][]) {
+        for (const shift of [0, WEEK, -WEEK]) {
+          const a = Math.max(s + shift, w0), b = Math.min(e + shift, w0 + SPAN);
+          if (b > a) segs.push([a - w0, b - w0]);
+        }
+      }
+      // A range ending where the next starts (hours split at midnight) is one stretch.
+      segs.sort((x, y) => x[0] - y[0]);
+      for (let i = segs.length - 1; i > 0; i--) {
+        if (segs[i][0] <= segs[i - 1][1]) { segs[i - 1][1] = Math.max(segs[i - 1][1], segs[i][1]); segs.splice(i, 1); }
+      }
+      const now = m - w0;
+      const cur = segs.find(([a, b]) => now >= a && now < b);
+      const next = segs.filter(([a]) => a > now).sort((x, y) => x[0] - y[0])[0];
+      return { row, h, now, segs, cur, next, night, league: (row.dataset.league || '').split(' ').includes(String(night)) };
+    });
+
+    for (const f of facts) {
+      const track = f.row.querySelector<HTMLElement>('[data-tl-track]')!;
+      const when = f.row.querySelector<HTMLElement>('[data-tl-when]')!;
+      track.replaceChildren();
+      for (const [t] of ticks) track.insertAdjacentHTML('beforeend', `<s class="tl-grid-line" style="left:${pct((t - START) / SPAN)}"></s>`);
+      for (const [a, b] of f.segs) {
+        const bar = document.createElement('i');
+        bar.className = 'tl-bar' + (f.cur && f.cur[0] === a ? ' is-open' : b <= f.now ? ' is-past' : '');
+        bar.style.left = pct(a / SPAN);
+        bar.style.width = pct((b - a) / SPAN);
+        if (f.cur && f.cur[0] === a && f.now > a) bar.style.setProperty('--done', pct((f.now - a) / (b - a)));
+        track.append(bar);
+      }
+      const tick = document.createElement('b');
+      tick.className = 'tl-tick';
+      tick.style.left = pct(f.now / SPAN);
+      track.append(tick);
+      if (f.league) track.insertAdjacentHTML('beforeend', '<em class="tl-league" title="League night tonight">League</em>');
+      const st = openStatus(f.h, at);
+      when.textContent = f.cur ? st.label.replace('Open until', 'Until') : f.next ? st.label : 'Closed tonight';
+      f.row.classList.toggle('is-open', !!f.cur);
+      f.row.classList.toggle('is-done', !f.cur && !f.next);
+    }
+
+    // Open now first (latest close first), then opening later tonight (soonest first), then done for the night.
+    const rank = (f: (typeof facts)[number]) => (f.cur ? [0, -f.cur[1]] : f.next ? [1, f.next[0]] : [2, 0]);
+    facts.sort((x, y) => rank(x)[0] - rank(y)[0] || rank(x)[1] - rank(y)[1]);
+    list.append(...facts.map((f) => f.row));
+
+    const open = facts.filter((f) => f.cur);
+    const nowPos = facts[0].now / SPAN;
+    nowLabel.style.left = pct(nowPos);
+    nowLabel.hidden = nowPos < 0 || nowPos > 1;
+    const room = matchMedia('(max-width: 719px)').matches ? 0.12 : 0.06;
+    axis.querySelectorAll<HTMLElement>('span').forEach((el, i) => {
+      el.style.visibility = !nowLabel.hidden && Math.abs((ticks[i][0] - START) / SPAN - nowPos) < room ? 'hidden' : '';
+    });
+    const latest = open[0];
+    sum.innerHTML = open.length
+      ? `<b>${open.length} of ${facts.length}</b> open now${latest ? ` · <span>latest: ${latest.row.querySelector('.tl-name')!.childNodes[0].textContent} ${latest.row.querySelector('[data-tl-when]')!.textContent!.replace('Until', 'until')}</span>` : ''}`
+      : facts.some((f) => f.next) ? `<b>Nothing open right now.</b> First to open: ${facts[0].row.querySelector('.tl-name')!.childNodes[0].textContent}, ${facts[0].row.querySelector('[data-tl-when]')!.textContent!.toLowerCase()}.` : '<b>Everything is closed for the night.</b>';
+    clockEl.textContent = new Intl.DateTimeFormat('en-US', { timeZone: facts[0].h.tz, weekday: 'long', hour: 'numeric', minute: '2-digit' }).format(at).replace(' ', ' · ') + ' local time';
+  };
+  timeline.hidden = false;
+  draw();
+  setInterval(draw, 60000);
+}
+
 /* ---------------------------------------------------------- table sorting */
 document.querySelectorAll<HTMLTableElement>('[data-summary]').forEach((table) => {
   const btn = table.querySelector<HTMLButtonElement>('[data-sort]');
