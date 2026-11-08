@@ -11,6 +11,7 @@ import Footer from '../components/Footer.astro';
 import Crumbs from '../components/Crumbs.astro';
 import { SITE, BRAND } from '../lib/data.ts';
 import { breadcrumb, graph, type Crumb } from '../lib/schema.ts';
+import { posterFor } from '../lib/posters.ts';
 
 interface Props {
   title: string;
@@ -22,8 +23,10 @@ interface Props {
   pageType?: string;
   city?: string;
 }
-const { title, description, noindex = false, crumbs = [], schema = [], image = '/brand/og-default.jpg', pageType = 'page', city = '' } = Astro.props;
+const { title, description, noindex = false, crumbs = [], schema = [], pageType = 'page', city = '' } = Astro.props;
 const path = Astro.url.pathname;
+// City, metro and hub pages share their city's poster; everything else uses the default card.
+const image = Astro.props.image ?? (path.startsWith('/places/') && path !== '/places/' ? posterFor(path)?.og : undefined) ?? '/brand/og-default.jpg';
 const canonical = SITE + path;
 const nodes = [...schema, ...(crumbs.length ? [breadcrumb(crumbs, path)] : [])];
 const plausible = import.meta.env.PUBLIC_PLAUSIBLE_DOMAIN;

@@ -1,5 +1,6 @@
 ---
 import Base from '../../layouts/Base.astro';
+import PosterCard from '../../components/PosterCard.astro';
 import { BRAND, cityPages, metroPages, states, venues } from '../../lib/data.ts';
 const cityList = cityPages();
 ---
@@ -13,9 +14,9 @@ const cityList = cityPages();
   <p class="lede">Pick a city guide, or browse by state. Looking for something specific? <a href="/search/">Search by name, open now or 9-foot tables</a>.</p>
   <section class="section">
     <h2>City guides</h2>
-    <ul class="chips">
-      {cityList.map((c) => <li><a class="chip" href={c.url}>{c.where} <span class="n">{c.venues.length}</span></a></li>)}
-      {metroPages().map((m) => <li><a class="chip" href={m.url}>{m.label} area <span class="n">{m.venues.length}</span></a></li>)}
+    <ul class="poster-grid">
+      {cityList.map((c, i) => <li><PosterCard url={c.url} name={c.name} sub={c.where.split(', ').pop()} count={c.venues.length} eager={i < 4} /></li>)}
+      {metroPages().map((m) => <li><PosterCard url={m.url} name={`${m.label} area`} count={m.venues.length} /></li>)}
     </ul>
   </section>
   <section class="section">

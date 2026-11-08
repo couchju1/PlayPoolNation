@@ -9,6 +9,7 @@ import VenueBlock from './VenueBlock.astro';
 import Status from './Status.astro';
 import MapButton from './MapButton.astro';
 import Tonight from './Tonight.astro';
+import { posterFor } from '../lib/posters.ts';
 import { textFacts, type City } from '../lib/data.ts';
 import { DAY_SHORT, brands, faq as faqFor, freePool, hasSize, intro, leagueDays, leagueNights, sizes, tables, typeLabel } from '../lib/text.ts';
 import { joinList, sizesLabel } from '../lib/format.ts';
@@ -37,10 +38,16 @@ const chips: [string, string, (v: Venue) => boolean][] = [
 const shown = chips.filter(([, , test]) => venues.some(test));
 const nights = leagueNights(tv);
 const questions = showFaq ? faqFor(name, tv) : [];
+const poster = posterFor(Astro.url.pathname);
 ---
-<header>
-  <h1>{h1}</h1>
-  <p class="lede">{lead ?? intro(name, tv)}</p>
+<header class:list={['city-head', { 'city-head--poster': poster }]}>
+  <div>
+    <h1>{h1}</h1>
+    <p class="lede">{lead ?? intro(name, tv)}</p>
+  </div>
+  {poster && (
+    <img class="city-poster" src={poster.srcSm} srcset={`${poster.srcSm} 480w, ${poster.src} 900w`} sizes="(min-width: 900px) 300px, 100vw" width="480" height="600" alt="" fetchpriority="high" />
+  )}
 </header>
 
 <Tonight name={name} venues={venues} />
