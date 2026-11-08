@@ -124,3 +124,13 @@ Run that in the Supabase SQL editor and use "Export to CSV" to send a venue its 
 - SMTP: a real mailbox (for example `noreply@playpoolnation.com` on Hostinger: `smtp.hostinger.com`, port 465). Without it Supabase sends at most 2 emails an hour, which blocks sign-ups.
 
 The tables, policies and functions are in `db/schema.sql` (profiles, reviews, `private.review_email_leads`, `venue_review_leads`, `delete_my_account`). The browser uses the project's publishable key (`src/scripts/sb.ts`); row-level security decides what it can do.
+
+## Following and events (the player page)
+
+Signed-in players can **Follow** any venue (venue page header, with a follower count). `/me/` is their home: a profile card (avatar, member since, following, reviews, Passport stamps), the venues they follow, and a **news feed**: upcoming events from those venues first, then their Wall posts and reviews, newest first, with All / Events / Wall / Reviews tabs. People who follow no one get suggested venues.
+
+**Events** (tournaments, league nights, specials, live music) show under "Upcoming events" on the venue page. They're posted from that page by:
+- a site admin, for any venue: a row in the `admins` table (add a user id in the Supabase table editor);
+- the venue's owner, once their row in `claims` is `approved`.
+
+Times are entered in the venue's own time zone. Owners and admins can mark an event cancelled or delete it. Tables, policies and functions: `admins`, `follows`, `events`, `can_manage_venue()`, `follower_count()` in `db/schema.sql`.

@@ -304,3 +304,73 @@ $$;
 drop trigger if exists on_auth_user_confirmed on auth.users;
 create trigger on_auth_user_confirmed after insert or update of email_confirmed_at on auth.users
   for each row execute function public.notify_signup();
+
+-- Following bars, and the events bars post: the player page (/me/) shows a news feed of
+-- events (plus Wall posts and reviews) from the venues you follow.
+-- Admins can post events for any venue; an owner with an approved claim, for their own.
+create table if not exists admins (
+  user_id     uuid primary key references auth.users (id) on delete cascade,
+  created_at  timestamptz not null default now()
+);
+alter table admins enable row level security;
+revoke all on admins from anon, authenticated;
+
+create table if not exists follows (
+  user_id     uuid not null references auth.users (id) on delete cascade,
+  venue_slug  text not null references venues (slug) on update cascade on delete cascade,
+  created_at  timestamptz not null default now(),
+  primary key (user_id, venue_slug)
+);
+create index if not exists follows_venue on follows (venue_slug);
+alter table follows enable row level security;
+drop policy if exists follows_own on follows;
+create policy follows_own on follows for all using (user_id = auth.uid()) with check (user_id = auth.uid());
+revoke all on follows from anon, authenticated;
+grant select, insert, delete on follows to authenticated;
+
+create table if not exists events (
+  id          bigint generated always as identity primary key,
+  venue_slug  text not null references venues (slug) on update cascade on delete cascade,
+  kind        text not null default 'other' check (kind in ('tournament', 'league', 'special', 'music', 'other')),
+  title       text not null check (char_length(title) between 3 and 120),
+  body        text not null default '' check (char_length(body) <= 2000),
+  starts_at   timestamptz not null,
+  ends_at     timestamptz check (ends_at is null or ends_at > starts_at),
+  status      text not null default 'live' check (status in ('live', 'cancelled', 'hidden')),
+  created_by  uuid references auth.users (id) on delete set null,
+  created_at  timestamptz not null default now()
+);
+create index if not exists events_venue on events (venue_slug, starts_at);
+create index if not exists events_start on events (starts_at);
+alter table events enable row level security;
+
+-- Can the signed-in person manage this venue's events?
+create or replace function public.can_manage_venue(p_slug text) returns boolean
+language sql stable security definer set search_path = public as $$
+  select exists (select 1 from admins where user_id = auth.uid())
+      or exists (select 1 from claims where venue_slug = p_slug and user_id = auth.uid() and status = 'approved');
+$$;
+revoke all on function public.can_manage_venue(text) from public;
+grant execute on function public.can_manage_venue(text) to anon, authenticated;
+
+drop policy if exists events_read on events;
+create policy events_read on events for select using (status in ('live', 'cancelled') or can_manage_venue(venue_slug));
+drop policy if exists events_insert on events;
+create policy events_insert on events for insert with check (can_manage_venue(venue_slug) and created_by = auth.uid());
+drop policy if exists events_update on events;
+create policy events_update on events for update using (can_manage_venue(venue_slug)) with check (can_manage_venue(venue_slug));
+drop policy if exists events_delete on events;
+create policy events_delete on events for delete using (can_manage_venue(venue_slug));
+revoke all on events from anon, authenticated;
+grant select on events to anon, authenticated;
+grant insert (venue_slug, kind, title, body, starts_at, ends_at, created_by) on events to authenticated;
+grant update (kind, title, body, starts_at, ends_at, status) on events to authenticated;
+grant delete on events to authenticated;
+
+-- Followers per venue, without exposing who follows.
+create or replace function public.follower_count(p_slug text) returns integer
+language sql stable security definer set search_path = public as $$
+  select count(*)::int from follows where venue_slug = p_slug;
+$$;
+revoke all on function public.follower_count(text) from public;
+grant execute on function public.follower_count(text) to anon, authenticated;

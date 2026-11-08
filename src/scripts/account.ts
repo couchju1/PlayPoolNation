@@ -8,7 +8,7 @@ const q = new URLSearchParams(location.search);
 // Only send people back to a page on this site.
 const nextRaw = q.get('next') || '';
 const next = nextRaw.startsWith('/') && !nextRaw.startsWith('//') ? nextRaw : '';
-const back = (fallback = '/account/') => location.assign(next || fallback);
+const back = (fallback = '/me/') => location.assign(next || fallback);
 
 const show = (view: string) => {
   root.querySelectorAll<HTMLElement>('[data-view]').forEach((el) => (el.hidden = el.dataset.view !== view));

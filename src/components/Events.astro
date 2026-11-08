@@ -1,0 +1,38 @@
+---
+/**
+ * Upcoming events on a venue page (tournaments, league nights, specials, live music), posted by
+ * the venue's approved owner or a site admin. Public to read; the posting form shows only to
+ * people who can manage this venue. Filled in by src/scripts/social.ts.
+ */
+import type { Venue } from '../lib/types.ts';
+const { v } = Astro.props as { v: Venue };
+const tz = v.hours?.tz ?? 'America/Chicago';
+---
+<section class="events panel section" id="events" aria-labelledby="events-title" data-events data-venue={v.slug} data-name={v.name} data-tz={tz} hidden>
+  <div class="events-head">
+    <h2 id="events-title">Upcoming events</h2>
+    <button type="button" class="btn btn--ghost" data-event-new hidden>Post an event</button>
+  </div>
+  <form class="event-form" data-event-form hidden>
+    <div class="event-grid">
+      <label>What
+        <select name="kind">
+          <option value="tournament">Tournament</option>
+          <option value="league">League night</option>
+          <option value="special">Special or deal</option>
+          <option value="music">Live music</option>
+          <option value="other">Other</option>
+        </select>
+      </label>
+      <label class="event-title">Title<input name="title" maxlength="120" required placeholder="Friday 9-ball, $20 entry, race to 5" /></label>
+      <label>Date<input name="date" type="date" required /></label>
+      <label>Starts<input name="start" type="time" required value="19:00" /></label>
+      <label>Ends <small>(optional)</small><input name="end" type="time" /></label>
+    </div>
+    <label>Details<textarea name="body" rows="3" maxlength="2000" placeholder="Entry fee, format, prizes, sign-up time, anything players should know"></textarea></label>
+    <p class="muted event-tz">Times are {v.name}'s local time.</p>
+    <div class="event-send"><button class="btn" type="submit">Post event</button><button class="btn btn--ghost" type="button" data-event-cancel>Cancel</button></div>
+    <p class="review-msg" role="status" data-event-msg></p>
+  </form>
+  <ol class="event-list" data-event-list></ol>
+</section>
