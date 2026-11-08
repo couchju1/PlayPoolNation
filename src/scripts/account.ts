@@ -5,6 +5,8 @@ import { starsText } from './reviews.ts';
 const root = document.querySelector<HTMLElement>('[data-account]')!;
 const msg = root.querySelector<HTMLElement>('[data-account-msg]')!;
 const q = new URLSearchParams(location.search);
+// Arriving back from Google or from an email confirmation link (they carry a one-time code).
+const fromSignIn = q.has('code');
 // Only send people back to a page on this site.
 const nextRaw = q.get('next') || '';
 const next = nextRaw.startsWith('/') && !nextRaw.startsWith('//') ? nextRaw : '';
@@ -78,7 +80,8 @@ sb().then(async (c) => {
   c.auth.onAuthStateChange((event: string) => { if (event === 'PASSWORD_RECOVERY') show('reset'); });
   const { data: { session } } = await c.auth.getSession();
   if (session && q.get('mode') === 'reset') show('reset');
-  else if (session && next) back();
+  // Just signed in: go to the page they came from, or to their feed.
+  else if (session && (next || fromSignIn)) back();
   else if (session) await showMe(c, session.user);
   else show(['join', 'forgot'].includes(q.get('mode') || '') ? q.get('mode')! : 'signin');
 
