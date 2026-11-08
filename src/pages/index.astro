@@ -2,6 +2,7 @@
 import Base from '../layouts/Base.astro';
 import PosterCard from '../components/PosterCard.astro';
 import Feed from '../components/Feed.astro';
+import NationMap from '../components/NationMap.astro';
 import { cityPages, metroLink, metros, states, venues } from '../lib/data.ts';
 
 const all = venues();
@@ -72,25 +73,7 @@ const stateCount = states().length;
 
   <div class="section"><Feed title="Live from the halls" limit={6} more="/live/" /></div>
 
-  <section class="section">
-    <div class="split">
-      <img src="/img/ppn-places-balls.webp" alt="A rack of pool balls" width="1050" height="637" loading="lazy" />
-      <div>
-        <h2>Built for the night you want to play</h2>
-        <div class="stats">
-          <div><b>{all.length}</b><span>places</span></div>
-          <div><b>{cityList.length}</b><span>city guides</span></div>
-          <div><b>{stateCount}</b><span>states</span></div>
-        </div>
-        <ul class="points">
-          <li><b>Open now</b><span>Worked out from each place's posted hours in its own time zone.</span></li>
-          <li><b>The tables</b><span>Counts, sizes and brands, only when a source says so. Unknown stays blank.</span></li>
-          <li><b>League nights</b><span>From the league operators' own schedules.</span></li>
-          <li><b>One tap to go</b><span>Call or get directions right from the list.</span></li>
-        </ul>
-      </div>
-    </div>
-  </section>
+  <NationMap />
 
   <section class="band" aria-labelledby="pick-city">
     <div class="wrap">
