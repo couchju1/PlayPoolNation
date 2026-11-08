@@ -1,7 +1,8 @@
 <?php
 /**
  * GET /api/feed: recent live Wall posts, newest first.
- *   ?v=<venue slug>   one venue        ?c=<state/city>   one city        neither: everywhere
+ *   ?v=<venue slug>   one venue        ?vs=<slug,slug,…>  several (up to 100, the player page)
+ *   ?c=<state/city>   one city         none of these: everywhere
  * Last 30 days, at most 40. Never cached, so a new post shows up on the next load.
  */
 
@@ -17,6 +18,12 @@ if ($v !== '') {
 		ppn_json(['error' => 'bad venue'], 400);
 	}
 	$q[] = 'venue_slug=eq.' . $v;
+} elseif (isset($_GET['vs'])) {
+	$vs = array_values(array_filter(explode(',', (string) $_GET['vs']), fn($s) => preg_match('/^[a-z0-9-]{2,140}$/', $s)));
+	if (!$vs || count($vs) > 100) {
+		ppn_json(['posts' => []]);
+	}
+	$q[] = 'venue_slug=in.(' . implode(',', $vs) . ')';
 } elseif ($c !== '') {
 	if (!preg_match('#^[a-z0-9-]+/[a-z0-9-]+$#', $c)) {
 		ppn_json(['error' => 'bad city'], 400);
