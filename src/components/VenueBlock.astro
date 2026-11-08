@@ -22,6 +22,9 @@ const week = v.hours && v.status === 'open' ? weekHours(v.hours.ranges) : [];
       <table class="hours-table"><tbody>{week.map((r) => <tr><th scope="row">{r.day}</th><td>{r.hours}</td></tr>)}</tbody></table>
     </details>
   )}
+  {v.hours?.ranges?.length && v.status === 'open' ? (
+    <div class="slots" data-slots data-url={v.url} data-tl-hours={JSON.stringify({ tz: v.hours.tz, r: v.hours.ranges, s: v.status })} hidden></div>
+  ) : null}
   <Actions v={v} where={where} />
   <p><a href={v.url}>More about {v.name}</a></p>
 </section>

@@ -205,6 +205,42 @@ details > summary { cursor: pointer; font-weight: 700; color: var(--accent); min
 .leagues dt { font-weight: 800; font-family: var(--head); }
 .leagues dd { margin: 2px 0 0; }
 
+/* Plan your game (venue page) and start-time buttons (city pages) */
+.plan { min-width: 0; background: var(--paper); border: 2px solid var(--felt); border-radius: 14px; padding: 20px; margin-bottom: 20px; box-shadow: 0 14px 34px rgba(10, 42, 32, .14); }
+.plan h2 { font-size: 22px; margin-bottom: 14px; }
+.plan-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 10px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.plan-row label { font-weight: 700; }
+.plan-row select { min-height: 44px; padding: 0 12px; border: 1px solid var(--line); border-radius: 8px; font: 600 16px var(--body); background: #fff; color: var(--ink); }
+.plan-tables { margin: 8px 0 14px; font-size: 14px; color: var(--muted); }
+.plan-days { display: flex; gap: 6px; overflow-x: auto; padding-bottom: 4px; margin-bottom: 12px; scrollbar-width: none; }
+.plan-day { flex: 0 0 auto; display: grid; justify-items: center; gap: 2px; min-width: 64px; min-height: 52px; padding: 6px 8px; border: 1px solid var(--line); border-radius: 10px; background: #fff; color: var(--ink); cursor: pointer; font: 400 12px/1.2 var(--body); }
+.plan-day b { font: 800 14px/1.2 var(--head); }
+.plan-day span { color: var(--muted); }
+.plan-day[aria-pressed='true'] { background: var(--felt); border-color: var(--felt); color: #fff; }
+.plan-day[aria-pressed='true'] span { color: #cfe0d8; }
+.plan-day:disabled { opacity: .4; cursor: not-allowed; text-decoration: line-through; }
+.plan-slots, .slots { display: flex; flex-wrap: wrap; gap: 8px; }
+.plan-slot { display: inline-flex; align-items: center; justify-content: center; min-width: 76px; min-height: 40px; padding: 0 12px; border-radius: 8px; border: 0; background: var(--accent); color: #fff !important; font: 700 14px/1 var(--body); text-decoration: none; cursor: pointer; transition: background-color .15s, transform .15s; }
+.plan-slot:hover { background: var(--accent-hover); transform: translateY(-1px); }
+.plan-slot[aria-pressed='true'] { background: var(--felt); box-shadow: 0 0 0 3px #e2b65a; }
+.plan-empty { margin: 0; color: var(--muted); font-size: 15px; }
+.plan-pick { margin-top: 16px; padding-top: 14px; border-top: 1px dashed var(--line); }
+.plan-summary { margin: 0 0 10px; font-size: 15px; }
+.plan-actions { display: grid; gap: 8px; }
+.plan-actions .btn { width: 100%; }
+.plan-copied { margin: 8px 0 0; font-size: 14px; color: var(--open); min-height: 0; }
+.plan-copied:empty { display: none; }
+.plan-note { margin: 14px 0 0; font-size: 13px; color: var(--muted); }
+.slots { align-items: center; margin: 14px 0 0; }
+.slots-label { flex-basis: 100%; font: 700 12px/1.2 var(--body); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.slots-more { font-size: 14px; font-weight: 700; margin-left: 4px; }
+.venue-block .slots + .actions { margin-top: 12px; }
+@media (max-width: 899px) {
+  .venue-cols { grid-template-columns: minmax(0, 1fr); }
+  .venue-cols > aside { display: contents; }
+  .venue-cols > aside > .plan { order: -1; margin-bottom: 0; }
+}
+
 /* Venue page */
 .venue-head { display: grid; gap: 8px; margin-bottom: 20px; }
 .venue-head .type { color: var(--muted); font-weight: 600; margin: 0; }

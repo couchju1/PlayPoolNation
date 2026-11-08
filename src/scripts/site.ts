@@ -6,7 +6,7 @@
  *  - the map, loaded only when "Show map" is pressed
  *  - the homepage "Play tonight" panel
  */
-import { WEEK, miles, openStatus, venueWeekday, weekMinute } from '../lib/open-status.js';
+import { DAYS, WEEK, clock, miles, openStatus, venueWeekday, weekMinute } from '../lib/open-status.js';
 
 const now = new Date();
 
@@ -207,6 +207,207 @@ if (timeline) {
   draw();
   setInterval(draw, 60000);
 }
+
+/* ------------------------------------------ time slots (Plan your game) */
+type Hours = { tz: string; r: number[][]; s?: string };
+
+/** Open stretches of the week, with ranges split at midnight (or at the week's end) joined. */
+function stretches(h: Hours): number[][] {
+  const r = h.r.filter(([a, b]) => b > a).map(([a, b]) => [a, b]).sort((x, y) => x[0] - y[0]);
+  if (!r.length) return [];
+  if (r.some(([a, b]) => b - a >= WEEK - 1)) return [[0, WEEK * 2]];
+  const out: number[][] = [];
+  for (const [a, b] of r) {
+    const last = out[out.length - 1];
+    if (last && a <= last[1]) last[1] = Math.max(last[1], b);
+    else out.push([a, b]);
+  }
+  // Sunday night into Monday morning.
+  if (out.length > 1 && out[0][0] === 0 && out[out.length - 1][1] >= WEEK) {
+    out[out.length - 1][1] = WEEK + out[0][1];
+    out.shift();
+  }
+  return out;
+}
+
+/**
+ * Hourly start times on the day `ahead` days from now (venue time), as minutes from that day's
+ * midnight (past 1440 means after midnight). The last slot is an hour before close; today's
+ * slots start at least 15 minutes from now. Open-24-hours places get 10 AM to 2 AM.
+ */
+export function slotsFor(h: Hours, ahead: number, at: Date = new Date()): number[] {
+  if (h.s && h.s !== 'open') return [];
+  const m = weekMinute(h.tz, at);
+  const day = (Math.floor(m / 1440) + ahead) % 7;
+  const d0 = day * 1440;
+  const all = stretches(h);
+  const out: number[] = [];
+  const add = (a: number, b: number) => {
+    for (let t = Math.ceil(a / 60) * 60; t <= b - 60; t += 60) {
+      if (ahead === 0 && t < (m % 1440) + 15) continue;
+      out.push(t);
+    }
+  };
+  if (all.length === 1 && all[0][1] - all[0][0] >= WEEK) { add(600, 1560); return out; }
+  for (const [a, b] of all) {
+    for (const shift of [0, WEEK, -WEEK]) {
+      const s = a + shift, e = b + shift;
+      // Stretches that start on this day (venue time).
+      if (s >= d0 && s < d0 + 1440) add(s - d0, e - d0);
+      // A stretch that started the night before and is still going after 6 AM counts too.
+      else if (s < d0 && e > d0 + 360) add(Math.max(s - d0, 360), e - d0);
+    }
+  }
+  return [...new Set(out)].sort((x, y) => x - y);
+}
+
+/** "Sat, Nov 14" for the day `ahead` days from now in the venue's time zone. */
+function dayLabel(tz: string, ahead: number, at: Date = new Date(), style: 'short' | 'long' = 'short') {
+  const d = new Date(at.getTime() + ahead * 86400000);
+  return new Intl.DateTimeFormat('en-US', { timeZone: tz, weekday: style, month: 'short', day: 'numeric' }).format(d);
+}
+/** Year, month, day of that venue-local day, for calendar files. */
+function ymd(tz: string, ahead: number, at: Date = new Date()) {
+  const parts: Record<string, string> = {};
+  new Intl.DateTimeFormat('en-US', { timeZone: tz, year: 'numeric', month: '2-digit', day: '2-digit' }).formatToParts(new Date(at.getTime() + ahead * 86400000)).forEach((p) => (parts[p.type] = p.value));
+  return [Number(parts.year), Number(parts.month), Number(parts.day)];
+}
+
+const plan = document.querySelector<HTMLElement>('[data-plan]');
+if (plan) {
+  const h: Hours = JSON.parse(plan.dataset.tlHours!);
+  const name = plan.dataset.name!;
+  const players = plan.querySelector<HTMLSelectElement>('[data-plan-players]')!;
+  const tablesEl = plan.querySelector<HTMLElement>('[data-plan-tables]')!;
+  const daysEl = plan.querySelector<HTMLElement>('[data-plan-days]')!;
+  const slotsEl = plan.querySelector<HTMLElement>('[data-plan-slots]')!;
+  const pick = plan.querySelector<HTMLElement>('[data-plan-pick]')!;
+  const summary = plan.querySelector<HTMLElement>('[data-plan-summary]')!;
+  const copied = plan.querySelector<HTMLElement>('[data-plan-copied]')!;
+  const q = new URLSearchParams(location.search);
+  let ahead = 0, slot: number | null = null;
+
+  // An invite link names a weekday and time; turn it back into days from now.
+  if (q.get('n') && [...players.options].some((o) => o.value === q.get('n'))) players.value = q.get('n')!;
+  const askedDay = DAYS.indexOf(q.get('day') || '');
+  if (askedDay >= 0) ahead = (askedDay - venueWeekday(h.tz, new Date()) + 7) % 7;
+  const askedT = q.get('t') ? Number(q.get('t')) : null;
+
+  const tables = () => {
+    const n = Number(players.value);
+    const t = n <= 4 ? 1 : Math.ceil(n / 4);
+    tablesEl.textContent = n === 1 ? 'Solo practice: 1 table.' : t === 1 ? `1 table${n === 4 ? ', doubles' : ''}.` : `About ${t} tables. Call ahead${n >= 8 ? ', especially on weekends' : ''}.`;
+  };
+  const drawDays = () => {
+    daysEl.replaceChildren(...Array.from({ length: 7 }, (_, d) => {
+      const b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'plan-day';
+      const open = slotsFor(h, d).length > 0;
+      b.innerHTML = `<b>${d === 0 ? 'Today' : d === 1 ? 'Tomorrow' : dayLabel(h.tz, d).split(',')[0]}</b><span>${dayLabel(h.tz, d).split(', ')[1]}</span>`;
+      b.disabled = !open;
+      if (!open) b.title = 'Closed';
+      b.setAttribute('aria-pressed', String(d === ahead));
+      b.addEventListener('click', () => { ahead = d; slot = null; drawDays(); drawSlots(); });
+      return b;
+    }));
+  };
+  const drawSlots = () => {
+    const list = slotsFor(h, ahead);
+    slotsEl.replaceChildren();
+    if (!list.length) {
+      slotsEl.innerHTML = `<p class="plan-empty">${ahead === 0 ? 'No more start times today.' : 'Closed that day.'} Try another day.</p>`;
+    }
+    for (const t of list) {
+      const b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'plan-slot';
+      b.textContent = clock(t % 1440);
+      b.setAttribute('aria-pressed', String(t === slot));
+      b.addEventListener('click', () => { slot = t; drawSlots(); });
+      slotsEl.append(b);
+    }
+    pick.hidden = slot === null;
+    if (slot !== null) {
+      const n = Number(players.value);
+      summary.innerHTML = `<b>${dayLabel(h.tz, ahead, new Date(), 'long')} · ${clock(slot % 1440)}</b> · ${n === 1 ? '1 player' : `${n} players`} at ${name}`;
+      copied.textContent = '';
+    }
+  };
+
+  const inviteUrl = () => {
+    const u = new URL(location.pathname, location.origin);
+    u.searchParams.set('day', DAYS[(venueWeekday(h.tz, new Date()) + ahead) % 7]);
+    u.searchParams.set('t', String(slot));
+    u.searchParams.set('n', players.value);
+    return u.toString() + '#plan-title';
+  };
+  plan.querySelector('[data-plan-invite]')!.addEventListener('click', async () => {
+    const text = `Pool at ${name}, ${dayLabel(h.tz, ahead, new Date(), 'long')} at ${clock(slot! % 1440)}. You in?`;
+    const url = inviteUrl();
+    try {
+      if (navigator.share) { await navigator.share({ title: `Pool at ${name}`, text, url }); return; }
+      await navigator.clipboard.writeText(`${text} ${url}`);
+      copied.textContent = 'Invite copied. Paste it in your group chat.';
+    } catch { /* cancelled */ }
+  });
+  plan.querySelector('[data-plan-ics]')!.addEventListener('click', () => {
+    const [y, mo, d] = ymd(h.tz, ahead);
+    const start = new Date(Date.UTC(y, mo - 1, d, 0, slot!));
+    const end = new Date(start.getTime() + 2 * 3600000);
+    const f = (x: Date) => x.toISOString().slice(0, 19).replace(/[-:]/g, '');
+    const esc = (x: string) => x.replace(/[\\,;]/g, (c) => '\\' + c);
+    const ics = ['BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//PlayPoolNation//Plan//EN', 'BEGIN:VEVENT',
+      `UID:${Date.now()}-${plan.dataset.venue}@playpoolnation.com`, `DTSTAMP:${f(new Date())}Z`,
+      `DTSTART;TZID=${h.tz}:${f(start)}`, `DTEND;TZID=${h.tz}:${f(end)}`,
+      `SUMMARY:${esc(`Pool at ${name}`)}`, `LOCATION:${esc(plan.dataset.dest || name)}`,
+      `DESCRIPTION:${esc(`Call ahead to hold a table${plan.dataset.tel ? ': ' + plan.dataset.tel : ''}. ${location.origin}${location.pathname}`)}`,
+      'END:VEVENT', 'END:VCALENDAR'].join('\r\n');
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(new Blob([ics], { type: 'text/calendar' }));
+    a.download = `pool-${plan.dataset.venue}.ics`;
+    a.click();
+    setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+  });
+  players.addEventListener('change', () => { tables(); drawSlots(); });
+
+  // Start on the asked day, or the first day with start times left.
+  if (askedDay < 0) while (ahead < 6 && !slotsFor(h, ahead).length) ahead++;
+  if (askedT !== null && slotsFor(h, ahead).includes(askedT)) slot = askedT;
+  plan.hidden = false;
+  tables();
+  drawDays();
+  drawSlots();
+  if (slot !== null && location.hash === '#plan-title') plan.scrollIntoView({ block: 'center' });
+}
+
+/* City pages: the next few start times under each venue, like a booking site's results. */
+document.querySelectorAll<HTMLElement>('[data-slots]').forEach((el) => {
+  const h: Hours = JSON.parse(el.dataset.tlHours!);
+  let ahead = 0;
+  let list = slotsFor(h, 0);
+  if (!list.length) { ahead = 1; list = slotsFor(h, 1); }
+  if (!list.length) return;
+  const day = DAYS[(venueWeekday(h.tz, new Date()) + ahead) % 7];
+  const label = document.createElement('span');
+  label.className = 'slots-label';
+  label.textContent = ahead === 0 ? 'Start times tonight' : 'Tomorrow';
+  el.append(label, ...list.slice(0, 4).map((t) => {
+    const a = document.createElement('a');
+    a.className = 'plan-slot';
+    a.href = `${el.dataset.url}?day=${day}&t=${t}#plan-title`;
+    a.textContent = clock(t % 1440);
+    return a;
+  }));
+  if (list.length > 4) {
+    const more = document.createElement('a');
+    more.className = 'slots-more';
+    more.href = `${el.dataset.url}#plan-title`;
+    more.textContent = 'More times';
+    el.append(more);
+  }
+  el.hidden = false;
+});
 
 /* ---------------------------------------------------------- table sorting */
 document.querySelectorAll<HTMLTableElement>('[data-summary]').forEach((table) => {

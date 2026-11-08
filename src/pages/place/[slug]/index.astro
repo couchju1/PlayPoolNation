@@ -9,6 +9,7 @@ import Status from '../../../components/Status.astro';
 import Actions from '../../../components/Actions.astro';
 import Room from '../../../components/Room.astro';
 import MapButton from '../../../components/MapButton.astro';
+import PlanCard from '../../../components/PlanCard.astro';
 import { BRAND, cityOf, nearbyVenues, textFacts, venues } from '../../../lib/data.ts';
 import { about, brands, clip, factLines, leagueLines, typeLabel, weekHours } from '../../../lib/text.ts';
 import { host, shortDate } from '../../../lib/format.ts';
@@ -95,6 +96,7 @@ const listingFrom = v.listing_source?.source === 'google_places' ? 'Google Place
     </div>
 
     <aside>
+      <PlanCard v={v} />
       <section class="panel">
         <h2>Where and when</h2>
         <dl class="facts">
