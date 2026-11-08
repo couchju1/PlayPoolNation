@@ -1,13 +1,14 @@
 ---
 /**
  * The city pillar page body (also used by metro pages): opening paragraph from
- * the data, "Find a table" filters and jump list, an at-a-glance table, the map
+ * the data, the Tonight timeline, "Find a table" filters and jump list, an at-a-glance table, the map
  * on tap, one section per venue, league nights, a FAQ the data answers, and
  * links to hubs and nearby cities. Complete without JavaScript.
  */
 import VenueBlock from './VenueBlock.astro';
 import Status from './Status.astro';
 import MapButton from './MapButton.astro';
+import Tonight from './Tonight.astro';
 import { textFacts, type City } from '../lib/data.ts';
 import { DAY_SHORT, brands, faq as faqFor, freePool, hasSize, intro, leagueDays, leagueNights, sizes, tables, typeLabel } from '../lib/text.ts';
 import { joinList, sizesLabel } from '../lib/format.ts';
@@ -41,6 +42,8 @@ const questions = showFaq ? faqFor(name, tv) : [];
   <h1>{h1}</h1>
   <p class="lede">{lead ?? intro(name, tv)}</p>
 </header>
+
+<Tonight name={name} venues={venues} />
 
 <section class="section" aria-labelledby="find">
   <h2 id="find">Find a table</h2>

@@ -1,0 +1,43 @@
+---
+/**
+ * "Tonight in <city>": one bar per venue across tonight's hours (10 AM to 6 AM, venue time),
+ * a line at the current time, closing times, and league nights. The browser draws it from
+ * each venue's weekly hours (src/scripts/site.ts), so cached pages stay right; without
+ * JavaScript the section stays hidden and the page below has the same facts.
+ */
+import { leagueDays, tables } from '../lib/text.ts';
+import type { Venue } from '../lib/types.ts';
+
+const { name, venues } = Astro.props as { name: string; venues: Venue[] };
+const rows = venues.filter((v) => v.hours?.ranges?.length && v.status === 'open');
+const anyLeague = rows.some((v) => leagueDays(v).length > 0);
+---
+{rows.length >= 2 && (
+  <section class="tonight-tl" aria-labelledby="tonight-tl" data-timeline hidden>
+    <div class="tl-head">
+      <div>
+        <p class="tl-eyebrow" data-tl-clock>Tonight</p>
+        <h2 id="tonight-tl">Tonight in {name}</h2>
+      </div>
+      <p class="tl-sum" aria-live="polite" data-tl-sum></p>
+    </div>
+    <div class="tl-grid">
+      <div class="tl-axis" aria-hidden="true" data-tl-axis></div>
+      <ol class="tl-rows">
+        {rows.map((v) => (
+          <li
+            class="tl-row"
+            data-tl-row
+            data-tl-hours={JSON.stringify({ tz: v.hours!.tz, r: v.hours!.ranges, s: v.status })}
+            data-league={leagueDays(v).join(' ')}
+          >
+            <a class="tl-name" href={`#${v.anchor}`}>{v.name}{tables(v) ? <small>{tables(v)} tables</small> : null}</a>
+            <span class="tl-track" data-tl-track></span>
+            <span class="tl-when" data-tl-when></span>
+          </li>
+        ))}
+      </ol>
+    </div>
+    <p class="tl-note">Bars show tonight's posted hours in local time. {anyLeague && <span class="tl-key"><i></i> league night</span>} Details change, so call ahead.</p>
+  </section>
+)}
