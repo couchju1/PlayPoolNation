@@ -282,3 +282,25 @@ language sql security definer set search_path = public as $$
 $$;
 revoke all on function public.delete_my_account() from public, anon;
 grant execute on function public.delete_my_account() to authenticated;
+
+-- Email the owner when someone confirms a new account: the trigger sends only the user id to
+-- /api/notify-signup, which checks it with Supabase before emailing (public/api/notify-signup.php).
+-- pg_net makes the web request after the transaction commits, so sign-ups never wait on it.
+create extension if not exists pg_net with schema extensions;
+
+create or replace function public.notify_signup() returns trigger
+language plpgsql security definer set search_path = public, extensions as $$
+begin
+  if new.email_confirmed_at is not null and (tg_op = 'INSERT' or old.email_confirmed_at is null) then
+    perform net.http_post(
+      url := 'https://playpoolnation.com/api/notify-signup/',
+      body := jsonb_build_object('id', new.id),
+      headers := '{"Content-Type": "application/json"}'::jsonb
+    );
+  end if;
+  return new;
+end;
+$$;
+drop trigger if exists on_auth_user_confirmed on auth.users;
+create trigger on_auth_user_confirmed after insert or update of email_confirmed_at on auth.users
+  for each row execute function public.notify_signup();

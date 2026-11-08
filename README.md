@@ -117,6 +117,8 @@ select * from private.review_email_leads where venue_slug = 'rack-city-billiards
 
 Run that in the Supabase SQL editor and use "Export to CSV" to send a venue its list. The `private` schema isn't reachable through the public API. An owner with an approved claim can also fetch their own venue's list with `rpc('venue_review_leads', { p_slug })`. The privacy policy describes all of this.
 
+**Sign-up emails to the owner.** When someone confirms a new account, a database trigger (`notify_signup` in `db/schema.sql`, using `pg_net`) posts the user's id to `/api/notify-signup`. That script checks the id with Supabase (service key), so it can't be used to send fake emails, and mails one notice per new account to `info@playpoolnation.com` (set `NOTIFY_TO` in `ppn-secrets.php` to change it) with the player's name, email and the running total, Reply-To the player.
+
 **Supabase settings this needs** (Authentication in the dashboard):
 - URL Configuration: Site URL `https://playpoolnation.com`, redirect URL `https://playpoolnation.com/account/**`.
 - SMTP: a real mailbox (for example `noreply@playpoolnation.com` on Hostinger: `smtp.hostinger.com`, port 465). Without it Supabase sends at most 2 emails an hour, which blocks sign-ups.

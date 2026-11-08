@@ -119,7 +119,7 @@ RewriteCond %{HTTP_HOST} ^playpoolnation\\.com$ [NC]
 RewriteRule ^ https://playpoolnation.com%{REQUEST_URI} [R=301,L]
 
 # Click counts and forms (PHP, writes to Supabase).
-RewriteRule ^api/(event|submit|post|feed|react)/?$ api/$1.php [L]
+RewriteRule ^api/(event|submit|post|feed|react|notify-signup)/?$ api/$1.php [L]
 
 # Old WordPress URLs.
 ${rules.map((r) => `#R ${r[0]} ${r[1]}\n${rewrite(r)}`).join('\n')}
