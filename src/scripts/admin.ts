@@ -122,7 +122,7 @@ const me = savedUser();
 
   /* Players' answers to "How many tables?", grouped per venue. */
   const rep = document.querySelector<HTMLElement>('[data-reports]')!;
-  const { data: answers } = await c.from('submissions').select('venue_slug, payload, created_at').eq('kind', 'edit').eq('payload->>type', 'tables').order('created_at', { ascending: false }).limit(1000);
+  const { data: answers } = await c.from('submissions').select('venue_slug, payload, created_at').eq('kind', 'edit').eq('payload->>type', 'tables').in('status', ['new', 'done']).order('created_at', { ascending: false }).limit(1000);
   const groups = new Map<string, any[]>();
   for (const r of answers || []) groups.set(r.venue_slug, [...(groups.get(r.venue_slug) || []), { ...r.payload, created_at: r.created_at }]);
   const SZ: Record<string, string> = { '7ft': '7-ft', '8ft': '8-ft', '9ft': '9-ft', snooker: 'Snooker', carom: 'Carom' };
