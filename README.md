@@ -168,7 +168,7 @@ Database: `my_venues()`, `venue_review_leads()` (owner or admin), `admin_set_own
 Every venue page asks players, in "The tables" section: how many tables, which sizes, which brand, and when they were there. When the site already has a count it asks "Still 12 tables?" with that number filled in, so confirming takes one tap.
 
 - Answers go to `POST /api/tables` (`public/api/tables.php`) and are saved in `submissions` (kind `edit`, `payload.type = "tables"`). Nothing on the site changes from an answer. Spam checks: same origin, honeypot, time on the card, known venue, 6 answers per visitor per hour.
-- `/admin/` → **Table answers** lists them per venue with what players agree on.
+- `/admin/` → **Table answers** lists them per venue with what players agree on (declined answers are hidden).
 - To put them on the site:
   ```
   SUPABASE_URL=... SUPABASE_SERVICE_KEY=... npm run player-reports
