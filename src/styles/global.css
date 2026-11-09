@@ -858,3 +858,27 @@ body[data-page-type='practice'] .site-foot { margin-top: 0; border-top: 1px soli
 .reports .rep-head { display: flex; flex-wrap: wrap; gap: 6px 12px; align-items: baseline; }
 .reports .rep-agree { font-weight: 700; color: var(--felt); }
 .reports .rep-list { margin: 8px 0 0; padding-left: 18px; font-size: 14px; color: var(--muted); }
+
+/* Venue cover photo and profile picture (VenueCover.astro), Facebook-page style */
+.vcover { position: relative; margin: 0 0 4px; }
+.vcover-img { position: relative; aspect-ratio: 16 / 9; border-radius: 14px; overflow: hidden; background: radial-gradient(120% 140% at 20% 10%, #1b5a43 0%, var(--felt) 45%, var(--felt-deep) 100%); }
+.vcover-img img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center 38%; }
+.vcover-img img[data-default] { filter: saturate(.9); }
+.vcover-img::after { content: ''; position: absolute; inset: auto 0 0 0; height: 40%; background: linear-gradient(to top, rgba(10,42,32,.35), transparent); pointer-events: none; }
+.vcover-edit { position: absolute; right: 12px; bottom: 12px; z-index: 1; min-height: 40px; font-size: 14px; cursor: pointer; box-shadow: 0 2px 10px rgba(0,0,0,.25); }
+.vavatar { position: absolute; left: 16px; bottom: -48px; width: 104px; height: 104px; border-radius: 50%; border: 4px solid var(--bone); background: #fff; box-shadow: 0 4px 14px rgba(10,42,32,.18); }
+.vavatar-ball, .vavatar img { display: block; width: 100%; height: 100%; border-radius: 50%; object-fit: cover; }
+.vavatar-edit { position: absolute; right: -2px; bottom: 2px; display: grid; place-items: center; width: 36px; height: 36px; border-radius: 50%; background: var(--bone); color: var(--ink); border: 1px solid var(--line); cursor: pointer; box-shadow: 0 2px 6px rgba(0,0,0,.2); }
+.vavatar-edit svg { width: 20px; height: 20px; }
+.vcover-edit:has(input:focus-visible), .vavatar-edit:has(input:focus-visible) { outline: 3px solid var(--accent); outline-offset: 2px; }
+.vcover-msg { margin: 0; position: absolute; right: 0; bottom: -28px; font-size: 14px; color: var(--muted); }
+.vcover-msg:empty { display: none; }
+.venue-head--cover > .type { margin-top: 56px; }
+@media (min-width: 760px) {
+  .vcover-img { aspect-ratio: 3 / 1; }
+  .vavatar { left: 28px; bottom: -84px; width: 168px; height: 168px; border-width: 5px; }
+  .vavatar-edit { right: 6px; bottom: 8px; width: 40px; height: 40px; }
+  .venue-head--cover > :not(.vcover) { padding-left: 216px; }
+  .venue-head--cover > .type { margin-top: 10px; }
+  .venue-head--cover { min-height: 0; }
+}

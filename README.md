@@ -176,3 +176,10 @@ Every venue page asks players, in "The tables" section: how many tables, which s
   ```
   `scripts/player-reports.mjs` writes suggested facts to `tools/enrich/out/players/` (source type `community`, flagged "from players", with how many agreed). Two or more players agreeing is marked "stated", one player "implied". Sizes and brands a source already gave are left alone. The review tool shows each suggestion next to the current value; approved facts are credited on the page to "players who've been there".
 - Agreement rules are in `src/lib/player-reports.js` (one answer per signed-in player, the middle answer, give or take 1 table).
+
+## Cover photo and profile picture
+
+Every venue page opens like a Facebook page: a wide cover photo with a round profile picture overlapping it (`src/components/VenueCover.astro`).
+- **Until the venue uploads its own:** the cover is the city's illustrated poster, and the profile picture is a pool-ball badge with the venue's initials (its color stays the same for a venue).
+- **The venue's approved owner, or an admin,** sees "Edit cover photo" and a camera button on the profile picture. Uploads are re-drawn as JPEGs in the browser (no GPS or camera data): covers up to 1600 px wide, profile pictures cropped to a 400 px square. Replacing a picture deletes the old file.
+- Stored in the `venue-photos` bucket under the venue's folder, and recorded in the `venue_profiles` table (`db/schema.sql`; anyone can read, only the venue's managers can write). `src/scripts/venue-profile.ts` loads them on the page.

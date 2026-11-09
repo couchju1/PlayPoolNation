@@ -522,3 +522,25 @@ begin
   return new;
 end;
 $$;
+
+-- ------------------------------------------------------------------ venue profile and cover pictures
+-- Like a Facebook page: one round profile picture and one wide cover photo per venue,
+-- uploaded by the venue's owner or an admin to venue-photos/<slug>/ (the upload policy above
+-- already limits that folder to people who can manage the venue). Everyone can read them.
+create table if not exists venue_profiles (
+  venue_slug  text primary key,
+  avatar_path text,
+  cover_path  text,
+  updated_by  uuid references auth.users (id) on delete set null,
+  updated_at  timestamptz not null default now()
+);
+alter table venue_profiles enable row level security;
+drop policy if exists venue_profiles_read on venue_profiles;
+create policy venue_profiles_read on venue_profiles for select using (true);
+drop policy if exists venue_profiles_insert on venue_profiles;
+create policy venue_profiles_insert on venue_profiles for insert with check (can_manage_venue(venue_slug) and updated_by = auth.uid());
+drop policy if exists venue_profiles_update on venue_profiles;
+create policy venue_profiles_update on venue_profiles for update using (can_manage_venue(venue_slug)) with check (can_manage_venue(venue_slug) and updated_by = auth.uid());
+revoke all on venue_profiles from anon, authenticated;
+grant select on venue_profiles to anon, authenticated;
+grant insert (venue_slug, avatar_path, cover_path, updated_by, updated_at), update (avatar_path, cover_path, updated_by, updated_at) on venue_profiles to authenticated;

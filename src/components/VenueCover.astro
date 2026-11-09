@@ -1,0 +1,41 @@
+---
+/**
+ * The top of a venue page, like a Facebook page: a wide cover photo and a round profile picture.
+ * Until the venue's owner (or an admin) uploads their own, the cover is the city's poster
+ * and the profile picture is a pool-ball badge with the venue's initials.
+ * src/scripts/venue-profile.ts swaps in uploaded pictures and shows the edit buttons to managers.
+ */
+import { cityOf } from '../lib/data.ts';
+import { posterFor } from '../lib/posters.ts';
+import type { Venue } from '../lib/types.ts';
+
+const { v } = Astro.props as { v: Venue };
+const city = cityOf(v);
+const poster = posterFor(city?.url || `/places/${v.region.state}/`);
+// Solid pool-ball colors (1-7); the badge color stays the same for a venue.
+const BALLS = ['#f2c12e', '#2f5fb3', '#d1352b', '#5b3c8f', '#e8772e', '#1f7a4a', '#8a2b2b'];
+let h = 0;
+for (const ch of v.slug) h = (h * 31 + ch.charCodeAt(0)) >>> 0;
+const ball = BALLS[h % BALLS.length];
+const words = v.name.replace(/^the\s+/i, '').replace(/[^A-Za-z0-9 &']/g, ' ').split(/\s+/).filter((w) => w && !/^(and|&|of|on|at|bar|grill|pub)$/i.test(w));
+const initials = (words.length ? words : [v.name]).slice(0, 2).map((w) => w[0]).join('').toUpperCase();
+---
+<div class="vcover" data-venue-profile={v.slug} data-name={v.name}>
+  <div class="vcover-img" data-cover>
+    {poster ? <img src={poster.src} alt="" width="900" height="1125" decoding="async" fetchpriority="high" data-cover-img data-default /> : <img alt="" hidden data-cover-img />}
+    <label class="vcover-edit btn btn--light" data-cover-edit hidden><input type="file" accept="image/*" hidden data-cover-input />Edit cover photo</label>
+  </div>
+  <div class="vavatar" data-avatar>
+    <svg class="vavatar-ball" viewBox="0 0 100 100" aria-hidden="true" data-avatar-ball>
+      <circle cx="50" cy="50" r="50" fill={ball} />
+      <circle cx="50" cy="50" r="31" fill="#fff" />
+      <ellipse cx="32" cy="24" rx="16" ry="9" fill="#fff" opacity=".28" transform="rotate(-30 32 24)" />
+      <text x="50" y="50" dy=".35em" text-anchor="middle" fill="#14201b" font-size={initials.length > 1 ? 26 : 32} font-weight="800" font-family="Archivo, system-ui, sans-serif">{initials}</text>
+    </svg>
+    <img alt={`${v.name} profile picture`} hidden data-avatar-img />
+    <label class="vavatar-edit" data-avatar-edit hidden aria-label="Edit profile picture" title="Edit profile picture"><input type="file" accept="image/*" hidden data-avatar-input />
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M9 4h6l1.5 2H20a1 1 0 0 1 1 1v11a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h3.5L9 4Zm3 4a4.5 4.5 0 1 0 0 9 4.5 4.5 0 0 0 0-9Zm0 2a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5Z"/></svg>
+    </label>
+  </div>
+  <p class="vcover-msg" role="status" data-profile-msg></p>
+</div>
