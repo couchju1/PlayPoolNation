@@ -14,6 +14,7 @@ import Ratings from '../../../components/Ratings.astro';
 import Reviews from '../../../components/Reviews.astro';
 import Events from '../../../components/Events.astro';
 import Photos from '../../../components/Photos.astro';
+import TablesAsk from '../../../components/TablesAsk.astro';
 import { BRAND, cityOf, nearbyVenues, textFacts, venues } from '../../../lib/data.ts';
 import { about, brands, clip, factLines, leagueLines, typeLabel, weekHours } from '../../../lib/text.ts';
 import { host, shortDate } from '../../../lib/format.ts';
@@ -88,7 +89,7 @@ const listingFrom = v.listing_source?.source === 'google_places' ? 'Google Place
 
       <Wall v={v} />
 
-      <section class="panel section">
+      <section class="panel section" id="tables">
         <h2>The tables</h2>
         {lines.length > 0 ? (
           <dl class="facts">{lines.map(([label, value]) => (<><dt>{label}</dt><dd>{value}</dd></>))}
@@ -98,6 +99,7 @@ const listingFrom = v.listing_source?.source === 'google_places' ? 'Google Place
         ) : <p class="muted">We don't have table details for {v.name} yet. If you've played here, <a href={`/suggest-an-edit/?v=${v.slug}`}>tell us what you saw</a>.</p>}
         <Room v={v} />
         {defaults.length > 0 && <p class="muted" style="font-size:14px">Table size not stated by any source yet. Shown as 7-foot, the usual bar size.</p>}
+        <TablesAsk v={v} />
       </section>
 
       {leagues.length > 0 && (
@@ -136,7 +138,7 @@ const listingFrom = v.listing_source?.source === 'google_places' ? 'Google Place
       <section class="panel section sources">
         <h2 style="font-size:20px">Sources</h2>
         {bySource.size > 0 && (
-          <ul>{[...bySource.values()].map((s) => <li>{[...s.fields].join(', ')}: <a href={s.url} rel="nofollow noopener" target="_blank">{host(s.url)}</a>, checked {shortDate(s.at)}</li>)}</ul>
+          <ul>{[...bySource.values()].map((s) => <li>{[...s.fields].join(', ')}: {s.url.endsWith('#tables') && s.url.includes(`/place/${v.slug}/`) ? <a href="#tables">players who've been there</a> : <a href={s.url} rel="nofollow noopener" target="_blank">{host(s.url)}</a>}, checked {shortDate(s.at)}</li>)}</ul>
         )}
         {v.listing_source?.checked_at && <p style="margin-top:8px">Address, phone and hours{listingFrom ? ` from ${listingFrom}` : ''}, confirmed open {shortDate(v.listing_source.checked_at)}.</p>}
         <p>Every fact here was approved by a person. Unknown details stay blank. <a href="/how-we-check/">How we check</a>.</p>

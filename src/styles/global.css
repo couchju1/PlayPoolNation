@@ -817,3 +817,44 @@ body[data-page-type='practice'] .site-foot { margin-top: 0; border-top: 1px soli
 .prose h2 { margin-top: 1.5em; }
 
 @media (prefers-reduced-motion: reduce) { * { scroll-behavior: auto !important; transition: none !important; animation: none !important; } }
+
+/* "How many tables?" player question (TablesAsk.astro) */
+.ask { margin-top: 20px; border-radius: 14px; background: linear-gradient(160deg, var(--felt) 0%, var(--felt-deep) 100%); color: #fff; overflow: hidden; }
+.ask-form, .ask-done { display: grid; gap: 16px; padding: 20px; }
+.ask-kicker { margin: 0; font: 700 12px/1.2 var(--body); letter-spacing: .1em; text-transform: uppercase; color: #ffd978; }
+.ask-q { margin: 4px 0 0; font-size: 22px; line-height: 1.2; color: #fff; }
+.ask-sub { margin: 6px 0 0; font-size: 14px; color: #cfdad4; }
+.ask fieldset { border: 0; margin: 0; padding: 0; min-width: 0; }
+.ask legend { padding: 0; margin-bottom: 8px; font-weight: 700; font-size: 15px; }
+.ask .muted { color: #a9bcb3; font-weight: 400; }
+.ask-count { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 18px; }
+.ask-count legend { width: 100%; }
+.ask-stepper { display: inline-flex; align-items: center; border: 1px solid rgba(255,255,255,.3); border-radius: 999px; background: rgba(255,255,255,.08); }
+.ask-step { all: unset; display: grid; place-items: center; width: 48px; height: 48px; font-size: 24px; font-weight: 700; cursor: pointer; border-radius: 999px; }
+.ask-step:hover { background: rgba(255,255,255,.12); }
+.ask-step:focus-visible { outline: 3px solid #ffd978; }
+.ask-stepper input { width: 64px; height: 48px; border: 0; background: transparent; color: #fff; font: 800 26px/1 var(--body); text-align: center; -moz-appearance: textfield; }
+.ask-stepper input::-webkit-inner-spin-button, .ask-stepper input::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0; }
+.ask-stepper input:disabled { opacity: .35; }
+.ask-unsure { display: inline-flex; gap: 8px; align-items: center; font-size: 14px; cursor: pointer; }
+.ask .chip { background: rgba(255,255,255,.06); border-color: rgba(255,255,255,.25); color: #fff; }
+.ask-chip input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+.ask-chip:has(input:checked) { background: #ffd978; border-color: #ffd978; color: var(--felt-deep); }
+.ask-chip:has(input:focus-visible) { outline: 3px solid #ffd978; outline-offset: 2px; }
+.ask-other, .ask-note input { width: 100%; max-width: 360px; min-height: 44px; margin-top: 10px; padding: 0 12px; border: 1px solid rgba(255,255,255,.3); border-radius: 10px; background: rgba(255,255,255,.08); color: #fff; font: 400 16px var(--body); }
+.ask-note { display: grid; font-weight: 700; font-size: 15px; }
+.ask-note input { max-width: none; margin-top: 8px; }
+.ask ::placeholder { color: #a9bcb3; }
+.ask-send { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
+.ask-send .btn { background: #ffd978; border-color: #ffd978; color: var(--felt-deep); }
+.ask .review-msg { color: #ffd978; }
+.ask-done .linkish { color: #ffd978; }
+.ask .hp { position: absolute; left: -5000px; width: 1px; height: 1px; }
+@media (max-width: 560px) { .ask-form, .ask-done { padding: 16px; } .ask-q { font-size: 20px; } }
+
+/* Admin: player table answers */
+.reports { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+.reports > li { padding: 14px 16px; border: 1px solid var(--line); border-radius: 12px; background: var(--paper); }
+.reports .rep-head { display: flex; flex-wrap: wrap; gap: 6px 12px; align-items: baseline; }
+.reports .rep-agree { font-weight: 700; color: var(--felt); }
+.reports .rep-list { margin: 8px 0 0; padding-left: 18px; font-size: 14px; color: var(--muted); }

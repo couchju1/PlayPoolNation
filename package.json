@@ -15,7 +15,8 @@
     "db:seed-sql": "node scripts/seed-sql.mjs",
     "indexnow": "node scripts/indexnow.mjs",
     "test": "node --test tests/*.test.mjs",
-    "db:pull": "node scripts/db-pull.mjs"
+    "db:pull": "node scripts/db-pull.mjs",
+    "player-reports": "node scripts/player-reports.mjs"
   },
   "dependencies": {
     "@fontsource-variable/figtree": "5.3.0",
