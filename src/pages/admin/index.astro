@@ -5,7 +5,7 @@ import { BRAND } from '../../lib/data.ts';
 ---
 <Base title={`Admin | ${BRAND}`} description="Review photos waiting for approval." noindex crumbs={[['Home', '/'], ['Admin', '']]} pageType="admin">
   <h1>Admin</h1>
-  <nav class="chips admin-nav" aria-label="Sections"><a class="chip" href="#photos-q">Photos</a><a class="chip" href="#owners">Bar owners</a><a class="chip" href="/dashboard/">Bar dashboard</a></nav>
+  <nav class="chips admin-nav" aria-label="Sections"><a class="chip" href="#photos-q">Photos</a><a class="chip" href="#owners">Bar owners</a><a class="chip" href="#tables-q">Table answers</a><a class="chip" href="/dashboard/">Bar dashboard</a></nav>
   <h2 id="photos-q">Photos waiting for approval</h2>
   <p class="lede">Players' Wall photos stay hidden until you approve them. Approved photos show on the post and in the venue's Photos.</p>
   <p class="acct-msg" role="status" data-admin-msg>Loading…</p>
@@ -25,6 +25,12 @@ import { BRAND } from '../../lib/data.ts';
     <ol class="claims" data-claims></ol>
     <h3>Current owners</h3>
     <ol class="claims" data-owner-list></ol>
+  </section>
+
+  <section class="section" id="tables-q" aria-labelledby="tables-title" data-reports hidden>
+    <h2 id="tables-title">Players' table answers</h2>
+    <p class="muted">What players told the "How many tables?" card, per venue, newest first. To put agreeing answers on the site, run <code>npm run player-reports</code> and then <code>npm run review</code> (pick "players").</p>
+    <ol class="reports" data-report-list></ol>
   </section>
 </Base>
 <script>

@@ -1,5 +1,6 @@
 /** /admin/: the photo approval queue and bar owners (claim requests, make owner, remove). The database lets only admins do any of it. */
 import { savedUser, sb } from './sb.ts';
+import { summarize } from '../lib/player-reports.js';
 
 const list = document.querySelector<HTMLOListElement>('[data-queue]')!;
 const msg = document.querySelector<HTMLElement>('[data-admin-msg]')!;
@@ -118,4 +119,35 @@ const me = savedUser();
   if (!claims?.length) cl.innerHTML = '<li class="muted">No claim requests yet. They come from the "Own a venue? Claim it" form.</li>';
   owners();
   box.hidden = false;
+
+  /* Players' answers to "How many tables?", grouped per venue. */
+  const rep = document.querySelector<HTMLElement>('[data-reports]')!;
+  const { data: answers } = await c.from('submissions').select('venue_slug, payload, created_at').eq('kind', 'edit').eq('payload->>type', 'tables').order('created_at', { ascending: false }).limit(1000);
+  const groups = new Map<string, any[]>();
+  for (const r of answers || []) groups.set(r.venue_slug, [...(groups.get(r.venue_slug) || []), { ...r.payload, created_at: r.created_at }]);
+  const SZ: Record<string, string> = { '7ft': '7-ft', '8ft': '8-ft', '9ft': '9-ft', snooker: 'Snooker', carom: 'Carom' };
+  const WHEN: Record<string, string> = { tonight: 'that day', recently: 'this month', while: 'a while ago' };
+  rep.querySelector('[data-report-list]')!.replaceChildren(...[...groups].map(([slug, list]) => {
+    const s = summarize(list);
+    const v = byId.get(slug);
+    const li = document.createElement('li');
+    li.innerHTML = '<div class="rep-head"><a></a><span class="rep-agree"></span><span class="muted"></span></div><p class="rep-sum"></p><ul class="rep-list"></ul>';
+    const a = li.querySelector('a')!;
+    a.href = (v?.u || `/place/${slug}/`) + '#tables';
+    a.textContent = v ? label(v) : slug;
+    li.querySelector('.rep-agree')!.textContent = s.count ? `${s.count.value} tables · ${s.count.agree} of ${s.count.of} agree` : 'No count yet';
+    li.querySelector('.muted')!.textContent = `${s.players} ${s.players === 1 ? 'player' : 'players'}`;
+    li.querySelector('.rep-sum')!.textContent = [
+      s.sizes.length ? 'Sizes: ' + s.sizes.map((z: any) => `${SZ[z.size]} (${z.players})`).join(', ') : '',
+      s.brands.length ? 'Brands: ' + s.brands.map((b: any) => `${b.brand} (${b.players})`).join(', ') : '',
+    ].filter(Boolean).join(' · ');
+    li.querySelector('.rep-list')!.replaceChildren(...list.map((x: any) => {
+      const r = document.createElement('li');
+      r.textContent = `${new Date(x.created_at).toLocaleDateString()}: ${x.count ?? 'not sure'}${x.sizes?.length ? ', ' + x.sizes.map((z: string) => SZ[z]).join('/') : ''}${x.brands?.length ? ', ' + x.brands.join('/') : ''}, seen ${WHEN[x.when] || x.when}${x.user ? ', signed in' : ''}${x.note ? `. "${x.note}"` : ''}`;
+      return r;
+    }));
+    return li;
+  }));
+  if (!groups.size) rep.querySelector('[data-report-list]')!.innerHTML = '<li class="muted">No answers yet. They come from the "How many tables?" card on each venue page.</li>';
+  rep.hidden = false;
 })().catch(() => { msg.textContent = 'The queue could not load right now.'; });

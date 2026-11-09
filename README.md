@@ -162,3 +162,17 @@ A venue's approved owner sees their own venues; admins can pick any venue. It's 
 **Making owners:** on `/admin/` under Bar owners, claim requests from the "Own a venue? Claim it" form are listed. "Fill in form" copies the request into **Make owner**, which takes the email the owner signed up with. They need an account first. Remove an owner from the same list.
 
 Database: `my_venues()`, `venue_review_leads()` (owner or admin), `admin_set_owner()`, `admin_remove_owner()`, `admin_owners()`, and admin read policies on `click_events` and `submissions`, in `db/schema.sql`. The chart colors were checked with the dataviz palette validator (color-blind safe; the lightest series has a table view and legend).
+
+## "How many tables?" (players fill in table facts)
+
+Every venue page asks players, in "The tables" section: how many tables, which sizes, which brand, and when they were there. When the site already has a count it asks "Still 12 tables?" with that number filled in, so confirming takes one tap.
+
+- Answers go to `POST /api/tables` (`public/api/tables.php`) and are saved in `submissions` (kind `edit`, `payload.type = "tables"`). Nothing on the site changes from an answer. Spam checks: same origin, honeypot, time on the card, known venue, 6 answers per visitor per hour.
+- `/admin/` → **Table answers** lists them per venue with what players agree on.
+- To put them on the site:
+  ```
+  SUPABASE_URL=... SUPABASE_SERVICE_KEY=... npm run player-reports
+  npm run review   # pick "players"
+  ```
+  `scripts/player-reports.mjs` writes suggested facts to `tools/enrich/out/players/` (source type `community`, flagged "from players", with how many agreed). Two or more players agreeing is marked "stated", one player "implied". Sizes and brands a source already gave are left alone. The review tool shows each suggestion next to the current value; approved facts are credited on the page to "players who've been there".
+- Agreement rules are in `src/lib/player-reports.js` (one answer per signed-in player, the middle answer, give or take 1 table).

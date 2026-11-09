@@ -1,0 +1,80 @@
+---
+/**
+ * "How many tables?": a ten-second question for players on a venue page. Answers go to
+ * /api/tables (saved in submissions for a person to check, never shown as fact straight away).
+ * `npm run player-reports` turns answers that agree into suggested facts for `npm run review`.
+ * Filled in by src/scripts/tables-ask.ts; hidden without JavaScript.
+ */
+import { brands, sizes, tables } from '../lib/text.ts';
+import type { Venue } from '../lib/types.ts';
+
+const { v } = Astro.props as { v: Venue };
+const known = tables(v);
+const knownSizes = sizes(v);
+const knownBrands = brands(v);
+const SIZES: [string, string][] = [['7ft', '7-ft bar box'], ['8ft', '8-ft'], ['9ft', '9-ft'], ['snooker', 'Snooker'], ['carom', 'Carom']];
+const BRANDS = ['Diamond', 'Valley', 'Brunswick', 'Olhausen', 'Gold Crown', 'Rasson', 'Predator', 'Dynamic'];
+for (const b of knownBrands) if (!BRANDS.some((x) => x.toLowerCase() === b.toLowerCase())) BRANDS.unshift(b);
+const question = known ? `Still ${known} tables at ${v.name}?` : `How many tables does ${v.name} have?`;
+---
+<div class="ask" data-tables-ask data-venue={v.slug} data-known={known ?? ''} hidden>
+  <form class="ask-form" data-ask-form>
+    <div class="ask-head">
+      <p class="ask-kicker">{known ? 'Played here lately?' : 'Help other players'}</p>
+      <h3 class="ask-q">{question}</h3>
+      <p class="ask-sub">Ten seconds. We check what players tell us before it goes on the page.</p>
+    </div>
+
+    <fieldset class="ask-count">
+      <legend>Tables</legend>
+      <div class="ask-stepper">
+        <button type="button" class="ask-step" data-step="-1" aria-label="One fewer table">−</button>
+        <input name="count" type="number" inputmode="numeric" min="1" max="200" value={known ?? 4} aria-label="Number of tables" data-ask-count />
+        <button type="button" class="ask-step" data-step="1" aria-label="One more table">+</button>
+      </div>
+      <label class="ask-unsure"><input type="checkbox" name="unsure" data-ask-unsure /> Not sure how many</label>
+    </fieldset>
+
+    <fieldset>
+      <legend>Sizes you saw <span class="muted">(pick any)</span></legend>
+      <div class="chips">
+        {SIZES.map(([k, label]) => (
+          <label class="chip ask-chip"><input type="checkbox" name="sizes" value={k} checked={knownSizes.includes(k as any)} />{label}</label>
+        ))}
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Brand <span class="muted">(if you noticed)</span></legend>
+      <div class="chips">
+        {BRANDS.map((b) => (
+          <label class="chip ask-chip"><input type="checkbox" name="brands" value={b} checked={knownBrands.some((x) => x.toLowerCase() === b.toLowerCase())} />{b}</label>
+        ))}
+      </div>
+      <input class="ask-other" name="other" maxlength="40" placeholder="Another brand" aria-label="Another brand" />
+    </fieldset>
+
+    <fieldset class="ask-when">
+      <legend>When were you there?</legend>
+      <div class="chips">
+        <label class="chip ask-chip"><input type="radio" name="when" value="tonight" checked />Today</label>
+        <label class="chip ask-chip"><input type="radio" name="when" value="recently" />This month</label>
+        <label class="chip ask-chip"><input type="radio" name="when" value="while" />A while ago</label>
+      </div>
+    </fieldset>
+
+    <label class="ask-note"><span>Anything else? <span class="muted">(optional)</span></span>
+      <input name="note" maxlength="300" placeholder="Coin-op, cloth is fresh, tables in the back room…" />
+    </label>
+    <input class="hp" name="website_url" tabindex="-1" autocomplete="off" aria-hidden="true" />
+
+    <div class="ask-send">
+      <button class="btn" type="submit">Send answer</button>
+      <p class="review-msg" role="status" data-ask-msg></p>
+    </div>
+  </form>
+  <div class="ask-done" data-ask-done hidden>
+    <p class="ask-q">Thanks, got it.</p>
+    <p class="ask-sub">Once a couple of players agree, it goes on the page with a "from players" note. <button type="button" class="linkish" data-ask-again>Send another answer</button></p>
+  </div>
+</div>
