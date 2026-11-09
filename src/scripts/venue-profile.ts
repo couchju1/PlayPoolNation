@@ -34,6 +34,7 @@ if (box) {
   const ball = box.querySelector<SVGElement>('[data-avatar-ball]')!;
   const msg = box.querySelector<HTMLElement>('[data-profile-msg]')!;
   let row: { avatar_path: string | null; cover_path: string | null } = { avatar_path: null, cover_path: null };
+  let saved = false; // is there a venue_profiles row yet? Insert the first time, then update only the picture columns.
 
   const paint = () => {
     if (row.cover_path) {
@@ -52,7 +53,7 @@ if (box) {
 
   fetch(`${SUPABASE_URL}/rest/v1/venue_profiles?select=avatar_path,cover_path&venue_slug=eq.${slug}`, { headers: { apikey: SUPABASE_KEY } })
     .then((r) => (r.ok ? r.json() : []))
-    .then((rows) => { if (rows[0]) { row = rows[0]; paint(); } })
+    .then((rows) => { if (rows[0]) { row = rows[0]; saved = true; paint(); } })
     .catch(() => {});
 
   const me = savedUser();
@@ -76,8 +77,16 @@ if (box) {
             if (up.error) throw up.error;
             const old = kind === 'cover' ? row.cover_path : row.avatar_path;
             const next = { ...row, [kind === 'cover' ? 'cover_path' : 'avatar_path']: path };
-            const saved = await c.from('venue_profiles').upsert({ venue_slug: slug, avatar_path: next.avatar_path, cover_path: next.cover_path, updated_by: me.id, updated_at: new Date().toISOString() });
-            if (saved.error) { await c.storage.from('venue-photos').remove([path]); throw saved.error; }
+            const fields = { avatar_path: next.avatar_path, cover_path: next.cover_path, updated_by: me.id, updated_at: new Date().toISOString() };
+            if (!saved) {
+              const { data: had } = await c.from('venue_profiles').select('venue_slug').eq('venue_slug', slug);
+              saved = !!had?.length;
+            }
+            const res = saved
+              ? await c.from('venue_profiles').update(fields).eq('venue_slug', slug).select('venue_slug')
+              : await c.from('venue_profiles').insert({ venue_slug: slug, ...fields }).select('venue_slug');
+            if (res.error || !res.data?.length) { await c.storage.from('venue-photos').remove([path]); throw res.error || new Error('not saved'); }
+            saved = true;
             row = next;
             paint();
             if (old) c.storage.from('venue-photos').remove([old]);
