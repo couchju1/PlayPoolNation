@@ -13,6 +13,7 @@ import './reviews.ts';
 import './social.ts';
 import './photos.ts';
 import './tables-ask.ts';
+import './venue-profile.ts';
 
 const now = new Date();
 
